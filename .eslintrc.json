@@ -8,15 +8,6 @@
   ],
   "overrides": [
     {
-      "files": [
-        "tsconfig.json"
-      ],
-      "rules": {
-        "required": false,
-        "parser": false
-      }
-    },
-    {
       "files": "*.json",
       "parser": "jsonc-eslint-parser",
       "rules": {}
