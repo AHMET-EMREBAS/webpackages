@@ -1,0 +1,39 @@
+{
+  "generators": {
+    "entity": {
+      "factory": "./src/generators/entity/generator",
+      "schema": "./src/generators/entity/schema.json",
+      "description": "entity generator"
+    },
+    "client": {
+      "factory": "./src/generators/client/generator",
+      "schema": "./src/generators/client/schema.json",
+      "description": "client generator"
+    },
+    "api": {
+      "factory": "./src/generators/api/generator",
+      "schema": "./src/generators/api/schema.json",
+      "description": "api generator"
+    },
+    "entity-client": {
+      "factory": "./src/generators/entity-client/generator",
+      "schema": "./src/generators/entity-client/schema.json",
+      "description": "entity-client generator"
+    },
+    "graphql-object": {
+      "factory": "./src/generators/graphql-object/generator",
+      "schema": "./src/generators/graphql-object/schema.json",
+      "description": "graphql-object generator"
+    },
+    "rest-module": {
+      "factory": "./src/generators/rest-module/generator",
+      "schema": "./src/generators/rest-module/schema.json",
+      "description": "rest-module generator"
+    },
+    "graphql-module": {
+      "factory": "./src/generators/graphql-module/generator",
+      "schema": "./src/generators/graphql-module/schema.json",
+      "description": "graphql-module generator"
+    }
+  }
+}

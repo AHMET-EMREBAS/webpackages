@@ -94,6 +94,7 @@
     "@ngrx/effects": "^18.0.0",
     "@ngrx/entity": "^18.0.0",
     "@ngrx/store": "^18.0.0",
+    "@nx/devkit": "19.3.0",
     "apollo-angular": "^7.0.2",
     "axios": "^1.7.2",
     "better-sqlite3": "^11.0.0",
