@@ -16,13 +16,13 @@ import { AppInterceptor } from './app.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAnimationsAsync(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    provideAnimationsAsync(),
     provideHttpClient(withInterceptors([AppInterceptor])),
     provideStore(),
     provideEffects(),
