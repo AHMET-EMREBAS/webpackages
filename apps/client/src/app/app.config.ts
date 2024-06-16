@@ -24,8 +24,8 @@ export const appConfig: ApplicationConfig = {
     }),
     provideAnimationsAsync(),
     provideHttpClient(withInterceptors([AppInterceptor])),
-    provideEffects(),
     provideStore(),
+    provideEffects(),
     provideEntityData(entityConfig, withEffects()),
   ],
 };
