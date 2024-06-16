@@ -30,8 +30,10 @@
     "@nx/webpack": "19.3.0",
     "@schematics/angular": "~18.0.0",
     "@swc-node/register": "~1.9.1",
+    "@swc/cli": "~0.3.12",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
+    "@swc/jest": "~0.2.36",
     "@types/jest": "^29.4.0",
     "@types/node": "18.16.9",
     "@typescript-eslint/eslint-plugin": "^7.3.0",
@@ -53,6 +55,7 @@
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "typescript": "~5.4.2",
+    "verdaccio": "^5.0.4",
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
@@ -107,5 +110,8 @@
     "tslib": "^2.3.0",
     "typeorm": "^0.3.20",
     "zone.js": "~0.14.3"
+  },
+  "nx": {
+    "includedScripts": []
   }
 }
