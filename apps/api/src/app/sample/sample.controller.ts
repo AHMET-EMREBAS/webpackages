@@ -4,22 +4,25 @@ import { UpdateSampleDto } from './dto/update-sample.dto';
 import { HttpRouteBuilder } from '@webpackages/core';
 import { Repository } from 'typeorm';
 import { Sample } from './entities';
+import { InjectRepository } from '@nestjs/typeorm';
 
 export const C = new HttpRouteBuilder({
   singularName: 'sample',
   pluralName: 'samples',
   createDto: CreateSampleDto,
   updateDto: UpdateSampleDto,
-  queryDto: class A {},
+  queryDto: class QuerySample {},
 });
 
 @C.Controller()
 export class SampleController {
-  constructor(private readonly sampleRepo: Repository<Sample>) {}
+  constructor(
+    @InjectRepository(Sample) private readonly sampleRepo: Repository<Sample>
+  ) {}
 
   @C.Create()
   create(@Body() createSampleDto: CreateSampleDto) {
-    return this.sampleRepo.create(createSampleDto);
+    return this.sampleRepo.save(createSampleDto);
   }
 
   @C.FindAll()
