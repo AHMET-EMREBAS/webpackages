@@ -10,14 +10,16 @@ import {
   applyDecorators,
 } from '@nestjs/common';
 import {
+  ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
   ApiTags,
+  ApiUnauthorizedResponse,
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
 import { names } from '@nx/devkit';
 import { CanDelete, CanRead, CanUpdate, CanWrite, ResourceName } from '../auth';
-import { ValidationErrorDto } from './responses';
+import { MessageResponse, ValidationErrorDto } from './responses';
 
 export type HttpRouteBuilderOptions = {
   singularName: string;
@@ -53,6 +55,15 @@ export class HttpRouteBuilder {
     this.path = new ApiResourcePath(singularName, pluralName);
   }
 
+  __CommonResponses() {
+    return [
+      ApiUnauthorizedResponse({
+        type: MessageResponse,
+        description: 'You do not have sufficint priviledge for the operation',
+      }),
+    ];
+  }
+
   Controller() {
     return applyDecorators(
       Controller(),
@@ -63,13 +74,19 @@ export class HttpRouteBuilder {
 
   Create() {
     return applyDecorators(
+      ...this.__CommonResponses(),
       ApiOperation({ summary: `Create ${this.singularName}` }),
       Post(this.path.singular()),
-      ApiOkResponse({ type: this.entity, status: HttpStatus.CREATED }),
+      ApiOkResponse({
+        type: this.entity,
+        status: HttpStatus.CREATED,
+        description: 'Successful insert',
+      }),
       ApiUnprocessableEntityResponse({
         type: ValidationErrorDto,
         isArray: true,
         status: HttpStatus.UNPROCESSABLE_ENTITY,
+        description: `Invalid input for ${this.singularName}`,
       }),
       CanWrite()
     );
@@ -77,32 +94,64 @@ export class HttpRouteBuilder {
 
   FindAll() {
     return applyDecorators(
+      ...this.__CommonResponses(),
       ApiOperation({ summary: `Find all ${this.singularName}` }),
       Get(this.path.plural()),
+      ApiOkResponse({
+        type: this.entity,
+        isArray: true,
+        description: 'Successful query',
+      }),
+      ApiUnprocessableEntityResponse({
+        type: ValidationErrorDto,
+        isArray: true,
+        description: `Invalid query for ${this.singularName}`,
+      }),
       CanRead()
     );
   }
 
   FindOneById() {
     return applyDecorators(
+      ...this.__CommonResponses(),
       ApiOperation({ summary: `Find ${this.singularName} by id` }),
       Get(this.path.byId()),
+      ApiNotFoundResponse({
+        type: MessageResponse,
+        description: 'Entity not found by the given id',
+      }),
       CanRead()
     );
   }
 
   Update() {
     return applyDecorators(
+      ...this.__CommonResponses(),
       ApiOperation({ summary: `Update ${this.singularName}` }),
       Put(this.path.byId()),
+      ApiNotFoundResponse({
+        type: MessageResponse,
+        description: 'Entity not found by the given id',
+      }),
+      ApiUnprocessableEntityResponse({
+        type: ValidationErrorDto,
+        isArray: true,
+        status: HttpStatus.UNPROCESSABLE_ENTITY,
+        description: `Invalid input for ${this.singularName}`,
+      }),
       CanUpdate()
     );
   }
 
   Delete() {
     return applyDecorators(
+      ...this.__CommonResponses(),
       ApiOperation({ summary: `Delete ${this.singularName}` }),
       Delete(this.path.byId()),
+      ApiNotFoundResponse({
+        type: MessageResponse,
+        description: 'Entity not found by the given id',
+      }),
       CanDelete()
     );
   }
