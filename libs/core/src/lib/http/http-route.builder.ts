@@ -13,6 +13,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiQuery,
   ApiTags,
   ApiUnauthorizedResponse,
   ApiUnprocessableEntityResponse,
@@ -96,6 +97,7 @@ export class HttpRouteBuilder {
     return applyDecorators(
       ...this.__CommonResponses(),
       ApiOperation({ summary: `Find all ${this.singularName}` }),
+      ApiQuery({ type: this.queryDto }),
       Get(this.path.plural()),
       ApiOkResponse({
         type: this.entity,

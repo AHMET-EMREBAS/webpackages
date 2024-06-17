@@ -8,7 +8,7 @@ import { Sample } from '../entities';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class OrderSample extends BaseOrderDto implements OrderDto<Sample> {
+export class OrderSampleDto extends BaseOrderDto implements OrderDto<Sample> {
   @OrderProperty()
   name: OrderDirections;
 }
