@@ -7,9 +7,9 @@ import { isArray } from 'class-validator';
 
 export function SearchProperty<T extends IDEntity>(searchables: (keyof T)[]) {
   return applyDecorators(
-    Property({ type: 'string', noValidate: true }),
+    Property({ type: 'string', noValidate: true, example: '' }),
     Transform(({ value }) => {
-      if (typeof value === 'string') {
+      if (typeof value === 'string' && value.length > 0) {
         if (value.length > 100) {
           throw new UnprocessableEntityException(
             'Search must be shorter than 100 characters!'

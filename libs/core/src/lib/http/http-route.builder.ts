@@ -13,7 +13,6 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
-  ApiQuery,
   ApiTags,
   ApiUnauthorizedResponse,
   ApiUnprocessableEntityResponse,
@@ -26,9 +25,6 @@ export type HttpRouteBuilderOptions = {
   singularName: string;
   pluralName: string;
   entity: Type;
-  createDto: Type;
-  updateDto: Type;
-  queryDto: Type;
 };
 /**
  * Decorate controllers and end points
@@ -38,21 +34,13 @@ export class HttpRouteBuilder {
   protected readonly singularName: string;
   protected readonly pluralName: string;
   protected readonly entity: Type;
-  protected readonly createDto: Type;
-  protected readonly updateDto: Type;
-  protected readonly queryDto: Type;
 
   constructor(protected readonly options: HttpRouteBuilderOptions) {
-    const { singularName, pluralName, entity, createDto, updateDto, queryDto } =
-      options;
+    const { singularName, pluralName, entity } = options;
 
     this.singularName = singularName;
     this.pluralName = pluralName;
     this.entity = entity;
-    this.createDto = createDto;
-    this.updateDto = updateDto;
-    this.queryDto = queryDto;
-
     this.path = new ApiResourcePath(singularName, pluralName);
   }
 
@@ -97,7 +85,6 @@ export class HttpRouteBuilder {
     return applyDecorators(
       ...this.__CommonResponses(),
       ApiOperation({ summary: `Find all ${this.singularName}` }),
-      ApiQuery({ type: this.queryDto }),
       Get(this.path.plural()),
       ApiOkResponse({
         type: this.entity,

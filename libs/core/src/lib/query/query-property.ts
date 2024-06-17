@@ -70,9 +70,9 @@ export type QueryPropertyOptions = {
 };
 export function QueryProperty() {
   return applyDecorators(
-    Property({ type: 'string', isArray: true, noValidate: true }),
+    Property({ type: 'string', isArray: true, noValidate: true, example: '' }),
     Transform(({ value }) => {
-      if (typeof value === 'string') {
+      if (typeof value === 'string' && value.length > 0) {
         return toQueryOperator(value);
       } else if (isArray(value)) {
         const operators = value

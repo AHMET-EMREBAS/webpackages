@@ -190,7 +190,6 @@ export function BooleanProperty(
   return decorators;
 }
 
-
 export function ObjectProperty(
   options: ObjectPropertyOptions,
   vo: ValidationOptions
@@ -208,7 +207,20 @@ export function Property(options: PropertyOptions) {
   const decorators: PropertyDecorator[] = [
     Expose(),
     ApiProperty({
+      example:
+        options.type === 'string'
+          ? 'Sample Value'
+          : options.type === 'boolean'
+          ? true
+          : options.type === 'date'
+          ? new Date().toLocaleDateString()
+          : options.type === 'number'
+          ? 1234
+          : options.type === 'object'
+          ? {}
+          : undefined,
       ...options,
+      type: options.type === 'date' ? 'string' : options.type,
       required: !!options.required,
       nullable: !options.required,
     }),
