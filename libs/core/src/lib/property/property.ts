@@ -19,6 +19,12 @@ import {
   ValidateNested,
   ValidationOptions,
 } from 'class-validator';
+import {
+  BooleanTransformer,
+  DateTransformer,
+  NumberTransformer,
+  transformDate,
+} from './transformers';
 
 export type PropertyType = 'string' | 'number' | 'boolean' | 'date' | 'object';
 
@@ -148,7 +154,9 @@ export function NumberProperty(
   options: NumberPropertyOptions,
   vo: ValidationOptions
 ): PropertyDecorator[] {
-  const decorators: PropertyDecorator[] = [];
+  const decorators: PropertyDecorator[] = [
+    NumberTransformer({ isArray: vo.each }),
+  ];
   const { int, minimum, maximum: maximumum } = options;
 
   decorators.push(IsNumber(undefined, vo));
@@ -165,7 +173,9 @@ export function DateProperty(
   options: DatePropertyOptions,
   vo: ValidationOptions
 ): PropertyDecorator[] {
-  const decorators: PropertyDecorator[] = [];
+  const decorators: PropertyDecorator[] = [
+    DateTransformer({ isArray: vo.each }),
+  ];
   decorators.push(IsDate(vo));
   return decorators;
 }
@@ -174,10 +184,14 @@ export function BooleanProperty(
   options: BooleanPropertyOptions,
   vo: ValidationOptions
 ): PropertyDecorator[] {
-  const decorators: PropertyDecorator[] = [];
+  const decorators: PropertyDecorator[] = [
+    BooleanTransformer({ isArray: vo.each }),
+  ];
   decorators.push(IsBoolean(vo));
   return decorators;
 }
+
+
 export function ObjectProperty(
   options: ObjectPropertyOptions,
   vo: ValidationOptions
