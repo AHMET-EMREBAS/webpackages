@@ -1,12 +1,14 @@
 import { Module, OnModuleInit } from '@nestjs/common';
-import { SampleController } from './sample.controller';
+import { SampleController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { Sample } from './entities';
 import { Repository } from 'typeorm';
+import { SampleService } from './service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Sample])],
   controllers: [SampleController],
+  providers: [SampleService],
 })
 export class SampleModule implements OnModuleInit {
   constructor(

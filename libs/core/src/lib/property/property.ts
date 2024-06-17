@@ -23,7 +23,6 @@ import {
   BooleanTransformer,
   DateTransformer,
   NumberTransformer,
-  transformDate,
 } from './transformers';
 
 export type PropertyType = 'string' | 'number' | 'boolean' | 'date' | 'object';

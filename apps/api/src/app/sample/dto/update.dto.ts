@@ -1,5 +1,5 @@
 import { PartialType } from '@nestjs/swagger';
-import { CreateSampleDto } from './create-sample.dto';
+import { CreateSampleDto } from './create.dto';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
