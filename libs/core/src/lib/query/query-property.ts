@@ -16,6 +16,7 @@ import {
   MoreThanOrEqual,
 } from 'typeorm';
 import { isArray } from 'class-validator';
+import { IDEntity } from '../database';
 
 export function toQueryOperator(queryString: string) {
   const queryInput = parseQueryInput(queryString);

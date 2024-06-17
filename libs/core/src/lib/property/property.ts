@@ -196,7 +196,8 @@ export function Property(options: PropertyOptions) {
     Expose(),
     ApiProperty({
       ...options,
-      nullable: options.required === true ? false : true,
+      required: !!options.required,
+      nullable: !options.required,
     }),
   ];
 

@@ -1,5 +1,5 @@
 import { BaseEntity } from '../database';
-import { OrderDirections, OrderDto } from './order-dto';
+import { OrderDirections, OrderDto } from './order.dto';
 import { OrderProperty } from './order-property';
 
 export class BaseOrderDto implements OrderDto<BaseEntity> {
