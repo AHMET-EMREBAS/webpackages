@@ -34,7 +34,7 @@ export class HttpRouteBuilder {
 
   Create() {
     return applyDecorators(
-      ApiOperation({ summary: 'Find All' }),
+      ApiOperation({ summary: `Create ${this.singularName}` }),
       Post(this.path.singular()),
       CanWrite()
     );
@@ -42,7 +42,7 @@ export class HttpRouteBuilder {
 
   FindAll() {
     return applyDecorators(
-      ApiOperation({ summary: 'Find All' }),
+      ApiOperation({ summary: `Find all ${this.singularName}` }),
       Get(this.path.plural()),
       CanRead()
     );
@@ -50,7 +50,7 @@ export class HttpRouteBuilder {
 
   FindOneById() {
     return applyDecorators(
-      ApiOperation({ summary: 'Find one by id' }),
+      ApiOperation({ summary: `Find ${this.singularName} by id` }),
       Get(this.path.byId()),
       CanRead()
     );
@@ -58,7 +58,7 @@ export class HttpRouteBuilder {
 
   Update() {
     return applyDecorators(
-      ApiOperation({ summary: 'Update' }),
+      ApiOperation({ summary: `Update ${this.singularName}` }),
       Put(this.path.byId()),
       CanUpdate()
     );
@@ -66,7 +66,7 @@ export class HttpRouteBuilder {
 
   Delete() {
     return applyDecorators(
-      ApiOperation({ summary: 'Delete' }),
+      ApiOperation({ summary: `Delete ${this.singularName}` }),
       Delete(this.path.byId()),
       CanDelete()
     );
@@ -80,12 +80,35 @@ export class HttpRouteBuilder {
     );
   }
 
+  FindAllRelation(relationSingularName: string) {
+    return applyDecorators(
+      ApiOperation({ summary: `Find ${relationSingularName}` }),
+      Get(this.path.relationPlural(relationSingularName)),
+      CanWrite()
+    );
+  }
+
+  FindRelationById(relationSingularName: string) {
+    return applyDecorators(
+      ApiOperation({ summary: `Find ${relationSingularName}` }),
+      Get(this.path.relationId(relationSingularName)),
+      CanRead()
+    );
+  }
+
   UdpateRelation(relationSingularName: string) {
     return applyDecorators(
       ApiOperation({ summary: `Update ${relationSingularName}` }),
-      Post(this.path.relationId(relationSingularName)),
+      Put(this.path.relationId(relationSingularName)),
       CanUpdate()
     );
   }
-  
+
+  DeleteRelation(relationSingularName: string) {
+    return applyDecorators(
+      ApiOperation({ summary: `Delete ${relationSingularName}` }),
+      Delete(this.path.relationId(relationSingularName)),
+      CanDelete()
+    );
+  }
 }
