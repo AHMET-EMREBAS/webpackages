@@ -16,10 +16,10 @@ export function transformInt(value: string | number) {
 export function transformDate(value: string | Date) {
   if (typeof value === 'string') {
     const d = new Date(value);
-
-    if (d.toString()) {
+    if (d.toString() !== 'Invalid Date') {
       return d;
     }
+    return undefined;
   }
   return value;
 }
@@ -30,7 +30,7 @@ export function transformBoolean(value: string | boolean) {
       ? true
       : value === 'false'
       ? false
-      : value
+      : undefined
     : value;
 }
 
