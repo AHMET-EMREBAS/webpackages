@@ -5,11 +5,13 @@
  *
  */
 
-import { INestApplication, Logger } from '@nestjs/common';
+import { INestApplication, Logger, ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { GlobalValidationPipe } from './global-pipe';
+
 
 export class AppConfig {
   port = '3000';
@@ -122,6 +124,8 @@ export async function boot(app: INestApplication, appConfig: AppConfig) {
     license,
   } = appConfig;
 
+  console.table(appConfig);
+
   app.setGlobalPrefix(apiPrefix);
 
   const config = new DocumentBuilder()
@@ -140,6 +144,8 @@ export async function boot(app: INestApplication, appConfig: AppConfig) {
 
   app.use(helmet());
   app.enableCors({ origin: '*' });
+
+  app.useGlobalPipes(GlobalValidationPipe);
 
   const doc = SwaggerModule.createDocument(app, config);
 

@@ -8,19 +8,20 @@ import {
   Type,
   applyDecorators,
 } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { names } from '@nx/devkit';
 import {
-  CanDelete,
-  CanRead,
-  CanUpdate,
-  CanWrite,
-  ResourceName,
-} from '../auth';
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+  ApiUnprocessableEntityResponse,
+} from '@nestjs/swagger';
+import { names } from '@nx/devkit';
+import { CanDelete, CanRead, CanUpdate, CanWrite, ResourceName } from '../auth';
+import { UnprocessableENTResponseDto } from './responses';
 
 export type HttpRouteBuilderOptions = {
   singularName: string;
   pluralName: string;
+  entity: Type;
   createDto: Type;
   updateDto: Type;
   queryDto: Type;
@@ -32,16 +33,18 @@ export class HttpRouteBuilder {
   protected readonly path: ApiResourcePath;
   protected readonly singularName: string;
   protected readonly pluralName: string;
+  protected readonly entity: Type;
   protected readonly createDto: Type;
   protected readonly updateDto: Type;
   protected readonly queryDto: Type;
 
   constructor(protected readonly options: HttpRouteBuilderOptions) {
-    const { singularName, pluralName, createDto, updateDto, queryDto } =
+    const { singularName, pluralName, entity, createDto, updateDto, queryDto } =
       options;
 
     this.singularName = singularName;
     this.pluralName = pluralName;
+    this.entity = entity;
     this.createDto = createDto;
     this.updateDto = updateDto;
     this.queryDto = queryDto;
@@ -61,6 +64,8 @@ export class HttpRouteBuilder {
     return applyDecorators(
       ApiOperation({ summary: `Create ${this.singularName}` }),
       Post(this.path.singular()),
+      ApiOkResponse({ type: this.options.entity }),
+      ApiUnprocessableEntityResponse({ type: UnprocessableENTResponseDto }),
       CanWrite()
     );
   }

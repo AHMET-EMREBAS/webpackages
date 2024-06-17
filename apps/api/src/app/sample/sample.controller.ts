@@ -9,6 +9,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 export const C = new HttpRouteBuilder({
   singularName: 'sample',
   pluralName: 'samples',
+  entity: Sample,
   createDto: CreateSampleDto,
   updateDto: UpdateSampleDto,
   queryDto: class QuerySample {},
