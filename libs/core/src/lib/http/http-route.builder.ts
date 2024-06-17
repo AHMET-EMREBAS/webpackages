@@ -5,6 +5,7 @@ import {
   Get,
   Post,
   Put,
+  Type,
   applyDecorators,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
@@ -17,10 +18,34 @@ import {
   ResourceName,
 } from '../metadata';
 
+export type HttpRouteBuilderOptions = {
+  singularName: string;
+  pluralName: string;
+  createDto: Type;
+  updateDto: Type;
+  queryDto: Type;
+};
+/**
+ * Decorate controllers and end points
+ */
 export class HttpRouteBuilder {
   protected readonly path: ApiResourcePath;
+  protected readonly singularName: string;
+  protected readonly pluralName: string;
+  protected readonly createDto: Type;
+  protected readonly updateDto: Type;
+  protected readonly queryDto: Type;
 
-  constructor(protected singularName: string, protected pluralName: string) {
+  constructor(protected readonly options: HttpRouteBuilderOptions) {
+    const { singularName, pluralName, createDto, updateDto, queryDto } =
+      options;
+
+    this.singularName = singularName;
+    this.pluralName = pluralName;
+    this.createDto = createDto;
+    this.updateDto = updateDto;
+    this.queryDto = queryDto;
+
     this.path = new ApiResourcePath(singularName, pluralName);
   }
 

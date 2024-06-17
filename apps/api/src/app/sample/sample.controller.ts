@@ -1,42 +1,44 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
-import { SampleService } from './sample.service';
+import { Body, Param } from '@nestjs/common';
 import { CreateSampleDto } from './dto/create-sample.dto';
 import { UpdateSampleDto } from './dto/update-sample.dto';
+import { HttpRouteBuilder } from '@webpackages/core';
+import { Repository } from 'typeorm';
+import { Sample } from './entities';
 
-@Controller()
+export const C = new HttpRouteBuilder({
+  singularName: 'sample',
+  pluralName: 'samples',
+  createDto: CreateSampleDto,
+  updateDto: UpdateSampleDto,
+  queryDto: class A {},
+});
+
+@C.Controller()
 export class SampleController {
-  constructor(private readonly sampleService: SampleService) {}
+  constructor(private readonly sampleRepo: Repository<Sample>) {}
 
-  @Post()
+  @C.Create()
   create(@Body() createSampleDto: CreateSampleDto) {
-    return this.sampleService.create(createSampleDto);
+    return this.sampleRepo.create(createSampleDto);
   }
 
-  @Get()
+  @C.FindAll()
   findAll() {
-    return this.sampleService.findAll();
+    return this.sampleRepo.find();
   }
 
-  @Get(':id')
+  @C.FindOneById()
   findOne(@Param('id') id: string) {
-    return this.sampleService.findOne(+id);
+    return this.sampleRepo.findOneBy({ id: +id });
   }
 
-  @Patch(':id')
+  @C.Update()
   update(@Param('id') id: string, @Body() updateSampleDto: UpdateSampleDto) {
-    return this.sampleService.update(+id, updateSampleDto);
+    return this.sampleRepo.update(+id, updateSampleDto);
   }
 
-  @Delete(':id')
+  @C.Delete()
   remove(@Param('id') id: string) {
-    return this.sampleService.remove(+id);
+    return this.sampleRepo.softDelete(+id);
   }
 }

@@ -12,6 +12,12 @@ export function ResourceName(name: string) {
   return SetMetadata(ResouceNameToken, name);
 }
 
+export const ScopeNameToken = Symbol('ScopeName');
+
+export function ScopeName(name: string) {
+  return SetMetadata(ScopeNameToken, name);
+}
+
 export const RequiredPermissionToken = Symbol('RequiredPermission');
 
 export enum ActionGroupEnum {
@@ -58,7 +64,7 @@ export function Admin() {
   return RequiredRole(Roles.ADMIN);
 }
 
-export type AccessPolicy<ResourceNames extends string  = ''> = Partial<
+export type AccessPolicy<ResourceNames extends string = ''> = Partial<
   Record<ResourceNames, Partial<Record<ActionGroup, true>>>
 > & {
   Admin?: true;
@@ -100,5 +106,5 @@ export function canManage<T extends string>(
 }
 
 export function isAdmin(userPolicy: AccessPolicy) {
-  return userPolicy.Admin
+  return userPolicy.Admin;
 }

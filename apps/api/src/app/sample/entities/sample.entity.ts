@@ -5,5 +5,6 @@ export class Sample {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar' }) name: string;
+  @Column({ type: 'varchar' }) 
+  name: string;
 }
