@@ -5,8 +5,10 @@ import {
   IsBoolean,
   IsDate,
   IsEmail,
+  IsIn,
   IsInt,
   IsNotEmpty,
+  IsNotIn,
   IsNumber,
   IsObject,
   IsOptional,
@@ -48,16 +50,20 @@ export type CommonPropertyOptions = Partial<
   inputType?: UIInputType;
   icon?: string;
   label?: string;
+  noValidate?: true;
 };
 
 export type StringPropertyOptions = {
   type: 'string';
+  unique?: boolean;
   minLength?: number;
   maxLength?: number;
   format?: StringFormat;
   equalTo?: string;
   startsWith?: string;
   endsWith?: string;
+  enum?: string[];
+  forbidden?: string[];
 };
 
 export type NumberPropertyOptions = {
@@ -103,24 +109,40 @@ export type PropertyOptions = (
 ) &
   CommonPropertyOptions;
 
+export function StringFormatValidator(
+  format: StringFormat | undefined,
+  vo: ValidationOptions
+) {
+  const decorators: PropertyDecorator[] = [];
+
+  if (format === 'email') decorators.push(IsEmail(undefined, vo));
+
+  return decorators;
+}
+
 export function StringProperty(
   options: StringPropertyOptions,
   vo: ValidationOptions
 ): PropertyDecorator[] {
   const decorators: PropertyDecorator[] = [];
 
-  const { minLength, maxLength, format } = options;
+  const { minLength, maxLength, format, enum: enumList, forbidden } = options;
 
   decorators.push(IsString(vo));
 
   if (minLength != undefined) decorators.push(MinLength(minLength, vo));
   if (maxLength != undefined) decorators.push(MaxLength(maxLength, vo));
-  if (format === 'email') decorators.push(IsEmail(undefined, vo));
 
+  if (enumList && enumList.length > 0) decorators.push(IsIn(enumList, vo));
+
+  if (format != undefined)
+    decorators.push(...StringFormatValidator(format, vo));
+
+  if (forbidden != undefined) {
+    decorators.push(IsNotIn(forbidden, vo));
+  }
   return decorators;
 }
-
-
 
 export function NumberProperty(
   options: NumberPropertyOptions,
@@ -177,6 +199,10 @@ export function Property(options: PropertyOptions) {
       nullable: options.required === true ? false : true,
     }),
   ];
+
+  if (options.noValidate == true) {
+    return applyDecorators(...decorators);
+  }
 
   const { type, required, isArray } = options;
 

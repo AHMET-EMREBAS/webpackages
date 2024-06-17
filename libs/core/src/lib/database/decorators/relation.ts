@@ -5,6 +5,8 @@ import { IDEntity } from '../base';
 export type RelationOptions = {
   type: 'one' | 'many' | 'owner';
   target: Type;
+  eager?: boolean;
+  nullable?: boolean;
 };
 
 export function OneRelation<T extends IDEntity>(target: Type<T>) {
@@ -29,11 +31,18 @@ export function ManyRelation<T extends IDEntity>(target: Type<T>) {
   );
 }
 
-export function OwnerRelation(target: Type) {
+export function OwnerRelation(target: Type, options: RelationOptions) {
   return applyDecorators(
     ManyToOne(
       () => target,
-      (t) => t.id
+      (t) => t.id,
+      {
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        eager: false,
+        nullable: false,
+        ...options,
+      }
     ),
     JoinColumn()
   );
@@ -47,7 +56,7 @@ export function Relation(options: RelationOptions) {
   } else if (type === 'one') {
     return OneRelation(target);
   } else if (type === 'owner') {
-    return OwnerRelation(target);
+    return OwnerRelation(target, options);
   }
   throw new Error(`Relation type ${type} is not found!`);
 }
