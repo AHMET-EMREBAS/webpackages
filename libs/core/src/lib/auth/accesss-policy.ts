@@ -58,16 +58,22 @@ export function RequiredRole(role: string) {
 
 export enum Roles {
   ADMIN = 'ADMIN',
+  ROOT = 'ROOT',
 }
 
 export function Admin() {
   return RequiredRole(Roles.ADMIN);
 }
 
+export function Root() {
+  return RequiredRole(Roles.ROOT);
+}
+
 export type AccessPolicy<ResourceNames extends string = ''> = Partial<
   Record<ResourceNames, Partial<Record<ActionGroup, true>>>
 > & {
   Admin?: true;
+  Root?: true;
 };
 
 export function canRead<T extends string>(

@@ -16,7 +16,7 @@ import {
   CanUpdate,
   CanWrite,
   ResourceName,
-} from '../metadata';
+} from '../auth';
 
 export type HttpRouteBuilderOptions = {
   singularName: string;
