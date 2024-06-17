@@ -10,7 +10,7 @@ export type ColumnOptions = {
 
 export function StringColumn(options: ColumnOptions) {
   return applyDecorators(
-    Property({ ...options, type: 'string' }),
+    Property({ ...options, type: 'string', example: 'example value' }),
     Col({
       type: 'varchar',
       nullable: options.required != true,
@@ -21,7 +21,7 @@ export function StringColumn(options: ColumnOptions) {
 
 export function NumberColumn(options: ColumnOptions) {
   return applyDecorators(
-    Property({ ...options, type: 'number' }),
+    Property({ ...options, type: 'number', example: 100 }),
     Col({
       type: 'numeric',
       nullable: options.required != true,
@@ -32,7 +32,7 @@ export function NumberColumn(options: ColumnOptions) {
 
 export function DateColumn(options: ColumnOptions) {
   return applyDecorators(
-    Property({ ...options, type: 'date' }),
+    Property({ ...options, type: 'date', example: '10-10-2025' }),
     Col({
       type: 'varchar',
       nullable: options.required != true,
@@ -43,14 +43,14 @@ export function DateColumn(options: ColumnOptions) {
 
 export function BooleanColumn() {
   return applyDecorators(
-    Property({ type: 'boolean' }),
+    Property({ type: 'boolean', example: true }),
     Col({ type: 'boolean', nullable: true })
   );
 }
 
 export function ObjectColumn(target: Type = class ObjectClass {}) {
   return applyDecorators(
-    Property({ type: 'object', target }),
+    Property({ type: 'object', target, example: { key: 'value' } }),
     Col({
       type: 'varchar',
       nullable: true,

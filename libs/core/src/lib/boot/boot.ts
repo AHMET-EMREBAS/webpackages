@@ -12,7 +12,6 @@ import { join } from 'path';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { GlobalValidationPipe } from './global-pipe';
 
-
 export class AppConfig {
   port = '3000';
   host = 'localhost';
@@ -128,7 +127,7 @@ export async function boot(app: INestApplication, appConfig: AppConfig) {
 
   app.setGlobalPrefix(apiPrefix);
 
-  const config = new DocumentBuilder()
+  const documentBuilder = new DocumentBuilder()
 
     .setTitle(appName)
     .setDescription(appDescription)
@@ -139,15 +138,14 @@ export async function boot(app: INestApplication, appConfig: AppConfig) {
     .addGlobalParameters({ in: 'header', name: 'autorization' })
     .addGlobalParameters({ in: 'header', name: deviceIdHeader })
     .addGlobalParameters({ in: 'header', name: organizationHeader })
-    .addGlobalParameters({ in: 'header', name: scopeHeader })
-    .build();
+    .addGlobalParameters({ in: 'header', name: scopeHeader });
 
   app.use(helmet());
   app.enableCors({ origin: '*' });
 
   app.useGlobalPipes(GlobalValidationPipe);
 
-  const doc = SwaggerModule.createDocument(app, config);
+  const doc = SwaggerModule.createDocument(app, documentBuilder.build());
 
   SwaggerModule.setup(apiPrefix + '-doc', app, doc);
 

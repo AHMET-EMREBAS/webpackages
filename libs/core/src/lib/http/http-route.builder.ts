@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  HttpStatus,
   Post,
   Put,
   Type,
@@ -16,7 +17,7 @@ import {
 } from '@nestjs/swagger';
 import { names } from '@nx/devkit';
 import { CanDelete, CanRead, CanUpdate, CanWrite, ResourceName } from '../auth';
-import { UnprocessableENTResponseDto } from './responses';
+import { ValidationErrorDto } from './responses';
 
 export type HttpRouteBuilderOptions = {
   singularName: string;
@@ -64,8 +65,12 @@ export class HttpRouteBuilder {
     return applyDecorators(
       ApiOperation({ summary: `Create ${this.singularName}` }),
       Post(this.path.singular()),
-      ApiOkResponse({ type: this.options.entity }),
-      ApiUnprocessableEntityResponse({ type: UnprocessableENTResponseDto }),
+      ApiOkResponse({ type: this.entity, status: HttpStatus.CREATED }),
+      ApiUnprocessableEntityResponse({
+        type: ValidationErrorDto,
+        isArray: true,
+        status: HttpStatus.UNPROCESSABLE_ENTITY,
+      }),
       CanWrite()
     );
   }

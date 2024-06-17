@@ -1,10 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, BaseEntity } from '@webpackages/core';
 
 @Entity()
-export class Sample {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column({ type: 'varchar' }) 
+export class Sample extends BaseEntity {
+  @Column({ type: 'string' })
   name: string;
 }
