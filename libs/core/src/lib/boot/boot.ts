@@ -5,8 +5,7 @@
  *
  */
 
-import { INestApplication, Logger, NestModule, Type } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
+import { INestApplication, Logger } from '@nestjs/common';
 import helmet from 'helmet';
 import { readFileSync } from 'fs';
 import { join } from 'path';
@@ -141,7 +140,6 @@ export async function boot(app: INestApplication, appConfig: AppConfig) {
 
   app.use(helmet());
   app.enableCors({ origin: '*' });
-  
 
   const doc = SwaggerModule.createDocument(app, config);
 
