@@ -5,7 +5,7 @@ import { HttpRouteBuilder, OrderDto, PaginatorDto } from '@webpackages/core';
 import { Repository } from 'typeorm';
 import { Sample } from './entities';
 import { InjectRepository } from '@nestjs/typeorm';
-import { QuerySampleDto, SearchSampleDto } from './dto';
+import { OrderSampleDto, QuerySampleDto, SearchSampleDto } from './dto';
 
 export const C = new HttpRouteBuilder({
   singularName: 'sample',
@@ -30,14 +30,13 @@ export class SampleController {
   @C.FindAll()
   findAll(
     @Query() paginator: PaginatorDto,
-    @Query() order: OrderDto<Sample>,
+    @Query() order: OrderSampleDto,
     @Query() query: QuerySampleDto,
     @Query() search: SearchSampleDto
   ) {
     const where = search.search ? search.search : query;
     const { orderDir, orderBy } = order;
     const orderValue = orderDir && orderBy ? { [orderBy]: orderDir } : null;
-
     return this.sampleRepo.find({
       ...paginator,
       where,

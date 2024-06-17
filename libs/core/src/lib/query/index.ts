@@ -1,5 +1,4 @@
 // @index('./*', f => `export * from '${f.path}'`)
-export * from './base-order.dto'
 export * from './base-query.dto'
 export * from './order.dto'
 export * from './order-property'

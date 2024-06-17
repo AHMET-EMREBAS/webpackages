@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { applyDecorators } from '@nestjs/common';
 import { Transform } from 'class-transformer';
-import { Property } from '../property';
+import { Property, PropertyType } from '../property';
 import { QueryOperator, parseQueryInput } from '@webpackages/common';
 import {
   ILike,
@@ -16,7 +16,6 @@ import {
   MoreThanOrEqual,
 } from 'typeorm';
 import { isArray } from 'class-validator';
-import { IDEntity } from '../database';
 
 export function toQueryOperator(queryString: string) {
   const queryInput = parseQueryInput(queryString);
@@ -39,12 +38,11 @@ export function toQueryOperator(queryString: string) {
     case QueryOperator.EQUAL:
       return Equal(`${q}`);
     case QueryOperator.IN:
-      return In(q.split(','));
+      return In((q as string).split(','));
     case QueryOperator.MORE_THAN:
       return MoreThan(q);
     case QueryOperator.LESS_THAN:
       return LessThan(q);
-
     case QueryOperator.MORE_THAN_OR_EQUAL:
       return MoreThanOrEqual(q);
     case QueryOperator.LESS_THAN_OR_EQUAL:
@@ -59,7 +57,7 @@ export function toQueryOperator(queryString: string) {
     case QueryOperator.NOT_EQUAL:
       return Not(Equal(`${q}`));
     case QueryOperator.NOT_IN:
-      return Not(In(q.split(',')));
+      return Not(In((q as string).split(',')));
     case QueryOperator.NOT_LESS_THAN:
       return Not(LessThan(q));
     case QueryOperator.NOT_MORE_THAN:
@@ -67,6 +65,9 @@ export function toQueryOperator(queryString: string) {
   }
 }
 
+export type QueryPropertyOptions = {
+  type: PropertyType;
+};
 export function QueryProperty() {
   return applyDecorators(
     Property({ type: 'string', isArray: true, noValidate: true }),
@@ -76,7 +77,7 @@ export function QueryProperty() {
       } else if (isArray(value)) {
         const operators = value
           .filter((e) => typeof e === 'string')
-          .map(toQueryOperator)
+          .map((v) => toQueryOperator(v))
           .filter((e) => e) as FindOperator<any>[];
 
         if (operators.length > 0) return And(...operators);

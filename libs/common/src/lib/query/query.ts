@@ -145,7 +145,9 @@ export function createQuery(query: QueryInput) {
 export function parseQueryInput(
   queryInput: string
 ): Omit<QueryInput, 'property'> | undefined {
-  const [operator, value] = queryInput.split(':');
+  const [operator, ...rest] = queryInput.split(':');
+
+  const value = rest.join(':');
 
   if (operator && value)
     return {

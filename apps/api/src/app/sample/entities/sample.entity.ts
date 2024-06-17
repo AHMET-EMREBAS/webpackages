@@ -4,4 +4,7 @@ import { Entity, Column, BaseEntity } from '@webpackages/core';
 export class Sample extends BaseEntity {
   @Column({ type: 'string' })
   name: string;
+
+  @Column({ type: 'date' })
+  dob: Date;
 }

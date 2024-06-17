@@ -34,7 +34,7 @@ export function DateColumn(options: ColumnOptions) {
   return applyDecorators(
     Property({ ...options, type: 'date', example: '10-10-2025' }),
     Col({
-      type: 'varchar',
+      type: 'date',
       nullable: options.required != true,
       unique: options.unique,
     })
