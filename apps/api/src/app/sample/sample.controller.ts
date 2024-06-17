@@ -11,7 +11,7 @@ import { SampleService } from './sample.service';
 import { CreateSampleDto } from './dto/create-sample.dto';
 import { UpdateSampleDto } from './dto/update-sample.dto';
 
-@Controller('sample')
+@Controller()
 export class SampleController {
   constructor(private readonly sampleService: SampleService) {}
 
