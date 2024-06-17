@@ -4,7 +4,6 @@ import { Expose, Type as ObjectType } from 'class-transformer';
 import {
   IsBoolean,
   IsDate,
-  IsDateString,
   IsEmail,
   IsInt,
   IsNotEmpty,
@@ -120,6 +119,9 @@ export function StringProperty(
 
   return decorators;
 }
+
+
+
 export function NumberProperty(
   options: NumberPropertyOptions,
   vo: ValidationOptions
@@ -163,7 +165,7 @@ export function ObjectProperty(
   decorators.push(IsObject(vo));
   decorators.push(ValidateNested(vo));
   decorators.push(ObjectType(() => options.target));
-  
+
   return decorators;
 }
 
