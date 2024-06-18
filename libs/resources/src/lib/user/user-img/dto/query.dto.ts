@@ -1,11 +1,8 @@
 import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/core';
 import { Exclude } from 'class-transformer';
-import { ProductImage } from '../entities';
+import { UserImg } from '../entities';
 
 @Exclude()
-export class QueryProductImageDto
-  extends BaseQueryDto
-  implements QueryDto<ProductImage>
-{
+export class QueryUserImgDto extends BaseQueryDto implements QueryDto<UserImg> {
   @QueryProperty() name!: string;
 }
