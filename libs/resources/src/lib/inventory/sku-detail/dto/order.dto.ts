@@ -3,4 +3,4 @@ import { Exclude } from 'class-transformer';
 import { SkuDetail } from '../entities';
 
 @Exclude()
-export class OrderSkuDetailDto extends CreateOrderDto<SkuDetail>(['name']) {}
+export class OrderSkuDetailDto extends CreateOrderDto<SkuDetail>(['key', 'value']) {}

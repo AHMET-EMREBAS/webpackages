@@ -3,4 +3,4 @@ import { CreateSkuDto } from './create.dto';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class UpdateSkuDto extends PartialType(CreateSkuDto) {}
+export class UpdateSkuDto extends PartialType( CreateSkuDto) {}

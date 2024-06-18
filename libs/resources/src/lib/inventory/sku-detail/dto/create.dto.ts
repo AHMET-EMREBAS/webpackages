@@ -3,6 +3,6 @@ import { Exclude } from 'class-transformer';
 
 @Exclude()
 export class CreateSkuDetailDto {
-  @Property({ type: 'string', minLength: 3, required: true, unique: true })
-  name: string;
+  @Property({ type: 'string', required: true, maxLength: 100 }) key: string;
+  @Property({ type: 'string', required: true, maxLength: 100 }) value: string;
 }

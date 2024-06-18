@@ -1,4 +1,4 @@
-import { Body, Param, Query } from '@nestjs/common';
+import { BadRequestException, Body, Param, Query } from '@nestjs/common';
 import { CreateSerialNumberDto } from './dto/create.dto';
 import { UpdateSerialNumberDto } from './dto/update.dto';
 import { HttpRouteBuilder, PaginatorDto } from '@webpackages/core';
@@ -10,7 +10,7 @@ import {
 } from './dto';
 import { SerialNumberService } from './service';
 
- const C = new HttpRouteBuilder({
+const C = new HttpRouteBuilder({
   singularName: 'serial-number',
   pluralName: 'serial-numbers',
   entity: SerialNumber,
@@ -45,7 +45,13 @@ export class SerialNumberController {
     @Param('id') id: number,
     @Body() updateSerialNumberDto: UpdateSerialNumberDto
   ) {
-    return await this.service.updateOneById(id, updateSerialNumberDto);
+    const found = await this.service.findOneById(id);
+    if (found.inStock) {
+      return await this.service.updateOneById(id, updateSerialNumberDto);
+    }
+    throw new BadRequestException(
+      `The product with the serial number is not in stock!`
+    );
   }
 
   @C.Delete()

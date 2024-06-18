@@ -7,5 +7,7 @@ export class QuerySkuDetailDto
   extends BaseQueryDto
   implements QueryDto<SkuDetail>
 {
-  @QueryProperty() name!: string;
+  @Exclude() sku: unknown;
+  @QueryProperty() key!: string;
+  @QueryProperty() value!: string;
 }

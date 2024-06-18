@@ -27,6 +27,6 @@ export class BaseEntity extends IDEntity {
   deletedAt: Date;
 
   @Property({ type: 'boolean' })
-  @Column({ type: 'boolean' })
+  @Column({ type: 'boolean', defaultValue: true })
   active: boolean;
 }

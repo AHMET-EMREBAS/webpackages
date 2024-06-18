@@ -1,10 +1,4 @@
-import {
-  Body,
-  Param,
-  Query,
-  UnauthorizedException,
-  UnprocessableEntityException,
-} from '@nestjs/common';
+import { Body, Param, Query, UnauthorizedException } from '@nestjs/common';
 import { CreateClockInDto } from './dto/create.dto';
 import { UpdateClockInDto } from './dto/update.dto';
 import { HttpRouteBuilder, PaginatorDto } from '@webpackages/core';
@@ -25,19 +19,16 @@ export class ClockInController {
 
   @C.Create()
   async saveOne(@Body() body: CreateClockInDto) {
+    const { userId } = body;
     const found = await this.service.findOne({
-      userId: Equal(body.userId),
+      userId: Equal(userId),
       active: Equal(true),
     });
 
-    if (found) {
-      throw new UnauthorizedException(`You have a open clock already!`);
-    }
+    if (found)
+      throw new UnauthorizedException(`You have an open clock already!`);
 
-    return await this.service.saveOne({
-      userId: body.userId,
-      active: true,
-    });
+    return await this.service.saveOne({ ...body, active: true });
   }
 
   @C.FindAll()

@@ -1,6 +1,10 @@
-import { Type, applyDecorators } from '@nestjs/common';
+import {
+  Type,
+  UnprocessableEntityException,
+  applyDecorators,
+} from '@nestjs/common';
 import { ApiProperty, ApiPropertyOptions } from '@nestjs/swagger';
-import { Expose, Type as ObjectType } from 'class-transformer';
+import { Expose, Type as ObjectType, Transform } from 'class-transformer';
 import {
   IsBoolean,
   IsDate,
@@ -156,14 +160,35 @@ export function NumberProperty(
   const decorators: PropertyDecorator[] = [
     NumberTransformer({ isArray: vo.each }),
   ];
-  const { int, minimum, maximum: maximumum } = options;
+  const { int, minimum, maximum, moreThan, lessThan } = options;
 
   decorators.push(IsNumber(undefined, vo));
 
   if (int == true) decorators.push(IsInt(vo));
 
   if (minimum != undefined) decorators.push(Min(minimum));
-  if (maximumum != undefined) decorators.push(Min(maximumum));
+  if (maximum != undefined) decorators.push(Min(maximum));
+
+  if (moreThan != undefined) {
+    decorators.push(
+      Transform(({ obj, value, key }) => {
+        if (value > obj[moreThan]) {
+          return;
+        }
+        throw new UnprocessableEntityException({
+          errors: [
+            {
+              target: obj,
+              property: key,
+              constraints: {
+                moreThan: `${key} must be more than ${moreThan}`,
+              },
+            },
+          ],
+        });
+      })
+    );
+  }
 
   return decorators;
 }

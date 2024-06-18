@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchQuantityDto implements SearchDto<Quantity> {
-  @SearchProperty<Quantity>(['name'])
+  @SearchProperty<Quantity>(['quantity'])
   search: FindOptionsWhere<Quantity>;
 }

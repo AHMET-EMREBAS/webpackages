@@ -7,5 +7,7 @@ export class QueryQuantityDto
   extends BaseQueryDto
   implements QueryDto<Quantity>
 {
-  @QueryProperty() name!: string;
+  @QueryProperty() quantity: number;
+  @Exclude() sku: unknown;
+  @Exclude() store: unknown;
 }

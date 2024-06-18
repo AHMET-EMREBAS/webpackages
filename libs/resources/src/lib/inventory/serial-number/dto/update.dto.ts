@@ -1,6 +1,7 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateSerialNumberDto } from './create.dto';
 import { Exclude } from 'class-transformer';
+import { Property } from '@webpackages/core';
 
 @Exclude()
-export class UpdateSerialNumberDto extends PartialType(CreateSerialNumberDto) {}
+export class UpdateSerialNumberDto {
+  @Property({ type: 'boolean' }) inStock: boolean;
+}
