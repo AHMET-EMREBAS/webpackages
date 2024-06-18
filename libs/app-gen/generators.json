@@ -1,9 +1,0 @@
-{
-  "generators": {
-    "todo": {
-      "factory": "./src/generators/todo/generator",
-      "schema": "./src/generators/todo/schema.json",
-      "description": "todo generator"
-    }
-  }
-}
