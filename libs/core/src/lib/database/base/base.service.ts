@@ -41,6 +41,10 @@ export class BaseEntityService<T extends BaseEntity> {
     );
   }
 
+  async findOne(where?: Partial<QueryDto<T>>) {
+    return this.repo.findOne({ where: where as FindOptionsWhere<T> });
+  }
+
   /**
    *
    * @param paginator
@@ -50,7 +54,7 @@ export class BaseEntityService<T extends BaseEntity> {
    * @returns
    */
   async findAll(
-    paginator: PaginatorDto,
+    paginator?: PaginatorDto,
     order?: OrderDto<T>,
     query?: Partial<QueryDto<T>>,
     search?: SearchDto<T>
@@ -156,7 +160,7 @@ export class BaseEntityService<T extends BaseEntity> {
     await this.__isUnqiue(entity);
     let saved: T;
     try {
-      saved = await this.repo.save({ ...entity, active: true });
+      saved = await this.repo.save({ ...entity });
       return await this.findOneById(saved.id);
     } catch (err) {
       console.error(err);
@@ -166,9 +170,7 @@ export class BaseEntityService<T extends BaseEntity> {
 
   async saveMany(entities: DeepPartial<T>[]) {
     try {
-      return await this.repo.save(
-        entities.map((e) => ({ ...e, active: true }))
-      );
+      return await this.repo.save(entities);
     } catch (err) {
       console.error(err);
       throw new InternalServerErrorException();
@@ -199,10 +201,13 @@ export class BaseEntityService<T extends BaseEntity> {
       })
       .filter((e) => e);
 
+    console.table(updatedRecords);
     const updated =
       updatedRecords.length > 0
         ? updatedRecords?.reduce((p, c) => ({ ...p, ...c }))
         : null;
+
+    console.table(updated);
 
     if (updated) {
       try {

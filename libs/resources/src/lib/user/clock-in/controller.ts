@@ -1,10 +1,17 @@
-import { BadRequestException, Body, Param, Query } from '@nestjs/common';
+import {
+  Body,
+  Param,
+  Query,
+  UnauthorizedException,
+  UnprocessableEntityException,
+} from '@nestjs/common';
 import { CreateClockInDto } from './dto/create.dto';
 import { UpdateClockInDto } from './dto/update.dto';
 import { HttpRouteBuilder, PaginatorDto } from '@webpackages/core';
 import { ClockIn } from './entities';
 import { OrderClockInDto, QueryClockInDto, SearchClockInDto } from './dto';
 import { ClockInService } from './service';
+import { Equal } from 'typeorm';
 
 const C = new HttpRouteBuilder({
   singularName: 'clock-in',
@@ -17,8 +24,20 @@ export class ClockInController {
   constructor(private readonly service: ClockInService) {}
 
   @C.Create()
-  async saveOne(@Body() createClockInDto: CreateClockInDto) {
-    return await this.service.saveOne(createClockInDto);
+  async saveOne(@Body() body: CreateClockInDto) {
+    const found = await this.service.findOne({
+      userId: Equal(body.userId),
+      active: Equal(true),
+    });
+
+    if (found) {
+      throw new UnauthorizedException(`You have a open clock already!`);
+    }
+
+    return await this.service.saveOne({
+      userId: body.userId,
+      active: true,
+    });
   }
 
   @C.FindAll()
@@ -37,7 +56,7 @@ export class ClockInController {
   }
 
   @C.Update()
-  async updateOneById(@Param('id') id: number) {
+  async updateOneById(@Param('id') id: number, @Body() body: UpdateClockInDto) {
     return await this.service.updateOneById(id, { active: false });
   }
 
