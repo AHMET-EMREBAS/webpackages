@@ -139,8 +139,10 @@ export class BaseEntityService<T extends BaseEntity> {
 
   async saveOne(entity: DeepPartial<T>) {
     await this.__isUnqiue(entity);
+    let saved: T;
     try {
-      return await this.repo.save(entity);
+      saved = await this.repo.save(entity);
+      return await this.findOneById(saved.id);
     } catch (err) {
       console.error(err);
       throw new InternalServerErrorException();
