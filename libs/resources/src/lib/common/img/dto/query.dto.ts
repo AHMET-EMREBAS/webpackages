@@ -4,5 +4,6 @@ import { Img } from '../entities';
 
 @Exclude()
 export class QueryImgDto extends BaseQueryDto implements QueryDto<Img> {
-  @QueryProperty() name!: string;
+  @QueryProperty() name: string;
+  @QueryProperty() url!: string;
 }

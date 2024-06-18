@@ -3,6 +3,7 @@ import { Exclude } from 'class-transformer';
 
 @Exclude()
 export class CreateSessionDto {
-  @Property({ type: 'string', minLength: 3, required: true, unique: true })
-  name: string;
+  @Property({ type: 'string', required: true, minLength: 10 })
+  deviceId: string;
 }
+

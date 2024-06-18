@@ -1,7 +1,5 @@
-import { Entity, Column, BaseEntity } from '@webpackages/core';
+import { Entity } from '@webpackages/core';
+import { Message } from '../../message';
 
 @Entity()
-export class Notification extends BaseEntity {
-  @Column({ type: 'string' })
-  name: string;
-}
+export class Notification extends Message {}

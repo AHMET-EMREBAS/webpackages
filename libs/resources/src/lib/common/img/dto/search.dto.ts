@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchImgDto implements SearchDto<Img> {
-  @SearchProperty<Img>(['name'])
+  @SearchProperty<Img>(['name', 'url'])
   search: FindOptionsWhere<Img>;
 }

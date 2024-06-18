@@ -1,8 +1,5 @@
-import { CreateOrderDto } from '@webpackages/core';
 import { Exclude } from 'class-transformer';
-import { Notification } from '../entities';
+import { OrderMessageDto } from '../../message';
 
 @Exclude()
-export class OrderNotificationDto extends CreateOrderDto<Notification>([
-  'name',
-]) {}
+export class OrderNotificationDto extends OrderMessageDto {}

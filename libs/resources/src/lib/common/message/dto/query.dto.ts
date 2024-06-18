@@ -4,5 +4,6 @@ import { Message } from '../entities';
 
 @Exclude()
 export class QueryMessageDto extends BaseQueryDto implements QueryDto<Message> {
-  @QueryProperty() name!: string;
+  @QueryProperty() title: string;
+  @QueryProperty() message: string;
 }

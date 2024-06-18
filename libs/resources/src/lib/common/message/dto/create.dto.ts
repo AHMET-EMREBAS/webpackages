@@ -3,6 +3,9 @@ import { Exclude } from 'class-transformer';
 
 @Exclude()
 export class CreateMessageDto {
-  @Property({ type: 'string', minLength: 3, required: true, unique: true })
-  name: string;
+  @Property({ type: 'string', maxLength: 100 })
+  title: string;
+
+  @Property({ type: 'string', maxLength: 1000 })
+  message: string;
 }

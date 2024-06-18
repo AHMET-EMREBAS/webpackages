@@ -7,5 +7,6 @@ export class QueryAccessTokenDto
   extends BaseQueryDto
   implements QueryDto<AccessToken>
 {
-  @QueryProperty() name!: string;
+  @QueryProperty() token: string;
+  @QueryProperty() name: string;
 }

@@ -4,5 +4,5 @@ import { Session } from '../entities';
 
 @Exclude()
 export class QuerySessionDto extends BaseQueryDto implements QueryDto<Session> {
-  @QueryProperty() name!: string;
+  @QueryProperty() deviceId!: string;
 }

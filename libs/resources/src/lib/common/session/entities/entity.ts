@@ -1,7 +1,6 @@
-import { Entity, Column, BaseEntity } from '@webpackages/core';
+import { Entity, BaseEntity, Column } from '@webpackages/core';
 
 @Entity()
 export class Session extends BaseEntity {
-  @Column({ type: 'string' })
-  name: string;
+  @Column({ type: 'string', unique: true}) deviceId: string;
 }

@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchMessageDto implements SearchDto<Message> {
-  @SearchProperty<Message>(['name'])
+  @SearchProperty<Message>(['title' , 'message'])
   search: FindOptionsWhere<Message>;
 }

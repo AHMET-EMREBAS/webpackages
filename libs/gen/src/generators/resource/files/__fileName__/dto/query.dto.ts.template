@@ -4,5 +4,5 @@ import { <%- className %> } from '../entities';
 
 @Exclude()
 export class Query<%- className %>Dto extends BaseQueryDto implements QueryDto<<%- className %>> {
-  @QueryProperty() name!: string;
+  @QueryProperty() name: string;
 }
