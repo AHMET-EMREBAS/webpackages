@@ -1,4 +1,4 @@
-export * from './controller';
-export * from './dto';
-export * from './entities';
-export * from './module';
+// @index('./*', f => `export * from '${f.path}'`)
+export * from './project'
+export * from './sprint'
+export * from './task'

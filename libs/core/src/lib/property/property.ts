@@ -37,7 +37,7 @@ export type UIInputType =
   | 'switch'
   | 'list-select';
 
-export type StringFormat = 'email';
+export type StringFormat = 'email' | 'phone' | 'password';
 
 export type CommonPropertyOptions = Partial<
   Pick<

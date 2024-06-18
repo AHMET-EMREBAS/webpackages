@@ -1,4 +1,8 @@
-export * from './controller';
-export * from './dto';
-export * from './entities';
-export * from './module';
+// @index('./*', f => `export * from '${f.path}'`)
+export * from './clock-in';
+export * from './user';
+export * from './user-address';
+export * from './user-email';
+export * from './user-image';
+export * from './user-phone';
+export * from './user-profile';

@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { InventoryModule } from './inventory';
+import { CrmModule } from './crm';
+import { ProjectModule } from '@webpackages/resources/project';
 
 @Module({
   imports: [
@@ -17,6 +19,8 @@ import { InventoryModule } from './inventory';
       dropSchema: true,
     }),
     InventoryModule,
+    CrmModule,
+    ProjectModule,
   ],
   controllers: [AppController],
   providers: [AppService],
