@@ -8,6 +8,9 @@ import {
   DiscountModule,
   OrderModule,
   QuantityModule,
+  ProductModule,
+  ProductImgModule,
+  SerialNumberModule,
 } from '@webpackages/resources/inventory';
 
 import {
@@ -17,6 +20,9 @@ import {
 
 @Module({
   imports: [
+    ProductModule,
+    ProductImgModule,
+    SerialNumberModule,
     StoreModule,
     PriceLevelModule,
     PriceModule,

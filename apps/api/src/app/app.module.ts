@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { InventoryModule } from './inventory';
 import { CrmModule } from './crm';
 import { ProjectModule } from '@webpackages/resources/project';
+import { EmsModule } from './ems';
 
 @Module({
   imports: [
@@ -14,6 +15,8 @@ import { ProjectModule } from '@webpackages/resources/project';
       username: 'postgres',
       password: 'password',
       database: 'testdb',
+      // type:'better-sqlite3', 
+      // database:'./tmp/database.sqlite',
       synchronize: true,
       autoLoadEntities: true,
       dropSchema: true,
@@ -21,8 +24,11 @@ import { ProjectModule } from '@webpackages/resources/project';
     InventoryModule,
     CrmModule,
     ProjectModule,
+    EmsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
+
+

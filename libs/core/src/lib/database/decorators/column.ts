@@ -1,12 +1,14 @@
 import { Column as Col } from 'typeorm';
 import { Property, PropertyType } from '../../property';
 import { Type, applyDecorators } from '@nestjs/common';
-import { createHash } from 'crypto';
 import { hash } from '../../auth/hash';
+
 export type ColumnOptions = {
   type: PropertyType;
   required?: boolean;
   unique?: boolean;
+  update?: boolean;
+  defaultValue?: unknown;
 };
 
 export function StringColumn(options: ColumnOptions) {
@@ -16,6 +18,8 @@ export function StringColumn(options: ColumnOptions) {
       type: 'varchar',
       nullable: options.required != true,
       unique: options.unique,
+      update: options.update,
+      default: options.defaultValue,
     })
   );
 }
@@ -27,6 +31,8 @@ export function NumberColumn(options: ColumnOptions) {
       type: 'numeric',
       nullable: options.required != true,
       unique: options.unique,
+      update: options.update,
+      default: options.defaultValue,
     })
   );
 }
@@ -35,21 +41,31 @@ export function DateColumn(options: ColumnOptions) {
   return applyDecorators(
     Property({ ...options, type: 'date', example: '10-10-2025' }),
     Col({
-      type: 'date',
+      type: 'timestamptz',
       nullable: options.required != true,
       unique: options.unique,
+      update: options.update,
+      default: options.defaultValue,
     })
   );
 }
 
-export function BooleanColumn() {
+export function BooleanColumn(options: ColumnOptions) {
   return applyDecorators(
     Property({ type: 'boolean', example: true }),
-    Col({ type: 'boolean', nullable: true })
+    Col({
+      type: 'boolean',
+      nullable: true,
+      update: options.update,
+      default: options.defaultValue,
+    })
   );
 }
 
-export function ObjectColumn(target: Type = class ObjectClass {}) {
+export function ObjectColumn(
+  options: ColumnOptions,
+  target: Type = class ObjectClass {}
+) {
   return applyDecorators(
     Property({ type: 'object', target, example: { key: 'value' } }),
     Col({
@@ -69,6 +85,8 @@ export function ObjectColumn(target: Type = class ObjectClass {}) {
           return value;
         },
       },
+      update: options.update,
+      default: options.defaultValue,
     })
   );
 }
@@ -79,11 +97,11 @@ export function Column(options: ColumnOptions) {
   } else if (options.type === 'number') {
     return NumberColumn(options);
   } else if (options.type === 'boolean') {
-    return BooleanColumn();
+    return BooleanColumn(options);
   } else if (options.type === 'date') {
     return DateColumn(options);
   } else if (options.type === 'object') {
-    return ObjectColumn();
+    return ObjectColumn(options);
   }
 
   throw new Error(`Column type ${options.type} is unkown!`);

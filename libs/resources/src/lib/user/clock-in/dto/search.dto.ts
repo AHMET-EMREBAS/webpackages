@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchClockInDto implements SearchDto<ClockIn> {
-  @SearchProperty<ClockIn>(['name'])
+  @SearchProperty<ClockIn>(['startDate', 'endDate'])
   search: FindOptionsWhere<ClockIn>;
 }

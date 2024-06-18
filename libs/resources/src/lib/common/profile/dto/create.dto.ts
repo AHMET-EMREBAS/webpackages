@@ -3,6 +3,9 @@ import { Exclude } from 'class-transformer';
 
 @Exclude()
 export class CreateProfileDto {
-  @Property({ type: 'string', minLength: 3, required: true, unique: true })
-  name: string;
+  @Property({ type: 'string', required: true }) firstName: string;
+  @Property({ type: 'string', required: true }) middleName: string;
+  @Property({ type: 'string' }) lastName: string;
+  @Property({ type: 'string', required: true }) occupation: string;
+  @Property({ type: 'string' }) profileImg: string;
 }

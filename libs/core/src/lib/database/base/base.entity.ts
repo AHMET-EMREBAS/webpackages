@@ -5,27 +5,28 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Property } from '../../property';
+import { Column } from '../decorators';
 
 export class IDEntity {
   @Property({ type: 'number', example: 1 })
   @PrimaryGeneratedColumn()
-  id!: number;
+  id: number;
 }
 
-export class BaseEntity {
-  @Property({ type: 'number', example: 1 })
-  @PrimaryGeneratedColumn()
-  id!: number;
-
+export class BaseEntity extends IDEntity {
   @Property({ type: 'number', example: new Date().toString() })
   @CreateDateColumn()
-  createdAt!: Date;
+  createdAt: Date;
 
   @Property({ type: 'number', example: new Date().toString() })
   @UpdateDateColumn()
-  updatedAt!: Date;
+  updatedAt: Date;
 
   @Property({ type: 'number', example: new Date().toString() })
   @DeleteDateColumn()
-  deletedAt!: Date;
+  deletedAt: Date;
+
+  @Property({ type: 'boolean' })
+  @Column({ type: 'boolean' })
+  active: boolean;
 }

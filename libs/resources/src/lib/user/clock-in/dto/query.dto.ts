@@ -4,5 +4,8 @@ import { ClockIn } from '../entities';
 
 @Exclude()
 export class QueryClockInDto extends BaseQueryDto implements QueryDto<ClockIn> {
-  @QueryProperty() name!: string;
+  @QueryProperty() endDate: string;
+  @QueryProperty() startDate: string;
+  @QueryProperty() done: string;
+  @QueryProperty() userId: unknown;
 }

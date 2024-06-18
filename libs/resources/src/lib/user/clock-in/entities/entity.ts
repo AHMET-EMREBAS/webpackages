@@ -1,7 +1,9 @@
-import { Entity, Column, BaseEntity } from '@webpackages/core';
+import { Entity, BaseEntity, Column } from '@webpackages/core';
+import { CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class ClockIn extends BaseEntity {
-  @Column({ type: 'string' })
-  name: string;
+  @CreateDateColumn() startDate: Date;
+  @UpdateDateColumn() endDate: Date;
+  @Column({ type: 'number', update: false }) userId: number;
 }

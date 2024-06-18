@@ -1,4 +1,4 @@
-import { IDDto, ObjectIdProperty, Property } from '@webpackages/core';
+import { IDDto, ObjectIdProperty } from '@webpackages/core';
 import { Exclude } from 'class-transformer';
 import { CreatePhoneDto } from '../../../common';
 

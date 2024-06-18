@@ -4,9 +4,10 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { SerialNumber } from './entities';
 import { Repository } from 'typeorm';
 import { SerialNumberService } from './service';
+import { Product } from '../product';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([SerialNumber])],
+  imports: [TypeOrmModule.forFeature([SerialNumber, Product])],
   controllers: [SerialNumberController],
   providers: [SerialNumberService],
 })

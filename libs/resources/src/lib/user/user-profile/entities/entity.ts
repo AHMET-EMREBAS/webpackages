@@ -1,6 +1,6 @@
 import { Entity, Relation } from '@webpackages/core';
 import { Profile } from '../../../common';
-import { User } from '../../user/entities';
+import { User } from '../../user/';
 
 @Entity()
 export class UserProfile extends Profile {

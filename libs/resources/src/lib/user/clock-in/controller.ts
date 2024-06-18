@@ -1,4 +1,4 @@
-import { Body, Param, Query } from '@nestjs/common';
+import { BadRequestException, Body, Param, Query } from '@nestjs/common';
 import { CreateClockInDto } from './dto/create.dto';
 import { UpdateClockInDto } from './dto/update.dto';
 import { HttpRouteBuilder, PaginatorDto } from '@webpackages/core';
@@ -6,7 +6,7 @@ import { ClockIn } from './entities';
 import { OrderClockInDto, QueryClockInDto, SearchClockInDto } from './dto';
 import { ClockInService } from './service';
 
- const C = new HttpRouteBuilder({
+const C = new HttpRouteBuilder({
   singularName: 'clock-in',
   pluralName: 'clock-ins',
   entity: ClockIn,
@@ -37,11 +37,8 @@ export class ClockInController {
   }
 
   @C.Update()
-  async updateOneById(
-    @Param('id') id: number,
-    @Body() updateClockInDto: UpdateClockInDto
-  ) {
-    return await this.service.updateOneById(id, updateClockInDto);
+  async updateOneById(@Param('id') id: number) {
+    return await this.service.updateOneById(id, { active: false });
   }
 
   @C.Delete()

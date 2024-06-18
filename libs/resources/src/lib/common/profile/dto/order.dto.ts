@@ -3,4 +3,10 @@ import { Exclude } from 'class-transformer';
 import { Profile } from '../entities';
 
 @Exclude()
-export class OrderProfileDto extends CreateOrderDto<Profile>(['name']) {}
+export class OrderProfileDto extends CreateOrderDto<Profile>([
+  'firstName',
+  'middleName',
+  'lastName',
+  'occupation',
+  'profileImg',
+]) {}

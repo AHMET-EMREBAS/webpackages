@@ -1,5 +1,5 @@
 import { Exclude } from 'class-transformer';
-import { OrderProductDto } from '../../../inventory';
+import {OrderProfileDto} from '../../../common'
 
 @Exclude()
-export class OrderUserProfileDto extends OrderProductDto {}
+export class OrderUserProfileDto extends OrderProfileDto {}

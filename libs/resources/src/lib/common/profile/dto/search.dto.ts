@@ -5,6 +5,12 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchProfileDto implements SearchDto<Profile> {
-  @SearchProperty<Profile>(['name'])
+  @SearchProperty<Profile>([
+    'firstName',
+    'middleName',
+    'lastName',
+    'occupation',
+    'profileImg',
+  ])
   search: FindOptionsWhere<Profile>;
 }

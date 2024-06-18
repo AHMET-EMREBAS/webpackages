@@ -1,8 +1,8 @@
 import { Exclude } from 'class-transformer';
-import { QueryProfileDto } from '../../../common';
 import { QueryProperty } from '@webpackages/core';
+import { QueryProfileDto } from '../../../common';
 
 @Exclude()
 export class QueryUserProfileDto extends QueryProfileDto {
-  @QueryProperty() user: string;
+  @Exclude() user: string;
 }

@@ -3,4 +3,4 @@ import { Exclude } from 'class-transformer';
 import { ClockIn } from '../entities';
 
 @Exclude()
-export class OrderClockInDto extends CreateOrderDto<ClockIn>(['name']) {}
+export class OrderClockInDto extends CreateOrderDto<ClockIn>([]) {}

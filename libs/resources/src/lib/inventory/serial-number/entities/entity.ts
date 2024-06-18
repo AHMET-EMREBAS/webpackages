@@ -1,7 +1,8 @@
-import { Entity, Column, BaseEntity } from '@webpackages/core';
+import { Entity, Column, BaseEntity, Relation } from '@webpackages/core';
 
 @Entity()
 export class SerialNumber extends BaseEntity {
-  @Column({ type: 'string' })
-  name: string;
+  @Column({ type: 'string' }) serialNumber: string;
+  @Column({ type: 'boolean' }) inStock: boolean;
+  @Relation({ type: 'owner', target: 'Product', eager: true }) product: unknown;
 }

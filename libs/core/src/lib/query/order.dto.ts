@@ -8,14 +8,14 @@ export type OrderDirections = 'asc' | 'desc' | 'ASC' | 'DESC';
 @Exclude()
 export class OrderDto<T extends BaseEntity> {
   @Property({ type: 'string', example: 'id' })
-  orderBy!: keyof T;
+  orderBy: keyof T;
 
   @Property({
     type: 'string',
     enum: ['asc', 'desc', 'ASC', 'DESC'],
     example: 'asc',
   })
-  orderDir!: OrderDirections;
+  orderDir: OrderDirections;
 }
 
 export function CreateOrderDto<T extends BaseEntity>(

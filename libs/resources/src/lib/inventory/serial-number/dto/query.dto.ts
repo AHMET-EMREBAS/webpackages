@@ -7,5 +7,7 @@ export class QuerySerialNumberDto
   extends BaseQueryDto
   implements QueryDto<SerialNumber>
 {
-  @QueryProperty() name!: string;
+  @QueryProperty() serialNumber: string;
+  @QueryProperty() product: string;
+  @QueryProperty() inStock: string;
 }

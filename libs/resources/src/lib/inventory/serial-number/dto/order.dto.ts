@@ -4,5 +4,6 @@ import { SerialNumber } from '../entities';
 
 @Exclude()
 export class OrderSerialNumberDto extends CreateOrderDto<SerialNumber>([
-  'name',
+  'serialNumber',
+  'inStock'
 ]) {}

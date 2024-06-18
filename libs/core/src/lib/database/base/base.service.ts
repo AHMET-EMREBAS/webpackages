@@ -24,11 +24,22 @@ export class BaseEntityService<T extends BaseEntity> {
   protected readonly __relations = this.__md.relations.map(
     (e) => e.propertyName
   );
+
   protected readonly __uniques = this.__md.uniques.map(
     (e) => e.columns[0].propertyName
   );
 
   constructor(protected repo: Repository<T>) {}
+
+  protected async isActive(id: number) {
+    const found = await this.repo.findOneBy({ id } as FindOptionsWhere<T>);
+    if (found?.active) {
+      return found;
+    }
+    throw new UnprocessableEntityException(
+      `The entity is not active any more!`
+    );
+  }
 
   /**
    *
@@ -40,15 +51,15 @@ export class BaseEntityService<T extends BaseEntity> {
    */
   async findAll(
     paginator: PaginatorDto,
-    order: OrderDto<T>,
-    query: QueryDto<T>,
-    search: SearchDto<T>
+    order?: OrderDto<T>,
+    query?: Partial<QueryDto<T>>,
+    search?: SearchDto<T>
   ) {
-    const where = search.search
+    const where = search?.search
       ? (search.search as FindOptionsWhere<T>)
       : (query as FindOptionsWhere<T>);
 
-    const { orderDir, orderBy } = order;
+    const { orderDir, orderBy } = order || {};
 
     const orderValue =
       orderDir && orderBy
@@ -84,7 +95,9 @@ export class BaseEntityService<T extends BaseEntity> {
       throw new InternalServerErrorException();
     }
 
-    if (result) return result;
+    if (result) {
+      return result;
+    }
 
     throw new NotFoundException();
   }
@@ -97,7 +110,9 @@ export class BaseEntityService<T extends BaseEntity> {
     let result: { count: number };
 
     try {
-      result = { count: await this.repo.count({ where }) };
+      result = {
+        count: await this.repo.count({ where }),
+      };
     } catch (err) {
       console.error(err);
       throw new InternalServerErrorException();
@@ -141,7 +156,7 @@ export class BaseEntityService<T extends BaseEntity> {
     await this.__isUnqiue(entity);
     let saved: T;
     try {
-      saved = await this.repo.save(entity);
+      saved = await this.repo.save({ ...entity, active: true });
       return await this.findOneById(saved.id);
     } catch (err) {
       console.error(err);
@@ -151,7 +166,9 @@ export class BaseEntityService<T extends BaseEntity> {
 
   async saveMany(entities: DeepPartial<T>[]) {
     try {
-      return await this.repo.save(entities);
+      return await this.repo.save(
+        entities.map((e) => ({ ...e, active: true }))
+      );
     } catch (err) {
       console.error(err);
       throw new InternalServerErrorException();
@@ -171,7 +188,7 @@ export class BaseEntityService<T extends BaseEntity> {
   }
 
   async updateOneById(id: number, entity: DeepPartial<T>): Promise<T> {
-    const found = await this.findOneById(id);
+    const found = await this.isActive(id);
 
     const updatedRecords = Object.entries(entity)
       .map(([key, value]) => {
@@ -201,6 +218,9 @@ export class BaseEntityService<T extends BaseEntity> {
 
   async addRelation(relationDto: RelationDto<T>) {
     const { id, relationId, relationName } = relationDto;
+
+    await this.isActive(id);
+
     try {
       await this.repo
         .createQueryBuilder()
@@ -216,6 +236,7 @@ export class BaseEntityService<T extends BaseEntity> {
 
   async removeRelation(relationDto: RelationDto<T>) {
     const { id, relationId, relationName } = relationDto;
+    await this.isActive(id);
     try {
       await this.repo
         .createQueryBuilder()
@@ -232,6 +253,7 @@ export class BaseEntityService<T extends BaseEntity> {
 
   async setRelation(relationDto: RelationDto<T>) {
     const { id, relationId, relationName } = relationDto;
+    await this.isActive(id);
     try {
       await this.repo
         .createQueryBuilder()
@@ -247,6 +269,7 @@ export class BaseEntityService<T extends BaseEntity> {
 
   async unsetRelation(relationDto: UnsetRelationDto<T>) {
     const { id, relationName } = relationDto;
+    await this.isActive(id);
     try {
       await this.repo
         .createQueryBuilder()

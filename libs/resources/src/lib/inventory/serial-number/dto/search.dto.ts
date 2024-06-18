@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchSerialNumberDto implements SearchDto<SerialNumber> {
-  @SearchProperty<SerialNumber>(['name'])
+  @SearchProperty<SerialNumber>(['serialNumber'])
   search: FindOptionsWhere<SerialNumber>;
 }
