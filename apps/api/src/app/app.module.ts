@@ -3,17 +3,20 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CategoryModule } from '@webpackages/resources/category';
+import { InventoryModule } from './inventory';
+
 @Module({
   imports: [
-    CategoryModule,
     TypeOrmModule.forRoot({
-      type: 'better-sqlite3',
-      database: './tmp/app.sqlite',
+      type: 'postgres',
+      username: 'postgres',
+      password: 'password',
+      database: 'testdb',
       synchronize: true,
       autoLoadEntities: true,
       dropSchema: true,
     }),
+    InventoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
