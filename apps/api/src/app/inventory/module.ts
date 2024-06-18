@@ -4,11 +4,11 @@ import { StoreModule } from '@webpackages/resources/store';
 import { DepartmentModule } from '@webpackages/resources/department';
 import { PriceLevelModule } from '@webpackages/resources/price-level';
 import { PriceModule } from '@webpackages/resources/price';
-import { CartModule } from '@webpackages/resources/cart';
 import { SkuModule } from '@webpackages/resources/sku';
-
-// import { DiscountModule } from '@webpackages/resources/discount';
+import { CartModule } from '@webpackages/resources/cart';
+import { DiscountModule } from '@webpackages/resources/discount';
 import { OrderModule } from '@webpackages/resources/order';
+import { QuantityModule } from '@webpackages/resources/quantity';
 
 @Module({
   imports: [
@@ -20,7 +20,8 @@ import { OrderModule } from '@webpackages/resources/order';
     CartModule,
     OrderModule,
     SkuModule,
-    // DiscountModule
+    DiscountModule,
+    QuantityModule,
   ],
 })
 export class InventoryModule {}
