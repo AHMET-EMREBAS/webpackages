@@ -15,11 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@webpackages/app-gen": ["libs/app-gen/src/index.ts"],
       "@webpackages/common": ["libs/common/src/index.ts"],
       "@webpackages/core": ["libs/core/src/index.ts"],
-      "@webpackages/db": ["libs/db/src/index.ts"],
-      "@webpackages/gen": ["libs/gen/src/index.ts"]
+      "@webpackages/gen": ["libs/gen/src/index.ts"],
+      "@webpackages/resources/*": ["dist/libs/resources/src/lib/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

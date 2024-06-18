@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { SampleModule } from './sample/module';
-import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CategoryModule } from '@webpackages/resources/category';
 @Module({
   imports: [
-    SampleModule,
+    CategoryModule,
     TypeOrmModule.forRoot({
       type: 'better-sqlite3',
       database: './tmp/app.sqlite',

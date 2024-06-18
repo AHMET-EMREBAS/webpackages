@@ -1,7 +1,7 @@
 {
-  "name": "db",
+  "name": "resources",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/db/src",
+  "sourceRoot": "libs/resources/src",
   "projectType": "library",
   "release": {
     "version": {
@@ -17,10 +17,10 @@
       "executor": "@nx/js:swc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/db",
-        "main": "libs/db/src/index.ts",
-        "tsConfig": "libs/db/tsconfig.lib.json",
-        "assets": ["libs/db/*.md"]
+        "outputPath": "dist/libs/resources",
+        "main": "libs/resources/src/index.ts",
+        "tsConfig": "libs/resources/tsconfig.lib.json",
+        "assets": ["libs/resources/*.md"]
       }
     },
     "nx-release-publish": {
@@ -32,7 +32,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/db/jest.config.ts"
+        "jestConfig": "libs/resources/jest.config.ts"
       }
     }
   }

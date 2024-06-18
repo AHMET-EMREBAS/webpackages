@@ -1,8 +1,11 @@
 import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/core';
 import { Exclude } from 'class-transformer';
-import { <%- className %> } from '../entities';
+import { Department } from '../entities';
 
 @Exclude()
-export class Query<%- className %>Dto extends BaseQueryDto implements QueryDto<<%- className %>> {
+export class QueryDepartmentDto
+  extends BaseQueryDto
+  implements QueryDto<Department>
+{
   @QueryProperty() name!: string;
 }
