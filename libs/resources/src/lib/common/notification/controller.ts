@@ -10,7 +10,7 @@ import {
 } from './dto';
 import { NotificationService } from './service';
 
- const C = new HttpRouteBuilder({
+const C = new HttpRouteBuilder({
   singularName: 'notification',
   pluralName: 'notifications',
   entity: Notification,

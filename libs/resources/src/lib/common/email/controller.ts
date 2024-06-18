@@ -6,7 +6,7 @@ import { Email } from './entities';
 import { OrderEmailDto, QueryEmailDto, SearchEmailDto } from './dto';
 import { EmailService } from './service';
 
- const C = new HttpRouteBuilder({
+const C = new HttpRouteBuilder({
   singularName: 'email',
   pluralName: 'emails',
   entity: Email,

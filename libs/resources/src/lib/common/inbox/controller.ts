@@ -6,7 +6,7 @@ import { Inbox } from './entities';
 import { OrderInboxDto, QueryInboxDto, SearchInboxDto } from './dto';
 import { InboxService } from './service';
 
- const C = new HttpRouteBuilder({
+const C = new HttpRouteBuilder({
   singularName: 'inbox',
   pluralName: 'inboxs',
   entity: Inbox,

@@ -6,7 +6,7 @@ import { Event } from './entities';
 import { OrderEventDto, QueryEventDto, SearchEventDto } from './dto';
 import { EventService } from './service';
 
- const C = new HttpRouteBuilder({
+const C = new HttpRouteBuilder({
   singularName: 'event',
   pluralName: 'events',
   entity: Event,

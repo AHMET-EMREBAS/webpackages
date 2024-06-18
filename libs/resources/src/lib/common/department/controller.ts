@@ -10,7 +10,7 @@ import {
 } from './dto';
 import { DepartmentService } from './service';
 
- const C = new HttpRouteBuilder({
+const C = new HttpRouteBuilder({
   singularName: 'department',
   pluralName: 'departments',
   entity: Department,

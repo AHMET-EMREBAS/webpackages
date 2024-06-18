@@ -6,7 +6,7 @@ import { Session } from './entities';
 import { OrderSessionDto, QuerySessionDto, SearchSessionDto } from './dto';
 import { SessionService } from './service';
 
-export const C = new HttpRouteBuilder({
+const C = new HttpRouteBuilder({
   singularName: 'session',
   pluralName: 'sessions',
   entity: Session,

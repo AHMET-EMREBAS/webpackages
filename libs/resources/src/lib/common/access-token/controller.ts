@@ -10,7 +10,7 @@ import {
 } from './dto';
 import { AccessTokenService } from './service';
 
- const C = new HttpRouteBuilder({
+const C = new HttpRouteBuilder({
   singularName: 'access-token',
   pluralName: 'access-tokens',
   entity: AccessToken,

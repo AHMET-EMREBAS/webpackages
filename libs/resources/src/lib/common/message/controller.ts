@@ -6,7 +6,7 @@ import { Message } from './entities';
 import { OrderMessageDto, QueryMessageDto, SearchMessageDto } from './dto';
 import { MessageService } from './service';
 
- const C = new HttpRouteBuilder({
+const C = new HttpRouteBuilder({
   singularName: 'message',
   pluralName: 'messages',
   entity: Message,
