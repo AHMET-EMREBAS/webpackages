@@ -7,5 +7,7 @@ export class QueryCustomerDto
   extends BaseQueryDto
   implements QueryDto<Customer>
 {
-  @QueryProperty() name!: string;
+  @Exclude() password: string;
+  @Exclude() permissions: string;
+  @QueryProperty() username: string;
 }

@@ -1,8 +1,8 @@
-import { Property } from '@webpackages/core';
+import { IDDto, ObjectIdProperty } from '@webpackages/core';
 import { Exclude } from 'class-transformer';
+import { CreatePhoneDto } from '../../../common';
 
 @Exclude()
-export class CreateCustomerPhoneDto {
-  @Property({ type: 'string', minLength: 3, required: true, unique: true })
-  name: string;
+export class CreateCustomerPhoneDto extends CreatePhoneDto {
+  @ObjectIdProperty() user: IDDto;
 }

@@ -4,5 +4,7 @@ import { User } from '../entities';
 
 @Exclude()
 export class QueryUserDto extends BaseQueryDto implements QueryDto<User> {
-  @QueryProperty() name!: string;
+  @Exclude() password: string;
+  @Exclude() permissions: string;
+  @QueryProperty() username!: string;
 }

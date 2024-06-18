@@ -1,10 +1,5 @@
-import { SearchDto, SearchProperty } from '@webpackages/core';
 import { Exclude } from 'class-transformer';
-import { UserProfile } from '../entities';
-import { FindOptionsWhere } from 'typeorm';
+import { SearchProfileDto } from '../../../common';
 
 @Exclude()
-export class SearchUserProfileDto implements SearchDto<UserProfile> {
-  @SearchProperty<UserProfile>(['name'])
-  search: FindOptionsWhere<UserProfile>;
-}
+export class SearchUserProfileDto extends SearchProfileDto {}

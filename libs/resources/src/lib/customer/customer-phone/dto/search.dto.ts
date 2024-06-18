@@ -1,10 +1,5 @@
-import { SearchDto, SearchProperty } from '@webpackages/core';
 import { Exclude } from 'class-transformer';
-import { CustomerPhone } from '../entities';
-import { FindOptionsWhere } from 'typeorm';
+import { SearchPhoneDto } from '../../../common';
 
 @Exclude()
-export class SearchCustomerPhoneDto implements SearchDto<CustomerPhone> {
-  @SearchProperty<CustomerPhone>(['name'])
-  search: FindOptionsWhere<CustomerPhone>;
-}
+export class SearchCustomerPhoneDto extends SearchPhoneDto {}

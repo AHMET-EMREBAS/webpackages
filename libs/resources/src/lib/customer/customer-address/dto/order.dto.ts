@@ -1,8 +1,5 @@
-import { CreateOrderDto } from '@webpackages/core';
 import { Exclude } from 'class-transformer';
-import { CustomerAddress } from '../entities';
+import { OrderAddressDto } from '../../../common';
 
 @Exclude()
-export class OrderCustomerAddressDto extends CreateOrderDto<CustomerAddress>([
-  'name',
-]) {}
+export class OrderCustomerAddressDto extends OrderAddressDto {}

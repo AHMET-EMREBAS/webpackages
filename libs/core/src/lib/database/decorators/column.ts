@@ -1,7 +1,8 @@
 import { Column as Col } from 'typeorm';
 import { Property, PropertyType } from '../../property';
 import { Type, applyDecorators } from '@nestjs/common';
-
+import { createHash } from 'crypto';
+import { hash } from '../../auth/hash';
 export type ColumnOptions = {
   type: PropertyType;
   required?: boolean;
@@ -86,4 +87,18 @@ export function Column(options: ColumnOptions) {
   }
 
   throw new Error(`Column type ${options.type} is unkown!`);
+}
+
+export function PasswordColumn() {
+  return Col({
+    type: 'varchar',
+    transformer: {
+      to(value) {
+        return hash(value);
+      },
+      from(value) {
+        return value;
+      },
+    },
+  });
 }

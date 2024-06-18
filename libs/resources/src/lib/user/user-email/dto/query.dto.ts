@@ -1,11 +1,8 @@
-import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/core';
 import { Exclude } from 'class-transformer';
-import { UserEmail } from '../entities';
+import { QueryEmailDto } from '../../../common';
+import { QueryProperty } from '@webpackages/core';
 
 @Exclude()
-export class QueryUserEmailDto
-  extends BaseQueryDto
-  implements QueryDto<UserEmail>
-{
-  @QueryProperty() name!: string;
+export class QueryUserEmailDto extends QueryEmailDto {
+  @QueryProperty() user: string;
 }

@@ -69,6 +69,8 @@ export function Root() {
   return RequiredRole(Roles.ROOT);
 }
 
+export class AccessPolicyDto {}
+
 export type AccessPolicy<ResourceNames extends string = ''> = Partial<
   Record<ResourceNames, Partial<Record<ActionGroup, true>>>
 > & {

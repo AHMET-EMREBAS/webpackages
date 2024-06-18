@@ -1,11 +1,7 @@
-import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/core';
 import { Exclude } from 'class-transformer';
-import { CustomerPhone } from '../entities';
+import { QueryPhoneDto } from '../../../common';
 
 @Exclude()
-export class QueryCustomerPhoneDto
-  extends BaseQueryDto
-  implements QueryDto<CustomerPhone>
-{
-  @QueryProperty() name!: string;
+export class QueryCustomerPhoneDto extends QueryPhoneDto {
+  @Exclude() user: string;
 }

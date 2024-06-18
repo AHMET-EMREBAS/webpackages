@@ -1,8 +1,8 @@
-import { Property } from '@webpackages/core';
 import { Exclude } from 'class-transformer';
+import { CreateImgDto } from '../../../common';
+import { IDDto, ObjectIdProperty } from '@webpackages/core';
 
 @Exclude()
-export class CreateCustomerImgDto {
-  @Property({ type: 'string', minLength: 3, required: true, unique: true })
-  name: string;
+export class CreateCustomerImgDto extends CreateImgDto {
+  @ObjectIdProperty() user: IDDto;
 }
