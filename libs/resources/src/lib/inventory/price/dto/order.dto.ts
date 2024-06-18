@@ -3,4 +3,4 @@ import { Exclude } from 'class-transformer';
 import { Price } from '../entities';
 
 @Exclude()
-export class OrderPriceDto extends CreateOrderDto<Price>(['price', 'cost']) {}
+export class OrderPriceDto extends CreateOrderDto<Price>(['price', 'cost', 'currency']) {}

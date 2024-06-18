@@ -4,9 +4,9 @@ import { Price } from '../entities';
 
 @Exclude()
 export class QueryPriceDto extends BaseQueryDto implements QueryDto<Price> {
- @QueryProperty() price: number;
- @QueryProperty() cost: number;
- @Exclude() sku: unknown;
- @Exclude() priceLevel: unknown;
-  
+  @QueryProperty() currency: string;
+  @QueryProperty() price: number;
+  @QueryProperty() cost: number;
+  @Exclude() sku: unknown;
+  @Exclude() priceLevel: unknown;
 }

@@ -4,5 +4,7 @@ import { Order } from '../entities';
 
 @Exclude()
 export class QueryOrderDto extends BaseQueryDto implements QueryDto<Order> {
-  @QueryProperty() name!: string;
+  @QueryProperty() quantity: number;
+  @Exclude() sku: unknown;
+  @Exclude() cart: unknown;
 }

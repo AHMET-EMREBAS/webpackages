@@ -2,9 +2,13 @@ import { Entity, Column, BaseEntity, Relation } from '@webpackages/core';
 
 @Entity()
 export class Price extends BaseEntity {
-  @Column({ type: 'number' }) price: number;
-  @Column({ type: 'number' }) cost: number;
+  @Column({ type: 'number', required: true }) price: number;
+  @Column({ type: 'number', required: true }) cost: number;
+  @Column({ type: 'string', required: true }) currency: string;
 
-  @Relation({ type: 'owner', target: 'Sku' }) sku: unknown;
-  @Relation({ type: 'owner', target: 'PriceLevel' }) priceLevel: unknown;
+  @Relation({ type: 'owner', target: 'Sku', eager: true })
+  sku: unknown;
+
+  @Relation({ type: 'owner', target: 'PriceLevel', eager: true })
+  priceLevel: unknown;
 }

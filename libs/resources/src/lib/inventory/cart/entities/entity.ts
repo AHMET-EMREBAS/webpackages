@@ -1,7 +1,10 @@
-import { Entity, Column, BaseEntity } from '@webpackages/core';
+import { Entity, BaseEntity, Relation } from '@webpackages/core';
+import { OneToMany } from 'typeorm';
 
 @Entity()
 export class Cart extends BaseEntity {
-  @Column({ type: 'string' })
-  name: string;
+  @OneToMany('Order', (o) => (o as any).id, { eager: true }) orders: unknown;
+  @Relation({ type: 'owner', target: 'User' }) user: unknown;
+  @Relation({ type: 'owner', target: 'Customer' }) customer: unknown;
+  
 }
