@@ -34,6 +34,11 @@
       "factory": "./src/generators/graphql-module/generator",
       "schema": "./src/generators/graphql-module/schema.json",
       "description": "graphql-module generator"
+    },
+    "resource": {
+      "factory": "./src/generators/resource/generator",
+      "schema": "./src/generators/resource/schema.json",
+      "description": "resource generator"
     }
   }
 }

@@ -1,0 +1,29 @@
+import { Module, OnModuleInit } from '@nestjs/common';
+import { <%- className %>Controller } from './controller';
+import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
+import { <%- className %> } from './entities';
+import { Repository } from 'typeorm';
+import { <%- className %>Service } from './service';
+
+@Module({
+  imports: [TypeOrmModule.forFeature([<%- className %>])],
+  controllers: [<%- className %>Controller],
+  providers: [<%- className %>Service],
+})
+export class <%- className %>Module implements OnModuleInit {
+  constructor(
+    @InjectRepository(<%- className %>) protected readonly repo: Repository<<%- className %>>
+  ) {}
+
+  async onModuleInit() {
+    setTimeout(async () => {
+      await this.repo.save({ name: 'first', dob: new Date('2024-6-10') });
+    });
+    setTimeout(async () => {
+      await this.repo.save({ name: 'second', dob: new Date('2024-6-20') });
+    }, 3000);
+    setTimeout(async () => {
+      await this.repo.save({ name: 'third', dob: new Date('2024-6-25') });
+    }, 6000);
+  }
+}

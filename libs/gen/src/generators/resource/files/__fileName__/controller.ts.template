@@ -1,0 +1,51 @@
+import { Body, Param, Query } from '@nestjs/common';
+import { Create<%- className %>Dto } from './dto/create.dto';
+import { Update<%- className %>Dto } from './dto/update.dto';
+import { HttpRouteBuilder, PaginatorDto } from '@webpackages/core';
+import { <%- className %> } from './entities';
+import { Order<%- className %>Dto, Query<%- className %>Dto, Search<%- className %>Dto } from './dto';
+import { <%- className %>Service } from './service';
+
+export const C = new HttpRouteBuilder({
+  singularName: '<%- fileName %>',
+  pluralName: '<%- fileName %>s',
+  entity: <%- className %>,
+});
+
+@C.Controller()
+export class <%- className %>Controller {
+  constructor(private readonly service: <%- className %>Service) {}
+
+  @C.Create()
+  async saveOne(@Body() create<%- className %>Dto: Create<%- className %>Dto) {
+    return await this.service.saveOne(create<%- className %>Dto);
+  }
+
+  @C.FindAll()
+  async findAll(
+    @Query() paginator: PaginatorDto,
+    @Query() order: Order<%- className %>Dto,
+    @Query() query: Query<%- className %>Dto,
+    @Query() search: Search<%- className %>Dto
+  ) {
+    return await this.service.findAll(paginator, order, query, search);
+  }
+
+  @C.FindOneById()
+  async findOneById(@Param('id') id: number) {
+    return await this.service.findOneById(id);
+  }
+
+  @C.Update()
+  async updateOneById(
+    @Param('id') id: number,
+    @Body() update<%- className %>Dto: Update<%- className %>Dto
+  ) {
+    return await this.service.updateOneById(id, update<%- className %>Dto);
+  }
+
+  @C.Delete()
+  async deleteById(@Param('id') id: number) {
+    return await this.service.deleteById(id);
+  }
+}
