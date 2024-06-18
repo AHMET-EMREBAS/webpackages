@@ -7,6 +7,13 @@ export class IDDto {
   id!: number;
 }
 
-export function ObjectIdProperty() {
-  return Property({ type: 'object', target: IDDto, example: { id: 1 } });
+export function ObjectIdProperty(options?: { isArray: boolean }) {
+  return Property({
+    type: 'object',
+    target: IDDto,
+    example: { id: 1 },
+    isArray: options?.isArray,
+  });
 }
+
+

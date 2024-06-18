@@ -3,4 +3,7 @@ import { Exclude } from 'class-transformer';
 import { Discount } from '../entities';
 
 @Exclude()
-export class OrderDiscountDto extends CreateOrderDto<Discount>(['name']) {}
+export class OrderDiscountDto extends CreateOrderDto<Discount>([
+  'percentDiscount',
+  'fixedDiscount',
+]) {}

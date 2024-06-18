@@ -1,6 +1,7 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateCartDto } from './create.dto';
+import { IDDto, ObjectIdProperty } from '@webpackages/core';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class UpdateCartDto extends PartialType(CreateCartDto) {}
+export class UpdateCartDto {
+  @ObjectIdProperty({ isArray: true }) orders: IDDto[];
+}

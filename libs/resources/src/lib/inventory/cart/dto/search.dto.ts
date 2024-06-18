@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchCartDto implements SearchDto<Cart> {
-  @SearchProperty<Cart>(['name'])
+  @SearchProperty<Cart>([])
   search: FindOptionsWhere<Cart>;
 }

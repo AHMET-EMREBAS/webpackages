@@ -3,4 +3,4 @@ import { Exclude } from 'class-transformer';
 import { Cart } from '../entities';
 
 @Exclude()
-export class OrderCartDto extends CreateOrderDto<Cart>(['name']) {}
+export class OrderCartDto extends CreateOrderDto<Cart>([]) {}

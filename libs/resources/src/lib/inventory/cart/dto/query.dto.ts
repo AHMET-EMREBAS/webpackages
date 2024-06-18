@@ -1,8 +1,10 @@
-import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/core';
+import { BaseQueryDto, QueryDto } from '@webpackages/core';
 import { Exclude } from 'class-transformer';
 import { Cart } from '../entities';
 
 @Exclude()
 export class QueryCartDto extends BaseQueryDto implements QueryDto<Cart> {
-  @QueryProperty() name!: string;
+  @Exclude() orders: unknown;
+  @Exclude() user: unknown;
+  @Exclude() customer: unknown;
 }

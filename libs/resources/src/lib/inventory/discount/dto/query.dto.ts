@@ -7,5 +7,9 @@ export class QueryDiscountDto
   extends BaseQueryDto
   implements QueryDto<Discount>
 {
-  @QueryProperty() name!: string;
+ @QueryProperty() percentDiscount: number;
+ @QueryProperty() fixedDiscount: number;
+ @Exclude() currency: unknown;
+ @Exclude() sku: unknown;
+  
 }
