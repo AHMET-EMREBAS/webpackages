@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ProjectModule } from '@webpackages/resources/project';
-import { SprintModule } from '@webpackages/resources/sprint';
-import { TaskModule } from '@webpackages/resources/task';
+import {
+  ProjectModule,
+  SprintModule,
+  TaskModule,
+} from '@webpackages/resources/project';
 
 @Module({
   imports: [ProjectModule, SprintModule, TaskModule],

@@ -2,5 +2,6 @@
 export * from './customer'
 export * from './customer-address'
 export * from './customer-email'
+export * from './customer-img'
 export * from './customer-phone'
 export * from './customer-profile'

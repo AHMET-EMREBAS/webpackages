@@ -18,7 +18,7 @@
       "@webpackages/common": ["libs/common/src/index.ts"],
       "@webpackages/core": ["libs/core/src/index.ts"],
       "@webpackages/gen": ["libs/gen/src/index.ts"],
-      "@webpackages/resources/*": ["dist/libs/resources/src/lib/*"]
+      "@webpackages/resources/*": ["libs/resources/src/lib/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
