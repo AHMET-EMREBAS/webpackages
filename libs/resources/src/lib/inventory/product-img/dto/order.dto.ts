@@ -1,6 +1,5 @@
-import { CreateOrderDto } from '@webpackages/core';
 import { Exclude } from 'class-transformer';
-import { ProductImg } from '../entities';
+import { OrderImgDto } from '../../../common';
 
 @Exclude()
-export class OrderProductImgDto extends CreateOrderDto<ProductImg>(['name']) {}
+export class OrderProductImgDto extends OrderImgDto {}

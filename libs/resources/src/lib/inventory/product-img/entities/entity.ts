@@ -1,7 +1,7 @@
-import { Entity, Column, BaseEntity } from '@webpackages/core';
+import { Entity, Relation } from '@webpackages/core';
+import { Img } from '../../../common';
 
 @Entity()
-export class ProductImg extends BaseEntity {
-  @Column({ type: 'string' })
-  name: string;
+export class ProductImg extends Img {
+  @Relation({ type: 'owner', target: 'Product' }) product: unknown;
 }
