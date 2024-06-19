@@ -123,6 +123,7 @@
   "nx": {
     "includedScripts": []
   },
+  
   "husky": {
     "hooks": {
       "pre-commit": "echo ...........................IwasHere............"
