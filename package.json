@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    
+    "stop": "pm2 remove api-production  && pm2 remove api-development",
     "prestart": "git pull &&  pnpm install &&  npx nx build api",
     "start": "pm2 start ./config/pm2.js -f"
   },
