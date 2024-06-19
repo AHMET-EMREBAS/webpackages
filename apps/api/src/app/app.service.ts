@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
 
+import { Cron, CronExpression } from '@nestjs/schedule';
+
 @Injectable()
 export class AppService {
-  getData(): { message: string } {
-    return { message: 'Hello API' };
+  @Cron(CronExpression.EVERY_SECOND)
+  alive() {
+    console.log('I am alive');
   }
 }
