@@ -1,1 +1,0 @@
-echo "Hello there i was here"

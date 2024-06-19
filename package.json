@@ -5,7 +5,7 @@
   "scripts": {
     "install": "pnpm install",
     "build": "sh ./build.script.sh",
-    "publish": ""
+    "test": "npx nx test core && npx nx test common && npx nx test resources"
   },
   "private": true,
   "devDependencies": {
@@ -122,5 +122,10 @@
   },
   "nx": {
     "includedScripts": []
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pnpm run test"
+    }
   }
 }
