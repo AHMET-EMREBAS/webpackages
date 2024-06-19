@@ -1,20 +1,13 @@
-import { Body, Controller, Sse } from '@nestjs/common';
-import { BehaviorSubject, of } from 'rxjs';
-
-const value$ = new BehaviorSubject<string>('');
-
-let count = 1;
-
-setInterval(() => {
-  count++;
-
-  value$.next(count + '');
-}, 3000);
+import { Controller, Get, Post, Sse } from '@nestjs/common';
+import { CommonNotificationService } from '@webpackages/core';
 
 @Controller()
 export class AppController {
-  @Sse('clock')
-  alive() {
-    return value$;
+  constructor(protected readonly notification: CommonNotificationService) {}
+
+  @Post('hello')
+  hello() {
+    this.notification.pub('NEW_HELLO_MESSAGE');
+    return { message: 'Published notification event.' };
   }
 }

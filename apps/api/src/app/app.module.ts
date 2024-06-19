@@ -1,16 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { InventoryModule } from './inventory';
-import { CrmModule } from './crm';
-import { ProjectModule } from '@webpackages/resources/project';
-import { EmsModule } from './ems';
 import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { CommonNotificationModule } from '@webpackages/core';
 
 @Module({
   imports: [
@@ -29,10 +25,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
       autoLoadEntities: true,
       dropSchema: true,
     }),
-    InventoryModule,
-    CrmModule,
-    ProjectModule,
-    EmsModule,
+    CommonNotificationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
