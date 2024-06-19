@@ -1,4 +1,4 @@
-import { AccessPolicy, AccessPolicyDto, Property } from '@webpackages/core';
+import { AccessPolicyDto, Property } from '@webpackages/core';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
