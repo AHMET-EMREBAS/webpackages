@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "prestart": "npx nx build api",
-    "start": "pm2 start pm2.config.js"
+    "start": "pm2 start tools/config/app-config.js"
   },
   "private": true,
   "husky": {
