@@ -7,6 +7,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { CommonNotificationModule } from '@webpackages/core';
+import { AppResourceModule } from './app-resource.module';
 
 @Module({
   imports: [
@@ -16,19 +17,36 @@ import { CommonNotificationModule } from '@webpackages/core';
     ScheduleModule.forRoot(),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
+      extraProviders: [ConfigService],
       useFactory(c: ConfigService) {
         const database = c.getOrThrow('DATABASE');
         const username = c.getOrThrow('DATABASE_USERNAME');
         const password = c.getOrThrow('DATABASE_PASSWORD');
-        return {
+
+        const isDevelopment = c.getOrThrow('NODE_ENV') === 'development';
+        const isProduction = c.getOrThrow('NODE_ENV') === 'production';
+
+        const config = {
           type: 'postgres',
           username,
           password,
           database,
           autoLoadEntities: true,
+          synchronize: true,
+          dropSchema: true,
         };
+
+        if (isDevelopment) {
+          return { ...config, synchronize: true, dropSchema: true };
+        } else if (isProduction) {
+          return { ...config };
+        }
+
+        throw new Error('NODE_ENV is required!');
+        return {};
       },
     }),
+    AppResourceModule,
     CommonNotificationModule,
   ],
   controllers: [AppController],
