@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-for (const e of [1, 2, 3, 3, 4, 5]) {
-  console.log(e);
-}
+const { exit } = require('process');
+
+exit(1);

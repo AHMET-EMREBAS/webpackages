@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-
-npx nx test core
-npx nx test common
-npx nx test resources
-npx nx test auth
-npx nx test gen
-npx nx test resources
