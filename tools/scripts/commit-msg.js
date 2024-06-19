@@ -1,17 +1,10 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const path = require('path');
 
-const commitMsgFile = process.argv[2];
-const commitMsg = fs.readFileSync(commitMsgFile, 'utf8').trim();
+const commitMsg = process.argv[2];
 
-// Define your commit message validation rules
-const commitMsgPrefix = 'TASK';
-
-if (!commitMsg.startsWith(commitMsgPrefix)) {
-  console.error(`Invalid commit message. Must start with '${commitMsgPrefix}'`);
-  process.exit(1); // Exit with a non-zero code to indicate failure
-} else {
-  console.log('Commit message validation passed.');
+if (commitMsg.length < 5) {
+  console.error(`Commit message should be longer than 5 characters`);
+  process.exit(1);
 }

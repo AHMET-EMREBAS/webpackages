@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+node ./tools/scripts/commit-msg.js $0 $1
