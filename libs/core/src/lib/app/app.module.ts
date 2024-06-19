@@ -8,9 +8,9 @@ import { DatabaseModule } from '../database';
 import { CommonNotificationModule } from '../notification';
 
 const modules = [
+  ConfigModule.forRoot(),
   ThrottlerModule.forRoot(),
   EventEmitterModule.forRoot({ delimiter: '.' }),
-  ConfigModule.forRoot(),
   ScheduleModule.forRoot(),
   DatabaseModule,
   CommonNotificationModule,

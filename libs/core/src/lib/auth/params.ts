@@ -1,22 +1,51 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+import { Request } from 'express';
+import { AuthHeaders } from './auth-headers';
 
-export const UserId = createParamDecorator((data, ctx: ExecutionContext) => {
-  const request = ctx.switchToHttp().getRequest();
-  const user = request.user;
-  const userId = user.id;
-  return userId;
+export const UserParam = createParamDecorator((data, ctx: ExecutionContext) => {
+  const request = ctx.switchToHttp().getRequest<Request>();
+  const user = (request as any).user;
+
+  return user;
 });
 
-export const Orgname = createParamDecorator((data, ctx: ExecutionContext) => {
-  const request = ctx.switchToHttp().getRequest();
-  const user = request.user;
-  const orgname = user.orgname;
-  return orgname;
-});
+export const UserIdParam = createParamDecorator(
+  (data, ctx: ExecutionContext) => {
+    const request = ctx.switchToHttp().getRequest<Request>();
+    const user = (request as any).user;
+    const userId = user.id;
+    return userId;
+  }
+);
 
-export const DeviceId = createParamDecorator((data, ctx: ExecutionContext) => {
-  const request = ctx.switchToHttp().getRequest();
-  const user = request.user;
-  const deviceId = user.deviceId;
-  return deviceId;
-});
+export const OrgnameHeader = createParamDecorator(
+  (data, ctx: ExecutionContext) => {
+    const request = ctx.switchToHttp().getRequest<Request>();
+    const orgname = request.headers[AuthHeaders.X_ORGNAME];
+    return orgname;
+  }
+);
+
+export const ScopeHeader = createParamDecorator(
+  (data, ctx: ExecutionContext) => {
+    const request = ctx.switchToHttp().getRequest<Request>();
+    const scope = request.headers[AuthHeaders.X_SCOPE];
+    return scope;
+  }
+);
+
+export const DeviceIdHeader = createParamDecorator(
+  (data, ctx: ExecutionContext) => {
+    const request = ctx.switchToHttp().getRequest<Request>();
+    const deviceId = request.headers[AuthHeaders.X_DEVICE_ID];
+    return deviceId;
+  }
+);
+
+export const TokenParam = createParamDecorator(
+  (data, ctx: ExecutionContext) => {
+    const request = ctx.switchToHttp().getRequest<Request>();
+    const deviceId = request.headers[AuthHeaders.AUTHORIZATION];
+    return deviceId;
+  }
+);

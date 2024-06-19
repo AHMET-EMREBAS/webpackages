@@ -134,6 +134,9 @@ importers:
       compression:
         specifier: ^1.7.4
         version: 1.7.4
+      express:
+        specifier: ^4.19.2
+        version: 4.19.2
       graphql:
         specifier: ^16.8.2
         version: 16.8.2
@@ -252,6 +255,9 @@ importers:
       '@swc/jest':
         specifier: ~0.2.36
         version: 0.2.36(@swc/core@1.5.29(@swc/helpers@0.5.11))
+      '@types/express':
+        specifier: ^4.17.21
+        version: 4.17.21
       '@types/jest':
         specifier: ^29.4.0
         version: 29.5.12

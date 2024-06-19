@@ -10,6 +10,8 @@ import {
   applyDecorators,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
+  ApiHeader,
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
@@ -18,7 +20,15 @@ import {
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
 import { names } from '@nx/devkit';
-import { CanDelete, CanRead, CanUpdate, CanWrite, ResourceName } from '../auth';
+import {
+  AuthHeaders,
+  AuthNames,
+  CanDelete,
+  CanRead,
+  CanUpdate,
+  CanWrite,
+  ResourceName,
+} from '../auth';
 import { MessageResponse, ValidationErrorDto } from './responses';
 
 export type HttpRouteBuilderOptions = {
@@ -44,8 +54,12 @@ export class HttpRouteBuilder {
     this.path = new ApiResourcePath(singularName, pluralName);
   }
 
-  __CommonResponses() {
+  __Common() {
     return [
+      ApiHeader({ name: AuthHeaders.X_ORGNAME }),
+      ApiHeader({ name: AuthHeaders.X_DEVICE_ID }),
+      ApiHeader({ name: AuthHeaders.X_SCOPE }),
+      ApiBearerAuth(AuthNames.BEARER_AUTH),
       ApiUnauthorizedResponse({
         type: MessageResponse,
         description: 'You do not have sufficint priviledge for the operation',
@@ -63,7 +77,7 @@ export class HttpRouteBuilder {
 
   Create() {
     return applyDecorators(
-      ...this.__CommonResponses(),
+      ...this.__Common(),
       ApiOperation({ summary: `Create ${this.singularName}` }),
       Post(this.path.singular()),
       ApiOkResponse({
@@ -83,7 +97,7 @@ export class HttpRouteBuilder {
 
   FindAll() {
     return applyDecorators(
-      ...this.__CommonResponses(),
+      ...this.__Common(),
       ApiOperation({ summary: `Find all ${this.singularName}` }),
       Get(this.path.plural()),
       ApiOkResponse({
@@ -102,7 +116,7 @@ export class HttpRouteBuilder {
 
   FindOneById() {
     return applyDecorators(
-      ...this.__CommonResponses(),
+      ...this.__Common(),
       ApiOperation({ summary: `Find ${this.singularName} by id` }),
       Get(this.path.byId()),
       ApiNotFoundResponse({
@@ -115,7 +129,7 @@ export class HttpRouteBuilder {
 
   Update() {
     return applyDecorators(
-      ...this.__CommonResponses(),
+      ...this.__Common(),
       ApiOperation({ summary: `Update ${this.singularName}` }),
       Put(this.path.byId()),
       ApiNotFoundResponse({
@@ -134,7 +148,7 @@ export class HttpRouteBuilder {
 
   Delete() {
     return applyDecorators(
-      ...this.__CommonResponses(),
+      ...this.__Common(),
       ApiOperation({ summary: `Delete ${this.singularName}` }),
       Delete(this.path.byId()),
       ApiNotFoundResponse({

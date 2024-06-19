@@ -18,9 +18,9 @@ export function ScopeName(name: string) {
   return SetMetadata(ScopeNameToken, name);
 }
 
-export const RequiredPermissionToken = Symbol('RequiredPermission');
+export const ResourceOperationType = Symbol('ResourceOperationType');
 
-export enum ActionGroupEnum {
+export enum OperationNames {
   MANAGE = 'manage',
   READ = 'read',
   WRITE = 'write',
@@ -28,26 +28,32 @@ export enum ActionGroupEnum {
   DELETE = 'delete',
 }
 
-export type ActionGroup = 'manage' | 'read' | 'write' | 'update' | 'delete';
+export type Operation = {
+  manage: boolean;
+  read: boolean;
+  write: boolean;
+  update: boolean;
+  delete: boolean;
+};
 
 export function CanManage() {
-  return SetMetadata(RequiredPermissionToken, ActionGroupEnum.MANAGE);
+  return SetMetadata(ResourceOperationType, OperationNames.MANAGE);
 }
 
 export function CanRead() {
-  return SetMetadata(RequiredPermissionToken, ActionGroupEnum.READ);
+  return SetMetadata(ResourceOperationType, OperationNames.READ);
 }
 
 export function CanWrite() {
-  return SetMetadata(RequiredPermissionToken, ActionGroupEnum.WRITE);
+  return SetMetadata(ResourceOperationType, OperationNames.WRITE);
 }
 
 export function CanUpdate() {
-  return SetMetadata(RequiredPermissionToken, ActionGroupEnum.UPDATE);
+  return SetMetadata(ResourceOperationType, OperationNames.UPDATE);
 }
 
 export function CanDelete() {
-  return SetMetadata(RequiredPermissionToken, ActionGroupEnum.DELETE);
+  return SetMetadata(ResourceOperationType, OperationNames.DELETE);
 }
 
 export const RequiredRoleToken = Symbol('RequiredRole');
@@ -56,26 +62,36 @@ export function RequiredRole(role: string) {
   return SetMetadata(RequiredRoleToken, role);
 }
 
+/**
+ * Common roles
+ */
 export enum Roles {
-  ADMIN = 'ADMIN',
-  ROOT = 'ROOT',
+  ADMIN = 'Admin',
+  ROOT = 'Root',
 }
 
+/**
+ * Admin user only
+ * @returns
+ */
 export function Admin() {
   return RequiredRole(Roles.ADMIN);
 }
 
+/**
+ * Root user only
+ * @returns
+ */
 export function Root() {
   return RequiredRole(Roles.ROOT);
 }
 
-export class AccessPolicyDto {}
-
 export type AccessPolicy<ResourceNames extends string = ''> = Partial<
-  Record<ResourceNames, Partial<Record<ActionGroup, true>>>
+  Record<ResourceNames, Partial<Operation>>
 > & {
   Admin?: true;
   Root?: true;
+  Reader?: true;
 };
 
 export function canRead<T extends string>(
