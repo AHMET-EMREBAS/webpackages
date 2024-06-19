@@ -32,8 +32,6 @@ import { AppResourceModule } from './app-resource.module';
           password,
           database,
           autoLoadEntities: true,
-          synchronize: true,
-          dropSchema: true,
         };
 
         if (isDevelopment) {
