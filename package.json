@@ -2,7 +2,11 @@
   "name": "webpackages",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "install": "pnpm install", 
+    "build":"sh ./build.script.sh", 
+    "publish":""
+  },
   "private": true,
   "devDependencies": {
     "@angular-devkit/build-angular": "~18.0.0",
