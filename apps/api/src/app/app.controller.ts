@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Sse } from '@nestjs/common';
+import { Controller, Post } from '@nestjs/common';
 import { CommonNotificationService } from '@webpackages/core';
 
 @Controller()
