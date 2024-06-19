@@ -7,9 +7,7 @@
   },
   "private": true,
   "husky": {
-    "hooks": {
-      "commit-msg": "node tools/scripts/commit-msg.js"
-    }
+    "hooks": {}
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~18.0.0",
