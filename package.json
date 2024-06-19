@@ -4,8 +4,9 @@
   "license": "MIT",
   "scripts": {
     "install": "pnpm install",
-    "preserve": "npx nx build api && pm2 stop api && pm2 remove api",
-    "serve": "PORT=3005 pm2 start ./dist/app/api/main.js --name api --update-env"
+    "preserve": "npx nx build api",
+    "serve": "PORT=3005 pm2 start ./dist/app/api/main.js --name api --update-env", 
+    "destroy":"pm2 stop api && pm2 remove api"
   },
   "private": true,
   "husky": {
