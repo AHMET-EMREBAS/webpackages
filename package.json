@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "prestart": "npx nx build api",
+    "prestart": "pnpm install &&  npx nx build api",
     "start": "pm2 start tools/config/app.config.js -f"
   },
   "private": true,
