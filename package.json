@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "install": "pnpm install"
+    "install": "pnpm install",
+    "prepare": "husky"
   },
   "private": true,
   "husky": {
     "hooks": {
-      "pre-commit": "npx nx test core",
-      "pre-push": "npx nx test core"
+      "pre-commit": "npx nx test core"
     }
   },
   "devDependencies": {
