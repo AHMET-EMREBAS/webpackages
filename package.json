@@ -8,7 +8,7 @@
   "private": true,
   "husky": {
     "hooks": {
-      "commit-msg": "node toos/scripts/commit-msg.js"
+      "commit-msg": "node tools/scripts/commit-msg.js"
     }
   },
   "devDependencies": {
