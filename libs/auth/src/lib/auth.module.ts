@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { Session, User } from '@webpackages/resources';
 import { AuthService } from './auth.service';
+import { AuthGuard } from './guards';
+import { LocalGuard } from './guards/local.guard';
 
 @Module({
   imports: [
@@ -27,6 +29,7 @@ import { AuthService } from './auth.service';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, AuthService],
+  providers: [AuthService, AuthGuard, LocalGuard],
+  exports: [AuthService],
 })
 export class AuthModule {}

@@ -5,22 +5,23 @@ import {
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { JwtService } from '@nestjs/jwt';
 import {
   Operation,
   PublicResourceToken,
   ResouceNameToken,
+  ResourceNames,
   ResourceOperationType,
 } from '@webpackages/core';
 import { Request } from 'express';
+import { AuthService } from '../auth.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(
     protected readonly reflector: Reflector,
-    protected readonly jwt: JwtService
+    protected readonly authService: AuthService
   ) {}
 
-  canActivate(ctx: ExecutionContext) {
+  async canActivate(ctx: ExecutionContext) {
     const isPublic = this.reflector.getAllAndOverride(PublicResourceToken, [
       ctx.getClass(),
       ctx.getHandler(),
@@ -28,25 +29,32 @@ export class AuthGuard implements CanActivate {
 
     if (isPublic === true) return true;
 
-    const operation = this.reflector.getAllAndOverride(ResourceOperationType, [
-      ctx.getClass(),
-      ctx.getHandler(),
-    ]) as keyof Operation;
+    const operationName = this.reflector.getAllAndOverride(
+      ResourceOperationType,
+      [ctx.getClass(), ctx.getHandler()]
+    ) as keyof Operation;
 
-    const resouce = this.reflector.getAllAndOverride(ResouceNameToken, [
+    const resouceName = this.reflector.getAllAndOverride(ResouceNameToken, [
       ctx.getClass(),
-    ]);
+    ]) as ResourceNames;
 
-    console.log(operation, resouce);
+    console.log(operationName, resouceName);
 
     const req = ctx.switchToHttp().getRequest<Request>();
 
     const token = this.extractTokenFromAuthorizationHeader(req);
 
+    const user = await this.authService.verify(token);
 
-    
+    if (user.permissions.Admin || user.permissions.Root) {
+      return true;
+    }
 
-    return true;
+    if (user.permissions[resouceName][operationName]) {
+      return true;
+    }
+
+    return false;
   }
 
   extractTokenFromAuthorizationHeader(req: Request) {

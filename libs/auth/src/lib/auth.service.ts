@@ -23,8 +23,17 @@ export class AuthService {
     return this.jwt.sign({ sub: userId });
   }
 
-  verify(token: string): JwtPayload {
-    return this.jwt.verify(token);
+  async verify(token: string): Promise<User> {
+    const { sub } = this.jwt.verify(token);
+    if (sub) {
+      try {
+        return await this.repo.findOneByOrFail({ id: sub });
+      } catch (err) {
+        throw new UnauthorizedException('User not found!');
+      }
+    }
+
+    throw new UnauthorizedException(`There is no valid session!`);
   }
 
   async isRootUser(username: string, password: string) {
@@ -51,7 +60,7 @@ export class AuthService {
     const { username, password } = loginDto;
 
     if (await this.isRootUser(username, password)) {
-      return { token: this.sign(-111) };
+      return { token: this.sign(0) };
     }
 
     const { id, password: hashedPassed } = await this.findByUsername(username);
