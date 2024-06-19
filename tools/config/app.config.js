@@ -3,7 +3,11 @@ module.exports = {
     {
       name: 'api-production',
       script: 'dist/apps/api/main.js',
-      env_production: {
+      autorestart: true,
+      watch: false,
+      max_memory_restart: '1G',
+      env: {
+        NODE_ENV: 'production',
         APP_NAME: 'Api',
         APP_DESCRIPTION: 'App description',
         PORT: 3005,
@@ -15,7 +19,11 @@ module.exports = {
     {
       name: 'api-development',
       script: 'dist/apps/api/main.js',
-      env_development: {
+      autorestart: true,
+      watch: false,
+      max_memory_restart: '1G',
+      env: {
+        NODE_ENV: 'development',
         APP_NAME: 'Api Under Development ',
         APP_DESCRIPTION: 'App description',
         PORT: 3000,
