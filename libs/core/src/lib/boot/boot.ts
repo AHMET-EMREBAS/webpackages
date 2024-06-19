@@ -5,15 +5,17 @@ import { GlobalValidationPipe } from './global-pipe';
 import { ConfigService } from '@nestjs/config';
 import { AuthHeaders } from '../auth';
 
-export async function boot(AppModule: Type) {
+function isProduction() {
+  return process.env['NODE_ENV'] === 'production';
+}
 
+export async function boot(AppModule: Type) {
   const app = await NestFactory.create(AppModule);
 
   app.setGlobalPrefix('api');
 
   const C = app.get(ConfigService);
-
-  const PORT = C.get('PORT');
+  const PORT = isProduction() ? C.getOrThrow('PORT') : 3000;
   const APP_NAME = C.getOrThrow('APP_NAME');
   const APP_DESCRIPTION = C.getOrThrow('APP_DESCRIPTION');
 
