@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "install": "pnpm install",
-    "prepare": "husky"
+    "install": "pnpm install"
   },
   "private": true,
   "husky": {
