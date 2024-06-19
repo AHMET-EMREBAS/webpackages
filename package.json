@@ -5,7 +5,7 @@
   "scripts": {
     
     "prestart": "git pull &&  pnpm install &&  npx nx build api",
-    "start": "pm2 start tools/config/app.config.js -f"
+    "start": "pm2 start ./config/pm2.js -f"
   },
   "private": true,
   "husky": {
