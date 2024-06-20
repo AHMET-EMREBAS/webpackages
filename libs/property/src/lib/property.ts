@@ -1,51 +1,30 @@
-import { ApiPropertyOptions } from '@nestjs/swagger';
-export type CommonPropertyOptions = Partial<
-  Pick<
-    ApiPropertyOptions,
-    | 'required'
-    | 'isArray'
-    | 'example'
-    | 'default'
-    | 'deprecated'
-    | 'readOnly'
-    | 'writeOnly'
-  >
-> & {
-  type: PropertyType;
-  inputType?: InputType;
-  icon?: string;
-  label?: string;
-  noValidate?: true;
-};
+import { ApiProperty, ApiPropertyOptions } from '@nestjs/swagger';
+import { Expose } from 'class-transformer';
+import { applyDecorators } from '@nestjs/common';
+import { Validate, ValidateOptions } from '@webpackages/class-validator';
+import { exampleValue } from './example-value';
 
+export function Property(
+  options: Omit<ApiPropertyOptions, 'type' | 'format'> &
+    Partial<ValidateOptions> &
+    Pick<ValidateOptions, 'type'>
+) {
+  const type = options.type;
+  const format = options.format;
+  const required = !!options.required;
+  const nullable = !required;
 
-export function Property(options: PropertyOptions) {
   const decorators: PropertyDecorator[] = [
     Expose(),
     ApiProperty({
-      example:
-        options.type === 'string'
-          ? 'Sample Value'
-          : options.type === 'boolean'
-          ? true
-          : options.type === 'date'
-          ? new Date().toLocaleDateString()
-          : options.type === 'number'
-          ? 1234
-          : options.type === 'object'
-          ? {}
-          : undefined,
+      example: exampleValue(type, format),
       ...options,
-      type: options.type === 'date' ? 'string' : options.type,
-      required: !!options.required,
-      nullable: !options.required,
+      required,
+      nullable,
+      type: type === 'date' ? 'string' : type,
     }),
+    Validate(options),
   ];
-
-  if (options.noValidate == true) {
-    return applyDecorators(...decorators);
-  }
-
 
   return applyDecorators(...decorators);
 }

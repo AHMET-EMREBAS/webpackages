@@ -25,31 +25,16 @@ import {
   NotStartsWith,
   StartsWith,
 } from './custom-string-validators';
-import { UseDecorators } from '../common';
 
-export type StringFormat =
-  | 'name'
-  | 'email'
-  | 'password'
-  | 'barcode'
-  | 'phone'
-  | 'short'
-  | 'long'
-  | 'uuid'
-  | 'ean'
-  | 'credit-card'
-  | 'ssn'
-  | 'ip4'
-  | 'ip6'
-  | 'url'
-  | 'data-uri';
+import { StringFormat } from '@webpackages/types';
+import { UseDecorators } from '@webpackages/utils';
 
 export type StringOptions = {
   type: 'string';
   minLength: number;
   maxLength: number;
   format: StringFormat;
-  enum: string[];
+  enum: Readonly<any[]>;
   forbidden: string[];
   startsWith: string;
   notStartsWith: string;

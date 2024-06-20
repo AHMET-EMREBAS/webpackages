@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { GlobalValidationPipe } from './global-pipe';
 import { ConfigService } from '@nestjs/config';
-import { AuthHeaders, AuthNames } from '../auth';
+import { AuthNames, AuthHeaders } from '@webpackages/types';
 
 export async function boot(AppModule: Type) {
   const app = await NestFactory.create(AppModule);

@@ -1,6 +1,4 @@
 import { DateOptions, ValidateDate } from './validate-date';
-import { UseDecorators } from '../common';
-
 import { validateSync } from 'class-validator';
 
 describe('ValidateDate', () => {

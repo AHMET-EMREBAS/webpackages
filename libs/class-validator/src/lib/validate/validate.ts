@@ -1,11 +1,11 @@
 import { ValidationOptions } from 'class-validator';
-import { UseDecorators } from '../common';
 import { CommonOptions, ValidateCommon } from './validate-common';
 import { DateOptions, ValidateDate } from './validate-date';
 import { NumberOptions, ValidateNumber } from './validate-number';
 import { ObjectOptions, ValidateObject } from './validate-object';
 import { StringOptions, ValidateString } from './validate-string';
 import { BooleanOptions, ValidateBoolean } from './validate-boolean';
+import { UseDecorators } from '@webpackages/utils';
 
 export type _ValidateOptions = (
   | StringOptions
@@ -21,9 +21,13 @@ export type ValidateOptions = _ValidateOptions;
 export function Validate(options: Partial<_ValidateOptions>) {
   const decorators: PropertyDecorator[] = [];
 
-  const { type, isArray } = options;
+  const { type, isArray, noValidate } = options;
 
   const validationOptions: ValidationOptions = { each: !!isArray };
+
+  if (noValidate == true) {
+    return UseDecorators(decorators);
+  }
 
   decorators.push(ValidateCommon(options, validationOptions));
 

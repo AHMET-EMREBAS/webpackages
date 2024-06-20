@@ -1,5 +1,5 @@
 import { IsInt, IsNumber, Max, Min, ValidatorOptions } from 'class-validator';
-import { UseDecorators } from '../common';
+import { UseDecorators } from '@webpackages/utils';
 
 export type NumberOptions = {
   type: 'number';

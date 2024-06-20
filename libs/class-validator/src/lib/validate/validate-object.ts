@@ -1,5 +1,6 @@
+import { ObjectType } from '@webpackages/types';
+import { UseDecorators } from '@webpackages/utils';
 import { IsObject, ValidateNested, ValidationOptions } from 'class-validator';
-import { ObjectType, UseDecorators } from '../common';
 
 export type ObjectOptions = { type: 'object'; target: ObjectType };
 

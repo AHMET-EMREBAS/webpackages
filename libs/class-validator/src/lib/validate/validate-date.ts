@@ -1,5 +1,5 @@
 import { IsDate, MaxDate, MinDate, ValidationOptions } from 'class-validator';
-import { UseDecorators } from '../common';
+import { UseDecorators } from '@webpackages/utils';
 
 export type DateOptions = {
   type: 'date';

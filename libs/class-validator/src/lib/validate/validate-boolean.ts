@@ -1,5 +1,5 @@
 import { IsBoolean, ValidatorOptions } from 'class-validator';
-import { UseDecorators } from '../common';
+import { UseDecorators } from '@webpackages/utils';
 
 export type BooleanOptions = {
   type: 'boolean';

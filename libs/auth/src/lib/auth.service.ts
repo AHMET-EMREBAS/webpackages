@@ -3,13 +3,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '@webpackages/resources';
 import { Repository } from 'typeorm';
 import { LoginDto, LoginResponse } from './dto';
-import { compareHash } from '@webpackages/core';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-
-export type JwtPayload = {
-  sub: number;
-};
+import { compareHash } from '@webpackages/hash';
 
 @Injectable()
 export class AuthService {

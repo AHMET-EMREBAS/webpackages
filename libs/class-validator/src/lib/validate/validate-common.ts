@@ -5,7 +5,9 @@ import {
   IsOptional,
   ValidationOptions,
 } from 'class-validator';
-import { PropertyType, UseDecorators } from '../common';
+
+import { PropertyType, StringFormat } from '@webpackages/types';
+import { UseDecorators } from '@webpackages/utils';
 
 export type CommonOptions = {
   type: PropertyType;
@@ -13,6 +15,8 @@ export type CommonOptions = {
   isArray: boolean;
   maxItems: number;
   minItems: number;
+  format: StringFormat;
+  noValidate: boolean;
 };
 
 export function ValidateCommon(
