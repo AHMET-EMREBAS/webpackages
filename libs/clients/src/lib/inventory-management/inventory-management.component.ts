@@ -27,7 +27,11 @@ import { Observable, map } from 'rxjs';
 })
 export class InventoryManagementComponent {
   handset$: Observable<boolean> = this.breakpointObserver
-    .observe([Breakpoints.Handset])
+    .observe([
+      Breakpoints.Handset,
+      Breakpoints.HandsetPortrait,
+      Breakpoints.Small,
+    ])
     .pipe(
       map((e) => {
         return e.matches;

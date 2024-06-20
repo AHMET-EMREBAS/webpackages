@@ -6,9 +6,14 @@ import { DeleteProductComponent } from './delete-product/delete-product.componen
 import { ViewProductComponent } from './view-product/view-product.component';
 
 export const ProductRoutes: Routes = [
-  { path: '', component: ProductComponent },
-  { path: 'create', component: CreateProductComponent },
-  { path: 'update/:id', component: UpdateProductComponent },
-  { path: 'delete/:id', component: DeleteProductComponent },
-  { path: 'view', component: ViewProductComponent },
+  {
+    path: '',
+    component: ProductComponent,
+    children: [
+      { path: '', component: ViewProductComponent },
+      { path: 'create', component: CreateProductComponent },
+      { path: 'update/:id', component: UpdateProductComponent },
+      { path: 'delete/:id', component: DeleteProductComponent },
+    ],
+  },
 ];

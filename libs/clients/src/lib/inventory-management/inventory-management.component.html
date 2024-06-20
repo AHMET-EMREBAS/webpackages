@@ -2,7 +2,14 @@
   <button mat-icon-button (click)="leftSidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
+
+  <div class="grow"></div>
+
+  <button mat-icon-button [routerLink]="['auth', 'logout']">
+    <mat-icon>logout</mat-icon>
+  </button>
 </mat-toolbar>
+
 <mat-sidenav-container>
   <mat-sidenav
     #leftSidenav
