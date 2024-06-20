@@ -25,7 +25,8 @@
       "@webpackages/material/input": ["libs/material/input/src/index.ts"],
       "@webpackages/material/layout": ["libs/material/layout/src/index.ts"],
       "@webpackages/models": ["libs/models/src/index.ts"],
-      "@webpackages/resources": ["libs/resources/src/index.ts"]
+      "@webpackages/resources": ["libs/resources/src/index.ts"],
+      "@webpackges/entities": ["libs/entities/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
