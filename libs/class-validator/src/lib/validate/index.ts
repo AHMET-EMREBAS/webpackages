@@ -1,6 +1,7 @@
 // @index(['./*', '!./*.spec.ts'], f => `export * from '${f.path}'`)
-export * from './is-ssn'
 export * from './custom-string-validators'
+export * from './is-ssn'
+export * from './validate-boolean'
 export * from './validate-common'
 export * from './validate-date'
 export * from './validate-number'

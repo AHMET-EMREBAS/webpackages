@@ -2,7 +2,6 @@ import {
   IsObject,
   ValidateNested,
   ValidationOptions,
-  validateOrReject,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ObjectType } from '../common';
