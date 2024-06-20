@@ -1,19 +1,21 @@
 import { ObjectOptions, ValidateObject } from './validate-object';
-import { UseDecorators } from '../common';
+
 import { validateSync } from 'class-validator';
-class CDF {}
+
+class SampleClass {}
 
 describe('ValidateObject', () => {
   it.each`
-    options                             | value | expectedErrors
-    ${{ target: CDF } as ObjectOptions} | ${{}} | ${['isObject']}
-    ${{ target: CDF } as ObjectOptions} | ${{}} | ${['isObject']}
-    ${{ target: CDF } as ObjectOptions} | ${{}} | ${['isObject']}
+    options                | value | expectedErrors
+    ${{} as ObjectOptions} | ${{}} | ${['isObject']}
+    ${{} as ObjectOptions} | ${{}} | ${['isObject']}
+    ${{} as ObjectOptions} | ${{}} | ${['isObject']}
   `(
     'should validate $value with $options and return the errors $expectedErrors',
     ({ options, value, expectedErrors }) => {
       class ABC {
-        @UseDecorators(ValidateObject(options, {})) value: unknown;
+        @ValidateObject(SampleClass, {})
+        value: unknown;
         constructor(obj: Partial<ABC>) {
           Object.assign(this, obj);
         }

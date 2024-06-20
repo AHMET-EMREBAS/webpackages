@@ -13,7 +13,7 @@ describe('ValidateDate', () => {
     'should validate $value with $options and return the errors $expectedErrors',
     ({ options, value, expectedErrors }) => {
       class ABC {
-        @UseDecorators(ValidateDate(options, {})) value: unknown;
+        @ValidateDate(options, {}) value: unknown;
         constructor(obj: Partial<ABC>) {
           Object.assign(this, obj);
         }

@@ -1,10 +1,5 @@
 import { Transform } from 'class-transformer';
-import {
-  isBooleanString,
-  isDateString,
-  isNumberString,
-  isStrongPassword,
-} from 'class-validator';
+import { isBooleanString, isDateString, isNumberString } from 'class-validator';
 import { isStringObject } from 'util/types';
 
 export function PrepareString() {

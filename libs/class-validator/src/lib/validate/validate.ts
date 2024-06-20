@@ -25,18 +25,20 @@ export function Validate(options: Partial<_ValidateOptions>) {
 
   const validationOptions: ValidationOptions = { each: !!isArray };
 
-  decorators.push(...ValidateCommon(options, validationOptions));
+  decorators.push(ValidateCommon(options, validationOptions));
 
   if (type === 'string') {
-    decorators.push(...ValidateString(options, validationOptions));
+    decorators.push(ValidateString(options, validationOptions));
   } else if (type === 'date') {
-    decorators.push(...ValidateDate(options, validationOptions));
+    decorators.push(ValidateDate(options, validationOptions));
   } else if (type === 'number') {
-    decorators.push(...ValidateNumber(options, validationOptions));
+    decorators.push(ValidateNumber(options, validationOptions));
   } else if (type === 'object') {
-    decorators.push(...ValidateObject(options, validationOptions));
+    if (!options.target) throw new Error('Object property target is required!');
+
+    decorators.push(ValidateObject(options.target, validationOptions));
   } else if (type === 'boolean') {
-    decorators.push(...ValidateBoolean(validationOptions));
+    decorators.push(ValidateBoolean(validationOptions));
   }
 
   return UseDecorators(decorators);

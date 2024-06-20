@@ -1,4 +1,5 @@
 import { IsDate, MaxDate, MinDate, ValidationOptions } from 'class-validator';
+import { UseDecorators } from '../common';
 
 export type DateOptions = {
   type: 'date';
@@ -11,7 +12,7 @@ export type DateOptions = {
 export function ValidateDate(
   options: Partial<DateOptions>,
   validationOptions: ValidationOptions
-): PropertyDecorator[] {
+): PropertyDecorator {
   const decorators: PropertyDecorator[] = [];
 
   const { after, before } = options;
@@ -25,5 +26,5 @@ export function ValidateDate(
     decorators.push(MaxDate(before, validationOptions));
   }
 
-  return decorators;
+  return UseDecorators(decorators);
 }

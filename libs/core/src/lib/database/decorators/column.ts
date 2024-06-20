@@ -2,7 +2,6 @@
 import { Column as Col } from 'typeorm';
 import { Property, PropertyType } from '../../property';
 import { Type, applyDecorators } from '@nestjs/common';
-import { hash } from '../../auth/hash';
 
 export type ColumnOptions = {
   type: PropertyType;

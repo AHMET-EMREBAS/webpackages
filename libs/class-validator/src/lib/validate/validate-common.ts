@@ -5,7 +5,7 @@ import {
   IsOptional,
   ValidationOptions,
 } from 'class-validator';
-import { PropertyType } from '../common';
+import { PropertyType, UseDecorators } from '../common';
 
 export type CommonOptions = {
   type: PropertyType;
@@ -18,7 +18,7 @@ export type CommonOptions = {
 export function ValidateCommon(
   options: Partial<CommonOptions>,
   validationOptions: ValidationOptions
-): PropertyDecorator[] {
+): PropertyDecorator {
   const decorators: PropertyDecorator[] = [];
 
   const { required, maxItems, minItems } = options;
@@ -37,5 +37,5 @@ export function ValidateCommon(
     decorators.push(ArrayMinSize(minItems));
   }
 
-  return decorators;
+  return UseDecorators(decorators);
 }

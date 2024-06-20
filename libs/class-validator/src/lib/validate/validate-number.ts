@@ -1,4 +1,5 @@
 import { IsInt, IsNumber, Max, Min, ValidatorOptions } from 'class-validator';
+import { UseDecorators } from '../common';
 
 export type NumberOptions = {
   type: 'number';
@@ -18,8 +19,8 @@ export type NumberOptions = {
  */
 export function ValidateNumber(
   options: Partial<NumberOptions>,
-  validationOptions: ValidatorOptions 
-) {
+  validationOptions: ValidatorOptions
+): PropertyDecorator {
   const decorators: PropertyDecorator[] = [];
 
   const { maximum, minimum, isInt } = options;
@@ -32,5 +33,5 @@ export function ValidateNumber(
     decorators.push(IsNumber({}, validationOptions));
   }
 
-  return decorators;
+  return UseDecorators(decorators);
 }

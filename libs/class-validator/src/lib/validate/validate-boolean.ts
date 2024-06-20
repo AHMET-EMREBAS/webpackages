@@ -1,4 +1,5 @@
 import { IsBoolean, ValidatorOptions } from 'class-validator';
+import { UseDecorators } from '../common';
 
 export type BooleanOptions = {
   type: 'boolean';
@@ -10,5 +11,5 @@ export type BooleanOptions = {
 export function ValidateBoolean(validationOptions: ValidatorOptions) {
   const decorators: PropertyDecorator[] = [];
   decorators.push(IsBoolean(validationOptions));
-  return decorators;
+  return UseDecorators(decorators);
 }

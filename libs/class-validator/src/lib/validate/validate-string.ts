@@ -25,6 +25,7 @@ import {
   NotStartsWith,
   StartsWith,
 } from './custom-string-validators';
+import { UseDecorators } from '../common';
 
 export type StringFormat =
   | 'name'
@@ -117,7 +118,7 @@ export function ValidateFormat(
 export function ValidateString(
   options: Partial<StringOptions>,
   validationOptions: ValidationOptions
-): PropertyDecorator[] {
+): PropertyDecorator {
   const vo = validationOptions;
   const decorators: PropertyDecorator[] = [];
 
@@ -180,5 +181,5 @@ export function ValidateString(
     decorators.push(NotEndsWith(notEndsWith));
   }
 
-  return decorators;
+  return UseDecorators(decorators);
 }

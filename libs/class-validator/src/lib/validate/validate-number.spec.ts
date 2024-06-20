@@ -1,5 +1,4 @@
 import { NumberOptions, ValidateNumber } from './validate-number';
-import { UseDecorators } from '../common';
 
 import { validateSync } from 'class-validator';
 
@@ -14,7 +13,8 @@ describe('ValidateNumber', () => {
     'should validate $value with $options and return the errors $expectedErrors',
     ({ options, value, expectedErrors }) => {
       class ABC {
-        @UseDecorators(ValidateNumber(options, {})) value: unknown;
+        @ValidateNumber(options, {})
+        value: unknown;
         constructor(obj: Partial<ABC>) {
           Object.assign(this, obj);
         }
