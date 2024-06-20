@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
 import {
   isEmail,
   isStrongPassword,
@@ -16,9 +16,27 @@ import {
 export class ValidatorBuilder<T extends Record<string, any> = any> {
   private readonly validatorList: ValidatorFn[] = [];
 
-  constructor(private readonly propertyName: keyof T) {
+  constructor(
+    private readonly propertyName: keyof T,
+    protected isRequired?: boolean
+  ) {
     if (!propertyName) throw new Error('Property name is required!');
+
+    if (isRequired) {
+      this.required();
+    }
   }
+
+  private notValiate(c: AbstractControl) {
+    if (this.isRequired) {
+      return false;
+    } else if (c.value == undefined || c.value == '') {
+      return true;
+    }
+
+    return false;
+  }
+
   private __name() {
     return this.propertyName?.toString();
   }
@@ -28,7 +46,7 @@ export class ValidatorBuilder<T extends Record<string, any> = any> {
     return this;
   }
 
-  required(): ValidatorBuilder<T> {
+  protected required(): ValidatorBuilder<T> {
     return this.push((c: AbstractControl) => {
       return c.value == undefined
         ? { required: `${this.__name()} is required!` }
@@ -37,17 +55,24 @@ export class ValidatorBuilder<T extends Record<string, any> = any> {
   }
 
   date(): ValidatorBuilder<T> {
-    return this.push((c: AbstractControl) =>
-      isDate(new Date(c.value))
+    return this.push((c: AbstractControl) => {
+      if (this.notValiate(c)) {
+        return null;
+      }
+      return isDate(new Date(c.value))
         ? null
         : {
             date: `${this.__name()} should be a valid date!`,
-          }
-    );
+          };
+      return null;
+    });
   }
 
   range(start: number, end: number): ValidatorBuilder<T> {
     return this.push((c: AbstractControl) => {
+      if (this.notValiate(c)) {
+        return null;
+      }
       const cValue = parseInt(c.value);
       if (cValue) {
         cValue >= start && cValue <= end
@@ -62,115 +87,150 @@ export class ValidatorBuilder<T extends Record<string, any> = any> {
   }
 
   url(): ValidatorBuilder<T> {
-    return this.push((c: AbstractControl) =>
-      isURL(c.value) ? null : { url: `${this.__name()} should be valid url!` }
-    );
+    return this.push((c: AbstractControl) => {
+      if (this.notValiate(c)) {
+        return null;
+      }
+      return isURL(c.value)
+        ? null
+        : { url: `${this.__name()} should be valid url!` };
+    });
   }
 
   minLength(value?: number): ValidatorBuilder<T> {
     if (value != undefined)
-      return this.push((c: AbstractControl) =>
-        c.value?.length < value
+      return this.push((c: AbstractControl) => {
+        if (this.notValiate(c)) {
+          return null;
+        }
+        return c.value?.length < value
           ? {
               minLength: `${this.__name()} should be longer than ${value}!`,
             }
-          : null
-      );
+          : null;
+      });
 
     return this;
   }
 
   maxLength(value?: number): ValidatorBuilder<T> {
     if (value != undefined)
-      return this.push((c: AbstractControl) =>
-        c.value?.length > value
+      return this.push((c: AbstractControl) => {
+        if (this.notValiate(c)) {
+          return null;
+        }
+        return c.value?.length > value
           ? {
               maxLength: `${this.__name()} should be shorter than ${value}!`,
             }
-          : null
-      );
+          : null;
+      });
     return this;
   }
 
   min(value?: number): ValidatorBuilder<T> {
     if (value != undefined)
-      return this.push((c: AbstractControl) =>
-        c.value < value
+      return this.push((c: AbstractControl) => {
+        if (this.notValiate(c)) {
+          return null;
+        }
+        return c.value < value
           ? {
               min: `${this.__name()} should be more than ${value}!`,
             }
-          : null
-      );
+          : null;
+      });
     return this;
   }
 
   max(value?: number): ValidatorBuilder<T> {
     if (value != undefined)
-      return this.push((c: AbstractControl) =>
-        c.value > value
+      return this.push((c: AbstractControl) => {
+        if (this.notValiate(c)) {
+          return null;
+        }
+        return c.value > value
           ? {
               max: `${this.__name()} should be less than ${value}!`,
             }
-          : null
-      );
+          : null;
+      });
     return this;
   }
 
   email(): ValidatorBuilder<T> {
-    return this.push((c: AbstractControl) =>
-      isEmail(c.value)
+    return this.push((c: AbstractControl) => {
+      if (this.notValiate(c)) {
+        return null;
+      }
+      return isEmail(c.value)
         ? null
-        : { email: `${this.__name()} should be a valid email!` }
-    );
+        : { email: `${this.__name()} should be a valid email!` };
+    });
   }
 
   password(): ValidatorBuilder<T> {
-    return this.push((c: AbstractControl) =>
-      isStrongPassword(c.value)
+    return this.push((c: AbstractControl) => {
+      if (this.notValiate(c)) {
+        return null;
+      }
+      return isStrongPassword(c.value)
         ? null
         : {
             password: `${this.__name()} should be a strong password!`,
-          }
-    );
+          };
+    });
   }
 
   ean(): ValidatorBuilder<T> {
-    return this.push((c: AbstractControl) =>
-      (isNumberString(c.value) || isNumber(c.value)) &&
-      minLength(c.value, 10) &&
-      maxLength(c.value, 13)
+    return this.push((c: AbstractControl) => {
+      if (this.notValiate(c)) {
+        return null;
+      }
+      return (isNumberString(c.value) || isNumber(c.value)) &&
+        minLength(c.value, 10) &&
+        maxLength(c.value, 13)
         ? null
-        : { ean: `${this.__name()} should be a valid barcode!` }
-    );
+        : { ean: `${this.__name()} should be a valid barcode!` };
+    });
   }
 
   phone(): ValidatorBuilder<T> {
-    return this.push((c: AbstractControl) =>
-      isPhoneNumber(c.value)
+    return this.push((c: AbstractControl) => {
+      if (this.notValiate(c)) {
+        return null;
+      }
+      return isPhoneNumber(c.value)
         ? null
         : {
             phone: `${this.__name()} should be a valid phone number!`,
-          }
-    );
+          };
+    });
   }
 
   isIn(value?: any[]) {
     if (value != undefined)
-      return this.push((c: AbstractControl) =>
-        isIn(c.value, value)
+      return this.push((c: AbstractControl) => {
+        if (this.notValiate(c)) {
+          return null;
+        }
+        return isIn(c.value, value)
           ? null
-          : { isIn: `${this.__name()} should be one of ${value}` }
-      );
+          : { isIn: `${this.__name()} should be one of ${value}` };
+      });
     return this;
   }
 
   isNotIn(value?: any[]) {
     if (value != undefined)
-      return this.push((c: AbstractControl) =>
-        isIn(c.value, value)
+      return this.push((c: AbstractControl) => {
+        if (this.notValiate(c)) {
+          return null;
+        }
+        return isIn(c.value, value)
           ? { isNotIn: `${this.__name()} should be none of ${value}` }
-          : null
-      );
+          : null;
+      });
     return this;
   }
 

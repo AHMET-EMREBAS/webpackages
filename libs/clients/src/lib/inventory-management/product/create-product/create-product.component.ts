@@ -5,7 +5,6 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -16,8 +15,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, firstValueFrom } from 'rxjs';
-
+import { firstValueFrom } from 'rxjs';
+import { ValidatorBuilder } from '@webpackages/clients-common';
 @Component({
   selector: 'lib-create-product',
   standalone: true,
@@ -38,10 +37,22 @@ import { BehaviorSubject, firstValueFrom } from 'rxjs';
   styleUrl: './create-product.component.css',
 })
 export class CreateProductComponent {
-  nameControl = new FormControl('');
-  upcControl = new FormControl('');
-  brandControl = new FormControl('');
-  descriptionControl = new FormControl('');
+  nameControl = new FormControl(
+    '',
+    new ValidatorBuilder('name', true).minLength(3).maxLength(100).build()
+  );
+  upcControl = new FormControl(
+    '',
+    new ValidatorBuilder('upc', true).minLength(8).maxLength(13).build()
+  );
+  brandControl = new FormControl(
+    '',
+    new ValidatorBuilder('brand').minLength(3).maxLength(100).build()
+  );
+  descriptionControl = new FormControl(
+    '',
+    new ValidatorBuilder('description').minLength(3).maxLength(1000).build()
+  );
 
   productFormGroup = new FormGroup({
     name: this.nameControl,
@@ -50,15 +61,14 @@ export class CreateProductComponent {
     description: this.descriptionControl,
   });
 
+  post$ = this.httpClient.post('api/product', this.productFormGroup.value);
+
   constructor(protected readonly httpClient: HttpClient) {}
 
-  async saveProduct() {
-    this.productFormGroup.markAllAsTouched();
+  async post() {
     try {
-      const result = await firstValueFrom(
-        this.httpClient.post('api/product', this.productFormGroup.value)
-      );
-      this.productFormGroup.disable();
+      this.productFormGroup.markAllAsTouched();
+      const result = await firstValueFrom(this.post$);
     } catch (error: any) {
       const errorList = error.error.errors as any[];
 
@@ -75,16 +85,17 @@ export class CreateProductComponent {
     }
   }
 
-  errorMessage(control: FormControl) {
+  error(control: FormControl) {
     const errors = control.errors;
-
     if (errors) {
-      for (const [key, value] of Object.entries(errors)) {
-        // control.setErrors({ error: true });
-
-        return key as string;
+      for (const [, value] of Object.entries(errors)) {
+        return value;
       }
     }
-    return null; 
+    return null;
+  }
+
+  clear() {
+    this.productFormGroup.reset();
   }
 }
