@@ -63,41 +63,42 @@ export class ResourcePathBuilder {
   }
 
   /**
-   * - `GET` `/singular/:id` - Get item by id
-   * - `PUT` `/singular/:id` - Update item by id and body
-   * - `DELETE` `/singular/:id` - Delete item by id
-   * - `POST` `/singular/:id` - Get metadata, Force update, Activate, Update specific field
+   * - `GET` `/plural` - Query all
+   * - `POST` `/plural` - Create many
    */
   plural() {
     return `${this.pxp()}${this._pp}`;
   }
-  
+
   /**
-   * @GET /singular
-   * @POST /singular
+   * - `GET`  `/singular` - Get metadata
+   * - `POST` `/singular` - Create one
    */
   singular() {
     return `${this.pxp()}${this._sp}`;
   }
 
   /**
-   *
-   * @param srn Singular relation name
+   * - `GET` `/singular/:id/:singularRelation` - Get relation metadata
+   * - `POST` `/singular/:id/:singularRelation` - Create one relation
    */
   singularRelation(srn: string) {
     return `${this.pxp()}${this.id()}/${srn}`;
   }
 
+  /**
+   * @param prn - plural relation name
+   * - `GET` `/singular/:id/{prn}` - Query all
+   * - `POST` `/singular/:id/{prn}` - Create many
+   */
   pluralRelation(prn: string) {
     return `${this.pxp()}${this.id()}/${prn}`;
   }
 
   /**
-   * @GET /singular/{id}/<relation-name>/<relation-id>n-id}
-   * @POST /singular/{id}/<relation-name>/<relation-id>n-id}
-   * @PUT /singular/{id}/<relation-name>/<relation-id>n-id}
-   * @DELETE /singular/{id}/<relation-name>/<relation-id>n-id}
-   * @param srn Singular relation name
+   * @param srn - singular relation name
+   * - `GET` `/singular/:id/{srn}/:rid` - Query all
+   * - `POST` `/singular/:id/{srn}/:rid` - Create many
    */
   idRelation(srn: string) {
     return `${this.pxp()}${this.id()}/${srn}/${PathParam.RID_DEF}`;

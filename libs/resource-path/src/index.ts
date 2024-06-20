@@ -1,1 +1,1 @@
-export * from './lib/resource-path';
+export * from './lib';

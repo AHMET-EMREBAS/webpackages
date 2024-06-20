@@ -1,18 +1,18 @@
-import { ApiResourcePath } from './resource-path';
+import { ResourcePathBuilder } from './resource-path';
 
-describe('ApiResourcePathBuilder', () => {
+describe('ResourcePathBuilderBuilder', () => {
   it('should build the api paths', () => {
-    const entityPaths = new ApiResourcePath('sample', 'samples');
+    const entityPaths = new ResourcePathBuilder({ singularName: 'sample' });
 
-    expect(entityPaths.byId()).toBe('sample/:id');
+    expect(entityPaths.id()).toBe('sample/:id');
     expect(entityPaths.plural()).toBe('samples');
     expect(entityPaths.singular()).toBe('sample');
 
-    expect(entityPaths.relationId('category')).toBe('sample/:id/category/:rid');
-    expect(entityPaths.relationPlural('categories')).toBe(
+    expect(entityPaths.idRelation('category')).toBe('sample/:id/category/:rid');
+    expect(entityPaths.pluralRelation('categories')).toBe(
       'sample/:id/categories'
     );
-    expect(entityPaths.relationSingular('category')).toBe(
+    expect(entityPaths.singularRelation('category')).toBe(
       'sample/:id/category'
     );
   });
