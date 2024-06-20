@@ -1,12 +1,12 @@
 import { Body, Param, Query } from '@nestjs/common';
 import { CreateEventDto } from './dto/create.dto';
 import { UpdateEventDto } from './dto/update.dto';
-import { HttpRouteBuilder, PaginatorDto } from '@webpackages/core';
+import { ResourceController } from '@webpackages/controller-builder';
 import { Event } from './entities';
 import { OrderEventDto, QueryEventDto, SearchEventDto } from './dto';
 import { EventService } from './service';
 
-const C = new HttpRouteBuilder({
+const C = new ResourceController({
   singularName: 'event',
   pluralName: 'events',
   entity: Event,

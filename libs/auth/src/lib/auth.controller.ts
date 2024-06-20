@@ -3,7 +3,7 @@ import { LoginDto } from './dto';
 import { LocalGuard } from './guards/local.guard';
 import { PublicResource, TokenParam } from './auth';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { AuthNames } from '@webpackages/common';
+import { AuthNames } from '@webpackages/types';
 
 @ApiBearerAuth(AuthNames.BEARER_AUTH)
 @ApiTags(AuthController.name)

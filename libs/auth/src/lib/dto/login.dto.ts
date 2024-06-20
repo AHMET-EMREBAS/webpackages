@@ -1,4 +1,4 @@
-import { Property } from '@webpackages/core';
+import { Property } from '@webpackages/property';
 import { Exclude } from 'class-transformer';
 
 @Exclude()

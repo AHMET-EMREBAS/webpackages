@@ -1,4 +1,4 @@
-import { Entity, Column, BaseEntity } from '@webpackages/core';
+import { Entity, Column, BaseEntity } from '@webpackages/database';
 
 @Entity()
 export class Event extends BaseEntity {

@@ -32,7 +32,7 @@ import { MessageResponse, ValidationErrorDto } from './responses';
 
 import { ResourcePathBuilder } from '@webpackages/resource-path';
 
-export type HttpRouteBuilderOptions = {
+export type ResourceControllerOptions = {
   singularName: string;
   pluralName: string;
   entity: Type;
@@ -40,13 +40,13 @@ export type HttpRouteBuilderOptions = {
 /**
  * Decorate controllers and end points
  */
-export class HttpRouteBuilder {
+export class ResourceController {
   protected readonly path: ResourcePathBuilder;
   protected readonly singularName: string;
   protected readonly pluralName: string;
   protected readonly entity: Type;
 
-  constructor(protected readonly options: HttpRouteBuilderOptions) {
+  constructor(protected readonly options: ResourceControllerOptions) {
     const { singularName, pluralName, entity } = options;
 
     this.singularName = singularName;
