@@ -3,7 +3,7 @@ export function UseDecorators(
 ): PropertyDecorator {
   return function (target, propertyKey) {
     for (const d of decorators) {
-      return d(target, propertyKey);
+      d(target, propertyKey);
     }
   };
 }

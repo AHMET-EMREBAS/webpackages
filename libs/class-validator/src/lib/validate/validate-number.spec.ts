@@ -23,7 +23,6 @@ describe('ValidateNumber', () => {
 
       const error = errors[0];
 
-      console.log(expectedErrors, errors);
       const constraints = Object.keys(error?.constraints || {});
 
       expect(constraints.length).toBe(expectedErrors.length);

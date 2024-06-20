@@ -1,19 +1,19 @@
 import { ObjectOptions, ValidateObject } from './validate-object';
 import { UseDecorators } from '../common';
 import { validateSync } from 'class-validator';
+class CDF {}
 
 describe('ValidateObject', () => {
   it.each`
-    options                | value | expectedErrors
-    ${{} as ObjectOptions} | ${{}} | ${['isObject']}
-    ${{} as ObjectOptions} | ${{}} | ${['isObject']}
-    ${{} as ObjectOptions} | ${{}} | ${['isObject']}
+    options                             | value | expectedErrors
+    ${{ target: CDF } as ObjectOptions} | ${{}} | ${['isObject']}
+    ${{ target: CDF } as ObjectOptions} | ${{}} | ${['isObject']}
+    ${{ target: CDF } as ObjectOptions} | ${{}} | ${['isObject']}
   `(
     'should validate $value with $options and return the errors $expectedErrors',
     ({ options, value, expectedErrors }) => {
-      class CDF {}
       class ABC {
-        @UseDecorators(ValidateObject({ target: CDF }, {})) value: unknown;
+        @UseDecorators(ValidateObject(options, {})) value: unknown;
         constructor(obj: Partial<ABC>) {
           Object.assign(this, obj);
         }
@@ -22,7 +22,6 @@ describe('ValidateObject', () => {
 
       const error = errors[0];
 
-      console.log(expectedErrors, errors);
       const constraints = Object.keys(error?.constraints || {});
 
       expect(constraints.length).toBe(expectedErrors.length);

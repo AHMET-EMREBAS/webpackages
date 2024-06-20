@@ -2,6 +2,7 @@ import { StringOptions, ValidateString } from './validate-string';
 import { UseDecorators } from '../common';
 
 import { validateSync } from 'class-validator';
+
 describe('ValidateString', () => {
   it.each`
     options                                       | value | expectedErrors
@@ -30,6 +31,8 @@ describe('ValidateString', () => {
       const errors = validateSync(new ABC(value));
 
       const error = errors[0];
+
+      console.log(error);
       const constraints = Object.keys(error?.constraints || {});
 
       expect(constraints.length).toBe(expectedErrors.length);
