@@ -22,11 +22,13 @@ import {
   MinLength,
   ValidateNested,
   ValidationOptions,
+  isArray,
 } from 'class-validator';
 import {
   BooleanTransformer,
   DateTransformer,
   NumberTransformer,
+  TrimTransformer,
 } from './transformers';
 
 export type PropertyType = 'string' | 'number' | 'boolean' | 'date' | 'object';
@@ -133,7 +135,7 @@ export function StringProperty(
   options: StringPropertyOptions,
   vo: ValidationOptions
 ): PropertyDecorator[] {
-  const decorators: PropertyDecorator[] = [];
+  const decorators: PropertyDecorator[] = [TrimTransformer()];
 
   const { minLength, maxLength, format, enum: enumList, forbidden } = options;
 

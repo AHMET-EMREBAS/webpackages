@@ -7,6 +7,7 @@ export const GlobalValidationPipe = new ValidationPipe({
     exposeUnsetFields: false,
     exposeDefaultValues: false,
   },
+  stopAtFirstError: true,
   exceptionFactory(errors) {
     if (errors) {
       if (errors.length > 0) {

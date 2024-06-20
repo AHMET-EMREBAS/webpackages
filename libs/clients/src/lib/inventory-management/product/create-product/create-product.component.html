@@ -1,32 +1,48 @@
-<mat-stepper [linear]="true">
-  <mat-step label="Product Details" [stepControl]="productFormGroup">
-    <form
-      [formGroup]="productFormGroup"
-      novalidate="true"
-      class="flex flex-col gap-3 p-3"
-    >
+<mat-card class="m-3">
+  {{ nameControl.errors | json }}
+  {{ upcControl.errors | json }}
+  <mat-card-content>
+    <form class="flex flex-col gap-3 p-3">
       <!-- Product Name -->
       <mat-form-field class="w-full">
         <mat-label>Product Name</mat-label>
         <input
           matInput
-          formControlName="name"
+          [formControl]="nameControl"
           type="text"
+          required
           minlength="3"
           maxlength="100"
         />
+        <mat-error> {{ errorMessage(nameControl) }} </mat-error>
       </mat-form-field>
-      <div class="flex flex-row flex-wrap justify-between gap-3">
+
+      <div class="flex flex-row max-md:flex-wrap justify-between gap-3">
         <!-- UPC -->
-        <mat-form-field class="w-5/12 max-md:w-full">
+        <mat-form-field class="w-full max-md:w-full">
           <mat-label>Unique Product Code </mat-label>
-          <input matInput formControlName="name" type="text" maxlength="100" />
+          <input
+            matInput
+            [formControl]="upcControl"
+            type="text"
+            required
+            minlength="8"
+            maxlength="13"
+          />
+          <mat-error> {{ errorMessage(upcControl) }} </mat-error>
         </mat-form-field>
 
         <!-- UPC -->
-        <mat-form-field class="w-6/12 max-md:w-full">
+        <mat-form-field class="w-full max-md:w-full">
           <mat-label>Brand </mat-label>
-          <input matInput formControlName="brand" type="text" maxlength="100" />
+          <input
+            matInput
+            [formControl]="brandControl"
+            type="text"
+            minlength="3"
+            maxlength="100"
+          />
+          <mat-error> {{ errorMessage(brandControl) }} </mat-error>
         </mat-form-field>
       </div>
 
@@ -35,23 +51,32 @@
         <mat-label>Description</mat-label>
         <textarea
           matInput
-          formControlName="description"
+          [formControl]="descriptionControl"
+          minlength="3"
           maxlength="1000"
         ></textarea>
+        <mat-error> {{ errorMessage(descriptionControl) }} </mat-error>
       </mat-form-field>
-
-      <div class="flex flex-row-reverse">
-        <button mat-raised-button color="primary" matStepperNext>Next</button>
-      </div>
     </form>
-  </mat-step>
-
-  <mat-step label="Done">
     <div class="flex flex-row gap-4 w-full mt-4">
-      <button mat-raised-button color="primary" class="w-1/2">
-        Save Product
+      <button
+        type="button"
+        mat-raised-button
+        class="w-40"
+        color="primary"
+        (click)="saveProduct()"
+        [disabled]="productFormGroup.invalid"
+      >
+        Save
       </button>
-      <button mat-raised-button class="w-1/2">Reset</button>
+      <button
+        class="w-40"
+        type="button"
+        mat-raised-button
+        (click)="productFormGroup.reset()"
+      >
+        Reset
+      </button>
     </div>
-  </mat-step>
-</mat-stepper>
+  </mat-card-content>
+</mat-card>

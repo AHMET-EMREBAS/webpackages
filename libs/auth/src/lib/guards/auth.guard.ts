@@ -2,6 +2,7 @@ import {
   CanActivate,
   ExecutionContext,
   Injectable,
+  UnauthorizedException,
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
@@ -22,6 +23,13 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   async canActivate(ctx: ExecutionContext) {
+    const isDevelopment = process.env['NODE_ENV'] === 'development';
+
+    console.log('AUthGurad : ', process.env['NODE_ENV']);
+    if (isDevelopment) {
+      return true;
+    }
+
     const isPublic = this.reflector.getAllAndOverride(PublicResourceToken, [
       ctx.getClass(),
       ctx.getHandler(),
@@ -65,8 +73,6 @@ export class AuthGuard implements CanActivate {
       return rest.join(' ');
     }
 
-    throw new UnprocessableEntityException(
-      `Authorization header is not provided`
-    );
+    throw new UnauthorizedException(`Authorization header is not provided`);
   }
 }

@@ -77,3 +77,19 @@ export function BooleanTransformer(options: TransformOptions) {
     return transformBoolean(value);
   });
 }
+
+export function TrimTransformer() {
+  return Transform(({ value }) => {
+    if (typeof value === 'string') {
+      return value.trim();
+    } else if (isArray(value)) {
+      return value.map((e) => {
+        if (typeof e === 'string') {
+          return e.trim();
+        }
+        return e;
+      });
+    }
+    return value;
+  });
+}

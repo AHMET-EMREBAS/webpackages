@@ -144,9 +144,11 @@ export class BaseEntityService<T extends BaseEntity> {
           throw new UnprocessableEntityException({
             errors: [
               {
-                property: u,
-                constraints: {
-                  isUnique: `${u} must be unique!`,
+                [u]: {
+                  property: u,
+                  constraints: {
+                    isUnique: `${u} must be unique!`,
+                  },
                 },
               },
             ],
