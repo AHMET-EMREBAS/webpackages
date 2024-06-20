@@ -1,5 +1,8 @@
 <mat-sidenav-container>
-  <mat-sidenav [opened]="true" mode="side">
+  <mat-sidenav
+    [opened]="(handset$ | async) ? false : true"
+    [mode]="(handset$ | async) ? 'over' : 'side'"
+  >
     <mat-toolbar class="side-toolbar">
       <a [routerLink]="['create']" mat-icon-button>
         <span matListItemIcon><mat-icon> add</mat-icon> </span>
@@ -7,10 +10,6 @@
     </mat-toolbar>
   </mat-sidenav>
   <mat-sidenav-content>
-    <h1>
-      Product Module
-      <span>Manage Products</span>
-    </h1>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
