@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Column as Col } from 'typeorm';
 import { Property, PropertyType } from '../../property';
 import { Type, applyDecorators } from '@nestjs/common';
@@ -10,11 +11,16 @@ export type ColumnOptions = {
   update?: boolean;
   defaultValue?: unknown;
   target?: Type;
+  example?: any;
 };
 
 export function StringColumn(options: ColumnOptions) {
   return applyDecorators(
-    Property({ ...options, type: 'string', example: 'example value' }),
+    Property({
+      ...options,
+      type: 'string',
+      example: options.example || 'example value',
+    }),
     Col({
       type: 'varchar',
       nullable: options.required != true,
@@ -27,7 +33,7 @@ export function StringColumn(options: ColumnOptions) {
 
 export function NumberColumn(options: ColumnOptions) {
   return applyDecorators(
-    Property({ ...options, type: 'number', example: 100 }),
+    Property({ ...options, type: 'number', example: options.example || 100 }),
     Col({
       type: 'numeric',
       nullable: options.required != true,
@@ -40,7 +46,11 @@ export function NumberColumn(options: ColumnOptions) {
 
 export function DateColumn(options: ColumnOptions) {
   return applyDecorators(
-    Property({ ...options, type: 'date', example: '10-10-2025' }),
+    Property({
+      ...options,
+      type: 'date',
+      example: options.example || '10-10-2025',
+    }),
     Col({
       type: 'timestamptz',
       nullable: options.required != true,
@@ -53,7 +63,7 @@ export function DateColumn(options: ColumnOptions) {
 
 export function BooleanColumn(options: ColumnOptions) {
   return applyDecorators(
-    Property({ type: 'boolean', example: true }),
+    Property({ type: 'boolean', example: options.example || true }),
     Col({
       type: 'boolean',
       nullable: true,
@@ -65,13 +75,14 @@ export function BooleanColumn(options: ColumnOptions) {
 
 export function ObjectColumn(options: ColumnOptions) {
   if (!options.target) {
-    throw new Error('Object Column Target is required!');
+    console.warn(`column option target is not provided`);
+    options.target = class UnkownTarget {};
   }
   return applyDecorators(
     Property({
       type: 'object',
       target: options.target,
-      example: { key: 'value' },
+      example: options.example || { key: 'value' },
     }),
     Col({
       type: 'varchar',
@@ -113,15 +124,18 @@ export function Column(options: ColumnOptions) {
 }
 
 export function PasswordColumn() {
-  return Col({
-    type: 'varchar',
-    transformer: {
-      to(value) {
-        return hash(value);
+  return applyDecorators(
+    Property({ type: 'string', format: 'password', example: 'password' }),
+    Col({
+      type: 'varchar',
+      transformer: {
+        to(value) {
+          return hash(value);
+        },
+        from(value) {
+          return value;
+        },
       },
-      from(value) {
-        return value;
-      },
-    },
-  });
+    })
+  );
 }
