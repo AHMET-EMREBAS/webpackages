@@ -5,20 +5,18 @@ import {
   IsStrongPassword,
   NotContains,
   IsAlphanumeric,
-  ValidationOptions as VO,
+  ValidationOptions,
   IsCreditCard,
   IsEAN,
-  IsInt,
-  Min,
   IsPhoneNumber,
   IsUUID,
   IsIP,
   IsIn,
   IsNotIn,
   Contains,
-  ValidationOptions,
-  IsNotEmpty,
-  IsOptional,
+  IsString,
+  IsDataURI,
+  IsUrl,
 } from 'class-validator';
 import { IsSSN } from './is-ssn';
 import {
@@ -26,24 +24,9 @@ import {
   NotEndsWith,
   NotStartsWith,
   StartsWith,
-} from './start-end-width';
+} from './string-validators';
 
-function use(...decorators: PropertyDecorator[]): PropertyDecorator {
-  return function (target, propertyKey) {
-    decorators?.forEach((decorator) => {
-      decorator(target, propertyKey);
-    });
-  };
-}
-
-export type CommonOptions<T = unknown> = {
-  required?: boolean;
-  isArray?: boolean;
-  default?: T;
-};
-
-export type SF =
-  | 'id'
+export type StringFormat =
   | 'name'
   | 'email'
   | 'password'
@@ -56,12 +39,15 @@ export type SF =
   | 'credit-card'
   | 'ssn'
   | 'ip4'
-  | 'ip6';
+  | 'ip6'
+  | 'url'
+  | 'data-uri';
 
 export type StringOptions = {
+  type: 'string';
   minLength: number;
   maxLength: number;
-  format: SF;
+  format: StringFormat;
   enum: string[];
   forbidden: string[];
   startsWith: string;
@@ -72,72 +58,67 @@ export type StringOptions = {
   notContains: string;
 };
 
-export type NumberOptions = {
-  minimum: number;
-  maximum: number;
-  moreThan: string;
-  lessThan: string;
-};
+export function ValidateFormat(
+  stringFormat: StringFormat,
+  validationOptions: ValidationOptions
+): PropertyDecorator[] {
+  const sf = stringFormat;
 
-export function ValidateFormat(sf: SF, vo: VO): PropertyDecorator[] {
   if (sf === 'email') {
-    return [IsEmail(undefined, vo)];
+    return [IsEmail(undefined, validationOptions)];
   } else if (sf === 'barcode') {
     return [
-      MinLength(8, vo),
-      MaxLength(13, vo),
-      NotContains(' ', vo),
-      IsAlphanumeric('en-US', vo),
+      MinLength(8, validationOptions),
+      MaxLength(13, validationOptions),
+      NotContains(' ', validationOptions),
+      IsAlphanumeric('en-US', validationOptions),
     ];
   } else if (sf === 'credit-card') {
-    return [IsCreditCard(vo)];
+    return [IsCreditCard(validationOptions)];
   } else if (sf === 'ean') {
-    return [IsEAN(vo)];
-  } else if (sf === 'id') {
-    return [Min(1, vo), IsInt(vo)];
+    return [IsEAN(validationOptions)];
   } else if (sf === 'long') {
-    return [MaxLength(1000, vo)];
+    return [MaxLength(1000, validationOptions)];
   } else if (sf === 'short') {
-    return [MaxLength(100, vo)];
+    return [MaxLength(100, validationOptions)];
   } else if (sf === 'name') {
-    return [MinLength(3, vo), MaxLength(100, vo)];
+    return [
+      MinLength(3, validationOptions),
+      MaxLength(100, validationOptions),
+      IsAlphanumeric(undefined, validationOptions),
+    ];
   } else if (sf === 'password') {
-    return [IsStrongPassword(undefined, vo)];
+    return [IsStrongPassword(undefined, validationOptions)];
   } else if (sf === 'phone') {
-    return [IsPhoneNumber(undefined, vo)];
+    return [IsPhoneNumber(undefined, validationOptions)];
   } else if (sf === 'ssn') {
-    return [IsSSN(vo)];
+    return [IsSSN(validationOptions)];
   } else if (sf === 'uuid') {
-    return [IsUUID('4', vo)];
+    return [IsUUID('4', validationOptions)];
   } else if (sf === 'ip4') {
-    return [IsIP('4', vo)];
+    return [IsIP('4', validationOptions)];
   } else if (sf === 'ip6') {
     return [IsIP('6')];
+  } else if (sf === 'data-uri') {
+    return [IsDataURI(validationOptions)];
+  } else if (sf === 'url') {
+    return [IsUrl(undefined, validationOptions)];
   }
 
   return [];
 }
 
-export function ValidatCommon(options: CommonOptions) {
-  const decorators: PropertyDecorator[] = [];
-
-  const { required, isArray } = options;
-
-  const vo: ValidationOptions = { each: !!isArray };
-
-  if (required) {
-    decorators.push(IsNotEmpty(vo));
-  } else {
-    decorators.push(IsOptional(vo));
-  }
-
-  return decorators;
-}
-
-export function ValdiateString(
+/**
+ *
+ * @param options
+ * @param validationOptions
+ * @returns
+ */
+export function ValidateString(
   options: Partial<StringOptions>,
-  vo: VO
-): PropertyDecorator {
+  validationOptions: ValidationOptions
+): PropertyDecorator[] {
+  const vo = validationOptions;
   const decorators: PropertyDecorator[] = [];
 
   const {
@@ -153,6 +134,8 @@ export function ValdiateString(
     notEndsWith,
     notStartsWith,
   } = options;
+
+  decorators.push(IsString(vo));
 
   if (minLength != undefined) {
     decorators.push(MinLength(minLength, vo));
@@ -197,17 +180,5 @@ export function ValdiateString(
     decorators.push(NotEndsWith(notEndsWith));
   }
 
-  return use(...decorators);
+  return decorators;
 }
-
-export function ValidateNumber() {}
-
-export function ValidateDate() {}
-
-export function ValidateObject() {}
-
-export function ValidateBoolean() {}
-
-export function ValidateInteger() {}
-
-export function Validate() {}

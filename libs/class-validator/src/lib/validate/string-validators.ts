@@ -11,8 +11,8 @@ import {
 @ValidatorConstraint({ name: 'startsWith', async: false })
 export class StartsWithValidator implements ValidatorConstraintInterface {
   validate(value: string, args: ValidationArguments) {
-    const [prefix] = args.constraints;
-    return value.startsWith(prefix);
+    const [inputValue] = args.constraints;
+    return value.startsWith(inputValue);
   }
 
   defaultMessage(args: ValidationArguments) {
@@ -22,7 +22,7 @@ export class StartsWithValidator implements ValidatorConstraintInterface {
 }
 
 export function StartsWith(
-  prefix: string,
+  inputValue: string,
   validationOptions?: ValidationOptions
 ): PropertyDecorator {
   return function (target, propertyKey) {
@@ -30,7 +30,7 @@ export function StartsWith(
       name: 'startsWith',
       target: target.constructor,
       propertyName: propertyKey.toString(),
-      constraints: [prefix],
+      constraints: [inputValue],
       options: validationOptions,
       validator: StartsWithValidator,
     });
@@ -40,18 +40,18 @@ export function StartsWith(
 @ValidatorConstraint({ name: 'notStartWith', async: false })
 export class NotStartsWithValidator implements ValidatorConstraintInterface {
   validate(value: string, args: ValidationArguments) {
-    const [prefix] = args.constraints;
-    return !value.startsWith(prefix);
+    const [inputValue] = args.constraints;
+    return !value.startsWith(inputValue);
   }
 
   defaultMessage(args: ValidationArguments) {
-    const [prefix] = args.constraints;
-    return `${args.property} must not start with "${prefix}"`;
+    const [inputValue] = args.constraints;
+    return `${args.property} must not start with "${inputValue}"`;
   }
 }
 
 export function NotStartsWith(
-  prefix: string,
+  inputValue: string,
   validationOptions?: ValidationOptions
 ): PropertyDecorator {
   return function (target, propertyKey) {
@@ -59,7 +59,7 @@ export function NotStartsWith(
       name: 'notStartWith',
       target: target.constructor,
       propertyName: propertyKey.toString(),
-      constraints: [prefix],
+      constraints: [inputValue],
       options: validationOptions,
       validator: NotStartsWithValidator,
     });
@@ -69,18 +69,18 @@ export function NotStartsWith(
 @ValidatorConstraint({ name: 'endsWith', async: false })
 export class EndsWithValidator implements ValidatorConstraintInterface {
   validate(value: string, args: ValidationArguments) {
-    const [prefix] = args.constraints;
-    return value.endsWith(prefix);
+    const [inputValue] = args.constraints;
+    return value.endsWith(inputValue);
   }
 
   defaultMessage(args: ValidationArguments) {
-    const [prefix] = args.constraints;
-    return `${args.property} must start with "${prefix}"`;
+    const [inputValue] = args.constraints;
+    return `${args.property} must start with "${inputValue}"`;
   }
 }
 
 export function EndsWith(
-  prefix: string,
+  inputValue: string,
   validationOptions?: ValidationOptions
 ): PropertyDecorator {
   return function (target, propertyKey) {
@@ -88,7 +88,7 @@ export function EndsWith(
       name: 'endsWith',
       target: target.constructor,
       propertyName: propertyKey.toString(),
-      constraints: [prefix],
+      constraints: [inputValue],
       options: validationOptions,
       validator: EndsWithValidator,
     });
@@ -98,18 +98,18 @@ export function EndsWith(
 @ValidatorConstraint({ name: 'notEndsWith', async: false })
 export class NotEndsWithValidator implements ValidatorConstraintInterface {
   validate(value: string, args: ValidationArguments) {
-    const [prefix] = args.constraints;
-    return !value.endsWith(prefix);
+    const [inputValue] = args.constraints;
+    return !value.endsWith(inputValue);
   }
 
   defaultMessage(args: ValidationArguments) {
-    const [prefix] = args.constraints;
-    return `${args.property} must start with "${prefix}"`;
+    const [inputValue] = args.constraints;
+    return `${args.property} must start with "${inputValue}"`;
   }
 }
 
 export function NotEndsWith(
-  prefix: string,
+  inputValue: string,
   validationOptions?: ValidationOptions
 ): PropertyDecorator {
   return function (target, propertyKey) {
@@ -117,7 +117,7 @@ export function NotEndsWith(
       name: 'notEndsWith',
       target: target.constructor,
       propertyName: propertyKey.toString(),
-      constraints: [prefix],
+      constraints: [inputValue],
       options: validationOptions,
       validator: NotEndsWithValidator,
     });
