@@ -1,5 +1,5 @@
 import { SetMetadata } from '@nestjs/common';
-import { OperationNames, Roles } from '@webpackages/common';
+import { OperationNames, Roles } from '@webpackages/types';
 
 export const PublicResourceToken = Symbol('PublicResource');
 

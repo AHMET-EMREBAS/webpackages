@@ -21,6 +21,9 @@
       "@webpackages/clients": ["libs/clients/src/index.ts"],
       "@webpackages/clients-common": ["libs/clients-common/src/index.ts"],
       "@webpackages/common": ["libs/common/src/index.ts"],
+      "@webpackages/controller-builder": [
+        "libs/controller-builder/src/index.ts"
+      ],
       "@webpackages/core": ["libs/core/src/index.ts"],
       "@webpackages/database": ["libs/database/src/index.ts"],
       "@webpackages/gen": ["libs/gen/src/index.ts"],
@@ -29,6 +32,7 @@
       "@webpackages/material/input": ["libs/material/input/src/index.ts"],
       "@webpackages/material/layout": ["libs/material/layout/src/index.ts"],
       "@webpackages/models": ["libs/models/src/index.ts"],
+      "@webpackages/notification": ["libs/notification/src/index.ts"],
       "@webpackages/property": ["libs/property/src/index.ts"],
       "@webpackages/query": ["libs/query/src/index.ts"],
       "@webpackages/query-builder": ["libs/query-builder/src/index.ts"],

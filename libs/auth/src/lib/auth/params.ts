@@ -1,5 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { AuthHeaders } from '@webpackages/common';
+import { AuthHeaders } from '@webpackages/types';
 import { Request } from 'express';
 
 export const UserParam = createParamDecorator((data, ctx: ExecutionContext) => {

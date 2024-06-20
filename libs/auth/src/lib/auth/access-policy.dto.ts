@@ -1,6 +1,6 @@
 import { Exclude } from 'class-transformer';
-import { AccessPolicy, Operation, ResourceNames } from '@webpackages/common';
-import { Property } from '@webpackages/core';
+import { AccessPolicy, Operation, ResourceNames } from '@webpackages/types';
+import { Property } from '@webpackages/property';
 
 @Exclude()
 export class OperationDto implements Operation {

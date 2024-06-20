@@ -1,8 +1,7 @@
 import { Controller, Sse } from '@nestjs/common';
 import { CommonNotificationService } from './common-notification.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { AuthNames } from '@webpackages/common';
-
+import { AuthNames } from '@webpackages/types';
 
 @ApiBearerAuth(AuthNames.BEARER_AUTH)
 @ApiTags(CommonNotificationController.name)
