@@ -1,8 +1,7 @@
-import { Exclude } from 'class-transformer';
 import { AccessPolicy, Operation, ResourceNames } from '@webpackages/types';
-import { Property } from '@webpackages/property';
+import { Property, Dto } from '@webpackages/property';
 
-@Exclude()
+@Dto()
 export class OperationDto implements Operation {
   @Property({ type: 'boolean', example: true }) manage: boolean;
   @Property({ type: 'boolean', example: true }) read: boolean;
@@ -11,7 +10,7 @@ export class OperationDto implements Operation {
   @Property({ type: 'boolean', example: true }) delete: boolean;
 }
 
-@Exclude()
+@Dto()
 export class AccessPolicyDto implements Required<AccessPolicy<ResourceNames>> {
   @Property({
     type: 'object',

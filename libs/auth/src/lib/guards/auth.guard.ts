@@ -9,7 +9,7 @@ import {
   PublicResourceToken,
   ResouceNameToken,
   ResourceOperationType,
-} from '../auth';
+} from '@webpackages/access-policy';
 import { Request } from 'express';
 import { AuthService } from '../auth.service';
 import { Operation, ResourceNames } from '@webpackages/types';

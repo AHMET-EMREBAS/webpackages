@@ -1,7 +1,7 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { LoginDto } from './dto';
 import { LocalGuard } from './guards/local.guard';
-import { PublicResource, TokenParam } from './auth';
+import { PublicResource, TokenParam } from '@webpackages/access-policy';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthNames } from '@webpackages/types';
 

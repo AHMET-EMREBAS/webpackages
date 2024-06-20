@@ -1,2 +1,2 @@
-export * from './http-route.builder';
+export * from './resource-controller';
 export * from './responses';

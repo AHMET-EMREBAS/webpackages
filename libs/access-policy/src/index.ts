@@ -1,1 +1,1 @@
-export * from './lib/access-policy';
+export * from './lib';
