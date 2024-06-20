@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@webpackages/access-policy": ["libs/access-policy/src/index.ts"],
       "@webpackages/auth": ["libs/auth/src/index.ts"],
       "@webpackages/boot-nest": ["libs/boot-nest/src/index.ts"],
       "@webpackages/class-validator": ["libs/class-validator/src/index.ts"],
