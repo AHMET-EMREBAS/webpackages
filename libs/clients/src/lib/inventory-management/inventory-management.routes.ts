@@ -13,6 +13,24 @@ export const InventoryManagementRoutes: Routes = [
           return ProductRoutes;
         },
       },
+      {
+        path: 'category',
+        loadChildren() {
+          return ProductRoutes;
+        },
+      },
+      {
+        path: 'department',
+        loadChildren() {
+          return ProductRoutes;
+        },
+      },
+      {
+        path: 'store',
+        loadChildren() {
+          return ProductRoutes;
+        },
+      },
     ],
   },
 ];
