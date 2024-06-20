@@ -1,0 +1,23 @@
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav {
+  max-width: 300px;
+}
+
+mat-sidenav-content {
+  padding: 1em;
+}
+
+mat-nav-list {
+  padding: 1em;
+}
+
+.router-link-active {
+  box-shadow: 0px 0px 3px rgb(128, 128, 128);
+  * {
+    font-weight: bolder;
+    letter-spacing: 2px;
+  }
+}

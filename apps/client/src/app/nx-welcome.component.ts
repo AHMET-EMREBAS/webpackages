@@ -798,7 +798,7 @@ import { RouterModule } from '@angular/router';
         <div id="commands" class="rounded shadow">
           <h2>Applications</h2>
           <p>Here are some things you can manage with BMS</p>
-          <a [routerLink]="['inventory']">
+          <a [routerLink]="['inventory-management']">
             <details>
               <summary>
                 <svg

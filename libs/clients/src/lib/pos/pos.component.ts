@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'lib-clients',
+  selector: 'lib-pos',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './clients.component.html',
-  styleUrl: './clients.component.css',
+  templateUrl: './pos.component.html',
+  styleUrl: './pos.component.css',
 })
-export class ClientsComponent {}
+export class PosComponent {}
