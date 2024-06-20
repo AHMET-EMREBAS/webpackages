@@ -1,4 +1,4 @@
-import { IDDto, ObjectIdProperty, Property } from '@webpackages/core';
+import { Property } from '@webpackages/core';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
@@ -13,6 +13,7 @@ export class CreateProductDto {
 
   @Property({ type: 'string', maxLength: 500 }) description: string;
 
-  @ObjectIdProperty() supplier: IDDto;
-  @ObjectIdProperty() category: IDDto;
+  @Property({ type: 'number' }) supplier: number;
+
+  @Property({ type: 'number' }) category: number;
 }
