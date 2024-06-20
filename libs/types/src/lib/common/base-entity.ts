@@ -8,9 +8,9 @@ export type Timestamps = {
   deletedAt: Date;
 };
 
-export type BaseModel = ID & Timestamps;
+export type IBaseEntity = ID & Timestamps;
 
-export const BaseModelFields: Readonly<(keyof BaseModel)[]> = [
+export const BaseEntityFields: Readonly<(keyof IBaseEntity)[]> = [
   'id',
   'createdAt',
   'updatedAt',

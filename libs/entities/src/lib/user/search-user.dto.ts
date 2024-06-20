@@ -1,5 +1,5 @@
 import { FindWhere, SearchDto, SearchProperty } from '@webpackages/query';
-import { User } from './entity';
+import { User } from './user.entity';
 import { Dto } from '@webpackages/property';
 
 @Dto()

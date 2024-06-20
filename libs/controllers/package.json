@@ -1,9 +1,6 @@
 {
-  "name": "@webpackages/common",
+  "name": "@webpackages/controllers",
   "version": "0.0.1",
-  "scripts": {
-    "test": "npx nx test common"
-  },
   "dependencies": {
     "@swc/helpers": "~0.5.11"
   },

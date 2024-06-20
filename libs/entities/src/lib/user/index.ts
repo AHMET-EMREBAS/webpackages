@@ -1,7 +1,7 @@
 // @index('./*', f => `export * from '${f.path}'`)
-export * from './create';
-export * from './entity';
-export * from './order';
-export * from './query';
-export * from './search';
-export * from './update';
+export * from './create-user.dto';
+export * from './user.entity';
+export * from './order-user.dto';
+export * from './query-user.dto';
+export * from './search-user.dto';
+export * from './update-user.dto';
