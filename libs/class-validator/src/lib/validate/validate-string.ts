@@ -24,7 +24,7 @@ import {
   NotEndsWith,
   NotStartsWith,
   StartsWith,
-} from './string-validators';
+} from './custom-string-validators';
 
 export type StringFormat =
   | 'name'

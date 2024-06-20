@@ -5,12 +5,14 @@ import { DateOptions, ValidateDate } from './validate-date';
 import { NumberOptions, ValidateNumber } from './validate-number';
 import { ObjectOptions, ValidateObject } from './validate-object';
 import { StringOptions, ValidateString } from './validate-string';
+import { BooleanOptions, ValidateBoolean } from './validate-boolean';
 
 export type _ValidateOptions = (
   | StringOptions
   | NumberOptions
   | ObjectOptions
   | DateOptions
+  | BooleanOptions
 ) &
   CommonOptions;
 
@@ -33,6 +35,8 @@ export function Validate(options: Partial<_ValidateOptions>) {
     decorators.push(...ValidateNumber(options, validationOptions));
   } else if (type === 'object') {
     decorators.push(...ValidateObject(options, validationOptions));
+  } else if (type === 'boolean') {
+    decorators.push(...ValidateBoolean(validationOptions));
   }
 
   return UseDecorators(decorators);

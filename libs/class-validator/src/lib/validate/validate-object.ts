@@ -1,7 +1,13 @@
-import { ValidateNested, ValidationOptions } from 'class-validator';
+import {
+  IsObject,
+  ValidateNested,
+  ValidationOptions,
+  validateOrReject,
+} from 'class-validator';
 import { Type } from 'class-transformer';
+import { ObjectType } from '../common';
 
-export type ObjectOptions = { type: 'object'; target: FunctionConstructor };
+export type ObjectOptions = { type: 'object'; target: ObjectType };
 
 export function ValidateObject(
   options: Partial<ObjectOptions>,
@@ -14,6 +20,8 @@ export function ValidateObject(
   if (!target) {
     throw new Error('Object property target is required!');
   }
+
+  decorators.push(IsObject(validationOptions));
   decorators.push(ValidateNested(validationOptions));
   decorators.push(Type(() => target));
 
