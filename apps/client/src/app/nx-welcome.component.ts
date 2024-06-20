@@ -484,7 +484,6 @@ import { RouterModule } from '@angular/router';
             <h2>Learning materials</h2>
             <a
               [routerLink]="['documentation']"
-              target="_blank"
               rel="noreferrer"
               class="list-item-link"
             >
@@ -588,7 +587,6 @@ import { RouterModule } from '@angular/router';
             </a>
             <a
               [routerLink]="['interactive-tutorial']"
-              target="_blank"
               rel="noreferrer"
               class="list-item-link"
             >
@@ -625,7 +623,6 @@ import { RouterModule } from '@angular/router';
             </a>
             <a
               [routerLink]="['video-tutorial']"
-              target="_blank"
               rel="noreferrer"
               class="list-item-link"
             >
@@ -669,7 +666,6 @@ import { RouterModule } from '@angular/router';
             <a
               class="button-pill rounded shadow nx-console"
               [routerLink]="['install-application']"
-              target="_blank"
               rel="noreferrer"
             >
               <img src="./icons/icon-72x72.png" alt="App Logo" />
@@ -802,90 +798,86 @@ import { RouterModule } from '@angular/router';
         <div id="commands" class="rounded shadow">
           <h2>Applications</h2>
           <p>Here are some things you can manage with BMS</p>
-          <details>
-            <summary>
-              <svg
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
-              Inventory Management
-            </summary>
-            <pre><span># Generate UI lib</span>
-nx g &#64;nx/angular:lib ui
-<span># Add a component</span>
-nx g &#64;nx/angular:component ui/src/lib/button</pre>
-          </details>
-          <details>
-            <summary>
-              <svg
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
-              View project details
-            </summary>
-            <pre>nx show project client --web</pre>
-          </details>
-          <details>
-            <summary>
-              <svg
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
-              View interactive project graph
-            </summary>
-            <pre>nx graph</pre>
-          </details>
-          <details>
-            <summary>
-              <svg
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
-              Run affected commands
-            </summary>
-            <pre><span># see what&apos;s been affected by changes</span>
-nx affected:graph
-<span># run tests for current changes</span>
-nx affected:test
-<span># run e2e tests for current changes</span>
-nx affected:e2e</pre>
-          </details>
+          <a [routerLink]="['inventory']">
+            <details>
+              <summary>
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+                Manage Inventory
+              </summary>
+            </details>
+          </a>
+          <a [routerLink]="['pos']">
+            <details>
+              <summary>
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+                Point Of Sale
+              </summary>
+            </details>
+          </a>
+          <a [routerLink]="['customer-management']">
+            <details>
+              <summary>
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+                Manage Customers
+              </summary>
+            </details>
+          </a>
+          <a [routerLink]="['project-management']">
+            <details>
+              <summary>
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+                Manage Project
+              </summary>
+            </details>
+          </a>
         </div>
 
         <div
