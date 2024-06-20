@@ -17,3 +17,28 @@ describe('ResourcePathBuilderBuilder', () => {
     );
   });
 });
+
+// const rp = new ResourcePathBuilder({
+//   singularName: 'Product',
+//   pluralName: 'Products',
+//   prefix: '',
+// });
+
+// // output: `product/:id`
+// const ID_PATH = rp.id();
+
+// // output: `product`
+// const SINGULAR_PATH = rp.singular();
+
+// // output: `products/:id`
+// const PLURAL_PATH = rp.plural();
+
+// // output: `product/:id/category/:rid`
+// const ID_RELATION_PATH = rp.idRelation('category');
+
+// // output: `product/:id/category`
+// const SINGULAR_RELATION_PATH = rp.singularRelation('category');
+
+// // output: `product/:id/categories`
+// const PLURAL_RELATION_PATH = rp.pluralRelation('categories');
+

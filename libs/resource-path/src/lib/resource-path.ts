@@ -18,6 +18,21 @@ export type ResourcePathBuilderOptions = {
   prefix?: string;
 };
 
+/**
+ * @example
+ * const rp = new ResourcePathBuilder({
+ *   singularName: 'Product',
+ *   pluralName: 'Products',
+ *   prefix: '',
+ * });   
+ * 
+ * rp.id(); // output: `product/:id`
+ * rp.singular(); // output: `product`
+ * rp.plural(); // output: `products/:id`
+ * rp.idRelation('category'); // output: `product/:id/category/:rid`
+ * rp.singularRelation('category'); // output: `product/:id/category`
+ * rp.pluralRelation('categories'); // output: `product/:id/categories`
+ *  */
 export class ResourcePathBuilder {
   protected readonly _sp: string;
   protected readonly _pp: string;
