@@ -36,18 +36,6 @@ export class AuthService {
     throw new UnauthorizedException(`There is no valid session!`);
   }
 
-  async isRootUser(username: string, password: string) {
-    const rootUsername = this.config.getOrThrow('ROOT_USERNAME');
-    const rootPassword = this.config.getOrThrow('ROOT_PASSWORD');
-
-    if (username === rootUsername) {
-      if (password === rootPassword) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   async findByUsername(username: string) {
     try {
       return await this.repo.findOneByOrFail({ username });
@@ -58,11 +46,6 @@ export class AuthService {
 
   async login(loginDto: LoginDto): Promise<LoginResponse> {
     const { username, password } = loginDto;
-
-    if (await this.isRootUser(username, password)) {
-      return { token: this.sign(0) };
-    }
-
     const { id, password: hashedPassed } = await this.findByUsername(username);
     const isPasswordMatch = compareHash(password, hashedPassed);
 

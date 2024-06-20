@@ -9,6 +9,7 @@ export type ColumnOptions = {
   unique?: boolean;
   update?: boolean;
   defaultValue?: unknown;
+  target?: Type;
 };
 
 export function StringColumn(options: ColumnOptions) {
@@ -62,12 +63,16 @@ export function BooleanColumn(options: ColumnOptions) {
   );
 }
 
-export function ObjectColumn(
-  options: ColumnOptions,
-  target: Type = class ObjectClass {}
-) {
+export function ObjectColumn(options: ColumnOptions) {
+  if (!options.target) {
+    throw new Error('Object Column Target is required!');
+  }
   return applyDecorators(
-    Property({ type: 'object', target, example: { key: 'value' } }),
+    Property({
+      type: 'object',
+      target: options.target,
+      example: { key: 'value' },
+    }),
     Col({
       type: 'varchar',
       nullable: true,
