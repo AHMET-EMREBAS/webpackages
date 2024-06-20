@@ -4,7 +4,7 @@ import {
   BaseEntity,
   PasswordColumn,
   AccessPolicyDto,
-} from '@webpackages/core';
+} from '@webpackages/database';
 
 @Entity()
 export class User extends BaseEntity {

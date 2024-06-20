@@ -1,12 +1,13 @@
 import { Body, Param, Query } from '@nestjs/common';
 import { CreateUserDto } from './dto/create.dto';
 import { UpdateUserDto } from './dto/update.dto';
-import { HttpRouteBuilder, PaginatorDto } from '@webpackages/core';
+import { PaginatorDto } from '@webpackages/query';
 import { User } from './entities';
 import { OrderUserDto, QueryUserDto, SearchUserDto } from './dto';
 import { UserService } from './service';
+import { ResourceController } from '@webpackages/controller-builder';
 
-const C = new HttpRouteBuilder({
+const C = new ResourceController({
   singularName: 'user',
   pluralName: 'users',
   entity: User,

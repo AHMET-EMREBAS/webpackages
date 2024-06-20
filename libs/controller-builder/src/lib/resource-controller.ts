@@ -20,14 +20,13 @@ import {
 } from '@nestjs/swagger';
 import { names } from '@nx/devkit';
 import { AuthHeaders, AuthNames } from '@webpackages/types';
-
 import {
   CanDelete,
   CanRead,
   CanUpdate,
   CanWrite,
   ResourceName,
-} from '@webpackages/auth';
+} from '@webpackages/access-policy';
 import { MessageResponse, ValidationErrorDto } from './responses';
 
 import { ResourcePathBuilder } from '@webpackages/resource-path';
