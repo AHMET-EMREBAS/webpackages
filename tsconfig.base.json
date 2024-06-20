@@ -21,6 +21,9 @@
       "@webpackages/common": ["libs/common/src/index.ts"],
       "@webpackages/core": ["libs/core/src/index.ts"],
       "@webpackages/gen": ["libs/gen/src/index.ts"],
+      "@webpackages/material": ["libs/material/src/index.ts"],
+      "@webpackages/material/input": ["libs/material/input/src/index.ts"],
+      "@webpackages/material/layout": ["libs/material/layout/src/index.ts"],
       "@webpackages/resources": ["libs/resources/src/index.ts"]
     }
   },
