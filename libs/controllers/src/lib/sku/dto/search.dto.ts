@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchSkuDto implements SearchDto<Sku> {
-  @SearchProperty<Sku>([])
+  @SearchProperty<Sku>(['name', 'description', 'sku', 'product'])
   search: FindOptionsWhere<Sku>;
 }

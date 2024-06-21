@@ -5,4 +5,7 @@ import { Exclude } from 'class-transformer';
 @Exclude()
 export class QueryNotificationDto
   extends BaseQueryDto
-  implements QueryDto<Notification> {}
+  implements QueryDto<Notification>
+{
+  @QueryProperty() message: string;
+}

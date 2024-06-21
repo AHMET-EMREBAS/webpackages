@@ -3,4 +3,7 @@ import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class QuerySprintDto extends BaseQueryDto implements QueryDto<Sprint> {}
+export class QuerySprintDto extends BaseQueryDto implements QueryDto<Sprint> {
+  @QueryProperty() name: string;
+  @QueryProperty() project: string;
+}

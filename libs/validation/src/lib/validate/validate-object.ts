@@ -13,11 +13,6 @@ export function ValidateObject(
   validationOptions: ValidationOptions
 ): PropertyDecorator {
   const decorators: PropertyDecorator[] = [];
-
-  if (!target) {
-    throw new Error('Object property target is required!');
-  }
-
   decorators.push(IsObject(validationOptions));
   decorators.push(ValidateNested(validationOptions));
 

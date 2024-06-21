@@ -1,6 +1,5 @@
 import { BaseEntity } from '@webpackages/types';
 import { IUser } from './user';
-import { IPurchaseOrder } from './purchase-order';
 
 export interface IPurchase extends BaseEntity {
   orderDate: Date;
@@ -16,6 +15,4 @@ export interface IPurchase extends BaseEntity {
   notes: string;
 
   user: IUser;
-
-  orders: IPurchaseOrder;
 }

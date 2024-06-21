@@ -5,4 +5,12 @@ import { Exclude } from 'class-transformer';
 @Exclude()
 export class QueryPurchaseOrderDto
   extends BaseQueryDto
-  implements QueryDto<PurchaseOrder> {}
+  implements QueryDto<PurchaseOrder>
+{
+  @QueryProperty() price: string;
+  @QueryProperty() quantity: string;
+  @QueryProperty() subTotal: string;
+  @QueryProperty() total: string;
+  @QueryProperty() purchase: string;
+  @QueryProperty() sku: string;
+}

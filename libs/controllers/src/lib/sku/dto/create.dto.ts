@@ -1,3 +1,4 @@
+import { IDDto } from '@webpackages/database';
 import { Property } from '@webpackages/property';
 import { Exclude } from 'class-transformer';
 
@@ -17,4 +18,7 @@ export class CreateSkuDto {
 
   @Property({ type: 'string', required: true, format: 'barcode' })
   sku: string;
+
+  @Property({ type: 'number', required: true })
+  undefined: IDDto;
 }

@@ -1,3 +1,4 @@
+import { IDDto } from '@webpackages/database';
 import { Property } from '@webpackages/property';
 import { Exclude } from 'class-transformer';
 
@@ -20,4 +21,7 @@ export class CreatePurchaseDto {
 
   @Property({ type: 'string', inputType: 'textarea' })
   notes: string;
+
+  @Property({ type: 'number', required: true })
+  undefined: IDDto;
 }

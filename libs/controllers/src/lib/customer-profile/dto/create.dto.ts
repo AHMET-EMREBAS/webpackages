@@ -1,3 +1,4 @@
+import { IDDto } from '@webpackages/database';
 import { Property } from '@webpackages/property';
 import { Exclude } from 'class-transformer';
 
@@ -11,4 +12,7 @@ export class CreateCustomerProfileDto {
 
   @Property({ type: 'string', minLength: 3, maxLength: 100 })
   middleName: string;
+
+  @Property({ type: 'number', required: true })
+  undefined: IDDto;
 }

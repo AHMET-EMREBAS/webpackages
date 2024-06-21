@@ -5,4 +5,11 @@ import { Exclude } from 'class-transformer';
 @Exclude()
 export class QueryDiscountDto
   extends BaseQueryDto
-  implements QueryDto<Discount> {}
+  implements QueryDto<Discount>
+{
+  @QueryProperty() fixedDiscount: string;
+  @QueryProperty() percentDiscount: string;
+  @QueryProperty() startDate: string;
+  @QueryProperty() endDate: string;
+  @QueryProperty() sku: string;
+}

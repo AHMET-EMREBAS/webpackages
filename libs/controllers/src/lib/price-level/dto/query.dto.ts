@@ -5,4 +5,8 @@ import { Exclude } from 'class-transformer';
 @Exclude()
 export class QueryPriceLevelDto
   extends BaseQueryDto
-  implements QueryDto<PriceLevel> {}
+  implements QueryDto<PriceLevel>
+{
+  @QueryProperty() name: string;
+  @QueryProperty() taxrate: string;
+}

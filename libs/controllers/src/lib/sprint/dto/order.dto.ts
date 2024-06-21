@@ -3,4 +3,7 @@ import { CreateOrderDto } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class OrderSprintDto extends CreateOrderDto<Sprint>([]) {}
+export class OrderSprintDto extends CreateOrderDto<Sprint>([
+  'name',
+  'project',
+]) {}

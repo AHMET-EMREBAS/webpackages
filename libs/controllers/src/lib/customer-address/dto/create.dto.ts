@@ -1,3 +1,4 @@
+import { IDDto } from '@webpackages/database';
 import { Property } from '@webpackages/property';
 import { Exclude } from 'class-transformer';
 
@@ -14,4 +15,7 @@ export class CreateCustomerAddressDto {
 
   @Property({ type: 'string' })
   zip: string;
+
+  @Property({ type: 'number', required: true })
+  undefined: IDDto;
 }

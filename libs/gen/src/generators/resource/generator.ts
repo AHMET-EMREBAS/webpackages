@@ -43,15 +43,19 @@ function printRelations(metadata: Metadata) {
   if (metadata.relations)
     return Object.entries(metadata.relations)
       .map(([key, value]) => {
+        const propertyName = () => {
+          return;
+          value.relationType === 'many' ? key : key;
+        };
         const isRequired = () => {
           return value.relationType === 'owner' ||
             value.relationType === 'secure-owner'
             ? ',required: true'
             : '';
         };
+
         const decoratorsOptions = () => {
-          return value.relationType === 'many' ||
-            value.relationType === 'eager-children'
+          return value.relationType === 'many'
             ? `{type:"object", target:IDDto, isArray:true ${isRequired()} }`
             : `{ type:'number' ${isRequired()} }`;
         };
@@ -61,15 +65,12 @@ function printRelations(metadata: Metadata) {
         };
 
         const type = () => {
-          return value.relationType === 'many' ||
-            value.relationType === 'eager-children'
-            ? value.targetName + '[]'
-            : 'number';
+          return value.relationType === 'many' ? 'IDDto' + '[]' : 'IDDto';
         };
 
         return `
       ${decorator()}
-      ${key}:${type()};`;
+      ${propertyName()}:${type()};`;
       })
       .join('\n');
 
@@ -78,10 +79,10 @@ function printRelations(metadata: Metadata) {
 
 function printPropetyNames(metadata: Metadata) {
   return JSON.stringify([
-    ...Object.entries(metadata.properties).map(([key, value]) => {
+    ...Object.entries(metadata.properties || {}).map(([key]) => {
       return key;
     }),
-    ...Object.entries(metadata.relations).map(([key, value]) => {
+    ...Object.entries(metadata.relations || {}).map(([key]) => {
       return key;
     }),
   ]);
@@ -89,13 +90,13 @@ function printPropetyNames(metadata: Metadata) {
 
 function printQueryProperties(meta: Metadata) {
   return [
-    ...Object.entries(meta.properties).map(([key]) => {
+    ...Object.entries(meta.properties || {}).map(([key]) => {
       return `@QueryProperty() ${key}: string;`;
     }),
-    ...Object.entries(meta.relations).map(([key]) => {
+    ...Object.entries(meta.relations || {}).map(([key]) => {
       return `@QueryProperty() ${key}: string;`;
     }),
-  ];
+  ].join('\n');
 }
 
 export async function resourceGenerator(

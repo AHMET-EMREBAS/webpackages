@@ -3,4 +3,8 @@ import { CreateOrderDto } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class OrderAccessTokenDto extends CreateOrderDto<AccessToken>([]) {}
+export class OrderAccessTokenDto extends CreateOrderDto<AccessToken>([
+  'name',
+  'token',
+  'user',
+]) {}

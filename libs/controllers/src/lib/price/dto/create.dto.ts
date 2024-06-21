@@ -1,3 +1,4 @@
+import { IDDto } from '@webpackages/database';
 import { Property } from '@webpackages/property';
 import { Exclude } from 'class-transformer';
 
@@ -14,4 +15,10 @@ export class CreatePriceDto {
 
   @Property({ type: 'date', required: true, moreThan: 'startDate' })
   endDate: Date;
+
+  @Property({ type: 'number', required: true })
+  undefined: IDDto;
+
+  @Property({ type: 'number', required: true })
+  undefined: IDDto;
 }

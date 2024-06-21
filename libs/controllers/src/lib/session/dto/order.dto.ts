@@ -3,4 +3,4 @@ import { CreateOrderDto } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class OrderSessionDto extends CreateOrderDto<Session>([]) {}
+export class OrderSessionDto extends CreateOrderDto<Session>(['user']) {}

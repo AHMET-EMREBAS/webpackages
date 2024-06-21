@@ -5,4 +5,10 @@ import { Exclude } from 'class-transformer';
 @Exclude()
 export class QueryCustomerProfileDto
   extends BaseQueryDto
-  implements QueryDto<CustomerProfile> {}
+  implements QueryDto<CustomerProfile>
+{
+  @QueryProperty() firstName: string;
+  @QueryProperty() lastName: string;
+  @QueryProperty() middleName: string;
+  @QueryProperty() user: string;
+}

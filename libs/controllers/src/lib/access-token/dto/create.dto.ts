@@ -1,4 +1,4 @@
-
+import { IDDto } from '@webpackages/database';
 import { Property } from '@webpackages/property';
 import { Exclude } from 'class-transformer';
 
@@ -9,4 +9,7 @@ export class CreateAccessTokenDto {
 
   @Property({ type: 'string', required: true, minLength: 10, maxLength: 100 })
   token: string;
+
+  @Property({ type: 'number', required: true })
+  undefined: IDDto;
 }

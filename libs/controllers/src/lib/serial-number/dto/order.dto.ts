@@ -3,4 +3,9 @@ import { CreateOrderDto } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class OrderSerialNumberDto extends CreateOrderDto<SerialNumber>([]) {}
+export class OrderSerialNumberDto extends CreateOrderDto<SerialNumber>([
+  'serialNumber',
+  'inStock',
+  'generated',
+  'sku',
+]) {}

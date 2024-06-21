@@ -1,3 +1,4 @@
+import { IDDto } from '@webpackages/database';
 import { Property } from '@webpackages/property';
 import { Exclude } from 'class-transformer';
 
@@ -32,4 +33,7 @@ export class CreateTaskDto {
 
   @Property({ type: 'string', enum: ['easy', 'medium', 'hard'] })
   difficulty: string;
+
+  @Property({ type: 'object', target: IDDto, isArray: true })
+  undefined: IDDto[];
 }

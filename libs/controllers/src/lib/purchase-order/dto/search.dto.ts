@@ -5,6 +5,13 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchPurchaseOrderDto implements SearchDto<PurchaseOrder> {
-  @SearchProperty<PurchaseOrder>([])
+  @SearchProperty<PurchaseOrder>([
+    'price',
+    'quantity',
+    'subTotal',
+    'total',
+    'purchase',
+    'sku',
+  ])
   search: FindOptionsWhere<PurchaseOrder>;
 }

@@ -66,7 +66,7 @@ export async function modelGenerator(
       });
     }
   } else {
-    const [key, value] = Object.entries(ModelMetadatas).find(([key, value]) =>
+    const [key, value] = Object.entries(ModelMetadatas).find(([key]) =>
       names(key).fileName.startsWith(options.name)
     );
     if (key && value) {

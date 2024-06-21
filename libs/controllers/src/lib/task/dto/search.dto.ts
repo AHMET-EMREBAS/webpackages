@@ -5,6 +5,16 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchTaskDto implements SearchDto<Task> {
-  @SearchProperty<Task>([])
+  @SearchProperty<Task>([
+    'name',
+    'tags',
+    'dueDate',
+    'startDate',
+    'endDate',
+    'description',
+    'status',
+    'difficulty',
+    'users',
+  ])
   search: FindOptionsWhere<Task>;
 }

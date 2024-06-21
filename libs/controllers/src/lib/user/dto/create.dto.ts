@@ -1,3 +1,4 @@
+import { IDDto } from '@webpackages/database';
 import { Property } from '@webpackages/property';
 import { Exclude } from 'class-transformer';
 
@@ -11,4 +12,7 @@ export class CreateUserDto {
 
   @Property({ type: 'object', targetName: 'AccessPolicy' })
   permissions: any;
+
+  @Property({ type: 'number' })
+  undefined: IDDto;
 }

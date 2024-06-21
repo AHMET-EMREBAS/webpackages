@@ -40,7 +40,9 @@ function printRelations(metadata: Metadata) {
     content.push(
       ...Object.entries(metadata.relations).map(([key, value]) => {
         return `
-        @Relation({ relationType:'${value.relationType}', target:${value.targetName} })
+        @Relation({ relationType:'${value.relationType}', target:${
+          value.targetName
+        } })
         ${key}:${value.targetName}${value.relationType === 'many' ? '[]' : ''};
         `;
       })

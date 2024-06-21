@@ -12,6 +12,5 @@ export const PurchaseMetadata: Metadata = {
   },
   relations: {
     user: { relationType: 'owner', targetName: 'User' },
-    orders: { relationType: 'eager-children', targetName: 'PurchaseOrder' },
   },
 };

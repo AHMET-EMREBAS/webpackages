@@ -10,4 +10,4 @@ export const PropertyTypes: Arr<PropertyType> = [
   'object',
 ];
 
-export type RelationType = 'one' | 'many' | 'owner' | 'secure-owner' | 'eager-children';
+export type RelationType = 'one' | 'many' | 'owner' | 'secure-owner';

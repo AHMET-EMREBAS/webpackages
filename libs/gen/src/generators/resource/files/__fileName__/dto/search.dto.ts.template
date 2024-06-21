@@ -5,8 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class Search<%- className %>Dto implements SearchDto<<%- className %>> {
-  @SearchProperty<<%- className %>>([
-    <%- searchProperties %>
-  ])
+  @SearchProperty<<%- className %>>(<%- searchProperties %>)
   search: FindOptionsWhere<<%- className %>>;
 }

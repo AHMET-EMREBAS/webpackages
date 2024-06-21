@@ -5,4 +5,9 @@ import { Exclude } from 'class-transformer';
 @Exclude()
 export class QueryCustomerImgDto
   extends BaseQueryDto
-  implements QueryDto<CustomerImg> {}
+  implements QueryDto<CustomerImg>
+{
+  @QueryProperty() title: string;
+  @QueryProperty() generatedName: string;
+  @QueryProperty() user: string;
+}

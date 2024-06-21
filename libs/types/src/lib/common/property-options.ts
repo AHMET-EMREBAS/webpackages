@@ -68,10 +68,17 @@ export class PropertyOptions {
 }
 
 export class RelationOptions
-  implements Pick<PropertyOptions, 'relationType' | 'target' | 'targetName'> {
+  implements Pick<PropertyOptions, 'relationType' | 'target'>
+{
   relationType: RelationType;
   target: Constructor<any>;
+}
+
+export class RelationOptionsMeta
+  implements Pick<PropertyOptions, 'relationType' | 'targetName'>
+{
   targetName: string;
+  relationType: RelationType;
 }
 
 export class ColumnOptions

@@ -5,8 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchUserDto implements SearchDto<User> {
-  @SearchProperty<User>([
-    
-  ])
+  @SearchProperty<User>(['username', 'passwrod', 'permissions', 'department'])
   search: FindOptionsWhere<User>;
 }

@@ -57,12 +57,8 @@ export function SecureOwnerRelation(target: Constructor | string) {
   );
 }
 
-export function Relation(options: Partial<RelationOptions>) {
+export function Relation(options: RelationOptions) {
   const { relationType: type, target } = options;
-
-  if (!target) {
-    throw new Error('Target is required!');
-  }
   if (type === 'many') {
     return ManyRelation(target);
   } else if (type === 'one') {

@@ -3,4 +3,7 @@ import { CreateOrderDto } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class OrderPriceLevelDto extends CreateOrderDto<PriceLevel>([]) {}
+export class OrderPriceLevelDto extends CreateOrderDto<PriceLevel>([
+  'name',
+  'taxrate',
+]) {}

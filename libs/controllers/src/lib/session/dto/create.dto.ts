@@ -1,5 +1,9 @@
+import { IDDto } from '@webpackages/database';
 import { Property } from '@webpackages/property';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class CreateSessionDto {}
+export class CreateSessionDto {
+  @Property({ type: 'number', required: true })
+  undefined: IDDto;
+}

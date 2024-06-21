@@ -1,3 +1,4 @@
+import { IDDto } from '@webpackages/database';
 import { Property } from '@webpackages/property';
 import { Exclude } from 'class-transformer';
 
@@ -8,4 +9,7 @@ export class CreateUserImgDto {
 
   @Property({ type: 'string', update: false })
   generatedName: string;
+
+  @Property({ type: 'number', required: true })
+  undefined: IDDto;
 }

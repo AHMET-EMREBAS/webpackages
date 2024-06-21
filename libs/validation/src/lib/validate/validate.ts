@@ -38,8 +38,7 @@ export function Validate(options: ApiPropertyOptions) {
     decorators.push(ValidateNumber(options, validationOptions));
     decorators.push(PrepareNumber());
   } else if (type === 'object') {
-    if (!options.target) throw new Error('Object property target is required!');
-    decorators.push(ValidateObject(options.target, validationOptions));
+    decorators.push(ValidateObject(options.target!, validationOptions));
     decorators.push(PrepareObject());
   } else if (type === 'boolean') {
     decorators.push(ValidateBoolean(validationOptions));

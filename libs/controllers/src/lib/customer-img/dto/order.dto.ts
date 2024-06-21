@@ -3,4 +3,8 @@ import { CreateOrderDto } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class OrderCustomerImgDto extends CreateOrderDto<CustomerImg>([]) {}
+export class OrderCustomerImgDto extends CreateOrderDto<CustomerImg>([
+  'title',
+  'generatedName',
+  'user',
+]) {}

@@ -5,4 +5,7 @@ import { Exclude } from 'class-transformer';
 @Exclude()
 export class QueryManufacturerDto
   extends BaseQueryDto
-  implements QueryDto<Manufacturer> {}
+  implements QueryDto<Manufacturer>
+{
+  @QueryProperty() name: string;
+}

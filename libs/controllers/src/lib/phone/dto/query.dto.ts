@@ -3,4 +3,6 @@ import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class QueryPhoneDto extends BaseQueryDto implements QueryDto<Phone> {}
+export class QueryPhoneDto extends BaseQueryDto implements QueryDto<Phone> {
+  @QueryProperty() phone: string;
+}

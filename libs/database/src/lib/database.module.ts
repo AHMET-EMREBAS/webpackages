@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -23,8 +23,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         };
 
         if (isDevelopment) {
+          new Logger().log(`[Dev] Configured database`, 'Database');
           return { ...config, synchronize: true, dropSchema: true };
         } else if (isProduction) {
+          new Logger().log(`[Production] Configured database`, 'Database');
           return { ...config };
         }
 
@@ -34,4 +36,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     }),
   ],
 })
-export class DatabaseModule {}
+export class DatabaseModule {
+
+  
+}
