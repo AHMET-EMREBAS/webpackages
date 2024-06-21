@@ -28,9 +28,7 @@ import {
   ResourceName,
 } from '@webpackages/access-policy';
 import { MessageResponse, ValidationErrorDto } from './responses';
-
-import { ResourcePathBuilder } from '@webpackages/path';
-
+import { PathBuilder } from '@webpacakges/path';
 export type RestControllerOptions = {
   singularName: string;
   pluralName: string;
@@ -40,7 +38,7 @@ export type RestControllerOptions = {
  * Decorate controllers and end points
  */
 export class RestController {
-  protected readonly path: ResourcePathBuilder;
+  protected readonly path: PathBuilder;
   protected readonly singularName: string;
   protected readonly pluralName: string;
   protected readonly entity: Type;
@@ -51,7 +49,7 @@ export class RestController {
     this.singularName = singularName;
     this.pluralName = pluralName;
     this.entity = entity;
-    this.path = new ResourcePathBuilder({ singularName, pluralName });
+    this.path = new PathBuilder({ singularName, pluralName });
   }
 
   __Common() {
