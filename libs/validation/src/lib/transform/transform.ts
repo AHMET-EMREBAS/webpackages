@@ -35,7 +35,7 @@ export function PrepareInteger() {
 export function PrepareDate() {
   return Transform(({ value }) =>
     typeof value === 'string'
-      ? isDateString(value)
+      ? new Date(value).toString() != 'Invalid Date'
         ? new Date(value)
         : value
       : value
