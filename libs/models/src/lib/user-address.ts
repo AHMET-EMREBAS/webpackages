@@ -1,5 +1,14 @@
 import { BaseEntity } from '@webpackages/types';
+import { IUser } from './user';
 
 export interface IUserAddress extends BaseEntity {
-  name: string;
+  street: string;
+
+  city: string;
+
+  state: string;
+
+  zip: string;
+
+  user: IUser;
 }

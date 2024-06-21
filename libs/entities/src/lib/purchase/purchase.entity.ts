@@ -2,6 +2,7 @@ import { Entity } from 'typeorm';
 import { Column, BaseEntity, Relation } from '@webpackages/database';
 import { IPurchase } from '@webpackages/models';
 import { User } from '../user';
+import { PurchaseOrder } from '../purchase-order';
 
 @Entity()
 export class Purchase extends BaseEntity implements IPurchase {
@@ -25,4 +26,7 @@ export class Purchase extends BaseEntity implements IPurchase {
 
   @Relation({ relationType: 'owner', target: User })
   user: User;
+
+  @Relation({ relationType: 'eager-children', target: PurchaseOrder })
+  orders: PurchaseOrder;
 }

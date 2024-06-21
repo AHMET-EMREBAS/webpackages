@@ -1,6 +1,7 @@
 import { Entity } from 'typeorm';
 import { Column, BaseEntity, Relation } from '@webpackages/database';
 import { IUser } from '@webpackages/models';
+import { Department } from '../department';
 
 @Entity()
 export class User extends BaseEntity implements IUser {
@@ -12,4 +13,7 @@ export class User extends BaseEntity implements IUser {
 
   @Column({ type: 'object', required: false, unique: false })
   permissions: object;
+
+  @Relation({ relationType: 'one', target: Department })
+  department: Department;
 }

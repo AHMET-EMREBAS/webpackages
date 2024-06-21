@@ -1,5 +1,8 @@
 import { BaseEntity } from '@webpackages/types';
+import { IUser } from './user';
 
 export interface IUserEmail extends BaseEntity {
-  name: string;
+  email: string;
+
+  user: IUser;
 }
