@@ -1,0 +1,9 @@
+import { AccessPolicy, Metadata } from '@webpackages/types';
+
+export const <%- className %>Metadata: Metadata = {
+  groupName: 'administation',
+  properties: {
+    name: { type: 'string', minLength:3, maxLength:100 required: true, unique: true },
+  },
+  relation: {},
+};

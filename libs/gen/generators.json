@@ -14,6 +14,11 @@
       "factory": "./src/generators/entity/generator",
       "schema": "./src/generators/entity/schema.json",
       "description": "entity generator"
+    },
+    "metadata": {
+      "factory": "./src/generators/metadata/generator",
+      "schema": "./src/generators/metadata/schema.json",
+      "description": "metadata generator"
     }
   }
 }

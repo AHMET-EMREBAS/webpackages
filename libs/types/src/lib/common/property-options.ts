@@ -62,6 +62,8 @@ export class PropertyOptions {
   hideInCreate: boolean;
   hideInUpdate: boolean;
   className: (value: any) => string;
+
+  from: string;
 }
 
 export class RelationOptions
