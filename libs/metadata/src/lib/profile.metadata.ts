@@ -1,6 +1,6 @@
 import { Metadata } from '@webpackages/types';
 
-export const UserMetadata: Metadata = {
+export const ProfileMetadata: Metadata = {
   groupName: 'administation',
   properties: {
     name: {

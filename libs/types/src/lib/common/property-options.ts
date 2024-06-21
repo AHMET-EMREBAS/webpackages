@@ -3,6 +3,7 @@ import { InputType } from 'zlib';
 import { PropertyType, RelationType } from './property-type';
 import { StringFormat } from './string-format';
 import { Constructor } from './constructor';
+import { ResourceName } from '../auth';
 
 export class PropertyOptions {
   type: PropertyType;
@@ -10,6 +11,7 @@ export class PropertyOptions {
   order: number;
   relationType: RelationType;
   target: Constructor;
+  targetName: string;
   format: StringFormat;
   name: string;
   enum: Readonly<any[]>;
