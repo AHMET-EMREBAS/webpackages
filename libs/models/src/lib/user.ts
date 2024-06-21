@@ -1,7 +1,9 @@
-import { AccessPolicy } from '@webpackages/types';
+import { BaseEntity } from '@webpackages/types';
 
-export interface IUser {
+export interface IUser extends BaseEntity {
   username: string;
-  password: string;
-  permissions: AccessPolicy;
+
+  passwrod: string;
+
+  permissions: object;
 }

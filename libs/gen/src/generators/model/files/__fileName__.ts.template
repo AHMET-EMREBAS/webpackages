@@ -1,0 +1,7 @@
+import {  BaseEntity } from '@webpackages/types';
+<%- imports %>
+
+export interface I<%- className %> extends BaseEntity {
+ <%- properties %>
+ <%- relations %>
+}

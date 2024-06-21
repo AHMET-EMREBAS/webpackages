@@ -69,10 +69,10 @@ export class PropertyOptions {
 }
 
 export class RelationOptions
-  implements Pick<PropertyOptions, 'relationType' | 'target'>
-{
+  implements Pick<PropertyOptions, 'relationType' | 'target' | 'targetName'> {
   relationType: RelationType;
   target: Constructor<any>;
+  targetName: string;
 }
 
 export class ColumnOptions

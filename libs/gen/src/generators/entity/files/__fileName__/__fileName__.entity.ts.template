@@ -6,7 +6,6 @@ import { I<%- className %> } from '@webpackages/models';
 @Entity()
 export class <%- className %> extends BaseEntity implements I<%- className %>  { 
   
-
   <%- properties %>
 
   <%- relations %>

@@ -10,6 +10,5 @@ export const SprintMetadata: Metadata = {
       required: true,
       unique: true,
     },
-  },
-  relations: {},
+  }
 };

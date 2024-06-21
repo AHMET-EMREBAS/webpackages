@@ -38,7 +38,7 @@ function printRelations(metadata: Metadata) {
   const content: string[] = [];
   if (metadata.relations) {
     content.push(
-      ...Object.entries(metadata.properties).map(([key, value]) => {
+      ...Object.entries(metadata.relations).map(([key, value]) => {
         return `
         @Relation({ type:'${value.relationType}', target:${value.targetName} })
         ${key}:${value.targetName}${value.relationType === 'many' ? '[]' : ''};
@@ -49,17 +49,37 @@ function printRelations(metadata: Metadata) {
   return content.join('\n');
 }
 
-export async function entityGenerator(tree: Tree) {
+export async function entityGenerator(
+  tree: Tree,
+  options: EntityGeneratorSchema
+) {
   const projectRoot = `libs/entities/src/lib`;
 
   const metadatas = Object.entries(ModelMetadatas);
-  for (const [key, value] of metadatas) {
-    generateFiles(tree, path.join(__dirname, 'files'), projectRoot, {
-      ...names(key.replace('Metadata', '')),
-      imports: printImports(value),
-      properties: printProperties(value),
-      relations: printRelations(value),
-    });
+
+  if (options.name === 'print-all') {
+    for (const [key, value] of metadatas) {
+      generateFiles(tree, path.join(__dirname, 'files'), projectRoot, {
+        ...names(key.replace('Metadata', '')),
+        imports: printImports(value),
+        properties: printProperties(value),
+        relations: printRelations(value),
+      });
+    }
+  } else {
+    const [key, value] = Object.entries(ModelMetadatas).find(([key, value]) =>
+      names(key).fileName.startsWith(options.name)
+    );
+    if (key && value) {
+      generateFiles(tree, path.join(__dirname, 'files'), projectRoot, {
+        ...names(key.replace('Metadata', '')),
+        imports: printImports(value),
+        properties: printProperties(value),
+        relations: printRelations(value),
+      });
+      return;
+    }
+    throw new Error('metadata not found!');
   }
   await formatFiles(tree);
 }

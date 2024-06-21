@@ -1,1 +1,2 @@
-export * from './user';
+// @index('./*', f => `export * from '${f.path}'`)
+export * from './user'

@@ -19,6 +19,11 @@
       "factory": "./src/generators/metadata/generator",
       "schema": "./src/generators/metadata/schema.json",
       "description": "metadata generator"
+    },
+    "model": {
+      "factory": "./src/generators/model/generator",
+      "schema": "./src/generators/model/schema.json",
+      "description": "model generator"
     }
   }
 }

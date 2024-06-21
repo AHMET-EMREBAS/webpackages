@@ -3,12 +3,21 @@ import { Metadata } from '@webpackages/types';
 export const UserMetadata: Metadata = {
   groupName: 'administation',
   properties: {
-    name: {
+    username: {
       type: 'string',
-      minLength: 3,
-      maxLength: 100,
+      format: 'email',
       required: true,
       unique: true,
+    },
+    passwrod: {
+      type: 'string',
+      format: 'email',
+      required: true,
+      unique: true,
+    },
+    permissions: {
+      type: 'object',
+      targetName: 'AccessPolicy',
     },
   },
   relations: {},
