@@ -3,12 +3,22 @@ import { Metadata } from '@webpackages/types';
 export const ProfileMetadata: Metadata = {
   groupName: 'administation',
   properties: {
-    name: {
+    firstName: {
       type: 'string',
       minLength: 3,
       maxLength: 100,
       required: true,
-      unique: true,
+    },
+    lastName: {
+      type: 'string',
+      minLength: 3,
+      maxLength: 100,
+      required: true,
+    },
+    middleName: {
+      type: 'string',
+      minLength: 3,
+      maxLength: 100,
     },
   },
   relations: {},

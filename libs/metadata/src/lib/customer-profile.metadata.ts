@@ -1,15 +1,9 @@
 import { Metadata } from '@webpackages/types';
+import { ProfileMetadata } from './profile.metadata';
+import { CustomerAddressMetadata } from './customer-address.metadata';
 
 export const CustomerProfileMetadata: Metadata = {
   groupName: 'administation',
-  properties: {
-    name: {
-      type: 'string',
-      minLength: 3,
-      maxLength: 100,
-      required: true,
-      unique: true,
-    },
-  },
-  relations: {},
+  properties: ProfileMetadata.properties,
+  relations: CustomerAddressMetadata.relations,
 };

@@ -1,15 +1,10 @@
 import { Metadata } from '@webpackages/types';
+import { AddressMetadata } from './address.metadata';
 
 export const CustomerAddressMetadata: Metadata = {
   groupName: 'administation',
-  properties: {
-    name: {
-      type: 'string',
-      minLength: 3,
-      maxLength: 100,
-      required: true,
-      unique: true,
-    },
+  properties: AddressMetadata.properties,
+  relations: {
+    user: { relationType: 'owner', targetName: 'Customer' },
   },
-  relations: {},
 };

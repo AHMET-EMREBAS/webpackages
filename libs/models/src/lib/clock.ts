@@ -1,5 +1,10 @@
 import { BaseEntity } from '@webpackages/types';
+import { IUser } from './user';
 
 export interface IClock extends BaseEntity {
-  name: string;
+  starDate: Date;
+
+  endDate: Date;
+
+  user: IUser;
 }

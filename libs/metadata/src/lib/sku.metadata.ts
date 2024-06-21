@@ -10,6 +10,17 @@ export const SkuMetadata: Metadata = {
       required: true,
       unique: true,
     },
+    description: {
+      type: 'string',
+      maxLength: 1000,
+    },
+    sku: {
+      type: 'string',
+      required: true,
+      format: 'barcode',
+    },
   },
-  relations: {},
+  relations: {
+    product: { relationType: 'owner', targetName: 'Product' },
+  },
 };

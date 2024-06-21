@@ -3,13 +3,13 @@ import { Metadata } from '@webpackages/types';
 export const OrderMetadata: Metadata = {
   groupName: 'administation',
   properties: {
-    name: {
-      type: 'string',
-      minLength: 3,
-      maxLength: 100,
-      required: true,
-      unique: true,
-    },
+    unitPrice: { type: 'number', required: true, minimum: 0 },
+    subTotal: { type: 'number', required: true, minimum: 0 },
+    quantity: { type: 'number', minimum: 1 },
   },
-  relations: {},
+  relations: {
+    sku: { relationType: 'owner', targetName: 'Sku' },
+    cart: { relationType: 'owner', targetName: 'Cart' },
+    discounts: { relationType: 'many', targetName: 'Discount' },
+  },
 };

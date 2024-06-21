@@ -13,6 +13,7 @@ export class BaseEntity implements ID, Timestamps {
   updatedAt: Date;
   deletedAt: Date;
   id: number;
+  active: boolean;
 }
 
 export const BaseEntityFields: Readonly<(keyof BaseEntity)[]> = [

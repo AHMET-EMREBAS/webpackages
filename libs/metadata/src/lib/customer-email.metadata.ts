@@ -1,15 +1,9 @@
 import { Metadata } from '@webpackages/types';
+import { EmailMetadata } from './email.metadata';
+import { CustomerAddressMetadata } from './customer-address.metadata';
 
 export const CustomerEmailMetadata: Metadata = {
   groupName: 'administation',
-  properties: {
-    name: {
-      type: 'string',
-      minLength: 3,
-      maxLength: 100,
-      required: true,
-      unique: true,
-    },
-  },
-  relations: {},
+  properties: EmailMetadata.properties,
+  relations: CustomerAddressMetadata.relations,
 };

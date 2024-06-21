@@ -20,5 +20,7 @@ export const UserMetadata: Metadata = {
       targetName: 'AccessPolicy',
     },
   },
-  relations: {},
+  relations: {
+    department: { relationType: 'one', targetName: 'Department' },
+  },
 };

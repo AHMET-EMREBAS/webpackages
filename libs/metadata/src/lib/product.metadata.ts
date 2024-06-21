@@ -10,6 +10,19 @@ export const ProductMetadata: Metadata = {
       required: true,
       unique: true,
     },
+    description: {
+      type: 'string',
+      maxLength: 1000,
+    },
+    upc: {
+      type: 'string',
+      required: true,
+      unique: true,
+      format: 'barcode',
+    },
   },
-  relations: {},
+  relations: {
+    category: { relationType: 'one', targetName: 'Category' },
+    supplier: { relationType: 'one', targetName: 'Supplier' },
+  },
 };

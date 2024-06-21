@@ -1,15 +1,9 @@
 import { Metadata } from '@webpackages/types';
+import { ImgMetadata } from './img.metadata';
+import { CustomerAddressMetadata } from './customer-address.metadata';
 
 export const CustomerImgMetadata: Metadata = {
   groupName: 'administation',
-  properties: {
-    name: {
-      type: 'string',
-      minLength: 3,
-      maxLength: 100,
-      required: true,
-      unique: true,
-    },
-  },
-  relations: {},
+  properties: ImgMetadata.properties,
+  relations: CustomerAddressMetadata.relations,
 };

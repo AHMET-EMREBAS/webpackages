@@ -14,7 +14,7 @@ function printImports(metadata: Metadata) {
       })
     );
   }
-  return content.join('\n');
+  return [...new Set(content)].join('\n');
 }
 
 function printProperties(metadata: Metadata) {
@@ -38,7 +38,9 @@ function printRelations(metadata: Metadata) {
     content.push(
       ...Object.entries(metadata.relations).map(([key, value]) => {
         return `
-        ${key}: ${value.targetName}${value.relationType === 'many' ? '[]' : ''};
+        ${key}: I${value.targetName}${
+          value.relationType === 'many' ? '[]' : ''
+        };
         `;
       })
     );

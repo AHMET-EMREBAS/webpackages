@@ -1,5 +1,10 @@
 import { BaseEntity } from '@webpackages/types';
+import { ICustomer } from './customer';
 
 export interface ICustomerImg extends BaseEntity {
-  name: string;
+  title: string;
+
+  generatedName: string;
+
+  user: ICustomer;
 }

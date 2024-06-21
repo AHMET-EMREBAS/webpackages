@@ -1,15 +1,8 @@
 import { Metadata } from '@webpackages/types';
+import { CategoryMetadata } from './category.metadata';
 
 export const DepartmentMetadata: Metadata = {
-  groupName: 'administation',
-  properties: {
-    name: {
-      type: 'string',
-      minLength: 3,
-      maxLength: 100,
-      required: true,
-      unique: true,
-    },
-  },
+  groupName: 'common',
+  properties: CategoryMetadata.properties,
   relations: {},
 };

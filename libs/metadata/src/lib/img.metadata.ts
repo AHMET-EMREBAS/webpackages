@@ -3,12 +3,14 @@ import { Metadata } from '@webpackages/types';
 export const ImgMetadata: Metadata = {
   groupName: 'administation',
   properties: {
-    name: {
+    title: {
       type: 'string',
       minLength: 3,
       maxLength: 100,
-      required: true,
-      unique: true,
+    },
+    generatedName: {
+      type: 'string',
+      update: false,
     },
   },
   relations: {},

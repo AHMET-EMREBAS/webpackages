@@ -1,5 +1,10 @@
 import { BaseEntity } from '@webpackages/types';
+import { IProduct } from './product';
 
 export interface IProductImg extends BaseEntity {
-  name: string;
+  title: string;
+
+  generatedName: string;
+
+  product: IProduct;
 }

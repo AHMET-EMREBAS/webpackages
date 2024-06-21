@@ -1,5 +1,14 @@
 import { BaseEntity } from '@webpackages/types';
+import { ISku } from './sku';
 
 export interface IDiscount extends BaseEntity {
-  name: string;
+  fixedDiscount: number;
+
+  percentDiscount: number;
+
+  startDate: Date;
+
+  endDate: Date;
+
+  sku: ISku;
 }

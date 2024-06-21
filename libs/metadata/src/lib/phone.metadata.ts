@@ -3,12 +3,10 @@ import { Metadata } from '@webpackages/types';
 export const PhoneMetadata: Metadata = {
   groupName: 'administation',
   properties: {
-    name: {
+    phone: {
       type: 'string',
-      minLength: 3,
-      maxLength: 100,
+      format: 'phone',
       required: true,
-      unique: true,
     },
   },
   relations: {},

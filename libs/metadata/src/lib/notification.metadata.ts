@@ -3,12 +3,9 @@ import { Metadata } from '@webpackages/types';
 export const NotificationMetadata: Metadata = {
   groupName: 'administation',
   properties: {
-    name: {
+    message: {
       type: 'string',
-      minLength: 3,
-      maxLength: 100,
-      required: true,
-      unique: true,
+      maxLength: 1000,
     },
   },
   relations: {},

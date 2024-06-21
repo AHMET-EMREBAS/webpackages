@@ -3,13 +3,15 @@ import { Metadata } from '@webpackages/types';
 export const PurchaseMetadata: Metadata = {
   groupName: 'administation',
   properties: {
-    name: {
-      type: 'string',
-      minLength: 3,
-      maxLength: 100,
-      required: true,
-      unique: true,
-    },
+    orderDate: { type: 'date', required: true },
+    expectedShippingDate: { type: 'date', required: true },
+    shippingDate: { type: 'date' },
+    subTotal: { type: 'number', required: true },
+    total: { type: 'number', required: true },
+    notes: { type: 'string', inputType: 'textarea' },
   },
-  relations: {},
+  relations: {
+    user: { relationType: 'owner', targetName: 'User' },
+    orders: { relationType: 'eager-children', targetName: 'PurchaseOrder' },
+  },
 };

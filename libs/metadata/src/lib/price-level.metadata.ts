@@ -10,6 +10,12 @@ export const PriceLevelMetadata: Metadata = {
       required: true,
       unique: true,
     },
+
+    taxrate: {
+      type: 'number',
+      required: true,
+      minimum: 0,
+    },
   },
   relations: {},
 };

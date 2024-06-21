@@ -1,15 +1,9 @@
 import { Metadata } from '@webpackages/types';
+import { EmailMetadata } from './email.metadata';
+import { AccessTokenMetadata } from './access-token.metadata';
 
 export const UserEmailMetadata: Metadata = {
   groupName: 'administation',
-  properties: {
-    name: {
-      type: 'string',
-      minLength: 3,
-      maxLength: 100,
-      required: true,
-      unique: true,
-    },
-  },
-  relations: {},
+  properties:EmailMetadata.properties,
+  relations: AccessTokenMetadata.relations,
 };

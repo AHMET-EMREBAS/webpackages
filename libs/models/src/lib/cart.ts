@@ -1,5 +1,11 @@
 import { BaseEntity } from '@webpackages/types';
+import { ICustomer } from './customer';
+import { IUser } from './user';
 
 export interface ICart extends BaseEntity {
-  name: string;
+  complete: boolean;
+
+  customer: ICustomer;
+
+  user: IUser;
 }

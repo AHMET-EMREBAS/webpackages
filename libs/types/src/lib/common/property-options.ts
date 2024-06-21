@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { InputType } from 'zlib';
 import { PropertyType, RelationType } from './property-type';
 import { StringFormat } from './string-format';
 import { Constructor } from './constructor';
-import { ResourceName } from '../auth';
+import { InputType } from './input-type';
 
 export class PropertyOptions {
   type: PropertyType;

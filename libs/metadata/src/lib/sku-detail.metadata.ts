@@ -3,13 +3,11 @@ import { Metadata } from '@webpackages/types';
 export const SkuDetailMetadata: Metadata = {
   groupName: 'administation',
   properties: {
-    name: {
-      type: 'string',
-      minLength: 3,
-      maxLength: 100,
-      required: true,
-      unique: true,
-    },
+    color: { type: 'string', maxLength: 100 },
+    height: { type: 'string', maxLength: 100 },
+    width: { type: 'string', maxLength: 100 },
+    weight: { type: 'string', maxLength: 100 },
+    manual: { type: 'string', format: 'url' },
   },
   relations: {},
 };

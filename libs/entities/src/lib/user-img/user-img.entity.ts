@@ -1,5 +1,5 @@
 import { Entity } from 'typeorm';
-import { Column, BaseEntity } from '@webpackages/database';
+import { Column, BaseEntity, Relation } from '@webpackages/database';
 import { IUserImg } from '@webpackages/models';
 
 @Entity()

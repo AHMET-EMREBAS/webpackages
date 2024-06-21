@@ -3,13 +3,10 @@ import { Metadata } from '@webpackages/types';
 export const AccessTokenMetadata: Metadata = {
   groupName: 'administation',
   properties: {
-    name: {
-      type: 'string',
-      minLength: 3,
-      maxLength: 100,
-      required: true,
-      unique: true,
-    },
+    name: { type: 'string', required: true, minLength: 3, maxLength: 100 },
+    token: { type: 'string', required: true, minLength: 10, maxLength: 100 },
   },
-  relations: {},
+  relations: {
+    user: { relationType: 'owner', targetName: 'User' },
+  },
 };

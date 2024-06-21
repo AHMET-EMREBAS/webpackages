@@ -10,6 +10,9 @@ export const EventMetadata: Metadata = {
       required: true,
       unique: true,
     },
+    payload: {
+      type: 'object',
+    },
   },
   relations: {},
 };

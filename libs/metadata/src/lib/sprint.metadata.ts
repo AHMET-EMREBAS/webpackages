@@ -10,5 +10,8 @@ export const SprintMetadata: Metadata = {
       required: true,
       unique: true,
     },
-  }
+  },
+  relations: {
+    project: { relationType: 'owner', targetName: 'Project' },
+  },
 };

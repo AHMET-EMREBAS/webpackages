@@ -7,4 +7,5 @@ export type GroupName =
   | 'blog'
   | 'settings'
   | 'message'
-  | 'report';
+  | 'report'
+  | 'common';

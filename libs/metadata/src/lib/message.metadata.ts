@@ -3,13 +3,11 @@ import { Metadata } from '@webpackages/types';
 export const MessageMetadata: Metadata = {
   groupName: 'administation',
   properties: {
-    name: {
-      type: 'string',
-      minLength: 3,
-      maxLength: 100,
-      required: true,
-      unique: true,
-    },
+    message: { type: 'string', maxLength: 2000 },
+    readDate: { type: 'date' },
   },
-  relations: {},
+  relations: {
+    user: { relationType: 'owner', targetName: 'User' },
+    to: { relationType: 'many', targetName: 'User' },
+  },
 };

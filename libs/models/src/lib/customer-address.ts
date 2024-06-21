@@ -1,5 +1,14 @@
 import { BaseEntity } from '@webpackages/types';
+import { ICustomer } from './customer';
 
 export interface ICustomerAddress extends BaseEntity {
-  name: string;
+  street: string;
+
+  city: string;
+
+  state: string;
+
+  zip: string;
+
+  user: ICustomer;
 }

@@ -1,9 +1,10 @@
 import { Entity } from 'typeorm';
-import { Column, BaseEntity } from '@webpackages/database';
+import { Column, BaseEntity, Relation } from '@webpackages/database';
 import { ISession } from '@webpackages/models';
+import { User } from '../user';
 
 @Entity()
 export class Session extends BaseEntity implements ISession {
-  @Column({ type: 'string', required: true, unique: true })
-  name: string;
+  @Relation({ relationType: 'owner', target: User })
+  user: User;
 }

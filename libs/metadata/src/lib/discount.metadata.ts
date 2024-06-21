@@ -3,13 +3,12 @@ import { Metadata } from '@webpackages/types';
 export const DiscountMetadata: Metadata = {
   groupName: 'administation',
   properties: {
-    name: {
-      type: 'string',
-      minLength: 3,
-      maxLength: 100,
-      required: true,
-      unique: true,
-    },
+    fixedDiscount: { type: 'number', minimum: 0 },
+    percentDiscount: { type: 'number', minimum: 0 },
+    startDate: { type: 'date', required: true },
+    endDate: { type: 'date', required: true },
   },
-  relations: {},
+  relations: {
+    sku: { relationType: 'owner', targetName: 'Sku' },
+  },
 };

@@ -3,13 +3,18 @@ import { Metadata } from '@webpackages/types';
 export const QuantityMetadata: Metadata = {
   groupName: 'administation',
   properties: {
-    name: {
-      type: 'string',
-      minLength: 3,
-      maxLength: 100,
+    quantity: {
+      type: 'number',
+      minimum: 0,
       required: true,
-      unique: true,
     },
+    alert: { type: 'boolean' },
+    alertUnderQuantity: { type: 'number' },
+    autoRepurchase: { type: 'boolean' },
+    notSellLastOne: { type: 'boolean' },
   },
-  relations: {},
+  relations: {
+    sku: { relationType: 'owner', targetName: 'Sku' },
+    store: { relationType: 'owner', targetName: 'Store' },
+  },
 };

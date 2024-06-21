@@ -3,13 +3,11 @@ import { Metadata } from '@webpackages/types';
 export const SerialNumberMetadata: Metadata = {
   groupName: 'administation',
   properties: {
-    name: {
-      type: 'string',
-      minLength: 3,
-      maxLength: 100,
-      required: true,
-      unique: true,
-    },
+    serialNumber: { type: 'string', minimum: 5 },
+    inStock: { type: 'boolean', required: true },
+    generated: { type: 'boolean' },
   },
-  relations: {},
+  relations: {
+    sku: { relationType: 'owner', targetName: 'Sku' },
+  },
 };
