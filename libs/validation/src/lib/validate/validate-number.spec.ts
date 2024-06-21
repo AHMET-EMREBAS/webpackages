@@ -1,14 +1,15 @@
-import { NumberOptions, ValidateNumber } from './validate-number';
+import { ApiPropertyOptions } from '@webpackages/types';
+import { ValidateNumber } from './validate-number';
 
 import { validateSync } from 'class-validator';
 
 describe('ValidateNumber', () => {
   it.each`
-    options                                         | value | expectedErrors
-    ${{} as NumberOptions}                          | ${{}} | ${['isNumber']}
-    ${{ minimum: 3 } as NumberOptions}              | ${{}} | ${['isNumber', 'min']}
-    ${{ maximum: 3 } as NumberOptions}              | ${{}} | ${['isNumber', 'max']}
-    ${{ isInt: true, minimum: 3 } as NumberOptions} | ${{}} | ${['isInt', 'min']}
+    options                                              | value | expectedErrors
+    ${{} as ApiPropertyOptions}                          | ${{}} | ${['isNumber']}
+    ${{ minimum: 3 } as ApiPropertyOptions}              | ${{}} | ${['isNumber', 'min']}
+    ${{ maximum: 3 } as ApiPropertyOptions}              | ${{}} | ${['isNumber', 'max']}
+    ${{ isInt: true, minimum: 3 } as ApiPropertyOptions} | ${{}} | ${['isInt', 'min']}
   `(
     'should validate $value with $options and return the errors $expectedErrors',
     ({ options, value, expectedErrors }) => {

@@ -9,24 +9,24 @@ import {
   SearchUserDto,
 } from '@webpackges/entities';
 import { UserService } from './user.service';
-import { ResourceController } from '@webpackages/controller-builder';
+import { RestController } from '@webpackages/rest';
 
-export const UserResource = new ResourceController({
+export const UserRest = new RestController({
   singularName: 'user',
   pluralName: 'users',
   entity: User,
 });
 
-@UserResource.Controller()
+@UserRest.Controller()
 export class UserController {
   constructor(private readonly service: UserService) {}
 
-  @UserResource.Create()
+  @UserRest.Create()
   async saveOne(@Body() createUserDto: CreateUserDto) {
     return await this.service.saveOne(createUserDto);
   }
 
-  @UserResource.FindAll()
+  @UserRest.FindAll()
   async findAll(
     @Query() paginator: PaginatorDto,
     @Query() order: OrderUserDto,
@@ -36,12 +36,12 @@ export class UserController {
     return await this.service.findAll(paginator, order, query, search);
   }
 
-  @UserResource.FindOneById()
+  @UserRest.FindOneById()
   async findOneById(@Param('id') id: number) {
     return await this.service.findOneById(id);
   }
 
-  @UserResource.Update()
+  @UserRest.Update()
   async updateOneById(
     @Param('id') id: number,
     @Body() updateUserDto: UpdateUserDto
@@ -49,7 +49,7 @@ export class UserController {
     return await this.service.updateOneById(id, updateUserDto);
   }
 
-  @UserResource.Delete()
+  @UserRest.Delete()
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
