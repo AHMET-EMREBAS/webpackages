@@ -4,6 +4,5 @@ import { IManufacturer } from '@webpackages/models';
 
 @Entity()
 export class Manufacturer extends BaseEntity implements IManufacturer {
-  @Column({ type: 'string', required: true, unique: true })
-  name: string;
+  @Column({ type: 'string', required: true, unique: true }) name: string;
 }

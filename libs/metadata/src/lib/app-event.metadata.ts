@@ -1,6 +1,6 @@
 import { Metadata } from '@webpackages/types';
 
-export const EventMetadata: Metadata = {
+export const AppEventMetadata: Metadata = {
   groupName: 'administation',
   properties: {
     name: {

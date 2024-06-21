@@ -6,6 +6,5 @@ import { User } from '../user';
 
 @Entity()
 export class Session extends BaseEntity implements ISession {
-  @Relation({ relationType: 'owner', target: User })
-  user: User;
+  @Relation({ relationType: 'owner', target: User }) user: User;
 }

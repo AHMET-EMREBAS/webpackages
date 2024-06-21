@@ -139,6 +139,12 @@ export function printViewRelations(m: Metadata) {
   return '';
 }
 
+/**
+ * Print required imports for entity
+ *
+ * @param m
+ * @returns
+ */
 export function printImports(m: Metadata) {
   const printPropertyImpports = () => {
     if (m.properties) {
@@ -176,4 +182,41 @@ export function printImports(m: Metadata) {
   };
 
   return [printPropertyImpports(), printRelationImports()].join('\n');
+}
+
+export function printEntityColumns(metadata: Metadata) {
+  if (metadata.properties) {
+    const result = Object.entries(metadata.properties).map(([key, value]) => {
+      const type = printPropertyType(value);
+
+      const options = [
+        `type: '${value.type}'`,
+        `required: ${!!value.required}`,
+        `unique:${!!value.unique}`,
+      ].join(', ');
+
+      return `@Column({ ${options} }) ${key}:${type} `;
+    });
+
+    return unifyAndJoin(result);
+  }
+  return '';
+}
+
+export function printRelationColumns(metadata: Metadata) {
+  if (metadata.relations) {
+    const result = Object.entries(metadata.relations).map(([key, value]) => {
+      const type = printRelationTypeInEntity(value);
+
+      const __options = [
+        `relationType:'${value.relationType}'`,
+        `target:${value.targetName} `,
+      ].join(', ');
+
+      return `@Relation({${__options}}) ${key}:${type};`;
+    });
+
+    return unifyAndJoin(result);
+  }
+  return '';
 }

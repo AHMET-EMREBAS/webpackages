@@ -4,6 +4,5 @@ import { ICategory } from '@webpackages/models';
 
 @Entity()
 export class Category extends BaseEntity implements ICategory {
-  @Column({ type: 'string', required: true, unique: true })
-  name: string;
+  @Column({ type: 'string', required: true, unique: true }) name: string;
 }

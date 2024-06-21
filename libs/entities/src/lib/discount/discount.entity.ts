@@ -8,16 +8,10 @@ import { Sku } from '../sku';
 export class Discount extends BaseEntity implements IDiscount {
   @Column({ type: 'number', required: false, unique: false })
   fixedDiscount: number;
-
   @Column({ type: 'number', required: false, unique: false })
   percentDiscount: number;
+  @Column({ type: 'date', required: true, unique: false }) startDate: Date;
+  @Column({ type: 'date', required: true, unique: false }) endDate: Date;
 
-  @Column({ type: 'date', required: true, unique: false })
-  startDate: Date;
-
-  @Column({ type: 'date', required: true, unique: false })
-  endDate: Date;
-
-  @Relation({ relationType: 'owner', target: Sku })
-  sku: Sku;
+  @Relation({ relationType: 'owner', target: Sku }) sku: Sku;
 }

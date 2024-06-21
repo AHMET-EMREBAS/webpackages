@@ -6,15 +6,10 @@ import { Department } from '../department';
 
 @Entity()
 export class User extends BaseEntity implements IUser {
-  @Column({ type: 'string', required: true, unique: true })
-  username: string;
-
-  @Column({ type: 'string', required: true, unique: true })
-  passwrod: string;
-
+  @Column({ type: 'string', required: true, unique: true }) username: string;
+  @Column({ type: 'string', required: true, unique: true }) passwrod: string;
   @Column({ type: 'object', required: false, unique: false })
-  permissions: object;
+  permissions: AccessPolicy;
 
-  @Relation({ relationType: 'one', target: Department })
-  department: Department;
+  @Relation({ relationType: 'one', target: Department }) department: Department;
 }

@@ -10,9 +10,6 @@ export class Cart extends BaseEntity implements ICart {
   @Column({ type: 'boolean', required: false, unique: false })
   complete: boolean;
 
-  @Relation({ relationType: 'owner', target: Customer })
-  customer: Customer;
-
-  @Relation({ relationType: 'owner', target: User })
-  user: User;
+  @Relation({ relationType: 'owner', target: Customer }) customer: Customer;
+  @Relation({ relationType: 'owner', target: User }) user: User;
 }

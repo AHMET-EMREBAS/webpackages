@@ -1,6 +1,6 @@
 import { BaseEntity } from '@webpackages/types';
 
-export interface IEvent extends BaseEntity {
+export interface IAppEvent extends BaseEntity {
   name: string;
 
   payload: object;

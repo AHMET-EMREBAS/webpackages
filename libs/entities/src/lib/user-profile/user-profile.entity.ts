@@ -6,15 +6,10 @@ import { User } from '../user';
 
 @Entity()
 export class UserProfile extends BaseEntity implements IUserProfile {
-  @Column({ type: 'string', required: true, unique: false })
-  firstName: string;
-
-  @Column({ type: 'string', required: true, unique: false })
-  lastName: string;
-
+  @Column({ type: 'string', required: true, unique: false }) firstName: string;
+  @Column({ type: 'string', required: true, unique: false }) lastName: string;
   @Column({ type: 'string', required: false, unique: false })
   middleName: string;
 
-  @Relation({ relationType: 'owner', target: User })
-  user: User;
+  @Relation({ relationType: 'owner', target: User }) user: User;
 }

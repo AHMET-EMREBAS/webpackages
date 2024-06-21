@@ -3,7 +3,7 @@ import { Property } from '@webpackages/property';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class CreateEventDto {
+export class CreateAppEventDto {
   @Property({
     type: 'string',
     minLength: 3,
@@ -13,6 +13,6 @@ export class CreateEventDto {
   })
   name: string;
 
-  @Property({ type: 'object' })
+  @Property({ type: 'object', targetName: 'EventPayload' })
   payload: any;
 }

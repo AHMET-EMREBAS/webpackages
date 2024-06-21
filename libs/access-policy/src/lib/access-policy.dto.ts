@@ -20,6 +20,15 @@ export class AccessPolicyDto implements AccessPolicy {
       manage: true,
     },
   })
+  AppEvent: Partial<Operation>;
+
+  @Property({
+    type: 'object',
+    target: OperationDto,
+    example: {
+      manage: true,
+    },
+  })
   Clock: Partial<Operation>;
 
   @Property({
@@ -66,15 +75,6 @@ export class AccessPolicyDto implements AccessPolicy {
     },
   })
   Email: OperationDto;
-
-  @Property({
-    type: 'object',
-    target: OperationDto,
-    example: {
-      manage: true,
-    },
-  })
-  Event: OperationDto;
 
   @Property({
     type: 'object',

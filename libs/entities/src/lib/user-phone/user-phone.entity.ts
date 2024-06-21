@@ -6,9 +6,7 @@ import { User } from '../user';
 
 @Entity()
 export class UserPhone extends BaseEntity implements IUserPhone {
-  @Column({ type: 'string', required: true, unique: false })
-  phone: string;
+  @Column({ type: 'string', required: true, unique: false }) phone: string;
 
-  @Relation({ relationType: 'owner', target: User })
-  user: User;
+  @Relation({ relationType: 'owner', target: User }) user: User;
 }

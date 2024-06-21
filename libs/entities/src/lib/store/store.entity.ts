@@ -4,6 +4,5 @@ import { IStore } from '@webpackages/models';
 
 @Entity()
 export class Store extends BaseEntity implements IStore {
-  @Column({ type: 'string', required: true, unique: true })
-  name: string;
+  @Column({ type: 'string', required: true, unique: true }) name: string;
 }

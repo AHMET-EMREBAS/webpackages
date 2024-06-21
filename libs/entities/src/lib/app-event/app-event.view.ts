@@ -1,15 +1,15 @@
 import { BaseView, baseQueryBuilder } from '@webpackages/database';
 import { ViewColumn, ViewEntity } from 'typeorm';
-import { Event } from './event.entity';
-import { EventMetadata } from '@webpackages/metadata';
+import { AppEvent } from './app-event.entity';
+import { AppEventMetadata } from '@webpackages/metadata';
 import { EventPayload } from '@webpackages/types';
 
 @ViewEntity({
   expression(ds) {
-    return baseQueryBuilder<Event>(ds, Event, EventMetadata);
+    return baseQueryBuilder<AppEvent>(ds, AppEvent, AppEventMetadata);
   },
 })
-export class EventView extends BaseView {
+export class AppEventView extends BaseView {
   @ViewColumn() name: string;
   @ViewColumn() payload: EventPayload;
 }

@@ -6,15 +6,10 @@ import { PriceLevel } from '../price-level';
 
 @Entity()
 export class Customer extends BaseEntity implements ICustomer {
-  @Column({ type: 'string', required: true, unique: true })
-  username: string;
-
-  @Column({ type: 'string', required: true, unique: true })
-  passwrod: string;
-
+  @Column({ type: 'string', required: true, unique: true }) username: string;
+  @Column({ type: 'string', required: true, unique: true }) passwrod: string;
   @Column({ type: 'object', required: false, unique: false })
-  permissions: object;
+  permissions: AccessPolicy;
 
-  @Relation({ relationType: 'one', target: PriceLevel })
-  priceLevel: PriceLevel;
+  @Relation({ relationType: 'one', target: PriceLevel }) priceLevel: PriceLevel;
 }

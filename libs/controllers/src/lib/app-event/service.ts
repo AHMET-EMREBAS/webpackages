@@ -1,12 +1,12 @@
 import { BaseEntityService } from '@webpackages/database';
-import { Event } from '@webpackages/entities';
+import { AppEvent } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class EventService extends BaseEntityService<Event> {
-  constructor(@InjectRepository(Event) repo: Repository<Event>) {
+export class AppEventService extends BaseEntityService<AppEvent> {
+  constructor(@InjectRepository(AppEvent) repo: Repository<AppEvent>) {
     super(repo);
   }
 }

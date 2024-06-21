@@ -15,7 +15,7 @@ export type ResourceName =
   | 'Department'
   | 'Discount'
   | 'Email'
-  | 'Event'
+  | 'AppEvent'
   | 'Img'
   | 'Inbox'
   | 'Manufacturer'
@@ -52,7 +52,7 @@ export const ResourceNames: Arr<ResourceName> = [
   'Category',
   'Department',
   'Email',
-  'Event',
+  'AppEvent',
   'Img',
   'Inbox',
   'Message',
