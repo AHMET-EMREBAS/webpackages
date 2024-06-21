@@ -1,9 +1,15 @@
 {
   "name": "@webpackages/clients",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "peerDependencies": {
     "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0"
+    "@angular/core": "^18.0.0",
+    "@angular/material": "^18.0.3",
+    "@angular/router": "~18.0.0",
+    "@angular/cdk": "^18.0.3",
+    "rxjs": "~7.8.0",
+    "@angular/forms": "~18.0.0",
+    "jest-preset-angular": "~14.1.0"
   },
   "sideEffects": false
 }

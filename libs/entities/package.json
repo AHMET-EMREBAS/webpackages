@@ -1,8 +1,13 @@
 {
   "name": "@webpackges/entities",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "dependencies": {
-    "@swc/helpers": "~0.5.11"
+    "@swc/helpers": "~0.5.11",
+    "@webpackages/property": "1.0.0",
+    "@webpackages/query": "1.0.0",
+    "class-transformer": "^0.5.1",
+    "@nestjs/swagger": "^7.3.1",
+    "@webpackages/database": "1.0.0"
   },
   "type": "commonjs",
   "main": "./src/index.js",

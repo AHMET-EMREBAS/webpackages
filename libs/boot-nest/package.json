@@ -1,8 +1,18 @@
 {
   "name": "@webpackages/boot-nest",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "dependencies": {
-    "@swc/helpers": "~0.5.11"
+    "@swc/helpers": "~0.5.11",
+    "@nestjs/common": "^10.0.2",
+    "@nestjs/core": "^10.0.2",
+    "@nestjs/swagger": "^7.3.1",
+    "@nestjs/config": "^3.2.2",
+    "@webpackages/types": "1.0.0",
+    "@nestjs/schedule": "^4.0.2",
+    "@nestjs/event-emitter": "^2.0.4",
+    "@nestjs/throttler": "^5.2.0",
+    "@webpackages/database": "1.0.0",
+    "@webpackages/notification": "1.0.0"
   },
   "type": "commonjs",
   "main": "./src/index.js",

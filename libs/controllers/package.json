@@ -1,8 +1,15 @@
 {
   "name": "@webpackages/controllers",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "dependencies": {
-    "@swc/helpers": "~0.5.11"
+    "@swc/helpers": "~0.5.11",
+    "@nestjs/common": "^10.0.2",
+    "@webpackages/query": "1.0.0",
+    "@webpackges/entities": "1.0.0",
+    "@webpackages/rest": "1.0.0",
+    "@nestjs/typeorm": "^10.0.2",
+    "@webpackages/database": "1.0.0",
+    "typeorm": "^0.3.20"
   },
   "type": "commonjs",
   "main": "./src/index.js",

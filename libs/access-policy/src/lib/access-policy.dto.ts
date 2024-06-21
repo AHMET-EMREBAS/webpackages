@@ -1,4 +1,4 @@
-import { AccessPolicy, Operation, ResourceNames } from '@webpackages/types';
+import { AccessPolicy, Operation } from '@webpackages/types';
 import { Property, Dto } from '@webpackages/property';
 
 @Dto()
@@ -11,7 +11,16 @@ export class OperationDto implements Operation {
 }
 
 @Dto()
-export class AccessPolicyDto implements Required<AccessPolicy<ResourceNames>> {
+export class AccessPolicyDto implements AccessPolicy {
+  @Property({
+    type: 'object',
+    target: OperationDto,
+    example: {
+      manage: true,
+    },
+  })
+  Clock: Partial<Operation>;
+
   @Property({
     type: 'object',
     target: OperationDto,

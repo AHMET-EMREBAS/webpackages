@@ -1,8 +1,18 @@
 {
   "name": "@webpackages/database",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "dependencies": {
-    "@swc/helpers": "~0.5.11"
+    "@swc/helpers": "~0.5.11",
+    "typeorm": "^0.3.20",
+    "@webpackages/property": "1.0.0",
+    "@webpackages/types": "1.0.0",
+    "@nestjs/common": "^10.0.2",
+    "@webpackages/query": "1.0.0",
+    "class-transformer": "^0.5.1",
+    "@nestjs/swagger": "^7.3.1",
+    "@nestjs/config": "^3.2.2",
+    "@nestjs/typeorm": "^10.0.2",
+    "@webpackages/hash": "1.0.0"
   },
   "type": "commonjs",
   "main": "./src/index.js",

@@ -28,7 +28,7 @@ import {
   ResourceName,
 } from '@webpackages/access-policy';
 import { MessageResponse, ValidationErrorDto } from './responses';
-import { PathBuilder } from '@webpacakges/path';
+import { PathBuilder } from '@webpackages/path';
 export type RestControllerOptions = {
   singularName: string;
   pluralName: string;

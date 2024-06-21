@@ -1,8 +1,12 @@
 {
   "name": "@webpackages/access-policy",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "dependencies": {
-    "@swc/helpers": "~0.5.11"
+    "@swc/helpers": "~0.5.11",
+    "@webpackages/types": "1.0.0",
+    "@webpackages/property": "1.0.0",
+    "@nestjs/common": "^10.0.2",
+    "express": "^4.19.2"
   },
   "type": "commonjs",
   "main": "./src/index.js",

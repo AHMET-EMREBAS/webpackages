@@ -1,8 +1,21 @@
 {
   "name": "@webpackages/auth",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "dependencies": {
-    "@swc/helpers": "~0.5.11"
+    "@swc/helpers": "~0.5.11",
+    "@nestjs/common": "^10.0.2",
+    "@webpackages/access-policy": "0.0.1",
+    "@nestjs/swagger": "^7.3.1",
+    "@webpackages/types": "1.0.0",
+    "@nestjs/jwt": "^10.2.0",
+    "@nestjs/config": "^3.2.2",
+    "@nestjs/typeorm": "^10.0.2",
+    "typeorm": "^0.3.20",
+    "@webpackages/hash": "0.0.1",
+    "@webpackages/property": "0.0.1",
+    "class-transformer": "^0.5.1",
+    "@nestjs/core": "^10.0.2",
+    "express": "^4.19.2"
   },
   "type": "commonjs",
   "main": "./src/index.js",

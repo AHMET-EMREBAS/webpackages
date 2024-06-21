@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose } from 'class-transformer';
 import { applyDecorators } from '@nestjs/common';
-import { Validate } from '@webpackages/class-validator';
+import { Validate } from '@webpackages/validation';
 import { exampleValue } from './example-value';
 import { ApiPropertyOptions } from '@webpackages/types';
 

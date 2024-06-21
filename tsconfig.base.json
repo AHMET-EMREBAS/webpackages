@@ -10,37 +10,90 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@webpackages/access-policy": ["libs/access-policy/src/index.ts"],
-      "@webpackages/auth": ["libs/auth/src/index.ts"],
-      "@webpackages/boot-nest": ["libs/boot-nest/src/index.ts"],
-      "@webpackages/clients": ["libs/clients/src/index.ts"],
-  
-      "@webpackages/controllers": ["libs/controllers/src/index.ts"],
-      "@webpackages/database": ["libs/database/src/index.ts"],
-      "@webpackages/gen": ["libs/gen/src/index.ts"],
-      "@webpackages/hash": ["libs/hash/src/index.ts"],
-      "@webpackages/material": ["libs/material/src/index.ts"],
-      "@webpackages/material/input": ["libs/material/input/src/index.ts"],
-      "@webpackages/material/layout": ["libs/material/layout/src/index.ts"],
-      "@webpackages/models": ["libs/models/src/index.ts"],
-      "@webpackages/ngrx": ["libs/ngrx/src/index.ts"],
-      "@webpackages/notification": ["libs/notification/src/index.ts"],
-      "@webpackages/property": ["libs/property/src/index.ts"],
-      "@webpackages/query": ["libs/query/src/index.ts"],
-      "@webpackages/query-builder": ["libs/query-builder/src/index.ts"],
-      "@webpackages/resources": ["libs/resources/src/index.ts"],
-      "@webpackages/rest": ["libs/rest/src/index.ts"],
-      "@webpackages/types": ["libs/types/src/index.ts"],
-      "@webpackages/utils": ["libs/utils/src/index.ts"],
-      "@webpackages/validation": ["libs/validation/src/index.ts"],
-      "@webpackges/entities": ["libs/entities/src/index.ts"],
-      "@webpackges/path": ["libs/path/src/index.ts"]
+      "@webpackages/access-policy": [
+        "libs/access-policy/src/index.ts"
+      ],
+      "@webpackages/auth": [
+        "libs/auth/src/index.ts"
+      ],
+      "@webpackages/boot-nest": [
+        "libs/boot-nest/src/index.ts"
+      ],
+      "@webpackages/clients": [
+        "libs/clients/src/index.ts"
+      ],
+      "@webpackages/controllers": [
+        "libs/controllers/src/index.ts"
+      ],
+      "@webpackages/database": [
+        "libs/database/src/index.ts"
+      ],
+      "@webpackages/gen": [
+        "libs/gen/src/index.ts"
+      ],
+      "@webpackages/hash": [
+        "libs/hash/src/index.ts"
+      ],
+      "@webpackages/material": [
+        "libs/material/src/index.ts"
+      ],
+      "@webpackages/material/input": [
+        "libs/material/input/src/index.ts"
+      ],
+      "@webpackages/material/layout": [
+        "libs/material/layout/src/index.ts"
+      ],
+      "@webpackages/models": [
+        "libs/models/src/index.ts"
+      ],
+      "@webpackages/ngrx": [
+        "libs/ngrx/src/index.ts"
+      ],
+      "@webpackages/notification": [
+        "libs/notification/src/index.ts"
+      ],
+      "@webpackages/property": [
+        "libs/property/src/index.ts"
+      ],
+      "@webpackages/query": [
+        "libs/query/src/index.ts"
+      ],
+      "@webpackages/query-builder": [
+        "libs/query-builder/src/index.ts"
+      ],
+      "@webpackages/resources": [
+        "libs/resources/src/index.ts"
+      ],
+      "@webpackages/rest": [
+        "libs/rest/src/index.ts"
+      ],
+      "@webpackages/types": [
+        "libs/types/src/index.ts"
+      ],
+      "@webpackages/utils": [
+        "libs/utils/src/index.ts"
+      ],
+      "@webpackages/validation": [
+        "libs/validation/src/index.ts"
+      ],
+      "@webpackges/entities": [
+        "libs/entities/src/index.ts"
+      ],
+      "@webpackges/path": [
+        "libs/path/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

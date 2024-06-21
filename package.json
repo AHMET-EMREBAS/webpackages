@@ -1,6 +1,6 @@
 {
   "name": "webpackages",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "stop": "pm2 delete api-production && pm2 delete api-development",
