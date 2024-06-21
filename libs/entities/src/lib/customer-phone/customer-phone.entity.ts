@@ -1,6 +1,7 @@
 import { Entity } from 'typeorm';
 import { Column, BaseEntity, Relation } from '@webpackages/database';
 import { ICustomerPhone } from '@webpackages/models';
+
 import { Customer } from '../customer';
 
 @Entity()

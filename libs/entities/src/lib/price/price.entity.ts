@@ -1,6 +1,7 @@
 import { Entity } from 'typeorm';
 import { Column, BaseEntity, Relation } from '@webpackages/database';
 import { IPrice } from '@webpackages/models';
+
 import { Sku } from '../sku';
 import { PriceLevel } from '../price-level';
 

@@ -1,6 +1,7 @@
 import { Entity } from 'typeorm';
 import { Column, BaseEntity, Relation } from '@webpackages/database';
 import { IInbox } from '@webpackages/models';
+
 import { User } from '../user';
 import { Message } from '../message';
 

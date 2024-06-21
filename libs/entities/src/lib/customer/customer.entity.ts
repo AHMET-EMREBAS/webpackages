@@ -1,6 +1,7 @@
 import { Entity } from 'typeorm';
 import { Column, BaseEntity, Relation } from '@webpackages/database';
 import { ICustomer } from '@webpackages/models';
+import { AccessPolicy } from '@webpackages/types';
 import { PriceLevel } from '../price-level';
 
 @Entity()

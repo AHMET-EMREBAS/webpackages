@@ -7,6 +7,6 @@ export const AccessTokenMetadata: Metadata = {
     token: { type: 'string', required: true, minLength: 10, maxLength: 100 },
   },
   relations: {
-    user: { relationType: 'owner', targetName: 'User' },
+    user: { relationType: 'owner', targetName: 'User', viewColumns:[ 'username'] },
   },
 };

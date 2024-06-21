@@ -111,6 +111,15 @@ export function baseQueryBuilder<T extends BaseEntity>(
           const colName = names(alias).propertyName + names(view).className;
           query.addSelect(`${alias}.${view}`, colName);
         }
+      } else {
+        {
+          const colName = names(alias).propertyName + names('id').className;
+          query.addSelect(`${alias}.id`, colName);
+        }
+        {
+          const colName = names(alias).propertyName + names('active').className;
+          query.addSelect(`${alias}.active`, colName);
+        }
       }
     }
   }

@@ -12,6 +12,7 @@ export const EventMetadata: Metadata = {
     },
     payload: {
       type: 'object',
+      targetName:"EventPayload"
     },
   },
   relations: {},

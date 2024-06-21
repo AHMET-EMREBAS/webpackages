@@ -1,6 +1,7 @@
 import { Entity } from 'typeorm';
 import { Column, BaseEntity, Relation } from '@webpackages/database';
 import { IEvent } from '@webpackages/models';
+import { EventPayload } from '@webpackages/types';
 
 @Entity()
 export class Event extends BaseEntity implements IEvent {

@@ -1,6 +1,7 @@
 import { Entity } from 'typeorm';
 import { Column, BaseEntity, Relation } from '@webpackages/database';
 import { IProduct } from '@webpackages/models';
+
 import { Category } from '../category';
 import { Supplier } from '../supplier';
 

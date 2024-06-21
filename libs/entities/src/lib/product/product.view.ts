@@ -1,9 +1,10 @@
 import { BaseView, baseQueryBuilder } from '@webpackages/database';
 import { ViewColumn, ViewEntity } from 'typeorm';
 import { Product } from './product.entity';
+import { ProductMetadata } from '@webpackages/metadata';
+
 import { Category } from '../category';
 import { Supplier } from '../supplier';
-import { ProductMetadata } from '@webpackages/metadata';
 
 @ViewEntity({
   expression(ds) {
@@ -15,9 +16,10 @@ export class ProductView extends BaseView {
   @ViewColumn() description: string;
   @ViewColumn() upc: string;
 
-  @ViewColumn() categoryName: Category;
-  @ViewColumn() supplierName: Supplier;
-
-  @ViewColumn() categoryId: string;
-  @ViewColumn() supplierId: string;
+  @ViewColumn() categoryId: Category['id'];
+  @ViewColumn() categoryName: Category['name'];
+  @ViewColumn() categoryActive: Category['active'];
+  @ViewColumn() supplierId: Supplier['id'];
+  @ViewColumn() supplierName: Supplier['name'];
+  @ViewColumn() supplierActive: Supplier['active'];
 }

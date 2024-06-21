@@ -1,6 +1,7 @@
 import { Entity } from 'typeorm';
 import { Column, BaseEntity, Relation } from '@webpackages/database';
 import { IDiscount } from '@webpackages/models';
+
 import { Sku } from '../sku';
 
 @Entity()

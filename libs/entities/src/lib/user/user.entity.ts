@@ -1,6 +1,7 @@
 import { Entity } from 'typeorm';
 import { Column, BaseEntity, Relation } from '@webpackages/database';
 import { IUser } from '@webpackages/models';
+import { AccessPolicy } from '@webpackages/types';
 import { Department } from '../department';
 
 @Entity()

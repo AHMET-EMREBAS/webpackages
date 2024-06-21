@@ -103,10 +103,40 @@ export function printRelationPropertyNames(m: Metadata) {
 export function printViewProperties(m: Metadata) {
   if (m.properties) {
     const result = Object.entries(m.properties).map(([key, value]) => {
-      return `@ViewColumn() ${key}: ${printPropertyType(value)}; }`;
+      return `@ViewColumn() ${key}: ${printPropertyType(value)};`;
     });
     return unifyAndJoin(result);
   }
+
+  return '';
+}
+
+export function printViewRelations(m: Metadata) {
+  if (m.relations) {
+    const result = Object.entries(m.relations).map(([key, value]) => {
+      const prefix = names(value.targetName).propertyName;
+
+      const __printViews = (cols: string[]) => {
+        const result = cols.map((e) => {
+          const suffix = names(e).className;
+          return `@ViewColumn() ${prefix}${suffix}: ${value.targetName}['${e}'];`;
+        });
+        return unifyAndJoin(result);
+      };
+
+      const builtinViewColumns = ['id', 'active'];
+
+      if (value.viewColumns) {
+        return __printViews([...value.viewColumns, ...builtinViewColumns]);
+      } else {
+        return __printViews(builtinViewColumns);
+      }
+    });
+
+    return unifyAndJoin(result);
+  }
+
+  return '';
 }
 
 export function printImports(m: Metadata) {
@@ -117,12 +147,12 @@ export function printImports(m: Metadata) {
           return e.type === 'object';
         })
         .map((e) => {
-          if (e.targetName) {
+          if (!e.targetName) {
             console.error(m);
             console.error(`targetName is required for imports`);
             return;
           }
-          return `import {${e.targetName}} from '@webpackages/type';`;
+          return `import {${e.targetName}} from '@webpackages/types';`;
         })
         .filter((e) => e);
 
@@ -146,27 +176,4 @@ export function printImports(m: Metadata) {
   };
 
   return [printPropertyImpports(), printRelationImports()].join('\n');
-}
-
-export function printViewRelations(m: Metadata) {
-  if (m.relations) {
-    const result = Object.entries(m.relations).map(([key, value]) => {
-      const prefix = names(value.targetName).propertyName;
-
-      if (value.viewColumns) {
-        const result = value.viewColumns.map((e) => {
-          const suffix = names(e).className;
-          return `@ViewColumn() ${prefix}${suffix}: ${value.targetName}['${e}'];`;
-        });
-
-        return unifyAndJoin(result);
-      }
-
-      return '';
-    });
-
-    return unifyAndJoin(result);
-  }
-
-  return '';
 }

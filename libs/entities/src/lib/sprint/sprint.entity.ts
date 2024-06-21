@@ -1,6 +1,7 @@
 import { Entity } from 'typeorm';
 import { Column, BaseEntity, Relation } from '@webpackages/database';
 import { ISprint } from '@webpackages/models';
+
 import { Project } from '../project';
 
 @Entity()

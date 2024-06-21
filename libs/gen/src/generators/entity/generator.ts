@@ -4,23 +4,11 @@ import { EntityGeneratorSchema } from './schema';
 import { Metadata } from '@webpackages/types';
 import * as ModelMetadatas from '@webpackages/metadata';
 import {
+  printImports,
   printPropertyNames,
   printViewProperties,
   printViewRelations,
 } from '../utils';
-
-function printImports(metadata: Metadata) {
-  const content: string[] = [];
-  if (metadata.relations) {
-    content.push(
-      ...Object.values(metadata.relations).map((e) => {
-        const n = names(e.targetName);
-        return `import {${n.className}} from '../${n.fileName}';`;
-      })
-    );
-  }
-  return [...new Set(content)].join('\n');
-}
 
 function printProperties(metadata: Metadata) {
   const content: string[] = [];
@@ -71,6 +59,9 @@ export async function entityGenerator(
         imports: printImports(value),
         properties: printProperties(value),
         relations: printRelations(value),
+        propertyNames: printPropertyNames(value),
+        viewProperties: printViewProperties(value), //viewProperties
+        viewRelations: printViewRelations(value), //viewRelations
       });
     }
   } else {
@@ -84,8 +75,8 @@ export async function entityGenerator(
         properties: printProperties(value),
         relations: printRelations(value),
         propertyNames: printPropertyNames(value),
-        viewProperties: printViewProperties(value),
-        viewRelations: printViewRelations(value),
+        viewProperties: printViewProperties(value), //viewProperties
+        viewRelations: printViewRelations(value), //viewRelations
       });
       return;
     }
