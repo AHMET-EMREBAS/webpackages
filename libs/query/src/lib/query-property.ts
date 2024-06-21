@@ -14,18 +14,13 @@ import {
   MoreThanOrEqual,
 } from 'typeorm';
 import { isArray } from 'class-validator';
-import { parseQueryInput, QueryOperator } from '@webpackages/query-builder';
-import { PropertyType } from '@webpackages/types';
+import { QueryValue, QueryOperator } from '@webpackages/query-builder';
 import { Property } from '@webpackages/property';
 
 export function toQueryOperator(queryString: string) {
-  const queryInput = parseQueryInput(queryString);
+  const queryInput = QueryValue.parse(queryString);
 
-  if (queryInput && queryInput.operator && queryInput.value) {
-    // Continue
-  } else {
-    return undefined;
-  }
+  if (!queryInput) return undefined;
 
   const { operator, value: q } = queryInput;
 
@@ -65,10 +60,6 @@ export function toQueryOperator(queryString: string) {
       return Not(MoreThan(q));
   }
 }
-
-export type QueryPropertyOptions = {
-  type: PropertyType;
-};
 
 export function QueryProperty() {
   return applyDecorators(

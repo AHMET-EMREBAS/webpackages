@@ -1,3 +1,3 @@
-export type JwtPayload = {
-  sub: number;
-};
+export class JwtPayload {
+  constructor(protected readonly sub: number) {}
+}

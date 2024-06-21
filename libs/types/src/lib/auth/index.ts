@@ -1,7 +1,9 @@
 // @index('./*', f => `export * from '${f.path}'`)
+export * from './access-checkers'
 export * from './access-policy'
 export * from './auth-headers'
 export * from './auth-names'
+export * from './credentials'
 export * from './jwt-payload'
 export * from './operation'
 export * from './resource-names'

@@ -1,3 +1,5 @@
+export type OperationName = 'manage' | 'read' | 'write' | 'update' | 'delete';
+
 export enum OperationNames {
   MANAGE = 'manage',
   READ = 'read',
@@ -6,10 +8,10 @@ export enum OperationNames {
   DELETE = 'delete',
 }
 
-export type Operation = {
+export class Operation {
   manage: boolean;
   read: boolean;
   write: boolean;
   update: boolean;
   delete: boolean;
-};
+}

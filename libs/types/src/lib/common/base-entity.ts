@@ -1,18 +1,25 @@
-export type ID = {
+export class ID {
   id: number;
-};
+}
 
-export type Timestamps = {
+export class Timestamps {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
-};
+}
 
-export type IBaseEntity = ID & Timestamps;
+export class BaseEntity implements ID, Timestamps {
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
+  id: number;
+}
 
-export const BaseEntityFields: Readonly<(keyof IBaseEntity)[]> = [
+export const BaseEntityFields: Readonly<(keyof BaseEntity)[]> = [
   'id',
   'createdAt',
   'updatedAt',
   'deletedAt',
 ];
+
+export type OmitBase<T extends BaseEntity> = Omit<T, keyof BaseEntity>;

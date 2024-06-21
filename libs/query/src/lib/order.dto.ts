@@ -1,15 +1,15 @@
 import { Exclude } from 'class-transformer';
 import {
-  IBaseEntity,
+  BaseEntity,
   BaseEntityFields,
-  ObjectType,
+  Constructor,
   OrderDir,
   OrderDirs,
 } from '@webpackages/types';
 import { Property } from '@webpackages/property';
 
 @Exclude()
-export class OrderDto<T extends IBaseEntity> {
+export class OrderDto<T extends BaseEntity> {
   @Property({ type: 'string', example: 'id' })
   orderBy: keyof T;
 
@@ -17,15 +17,15 @@ export class OrderDto<T extends IBaseEntity> {
   orderDir: OrderDir;
 }
 
-export function CreateOrderDto<T extends IBaseEntity>(
+export function CreateOrderDto<T extends BaseEntity>(
   orderables: (keyof T)[]
-): ObjectType<OrderDto<T>> {
+): Constructor<OrderDto<T>> {
   const orderablesUnique = [
     ...new Set([...BaseEntityFields, ...orderables]),
   ] as string[];
 
   @Exclude()
-  class CustomOrderDto<T extends IBaseEntity> {
+  class CustomOrderDto<T extends BaseEntity> {
     @Property({ type: 'string', enum: orderablesUnique, example: 'id' })
     orderBy!: keyof T;
 

@@ -1,48 +1,54 @@
 import { Operation } from './operation';
+import { ResourceName } from './resource-names';
 
-export type AccessPolicy<ResourceNames extends string = ''> = Partial<
-  Record<ResourceNames, Partial<Operation>>
-> & {
+export class AccessPolicy implements Record<ResourceName, Partial<Operation>> {
+  AccessToken: Partial<Operation>;
+  Address: Partial<Operation>;
+  Cart: Partial<Operation>;
+  Category: Partial<Operation>;
+  Clock: Partial<Operation>;
+  Customer: Partial<Operation>;
+  CustomerAddress: Partial<Operation>;
+  CustomerEmail: Partial<Operation>;
+  CustomerImg: Partial<Operation>;
+  CustomerPhone: Partial<Operation>;
+  CustomerProfile: Partial<Operation>;
+  Department: Partial<Operation>;
+  Discount: Partial<Operation>;
+  Email: Partial<Operation>;
+  Event: Partial<Operation>;
+  Img: Partial<Operation>;
+  Inbox: Partial<Operation>;
+  Manufacturer: Partial<Operation>;
+  Message: Partial<Operation>;
+  Notification: Partial<Operation>;
+  Order: Partial<Operation>;
+  Phone: Partial<Operation>;
+  Price: Partial<Operation>;
+  PriceLevel: Partial<Operation>;
+  Product: Partial<Operation>;
+  ProductImg: Partial<Operation>;
+  Profile: Partial<Operation>;
+  Project: Partial<Operation>;
+  Purchase: Partial<Operation>;
+  Quantity: Partial<Operation>;
+  SerialNumber: Partial<Operation>;
+  Session: Partial<Operation>;
+  Sku: Partial<Operation>;
+  SkuDetail: Partial<Operation>;
+  Sprint: Partial<Operation>;
+  Store: Partial<Operation>;
+  Supplier: Partial<Operation>;
+  Task: Partial<Operation>;
+  User: Partial<Operation>;
+  UserAddress: Partial<Operation>;
+  UserEmail: Partial<Operation>;
+  UserImg: Partial<Operation>;
+  UserPhone: Partial<Operation>;
+  UserProfile: Partial<Operation>;
+
+  // 
   Admin?: true;
   Root?: true;
   Reader?: true;
-};
-
-export function canRead<T extends string>(
-  userPolicy: AccessPolicy<T>,
-  resouceName: T
-) {
-  return userPolicy?.[resouceName]?.read;
-}
-
-export function canWrite<T extends string>(
-  userPolicy: AccessPolicy<T>,
-  resouceName: T
-) {
-  return userPolicy?.[resouceName]?.write;
-}
-
-export function canUpdate<T extends string>(
-  userPolicy: AccessPolicy<T>,
-  resouceName: T
-) {
-  return userPolicy?.[resouceName]?.update;
-}
-
-export function canDelete<T extends string>(
-  userPolicy: AccessPolicy<T>,
-  resouceName: T
-) {
-  return userPolicy?.[resouceName]?.delete;
-}
-
-export function canManage<T extends string>(
-  userPolicy: AccessPolicy<T>,
-  resouceName: T
-) {
-  return userPolicy?.[resouceName]?.manage;
-}
-
-export function isAdmin(userPolicy: AccessPolicy) {
-  return userPolicy.Admin;
 }

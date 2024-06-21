@@ -1,45 +1,94 @@
-export type ResourceNames =
+import { Arr } from '../common/arr';
+
+export type ResourceName =
   | 'AccessToken'
   | 'Address'
+  | 'Cart'
   | 'Category'
-  | 'Department'
-  | 'Email'
-  | 'Event'
-  | 'Img'
-  | 'Inbox'
-  | 'Message'
-  | 'Notification'
-  | 'Phone'
-  | 'Profile'
-  | 'Session'
+  | 'Clock'
+  | 'Customer'
   | 'CustomerAddress'
   | 'CustomerEmail'
   | 'CustomerImg'
   | 'CustomerPhone'
   | 'CustomerProfile'
-  | 'Customer'
-  | 'Cart'
+  | 'Department'
   | 'Discount'
+  | 'Email'
+  | 'Event'
+  | 'Img'
+  | 'Inbox'
   | 'Manufacturer'
+  | 'Message'
+  | 'Notification'
   | 'Order'
-  | 'PriceLevel'
+  | 'Phone'
   | 'Price'
-  | 'ProductImg'
+  | 'PriceLevel'
   | 'Product'
+  | 'ProductImg'
+  | 'Profile'
+  | 'Project'
   | 'Purchase'
   | 'Quantity'
   | 'SerialNumber'
-  | 'SkuDetail'
+  | 'Session'
   | 'Sku'
+  | 'SkuDetail'
+  | 'Sprint'
   | 'Store'
   | 'Supplier'
-  | 'Project'
-  | 'Sprint'
   | 'Task'
-  | 'ClockIn'
+  | 'User'
   | 'UserAddress'
   | 'UserEmail'
   | 'UserImg'
   | 'UserPhone'
-  | 'UserProfile'
-  | 'User';
+  | 'UserProfile';
+
+export const ResourceNames: Arr<ResourceName> = [
+  'AccessToken',
+  'Address',
+  'Category',
+  'Department',
+  'Email',
+  'Event',
+  'Img',
+  'Inbox',
+  'Message',
+  'Notification',
+  'Phone',
+  'Profile',
+  'Session',
+  'CustomerAddress',
+  'CustomerEmail',
+  'CustomerImg',
+  'CustomerPhone',
+  'CustomerProfile',
+  'Customer',
+  'Cart',
+  'Discount',
+  'Manufacturer',
+  'Order',
+  'PriceLevel',
+  'Price',
+  'ProductImg',
+  'Product',
+  'Purchase',
+  'Quantity',
+  'SerialNumber',
+  'SkuDetail',
+  'Sku',
+  'Store',
+  'Supplier',
+  'Project',
+  'Sprint',
+  'Task',
+  'Clock',
+  'UserAddress',
+  'UserEmail',
+  'UserImg',
+  'UserPhone',
+  'UserProfile',
+  'User',
+];

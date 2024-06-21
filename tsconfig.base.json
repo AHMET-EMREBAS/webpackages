@@ -25,7 +25,6 @@
         "libs/controller-builder/src/index.ts"
       ],
       "@webpackages/controllers": ["libs/controllers/src/index.ts"],
-      "@webpackages/core": ["libs/core/src/index.ts"],
       "@webpackages/database": ["libs/database/src/index.ts"],
       "@webpackages/gen": ["libs/gen/src/index.ts"],
       "@webpackages/hash": ["libs/hash/src/index.ts"],

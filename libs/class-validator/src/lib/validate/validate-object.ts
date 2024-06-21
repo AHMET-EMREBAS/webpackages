@@ -1,8 +1,8 @@
-import { ObjectType } from '@webpackages/types';
+import { Constructor } from '@webpackages/types';
 import { UseDecorators } from '@webpackages/utils';
 import { IsObject, ValidateNested, ValidationOptions } from 'class-validator';
 
-export type ObjectOptions = { type: 'object'; target: ObjectType };
+export type ObjectOptions = { type: 'object'; target: Constructor };
 
 /**
  * Apply Type(()=>Target) by yourself
@@ -11,7 +11,7 @@ export type ObjectOptions = { type: 'object'; target: ObjectType };
  * @returns
  */
 export function ValidateObject(
-  target: ObjectType,
+  target: Constructor,
   validationOptions: ValidationOptions
 ): PropertyDecorator {
   const decorators: PropertyDecorator[] = [];

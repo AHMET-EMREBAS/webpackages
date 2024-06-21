@@ -1,20 +1,36 @@
+import { Arr } from './arr';
+
 export type InputType =
   | 'text'
+  | 'number'
   | 'textarea'
   | 'checkbox'
   | 'select'
-  | 'select-entity'
+  | 'autocomplete'
+  | 'list'
+  | 'chip-list'
+  | 'radio'
   | 'slider'
-  | 'switch'
-  | 'list-select';
+  | 'button-toggle'
+  | 'slider-toggle'
+  | 'date'
+  | 'time'
+  | 'date-time';
 
-export const InputTypes: Readonly<InputType[]> = [
+export const InputTypes: Arr<InputType> = [
   'text',
+  'number',
   'textarea',
   'checkbox',
   'select',
-  'select-entity',
+  'autocomplete',
+  'list',
+  'chip-list',
+  'radio',
   'slider',
-  'switch',
-  'list-select',
+  'button-toggle',
+  'slider-toggle',
+  'date',
+  'time',
+  'date-time',
 ];
