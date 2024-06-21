@@ -3,6 +3,11 @@ import * as path from 'path';
 import { EntityGeneratorSchema } from './schema';
 import { Metadata } from '@webpackages/types';
 import * as ModelMetadatas from '@webpackages/metadata';
+import {
+  printPropertyNames,
+  printViewProperties,
+  printViewRelations,
+} from '../utils';
 
 function printImports(metadata: Metadata) {
   const content: string[] = [];
@@ -78,10 +83,9 @@ export async function entityGenerator(
         imports: printImports(value),
         properties: printProperties(value),
         relations: printRelations(value),
-        propertyNames: '',
-        selectedRelations: '',
-        viewProperties: '',
-        viewRelations: '',
+        propertyNames: printPropertyNames(value),
+        viewProperties: printViewProperties(value),
+        viewRelations: printViewRelations(value),
       });
       return;
     }

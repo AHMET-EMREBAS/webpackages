@@ -50,7 +50,7 @@ export class BaseEntityService<T extends BaseEntity> {
   }
 
   async findOne(where?: Partial<QueryDto<T>>) {
-    return this.repo.findOne({ where: where as FindOptionsWhere<T> });
+    return await  this.repo.findOne({ where: where as FindOptionsWhere<T> });
   }
 
   /**
