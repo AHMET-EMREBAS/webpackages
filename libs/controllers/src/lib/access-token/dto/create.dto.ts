@@ -11,5 +11,5 @@ export class CreateAccessTokenDto {
   token: string;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  user: IDDto;
 }

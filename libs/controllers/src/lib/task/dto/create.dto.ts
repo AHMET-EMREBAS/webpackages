@@ -35,5 +35,5 @@ export class CreateTaskDto {
   difficulty: string;
 
   @Property({ type: 'object', target: IDDto, isArray: true })
-  undefined: IDDto[];
+  users: IDDto[];
 }

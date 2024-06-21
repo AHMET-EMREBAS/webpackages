@@ -14,5 +14,5 @@ export class CreateCustomerDto {
   permissions: any;
 
   @Property({ type: 'number' })
-  undefined: IDDto;
+  priceLevel: IDDto;
 }

@@ -11,5 +11,5 @@ export class CreateCustomerImgDto {
   generatedName: string;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  user: IDDto;
 }

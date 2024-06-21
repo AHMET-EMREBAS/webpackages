@@ -17,5 +17,5 @@ export class CreateUserAddressDto {
   zip: string;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  user: IDDto;
 }

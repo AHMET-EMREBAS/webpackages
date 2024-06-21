@@ -5,11 +5,11 @@ import { Exclude } from 'class-transformer';
 @Exclude()
 export class CreateInboxDto {
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  user: IDDto;
 
   @Property({ type: 'object', target: IDDto, isArray: true })
-  undefined: IDDto[];
+  sent: IDDto[];
 
   @Property({ type: 'object', target: IDDto, isArray: true })
-  undefined: IDDto[];
+  received: IDDto[];
 }

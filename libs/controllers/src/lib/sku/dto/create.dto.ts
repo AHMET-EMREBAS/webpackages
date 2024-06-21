@@ -20,5 +20,5 @@ export class CreateSkuDto {
   sku: string;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  product: IDDto;
 }

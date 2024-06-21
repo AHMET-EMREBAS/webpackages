@@ -14,5 +14,5 @@ export class CreateSerialNumberDto {
   generated: boolean;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  sku: IDDto;
 }

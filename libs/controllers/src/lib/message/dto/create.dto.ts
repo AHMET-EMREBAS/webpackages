@@ -11,8 +11,8 @@ export class CreateMessageDto {
   readDate: Date;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  user: IDDto;
 
   @Property({ type: 'object', target: IDDto, isArray: true })
-  undefined: IDDto[];
+  to: IDDto[];
 }

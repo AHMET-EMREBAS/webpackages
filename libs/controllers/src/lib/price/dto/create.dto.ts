@@ -17,8 +17,8 @@ export class CreatePriceDto {
   endDate: Date;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  sku: IDDto;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  priceLevel: IDDto;
 }

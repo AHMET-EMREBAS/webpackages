@@ -14,5 +14,5 @@ export class CreateUserDto {
   permissions: any;
 
   @Property({ type: 'number' })
-  undefined: IDDto;
+  department: IDDto;
 }

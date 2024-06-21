@@ -11,5 +11,5 @@ export class CreateProductImgDto {
   generatedName: string;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  product: IDDto;
 }

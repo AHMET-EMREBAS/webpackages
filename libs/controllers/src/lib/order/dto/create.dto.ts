@@ -14,11 +14,11 @@ export class CreateOrderDto {
   quantity: number;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  sku: IDDto;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  cart: IDDto;
 
   @Property({ type: 'object', target: IDDto, isArray: true })
-  undefined: IDDto[];
+  discounts: IDDto[];
 }

@@ -8,8 +8,8 @@ export class CreateCartDto {
   complete: boolean;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  customer: IDDto;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  user: IDDto;
 }

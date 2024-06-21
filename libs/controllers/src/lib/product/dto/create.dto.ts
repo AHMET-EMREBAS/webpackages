@@ -20,8 +20,8 @@ export class CreateProductDto {
   upc: string;
 
   @Property({ type: 'number' })
-  undefined: IDDto;
+  category: IDDto;
 
   @Property({ type: 'number' })
-  undefined: IDDto;
+  supplier: IDDto;
 }

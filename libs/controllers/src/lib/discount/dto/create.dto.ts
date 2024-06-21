@@ -17,5 +17,5 @@ export class CreateDiscountDto {
   endDate: Date;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  sku: IDDto;
 }

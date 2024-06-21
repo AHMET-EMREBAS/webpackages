@@ -14,5 +14,5 @@ export class CreateCustomerProfileDto {
   middleName: string;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  user: IDDto;
 }

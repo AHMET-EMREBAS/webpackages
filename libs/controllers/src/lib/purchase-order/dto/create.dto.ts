@@ -17,8 +17,8 @@ export class CreatePurchaseOrderDto {
   total: number;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  purchase: IDDto;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  sku: IDDto;
 }

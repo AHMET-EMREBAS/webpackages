@@ -20,8 +20,8 @@ export class CreateQuantityDto {
   notSellLastOne: boolean;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  sku: IDDto;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  store: IDDto;
 }

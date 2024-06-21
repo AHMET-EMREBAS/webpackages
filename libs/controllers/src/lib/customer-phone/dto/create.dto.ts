@@ -8,5 +8,5 @@ export class CreateCustomerPhoneDto {
   phone: string;
 
   @Property({ type: 'number', required: true })
-  undefined: IDDto;
+  user: IDDto;
 }
