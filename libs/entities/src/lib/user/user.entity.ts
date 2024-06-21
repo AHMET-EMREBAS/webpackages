@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity } from '@webpackages/database';
+import { BaseEntity, Column } from '@webpackages/database';
+import { Entity } from 'typeorm';
 
 @Entity()
 export class User extends BaseEntity {

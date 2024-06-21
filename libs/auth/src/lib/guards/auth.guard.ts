@@ -43,7 +43,7 @@ export class AuthGuard implements CanActivate {
 
     const resouceName = this.reflector.getAllAndOverride(ResouceNameToken, [
       ctx.getClass(),
-    ]) as ResourceNames;
+    ]);
 
     console.log(operationName, resouceName);
 

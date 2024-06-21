@@ -1,4 +1,4 @@
-import { Dto } from '@webpackages/property';
+import { Exclude } from 'class-transformer';
 
-@Dto()
-export class CreateUserDto  {}
+@Exclude()
+export class CreateUserDto {}

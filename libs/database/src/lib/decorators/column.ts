@@ -5,7 +5,7 @@ import { ColumnOptions } from '@webpackages/types';
 import { Property } from '@webpackages/property';
 import { hash } from '@webpackages/hash';
 
-export function StringColumn(options: ColumnOptions) {
+export function StringColumn(options: Partial<ColumnOptions>) {
   return applyDecorators(
     Property({
       ...options,
@@ -22,7 +22,7 @@ export function StringColumn(options: ColumnOptions) {
   );
 }
 
-export function NumberColumn(options: ColumnOptions) {
+export function NumberColumn(options: Partial<ColumnOptions>) {
   return applyDecorators(
     Property({ ...options, type: 'number', example: options.example || 100 }),
     Col({
@@ -35,7 +35,7 @@ export function NumberColumn(options: ColumnOptions) {
   );
 }
 
-export function DateColumn(options: ColumnOptions) {
+export function DateColumn(options: Partial<ColumnOptions>) {
   return applyDecorators(
     Property({
       ...options,
@@ -52,7 +52,7 @@ export function DateColumn(options: ColumnOptions) {
   );
 }
 
-export function BooleanColumn(options: ColumnOptions) {
+export function BooleanColumn(options: Partial<ColumnOptions>) {
   return applyDecorators(
     Property({ type: 'boolean', example: options.example || true }),
     Col({
@@ -64,7 +64,7 @@ export function BooleanColumn(options: ColumnOptions) {
   );
 }
 
-export function ObjectColumn(options: ColumnOptions) {
+export function ObjectColumn(options: Partial<ColumnOptions>) {
   if (!options.target) {
     console.warn(`column option target is not provided`);
     options.target = class UnkownTarget {};
@@ -98,7 +98,7 @@ export function ObjectColumn(options: ColumnOptions) {
   );
 }
 
-export function Column(options: ColumnOptions) {
+export function Column(options: Partial<ColumnOptions>) {
   if (options.type === 'string') {
     return StringColumn(options);
   } else if (options.type === 'number') {

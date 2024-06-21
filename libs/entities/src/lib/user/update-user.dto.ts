@@ -1,6 +1,6 @@
 import { PartialType } from '@nestjs/swagger';
-import { Dto } from '@webpackages/property';
 import { CreateUserDto } from './create-user.dto';
+import { Exclude } from 'class-transformer';
 
-@Dto()
+@Exclude()
 export class UpdateUserDto extends PartialType(CreateUserDto) {}

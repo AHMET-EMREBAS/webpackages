@@ -1,8 +1,8 @@
 import { FindWhere, SearchDto, SearchProperty } from '@webpackages/query';
 import { User } from './user.entity';
-import { Dto } from '@webpackages/property';
+import { Exclude } from 'class-transformer';
 
-@Dto()
+@Exclude()
 export class SearchUserDto implements SearchDto<User> {
   @SearchProperty<User>(['username'])
   search: FindWhere<User>;
