@@ -1,3 +1,3 @@
 # query-builder
 
-Build complex URI querires
+Build complex URI querires for client

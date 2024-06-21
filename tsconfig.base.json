@@ -18,7 +18,6 @@
       "@webpackages/access-policy": ["libs/access-policy/src/index.ts"],
       "@webpackages/auth": ["libs/auth/src/index.ts"],
       "@webpackages/boot-nest": ["libs/boot-nest/src/index.ts"],
-      "@webpackages/class-validator": ["libs/class-validator/src/index.ts"],
       "@webpackages/clients": ["libs/clients/src/index.ts"],
       "@webpackages/clients-common": ["libs/clients-common/src/index.ts"],
       "@webpackages/controller-builder": [
@@ -39,9 +38,12 @@
       "@webpackages/query-builder": ["libs/query-builder/src/index.ts"],
       "@webpackages/resource-path": ["libs/resource-path/src/index.ts"],
       "@webpackages/resources": ["libs/resources/src/index.ts"],
+      "@webpackages/rest": ["libs/rest/src/index.ts"],
       "@webpackages/types": ["libs/types/src/index.ts"],
       "@webpackages/utils": ["libs/utils/src/index.ts"],
-      "@webpackges/entities": ["libs/entities/src/index.ts"]
+      "@webpackages/validation": ["libs/validation/src/index.ts"],
+      "@webpackges/entities": ["libs/entities/src/index.ts"],
+      "@webpackges/path": ["libs/path/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
