@@ -1,8 +1,10 @@
 {
   "name": "@webpackages/models",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "dependencies": {
-    "@swc/helpers": "~0.5.11"
+    "@swc/helpers": "~0.5.11",
+    "@webpackages/types": "1.0.0",
+    "@webpackages/query-builder": "1.0.0"
   },
   "type": "commonjs",
   "main": "./src/index.js",
