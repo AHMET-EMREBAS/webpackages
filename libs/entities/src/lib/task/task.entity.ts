@@ -23,11 +23,11 @@ export class Task extends BaseEntity implements ITask {
   @Column({ type: 'string', required: false, unique: false })
   description: string;
 
-  @Column({ type: 'undefined', required: false, unique: false })
-  status: undefined;
+  @Column({ type: 'string', required: false, unique: false })
+  status: string;
 
-  @Column({ type: 'undefined', required: false, unique: false })
-  difficulty: undefined;
+  @Column({ type: 'string', required: false, unique: false })
+  difficulty: string;
 
   @Relation({ relationType: 'many', target: User })
   users: User[];

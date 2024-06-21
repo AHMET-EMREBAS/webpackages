@@ -14,9 +14,9 @@ export interface ITask extends BaseEntity {
 
   description: string;
 
-  status: undefined;
+  status: string;
 
-  difficulty: undefined;
+  difficulty: string;
 
   users: IUser[];
 }
