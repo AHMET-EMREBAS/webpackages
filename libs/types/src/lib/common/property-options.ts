@@ -3,6 +3,7 @@ import { PropertyType, RelationType } from './property-type';
 import { StringFormat } from './string-format';
 import { Constructor } from './constructor';
 import { InputType } from './input-type';
+import { ResourceName } from '../auth';
 
 export class PropertyOptions {
   type: PropertyType;
@@ -77,8 +78,9 @@ export class RelationOptions
 export class RelationOptionsMeta
   implements Pick<PropertyOptions, 'relationType' | 'targetName'>
 {
-  targetName: string;
+  targetName: ResourceName;
   relationType: RelationType;
+  viewColumns?: string[];
 }
 
 export class ColumnOptions

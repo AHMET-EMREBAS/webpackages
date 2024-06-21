@@ -1,0 +1,23 @@
+import {
+  EntitySubscriberInterface,
+  EventSubscriber,
+  InsertEvent,
+} from 'typeorm';
+import { <%- className %> } from './<%- fileName %>.entity';
+
+@EventSubscriber()
+export class <%- className %>Subscriber implements EntitySubscriberInterface<<%- className %>> {
+  listenTo() {
+    return <%- className %>;
+  }
+
+  afterInsert(event: InsertEvent<<%- className %>>): void | Promise<any> {
+    const repo = event.manager.getRepository(<%- className %>);
+    // TODO
+  }
+
+  beforeInsert(event: InsertEvent<<%- className %>>): void | Promise<any> {
+    const repo = event.manager.getRepository(<%- className %>);
+    // TODO
+  }
+}

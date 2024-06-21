@@ -1,0 +1,19 @@
+import {
+  BaseView,
+  addRelationColumns,
+  baseQueryBuilder,
+} from '@webpackages/database';
+import { ViewColumn, ViewEntity } from 'typeorm';
+import { <%- className %> } from './<%- fileName %>.entity';
+import { <%- className %>Metadata } from '@webpackages/metadata';
+<%- imports %>
+
+@ViewEntity({
+  expression(ds) {
+    return baseQueryBuilder<<%- className %>>(ds, <%- className %>, <%- className %>Metadata);
+  },
+})
+export class <%- className %>View extends BaseView {
+  <%- viewProperties %>
+  <%- viewRelations %>
+}

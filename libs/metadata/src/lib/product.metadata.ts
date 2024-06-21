@@ -22,7 +22,15 @@ export const ProductMetadata: Metadata = {
     },
   },
   relations: {
-    category: { relationType: 'one', targetName: 'Category' },
-    supplier: { relationType: 'one', targetName: 'Supplier' },
+    category: {
+      relationType: 'one',
+      targetName: 'Category',
+      viewColumns: ['id', 'name'],
+    },
+    supplier: {
+      relationType: 'one',
+      targetName: 'Supplier',
+      viewColumns: ['id', 'name'],
+    },
   },
 };

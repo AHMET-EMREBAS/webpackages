@@ -9,10 +9,10 @@ export class Timestamps {
 }
 
 export class BaseEntity implements ID, Timestamps {
+  id: number;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
-  id: number;
   active: boolean;
 }
 

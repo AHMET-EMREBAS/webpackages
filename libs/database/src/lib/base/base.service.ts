@@ -34,7 +34,10 @@ export class BaseEntityService<T extends BaseEntity> {
     (e) => e.columns[0].propertyName
   );
 
-  constructor(protected repo: Repository<T>) {}
+  constructor(
+    protected repo: Repository<T>,
+    protected readonly view?: Repository<any>
+  ) {}
 
   protected async isActive(id: number) {
     const found = await this.repo.findOneBy({ id } as FindOptionsWhere<T>);
@@ -78,12 +81,13 @@ export class BaseEntityService<T extends BaseEntity> {
     let foundItems: T[] | null;
 
     try {
-      foundItems = await this.repo.find({
+      foundItems = await (this.view ?? this.repo).find({
         ...paginator,
         where,
         order: orderValue,
       });
     } catch (err) {
+      console.error(err);
       throw new InternalServerErrorException();
     }
 
@@ -101,6 +105,7 @@ export class BaseEntityService<T extends BaseEntity> {
     try {
       result = await this.repo.findOneBy({ id: id } as FindOptionsWhere<T>);
     } catch (err) {
+      console.error(err);
       throw new InternalServerErrorException();
     }
 
@@ -142,6 +147,7 @@ export class BaseEntityService<T extends BaseEntity> {
             [u]: ILike(newValue),
           } as any);
         } catch (err) {
+          console.error(err);
           continue;
         }
 

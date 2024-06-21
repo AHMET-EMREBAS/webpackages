@@ -78,6 +78,10 @@ export async function entityGenerator(
         imports: printImports(value),
         properties: printProperties(value),
         relations: printRelations(value),
+        propertyNames: '',
+        selectedRelations: '',
+        viewProperties: '',
+        viewRelations: '',
       });
       return;
     }
