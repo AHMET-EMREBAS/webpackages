@@ -3,6 +3,12 @@ import { Exclude } from 'class-transformer';
 
 @Exclude()
 export class CreateUserDto {
-  @Property({ type: 'string', minLength: 3, required: true, unique: true })
-  name: string;
+  @Property({ type: 'string', format: 'email', required: true, unique: true })
+  username: string;
+
+  @Property({ type: 'string', format: 'email', required: true, unique: true })
+  passwrod: string;
+
+  @Property({ type: 'object', targetName: 'AccessPolicy' })
+  permissions: any;
 }
