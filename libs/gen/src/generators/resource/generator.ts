@@ -44,8 +44,7 @@ function printRelations(metadata: Metadata) {
     return Object.entries(metadata.relations)
       .map(([key, value]) => {
         const propertyName = () => {
-          return;
-          value.relationType === 'many' ? key : key;
+          return value.relationType === 'many' ? key : key;
         };
         const isRequired = () => {
           return value.relationType === 'owner' ||
