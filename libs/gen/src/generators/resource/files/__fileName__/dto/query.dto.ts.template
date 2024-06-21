@@ -1,4 +1,4 @@
-import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/core';
+import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 import { <%- className %> } from '../entities';
 

@@ -12,7 +12,7 @@ import {
 } from '@webpackages/access-policy';
 import { Request } from 'express';
 import { AuthService } from '../auth.service';
-import { Operation, ResourceNames } from '@webpackages/types';
+import { Operation, ResourceName, ResourceNames } from '@webpackages/types';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -43,7 +43,7 @@ export class AuthGuard implements CanActivate {
 
     const resouceName = this.reflector.getAllAndOverride(ResouceNameToken, [
       ctx.getClass(),
-    ]);
+    ]) as ResourceName;
 
     console.log(operationName, resouceName);
 

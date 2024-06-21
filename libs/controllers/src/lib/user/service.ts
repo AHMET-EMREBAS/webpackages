@@ -1,8 +1,8 @@
 import { BaseEntityService } from '@webpackages/database';
+import { User } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
-import { User } from '@webpackges/entities';
 
 @Injectable()
 export class UserService extends BaseEntityService<User> {

@@ -1,11 +1,8 @@
 {
-  "name": "@webpackges/entities",
+  "name": "@webpackages/entities",
   "version": "1.0.0",
   "dependencies": {
     "@swc/helpers": "~0.5.11",
-    "@webpackages/query": "1.0.0",
-    "class-transformer": "^0.5.1",
-    "@nestjs/swagger": "^7.3.1",
     "@webpackages/database": "1.0.0",
     "typeorm": "^0.3.20"
   },

@@ -16,7 +16,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { ValidatorBuilder } from '@webpackages/clients-common';
+
+
 @Component({
   selector: 'lib-create-product',
   standalone: true,
@@ -39,19 +40,19 @@ import { ValidatorBuilder } from '@webpackages/clients-common';
 export class CreateProductComponent {
   nameControl = new FormControl(
     '',
-    new ValidatorBuilder('name', true).minLength(3).maxLength(100).build()
+    // new ValidatorBuilder('name', true).minLength(3).maxLength(100).build()
   );
   upcControl = new FormControl(
     '',
-    new ValidatorBuilder('upc', true).minLength(8).maxLength(13).build()
+    // new ValidatorBuilder('upc', true).minLength(8).maxLength(13).build()
   );
   brandControl = new FormControl(
     '',
-    new ValidatorBuilder('brand').minLength(3).maxLength(100).build()
+    // new ValidatorBuilder('brand').minLength(3).maxLength(100).build()
   );
   descriptionControl = new FormControl(
     '',
-    new ValidatorBuilder('description').minLength(3).maxLength(1000).build()
+    // new ValidatorBuilder('description').minLength(3).maxLength(1000).build()
   );
 
   productFormGroup = new FormGroup({

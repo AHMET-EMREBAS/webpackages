@@ -5,7 +5,7 @@ import { LoginDto, LoginResponse } from './dto';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { compareHash } from '@webpackages/hash';
-import { User } from '@webpackages/entities';
+import { User, Session } from '@webpackages/entities';
 @Injectable()
 export class AuthService {
   constructor(

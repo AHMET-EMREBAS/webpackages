@@ -1,4 +1,4 @@
-import { SearchDto, SearchProperty } from '@webpackages/core';
+import { SearchDto, SearchProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 import { <%- className %> } from '../entities';
 import { FindOptionsWhere } from 'typeorm';

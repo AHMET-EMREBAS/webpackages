@@ -1,12 +1,13 @@
 import { Body, Param, Query } from '@nestjs/common';
 import { Create<%- className %>Dto } from './dto/create.dto';
 import { Update<%- className %>Dto } from './dto/update.dto';
-import { HttpRouteBuilder, PaginatorDto } from '@webpackages/core';
-import { <%- className %> } from './entities';
+import { PaginatorDto } from '@webpackages/query';
+import { RestController } from '@webpackages/rest';
+import { <%- className %> } from '@webpackages/entities';
 import { Order<%- className %>Dto, Query<%- className %>Dto, Search<%- className %>Dto } from './dto';
 import { <%- className %>Service } from './service';
 
-const C = new HttpRouteBuilder({
+const C = new RestController({
   singularName: '<%- fileName %>',
   pluralName: '<%- fileName %>s',
   entity: <%- className %>,

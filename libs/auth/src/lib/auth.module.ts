@@ -4,16 +4,17 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthController } from './auth.controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 
-import { Session, User } from '@webpackages/resources';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './guards';
 import { LocalGuard } from './guards/local.guard';
 import { Repository } from 'typeorm';
 
+import { User, Session } from '@webpackages/entities';
+
 @Module({
   imports: [
     ConfigModule.forFeature(() => ({})),
-    TypeOrmModule.forFeature([User, Session]),
+    // TypeOrmModule.forFeature([User, Session]),
     JwtModule.registerAsync({
       global: true,
       inject: [ConfigService],
@@ -44,7 +45,7 @@ export class AuthModule implements OnModuleInit {
 
     const ROOT_USERNAME = this.config.getOrThrow('ROOT_USERNAME');
     const ROOT_PASSWORD = this.config.getOrThrow('ROOT_PASSWORD');
-    
+
     if (found) {
       await this.repo.update(found.id, {
         username: ROOT_USERNAME,

@@ -12,19 +12,9 @@
         "index": 0
       },
       "x-prompt": "What name would you like to use?"
-    },
-    "target": {
-      "type": "string",
-      "description": "",
-      "$default": {
-        "$source": "argv",
-        "index": 1
-      },
-      "x-prompt": "What target directory would you like to use?"
     }
   },
   "required": [
     "name",
-    "target"
   ]
 }

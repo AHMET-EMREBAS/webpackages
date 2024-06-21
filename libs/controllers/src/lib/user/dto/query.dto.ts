@@ -1,9 +1,8 @@
 import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
-import { User } from './user.entity';
+import { User } from '../entities';
 
 @Exclude()
 export class QueryUserDto extends BaseQueryDto implements QueryDto<User> {
-  @QueryProperty() username: unknown;
-  @QueryProperty() password: unknown;
+  @QueryProperty() name: string;
 }

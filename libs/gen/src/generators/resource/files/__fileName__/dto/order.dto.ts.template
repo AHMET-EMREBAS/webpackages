@@ -1,4 +1,4 @@
-import { CreateOrderDto } from '@webpackages/core';
+import { CreateOrderDto } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 import { <%- className %> } from '../entities';
 

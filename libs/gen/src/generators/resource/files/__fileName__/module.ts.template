@@ -1,7 +1,7 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { <%- className %>Controller } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { <%- className %> } from './entities';
+import { <%- className %> } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { <%- className %>Service } from './service';
 
