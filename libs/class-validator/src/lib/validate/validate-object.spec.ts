@@ -1,4 +1,4 @@
-import { ObjectOptions, ValidateObject } from './validate-object';
+import { ValidateObject } from './validate-object';
 
 import { validateSync } from 'class-validator';
 
@@ -6,10 +6,10 @@ class SampleClass {}
 
 describe('ValidateObject', () => {
   it.each`
-    options                | value | expectedErrors
-    ${{} as ObjectOptions} | ${{}} | ${['isObject']}
-    ${{} as ObjectOptions} | ${{}} | ${['isObject']}
-    ${{} as ObjectOptions} | ${{}} | ${['isObject']}
+    options | value | expectedErrors
+    ${{}}   | ${{}} | ${['isObject']}
+    ${{}}   | ${{}} | ${['isObject']}
+    ${{}}   | ${{}} | ${['isObject']}
   `(
     'should validate $value with $options and return the errors $expectedErrors',
     ({ options, value, expectedErrors }) => {

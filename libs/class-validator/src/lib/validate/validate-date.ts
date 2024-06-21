@@ -2,7 +2,6 @@ import { IsDate, MaxDate, MinDate, ValidationOptions } from 'class-validator';
 import { UseDecorators } from '@webpackages/utils';
 
 export type DateOptions = {
-  type: 'date';
   before: Date;
   after: Date;
   weekDays: boolean;

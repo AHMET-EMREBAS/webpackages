@@ -1,16 +1,6 @@
 import { IsInt, IsNumber, Max, Min, ValidatorOptions } from 'class-validator';
 import { UseDecorators } from '@webpackages/utils';
-
-export type NumberOptions = {
-  type: 'number';
-  minimum: number;
-  maximum: number;
-  isInt?: boolean;
-  moreThan: string;
-  lessThan: string;
-  moreThanOrEqual: string;
-  lessThanOrEqual: string;
-};
+import { ApiPropertyOptions } from '@webpackages/types';
 
 /**
  *
@@ -18,7 +8,7 @@ export type NumberOptions = {
  * @param validationOptions
  */
 export function ValidateNumber(
-  options: Partial<NumberOptions>,
+  options: ApiPropertyOptions,
   validationOptions: ValidatorOptions
 ): PropertyDecorator {
   const decorators: PropertyDecorator[] = [];

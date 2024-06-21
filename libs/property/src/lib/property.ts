@@ -1,14 +1,11 @@
-import { ApiProperty, ApiPropertyOptions } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { Expose } from 'class-transformer';
 import { applyDecorators } from '@nestjs/common';
-import { Validate, ValidateOptions } from '@webpackages/class-validator';
+import { Validate } from '@webpackages/class-validator';
 import { exampleValue } from './example-value';
+import { ApiPropertyOptions } from '@webpackages/types';
 
-export function Property(
-  options: Omit<ApiPropertyOptions, 'type' | 'format'> &
-    Partial<ValidateOptions> &
-    Pick<ValidateOptions, 'type'>
-) {
+export function Property(options: ApiPropertyOptions) {
   const type = options.type;
   const format = options.format;
   const required = !!options.required;

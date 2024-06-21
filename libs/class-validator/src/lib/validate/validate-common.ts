@@ -6,21 +6,11 @@ import {
   ValidationOptions,
 } from 'class-validator';
 
-import { PropertyType, StringFormat } from '@webpackages/types';
+import { ApiPropertyOptions } from '@webpackages/types';
 import { UseDecorators } from '@webpackages/utils';
 
-export type CommonOptions = {
-  type: PropertyType;
-  required: boolean;
-  isArray: boolean;
-  maxItems: number;
-  minItems: number;
-  format: StringFormat;
-  noValidate: boolean;
-};
-
 export function ValidateCommon(
-  options: Partial<CommonOptions>,
+  options: ApiPropertyOptions,
   validationOptions: ValidationOptions
 ): PropertyDecorator {
   const decorators: PropertyDecorator[] = [];

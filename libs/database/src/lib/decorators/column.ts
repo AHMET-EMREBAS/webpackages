@@ -1,18 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Column as Col } from 'typeorm';
-import { Type, applyDecorators } from '@nestjs/common';
-import { PropertyType } from '@webpackages/types';
+import { applyDecorators } from '@nestjs/common';
+import { ColumnOptions } from '@webpackages/types';
 import { Property } from '@webpackages/property';
 import { hash } from '@webpackages/hash';
-export type ColumnOptions = {
-  type: PropertyType;
-  required?: boolean;
-  unique?: boolean;
-  update?: boolean;
-  defaultValue?: unknown;
-  target?: Type;
-  example?: any;
-};
 
 export function StringColumn(options: ColumnOptions) {
   return applyDecorators(
@@ -26,7 +17,7 @@ export function StringColumn(options: ColumnOptions) {
       nullable: options.required != true,
       unique: options.unique,
       update: options.update,
-      default: options.defaultValue,
+      default: options.default,
     })
   );
 }
@@ -39,7 +30,7 @@ export function NumberColumn(options: ColumnOptions) {
       nullable: options.required != true,
       unique: options.unique,
       update: options.update,
-      default: options.defaultValue,
+      default: options.default,
     })
   );
 }
@@ -56,7 +47,7 @@ export function DateColumn(options: ColumnOptions) {
       nullable: options.required != true,
       unique: options.unique,
       update: options.update,
-      default: options.defaultValue,
+      default: options.default,
     })
   );
 }
@@ -68,7 +59,7 @@ export function BooleanColumn(options: ColumnOptions) {
       type: 'boolean',
       nullable: true,
       update: options.update,
-      default: options.defaultValue,
+      default: options.default,
     })
   );
 }
@@ -102,7 +93,7 @@ export function ObjectColumn(options: ColumnOptions) {
         },
       },
       update: options.update,
-      default: options.defaultValue,
+      default: options.default,
     })
   );
 }

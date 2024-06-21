@@ -26,23 +26,8 @@ import {
   StartsWith,
 } from './custom-string-validators';
 
-import { StringFormat } from '@webpackages/types';
+import { ApiPropertyOptions, StringFormat } from '@webpackages/types';
 import { UseDecorators } from '@webpackages/utils';
-
-export type StringOptions = {
-  type: 'string';
-  minLength: number;
-  maxLength: number;
-  format: StringFormat;
-  enum: Readonly<any[]>;
-  forbidden: string[];
-  startsWith: string;
-  notStartsWith: string;
-  notEndsWith: string;
-  endsWith: string;
-  contains: string;
-  notContains: string;
-};
 
 export function ValidateFormat(
   stringFormat: StringFormat,
@@ -101,7 +86,7 @@ export function ValidateFormat(
  * @returns
  */
 export function ValidateString(
-  options: Partial<StringOptions>,
+  options: ApiPropertyOptions,
   validationOptions: ValidationOptions
 ): PropertyDecorator {
   const vo = validationOptions;

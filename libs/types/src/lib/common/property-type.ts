@@ -9,3 +9,5 @@ export const PropertyTypes: Arr<PropertyType> = [
   'date',
   'object',
 ];
+
+export type RelationType = 'one' | 'many' | 'owner' | 'secure-owner';

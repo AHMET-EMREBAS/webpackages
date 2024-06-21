@@ -1,24 +1,14 @@
 import { ValidationOptions } from 'class-validator';
-import { CommonOptions, ValidateCommon } from './validate-common';
-import { DateOptions, ValidateDate } from './validate-date';
-import { NumberOptions, ValidateNumber } from './validate-number';
-import { ObjectOptions, ValidateObject } from './validate-object';
-import { StringOptions, ValidateString } from './validate-string';
-import { BooleanOptions, ValidateBoolean } from './validate-boolean';
+import { ValidateCommon } from './validate-common';
+import { ValidateDate } from './validate-date';
+import { ValidateNumber } from './validate-number';
+import { ValidateObject } from './validate-object';
+import { ValidateString } from './validate-string';
+import { ValidateBoolean } from './validate-boolean';
 import { UseDecorators } from '@webpackages/utils';
+import { ApiPropertyOptions } from '@webpackages/types';
 
-export type _ValidateOptions = (
-  | StringOptions
-  | NumberOptions
-  | ObjectOptions
-  | DateOptions
-  | BooleanOptions
-) &
-  CommonOptions;
-
-export type ValidateOptions = _ValidateOptions;
-
-export function Validate(options: Partial<_ValidateOptions>) {
+export function Validate(options: ApiPropertyOptions) {
   const decorators: PropertyDecorator[] = [];
 
   const { type, isArray, noValidate } = options;
@@ -31,7 +21,7 @@ export function Validate(options: Partial<_ValidateOptions>) {
 
   decorators.push(ValidateCommon(options, validationOptions));
 
-  if (type === 'string') {
+  if (options.type === 'string') {
     decorators.push(ValidateString(options, validationOptions));
   } else if (type === 'date') {
     decorators.push(ValidateDate(options, validationOptions));

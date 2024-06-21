@@ -6,7 +6,7 @@ import {
 } from 'typeorm';
 import { Column } from '../decorators';
 import { Property } from '@webpackages/property';
-import { IBaseEntity, ID } from '@webpackages/types';
+import { BaseEntity as IBaseEntity, ID } from '@webpackages/types';
 
 export class IDEntity implements ID {
   @Property({ type: 'number', example: 1 })
@@ -28,6 +28,6 @@ export class BaseEntity extends IDEntity implements IBaseEntity {
   deletedAt: Date;
 
   @Property({ type: 'boolean' })
-  @Column({ type: 'boolean', defaultValue: true })
+  @Column({ type: 'boolean', default: true })
   active: boolean;
 }

@@ -2,8 +2,6 @@ import { Constructor } from '@webpackages/types';
 import { UseDecorators } from '@webpackages/utils';
 import { IsObject, ValidateNested, ValidationOptions } from 'class-validator';
 
-export type ObjectOptions = { type: 'object'; target: Constructor };
-
 /**
  * Apply Type(()=>Target) by yourself
  * @param target
