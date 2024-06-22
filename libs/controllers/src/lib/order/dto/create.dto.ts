@@ -15,5 +15,5 @@ export class CreateOrderDto {
   cart: IDDto;
 
   @Property({ type: 'number' })
-  discounts: IDDto;
+  discount: IDDto;
 }
