@@ -9,7 +9,7 @@ export const SupplierMetadata: Metadata = {
       maxLength: 100,
       required: true,
       unique: true,
+      example: 'ABC Wholesale 68',
     },
-  },
-  relations: {},
+  }
 };
