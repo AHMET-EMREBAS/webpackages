@@ -8,5 +8,5 @@ export interface IMessage extends BaseEntity {
 
   user: IUser;
 
-  to: IUser[];
+  to: IUser;
 }

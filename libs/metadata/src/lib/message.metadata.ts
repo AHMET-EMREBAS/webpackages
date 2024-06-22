@@ -8,6 +8,6 @@ export const MessageMetadata: Metadata = {
   },
   relations: {
     user: { relationType: 'owner', targetName: 'User' },
-    to: { relationType: 'many', targetName: 'User' },
+    to: { relationType: 'one', targetName: 'User' },
   },
 };

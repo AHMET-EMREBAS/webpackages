@@ -12,4 +12,5 @@ export class QueryCustomerDto
   @QueryProperty() permissions: string;
   @QueryProperty() priceLevelId: string;
   @QueryProperty() priceLevelActive: string;
+  @QueryProperty() priceLevelName: string;
 }

@@ -10,6 +10,6 @@ export class CreateMessageDto {
   @Property({ type: 'number', required: true })
   user: IDDto;
 
-  @Property({ type: 'object', target: IDDto, isArray: true })
-  to: IDDto[];
+  @Property({ type: 'number' })
+  to: IDDto;
 }

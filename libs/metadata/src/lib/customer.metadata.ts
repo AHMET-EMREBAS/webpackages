@@ -5,6 +5,10 @@ export const CustomerMetadata: Metadata = {
   groupName: 'customer-management',
   properties: UserMetadata.properties,
   relations: {
-    priceLevel: { relationType: 'one', targetName: 'PriceLevel' },
+    priceLevel: {
+      relationType: 'one',
+      targetName: 'PriceLevel',
+      viewColumns: ['name'],
+    },
   },
 };

@@ -17,8 +17,7 @@ import {
   Metadata,
 } from '@webpackages/types';
 import { names } from '@nx/devkit';
-import { Type } from '@nestjs/common';
-import { connect } from 'http2';
+
 export class IDEntity implements ID {
   @Property({ type: 'number', example: 1 })
   @PrimaryGeneratedColumn()
@@ -46,11 +45,11 @@ export class BaseEntity extends IDEntity implements IBaseEntity {
 export class BaseView implements BaseEntity {
   @Property({ type: 'number' })
   @ViewColumn()
-  eid: number;
+  id: number;
 
   @Property({ type: 'number' })
   @ViewColumn()
-  id: number;
+  eid: number;
 
   @Property({ type: 'number' })
   @ViewColumn()
@@ -106,20 +105,20 @@ export function baseQueryBuilder<T extends BaseEntity>(
       const alias = propertyName;
       const views = relationOptions.viewColumns;
 
-      if (views) {
+      if (views && views.length > 0) {
         for (const view of views) {
           const colName = names(alias).propertyName + names(view).className;
           query.addSelect(`${alias}.${view}`, colName);
         }
-      } else {
-        {
-          const colName = names(alias).propertyName + names('id').className;
-          query.addSelect(`${alias}.id`, colName);
-        }
-        {
-          const colName = names(alias).propertyName + names('active').className;
-          query.addSelect(`${alias}.active`, colName);
-        }
+      }
+
+      {
+        const colName = names(alias).propertyName + 'Id';
+        query.addSelect(`${alias}.eid`, colName);
+      }
+      {
+        const colName = names(alias).propertyName + names('active').className;
+        query.addSelect(`${alias}.active`, colName);
       }
     }
   }
@@ -130,7 +129,9 @@ export function baseQueryBuilder<T extends BaseEntity>(
     for (const [propertyName, relationOptions] of Object.entries(relations)) {
       const alias = propertyName;
 
-      const con = `${alias}.id = main.${names(alias).propertyName}Id`;
+      const entityId = names(alias).propertyName + 'Id';
+
+      const con = `${alias}.eid = main.${entityId}`;
 
       query.leftJoin(relationOptions.targetName + 'View', alias, con);
     }

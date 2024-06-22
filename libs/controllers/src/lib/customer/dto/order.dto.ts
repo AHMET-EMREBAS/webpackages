@@ -7,4 +7,5 @@ export class OrderCustomerDto extends CreateOrderDto<CustomerView>([
   'username',
   'password',
   'permissions',
+  'priceLevelName',
 ]) {}

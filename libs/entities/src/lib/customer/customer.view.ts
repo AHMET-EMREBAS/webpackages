@@ -15,6 +15,7 @@ export class CustomerView extends BaseView {
   @ViewColumn() password: string;
   @ViewColumn() permissions: AccessPolicy;
 
+  @ViewColumn() priceLevelName: PriceLevel['name'];
   @ViewColumn() priceLevelId: PriceLevel['id'];
   @ViewColumn() priceLevelActive: PriceLevel['active'];
 }
