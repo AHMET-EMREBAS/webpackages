@@ -1,5 +1,6 @@
 import { BaseEntity } from '@webpackages/types';
 import { ISku } from './sku';
+import { IPriceLevel } from './price-level';
 
 export interface IDiscount extends BaseEntity {
   fixedDiscount: number;
@@ -11,4 +12,6 @@ export interface IDiscount extends BaseEntity {
   endDate: Date;
 
   sku: ISku;
+
+  priceLevel: IPriceLevel;
 }

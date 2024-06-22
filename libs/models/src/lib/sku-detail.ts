@@ -1,4 +1,5 @@
 import { BaseEntity } from '@webpackages/types';
+import { ISku } from './sku';
 
 export interface ISkuDetail extends BaseEntity {
   color: string;
@@ -10,4 +11,18 @@ export interface ISkuDetail extends BaseEntity {
   weight: string;
 
   manual: string;
+
+  make: string;
+
+  model: string;
+
+  notes: string;
+
+  website: string;
+
+  manufacturer: string;
+
+  highlight: string;
+
+  sku: ISku;
 }

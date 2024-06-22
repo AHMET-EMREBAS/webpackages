@@ -124,7 +124,7 @@ export function printViewProperties(m: Metadata) {
 
 export function printViewRelations(m: Metadata) {
   if (m.relations) {
-    const result = Object.entries(m.relations).map(([key, value]) => {
+    const result = Object.entries(m.relations).map(([, value]) => {
       const prefix = names(value.targetName).propertyName;
 
       const __printViews = (cols: string[]) => {
@@ -137,7 +137,7 @@ export function printViewRelations(m: Metadata) {
 
       const builtinViewColumns = ['id', 'active'];
 
-      if (value.viewColumns) {
+      if (value.viewColumns && value.viewColumns.length > 0) {
         return __printViews([...value.viewColumns, ...builtinViewColumns]);
       } else {
         return __printViews(builtinViewColumns);
@@ -150,49 +150,47 @@ export function printViewRelations(m: Metadata) {
   return '';
 }
 
+export function printPropertyImports(m: Metadata) {
+  if (m.properties) {
+    const result = Object.values(m.properties)
+      .filter((e) => {
+        return e.type === 'object';
+      })
+      .map((e) => {
+        if (!e.targetName) {
+          console.error(m);
+          console.error(`targetName is required for imports`);
+          return;
+        }
+        return `import {${e.targetName}} from '@webpackages/types';`;
+      })
+      .filter((e) => e);
+
+    return unifyAndJoin(result);
+  }
+  return '';
+}
+
+export function printRelationImports(m: Metadata) {
+  if (m.relations) {
+    const result = Object.values(m.relations).map((e) => {
+      return `import { ${e.targetName} } from '../${
+        names(e.targetName).fileName
+      }'`;
+    });
+
+    return unifyAndJoin(result);
+  }
+  return '';
+}
 /**
  * Print required imports for entity
  *
  * @param m
  * @returns
  */
-export function printImports(m: Metadata) {
-  const printPropertyImpports = () => {
-    if (m.properties) {
-      const result = Object.values(m.properties)
-        .filter((e) => {
-          return e.type === 'object';
-        })
-        .map((e) => {
-          if (!e.targetName) {
-            console.error(m);
-            console.error(`targetName is required for imports`);
-            return;
-          }
-          return `import {${e.targetName}} from '@webpackages/types';`;
-        })
-        .filter((e) => e);
-
-      return unifyAndJoin(result);
-    }
-
-    return '';
-  };
-
-  const printRelationImports = () => {
-    if (m.relations) {
-      const result = Object.values(m.relations).map((e) => {
-        return `import { ${e.targetName} } from '../${
-          names(e.targetName).fileName
-        }'`;
-      });
-
-      return unifyAndJoin(result);
-    }
-    return '';
-  };
-
-  return [printPropertyImpports(), printRelationImports()].join('\n');
+export function printEntityImports(m: Metadata) {
+  return [printPropertyImports(m), printRelationImports(m)].join('\n');
 }
 
 export function printEntityColumns(metadata: Metadata) {
@@ -297,25 +295,26 @@ export function __property_printOrderablePropertyNames(m: Metadata) {
     const result = Object.entries(m.properties).map(([key]) => {
       return `'${key}'`;
     });
-    return result;
+    return result.join(',');
   }
+  return '';
 }
 
 export function __relation_printOrderablePropertyNames(m: Metadata) {
   if (m.relations) {
     const result = Object.entries(m.relations).map(([, value]) => {
-      if (value.viewColumns) {
+      if (value.viewColumns && value.viewColumns.length > 0) {
         return value.viewColumns
           .map((e) => {
             return `'${
               names(value.targetName).propertyName + names(e).className
             }'`;
           })
-          .join(', ');
+          .join(',');
       }
       return '';
     });
-    return result;
+    return result.join(',');
   }
 }
 

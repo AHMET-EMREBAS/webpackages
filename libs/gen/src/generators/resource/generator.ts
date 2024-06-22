@@ -5,6 +5,7 @@ import * as ModelMetadatas from '@webpackages/metadata';
 import {
   printOrderablePropertyNames,
   printPropertiesForDto,
+  printPropertyImports,
   printQueryProperties,
   printRelationPropertiesForDto,
 } from '../utils';
@@ -21,6 +22,7 @@ export async function resourceGenerator(tree: Tree) {
       orderablePropertyNames: printOrderablePropertyNames(value),
       searchablePropertyNames: printOrderablePropertyNames(value),
       queriableProperties: printQueryProperties(value),
+      imports: printPropertyImports(value),
     };
 
     generateFiles(

@@ -4,7 +4,7 @@ import { EntityGeneratorSchema } from './schema';
 import * as ModelMetadatas from '@webpackages/metadata';
 import {
   printEntityColumns,
-  printImports,
+  printEntityImports,
   printPropertyNames,
   printRelationColumns,
   printViewProperties,
@@ -23,7 +23,7 @@ export async function entityGenerator(
     for (const [key, value] of metadatas) {
       generateFiles(tree, path.join(__dirname, 'files'), projectRoot, {
         ...names(key.replace('Metadata', '')),
-        imports: printImports(value),
+        imports: printEntityImports(value),
         properties: printEntityColumns(value),
         relations: printRelationColumns(value),
         propertyNames: printPropertyNames(value),
@@ -38,7 +38,7 @@ export async function entityGenerator(
     if (key && value) {
       generateFiles(tree, path.join(__dirname, 'files'), projectRoot, {
         ...names(key.replace('Metadata', '')),
-        imports: printImports(value),
+        imports: printEntityImports(value),
         properties: printEntityColumns(value),
         relations: printRelationColumns(value),
         propertyNames: printPropertyNames(value),

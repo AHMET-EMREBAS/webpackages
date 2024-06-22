@@ -18,8 +18,11 @@ export const PurchaseOrderMetadata: Metadata = {
     purchase: {
       relationType: 'owner',
       targetName: 'Purchase',
-      viewColumns: [],
     },
-    sku: { relationType: 'owner', targetName: 'Sku', viewColumns: ['sku', 'name'] },
+    sku: {
+      relationType: 'owner',
+      targetName: 'Sku',
+      viewColumns: ['sku', 'name'],
+    },
   },
 };

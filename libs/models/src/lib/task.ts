@@ -4,15 +4,15 @@ import { IUser } from './user';
 export interface ITask extends BaseEntity {
   name: string;
 
-  tags: string;
+  description: string;
+
+  tags: string[];
 
   dueDate: Date;
 
   startDate: Date;
 
   endDate: Date;
-
-  description: string;
 
   status: string;
 

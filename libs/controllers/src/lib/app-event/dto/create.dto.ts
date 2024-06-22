@@ -1,6 +1,7 @@
 import { IDDto } from '@webpackages/database';
 import { Property } from '@webpackages/property';
 import { Exclude } from 'class-transformer';
+import { EventPayload } from '@webpackages/types';
 
 @Exclude()
 export class CreateAppEventDto {

@@ -24,7 +24,9 @@ function printProperties(metadata: Metadata) {
       ...Object.entries(metadata.properties).map(([key, value]) => {
         return `
 
-        ${key}: ${value.type === 'date' ? 'Date' : value.type};
+        ${key}: ${value.type === 'date' ? 'Date' : value.type} ${
+          value.isArray ? '[]' : ''
+        };
         `;
       })
     );
