@@ -14,6 +14,6 @@ export class CreateOrderDto {
   @Property({ type: 'number', required: true })
   cart: IDDto;
 
-  @Property({ type: 'object', target: IDDto, isArray: true })
-  discounts: IDDto[];
+  @Property({ type: 'number' })
+  discounts: IDDto;
 }

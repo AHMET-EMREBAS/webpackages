@@ -14,5 +14,5 @@ export class Order extends BaseEntity implements IOrder {
 
   @Relation({ relationType: 'owner', target: Sku }) sku: Sku;
   @Relation({ relationType: 'owner', target: Cart }) cart: Cart;
-  @Relation({ relationType: 'many', target: Discount }) discounts: Discount[];
+  @Relation({ relationType: 'one', target: Discount }) discounts: Discount;
 }

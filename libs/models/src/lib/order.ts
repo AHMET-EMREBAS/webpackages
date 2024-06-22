@@ -14,5 +14,5 @@ export interface IOrder extends BaseEntity {
 
   cart: ICart;
 
-  discounts: IDiscount[];
+  discounts: IDiscount;
 }

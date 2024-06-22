@@ -6,8 +6,4 @@ import { Exclude } from 'class-transformer';
 export class QueryInboxDto extends BaseQueryDto implements QueryDto<InboxView> {
   @QueryProperty() userId: string;
   @QueryProperty() userActive: string;
-  @QueryProperty() sentId: string;
-  @QueryProperty() sentActive: string;
-  @QueryProperty() receivedId: string;
-  @QueryProperty() receivedActive: string;
 }

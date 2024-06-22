@@ -10,6 +10,6 @@ export const OrderMetadata: Metadata = {
   relations: {
     sku: { relationType: 'owner', targetName: 'Sku' },
     cart: { relationType: 'owner', targetName: 'Cart' },
-    discounts: { relationType: 'many', targetName: 'Discount' },
+    discount: { relationType: 'one', targetName: 'Discount' },
   },
 };
