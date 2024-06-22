@@ -16,6 +16,7 @@ import { InputType } from '@webpackages/types';
       [max]="inputMax"
       [attr.data-testid]="inputLabel"
       [autocomplete]="inputAutocomplete || 'off'"
+      [valueAsNumber]="true"
     />
     <mat-hint>{{ inputHint }}</mat-hint>
     <mat-error>{{ errorMessage$ | async }} </mat-error>

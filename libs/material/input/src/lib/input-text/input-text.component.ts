@@ -12,6 +12,7 @@ import { InputType } from '@webpackages/types';
       <input
         type="text"
         matInput
+        [required]="inputRequired"
         [formControl]="inputControl"
         [minlength]="inputMinLength"
         [maxLength]="inputMaxLength"

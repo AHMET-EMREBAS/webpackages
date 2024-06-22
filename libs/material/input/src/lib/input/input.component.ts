@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, Input, OnInit, isDevMode } from '@angular/core';
+import {
+  Component,
+  Inject,
+  Input,
+  OnInit,
+  Optional,
+  isDevMode,
+} from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,20 +22,19 @@ import {
 import { InputOptions } from './input-options';
 import { InputType, StringFormat } from '@webpackages/types';
 
+export const FormModules = [FormsModule, ReactiveFormsModule];
 export const InputModules = [
   CommonModule,
-  FormsModule,
-  ReactiveFormsModule,
-
   MatInputModule,
   MatFormFieldModule,
-
   MatButtonModule,
   MatIconModule,
+  ...FormModules,
 ];
 @Component({ template: '' })
 export class InputComponent<T = unknown> implements InputOptions, OnInit {
   @Input() inputType: InputType;
+  @Input() inputRequired: boolean;
   @Input() inputControl: FormControl;
   @Input() inputName: string;
   @Input() inputLabel: string;
@@ -39,6 +45,8 @@ export class InputComponent<T = unknown> implements InputOptions, OnInit {
   @Input() inputMax: number;
   @Input() inputFormat: StringFormat;
   @Input() inputAutocomplete: HTMLInputElement['autocomplete'];
+  @Input() inputEnums: string[];
+  @Input() inputMultiple: boolean;
 
   constructor(
     @Inject(getInputErrorMessageHandlerToken())

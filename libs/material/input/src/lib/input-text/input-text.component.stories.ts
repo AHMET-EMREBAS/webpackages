@@ -34,12 +34,13 @@ export const Primary: Story = {
   args: {
     inputLabel: 'Input Label',
     inputName: 'name',
+    inputRequired: true,
     inputControl: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(30),
     ]),
-    inputHint: `Name should contain between 3 and 30 characters.`,
+    inputHint: `Name should be between 3 and 30 characters.`,
     inputMinLength: 3,
     inputMaxLength: 30,
   },
