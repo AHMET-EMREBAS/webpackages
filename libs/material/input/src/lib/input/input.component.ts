@@ -22,7 +22,7 @@ import {
 import { InputOptions } from './input-options';
 import { InputType, StringFormat } from '@webpackages/types';
 
-export const FormModules = [FormsModule, ReactiveFormsModule];
+export const FormModules = [CommonModule, FormsModule, ReactiveFormsModule];
 export const InputModules = [
   CommonModule,
   MatInputModule,

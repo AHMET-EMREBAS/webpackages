@@ -2,6 +2,7 @@
 export * from './arr'
 export * from './base-entity'
 export * from './constructor'
+export * from './entity-option'
 export * from './event-payload'
 export * from './group-name'
 export * from './input-type'

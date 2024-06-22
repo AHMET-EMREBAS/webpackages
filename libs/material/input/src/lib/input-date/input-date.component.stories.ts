@@ -33,9 +33,7 @@ export default meta;
 
 type Story = StoryObj<InputDateComponent>;
 
-const inputControl = new FormControl('', [
-  Validators.min(new Date().getTime()),
-]);
+const inputControl = new FormControl('');
 
 export const Primary: Story = {
   args: {
