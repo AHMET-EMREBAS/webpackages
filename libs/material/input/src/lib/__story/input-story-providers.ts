@@ -1,5 +1,6 @@
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
+  provideDefaultAutocompleteOptions,
   provideDefaultInputDebounceTime,
   provideDefaultInputErrorMesssageHandler,
   provideDefaultInputStatusIndicatorHandler,
@@ -12,4 +13,5 @@ export const INPUT_STORY_PROVIDERS = [
   provideDefaultInputErrorMesssageHandler(),
   provideDefaultInputStatusIndicatorHandler(),
   provideDefaultInputDebounceTime(),
+  provideDefaultAutocompleteOptions(),
 ];

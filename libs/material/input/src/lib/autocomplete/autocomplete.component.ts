@@ -38,11 +38,14 @@ export class AutocompleteComponent extends InputComponent implements OnInit {
       startWith(''),
       debounceTime(1000),
       map((e) => {
-        return this.autocompleteOptions
-          .filter((value) => {
-            return value.label.toLowerCase().includes(e.toLowerCase());
-          })
-          .slice(0, 10);
+        if (typeof e === 'string') {
+          return this.autocompleteOptions
+            .filter((value) => {
+              return value.label.toLowerCase().includes(e.toLowerCase());
+            })
+            .slice(0, 10);
+        }
+        return this.autocompleteOptions.slice(0, 10);
       })
     );
   }

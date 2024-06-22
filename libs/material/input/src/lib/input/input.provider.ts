@@ -1,6 +1,11 @@
 import { FormControl } from '@angular/forms';
 import { InputOptions } from '../input/input-options';
 import { createValueProvider } from '@webpackages/material/core';
+import { Provider } from '@angular/core';
+import {
+  MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
+  MatAutocompleteDefaultOptions,
+} from '@angular/material/autocomplete';
 
 export type InputIndicatorHandler<T> = (
   control: FormControl,
@@ -81,3 +86,13 @@ export const {
   provide: provideInputDebounceTime,
   token: getInputDebounceTimeToken,
 } = createValueProvider<number>('InputDebouceTime', 600);
+
+export const provideDefaultAutocompleteOptions = (): Provider => {
+  return {
+    provide: MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
+    useValue: {
+      autoActiveFirstOption: true,
+      hideSingleSelectionIndicator: true,
+    } as MatAutocompleteDefaultOptions,
+  };
+};

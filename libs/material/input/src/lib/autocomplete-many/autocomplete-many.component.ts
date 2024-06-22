@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
 import { InputModules } from '../input';
 import {
+  MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
   MatAutocompleteModule,
   MatAutocompleteSelectedEvent,
 } from '@angular/material/autocomplete';
@@ -38,9 +39,13 @@ import { EntitySelectOption } from '@webpackages/types';
         [matChipInputFor]="chipGrid"
         [matAutocomplete]="auto"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="add($event)"
+        (matChipInputTokenEnd)="addByKeypress($event)"
       />
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith">
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        [displayWith]="displayWith"
+        (optionSelected)="add($event)"
+      >
         @for (option of filteredOptions$ | async; track option) {
         <mat-option [value]="option">{{ option.label }}</mat-option>
         }
@@ -48,6 +53,10 @@ import { EntitySelectOption } from '@webpackages/types';
     </mat-form-field>
 
     <br />
+
+    {{ inputControl.value | json }}
+    <br />
+    <!-- {{ auto.optionActivated | json }} -->
   `,
 })
 export class AutocompleteManyComponent extends AutocompleteComponent {
@@ -56,15 +65,31 @@ export class AutocompleteManyComponent extends AutocompleteComponent {
 
   selectedItems = signal<EntitySelectOption[]>([]);
 
-  protected findByLabel(label: string) {
-    return this;
+  protected findByLabel(label: string): EntitySelectOption | undefined {
+    return this.autocompleteOptions.find((e) =>
+      e?.label?.toLowerCase().includes(label.toLowerCase())
+    );
   }
 
-  add(event: any) {
-    console.log('ADD : ', event);
+  addByKeypress(event: MatChipInputEvent) {
+    const found = this.findByLabel(event.value);
+    if (found) {
+      this.selectedItems.update((items) => [...items, found]);
+    }
+  }
+
+  add(event: MatAutocompleteSelectedEvent) {
+    this.selectedItems.update((items) => [...items, event.option.value]);
   }
 
   remove(event: MatChipEvent) {
-    console.log('Remove : ', event);
+    const index = this.autocompleteOptions.indexOf(
+      this.findByLabel(event.chip.value)!
+    );
+
+    this.selectedItems.update((items) => {
+      delete items[index];
+      return [...items];
+    });
   }
 }
