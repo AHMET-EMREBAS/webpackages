@@ -1,10 +1,10 @@
-import { <%- className %> } from '@webpackages/entities';
+import { <%- className %>View } from '@webpackages/entities';
 import { SearchDto, SearchProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
-export class Search<%- className %>Dto implements SearchDto<<%- className %>> {
-  @SearchProperty<<%- className %>>(<%- searchProperties %>)
+export class Search<%- className %>Dto implements SearchDto<<%- className %>View> {
+  @SearchProperty<<%- className %>>(<%- searchablePropertyNames %>)
   search: FindOptionsWhere<<%- className %>>;
 }

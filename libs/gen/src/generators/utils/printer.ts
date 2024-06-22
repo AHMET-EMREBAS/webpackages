@@ -100,6 +100,17 @@ export function printRelationPropertyNames(m: Metadata) {
   return '';
 }
 
+// export function printQueryProperties(m: Metadata) {
+//   if (m.properties) {
+//     const result = Object.entries(m.properties).map(([key, value]) => {
+//       return `@ViewColumn() ${key}: ${printPropertyType(value)};`;
+//     });
+//     return unifyAndJoin(result);
+//   }
+
+//   return '';
+// }
+
 export function printViewProperties(m: Metadata) {
   if (m.properties) {
     const result = Object.entries(m.properties).map(([key, value]) => {
@@ -219,4 +230,134 @@ export function printRelationColumns(metadata: Metadata) {
     return unifyAndJoin(result);
   }
   return '';
+}
+
+/**
+ * Print dto properties
+ * @param metadata
+ * @returns DTO properties
+ */
+export function printPropertiesForDto(metadata: Metadata) {
+  if (metadata.properties) {
+    const result = Object.entries(metadata.properties).map(([key, value]) => {
+      const decorator = () => {
+        return `@Property(${JSON.stringify(value)})`;
+      };
+
+      return `${decorator()} ${key}:${printPropertyType(value)};`;
+    });
+
+    return unifyAndJoin(result);
+  }
+
+  return '';
+}
+
+export function printRelationPropertiesForDto(metadata: Metadata) {
+  // import { IDDto } from '@webpackages/database';
+
+  if (metadata.relations)
+    return Object.entries(metadata.relations)
+      .map(([key, value]) => {
+        const propertyName = () => {
+          return value.relationType === 'many' ? key : key;
+        };
+        const isRequired = () => {
+          return value.relationType === 'owner' ||
+            value.relationType === 'secure-owner'
+            ? ',required: true'
+            : '';
+        };
+
+        const decoratorsOptions = () => {
+          return value.relationType === 'many'
+            ? `{type:"object", target:IDDto, isArray:true ${isRequired()} }`
+            : `{ type:'number' ${isRequired()} }`;
+        };
+
+        const decorator = () => {
+          return `@Property(${decoratorsOptions()})`;
+        };
+
+        const type = () => {
+          return value.relationType === 'many' ? 'IDDto' + '[]' : 'IDDto';
+        };
+
+        return `
+      ${decorator()}
+      ${propertyName()}:${type()};`;
+      })
+      .join('\n');
+
+  return '';
+}
+
+export function __property_printOrderablePropertyNames(m: Metadata) {
+  if (m.properties) {
+    const result = Object.entries(m.properties).map(([key]) => {
+      return `'${key}'`;
+    });
+    return result;
+  }
+}
+export function __relation_printOrderablePropertyNames(m: Metadata) {
+  if (m.relations) {
+    const result = Object.entries(m.relations).map(([, value]) => {
+      if (value.viewColumns) {
+        return value.viewColumns
+          .map((e) => {
+            return `'${e}'`;
+          })
+          .join(', ');
+      }
+      return '';
+    });
+    return result;
+  }
+}
+
+export function printOrderablePropertyNames(m: Metadata) {
+  const result = [
+    __property_printOrderablePropertyNames(m),
+    __relation_printOrderablePropertyNames(m),
+  ]
+    .filter((e) => e)
+    .join(',');
+  return `[ ${result} ]`;
+}
+
+export function __property__printQueryProperties(m: Metadata) {
+  if (m.properties) {
+    const result = Object.entries(m.properties).map(([key]) => {
+      return `@QueryProperty() ${key}: string`;
+    });
+
+    return unifyAndJoin(result);
+  }
+  return '';
+}
+
+export function __relation__printQueryProperties(m: Metadata) {
+  if (m.properties) {
+    const result = Object.entries(m.relations).map(([, value]) => {
+      if (value.viewColumns) {
+        return value.viewColumns
+          .map((k) => {
+            return `@QueryProperty() ${k}: string`;
+          })
+          .join('\n');
+      }
+      return '';
+    });
+
+    return unifyAndJoin(result);
+  }
+  return '';
+}
+
+export function printQueryProperties(m: Metadata) {
+  return unifyAndJoin([
+    __property__printQueryProperties(m),
+    __relation__printQueryProperties(m),
+  ]);
 }

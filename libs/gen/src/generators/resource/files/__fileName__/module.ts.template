@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { <%- className %>Controller } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { <%- className %> } from '@webpackages/entities';
+import { <%- className %>, <%- className %>View } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { <%- className %>Service } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([<%- className %>])],
+  imports: [TypeOrmModule.forFeature([<%- className %>,<%- className %>View])],
   controllers: [<%- className %>Controller],
   providers: [<%- className %>Service],
 })

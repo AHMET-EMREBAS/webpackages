@@ -1,12 +1,15 @@
 import { BaseEntityService } from '@webpackages/database';
-import { <%- className %> } from '@webpackages/entities';
+import { <%- className %>, <%- className %>View } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class <%- className %>Service extends BaseEntityService<<%- className %>> {
-  constructor(@InjectRepository(<%- className %>) repo: Repository<<%- className %>>) {
-    super(repo);
+export class <%- className %>Service extends BaseEntityService<<%- className %>,<%- className %>View> {
+  constructor(
+    @InjectRepository(<%- className %>) repo: Repository<<%- className %>>,
+    @InjectRepository(<%- className %>View) view: Repository<<%- className %>View>,
+  ) {
+    super(repo, view);
   }
 }

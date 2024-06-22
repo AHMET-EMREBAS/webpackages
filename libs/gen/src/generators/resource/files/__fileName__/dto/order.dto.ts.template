@@ -1,7 +1,7 @@
-import { <%- className %> } from '@webpackages/entities';
+import { <%- className %>View } from '@webpackages/entities';
 import { CreateOrderDto } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 
 @Exclude()
-export class Order<%- className %>Dto extends CreateOrderDto<<%- className %>>(<%- propertyNames %>) {}
+export class Order<%- className %>Dto extends CreateOrderDto<<%- className %>View>(<%- orderablePropertyNames %>) {}
