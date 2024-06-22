@@ -14,7 +14,7 @@ export class SearchTaskDto implements SearchDto<TaskView> {
     'endDate',
     'status',
     'difficulty',
-    'userUsername',
+    'usersUsername',
   ])
   search: FindOptionsWhere<TaskView>;
 }

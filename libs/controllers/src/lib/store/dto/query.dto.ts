@@ -5,7 +5,7 @@ import { Exclude } from 'class-transformer';
 @Exclude()
 export class QueryStoreDto extends BaseQueryDto implements QueryDto<StoreView> {
   @QueryProperty() name: string;
-  @QueryProperty() userId: string;
-  @QueryProperty() userActive: string;
-  @QueryProperty() userUsername: string;
+  @QueryProperty() managerId: string;
+  @QueryProperty() managerActive: string;
+  @QueryProperty() managerUsername: string;
 }

@@ -12,7 +12,7 @@ export class SearchCustomerAddressDto
     'city',
     'state',
     'zip',
-    'customerUsername',
+    'userUsername',
   ])
   search: FindOptionsWhere<CustomerAddressView>;
 }

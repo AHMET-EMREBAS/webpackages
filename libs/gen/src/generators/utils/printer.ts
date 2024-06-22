@@ -302,14 +302,12 @@ export function __property_printOrderablePropertyNames(m: Metadata) {
 
 export function __relation_printOrderablePropertyNames(m: Metadata) {
   if (m.relations) {
-    const result = Object.entries(m.relations).map(([, value]) => {
+    const result = Object.entries(m.relations).map(([key, value]) => {
       if (value.viewColumns && value.viewColumns.length > 0) {
         return value.viewColumns
           .filter((e) => e)
           .map((e) => {
-            return `'${
-              names(value.targetName).propertyName + names(e).className
-            }'`;
+            return `'${names(key).propertyName + names(e).className}'`;
           })
           .join(',');
       }
@@ -344,12 +342,12 @@ export function __property__printQueryProperties(m: Metadata) {
 
 export function __relation__printQueryProperties(m: Metadata) {
   if (m.relations) {
-    const result = Object.entries(m.relations).map(([, value]) => {
+    const result = Object.entries(m.relations).map(([key, value]) => {
       const cols = ['id', 'active', ...(value.viewColumns ?? [])];
       return cols
         .map((k) => {
           const name =
-            names(value.targetName).propertyName + names(k).className;
+            names(key).propertyName + names(k).className;
           return `@QueryProperty() ${name}: string`;
         })
         .join('\n');
