@@ -1,13 +1,16 @@
-import { InjectionToken, Provider } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { InputOptions } from '../input/input-options';
+import { createValueProvider } from '@webpackages/material/core';
 
-export type InputErrorMessageHandler = (
+export type InputIndicatorHandler<T> = (
   control: FormControl,
   options: InputOptions
-) => string;
+) => T;
 
-export const defaultErrorMessageParser: InputErrorMessageHandler = function (
+export type InputErrorMessageHandler = InputIndicatorHandler<string>;
+export type InputStatusIndicatorHandler = InputIndicatorHandler<string>;
+
+export const defaultErrorMessageHandler: InputErrorMessageHandler = function (
   control: FormControl,
   options: InputOptions
 ): string {
@@ -28,32 +31,6 @@ export const defaultErrorMessageParser: InputErrorMessageHandler = function (
   return 'Field is invalid';
 };
 
-export const InputErrorMessageHandlerToken = new InjectionToken(
-  'InputErrorMessageHandlerToken'
-);
-
-export function provideInputErrorMessageHandler(
-  useValue: InputErrorMessageHandler
-): Provider {
-  return {
-    provide: InputErrorMessageHandlerToken,
-    useValue,
-  };
-}
-
-export function provideDefaultInputErrorMesssageHandler() {
-  return provideInputErrorMessageHandler(defaultErrorMessageParser);
-}
-
-export type InputStatusIndicatorHandler = (
-  control: FormControl,
-  options: InputOptions
-) => string;
-
-export const InputStatusIndicatorHandlerToken = new InjectionToken(
-  'InputStatusIndicatorHandlerToken'
-);
-
 export const defaultInputStatusIndicatorHandler: InputStatusIndicatorHandler = (
   control,
   options
@@ -61,15 +38,17 @@ export const defaultInputStatusIndicatorHandler: InputStatusIndicatorHandler = (
   return `(${control.value?.length}/${options.inputMaxLength || '*'})`;
 };
 
-export function provideInputStatusIndicatorHander(
-  useValue: InputStatusIndicatorHandler
-) {
-  return {
-    provide: InputStatusIndicatorHandlerToken,
-    useValue,
-  };
-}
+export const {
+  token: getInputErrorMessageHandlerToken,
+  provide: provideInputErrorMessageHandler,
+  default: provideDefaultInputErrorMesssageHandler,
+} = createValueProvider('ErrorMessageHandler', defaultErrorMessageHandler);
 
-export function provideDefaultInputStatusIndicatorHandler(): Provider {
-  return provideInputStatusIndicatorHander(defaultInputStatusIndicatorHandler);
-}
+export const {
+  token: getInputStatusIndicatorHandlerToken,
+  provide: provideInputStatusIndicatorHander,
+  default: provideDefaultInputStatusIndicatorHandler,
+} = createValueProvider(
+  'StatusIndicatorHandler',
+  defaultInputStatusIndicatorHandler
+);

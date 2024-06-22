@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, isDevMode } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,9 +9,9 @@ import { StringFormat } from '@webpackages/types';
 import { Observable, debounceTime, map } from 'rxjs';
 import {
   InputErrorMessageHandler,
-  InputErrorMessageHandlerToken,
   InputStatusIndicatorHandler,
-  InputStatusIndicatorHandlerToken,
+  getInputStatusIndicatorHandlerToken,
+  getInputErrorMessageHandlerToken,
 } from './input.provider';
 import { InputOptions } from './input-options';
 
@@ -28,7 +27,7 @@ export const InputModules = [
   MatIconModule,
 ];
 @Component({ template: '' })
-export class InputComponent implements InputOptions, OnInit {
+export class InputComponent<T = unknown> implements InputOptions, OnInit {
   @Input() inputControl: FormControl;
   @Input() inputName: string;
   @Input() inputLabel: string;
@@ -40,9 +39,9 @@ export class InputComponent implements InputOptions, OnInit {
   @Input() inputFormat: StringFormat;
 
   constructor(
-    @Inject(InputErrorMessageHandlerToken)
+    @Inject(getInputErrorMessageHandlerToken())
     protected readonly errorMessage: InputErrorMessageHandler,
-    @Inject(InputStatusIndicatorHandlerToken)
+    @Inject(getInputStatusIndicatorHandlerToken())
     protected readonly statusIndicator: InputStatusIndicatorHandler
   ) {}
 
@@ -60,6 +59,16 @@ export class InputComponent implements InputOptions, OnInit {
    * Try not to override
    */
   ngOnInit(): void {
+    if (!this.inputControl) {
+      if (isDevMode()) {
+        console.warn(
+          `inputControl is not provided which is required for the input components! We assume it is intentianal and create the instance`
+        );
+      }
+
+      this.inputControl = new FormControl('');
+    }
+
     this.errorMessage$ = this.inputControl.valueChanges.pipe(
       debounceTime(1000),
       map((e) => this.errorMessage(this.inputControl, this))
@@ -72,8 +81,4 @@ export class InputComponent implements InputOptions, OnInit {
       })
     );
   }
-
-  // protected __statusIndicator() {
-  //   return `(${this.inputControl.value?.length}/${this.inputMaxLength || '*'})`;
-  // }
 }
