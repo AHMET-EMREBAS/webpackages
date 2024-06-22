@@ -17,5 +17,5 @@ export class Task extends BaseEntity implements ITask {
   @Column({ type: 'string', required: false, unique: false })
   difficulty: string;
 
-  @Relation({ relationType: 'many', target: User }) users: User[];
+  @Relation({ relationType: 'one', target: User }) users: User;
 }

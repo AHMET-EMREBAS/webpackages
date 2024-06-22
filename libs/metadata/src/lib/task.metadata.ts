@@ -56,7 +56,7 @@ export const TaskMetadata: Metadata = {
   },
   relations: {
     users: {
-      relationType: 'many',
+      relationType: 'one',
       targetName: 'User',
       viewColumns: ['username'],
     },

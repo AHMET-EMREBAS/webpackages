@@ -18,5 +18,5 @@ export interface ITask extends BaseEntity {
 
   difficulty: string;
 
-  users: IUser[];
+  users: IUser;
 }

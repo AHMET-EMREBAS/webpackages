@@ -62,6 +62,6 @@ export class CreateTaskDto {
   })
   difficulty: string;
 
-  @Property({ type: 'object', target: IDDto, isArray: true })
-  users: IDDto[];
+  @Property({ type: 'number' })
+  users: IDDto;
 }
