@@ -3,7 +3,13 @@
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0"
+    "@angular/core": "^18.0.0",
+    "@storybook/angular": "7.6.19",
+    "jest-preset-angular": "~14.1.0",
+    "@storybook/testing-library": "^0.2.2",
+    "@storybook/jest": "^0.2.3",
+    "@angular/material": "^18.0.3",
+    "@angular/platform-browser": "~18.0.0"
   },
   "sideEffects": false
 }
