@@ -1,6 +1,6 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
 export const AppInterceptor: HttpInterceptorFn = (req, next) => {
-  const nreq = req.clone({ url: `http://localhost:3000/${req.url}` });
+  const nreq = req.clone();
   return next(nreq);
 };

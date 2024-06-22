@@ -1,10 +1,7 @@
 {
   "/api": {
-    "target": "http://http://192.168.50.23:3000",
+    "target": "http://192.168.50.23:3000/api",
     "secure": false,
-    "pathRewrite": {
-      "^/api": ""
-    },
     "changeOrigin": true
   }
 }
