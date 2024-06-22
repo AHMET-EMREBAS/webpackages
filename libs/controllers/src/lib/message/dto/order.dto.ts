@@ -6,5 +6,4 @@ import { Exclude } from 'class-transformer';
 export class OrderMessageDto extends CreateOrderDto<MessageView>([
   'message',
   'readDate',
-  ,
 ]) {}

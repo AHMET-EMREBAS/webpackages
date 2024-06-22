@@ -8,7 +8,6 @@ export class OrderPurchaseOrderDto extends CreateOrderDto<PurchaseOrderView>([
   'quantity',
   'subTotal',
   'total',
-  ,
   'skuSku',
   'skuName',
 ]) {}

@@ -7,6 +7,4 @@ export class OrderOrderDto extends CreateOrderDto<OrderView>([
   'unitPrice',
   'subTotal',
   'quantity',
-  ,
-  ,
 ]) {}

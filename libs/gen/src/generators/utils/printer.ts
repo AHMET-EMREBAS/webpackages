@@ -295,7 +295,7 @@ export function __property_printOrderablePropertyNames(m: Metadata) {
     const result = Object.entries(m.properties).map(([key]) => {
       return `'${key}'`;
     });
-    return result.join(',');
+    return result.filter((e) => e).join(',');
   }
   return '';
 }
@@ -305,6 +305,7 @@ export function __relation_printOrderablePropertyNames(m: Metadata) {
     const result = Object.entries(m.relations).map(([, value]) => {
       if (value.viewColumns && value.viewColumns.length > 0) {
         return value.viewColumns
+          .filter((e) => e)
           .map((e) => {
             return `'${
               names(value.targetName).propertyName + names(e).className
@@ -314,7 +315,7 @@ export function __relation_printOrderablePropertyNames(m: Metadata) {
       }
       return '';
     });
-    return result.join(',');
+    return result.filter((e) => e).join(',');
   }
 }
 
@@ -325,6 +326,8 @@ export function printOrderablePropertyNames(m: Metadata) {
   ]
     .filter((e) => e)
     .join(',');
+
+  console.log(result);
   return `[ ${result} ]`;
 }
 

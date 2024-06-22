@@ -10,7 +10,6 @@ export class SearchPurchaseOrderDto implements SearchDto<PurchaseOrderView> {
     'quantity',
     'subTotal',
     'total',
-    ,
     'skuSku',
     'skuName',
   ])

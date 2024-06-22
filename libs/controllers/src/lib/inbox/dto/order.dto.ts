@@ -3,4 +3,4 @@ import { CreateOrderDto } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class OrderInboxDto extends CreateOrderDto<InboxView>([, ,]) {}
+export class OrderInboxDto extends CreateOrderDto<InboxView>([]) {}

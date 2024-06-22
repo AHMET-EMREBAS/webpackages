@@ -8,5 +8,4 @@ export class OrderPriceDto extends CreateOrderDto<PriceView>([
   'cost',
   'startDate',
   'endDate',
-  ,
 ]) {}
