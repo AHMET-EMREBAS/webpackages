@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { AddressController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { Address } from '@webpackages/entities';
+import { Address, AddressView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { AddressService } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Address])],
+  imports: [TypeOrmModule.forFeature([Address, AddressView])],
   controllers: [AddressController],
   providers: [AddressService],
 })

@@ -1,9 +1,9 @@
-import { CustomerPhone } from '@webpackages/entities';
+import { CustomerPhoneView } from '@webpackages/entities';
 import { CreateOrderDto } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class OrderCustomerPhoneDto extends CreateOrderDto<CustomerPhone>([
+export class OrderCustomerPhoneDto extends CreateOrderDto<CustomerPhoneView>([
   'phone',
-  'user',
+  'username',
 ]) {}

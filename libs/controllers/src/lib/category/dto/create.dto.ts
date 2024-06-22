@@ -10,6 +10,7 @@ export class CreateCategoryDto {
     maxLength: 100,
     required: true,
     unique: true,
+    example: 'Default Category',
   })
   name: string;
 }

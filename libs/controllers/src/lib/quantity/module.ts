@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { QuantityController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { Quantity } from '@webpackages/entities';
+import { Quantity, QuantityView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { QuantityService } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Quantity])],
+  imports: [TypeOrmModule.forFeature([Quantity, QuantityView])],
   controllers: [QuantityController],
   providers: [QuantityService],
 })

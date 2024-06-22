@@ -1,14 +1,15 @@
-import { SerialNumber } from '@webpackages/entities';
+import { SerialNumberView } from '@webpackages/entities';
 import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
 export class QuerySerialNumberDto
   extends BaseQueryDto
-  implements QueryDto<SerialNumber>
+  implements QueryDto<SerialNumberView>
 {
   @QueryProperty() serialNumber: string;
   @QueryProperty() inStock: string;
   @QueryProperty() generated: string;
   @QueryProperty() sku: string;
+  @QueryProperty() name: string;
 }

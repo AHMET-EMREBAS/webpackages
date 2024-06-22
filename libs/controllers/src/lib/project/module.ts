@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { ProjectController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { Project } from '@webpackages/entities';
+import { Project, ProjectView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { ProjectService } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Project])],
+  imports: [TypeOrmModule.forFeature([Project, ProjectView])],
   controllers: [ProjectController],
   providers: [ProjectService],
 })

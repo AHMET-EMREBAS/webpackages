@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { UserImgController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { UserImg } from '@webpackages/entities';
+import { UserImg, UserImgView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { UserImgService } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserImg])],
+  imports: [TypeOrmModule.forFeature([UserImg, UserImgView])],
   controllers: [UserImgController],
   providers: [UserImgService],
 })

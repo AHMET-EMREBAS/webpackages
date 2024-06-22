@@ -1,10 +1,10 @@
-import { UserImg } from '@webpackages/entities';
+import { UserImgView } from '@webpackages/entities';
 import { SearchDto, SearchProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
-export class SearchUserImgDto implements SearchDto<UserImg> {
-  @SearchProperty<UserImg>(['title', 'generatedName', 'user'])
+export class SearchUserImgDto implements SearchDto<UserImgView> {
+  @SearchProperty<UserImg>(['title', 'generatedName', 'username'])
   search: FindOptionsWhere<UserImg>;
 }

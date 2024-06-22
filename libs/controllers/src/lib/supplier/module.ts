@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { SupplierController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { Supplier } from '@webpackages/entities';
+import { Supplier, SupplierView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { SupplierService } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Supplier])],
+  imports: [TypeOrmModule.forFeature([Supplier, SupplierView])],
   controllers: [SupplierController],
   providers: [SupplierService],
 })

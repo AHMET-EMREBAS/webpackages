@@ -1,16 +1,16 @@
-import { Task } from '@webpackages/entities';
+import { TaskView } from '@webpackages/entities';
 import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class QueryTaskDto extends BaseQueryDto implements QueryDto<Task> {
+export class QueryTaskDto extends BaseQueryDto implements QueryDto<TaskView> {
   @QueryProperty() name: string;
+  @QueryProperty() description: string;
   @QueryProperty() tags: string;
   @QueryProperty() dueDate: string;
   @QueryProperty() startDate: string;
   @QueryProperty() endDate: string;
-  @QueryProperty() description: string;
   @QueryProperty() status: string;
   @QueryProperty() difficulty: string;
-  @QueryProperty() users: string;
+  @QueryProperty() username: string;
 }

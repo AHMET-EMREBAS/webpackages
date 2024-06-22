@@ -4,20 +4,12 @@ import { Exclude } from 'class-transformer';
 
 @Exclude()
 export class CreateQuantityDto {
-  @Property({ type: 'number', minimum: 0, required: true })
+  @Property({ type: 'number', minimum: 0, required: true, example: 13 })
   quantity: number;
-
-  @Property({ type: 'boolean' })
-  alert: boolean;
-
-  @Property({ type: 'number' })
-  alertUnderQuantity: number;
-
-  @Property({ type: 'boolean' })
-  autoRepurchase: boolean;
-
-  @Property({ type: 'boolean' })
-  notSellLastOne: boolean;
+  @Property({ type: 'boolean', example: false }) alert: boolean;
+  @Property({ type: 'number', example: 3 }) alertUnderQuantity: number;
+  @Property({ type: 'boolean', example: false }) autoRepurchase: boolean;
+  @Property({ type: 'boolean', example: false }) notSellLastOne: boolean;
 
   @Property({ type: 'number', required: true })
   sku: IDDto;

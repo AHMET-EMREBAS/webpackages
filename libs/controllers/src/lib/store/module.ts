@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { StoreController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { Store } from '@webpackages/entities';
+import { Store, StoreView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { StoreService } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Store])],
+  imports: [TypeOrmModule.forFeature([Store, StoreView])],
   controllers: [StoreController],
   providers: [StoreService],
 })

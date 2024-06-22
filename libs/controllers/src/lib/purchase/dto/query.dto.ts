@@ -1,11 +1,11 @@
-import { Purchase } from '@webpackages/entities';
+import { PurchaseView } from '@webpackages/entities';
 import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
 export class QueryPurchaseDto
   extends BaseQueryDto
-  implements QueryDto<Purchase>
+  implements QueryDto<PurchaseView>
 {
   @QueryProperty() orderDate: string;
   @QueryProperty() expectedShippingDate: string;
@@ -13,5 +13,5 @@ export class QueryPurchaseDto
   @QueryProperty() subTotal: string;
   @QueryProperty() total: string;
   @QueryProperty() notes: string;
-  @QueryProperty() user: string;
+  @QueryProperty() username: string;
 }

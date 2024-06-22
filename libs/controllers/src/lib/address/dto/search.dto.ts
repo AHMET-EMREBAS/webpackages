@@ -1,10 +1,10 @@
-import { Address } from '@webpackages/entities';
+import { AddressView } from '@webpackages/entities';
 import { SearchDto, SearchProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
-export class SearchAddressDto implements SearchDto<Address> {
+export class SearchAddressDto implements SearchDto<AddressView> {
   @SearchProperty<Address>(['street', 'city', 'state', 'zip'])
   search: FindOptionsWhere<Address>;
 }

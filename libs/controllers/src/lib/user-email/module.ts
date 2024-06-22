@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { UserEmailController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { UserEmail } from '@webpackages/entities';
+import { UserEmail, UserEmailView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { UserEmailService } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserEmail])],
+  imports: [TypeOrmModule.forFeature([UserEmail, UserEmailView])],
   controllers: [UserEmailController],
   providers: [UserEmailService],
 })

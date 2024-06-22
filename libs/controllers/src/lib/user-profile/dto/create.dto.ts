@@ -4,13 +4,23 @@ import { Exclude } from 'class-transformer';
 
 @Exclude()
 export class CreateUserProfileDto {
-  @Property({ type: 'string', minLength: 3, maxLength: 100, required: true })
+  @Property({
+    type: 'string',
+    minLength: 3,
+    maxLength: 100,
+    required: true,
+    example: 'Ahmet',
+  })
   firstName: string;
-
-  @Property({ type: 'string', minLength: 3, maxLength: 100, required: true })
+  @Property({
+    type: 'string',
+    minLength: 3,
+    maxLength: 100,
+    required: true,
+    example: 'Emrebas',
+  })
   lastName: string;
-
-  @Property({ type: 'string', minLength: 3, maxLength: 100 })
+  @Property({ type: 'string', minLength: 3, maxLength: 100, example: 'N/A' })
   middleName: string;
 
   @Property({ type: 'number', required: true })

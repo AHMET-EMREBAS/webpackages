@@ -1,10 +1,10 @@
-import { Session } from '@webpackages/entities';
+import { SessionView } from '@webpackages/entities';
 import { SearchDto, SearchProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
-export class SearchSessionDto implements SearchDto<Session> {
-  @SearchProperty<Session>(['user'])
+export class SearchSessionDto implements SearchDto<SessionView> {
+  @SearchProperty<Session>(['deviceId', 'username'])
   search: FindOptionsWhere<Session>;
 }

@@ -1,9 +1,9 @@
-import { Address } from '@webpackages/entities';
+import { AddressView } from '@webpackages/entities';
 import { CreateOrderDto } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class OrderAddressDto extends CreateOrderDto<Address>([
+export class OrderAddressDto extends CreateOrderDto<AddressView>([
   'street',
   'city',
   'state',

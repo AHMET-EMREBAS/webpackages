@@ -1,9 +1,10 @@
-import { Sprint } from '@webpackages/entities';
+import { SprintView } from '@webpackages/entities';
 import { CreateOrderDto } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class OrderSprintDto extends CreateOrderDto<Sprint>([
+export class OrderSprintDto extends CreateOrderDto<SprintView>([
   'name',
-  'project',
+  'description',
+  'name',
 ]) {}

@@ -1,10 +1,10 @@
-import { PriceLevel } from '@webpackages/entities';
+import { PriceLevelView } from '@webpackages/entities';
 import { SearchDto, SearchProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
-export class SearchPriceLevelDto implements SearchDto<PriceLevel> {
-  @SearchProperty<PriceLevel>(['name', 'taxrate'])
+export class SearchPriceLevelDto implements SearchDto<PriceLevelView> {
+  @SearchProperty<PriceLevel>(['name', 'currency', 'taxrate'])
   search: FindOptionsWhere<PriceLevel>;
 }

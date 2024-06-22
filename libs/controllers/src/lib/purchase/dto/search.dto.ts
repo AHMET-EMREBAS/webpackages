@@ -1,10 +1,10 @@
-import { Purchase } from '@webpackages/entities';
+import { PurchaseView } from '@webpackages/entities';
 import { SearchDto, SearchProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
-export class SearchPurchaseDto implements SearchDto<Purchase> {
+export class SearchPurchaseDto implements SearchDto<PurchaseView> {
   @SearchProperty<Purchase>([
     'orderDate',
     'expectedShippingDate',
@@ -12,7 +12,7 @@ export class SearchPurchaseDto implements SearchDto<Purchase> {
     'subTotal',
     'total',
     'notes',
-    'user',
+    'username',
   ])
   search: FindOptionsWhere<Purchase>;
 }

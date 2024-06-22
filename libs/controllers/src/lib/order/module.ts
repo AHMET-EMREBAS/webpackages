@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { OrderController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { Order } from '@webpackages/entities';
+import { Order, OrderView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { OrderService } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Order])],
+  imports: [TypeOrmModule.forFeature([Order, OrderView])],
   controllers: [OrderController],
   providers: [OrderService],
 })

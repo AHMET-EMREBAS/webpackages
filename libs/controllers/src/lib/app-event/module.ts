@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { AppEventController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { AppEvent } from '@webpackages/entities';
+import { AppEvent, AppEventView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { AppEventService } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([AppEvent])],
+  imports: [TypeOrmModule.forFeature([AppEvent, AppEventView])],
   controllers: [AppEventController],
   providers: [AppEventService],
 })

@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { DepartmentController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { Department } from '@webpackages/entities';
+import { Department, DepartmentView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { DepartmentService } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Department])],
+  imports: [TypeOrmModule.forFeature([Department, DepartmentView])],
   controllers: [DepartmentController],
   providers: [DepartmentService],
 })

@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { ProfileController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { Profile } from '@webpackages/entities';
+import { Profile, ProfileView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { ProfileService } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Profile])],
+  imports: [TypeOrmModule.forFeature([Profile, ProfileView])],
   controllers: [ProfileController],
   providers: [ProfileService],
 })

@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { DiscountController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { Discount } from '@webpackages/entities';
+import { Discount, DiscountView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { DiscountService } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Discount])],
+  imports: [TypeOrmModule.forFeature([Discount, DiscountView])],
   controllers: [DiscountController],
   providers: [DiscountService],
 })

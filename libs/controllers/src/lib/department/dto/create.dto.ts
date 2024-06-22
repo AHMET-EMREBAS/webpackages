@@ -10,6 +10,7 @@ export class CreateDepartmentDto {
     maxLength: 100,
     required: true,
     unique: true,
+    example: 'Default Category',
   })
   name: string;
 }

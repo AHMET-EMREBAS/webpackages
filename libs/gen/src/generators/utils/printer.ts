@@ -234,14 +234,14 @@ export function printRelationColumns(metadata: Metadata) {
 
 /**
  * Print dto properties
- * @param metadata
+ * @param m
  * @returns DTO properties
  */
-export function printPropertiesForDto(metadata: Metadata) {
-  if (metadata.properties) {
-    const result = Object.entries(metadata.properties).map(([key, value]) => {
+export function printPropertiesForDto(m: Metadata) {
+  if (m.properties) {
+    const result = Object.entries(m.properties).map(([key, value]) => {
       const decorator = () => {
-        return `@Property(${JSON.stringify(value)})`;
+        return `@Property(${JSON.stringify(value || {})})`;
       };
 
       return `${decorator()} ${key}:${printPropertyType(value)};`;
@@ -253,11 +253,11 @@ export function printPropertiesForDto(metadata: Metadata) {
   return '';
 }
 
-export function printRelationPropertiesForDto(metadata: Metadata) {
+export function printRelationPropertiesForDto(m: Metadata) {
   // import { IDDto } from '@webpackages/database';
 
-  if (metadata.relations)
-    return Object.entries(metadata.relations)
+  if (m.relations)
+    return Object.entries(m.relations)
       .map(([key, value]) => {
         const propertyName = () => {
           return value.relationType === 'many' ? key : key;
@@ -300,6 +300,7 @@ export function __property_printOrderablePropertyNames(m: Metadata) {
     return result;
   }
 }
+
 export function __relation_printOrderablePropertyNames(m: Metadata) {
   if (m.relations) {
     const result = Object.entries(m.relations).map(([, value]) => {
@@ -338,7 +339,7 @@ export function __property__printQueryProperties(m: Metadata) {
 }
 
 export function __relation__printQueryProperties(m: Metadata) {
-  if (m.properties) {
+  if (m.relations) {
     const result = Object.entries(m.relations).map(([, value]) => {
       if (value.viewColumns) {
         return value.viewColumns

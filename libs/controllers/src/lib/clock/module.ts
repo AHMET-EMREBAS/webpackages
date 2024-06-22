@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { ClockController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { Clock } from '@webpackages/entities';
+import { Clock, ClockView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { ClockService } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Clock])],
+  imports: [TypeOrmModule.forFeature([Clock, ClockView])],
   controllers: [ClockController],
   providers: [ClockService],
 })

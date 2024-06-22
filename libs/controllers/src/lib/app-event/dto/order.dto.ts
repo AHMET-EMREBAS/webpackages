@@ -1,9 +1,9 @@
-import { AppEvent } from '@webpackages/entities';
+import { AppEventView } from '@webpackages/entities';
 import { CreateOrderDto } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class OrderAppEventDto extends CreateOrderDto<AppEvent>([
+export class OrderAppEventDto extends CreateOrderDto<AppEventView>([
   'name',
   'payload',
 ]) {}

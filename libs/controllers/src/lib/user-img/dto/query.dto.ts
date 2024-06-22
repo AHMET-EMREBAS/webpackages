@@ -1,10 +1,13 @@
-import { UserImg } from '@webpackages/entities';
+import { UserImgView } from '@webpackages/entities';
 import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class QueryUserImgDto extends BaseQueryDto implements QueryDto<UserImg> {
+export class QueryUserImgDto
+  extends BaseQueryDto
+  implements QueryDto<UserImgView>
+{
   @QueryProperty() title: string;
   @QueryProperty() generatedName: string;
-  @QueryProperty() user: string;
+  @QueryProperty() username: string;
 }

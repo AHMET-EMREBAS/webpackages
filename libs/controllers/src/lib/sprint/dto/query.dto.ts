@@ -1,9 +1,13 @@
-import { Sprint } from '@webpackages/entities';
+import { SprintView } from '@webpackages/entities';
 import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class QuerySprintDto extends BaseQueryDto implements QueryDto<Sprint> {
+export class QuerySprintDto
+  extends BaseQueryDto
+  implements QueryDto<SprintView>
+{
   @QueryProperty() name: string;
-  @QueryProperty() project: string;
+  @QueryProperty() description: string;
+  @QueryProperty() name: string;
 }

@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { ProductImgController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { ProductImg } from '@webpackages/entities';
+import { ProductImg, ProductImgView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { ProductImgService } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ProductImg])],
+  imports: [TypeOrmModule.forFeature([ProductImg, ProductImgView])],
   controllers: [ProductImgController],
   providers: [ProductImgService],
 })

@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { TaskController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { Task } from '@webpackages/entities';
+import { Task, TaskView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { TaskService } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Task])],
+  imports: [TypeOrmModule.forFeature([Task, TaskView])],
   controllers: [TaskController],
   providers: [TaskService],
 })

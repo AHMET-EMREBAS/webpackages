@@ -1,10 +1,10 @@
-import { CustomerImg } from '@webpackages/entities';
+import { CustomerImgView } from '@webpackages/entities';
 import { CreateOrderDto } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class OrderCustomerImgDto extends CreateOrderDto<CustomerImg>([
+export class OrderCustomerImgDto extends CreateOrderDto<CustomerImgView>([
   'title',
   'generatedName',
-  'user',
+  'username',
 ]) {}

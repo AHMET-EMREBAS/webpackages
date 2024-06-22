@@ -1,10 +1,10 @@
-import { Supplier } from '@webpackages/entities';
+import { SupplierView } from '@webpackages/entities';
 import { SearchDto, SearchProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
-export class SearchSupplierDto implements SearchDto<Supplier> {
+export class SearchSupplierDto implements SearchDto<SupplierView> {
   @SearchProperty<Supplier>(['name'])
   search: FindOptionsWhere<Supplier>;
 }

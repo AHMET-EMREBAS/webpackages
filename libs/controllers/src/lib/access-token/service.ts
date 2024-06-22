@@ -1,12 +1,18 @@
 import { BaseEntityService } from '@webpackages/database';
-import { AccessToken } from '@webpackages/entities';
+import { AccessToken, AccessTokenView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class AccessTokenService extends BaseEntityService<AccessToken> {
-  constructor(@InjectRepository(AccessToken) repo: Repository<AccessToken>) {
-    super(repo);
+export class AccessTokenService extends BaseEntityService<
+  AccessToken,
+  AccessTokenView
+> {
+  constructor(
+    @InjectRepository(AccessToken) repo: Repository<AccessToken>,
+    @InjectRepository(AccessTokenView) view: Repository<AccessTokenView>
+  ) {
+    super(repo, view);
   }
 }

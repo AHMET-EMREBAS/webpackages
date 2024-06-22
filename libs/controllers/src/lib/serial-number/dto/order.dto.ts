@@ -1,11 +1,12 @@
-import { SerialNumber } from '@webpackages/entities';
+import { SerialNumberView } from '@webpackages/entities';
 import { CreateOrderDto } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class OrderSerialNumberDto extends CreateOrderDto<SerialNumber>([
+export class OrderSerialNumberDto extends CreateOrderDto<SerialNumberView>([
   'serialNumber',
   'inStock',
   'generated',
   'sku',
+  'name',
 ]) {}

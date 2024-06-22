@@ -1,6 +1,9 @@
-import { Session } from '@webpackages/entities';
+import { SessionView } from '@webpackages/entities';
 import { CreateOrderDto } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
-export class OrderSessionDto extends CreateOrderDto<Session>(['user']) {}
+export class OrderSessionDto extends CreateOrderDto<SessionView>([
+  'deviceId',
+  'username',
+]) {}

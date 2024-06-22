@@ -1,13 +1,13 @@
-import { AccessToken } from '@webpackages/entities';
+import { AccessTokenView } from '@webpackages/entities';
 import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
 export class QueryAccessTokenDto
   extends BaseQueryDto
-  implements QueryDto<AccessToken>
+  implements QueryDto<AccessTokenView>
 {
   @QueryProperty() name: string;
   @QueryProperty() token: string;
-  @QueryProperty() user: string;
+  @QueryProperty() username: string;
 }

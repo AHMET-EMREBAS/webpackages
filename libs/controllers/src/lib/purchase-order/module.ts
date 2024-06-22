@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { PurchaseOrderController } from './controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { PurchaseOrder } from '@webpackages/entities';
+import { PurchaseOrder, PurchaseOrderView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { PurchaseOrderService } from './service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([PurchaseOrder])],
+  imports: [TypeOrmModule.forFeature([PurchaseOrder, PurchaseOrderView])],
   controllers: [PurchaseOrderController],
   providers: [PurchaseOrderService],
 })

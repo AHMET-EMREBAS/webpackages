@@ -10,9 +10,13 @@ export class CreateAppEventDto {
     maxLength: 100,
     required: true,
     unique: true,
+    example: 'Event Name',
   })
   name: string;
-
-  @Property({ type: 'object', targetName: 'EventPayload' })
-  payload: any;
+  @Property({
+    type: 'object',
+    targetName: 'EventPayload',
+    example: { value: 'Event Value' },
+  })
+  payload: EventPayload;
 }

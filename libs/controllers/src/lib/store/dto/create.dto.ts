@@ -10,6 +10,11 @@ export class CreateStoreDto {
     maxLength: 100,
     required: true,
     unique: true,
+    description: 'Store name might contain a partial address information',
+    example: 'Chicago B-Street 60645',
   })
   name: string;
+
+  @Property({ type: 'number' })
+  manager: IDDto;
 }

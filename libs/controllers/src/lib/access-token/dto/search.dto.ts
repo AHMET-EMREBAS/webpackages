@@ -1,10 +1,10 @@
-import { AccessToken } from '@webpackages/entities';
+import { AccessTokenView } from '@webpackages/entities';
 import { SearchDto, SearchProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
-export class SearchAccessTokenDto implements SearchDto<AccessToken> {
-  @SearchProperty<AccessToken>(['name', 'token', 'user'])
+export class SearchAccessTokenDto implements SearchDto<AccessTokenView> {
+  @SearchProperty<AccessToken>(['name', 'token', 'username'])
   search: FindOptionsWhere<AccessToken>;
 }

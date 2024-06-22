@@ -1,11 +1,11 @@
-import { Quantity } from '@webpackages/entities';
+import { QuantityView } from '@webpackages/entities';
 import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
 export class QueryQuantityDto
   extends BaseQueryDto
-  implements QueryDto<Quantity>
+  implements QueryDto<QuantityView>
 {
   @QueryProperty() quantity: string;
   @QueryProperty() alert: string;
@@ -13,5 +13,6 @@ export class QueryQuantityDto
   @QueryProperty() autoRepurchase: string;
   @QueryProperty() notSellLastOne: string;
   @QueryProperty() sku: string;
-  @QueryProperty() store: string;
+  @QueryProperty() name: string;
+  @QueryProperty() name: string;
 }

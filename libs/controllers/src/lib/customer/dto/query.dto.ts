@@ -1,14 +1,13 @@
-import { Customer } from '@webpackages/entities';
+import { CustomerView } from '@webpackages/entities';
 import { BaseQueryDto, QueryDto, QueryProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 
 @Exclude()
 export class QueryCustomerDto
   extends BaseQueryDto
-  implements QueryDto<Customer>
+  implements QueryDto<CustomerView>
 {
   @QueryProperty() username: string;
   @QueryProperty() password: string;
   @QueryProperty() permissions: string;
-  @QueryProperty() priceLevel: string;
 }

@@ -23,8 +23,6 @@ export async function resourceGenerator(tree: Tree) {
       queriableProperties: printQueryProperties(value),
     };
 
-    console.log(templateOptions);
-
     generateFiles(
       tree,
       path.join(__dirname, 'files'),

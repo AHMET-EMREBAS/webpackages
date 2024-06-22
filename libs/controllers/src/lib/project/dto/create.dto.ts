@@ -10,6 +10,7 @@ export class CreateProjectDto {
     maxLength: 100,
     required: true,
     unique: true,
+    example: 'Mission Imposibble Is Possible With Us',
   })
   name: string;
 }

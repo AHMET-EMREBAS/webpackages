@@ -1,10 +1,24 @@
-import { SkuDetail } from '@webpackages/entities';
+import { SkuDetailView } from '@webpackages/entities';
 import { SearchDto, SearchProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
-export class SearchSkuDetailDto implements SearchDto<SkuDetail> {
-  @SearchProperty<SkuDetail>(['color', 'height', 'width', 'weight', 'manual'])
+export class SearchSkuDetailDto implements SearchDto<SkuDetailView> {
+  @SearchProperty<SkuDetail>([
+    'color',
+    'height',
+    'width',
+    'weight',
+    'manual',
+    'make',
+    'model',
+    'notes',
+    'website',
+    'manufacturer',
+    'highlight',
+    'sku',
+    'name',
+  ])
   search: FindOptionsWhere<SkuDetail>;
 }

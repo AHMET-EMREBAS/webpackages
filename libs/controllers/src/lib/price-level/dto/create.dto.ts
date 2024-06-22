@@ -10,9 +10,17 @@ export class CreatePriceLevelDto {
     maxLength: 100,
     required: true,
     unique: true,
+    example: 'Chicago Retail',
   })
   name: string;
-
-  @Property({ type: 'number', required: true, minimum: 0 })
+  @Property({
+    type: 'string',
+    required: true,
+    minLength: 1,
+    maxLength: 10,
+    example: 'USD',
+  })
+  currency: string;
+  @Property({ type: 'number', required: true, minimum: 0, example: 10.25 })
   taxrate: number;
 }

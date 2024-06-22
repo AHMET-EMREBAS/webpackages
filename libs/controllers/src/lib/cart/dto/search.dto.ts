@@ -1,10 +1,10 @@
-import { Cart } from '@webpackages/entities';
+import { CartView } from '@webpackages/entities';
 import { SearchDto, SearchProperty } from '@webpackages/query';
 import { Exclude } from 'class-transformer';
 import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
-export class SearchCartDto implements SearchDto<Cart> {
-  @SearchProperty<Cart>(['complete', 'customer', 'user'])
+export class SearchCartDto implements SearchDto<CartView> {
+  @SearchProperty<Cart>(['complete', 'username', 'username'])
   search: FindOptionsWhere<Cart>;
 }

@@ -10,6 +10,7 @@ export class CreateSupplierDto {
     maxLength: 100,
     required: true,
     unique: true,
+    example: 'ABC Wholesale 68',
   })
   name: string;
 }
