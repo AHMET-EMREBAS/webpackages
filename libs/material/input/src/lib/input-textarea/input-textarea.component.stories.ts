@@ -37,7 +37,7 @@ export const Primary: Story = {
     inputControl: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(200),
+      Validators.maxLength(1000),
     ]),
     inputHint: `Description should be between 3 and 1000 characters long.`,
     inputMinLength: 3,
@@ -46,7 +46,7 @@ export const Primary: Story = {
 };
 
 export const Heading: Story = {
-  args: {},
+  ...Primary,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Input Label!/gi)).toBeTruthy();

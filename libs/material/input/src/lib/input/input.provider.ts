@@ -47,12 +47,16 @@ export const defaultInputStatusIndicatorHandler: InputStatusIndicatorHandler = (
   } else if (options.inputType === 'number') {
     const value = parseFloat(control.value + '');
 
-    if (value < options.inputMin) {
-      return `( ⬆ ${options.inputMin} )`;
-    } else if (value > options.inputMax) {
-      return `( ⬇ ${options.inputMax} )`;
+    if (value) {
+      if (value < options.inputMin) {
+        return `( ⬆ ${options.inputMin} )`;
+      } else if (value > options.inputMax) {
+        return `( ⬇ ${options.inputMax} )`;
+      }
+      return '( ✔ )';
+    } else {
+      return '';
     }
-    return '( ✔ )';
   }
   return '';
 };
