@@ -22,5 +22,5 @@ import { InputType } from '@webpackages/types';
   </mat-form-field>`,
 })
 export class InputNumberComponent extends InputComponent {
-  override inputType: InputType = 'number';
+  override readonly inputType: InputType = 'number';
 }

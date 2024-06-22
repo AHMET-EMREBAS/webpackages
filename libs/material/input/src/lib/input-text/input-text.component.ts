@@ -23,5 +23,5 @@ import { InputType } from '@webpackages/types';
   `,
 })
 export class InputTextComponent extends InputComponent {
-  override inputType: InputType = 'text';
+  override readonly inputType: InputType = 'text';
 }

@@ -28,3 +28,37 @@ h6 {
     letter-spacing: 3px;
   }
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(20, 147, 220);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(20, 147, 220);
+}
+/* Style the scrollbar thumb when it's in an active state (e.g., when scrolling) */
+::-webkit-scrollbar-thumb:active {
+  background: rgb(20, 147, 220);
+}
+
+::-webkit-scrollbar-track {
+  background-color: gray;
+}
+
+::-webkit-scrollbar-track:active {
+  background-color: gray;
+}
+::-webkit-scrollbar-track:hover {
+  background-color: gray;
+}
+
+/* Style the scrollbar corner (the intersection between the horizontal and vertical scrollbars) */
+::-webkit-scrollbar-corner {
+  background: rgb(20, 147, 220);
+}

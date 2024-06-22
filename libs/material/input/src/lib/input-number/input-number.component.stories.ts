@@ -49,6 +49,6 @@ export const Heading: Story = {
   ...Primary,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/input-number works!/gi)).toBeTruthy();
+    expect(canvas.getByText(/Input Label/gi)).toBeTruthy();
   },
 };
