@@ -8,7 +8,7 @@ export class CreateUserDto {
   username: string;
 
   @Property({ type: 'string', format: 'email', required: true, unique: true })
-  passwrod: string;
+  password: string;
 
   @Property({ type: 'object', targetName: 'AccessPolicy' })
   permissions: any;

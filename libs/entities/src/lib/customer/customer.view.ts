@@ -12,7 +12,7 @@ import { PriceLevel } from '../price-level';
 })
 export class CustomerView extends BaseView {
   @ViewColumn() username: string;
-  @ViewColumn() passwrod: string;
+  @ViewColumn() password: string;
   @ViewColumn() permissions: AccessPolicy;
 
   @ViewColumn() priceLevelId: PriceLevel['id'];

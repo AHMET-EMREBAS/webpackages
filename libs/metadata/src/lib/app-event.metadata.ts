@@ -9,10 +9,14 @@ export const AppEventMetadata: Metadata = {
       maxLength: 100,
       required: true,
       unique: true,
+      example: 'Event Name',
     },
     payload: {
       type: 'object',
-      targetName:"EventPayload"
+      targetName: 'EventPayload',
+      example: {
+        value: 'Event Value',
+      },
     },
   },
   relations: {},

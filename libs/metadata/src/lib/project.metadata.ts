@@ -1,7 +1,7 @@
 import { Metadata } from '@webpackages/types';
 
 export const ProjectMetadata: Metadata = {
-  groupName: 'administation',
+  groupName: 'project-management',
   properties: {
     name: {
       type: 'string',
@@ -9,7 +9,7 @@ export const ProjectMetadata: Metadata = {
       maxLength: 100,
       required: true,
       unique: true,
+      example: 'Mission Imposibble Is Possible With Us',
     },
   },
-  relations: {},
 };

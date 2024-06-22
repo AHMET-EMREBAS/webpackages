@@ -1,7 +1,7 @@
 import { Metadata } from '@webpackages/types';
 
 export const PriceLevelMetadata: Metadata = {
-  groupName: 'administation',
+  groupName: 'inventory',
   properties: {
     name: {
       type: 'string',
@@ -9,12 +9,21 @@ export const PriceLevelMetadata: Metadata = {
       maxLength: 100,
       required: true,
       unique: true,
+      example: 'Chicago Retail',
+    },
+    currency: {
+      type: 'string',
+      required: true,
+      minLength: 1,
+      maxLength: 10,
+      example: 'USD',
     },
 
     taxrate: {
       type: 'number',
       required: true,
       minimum: 0,
+      example: 10.25,
     },
   },
   relations: {},

@@ -9,7 +9,7 @@ export const UserMetadata: Metadata = {
       required: true,
       unique: true,
     },
-    passwrod: {
+    password: {
       type: 'string',
       format: 'email',
       required: true,

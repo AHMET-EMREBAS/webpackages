@@ -5,7 +5,7 @@ import { Exclude } from 'class-transformer';
 @Exclude()
 export class OrderCustomerDto extends CreateOrderDto<Customer>([
   'username',
-  'passwrod',
+  'password',
   'permissions',
   'priceLevel',
 ]) {}

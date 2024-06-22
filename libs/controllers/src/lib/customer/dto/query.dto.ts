@@ -8,7 +8,7 @@ export class QueryCustomerDto
   implements QueryDto<Customer>
 {
   @QueryProperty() username: string;
-  @QueryProperty() passwrod: string;
+  @QueryProperty() password: string;
   @QueryProperty() permissions: string;
   @QueryProperty() priceLevel: string;
 }

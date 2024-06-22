@@ -1,7 +1,7 @@
 import { Metadata } from '@webpackages/types';
 
 export const ImgMetadata: Metadata = {
-  groupName: 'administation',
+  groupName: 'common',
   properties: {
     title: {
       type: 'string',

@@ -7,7 +7,7 @@ import { FindOptionsWhere } from 'typeorm';
 export class SearchCustomerDto implements SearchDto<Customer> {
   @SearchProperty<Customer>([
     'username',
-    'passwrod',
+    'password',
     'permissions',
     'priceLevel',
   ])

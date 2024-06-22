@@ -12,7 +12,7 @@ import { Department } from '../department';
 })
 export class UserView extends BaseView {
   @ViewColumn() username: string;
-  @ViewColumn() passwrod: string;
+  @ViewColumn() password: string;
   @ViewColumn() permissions: AccessPolicy;
 
   @ViewColumn() departmentId: Department['id'];

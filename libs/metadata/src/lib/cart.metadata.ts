@@ -1,12 +1,12 @@
 import { Metadata } from '@webpackages/types';
 
 export const CartMetadata: Metadata = {
-  groupName: 'administation',
+  groupName: 'pos',
   properties: {
-    complete: { type: 'boolean' },
+    complete: { type: 'boolean', example: false },
   },
   relations: {
-    customer: { relationType: 'owner', targetName: 'Customer' },
-    user: { relationType: 'owner', targetName: 'User' },
+    customer: { relationType: 'owner', targetName: 'Customer', viewColumns:['username'] },
+    user: { relationType: 'owner', targetName: 'User', viewColumns:['username'] },
   },
 };

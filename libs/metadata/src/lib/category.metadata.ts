@@ -1,7 +1,7 @@
 import { Metadata } from '@webpackages/types';
 
 export const CategoryMetadata: Metadata = {
-  groupName: 'administation',
+  groupName: 'inventory',
   properties: {
     name: {
       type: 'string',
@@ -9,6 +9,7 @@ export const CategoryMetadata: Metadata = {
       maxLength: 100,
       required: true,
       unique: true,
+      example: 'Default Category',
     },
   },
   relations: {},

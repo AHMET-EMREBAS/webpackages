@@ -9,7 +9,15 @@ export const StoreMetadata: Metadata = {
       maxLength: 100,
       required: true,
       unique: true,
+      description: 'Store name might contain a partial address information',
+      example: 'Chicago B-Street 60645',
     },
   },
-  relations: {},
+  relations: {
+    manager: {
+      relationType: 'one',
+      targetName: 'User',
+      viewColumns: ['username'],
+    },
+  },
 };

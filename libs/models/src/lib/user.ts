@@ -4,7 +4,7 @@ import { IDepartment } from './department';
 export interface IUser extends BaseEntity {
   username: string;
 
-  passwrod: string;
+  password: string;
 
   permissions: object;
 
