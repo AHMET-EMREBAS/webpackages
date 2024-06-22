@@ -1,20 +1,17 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
 import { InputModules } from '../input';
 import {
-  MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
   MatAutocompleteModule,
   MatAutocompleteSelectedEvent,
 } from '@angular/material/autocomplete';
-import {
-  MatChipEvent,
-  MatChipInputEvent,
-  MatChipsModule,
-} from '@angular/material/chips';
+import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { EntitySelectOption } from '@webpackages/types';
+import { FormControl } from '@angular/forms';
+import { debounceTime, map, startWith } from 'rxjs';
 
 @Component({
   selector: 'wp-autocomplete-many',
@@ -25,17 +22,16 @@ import { EntitySelectOption } from '@webpackages/types';
       <mat-label>{{ inputLabel }}</mat-label>
       <mat-chip-grid #chipGrid>
         @for (item of selectedItems(); track $index) {
-        <mat-chip-row (removed)="remove($event)">
+        <mat-chip-row [value]="item" (removed)="remove(item)">
           {{ item.label }}
-          <button matChipRemove [attr.aria-label]="'remove ' + item">
+          <button matChipRemove>
             <mat-icon>cancel</mat-icon>
           </button>
         </mat-chip-row>
         }
       </mat-chip-grid>
       <input
-        #itemInput
-        [formControl]="inputControl"
+        [formControl]="__searchControl"
         [matChipInputFor]="chipGrid"
         [matAutocomplete]="auto"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
@@ -55,15 +51,27 @@ import { EntitySelectOption } from '@webpackages/types';
     <br />
 
     {{ inputControl.value | json }}
-    <br />
-    <!-- {{ auto.optionActivated | json }} -->
   `,
 })
-export class AutocompleteManyComponent extends AutocompleteComponent {
+export class AutocompleteManyComponent
+  extends AutocompleteComponent
+  implements OnInit
+{
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   readonly announcer = inject(LiveAnnouncer);
+  // readonly searchControl = new FormControl<string>('');
 
-  selectedItems = signal<EntitySelectOption[]>([]);
+  selectedItems = signal<Set<EntitySelectOption>>(new Set());
+
+  override ngOnInit(): void {
+    super.ngOnInit();
+
+    // this.filteredOptions$ = this.searchControl.valueChanges.pipe(
+    //   startWith(''),
+    //   debounceTime(this.inputDebounceTime),
+    //   map(this.filter)
+    // );
+  }
 
   protected findByLabel(label: string): EntitySelectOption | undefined {
     return this.autocompleteOptions.find((e) =>
@@ -74,22 +82,28 @@ export class AutocompleteManyComponent extends AutocompleteComponent {
   addByKeypress(event: MatChipInputEvent) {
     const found = this.findByLabel(event.value);
     if (found) {
-      this.selectedItems.update((items) => [...items, found]);
+      this.selectedItems().add(found);
+      this.inputControl.setValue(null);
     }
   }
 
   add(event: MatAutocompleteSelectedEvent) {
-    this.selectedItems.update((items) => [...items, event.option.value]);
+    this.selectedItems.update(
+      (items) => new Set([...items, event.option.value])
+    );
+    this.inputControl.setValue(null);
   }
 
-  remove(event: MatChipEvent) {
-    const index = this.autocompleteOptions.indexOf(
-      this.findByLabel(event.chip.value)!
-    );
+  remove(event: EntitySelectOption) {
+    this.selectedItems().delete(event);
+    // this.selectedItems.update((items) => items);
+    // this.findByLabel()
 
-    this.selectedItems.update((items) => {
-      delete items[index];
-      return [...items];
-    });
+    // const index = this.autocompleteOptions.indexOf();
+
+    // this.selectedItems.update((items) => {
+    //   delete items[index];
+    //   return [...items];
+    // });
   }
 }
