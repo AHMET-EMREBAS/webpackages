@@ -1,1 +1,1 @@
-export * from './lib/material-input/material-input.component';
+export const ____material__input__ = 'material input';

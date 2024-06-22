@@ -2,7 +2,7 @@
   "name": "material-input",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/material/input/src",
-  "prefix": "lib",
+  "prefix": "wp",
   "projectType": "library",
   "tags": [],
   "targets": {

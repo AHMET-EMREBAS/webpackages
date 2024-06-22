@@ -22,10 +22,14 @@
     },
     "@nx/angular:library": {
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "prefix": "wp"
     },
     "@nx/angular:component": {
-      "style": "css"
+      "inlineStyle": true,
+      "nameAndDirectoryFormat": "derived",
+      "prefix": "wp",
+      "inlineTemplate": true
     }
   },
   "targetDefaults": {
