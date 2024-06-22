@@ -18,6 +18,7 @@ export class PurchaseView extends BaseView {
   @ViewColumn() total: number;
   @ViewColumn() notes: string;
 
+  @ViewColumn() userUsername: User['username'];
   @ViewColumn() userId: User['id'];
   @ViewColumn() userActive: User['active'];
 }

@@ -11,8 +11,8 @@ export class SearchPurchaseOrderDto implements SearchDto<PurchaseOrderView> {
     'subTotal',
     'total',
     ,
-    'sku',
-    'name',
+    'skuSku',
+    'skuName',
   ])
   search: FindOptionsWhere<PurchaseOrder>;
 }

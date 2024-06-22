@@ -7,6 +7,6 @@ export class OrderSerialNumberDto extends CreateOrderDto<SerialNumberView>([
   'serialNumber',
   'inStock',
   'generated',
-  'sku',
-  'name',
+  'skuSku',
+  'skuName',
 ]) {}

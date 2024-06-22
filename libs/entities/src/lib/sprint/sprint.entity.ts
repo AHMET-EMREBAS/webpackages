@@ -7,6 +7,8 @@ import { Project } from '../project';
 @Entity()
 export class Sprint extends BaseEntity implements ISprint {
   @Column({ type: 'string', required: true, unique: true }) name: string;
+  @Column({ type: 'string', required: false, unique: false })
+  description: string;
 
   @Relation({ relationType: 'owner', target: Project }) project: Project;
 }

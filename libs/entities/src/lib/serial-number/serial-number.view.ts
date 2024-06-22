@@ -19,6 +19,8 @@ export class SerialNumberView extends BaseView {
   @ViewColumn() inStock: boolean;
   @ViewColumn() generated: boolean;
 
+  @ViewColumn() skuSku: Sku['sku'];
+  @ViewColumn() skuName: Sku['name'];
   @ViewColumn() skuId: Sku['id'];
   @ViewColumn() skuActive: Sku['active'];
 }

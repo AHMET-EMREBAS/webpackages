@@ -10,5 +10,5 @@ export class OrderPurchaseDto extends CreateOrderDto<PurchaseView>([
   'subTotal',
   'total',
   'notes',
-  'username',
+  'userUsername',
 ]) {}

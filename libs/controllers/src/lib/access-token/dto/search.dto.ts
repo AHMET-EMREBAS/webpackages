@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchAccessTokenDto implements SearchDto<AccessTokenView> {
-  @SearchProperty<AccessToken>(['name', 'token', 'username'])
+  @SearchProperty<AccessToken>(['name', 'token', 'userUsername'])
   search: FindOptionsWhere<AccessToken>;
 }

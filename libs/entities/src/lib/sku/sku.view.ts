@@ -15,6 +15,7 @@ export class SkuView extends BaseView {
   @ViewColumn() description: string;
   @ViewColumn() sku: string;
 
+  @ViewColumn() productUpc: Product['upc'];
   @ViewColumn() productId: Product['id'];
   @ViewColumn() productActive: Product['active'];
 }

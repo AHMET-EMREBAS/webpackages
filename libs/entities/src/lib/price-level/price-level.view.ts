@@ -10,5 +10,6 @@ import { PriceLevelMetadata } from '@webpackages/metadata';
 })
 export class PriceLevelView extends BaseView {
   @ViewColumn() name: string;
+  @ViewColumn() currency: string;
   @ViewColumn() taxrate: number;
 }

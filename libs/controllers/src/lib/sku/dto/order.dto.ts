@@ -7,5 +7,5 @@ export class OrderSkuDto extends CreateOrderDto<SkuView>([
   'name',
   'description',
   'sku',
-  'upc',
+  'productUpc',
 ]) {}

@@ -11,5 +11,7 @@ export class QueryCustomerAddressDto
   @QueryProperty() city: string;
   @QueryProperty() state: string;
   @QueryProperty() zip: string;
-  @QueryProperty() username: string;
+  @QueryProperty() customerId: string;
+  @QueryProperty() customerActive: string;
+  @QueryProperty() customerUsername: string;
 }

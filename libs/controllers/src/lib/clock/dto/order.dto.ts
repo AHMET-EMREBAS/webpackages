@@ -6,5 +6,5 @@ import { Exclude } from 'class-transformer';
 export class OrderClockDto extends CreateOrderDto<ClockView>([
   'starDate',
   'endDate',
-  'username',
+  'userUsername',
 ]) {}

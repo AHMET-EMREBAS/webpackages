@@ -11,7 +11,10 @@ export class QueryPurchaseOrderDto
   @QueryProperty() quantity: string;
   @QueryProperty() subTotal: string;
   @QueryProperty() total: string;
-
-  @QueryProperty() sku: string;
-  @QueryProperty() name: string;
+  @QueryProperty() purchaseId: string;
+  @QueryProperty() purchaseActive: string;
+  @QueryProperty() skuId: string;
+  @QueryProperty() skuActive: string;
+  @QueryProperty() skuSku: string;
+  @QueryProperty() skuName: string;
 }

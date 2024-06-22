@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchSprintDto implements SearchDto<SprintView> {
-  @SearchProperty<Sprint>(['name', 'description', 'name'])
+  @SearchProperty<Sprint>(['name', 'description', 'projectName'])
   search: FindOptionsWhere<Sprint>;
 }

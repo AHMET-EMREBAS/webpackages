@@ -15,6 +15,7 @@ export class UserView extends BaseView {
   @ViewColumn() password: string;
   @ViewColumn() permissions: AccessPolicy;
 
+  @ViewColumn() departmentName: Department['name'];
   @ViewColumn() departmentId: Department['id'];
   @ViewColumn() departmentActive: Department['active'];
 }

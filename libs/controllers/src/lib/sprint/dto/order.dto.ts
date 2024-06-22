@@ -6,5 +6,5 @@ import { Exclude } from 'class-transformer';
 export class OrderSprintDto extends CreateOrderDto<SprintView>([
   'name',
   'description',
-  'name',
+  'projectName',
 ]) {}

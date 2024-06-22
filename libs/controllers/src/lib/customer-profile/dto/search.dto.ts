@@ -11,7 +11,7 @@ export class SearchCustomerProfileDto
     'firstName',
     'lastName',
     'middleName',
-    'username',
+    'customerUsername',
   ])
   search: FindOptionsWhere<CustomerProfile>;
 }

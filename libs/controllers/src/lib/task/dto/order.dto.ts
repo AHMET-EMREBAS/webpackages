@@ -12,5 +12,5 @@ export class OrderTaskDto extends CreateOrderDto<TaskView>([
   'endDate',
   'status',
   'difficulty',
-  'username',
+  'userUsername',
 ]) {}

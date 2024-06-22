@@ -9,5 +9,7 @@ export class QuerySprintDto
 {
   @QueryProperty() name: string;
   @QueryProperty() description: string;
-  @QueryProperty() name: string;
+  @QueryProperty() projectId: string;
+  @QueryProperty() projectActive: string;
+  @QueryProperty() projectName: string;
 }

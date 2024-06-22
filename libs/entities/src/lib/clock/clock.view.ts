@@ -14,6 +14,7 @@ export class ClockView extends BaseView {
   @ViewColumn() starDate: Date;
   @ViewColumn() endDate: Date;
 
+  @ViewColumn() userUsername: User['username'];
   @ViewColumn() userId: User['id'];
   @ViewColumn() userActive: User['active'];
 }

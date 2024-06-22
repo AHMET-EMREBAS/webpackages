@@ -8,4 +8,8 @@ export class QueryPriceDto extends BaseQueryDto implements QueryDto<PriceView> {
   @QueryProperty() cost: string;
   @QueryProperty() startDate: string;
   @QueryProperty() endDate: string;
+  @QueryProperty() skuId: string;
+  @QueryProperty() skuActive: string;
+  @QueryProperty() priceLevelId: string;
+  @QueryProperty() priceLevelActive: string;
 }

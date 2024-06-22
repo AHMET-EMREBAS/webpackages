@@ -17,8 +17,8 @@ export class SearchSkuDetailDto implements SearchDto<SkuDetailView> {
     'website',
     'manufacturer',
     'highlight',
-    'sku',
-    'name',
+    'skuSku',
+    'skuName',
   ])
   search: FindOptionsWhere<SkuDetail>;
 }

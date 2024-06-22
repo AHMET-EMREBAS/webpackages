@@ -7,5 +7,7 @@ export class QuerySkuDto extends BaseQueryDto implements QueryDto<SkuView> {
   @QueryProperty() name: string;
   @QueryProperty() description: string;
   @QueryProperty() sku: string;
-  @QueryProperty() upc: string;
+  @QueryProperty() productId: string;
+  @QueryProperty() productActive: string;
+  @QueryProperty() productUpc: string;
 }

@@ -11,9 +11,13 @@ export class QueryDiscountDto
   @QueryProperty() percentDiscount: string;
   @QueryProperty() startDate: string;
   @QueryProperty() endDate: string;
-  @QueryProperty() name: string;
-  @QueryProperty() sku: string;
-  @QueryProperty() name: string;
-  @QueryProperty() currency: string;
-  @QueryProperty() taxrate: string;
+  @QueryProperty() skuId: string;
+  @QueryProperty() skuActive: string;
+  @QueryProperty() skuName: string;
+  @QueryProperty() skuSku: string;
+  @QueryProperty() priceLevelId: string;
+  @QueryProperty() priceLevelActive: string;
+  @QueryProperty() priceLevelName: string;
+  @QueryProperty() priceLevelCurrency: string;
+  @QueryProperty() priceLevelTaxrate: string;
 }

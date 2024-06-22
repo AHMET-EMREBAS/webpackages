@@ -11,6 +11,9 @@ import { User } from '../user';
   },
 })
 export class SessionView extends BaseView {
+  @ViewColumn() deviceId: string;
+
+  @ViewColumn() userUsername: User['username'];
   @ViewColumn() userId: User['id'];
   @ViewColumn() userActive: User['active'];
 }

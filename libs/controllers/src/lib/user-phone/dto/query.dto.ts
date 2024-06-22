@@ -8,5 +8,7 @@ export class QueryUserPhoneDto
   implements QueryDto<UserPhoneView>
 {
   @QueryProperty() phone: string;
-  @QueryProperty() username: string;
+  @QueryProperty() userId: string;
+  @QueryProperty() userActive: string;
+  @QueryProperty() userUsername: string;
 }

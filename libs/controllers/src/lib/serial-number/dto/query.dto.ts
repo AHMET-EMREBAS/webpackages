@@ -10,6 +10,8 @@ export class QuerySerialNumberDto
   @QueryProperty() serialNumber: string;
   @QueryProperty() inStock: string;
   @QueryProperty() generated: string;
-  @QueryProperty() sku: string;
-  @QueryProperty() name: string;
+  @QueryProperty() skuId: string;
+  @QueryProperty() skuActive: string;
+  @QueryProperty() skuSku: string;
+  @QueryProperty() skuName: string;
 }

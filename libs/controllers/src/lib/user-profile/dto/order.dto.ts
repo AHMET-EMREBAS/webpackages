@@ -7,5 +7,5 @@ export class OrderUserProfileDto extends CreateOrderDto<UserProfileView>([
   'firstName',
   'lastName',
   'middleName',
-  'username',
+  'userUsername',
 ]) {}

@@ -12,7 +12,11 @@ export class QueryQuantityDto
   @QueryProperty() alertUnderQuantity: string;
   @QueryProperty() autoRepurchase: string;
   @QueryProperty() notSellLastOne: string;
-  @QueryProperty() sku: string;
-  @QueryProperty() name: string;
-  @QueryProperty() name: string;
+  @QueryProperty() skuId: string;
+  @QueryProperty() skuActive: string;
+  @QueryProperty() skuSku: string;
+  @QueryProperty() skuName: string;
+  @QueryProperty() storeId: string;
+  @QueryProperty() storeActive: string;
+  @QueryProperty() storeName: string;
 }

@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchCustomerEmailDto implements SearchDto<CustomerEmailView> {
-  @SearchProperty<CustomerEmail>(['email', 'username'])
+  @SearchProperty<CustomerEmail>(['email', 'customerUsername'])
   search: FindOptionsWhere<CustomerEmail>;
 }

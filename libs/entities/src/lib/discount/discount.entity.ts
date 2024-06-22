@@ -3,6 +3,7 @@ import { Column, BaseEntity, Relation } from '@webpackages/database';
 import { IDiscount } from '@webpackages/models';
 
 import { Sku } from '../sku';
+import { PriceLevel } from '../price-level';
 
 @Entity()
 export class Discount extends BaseEntity implements IDiscount {
@@ -14,4 +15,6 @@ export class Discount extends BaseEntity implements IDiscount {
   @Column({ type: 'date', required: true, unique: false }) endDate: Date;
 
   @Relation({ relationType: 'owner', target: Sku }) sku: Sku;
+  @Relation({ relationType: 'owner', target: PriceLevel })
+  priceLevel: PriceLevel;
 }

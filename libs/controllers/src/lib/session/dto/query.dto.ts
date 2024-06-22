@@ -8,5 +8,7 @@ export class QuerySessionDto
   implements QueryDto<SessionView>
 {
   @QueryProperty() deviceId: string;
-  @QueryProperty() username: string;
+  @QueryProperty() userId: string;
+  @QueryProperty() userActive: string;
+  @QueryProperty() userUsername: string;
 }

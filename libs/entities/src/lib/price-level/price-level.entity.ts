@@ -5,5 +5,6 @@ import { IPriceLevel } from '@webpackages/models';
 @Entity()
 export class PriceLevel extends BaseEntity implements IPriceLevel {
   @Column({ type: 'string', required: true, unique: true }) name: string;
+  @Column({ type: 'string', required: true, unique: false }) currency: string;
   @Column({ type: 'number', required: true, unique: false }) taxrate: number;
 }

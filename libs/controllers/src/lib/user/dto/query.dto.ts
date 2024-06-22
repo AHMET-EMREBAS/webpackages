@@ -7,5 +7,7 @@ export class QueryUserDto extends BaseQueryDto implements QueryDto<UserView> {
   @QueryProperty() username: string;
   @QueryProperty() password: string;
   @QueryProperty() permissions: string;
-  @QueryProperty() name: string;
+  @QueryProperty() departmentId: string;
+  @QueryProperty() departmentActive: string;
+  @QueryProperty() departmentName: string;
 }

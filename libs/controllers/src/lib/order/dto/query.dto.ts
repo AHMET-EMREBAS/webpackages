@@ -7,4 +7,10 @@ export class QueryOrderDto extends BaseQueryDto implements QueryDto<OrderView> {
   @QueryProperty() unitPrice: string;
   @QueryProperty() subTotal: string;
   @QueryProperty() quantity: string;
+  @QueryProperty() skuId: string;
+  @QueryProperty() skuActive: string;
+  @QueryProperty() cartId: string;
+  @QueryProperty() cartActive: string;
+  @QueryProperty() discountId: string;
+  @QueryProperty() discountActive: string;
 }

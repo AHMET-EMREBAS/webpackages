@@ -9,7 +9,7 @@ export class OrderQuantityDto extends CreateOrderDto<QuantityView>([
   'alertUnderQuantity',
   'autoRepurchase',
   'notSellLastOne',
-  'sku',
-  'name',
-  'name',
+  'skuSku',
+  'skuName',
+  'storeName',
 ]) {}

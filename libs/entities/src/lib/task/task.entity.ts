@@ -7,12 +7,12 @@ import { User } from '../user';
 @Entity()
 export class Task extends BaseEntity implements ITask {
   @Column({ type: 'string', required: true, unique: true }) name: string;
-  @Column({ type: 'string', required: false, unique: false }) tags: string;
+  @Column({ type: 'string', required: false, unique: false })
+  description: string;
+  @Column({ type: 'string', required: false, unique: false }) tags: string[];
   @Column({ type: 'date', required: true, unique: false }) dueDate: Date;
   @Column({ type: 'date', required: false, unique: false }) startDate: Date;
   @Column({ type: 'date', required: false, unique: false }) endDate: Date;
-  @Column({ type: 'string', required: false, unique: false })
-  description: string;
   @Column({ type: 'string', required: false, unique: false }) status: string;
   @Column({ type: 'string', required: false, unique: false })
   difficulty: string;

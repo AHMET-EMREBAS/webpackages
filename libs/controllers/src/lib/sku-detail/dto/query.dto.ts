@@ -18,6 +18,8 @@ export class QuerySkuDetailDto
   @QueryProperty() website: string;
   @QueryProperty() manufacturer: string;
   @QueryProperty() highlight: string;
-  @QueryProperty() sku: string;
-  @QueryProperty() name: string;
+  @QueryProperty() skuId: string;
+  @QueryProperty() skuActive: string;
+  @QueryProperty() skuSku: string;
+  @QueryProperty() skuName: string;
 }

@@ -14,6 +14,8 @@ export class ProductImgView extends BaseView {
   @ViewColumn() title: string;
   @ViewColumn() generatedName: string;
 
+  @ViewColumn() productName: Product['name'];
+  @ViewColumn() productUpc: Product['upc'];
   @ViewColumn() productId: Product['id'];
   @ViewColumn() productActive: Product['active'];
 }

@@ -7,6 +7,6 @@ export class OrderProductDto extends CreateOrderDto<ProductView>([
   'name',
   'description',
   'upc',
-  'name',
-  'name',
+  'categoryName',
+  'supplierName',
 ]) {}

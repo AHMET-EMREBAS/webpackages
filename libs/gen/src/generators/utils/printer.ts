@@ -307,7 +307,9 @@ export function __relation_printOrderablePropertyNames(m: Metadata) {
       if (value.viewColumns) {
         return value.viewColumns
           .map((e) => {
-            return `'${e}'`;
+            return `'${
+              names(value.targetName).propertyName + names(e).className
+            }'`;
           })
           .join(', ');
       }
@@ -341,13 +343,14 @@ export function __property__printQueryProperties(m: Metadata) {
 export function __relation__printQueryProperties(m: Metadata) {
   if (m.relations) {
     const result = Object.entries(m.relations).map(([, value]) => {
-      if (value.viewColumns) {
-        return value.viewColumns
-          .map((k) => {
-            return `@QueryProperty() ${k}: string`;
-          })
-          .join('\n');
-      }
+      const cols = ['id', 'active', ...(value.viewColumns ?? [])];
+      return cols
+        .map((k) => {
+          const name =
+            names(value.targetName).propertyName + names(k).className;
+          return `@QueryProperty() ${name}: string`;
+        })
+        .join('\n');
       return '';
     });
 

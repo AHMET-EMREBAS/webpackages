@@ -6,7 +6,7 @@ import { Sku } from '../sku';
 
 @Entity()
 export class SerialNumber extends BaseEntity implements ISerialNumber {
-  @Column({ type: 'string', required: false, unique: false })
+  @Column({ type: 'string', required: true, unique: false })
   serialNumber: string;
   @Column({ type: 'boolean', required: true, unique: false }) inStock: boolean;
   @Column({ type: 'boolean', required: false, unique: false })

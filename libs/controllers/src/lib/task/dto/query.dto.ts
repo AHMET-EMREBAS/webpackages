@@ -12,5 +12,7 @@ export class QueryTaskDto extends BaseQueryDto implements QueryDto<TaskView> {
   @QueryProperty() endDate: string;
   @QueryProperty() status: string;
   @QueryProperty() difficulty: string;
-  @QueryProperty() username: string;
+  @QueryProperty() userId: string;
+  @QueryProperty() userActive: string;
+  @QueryProperty() userUsername: string;
 }

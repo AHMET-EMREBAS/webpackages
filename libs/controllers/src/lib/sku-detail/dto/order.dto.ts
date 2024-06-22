@@ -15,6 +15,6 @@ export class OrderSkuDetailDto extends CreateOrderDto<SkuDetailView>([
   'website',
   'manufacturer',
   'highlight',
-  'sku',
-  'name',
+  'skuSku',
+  'skuName',
 ]) {}

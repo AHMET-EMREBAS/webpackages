@@ -10,5 +10,10 @@ export class QueryProductDto
   @QueryProperty() name: string;
   @QueryProperty() description: string;
   @QueryProperty() upc: string;
-  @QueryProperty() name: string;
+  @QueryProperty() categoryId: string;
+  @QueryProperty() categoryActive: string;
+  @QueryProperty() categoryName: string;
+  @QueryProperty() supplierId: string;
+  @QueryProperty() supplierActive: string;
+  @QueryProperty() supplierName: string;
 }

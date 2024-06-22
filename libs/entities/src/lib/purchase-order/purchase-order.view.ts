@@ -23,6 +23,8 @@ export class PurchaseOrderView extends BaseView {
 
   @ViewColumn() purchaseId: Purchase['id'];
   @ViewColumn() purchaseActive: Purchase['active'];
+  @ViewColumn() skuSku: Sku['sku'];
+  @ViewColumn() skuName: Sku['name'];
   @ViewColumn() skuId: Sku['id'];
   @ViewColumn() skuActive: Sku['active'];
 }

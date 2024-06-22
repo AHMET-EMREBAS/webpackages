@@ -12,7 +12,7 @@ export class SearchPurchaseDto implements SearchDto<PurchaseView> {
     'subTotal',
     'total',
     'notes',
-    'username',
+    'userUsername',
   ])
   search: FindOptionsWhere<Purchase>;
 }

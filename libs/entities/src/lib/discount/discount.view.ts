@@ -4,6 +4,7 @@ import { Discount } from './discount.entity';
 import { DiscountMetadata } from '@webpackages/metadata';
 
 import { Sku } from '../sku';
+import { PriceLevel } from '../price-level';
 
 @ViewEntity({
   expression(ds) {
@@ -16,6 +17,13 @@ export class DiscountView extends BaseView {
   @ViewColumn() startDate: Date;
   @ViewColumn() endDate: Date;
 
+  @ViewColumn() skuName: Sku['name'];
+  @ViewColumn() skuSku: Sku['sku'];
   @ViewColumn() skuId: Sku['id'];
   @ViewColumn() skuActive: Sku['active'];
+  @ViewColumn() priceLevelName: PriceLevel['name'];
+  @ViewColumn() priceLevelCurrency: PriceLevel['currency'];
+  @ViewColumn() priceLevelTaxrate: PriceLevel['taxrate'];
+  @ViewColumn() priceLevelId: PriceLevel['id'];
+  @ViewColumn() priceLevelActive: PriceLevel['active'];
 }

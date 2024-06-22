@@ -10,11 +10,11 @@ export class SearchDiscountDto implements SearchDto<DiscountView> {
     'percentDiscount',
     'startDate',
     'endDate',
-    'name',
-    'sku',
-    'name',
-    'currency',
-    'taxrate',
+    'skuName',
+    'skuSku',
+    'priceLevelName',
+    'priceLevelCurrency',
+    'priceLevelTaxrate',
   ])
   search: FindOptionsWhere<Discount>;
 }

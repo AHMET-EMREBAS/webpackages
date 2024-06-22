@@ -5,4 +5,5 @@ export class BaseQueryDto {
   @QueryProperty() createdAt: Date;
   @QueryProperty() updatedAt: Date;
   @QueryProperty() deletedAt: Date;
+  @QueryProperty() eid: number;
 }

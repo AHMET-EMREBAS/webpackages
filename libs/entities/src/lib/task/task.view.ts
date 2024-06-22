@@ -12,14 +12,15 @@ import { User } from '../user';
 })
 export class TaskView extends BaseView {
   @ViewColumn() name: string;
-  @ViewColumn() tags: string;
+  @ViewColumn() description: string;
+  @ViewColumn() tags: string[];
   @ViewColumn() dueDate: Date;
   @ViewColumn() startDate: Date;
   @ViewColumn() endDate: Date;
-  @ViewColumn() description: string;
   @ViewColumn() status: string;
   @ViewColumn() difficulty: string;
 
+  @ViewColumn() userUsername: User['username'];
   @ViewColumn() userId: User['id'];
   @ViewColumn() userActive: User['active'];
 }

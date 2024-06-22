@@ -7,5 +7,5 @@ export class OrderUserDto extends CreateOrderDto<UserView>([
   'username',
   'password',
   'permissions',
-  'name',
+  'departmentName',
 ]) {}

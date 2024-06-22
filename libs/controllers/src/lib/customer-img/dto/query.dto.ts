@@ -9,5 +9,7 @@ export class QueryCustomerImgDto
 {
   @QueryProperty() title: string;
   @QueryProperty() generatedName: string;
-  @QueryProperty() username: string;
+  @QueryProperty() customerId: string;
+  @QueryProperty() customerActive: string;
+  @QueryProperty() customerUsername: string;
 }

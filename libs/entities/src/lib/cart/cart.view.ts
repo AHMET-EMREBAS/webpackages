@@ -14,8 +14,10 @@ import { User } from '../user';
 export class CartView extends BaseView {
   @ViewColumn() complete: boolean;
 
+  @ViewColumn() customerUsername: Customer['username'];
   @ViewColumn() customerId: Customer['id'];
   @ViewColumn() customerActive: Customer['active'];
+  @ViewColumn() userUsername: User['username'];
   @ViewColumn() userId: User['id'];
   @ViewColumn() userActive: User['active'];
 }

@@ -16,10 +16,10 @@ export class ProductView extends BaseView {
   @ViewColumn() description: string;
   @ViewColumn() upc: string;
 
-  @ViewColumn() categoryId: Category['id'];
   @ViewColumn() categoryName: Category['name'];
+  @ViewColumn() categoryId: Category['id'];
   @ViewColumn() categoryActive: Category['active'];
-  @ViewColumn() supplierId: Supplier['id'];
   @ViewColumn() supplierName: Supplier['name'];
+  @ViewColumn() supplierId: Supplier['id'];
   @ViewColumn() supplierActive: Supplier['active'];
 }

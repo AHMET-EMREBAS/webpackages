@@ -9,7 +9,7 @@ export class SearchUserProfileDto implements SearchDto<UserProfileView> {
     'firstName',
     'lastName',
     'middleName',
-    'username',
+    'userUsername',
   ])
   search: FindOptionsWhere<UserProfile>;
 }

@@ -6,5 +6,7 @@ import { Exclude } from 'class-transformer';
 export class QueryClockDto extends BaseQueryDto implements QueryDto<ClockView> {
   @QueryProperty() starDate: string;
   @QueryProperty() endDate: string;
-  @QueryProperty() username: string;
+  @QueryProperty() userId: string;
+  @QueryProperty() userActive: string;
+  @QueryProperty() userUsername: string;
 }

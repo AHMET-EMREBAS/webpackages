@@ -9,8 +9,8 @@ export class SearchSerialNumberDto implements SearchDto<SerialNumberView> {
     'serialNumber',
     'inStock',
     'generated',
-    'sku',
-    'name',
+    'skuSku',
+    'skuName',
   ])
   search: FindOptionsWhere<SerialNumber>;
 }

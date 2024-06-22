@@ -12,7 +12,9 @@ import { Project } from '../project';
 })
 export class SprintView extends BaseView {
   @ViewColumn() name: string;
+  @ViewColumn() description: string;
 
+  @ViewColumn() projectName: Project['name'];
   @ViewColumn() projectId: Project['id'];
   @ViewColumn() projectActive: Project['active'];
 }

@@ -9,6 +9,8 @@ export class QueryProductImgDto
 {
   @QueryProperty() title: string;
   @QueryProperty() generatedName: string;
-  @QueryProperty() name: string;
-  @QueryProperty() upc: string;
+  @QueryProperty() productId: string;
+  @QueryProperty() productActive: string;
+  @QueryProperty() productName: string;
+  @QueryProperty() productUpc: string;
 }
