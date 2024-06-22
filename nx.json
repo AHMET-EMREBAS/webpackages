@@ -26,6 +26,7 @@
       "prefix": "wp"
     },
     "@nx/angular:component": {
+      "style": "css",
       "inlineStyle": true,
       "nameAndDirectoryFormat": "derived",
       "prefix": "wp",
