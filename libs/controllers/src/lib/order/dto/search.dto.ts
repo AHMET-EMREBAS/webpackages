@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchOrderDto implements SearchDto<OrderView> {
-  @SearchProperty<Order>(['unitPrice', 'subTotal', 'quantity', , ,])
-  search: FindOptionsWhere<Order>;
+  @SearchProperty<OrderView>(['unitPrice', 'subTotal', 'quantity', , ,])
+  search: FindOptionsWhere<OrderView>;
 }

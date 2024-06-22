@@ -5,11 +5,11 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchProductImgDto implements SearchDto<ProductImgView> {
-  @SearchProperty<ProductImg>([
+  @SearchProperty<ProductImgView>([
     'title',
     'generatedName',
     'productName',
     'productUpc',
   ])
-  search: FindOptionsWhere<ProductImg>;
+  search: FindOptionsWhere<ProductImgView>;
 }

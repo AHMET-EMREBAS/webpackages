@@ -5,7 +5,7 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchQuantityDto implements SearchDto<QuantityView> {
-  @SearchProperty<Quantity>([
+  @SearchProperty<QuantityView>([
     'quantity',
     'alert',
     'alertUnderQuantity',
@@ -15,5 +15,5 @@ export class SearchQuantityDto implements SearchDto<QuantityView> {
     'skuName',
     'storeName',
   ])
-  search: FindOptionsWhere<Quantity>;
+  search: FindOptionsWhere<QuantityView>;
 }

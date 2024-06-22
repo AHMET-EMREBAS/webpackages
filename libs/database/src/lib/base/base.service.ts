@@ -12,7 +12,7 @@ import {
   NotFoundException,
   UnprocessableEntityException,
 } from '@nestjs/common';
-import { BaseEntity } from './base.entity';
+import { BaseEntity, BaseView } from './base.entity';
 import {
   OrderDto,
   PaginatorDto,
@@ -21,7 +21,7 @@ import {
 } from '@webpackages/query';
 import { RelationDto, UnsetRelationDto } from './relation.dto';
 
-export class BaseEntityService<T extends BaseEntity> {
+export class BaseEntityService<T extends BaseEntity, V extends BaseView> {
   protected readonly __md = this.repo.metadata;
 
   protected readonly __entityName = this.__md.targetName;
@@ -36,7 +36,7 @@ export class BaseEntityService<T extends BaseEntity> {
 
   constructor(
     protected repo: Repository<T>,
-    protected readonly view?: Repository<any>
+    protected readonly view: Repository<V>
   ) {}
 
   protected async isActive(id: number) {
@@ -50,7 +50,7 @@ export class BaseEntityService<T extends BaseEntity> {
   }
 
   async findOne(where?: Partial<QueryDto<T>>) {
-    return await  this.repo.findOne({ where: where as FindOptionsWhere<T> });
+    return await this.repo.findOne({ where: where as FindOptionsWhere<T> });
   }
 
   /**
@@ -63,25 +63,25 @@ export class BaseEntityService<T extends BaseEntity> {
    */
   async findAll(
     paginator?: PaginatorDto,
-    order?: OrderDto<T>,
-    query?: Partial<QueryDto<T>>,
-    search?: SearchDto<T>
+    order?: OrderDto<V>,
+    query?: Partial<QueryDto<V>>,
+    search?: SearchDto<V>
   ) {
     const where = search?.search
-      ? (search.search as FindOptionsWhere<T>)
-      : (query as FindOptionsWhere<T>);
+      ? (search.search as FindOptionsWhere<V>)
+      : (query as FindOptionsWhere<V>);
 
     const { orderDir, orderBy } = order || {};
 
     const orderValue =
       orderDir && orderBy
-        ? ({ [orderBy]: orderDir } as FindOptionsOrder<T>)
-        : ({ id: 'ASC' } as FindOptionsOrder<T>);
+        ? ({ [orderBy]: orderDir } as FindOptionsOrder<V>)
+        : ({ id: 'ASC' } as FindOptionsOrder<V>);
 
-    let foundItems: T[] | null;
+    let foundItems: V[] | null;
 
     try {
-      foundItems = await (this.view ?? this.repo).find({
+      foundItems = await this.view.find({
         ...paginator,
         where,
         order: orderValue,

@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchCategoryDto implements SearchDto<CategoryView> {
-  @SearchProperty<Category>(['name'])
-  search: FindOptionsWhere<Category>;
+  @SearchProperty<CategoryView>(['name'])
+  search: FindOptionsWhere<CategoryView>;
 }

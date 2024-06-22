@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchPriceLevelDto implements SearchDto<PriceLevelView> {
-  @SearchProperty<PriceLevel>(['name', 'currency', 'taxrate'])
-  search: FindOptionsWhere<PriceLevel>;
+  @SearchProperty<PriceLevelView>(['name', 'currency', 'taxrate'])
+  search: FindOptionsWhere<PriceLevelView>;
 }

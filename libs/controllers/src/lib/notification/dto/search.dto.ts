@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchNotificationDto implements SearchDto<NotificationView> {
-  @SearchProperty<Notification>(['message'])
-  search: FindOptionsWhere<Notification>;
+  @SearchProperty<NotificationView>(['message'])
+  search: FindOptionsWhere<NotificationView>;
 }

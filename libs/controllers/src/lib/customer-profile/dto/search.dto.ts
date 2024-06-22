@@ -7,11 +7,11 @@ import { FindOptionsWhere } from 'typeorm';
 export class SearchCustomerProfileDto
   implements SearchDto<CustomerProfileView>
 {
-  @SearchProperty<CustomerProfile>([
+  @SearchProperty<CustomerProfileView>([
     'firstName',
     'lastName',
     'middleName',
     'customerUsername',
   ])
-  search: FindOptionsWhere<CustomerProfile>;
+  search: FindOptionsWhere<CustomerProfileView>;
 }

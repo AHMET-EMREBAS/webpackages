@@ -5,7 +5,7 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchPurchaseDto implements SearchDto<PurchaseView> {
-  @SearchProperty<Purchase>([
+  @SearchProperty<PurchaseView>([
     'orderDate',
     'expectedShippingDate',
     'shippingDate',
@@ -14,5 +14,5 @@ export class SearchPurchaseDto implements SearchDto<PurchaseView> {
     'notes',
     'userUsername',
   ])
-  search: FindOptionsWhere<Purchase>;
+  search: FindOptionsWhere<PurchaseView>;
 }

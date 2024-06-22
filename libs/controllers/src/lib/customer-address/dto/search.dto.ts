@@ -7,12 +7,12 @@ import { FindOptionsWhere } from 'typeorm';
 export class SearchCustomerAddressDto
   implements SearchDto<CustomerAddressView>
 {
-  @SearchProperty<CustomerAddress>([
+  @SearchProperty<CustomerAddressView>([
     'street',
     'city',
     'state',
     'zip',
     'customerUsername',
   ])
-  search: FindOptionsWhere<CustomerAddress>;
+  search: FindOptionsWhere<CustomerAddressView>;
 }

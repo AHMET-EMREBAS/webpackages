@@ -5,12 +5,12 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchProductDto implements SearchDto<ProductView> {
-  @SearchProperty<Product>([
+  @SearchProperty<ProductView>([
     'name',
     'description',
     'upc',
     'categoryName',
     'supplierName',
   ])
-  search: FindOptionsWhere<Product>;
+  search: FindOptionsWhere<ProductView>;
 }

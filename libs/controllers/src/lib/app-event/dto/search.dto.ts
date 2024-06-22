@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchAppEventDto implements SearchDto<AppEventView> {
-  @SearchProperty<AppEvent>(['name', 'payload'])
-  search: FindOptionsWhere<AppEvent>;
+  @SearchProperty<AppEventView>(['name', 'payload'])
+  search: FindOptionsWhere<AppEventView>;
 }

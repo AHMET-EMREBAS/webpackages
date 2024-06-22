@@ -5,7 +5,7 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchTaskDto implements SearchDto<TaskView> {
-  @SearchProperty<Task>([
+  @SearchProperty<TaskView>([
     'name',
     'description',
     'tags',
@@ -16,5 +16,5 @@ export class SearchTaskDto implements SearchDto<TaskView> {
     'difficulty',
     'userUsername',
   ])
-  search: FindOptionsWhere<Task>;
+  search: FindOptionsWhere<TaskView>;
 }

@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchPriceDto implements SearchDto<PriceView> {
-  @SearchProperty<Price>(['price', 'cost', 'startDate', 'endDate', ,])
-  search: FindOptionsWhere<Price>;
+  @SearchProperty<PriceView>(['price', 'cost', 'startDate', 'endDate', ,])
+  search: FindOptionsWhere<PriceView>;
 }

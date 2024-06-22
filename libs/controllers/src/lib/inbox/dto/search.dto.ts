@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchInboxDto implements SearchDto<InboxView> {
-  @SearchProperty<Inbox>([, , ,])
-  search: FindOptionsWhere<Inbox>;
+  @SearchProperty<InboxView>([, , ,])
+  search: FindOptionsWhere<InboxView>;
 }
