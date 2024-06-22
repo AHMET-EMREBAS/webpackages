@@ -7,23 +7,15 @@ import { InputTextareaComponent } from './input-textarea.component';
 
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import {
-  provideDefaultInputErrorMesssageHandler,
-  provideDefaultInputStatusIndicatorHandler,
-} from '../input/input.provider';
 import { FormControl, Validators } from '@angular/forms';
+import { INPUT_STORY_PROVIDERS } from '../__story';
 
 const meta: Meta<InputTextareaComponent> = {
   component: InputTextareaComponent,
   title: 'Textarea',
   decorators: [
     applicationConfig({
-      providers: [
-        provideAnimations(),
-        provideDefaultInputErrorMesssageHandler(),
-        provideDefaultInputStatusIndicatorHandler(),
-      ],
+      providers: [...INPUT_STORY_PROVIDERS],
     }),
   ],
 };

@@ -18,6 +18,7 @@ import {
   InputStatusIndicatorHandler,
   getInputStatusIndicatorHandlerToken,
   getInputErrorMessageHandlerToken,
+  getInputDebounceTimeToken,
 } from './input.provider';
 import { InputOptions } from './input-options';
 import { InputType, StringFormat } from '@webpackages/types';
@@ -52,7 +53,9 @@ export class InputComponent<T = unknown> implements InputOptions, OnInit {
     @Inject(getInputErrorMessageHandlerToken())
     protected readonly errorMessage: InputErrorMessageHandler,
     @Inject(getInputStatusIndicatorHandlerToken())
-    protected readonly statusIndicator: InputStatusIndicatorHandler
+    protected readonly statusIndicator: InputStatusIndicatorHandler,
+    @Inject(getInputDebounceTimeToken())
+    protected readonly inputDebounceTime: number
   ) {}
 
   /**
@@ -80,12 +83,12 @@ export class InputComponent<T = unknown> implements InputOptions, OnInit {
     }
 
     this.errorMessage$ = this.inputControl.valueChanges.pipe(
-      debounceTime(1000),
+      debounceTime(this.inputDebounceTime),
       map((e) => this.errorMessage(this.inputControl, this))
     );
 
     this.statusIndicator$ = this.inputControl.valueChanges.pipe(
-      debounceTime(1000),
+      debounceTime(this.inputDebounceTime),
       map((e) => {
         return this.statusIndicator(this.inputControl, this);
       })

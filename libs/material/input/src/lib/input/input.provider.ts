@@ -75,3 +75,9 @@ export const {
   'StatusIndicatorHandler',
   defaultInputStatusIndicatorHandler
 );
+
+export const {
+  default: provideDefaultInputDebounceTime,
+  provide: provideInputDebounceTime,
+  token: getInputDebounceTimeToken,
+} = createValueProvider<number>('InputDebouceTime', 600);

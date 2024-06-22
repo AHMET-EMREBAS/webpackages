@@ -7,24 +7,15 @@ import { AutocompleteComponent } from './autocomplete.component';
 
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import {
-  provideDefaultInputErrorMesssageHandler,
-  provideDefaultInputStatusIndicatorHandler,
-} from '../input';
 import { FormControl } from '@angular/forms';
-import { CategoriesData } from '@webpackages/types';
-
+import { getBuiltinCategories } from '@webpackages/types';
+import { INPUT_STORY_PROVIDERS} from '../__story'
 const meta: Meta<AutocompleteComponent> = {
   component: AutocompleteComponent,
   title: 'Autocomplete',
   decorators: [
     applicationConfig({
-      providers: [
-        provideAnimations(),
-        provideDefaultInputErrorMesssageHandler(),
-        provideDefaultInputStatusIndicatorHandler(),
-      ],
+      providers: [...INPUT_STORY_PROVIDERS],
     }),
   ],
 };
@@ -36,7 +27,7 @@ export const Primary: Story = {
     inputControl: new FormControl(''),
     inputName: 'category',
     inputLabel: 'Category',
-    autocompleteOptions: CategoriesData,
+    autocompleteOptions: getBuiltinCategories(),
   },
 };
 

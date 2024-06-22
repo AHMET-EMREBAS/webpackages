@@ -8,22 +8,14 @@ import { InputTextComponent } from './input-text.component';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 import { FormControl, Validators } from '@angular/forms';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import {
-  provideDefaultInputErrorMesssageHandler,
-  provideDefaultInputStatusIndicatorHandler,
-} from '../input';
+import { INPUT_STORY_PROVIDERS } from '../__story';
 
 const meta: Meta<InputTextComponent> = {
   component: InputTextComponent,
   title: 'Text',
   decorators: [
     applicationConfig({
-      providers: [
-        provideAnimations(),
-        provideDefaultInputErrorMesssageHandler(),
-        provideDefaultInputStatusIndicatorHandler(),
-      ],
+      providers: [...INPUT_STORY_PROVIDERS],
     }),
   ],
 };

@@ -1,11 +1,70 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject, signal } from '@angular/core';
+import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
+import { InputModules } from '../input';
+import {
+  MatAutocompleteModule,
+  MatAutocompleteSelectedEvent,
+} from '@angular/material/autocomplete';
+import {
+  MatChipEvent,
+  MatChipInputEvent,
+  MatChipsModule,
+} from '@angular/material/chips';
+
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { EntitySelectOption } from '@webpackages/types';
 
 @Component({
   selector: 'wp-autocomplete-many',
   standalone: true,
-  imports: [CommonModule],
-  template: `<p>autocomplete-many works!</p>`,
-  styles: ``,
+  imports: [InputModules, MatAutocompleteModule, MatChipsModule],
+  template: `
+    <mat-form-field class="w-full">
+      <mat-label>{{ inputLabel }}</mat-label>
+      <mat-chip-grid #chipGrid>
+        @for (item of selectedItems(); track $index) {
+        <mat-chip-row (removed)="remove($event)">
+          {{ item.label }}
+          <button matChipRemove [attr.aria-label]="'remove ' + item">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        }
+      </mat-chip-grid>
+      <input
+        #itemInput
+        [formControl]="inputControl"
+        [matChipInputFor]="chipGrid"
+        [matAutocomplete]="auto"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event)"
+      />
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith">
+        @for (option of filteredOptions$ | async; track option) {
+        <mat-option [value]="option">{{ option.label }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <br />
+  `,
 })
-export class AutocompleteManyComponent {}
+export class AutocompleteManyComponent extends AutocompleteComponent {
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  readonly announcer = inject(LiveAnnouncer);
+
+  selectedItems = signal<EntitySelectOption[]>([]);
+
+  protected findByLabel(label: string) {
+    return this;
+  }
+
+  add(event: any) {
+    console.log('ADD : ', event);
+  }
+
+  remove(event: MatChipEvent) {
+    console.log('Remove : ', event);
+  }
+}

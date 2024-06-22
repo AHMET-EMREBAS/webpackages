@@ -7,11 +7,7 @@ import { ButtonToggleComponent } from './button-toggle.component';
 
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import {
-  provideDefaultInputErrorMesssageHandler,
-  provideDefaultInputStatusIndicatorHandler,
-} from '../input';
+import { INPUT_STORY_PROVIDERS } from '../__story';
 import { FormControl } from '@angular/forms';
 
 const meta: Meta<ButtonToggleComponent> = {
@@ -19,11 +15,7 @@ const meta: Meta<ButtonToggleComponent> = {
   title: 'ButtonToggle',
   decorators: [
     applicationConfig({
-      providers: [
-        provideAnimations(),
-        provideDefaultInputErrorMesssageHandler(),
-        provideDefaultInputStatusIndicatorHandler(),
-      ],
+      providers: [...INPUT_STORY_PROVIDERS],
     }),
   ],
 };

@@ -1,16 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { InputComponent, InputModules } from '../input';
-import {
-  MatAutocompleteModule,
-  MatAutocompleteSelectedEvent,
-} from '@angular/material/autocomplete';
-import {
-  BehaviorSubject,
-  Observable,
-  debounceTime,
-  map,
-  startWith,
-} from 'rxjs';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { Observable, debounceTime, map, startWith } from 'rxjs';
 import { EntitySelectOption } from '@webpackages/types';
 
 @Component({
@@ -26,6 +17,7 @@ import { EntitySelectOption } from '@webpackages/types';
         [required]="inputRequired"
         [formControl]="inputControl"
         [matAutocomplete]="auto"
+        [multiple]="inputMultiple"
       />
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith">
         @for (option of filteredOptions$ | async; track option) {

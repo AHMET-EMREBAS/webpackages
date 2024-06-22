@@ -1,6 +1,6 @@
 import { EntitySelectOption } from '../common/entity-option';
 
-export const CategoriesData: EntitySelectOption[] = [
+export const getBuiltinCategories: () => EntitySelectOption[] = () => [
   { id: 1, label: 'Electronics' },
   { id: 2, label: 'Clothing' },
   { id: 3, label: 'Home & Garden' },
