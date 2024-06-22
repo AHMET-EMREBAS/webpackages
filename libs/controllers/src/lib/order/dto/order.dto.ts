@@ -7,4 +7,8 @@ export class OrderOrderDto extends CreateOrderDto<OrderView>([
   'unitPrice',
   'subTotal',
   'quantity',
+  'skuSku',
+  'skuName',
+  'discountFixedDiscount',
+  'discountPercentDiscount',
 ]) {}

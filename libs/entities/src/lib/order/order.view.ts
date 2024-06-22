@@ -17,10 +17,14 @@ export class OrderView extends BaseView {
   @ViewColumn() subTotal: number;
   @ViewColumn() quantity: number;
 
+  @ViewColumn() skuSku: Sku['sku'];
+  @ViewColumn() skuName: Sku['name'];
   @ViewColumn() skuId: Sku['id'];
   @ViewColumn() skuActive: Sku['active'];
   @ViewColumn() cartId: Cart['id'];
   @ViewColumn() cartActive: Cart['active'];
+  @ViewColumn() discountFixedDiscount: Discount['fixedDiscount'];
+  @ViewColumn() discountPercentDiscount: Discount['percentDiscount'];
   @ViewColumn() discountId: Discount['id'];
   @ViewColumn() discountActive: Discount['active'];
 }
