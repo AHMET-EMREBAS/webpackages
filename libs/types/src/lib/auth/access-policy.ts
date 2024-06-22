@@ -2,6 +2,7 @@ import { Operation } from './operation';
 import { ResourceName } from './resource-names';
 
 export class AccessPolicy implements Record<ResourceName, Partial<Operation>> {
+  Sale: Partial<Operation>;
   AppEvent: Partial<Operation>;
   AccessToken: Partial<Operation>;
   Address: Partial<Operation>;

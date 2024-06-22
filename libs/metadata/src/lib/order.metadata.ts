@@ -8,8 +8,16 @@ export const OrderMetadata: Metadata = {
     quantity: { type: 'number', minimum: 1 },
   },
   relations: {
-    sku: { relationType: 'owner', targetName: 'Sku' },
+    sku: {
+      relationType: 'owner',
+      targetName: 'Sku',
+      viewColumns: ['sku', 'name'],
+    },
     cart: { relationType: 'owner', targetName: 'Cart' },
-    discount: { relationType: 'one', targetName: 'Discount' },
+    discount: {
+      relationType: 'one',
+      targetName: 'Discount',
+      viewColumns: ['fixedDiscount', 'percentDiscount'],
+    },
   },
 };

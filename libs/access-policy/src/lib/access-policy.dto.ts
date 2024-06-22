@@ -20,6 +20,14 @@ export class AccessPolicyDto implements AccessPolicy {
       manage: true,
     },
   })
+  Sale: Partial<Operation>;
+  @Property({
+    type: 'object',
+    target: OperationDto,
+    example: {
+      manage: true,
+    },
+  })
   AppEvent: Partial<Operation>;
 
   @Property({
