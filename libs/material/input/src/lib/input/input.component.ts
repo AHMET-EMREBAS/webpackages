@@ -5,7 +5,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { StringFormat } from '@webpackages/types';
 import { Observable, debounceTime, map } from 'rxjs';
 import {
   InputErrorMessageHandler,
@@ -14,6 +13,7 @@ import {
   getInputErrorMessageHandlerToken,
 } from './input.provider';
 import { InputOptions } from './input-options';
+import { InputType, StringFormat } from '@webpackages/types';
 
 export const InputModules = [
   CommonModule,
@@ -28,6 +28,7 @@ export const InputModules = [
 ];
 @Component({ template: '' })
 export class InputComponent<T = unknown> implements InputOptions, OnInit {
+  @Input() inputType: InputType;
   @Input() inputControl: FormControl;
   @Input() inputName: string;
   @Input() inputLabel: string;
@@ -37,6 +38,7 @@ export class InputComponent<T = unknown> implements InputOptions, OnInit {
   @Input() inputMin: number;
   @Input() inputMax: number;
   @Input() inputFormat: StringFormat;
+  @Input() inputAutocomplete: HTMLInputElement['autocomplete'];
 
   constructor(
     @Inject(getInputErrorMessageHandlerToken())

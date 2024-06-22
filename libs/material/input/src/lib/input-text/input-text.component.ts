@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { InputComponent, InputModules } from '../input';
+import { InputType } from '@webpackages/types';
 
 @Component({
   selector: 'wp-input-text',
@@ -9,6 +10,7 @@ import { InputComponent, InputModules } from '../input';
     <mat-form-field class="w-full">
       <mat-label>{{ inputLabel }} {{ statusIndicator$ | async }}</mat-label>
       <input
+        type="text"
         matInput
         [formControl]="inputControl"
         [minlength]="inputMinLength"
@@ -20,4 +22,6 @@ import { InputComponent, InputModules } from '../input';
     </mat-form-field>
   `,
 })
-export class InputTextComponent extends InputComponent {}
+export class InputTextComponent extends InputComponent {
+  override inputType: InputType = 'text';
+}

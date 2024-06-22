@@ -1,7 +1,8 @@
 import { FormControl } from '@angular/forms';
-import { StringFormat } from '@webpackages/types';
+import { InputType, StringFormat } from '@webpackages/types';
 
 export type InputOptions = {
+  inputType: InputType;
   inputControl: FormControl;
   inputName: string;
   inputLabel: string;

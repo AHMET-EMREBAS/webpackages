@@ -35,7 +35,26 @@ export const defaultInputStatusIndicatorHandler: InputStatusIndicatorHandler = (
   control,
   options
 ) => {
-  return `(${control.value?.length}/${options.inputMaxLength || '*'})`;
+  if (options.inputType === 'text') {
+    const value = control.value;
+    if (options.inputMinLength) {
+      if (value.length < options.inputMinLength) {
+        return `( ⬆ / ${options.inputMinLength})`;
+      }
+    }
+
+    return `( ${value?.length} / ${options.inputMaxLength || '*'} )`;
+  } else if (options.inputType === 'number') {
+    const value = parseFloat(control.value + '');
+
+    if (value < options.inputMin) {
+      return `( ⬆ ${options.inputMin} )`;
+    } else if (value > options.inputMax) {
+      return `( ⬇ ${options.inputMax} )`;
+    }
+    return '( ✔ )';
+  }
+  return '';
 };
 
 export const {

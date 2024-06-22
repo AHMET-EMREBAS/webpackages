@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { InputComponent, InputModules } from '../input/input.component';
+import { InputType } from '@webpackages/types';
 
 @Component({
   selector: 'wp-input-number',
@@ -10,13 +10,17 @@ import { InputComponent, InputModules } from '../input/input.component';
     <mat-label>{{ inputLabel }} {{ statusIndicator$ | async }}</mat-label>
     <input
       matInput
+      type="number"
       [formControl]="inputControl"
-      [minlength]="inputMinLength"
-      [maxLength]="inputMaxLength"
+      [min]="inputMin"
+      [max]="inputMax"
       [attr.data-testid]="inputLabel"
+      [autocomplete]="inputAutocomplete || 'off'"
     />
     <mat-hint>{{ inputHint }}</mat-hint>
     <mat-error>{{ errorMessage$ | async }} </mat-error>
   </mat-form-field>`,
 })
-export class InputNumberComponent extends InputComponent {}
+export class InputNumberComponent extends InputComponent {
+  override inputType: InputType = 'number';
+}
