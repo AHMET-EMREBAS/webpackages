@@ -132,7 +132,7 @@ export function baseQueryBuilder<T extends BaseEntity>(
 
       const con = `${alias}.id = main.${names(alias).propertyName}Id`;
 
-      query.leftJoin(relationOptions.targetName, alias, con);
+      query.leftJoin(relationOptions.targetName + 'View', alias, con);
     }
   }
   return query;

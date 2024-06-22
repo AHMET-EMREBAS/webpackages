@@ -17,7 +17,7 @@ import { Customer } from '../customer';
 export class CustomerEmailView extends BaseView {
   @ViewColumn() email: string;
 
-  @ViewColumn() customerUsername: Customer['username'];
-  @ViewColumn() customerId: Customer['id'];
-  @ViewColumn() customerActive: Customer['active'];
+  @ViewColumn() userUsername: Customer['username'];
+  @ViewColumn() userId: Customer['id'];
+  @ViewColumn() userActive: Customer['active'];
 }

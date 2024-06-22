@@ -21,6 +21,6 @@ export class OrderView extends BaseView {
   @ViewColumn() skuActive: Sku['active'];
   @ViewColumn() cartId: Cart['id'];
   @ViewColumn() cartActive: Cart['active'];
-  @ViewColumn() discountId: Discount['id'];
-  @ViewColumn() discountActive: Discount['active'];
+  @ViewColumn() discountsId: Discount['id'];
+  @ViewColumn() discountsActive: Discount['active'];
 }

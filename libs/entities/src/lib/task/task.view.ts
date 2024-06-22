@@ -20,7 +20,7 @@ export class TaskView extends BaseView {
   @ViewColumn() status: string;
   @ViewColumn() difficulty: string;
 
-  @ViewColumn() userUsername: User['username'];
-  @ViewColumn() userId: User['id'];
-  @ViewColumn() userActive: User['active'];
+  @ViewColumn() usersUsername: User['username'];
+  @ViewColumn() usersId: User['id'];
+  @ViewColumn() usersActive: User['active'];
 }

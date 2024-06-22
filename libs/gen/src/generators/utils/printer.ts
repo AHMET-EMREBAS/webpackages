@@ -124,8 +124,8 @@ export function printViewProperties(m: Metadata) {
 
 export function printViewRelations(m: Metadata) {
   if (m.relations) {
-    const result = Object.entries(m.relations).map(([, value]) => {
-      const prefix = names(value.targetName).propertyName;
+    const result = Object.entries(m.relations).map(([key, value]) => {
+      const prefix = names(key).propertyName;
 
       const __printViews = (cols: string[]) => {
         const result = cols.map((e) => {

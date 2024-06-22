@@ -14,6 +14,8 @@ import { Message } from '../message';
 export class InboxView extends BaseView {
   @ViewColumn() userId: User['id'];
   @ViewColumn() userActive: User['active'];
-  @ViewColumn() messageId: Message['id'];
-  @ViewColumn() messageActive: Message['active'];
+  @ViewColumn() sentId: Message['id'];
+  @ViewColumn() sentActive: Message['active'];
+  @ViewColumn() receivedId: Message['id'];
+  @ViewColumn() receivedActive: Message['active'];
 }

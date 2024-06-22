@@ -13,7 +13,7 @@ import { User } from '../user';
 export class StoreView extends BaseView {
   @ViewColumn() name: string;
 
-  @ViewColumn() userUsername: User['username'];
-  @ViewColumn() userId: User['id'];
-  @ViewColumn() userActive: User['active'];
+  @ViewColumn() managerUsername: User['username'];
+  @ViewColumn() managerId: User['id'];
+  @ViewColumn() managerActive: User['active'];
 }
