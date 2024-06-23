@@ -25,9 +25,39 @@ type Story = StoryObj<SelectComponent>;
 
 export const Primary: Story = {
   args: {
+    inputName: 'category',
     inputLabel: 'Select Item',
     inputControl: new FormControl('', []),
     selectOptions: getBuiltinCategories(),
+  },
+};
+
+export const MultipleObjectSelect: Story = {
+  args: {
+    inputName: 'category',
+    inputLabel: 'Select Item',
+    inputControl: new FormControl('', []),
+    selectOptions: getBuiltinCategories(),
+    inputMultiple: true,
+  },
+};
+
+export const EnumSelect: Story = {
+  args: {
+    inputName: 'category',
+    inputLabel: 'Select Item',
+    inputControl: new FormControl('', []),
+    enumOptions: getBuiltinCategories().map((e) => e.label),
+  },
+};
+
+export const MultipleEnumSelect: Story = {
+  args: {
+    inputName: 'category',
+    inputLabel: 'Select Item',
+    inputControl: new FormControl('', []),
+    inputMultiple: true,
+    enumOptions: getBuiltinCategories().map((e) => e.label),
   },
 };
 
