@@ -3,6 +3,7 @@ import { AuthGuard } from './auth.guard';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { AuthNames } from '@webpackages/types';
 import { LocalGuard } from './local.guard';
+import { PublicResource } from '@webpackages/access-policy';
 
 export function Auth() {
   return applyDecorators(
@@ -14,6 +15,7 @@ export function Auth() {
 export function BasicAuth() {
   return applyDecorators(
     ApiBearerAuth(AuthNames.LOCAL_AUTH),
+    PublicResource(),
     UseGuards(LocalGuard)
   );
 }

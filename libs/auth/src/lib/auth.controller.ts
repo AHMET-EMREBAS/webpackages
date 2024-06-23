@@ -10,6 +10,7 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 import { AuthNames } from '@webpackages/types';
 import { AuthService } from './auth.service';
 import { Session } from '@webpackages/entities';
+import { ISession } from '@webpackages/models';
 
 const A = new APB();
 const C = new ACB({ loginResponseDto: LoginResponseDto, pathBuilder: A });
@@ -35,8 +36,8 @@ export class AuthController {
 
   @BasicAuth()
   @C.Login()
-  login(@Body() loginDto: LoginDto, @SessionParam() session: string) {
-    return { session };
+  login(@Body() loginDto: LoginDto, @SessionParam() session: ISession) {
+    return session;
   }
 
   @PublicResource()
