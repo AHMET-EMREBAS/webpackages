@@ -11,17 +11,19 @@ const C = new ACB({ loginResponseDto: LoginResponseDto, pathBuilder: A });
 
 @C.Controller()
 export class AuthController {
+  /**
+   * - Create token and send in body
+   * - Create deviceId and send it body
+   * @param loginDto
+   * @param token
+   * @returns
+   */
   @C.Login()
   login(
     @Body() loginDto: LoginDto,
     @TokenParam() token: string
   ): LoginResponseDto {
     return { token };
-  }
-
-  @C.Logout()
-  logout() {
-    notImpError();
   }
 
   @C.Signup()
@@ -32,6 +34,11 @@ export class AuthController {
 
   @C.HasSession()
   hasSession() {
+    notImpError();
+  }
+
+  @C.Logout()
+  logout() {
     notImpError();
   }
 }

@@ -2,6 +2,7 @@ import { Arr } from '../common/arr';
 
 export type ResourceName =
   | 'AccessToken'
+  | 'Organization'
   | 'Address'
   | 'Cart'
   | 'Category'
@@ -49,6 +50,7 @@ export type ResourceName =
 
 export const ResourceNames: Arr<ResourceName> = [
   'AccessToken',
+  'Organization',
   'Address',
   'Cart',
   'Category',

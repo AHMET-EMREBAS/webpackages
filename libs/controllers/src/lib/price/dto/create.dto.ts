@@ -14,7 +14,7 @@ export class CreatePriceDto {
   price: number;
   @Property({ type: 'number', required: true, minimum: 0, example: 4.99 })
   cost: number;
-  @Property({ type: 'date', required: true, example: '6/22/2024' })
+  @Property({ type: 'date', required: true, example: '6/23/2024' })
   startDate: Date;
   @Property({
     type: 'date',

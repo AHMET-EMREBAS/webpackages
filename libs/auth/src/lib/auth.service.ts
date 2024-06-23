@@ -5,24 +5,27 @@ import { LoginDto, LoginResponse } from './dto';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { compareHash } from '@webpackages/hash';
-import { User, Session } from '@webpackages/entities';
+import { Session, User } from '@webpackages/entities';
+
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(User) protected readonly repo: Repository<User>,
+    @InjectRepository(User) protected readonly userRepo: Repository<User>,
+    @InjectRepository(Session)
+    protected readonly sessionRepo: Repository<Session>,
     protected readonly jwt: JwtService,
     protected readonly config: ConfigService
   ) {}
 
-  sign(userId: number) {
-    return this.jwt.sign({ sub: userId });
+  sign(sessionId: number) {
+    return this.jwt.sign({ sub: sessionId });
   }
 
-  async verify(token: string): Promise<User> {
+  async verify(token: string): Promise<Session> {
     const { sub } = this.jwt.verify(token);
     if (sub) {
       try {
-        return await this.repo.findOneByOrFail({ id: sub });
+        return await this.sessionRepo.findOneByOrFail({ id: sub });
       } catch (err) {
         throw new UnauthorizedException('User not found!');
       }
@@ -33,7 +36,7 @@ export class AuthService {
 
   async findByUsername(username: string) {
     try {
-      return await this.repo.findOneByOrFail({ username });
+      return await this.userRepo.findOneByOrFail({ username });
     } catch (err) {
       throw new UnauthorizedException(`User not found!`);
     }
@@ -41,11 +44,19 @@ export class AuthService {
 
   async login(loginDto: LoginDto): Promise<LoginResponse> {
     const { username, password } = loginDto;
-    const { id, password: hashedPassed } = await this.findByUsername(username);
+    const foundUser = await this.findByUsername(username);
+    const { password: hashedPassed } = foundUser;
     const isPasswordMatch = compareHash(password, hashedPassed);
 
+    const newSession = await this.sessionRepo.save({
+      user: foundUser,
+      active: true,
+    });
+
     if (isPasswordMatch) {
-      return { token: this.sign(id) };
+      const token = this.sign(newSession.id);
+      await this.sessionRepo.update(newSession.id, { token });
+      return { token: this.sign(newSession.id) };
     }
 
     throw new UnauthorizedException('Wrong password');

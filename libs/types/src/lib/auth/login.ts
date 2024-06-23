@@ -1,4 +1,3 @@
-export type Login = {
-  username: string;
-  password: string;
-};
+import { Credentials } from './credentials';
+
+export type Login = Credentials;

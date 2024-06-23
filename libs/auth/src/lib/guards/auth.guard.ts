@@ -1,9 +1,4 @@
-import {
-  CanActivate,
-  ExecutionContext,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import {
   PublicResourceToken,
@@ -12,8 +7,8 @@ import {
 } from '@webpackages/access-policy';
 import { Request } from 'express';
 import { AuthService } from '../auth.service';
-import { Operation, ResourceName, ResourceNames } from '@webpackages/types';
-
+import { AuthHeaders, Operation, ResourceName } from '@webpackages/types';
+import { extractToken } from '../common';
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(
@@ -22,13 +17,6 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   async canActivate(ctx: ExecutionContext) {
-    const isDevelopment = process.env['NODE_ENV'] === 'development';
-
-    console.log('AUthGurad : ', process.env['NODE_ENV']);
-    if (isDevelopment) {
-      return true;
-    }
-
     const isPublic = this.reflector.getAllAndOverride(PublicResourceToken, [
       ctx.getClass(),
       ctx.getHandler(),
@@ -49,29 +37,24 @@ export class AuthGuard implements CanActivate {
 
     const req = ctx.switchToHttp().getRequest<Request>();
 
-    const token = this.extractTokenFromAuthorizationHeader(req);
+    const token = extractToken(req);
 
-    const user = await this.authService.verify(token);
+    const session = await this.authService.verify(token);
+    const user = session.user;
 
     if (user.permissions.Admin || user.permissions.Root) {
+      (req as any)[AuthHeaders.User] = user;
       return true;
     }
 
-    if (user.permissions[resouceName][operationName]) {
-      return true;
+    try {
+      const hasPermission = user.permissions[resouceName][operationName];
+      if (hasPermission === true) {
+        return true;
+      }
+    } catch (err) {
+      // Continue
     }
-
     return false;
-  }
-
-  extractTokenFromAuthorizationHeader(req: Request) {
-    const token = req.headers.authorization;
-
-    if (token) {
-      const [, ...rest] = token.split(' ');
-      return rest.join(' ');
-    }
-
-    throw new UnauthorizedException(`Authorization header is not provided`);
   }
 }

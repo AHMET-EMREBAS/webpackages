@@ -20,10 +20,6 @@ export class AuthPathBuilder {
     return this.__path(`login`);
   }
 
-  logout() {
-    return this.__path('logout');
-  }
-
   signup() {
     return this.__path('signup');
   }
@@ -42,5 +38,13 @@ export class AuthPathBuilder {
 
   hasSession() {
     return this.__path(`has-session`);
+  }
+
+  logout() {
+    return this.__path('logout');
+  }
+  
+  logoutAll() {
+    return this.__path('logout-all');
   }
 }

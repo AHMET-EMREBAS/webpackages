@@ -5,6 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchSessionDto implements SearchDto<SessionView> {
-  @SearchProperty<SessionView>(['deviceId', 'userUsername'])
+  @SearchProperty<SessionView>(['scope', 'deviceId', 'token', 'userUsername'])
   search: FindOptionsWhere<SessionView>;
 }

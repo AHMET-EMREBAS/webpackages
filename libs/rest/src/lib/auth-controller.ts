@@ -120,8 +120,19 @@ export class AuthControllerBuilder {
       ApiBadRequestResponse({
         type: MessageResponse,
         description: 'User does not have a valid session',
-      })
+      }),
+      this.__Common()
     );
   }
-  
+
+  LogoutAll() {
+    return applyDecorators(
+      Post(this.path.logoutAll()),
+      ApiOkResponse({
+        type: MessageResponse,
+        description: 'Delete all sessions of the user',
+      }),
+      this.__Common()
+    );
+  }
 }
