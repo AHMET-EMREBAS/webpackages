@@ -1,7 +1,14 @@
 import { Operation } from './operation';
 import { ResourceName } from './resource-names';
+import { RolePolicy } from './roles';
 
-export class AccessPolicy implements Record<ResourceName, Partial<Operation>> {
+export class AccessPolicy
+  implements Record<ResourceName, Partial<Operation>>, RolePolicy
+{
+  Admin: boolean;
+  Root: boolean;
+  Reader: boolean;
+
   Organization: Partial<Operation>;
   Sale: Partial<Operation>;
   AppEvent: Partial<Operation>;
@@ -48,9 +55,4 @@ export class AccessPolicy implements Record<ResourceName, Partial<Operation>> {
   UserImg: Partial<Operation>;
   UserPhone: Partial<Operation>;
   UserProfile: Partial<Operation>;
-
-  // 
-  Admin?: true;
-  Root?: true;
-  Reader?: true;
 }

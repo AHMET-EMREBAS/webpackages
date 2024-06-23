@@ -2,12 +2,19 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import {
   PublicResourceToken,
+  RequiredRole,
+  RequiredRoleToken,
   ResouceNameToken,
   ResourceOperationType,
 } from '@webpackages/access-policy';
 import { Request } from 'express';
 import { AuthService } from '../auth.service';
-import { AuthHeaders, Operation, ResourceName } from '@webpackages/types';
+import {
+  AuthHeaders,
+  Operation,
+  ResourceName,
+  RoleNames,
+} from '@webpackages/types';
 import { appendParams, extractToken } from '../common';
 import { v4 } from 'uuid';
 
@@ -35,6 +42,11 @@ export class AuthGuard implements CanActivate {
       ctx.getClass(),
     ]) as ResourceName;
 
+    const requiredRole = this.reflector.getAllAndOverride(RequiredRoleToken, [
+      ctx.getClass(),
+      ctx.getHandler(),
+    ]) as RoleNames;
+
     console.log(operationName, resouceName);
 
     const req = ctx.switchToHttp().getRequest<Request>();
@@ -47,6 +59,13 @@ export class AuthGuard implements CanActivate {
     if (user.permissions.Admin || user.permissions.Root) {
       appendParams(req, session);
       return true;
+    }
+
+    if (requiredRole) {
+      const hasRole = user.permissions[requiredRole];
+      if (hasRole) return true;
+
+      return false;
     }
 
     try {

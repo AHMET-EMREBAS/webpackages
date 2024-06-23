@@ -1,16 +1,18 @@
 import {
   Injectable,
   InternalServerErrorException,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { LoginDto } from './dto';
+import { ForgotPasswordDto, LoginDto } from './dto';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { compareHash } from '@webpackages/hash';
-import { Session, User } from '@webpackages/entities';
+import { Session, SessionView, User } from '@webpackages/entities';
 import { v4 } from 'uuid';
+import { isNotUndefined } from '@webpackages/utils';
 
 @Injectable()
 export class AuthService {
@@ -18,6 +20,8 @@ export class AuthService {
     @InjectRepository(User) protected readonly userRepo: Repository<User>,
     @InjectRepository(Session)
     protected readonly sessionRepo: Repository<Session>,
+    @InjectRepository(SessionView)
+    protected readonly sessionViewRepo: Repository<SessionView>,
     protected readonly jwt: JwtService,
     protected readonly config: ConfigService
   ) {}
@@ -73,5 +77,33 @@ export class AuthService {
     }
 
     throw new UnauthorizedException('Wrong password');
+  }
+
+  async logout(session: Session) {
+    await this.sessionRepo.delete(session.id);
+
+    return { message: 'Bye' };
+  }
+
+  async logoutAll(session: Session) {
+    const founds = await this.sessionViewRepo.find({
+      where: { userId: session.user.id },
+    });
+
+    const sessionIds = founds.map((e) => e.id);
+    await this.sessionRepo.delete(sessionIds);
+
+    return { messsage: 'Bye, all' };
+  }
+
+  async forgotPassword(body: ForgotPasswordDto) {
+    const found = await this.userRepo.findOneBy({ username: body.username });
+
+    if (isNotUndefined(found)) {
+      return {
+        message: 'Check your inbox. We just send a password reset link to you.',
+      };
+    }
+    throw new NotFoundException('User not found!');
   }
 }

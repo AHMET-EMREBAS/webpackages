@@ -7,12 +7,12 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { AuthService } from './auth.service';
 import { AuthGuard, LocalGuard } from './guards';
 import { Repository } from 'typeorm';
-import { User, Session } from '@webpackages/entities';
+import { User, Session, SessionView, UserView } from '@webpackages/entities';
 
 @Module({
   imports: [
     ConfigModule.forFeature(() => ({})),
-    TypeOrmModule.forFeature([User, Session]),
+    TypeOrmModule.forFeature([User, UserView, Session, SessionView]),
     JwtModule.registerAsync({
       global: true,
       inject: [ConfigService],
@@ -48,7 +48,7 @@ export class AuthModule implements OnModuleInit {
       ROOT_USERNAME,
       ROOT_PASSWORD,
     });
-    
+
     if (found) {
       await this.repo.save({
         id: found.id,
