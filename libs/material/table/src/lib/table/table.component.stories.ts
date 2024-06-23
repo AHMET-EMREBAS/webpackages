@@ -3,49 +3,38 @@ import {
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
-import { SearchComponent } from './search.component';
+import { TableComponent } from './table.component';
 
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
-import { INPUT_STORY_PROVIDERS } from '../__story';
-import { FormControl } from '@angular/forms';
-
 import {
   provideDefaultHttpSearchQueryBuilder,
   provideMockCategoryHttpClient,
 } from '@webpackages/material/core';
 
-const meta: Meta<SearchComponent> = {
-  component: SearchComponent,
-  title: 'Search',
+const meta: Meta<TableComponent> = {
+  component: TableComponent,
+  title: 'TableComponent',
   decorators: [
     applicationConfig({
       providers: [
-        ...INPUT_STORY_PROVIDERS,
         provideDefaultHttpSearchQueryBuilder(),
         provideMockCategoryHttpClient(),
       ],
     }),
   ],
 };
-
 export default meta;
-
-type Story = StoryObj<SearchComponent>;
+type Story = StoryObj<TableComponent>;
 
 export const Primary: Story = {
-  args: {
-    inputControl: new FormControl('', []),
-    inputName: 'category',
-    inputLabel: 'Search Category',
-    pluralResourceName: 'categorys',
-  },
+  args: {},
 };
 
 export const Heading: Story = {
-  ...Primary,
+  args: {},
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/Search Category/gi)).toBeTruthy();
+    // expect(canvas.getByText(/table works!/gi)).toBeTruthy();
   },
 };

@@ -7,7 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { AutocompleteManyComponent } from '../autocomplete-many/autocomplete-many.component';
-import { InputModules, getHttpSearchQueryBuilderToken } from '../input';
+import { InputModules } from '../input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import {
@@ -20,6 +20,7 @@ import {
 } from 'rxjs';
 import { EntitySelectOption } from '@webpackages/types';
 import { HttpClient } from '@angular/common/http';
+import { getHttpSearchQueryBuilderToken } from '@webpackages/material/core';
 
 @Component({
   selector: 'wp-search-many',

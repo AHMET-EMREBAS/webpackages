@@ -66,23 +66,6 @@ export const defaultInputStatusIndicatorHandler: InputStatusIndicatorHandler = (
   return '';
 };
 
-export type HttpSearchQueryBuilder = (
-  resourceName: string,
-  search: string
-) => string;
-
-/**
- *
- * @param resourcePath categorys | departments | products ...
- * @param search search-text
- * @returns
- */
-export const defaultHttpSearchQueryBuilder = (
-  resourcePath: string,
-  search: string
-) => {
-  return `api/${resourcePath}/?search=${search}&take=50`;
-};
 
 export const {
   token: getInputErrorMessageHandlerToken,
@@ -104,15 +87,6 @@ export const {
   provide: provideInputDebounceTime,
   token: getInputDebounceTimeToken,
 } = createValueProvider<number>('InputDebouceTime', 400);
-
-export const {
-  default: provideDefaultHttpSearchQueryBuilder,
-  provide: provideHttpSearchQueryBuilder,
-  token: getHttpSearchQueryBuilderToken,
-} = createValueProvider<HttpSearchQueryBuilder>(
-  'HttpSearchQueryBuilder',
-  defaultHttpSearchQueryBuilder
-);
 
 export const provideDefaultAutocompleteOptions = (): Provider => {
   return {

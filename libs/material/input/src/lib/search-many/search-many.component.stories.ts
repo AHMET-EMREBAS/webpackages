@@ -9,9 +9,10 @@ import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 import { FormControl } from '@angular/forms';
 import { INPUT_STORY_PROVIDERS } from '../__story';
-import { provideDefaultHttpSearchQueryBuilder } from '../input';
-import { HttpClient } from '@angular/common/http';
-import { MockHttpCategoryClient } from '../search/search.component.stories';
+import {
+  provideDefaultHttpSearchQueryBuilder,
+  provideMockCategoryHttpClient,
+} from '@webpackages/material/core';
 
 const meta: Meta<SearchManyComponent> = {
   component: SearchManyComponent,
@@ -21,10 +22,7 @@ const meta: Meta<SearchManyComponent> = {
       providers: [
         ...INPUT_STORY_PROVIDERS,
         provideDefaultHttpSearchQueryBuilder(),
-        {
-          provide: HttpClient,
-          useClass: MockHttpCategoryClient,
-        },
+        provideMockCategoryHttpClient(),
       ],
     }),
   ],

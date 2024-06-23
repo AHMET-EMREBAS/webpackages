@@ -20,8 +20,9 @@ import {
 } from 'rxjs';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
 import { EntitySelectOption } from '@webpackages/types';
-import { InputModules, getHttpSearchQueryBuilderToken } from '../input';
+import { InputModules } from '../input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { getHttpSearchQueryBuilderToken } from '@webpackages/material/core';
 
 @Component({
   selector: 'wp-search',
