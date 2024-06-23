@@ -1,22 +1,37 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body } from '@nestjs/common';
 import { LoginDto } from './dto';
-import { LocalGuard } from './guards/local.guard';
-import { PublicResource, TokenParam } from '@webpackages/access-policy';
-import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { AuthNames } from '@webpackages/types';
+import { TokenParam } from '@webpackages/access-policy';
 import { LoginResponseDto } from './response';
+import { AuthPathBuilder as APB } from '@webpackages/path';
+import { AuthControllerBuilder as ACB } from '@webpackages/rest';
+import { notImpError } from '@webpackages/utils';
 
-@ApiBearerAuth(AuthNames.BEARER_AUTH)
-@ApiTags(AuthController.name)
-@Controller('auth')
+const A = new APB();
+const C = new ACB({ loginResponseDto: LoginResponseDto, pathBuilder: A });
+
+@C.Controller()
 export class AuthController {
-
-  
-  @PublicResource()
-  @UseGuards(LocalGuard)
-  @Post('login')
-  @ApiOkResponse({ type: LoginResponseDto })
-  login(@Body() loginDto: LoginDto, @TokenParam() token: string) {
+  @C.Login()
+  login(
+    @Body() loginDto: LoginDto,
+    @TokenParam() token: string
+  ): LoginResponseDto {
     return { token };
+  }
+
+  @C.Logout()
+  logout() {
+    notImpError();
+  }
+
+  @C.Signup()
+  signup() {
+    notImpError();
+    return {};
+  }
+
+  @C.HasSession()
+  hasSession() {
+    notImpError();
   }
 }

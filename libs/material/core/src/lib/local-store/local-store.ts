@@ -25,7 +25,7 @@ export class LocalStoreController<T> {
 
   get(): T | undefined {
     const raw = localStorage.getItem(this.storeName);
-    if (raw) {
+    if (isNotUndefined(raw)) {
       return JSON.parse(raw);
     }
     error(`Could not get the ${this.storeName} store!`);

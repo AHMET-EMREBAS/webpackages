@@ -5,16 +5,14 @@ import { AuthController } from './auth.controller';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthService } from './auth.service';
-import { AuthGuard } from './guards';
-import { LocalGuard } from './guards/local.guard';
+import { AuthGuard, LocalGuard } from './guards';
 import { Repository } from 'typeorm';
-
 import { User, Session } from '@webpackages/entities';
 
 @Module({
   imports: [
     ConfigModule.forFeature(() => ({})),
-    // TypeOrmModule.forFeature([User, Session]),
+    TypeOrmModule.forFeature([User, Session]),
     JwtModule.registerAsync({
       global: true,
       inject: [ConfigService],

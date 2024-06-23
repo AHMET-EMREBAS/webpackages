@@ -5,12 +5,15 @@ export class AuthPathBuilder {
   constructor(protected readonly options?: AuthPathBuilderOptions) {}
 
   protected __prefix() {
-    const p = this.options?.prefix;
     return this.options?.prefix || '';
   }
 
   protected __path(...paths: string[]) {
     return [this.__prefix(), ...paths].join('/');
+  }
+
+  controller() {
+    return 'auth';
   }
 
   login() {
