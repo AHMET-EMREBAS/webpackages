@@ -9,8 +9,29 @@ import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 import { INPUT_STORY_PROVIDERS } from '../__story';
 import { FormControl } from '@angular/forms';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { provideDefaultHttpSearchQueryBuilder } from '../input';
+import { getBuiltinCategories } from '@webpackages/types';
+import { of } from 'rxjs';
+
+class MockHttpClient {
+  get(queryPath: string) {
+    const search = queryPath.split('=')[1].split('&')[0];
+    return of(
+      getBuiltinCategories()
+        .map((e) => {
+          return {
+            id: e.id,
+            name: e.label,
+          };
+        })
+        .filter((e) => {
+          return e.name.toLowerCase().includes(search?.toLowerCase() || '');
+        })
+        .slice(0, 10)
+    );
+  }
+}
 
 const meta: Meta<SearchComponent> = {
   component: SearchComponent,
@@ -20,16 +41,10 @@ const meta: Meta<SearchComponent> = {
       providers: [
         ...INPUT_STORY_PROVIDERS,
         provideDefaultHttpSearchQueryBuilder(),
-        provideHttpClient(
-          withInterceptors([
-            (req, next) => {
-              const nreq = req.clone({
-                url: `http://localhost:3000/${req.url}`,
-              });
-              return next(nreq);
-            },
-          ])
-        ),
+        {
+          provide: HttpClient,
+          useClass: MockHttpClient,
+        },
       ],
     }),
   ],

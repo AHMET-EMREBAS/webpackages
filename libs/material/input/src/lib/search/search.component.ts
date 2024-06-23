@@ -48,8 +48,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
       </mat-autocomplete>
       <mat-error>{{ errorMessage$ | async }}</mat-error>
     </mat-form-field>
-    {{ foundOptions().length }} |
-    {{ inputControl.value | json }}
   `,
 })
 export class SearchComponent
@@ -64,6 +62,7 @@ export class SearchComponent
 
   search$: Observable<EntitySelectOption[]>;
   sub: Subscription;
+
   @Output() foundEvent = new EventEmitter();
 
   override ngOnInit(): void {
