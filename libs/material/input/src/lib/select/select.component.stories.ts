@@ -16,7 +16,7 @@ const meta: Meta<SelectComponent> = {
   title: 'SelectComponent',
   decorators: [
     applicationConfig({
-      providers: [INPUT_STORY_PROVIDERS],
+      providers: [...INPUT_STORY_PROVIDERS],
     }),
   ],
 };
@@ -27,7 +27,7 @@ export const Primary: Story = {
   args: {
     inputLabel: 'Select Item',
     inputControl: new FormControl('', []),
-    selectOptions: getBuiltinCategories()
+    selectOptions: getBuiltinCategories(),
   },
 };
 
