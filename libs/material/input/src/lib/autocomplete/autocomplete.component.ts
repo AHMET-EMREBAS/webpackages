@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { InputComponent, InputModules } from '../input';
 import {
+  MatAutocomplete,
   MatAutocompleteModule,
   MatAutocompleteSelectedEvent,
 } from '@angular/material/autocomplete';
-import { Observable, debounceTime, map, startWith } from 'rxjs';
+import { Observable, debounceTime, filter, map, startWith } from 'rxjs';
 import { EntitySelectOption } from '@webpackages/types';
 import { FormControl } from '@angular/forms';
 
@@ -32,12 +33,16 @@ import { FormControl } from '@angular/forms';
         <mat-option [value]="option">{{ option.label }}</mat-option>
         }
       </mat-autocomplete>
+      <mat-error>{{ errorMessage$ | async }}</mat-error>
     </mat-form-field>
 
     {{ inputControl.value }}
   `,
 })
 export class AutocompleteComponent extends InputComponent implements OnInit {
+  @ViewChild('auto') autoRef: MatAutocomplete;
+
+  @Input() autocompleteListSize = 20;
   filteredOptions$: Observable<EntitySelectOption[]>;
 
   readonly __searchControl = new FormControl('');
@@ -49,7 +54,9 @@ export class AutocompleteComponent extends InputComponent implements OnInit {
     this.filteredOptions$ = this.__searchControl.valueChanges.pipe(
       startWith(''),
       debounceTime(1000),
-      map(this.filter)
+
+      map((e) => this.__filter(e)),
+      map((e) => this.__slice(e))
     );
   }
 
@@ -57,20 +64,20 @@ export class AutocompleteComponent extends InputComponent implements OnInit {
     return option?.label;
   }
 
-  filter(search: string | null) {
-    if (!this.autocompleteOptions) return [];
-
+  __filter(search: string | null) {
     if (typeof search === 'string') {
-      return this.autocompleteOptions
-        .filter((value) => {
-          return value.label.toLowerCase().includes(search.toLowerCase());
-        })
-        .slice(0, 10);
+      return this.autocompleteOptions.filter((value) => {
+        return value.label.toLowerCase().includes(search.toLowerCase());
+      });
     }
-    return this.autocompleteOptions.slice(0, 10);
+    return this.autocompleteOptions;
   }
 
   __optionSelect(event: MatAutocompleteSelectedEvent) {
-    this.inputControl.setValue(event.option.id);
+    this.inputControl.setValue(event.option.value.id);
+  }
+
+  __slice(items: EntitySelectOption[]) {
+    return items.slice(0, this.autocompleteListSize);
   }
 }

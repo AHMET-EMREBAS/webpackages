@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
 import { InputModules } from '../input';
 import {
@@ -7,11 +7,8 @@ import {
 } from '@angular/material/autocomplete';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
 import { EntitySelectOption } from '@webpackages/types';
-import { FormControl } from '@angular/forms';
-import { debounceTime, map, startWith } from 'rxjs';
 
 @Component({
   selector: 'wp-autocomplete-many',
@@ -46,6 +43,11 @@ import { debounceTime, map, startWith } from 'rxjs';
         <mat-option [value]="option">{{ option.label }}</mat-option>
         }
       </mat-autocomplete>
+
+      <mat-error>{{ errorMessage$ | async }}</mat-error>
+      <button type="button" matSuffix mat-icon-button>
+        <mat-icon>help</mat-icon>
+      </button>
     </mat-form-field>
 
     <br />
@@ -57,21 +59,9 @@ export class AutocompleteManyComponent
   extends AutocompleteComponent
   implements OnInit
 {
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  readonly announcer = inject(LiveAnnouncer);
-  // readonly searchControl = new FormControl<string>('');
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA, SPACE];
 
   selectedItems = signal<Set<EntitySelectOption>>(new Set());
-
-  override ngOnInit(): void {
-    super.ngOnInit();
-
-    // this.filteredOptions$ = this.searchControl.valueChanges.pipe(
-    //   startWith(''),
-    //   debounceTime(this.inputDebounceTime),
-    //   map(this.filter)
-    // );
-  }
 
   protected findByLabel(label: string): EntitySelectOption | undefined {
     return this.autocompleteOptions.find((e) =>
@@ -83,27 +73,41 @@ export class AutocompleteManyComponent
     const found = this.findByLabel(event.value);
     if (found) {
       this.selectedItems().add(found);
-      this.inputControl.setValue(null);
+      event.chipInput.clear();
     }
+    this.clearSearch();
+    this.clearAutoComplete();
+    this.openAutoComplete();
   }
 
   add(event: MatAutocompleteSelectedEvent) {
-    this.selectedItems.update(
-      (items) => new Set([...items, event.option.value])
-    );
-    this.inputControl.setValue(null);
+    if (event) {
+      this.selectedItems().add(event.option.value);
+      this.updateValue();
+    }
+    this.clearSearch();
+    this.openAutoComplete();
   }
 
   remove(event: EntitySelectOption) {
     this.selectedItems().delete(event);
-    // this.selectedItems.update((items) => items);
-    // this.findByLabel()
+    this.updateValue();
+  }
 
-    // const index = this.autocompleteOptions.indexOf();
+  clearSearch() {
+    this.__searchControl.setValue('');
+  }
 
-    // this.selectedItems.update((items) => {
-    //   delete items[index];
-    //   return [...items];
-    // });
+  clearAutoComplete() {
+    this.autoRef.optionSelected.emit();
+  }
+
+  openAutoComplete() {
+    this.autoRef.opened.emit();
+  }
+
+  updateValue() {
+    this.inputControl.setValue([...this.selectedItems()]);
+    this.inputControl.setValue([...this.selectedItems()]);
   }
 }
