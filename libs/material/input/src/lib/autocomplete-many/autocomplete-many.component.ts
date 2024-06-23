@@ -64,7 +64,7 @@ export class AutocompleteManyComponent
   addByKeypress(event: MatChipInputEvent) {
     const found = this.findByLabel(event.value);
     if (found) {
-      this.selectedItems().add(found);
+      this.updateSelectedItems(found);
       event.chipInput.clear();
     }
     this.clearSearch();
@@ -74,7 +74,7 @@ export class AutocompleteManyComponent
 
   add(event: MatAutocompleteSelectedEvent) {
     if (event) {
-      this.selectedItems().add(event.option.value);
+      this.updateSelectedItems(event.option.value);
       this.updateValue();
     }
     this.clearSearch();
@@ -82,6 +82,11 @@ export class AutocompleteManyComponent
   }
 
   remove(event: EntitySelectOption) {
+    this.selectedItems.update((items) => {
+      const found = this.findByLabel(event.label);
+      if (found) items.delete(found);
+      return items;
+    });
     this.selectedItems().delete(event);
     this.updateValue();
   }
@@ -100,5 +105,14 @@ export class AutocompleteManyComponent
 
   updateValue() {
     this.inputControl.setValue([...this.selectedItems()]);
+  }
+
+  updateSelectedItems(item: EntitySelectOption) {
+    const oldSet = [...this.selectedItems()];
+    if (oldSet.find((e) => e.id === item.id)) {
+      return;
+    }
+
+    this.selectedItems.update((items) => new Set([...items, item]));
   }
 }

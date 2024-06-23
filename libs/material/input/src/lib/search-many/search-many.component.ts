@@ -65,6 +65,7 @@ export class SearchManyComponent
   implements OnInit, OnDestroy
 {
   @Input() pluralResourceName: string;
+  
   searchQueryBuilder = inject(getHttpSearchQueryBuilderToken());
 
   foundOptions = signal<EntitySelectOption[]>([]);
@@ -90,10 +91,19 @@ export class SearchManyComponent
         this.foundOptions.update(() => result as EntitySelectOption[]);
       });
   }
+
   __toEntityOptions(items: any[]): EntitySelectOption[] {
     return items.map((e) => {
       return { id: e.id, label: e.name };
     });
+  }
+
+  protected override findByLabel(
+    label: string
+  ): EntitySelectOption | undefined {
+    return this.foundOptions().find((e) =>
+      e.label.toLowerCase().includes(label.toLowerCase())
+    );
   }
 
   ngOnDestroy(): void {
