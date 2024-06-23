@@ -44,8 +44,14 @@ export class AuthModule implements OnModuleInit {
     const ROOT_USERNAME = this.config.getOrThrow('ROOT_USERNAME');
     const ROOT_PASSWORD = this.config.getOrThrow('ROOT_PASSWORD');
 
+    console.table({
+      ROOT_USERNAME,
+      ROOT_PASSWORD,
+    });
+    
     if (found) {
-      await this.repo.update(found.id, {
+      await this.repo.save({
+        id: found.id,
         username: ROOT_USERNAME,
         password: ROOT_PASSWORD,
       });

@@ -8,7 +8,9 @@ import {
 import { Request } from 'express';
 import { AuthService } from '../auth.service';
 import { AuthHeaders, Operation, ResourceName } from '@webpackages/types';
-import { extractToken } from '../common';
+import { appendParams, extractToken } from '../common';
+import { v4 } from 'uuid';
+
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(
@@ -43,7 +45,7 @@ export class AuthGuard implements CanActivate {
     const user = session.user;
 
     if (user.permissions.Admin || user.permissions.Root) {
-      (req as any)[AuthHeaders.User] = user;
+      appendParams(req, session);
       return true;
     }
 

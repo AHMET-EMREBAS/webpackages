@@ -1,11 +1,17 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { LoginDto, LoginResponse } from './dto';
+import { LoginDto } from './dto';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { compareHash } from '@webpackages/hash';
 import { Session, User } from '@webpackages/entities';
+import { v4 } from 'uuid';
+import { isNotUndefined } from '@webpackages/utils';
 
 @Injectable()
 export class AuthService {
@@ -24,13 +30,8 @@ export class AuthService {
   async verify(token: string): Promise<Session> {
     const { sub } = this.jwt.verify(token);
     if (sub) {
-      try {
-        return await this.sessionRepo.findOneByOrFail({ id: sub });
-      } catch (err) {
-        throw new UnauthorizedException('User not found!');
-      }
+      return await this.sessionRepo.findOneByOrFail({ id: sub });
     }
-
     throw new UnauthorizedException(`There is no valid session!`);
   }
 
@@ -42,21 +43,34 @@ export class AuthService {
     }
   }
 
-  async login(loginDto: LoginDto): Promise<LoginResponse> {
+  async login(loginDto: LoginDto) {
     const { username, password } = loginDto;
     const foundUser = await this.findByUsername(username);
     const { password: hashedPassed } = foundUser;
     const isPasswordMatch = compareHash(password, hashedPassed);
 
-    const newSession = await this.sessionRepo.save({
-      user: foundUser,
-      active: true,
-    });
+    let newSession: Session;
+    try {
+      newSession = await this.sessionRepo.save({
+        user: foundUser,
+        active: true,
+        deviceId: v4(),
+        scope: 'app',
+        token: v4(),
+      });
+    } catch (err) {
+      console.error('Could not create the session');
+      console.error(err);
+      throw new InternalServerErrorException();
+    }
 
     if (isPasswordMatch) {
       const token = this.sign(newSession.id);
+
       await this.sessionRepo.update(newSession.id, { token });
-      return { token: this.sign(newSession.id) };
+      return await this.sessionRepo.findOneBy({
+        id: newSession.id,
+      });
     }
 
     throw new UnauthorizedException('Wrong password');

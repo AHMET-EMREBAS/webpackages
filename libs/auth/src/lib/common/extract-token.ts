@@ -4,9 +4,9 @@ import { Request } from 'express';
 
 export function extractToken(req: Request): string {
   const token =
-    req.headers.authorization ||
-    req.cookies.authorization ||
-    req.query['authorization'];
+    req.headers?.authorization ||
+    req.cookies?.authorization ||
+    req.query?.['authorization'];
 
   if (isNotUndefined(token)) {
     const [, ...rest] = token.split(' ');
