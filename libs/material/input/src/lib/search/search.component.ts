@@ -1,11 +1,19 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
+import { HttpClient } from '@angular/common/http';
+import { InputComponent, InputModules } from '../input';
 
 @Component({
   selector: 'wp-search',
   standalone: true,
-  imports: [CommonModule],
-  template: `<p>search works!</p>`,
-  styles: ``,
+  imports: [InputModules],
+  template: `
+    <mat-form-field class="w-full">
+      <mat-label>{{ inputLabel }}</mat-label>
+      <input matInput type="text" />
+    </mat-form-field>
+  `,
 })
-export class SearchComponent {}
+export class SearchComponent extends InputComponent {
+  httpClient = inject(HttpClient);
+}
