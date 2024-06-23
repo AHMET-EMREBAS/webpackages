@@ -4,11 +4,12 @@ import { CommonAppModule } from '@webpackages/boot-nest';
 import * as RestModules from '@webpackages/controllers';
 import * as Subscribers from '@webpackages/entities';
 import { DatabaseModule } from '@webpackages/database';
-import { AuthModule} from '@webpackages/auth'
+import { AuthModule, provideGlobalAuthGuard } from '@webpackages/auth';
+
 @Module({
   imports: [
     CommonAppModule,
-    AuthModule, 
+    AuthModule,
     DatabaseModule.configure({
       subscribers: [
         ...Object.values(Subscribers).filter((e) =>
@@ -18,6 +19,6 @@ import { AuthModule} from '@webpackages/auth'
     }),
     ...Object.values(RestModules).filter((e) => e.name.endsWith('Module')),
   ],
-  providers: [AppService],
+  providers: [AppService, provideGlobalAuthGuard()],
 })
 export class AppModule {}

@@ -10,7 +10,7 @@ import { LoginResponseDto } from './response';
 import { AuthPathBuilder as APB } from '@webpackages/path';
 import { AuthControllerBuilder as ACB } from '@webpackages/rest';
 import { notImpError } from '@webpackages/utils';
-import { AuthGuard, LocalGuard } from './guards';
+import { Auth, AuthGuard, BasicAuth, LocalGuard } from './guards';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { AuthHeaders, AuthNames } from '@webpackages/types';
 
@@ -19,15 +19,14 @@ const C = new ACB({ loginResponseDto: LoginResponseDto, pathBuilder: A });
 
 @C.Controller()
 export class AuthController {
-  
-  @UseGuards(AuthGuard)
+  @Auth()
   @ApiBearerAuth(AuthNames.BEARER_AUTH)
   @Get('test-session')
   test() {
     return { message: 'You should see this message if you have a sesion.' };
   }
 
-  @UseGuards(AuthGuard)
+  @Auth()
   @PublicResource()
   @Get('test-public')
   test2() {
@@ -35,29 +34,23 @@ export class AuthController {
       message: 'You should see this message!',
     };
   }
-  /**
-   * - Create token and send in body
-   * - Create deviceId and send it body
-   * @param loginDto
-   * @param token
-   * @returns
-   */
 
-  @UseGuards(LocalGuard)
+  @BasicAuth()
   @C.Login()
   login(@Body() loginDto: LoginDto, @SessionParam() session: string) {
     return { session };
   }
 
+  @PublicResource()
   @C.Signup()
   signup() {
     notImpError();
-    return {};
   }
 
+  @Auth()
   @C.HasSession()
   hasSession() {
-    notImpError();
+    return { message: 'You have a session' };
   }
 
   @C.Logout()

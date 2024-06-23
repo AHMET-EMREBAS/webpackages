@@ -11,7 +11,6 @@ import { JwtService } from '@nestjs/jwt';
 import { compareHash } from '@webpackages/hash';
 import { Session, User } from '@webpackages/entities';
 import { v4 } from 'uuid';
-import { isNotUndefined } from '@webpackages/utils';
 
 @Injectable()
 export class AuthService {
