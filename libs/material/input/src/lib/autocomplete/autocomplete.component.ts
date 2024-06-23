@@ -35,8 +35,6 @@ import { FormControl } from '@angular/forms';
       </mat-autocomplete>
       <mat-error>{{ errorMessage$ | async }}</mat-error>
     </mat-form-field>
-
-    {{ inputControl.value }}
   `,
 })
 export class AutocompleteComponent extends InputComponent implements OnInit {
@@ -54,7 +52,6 @@ export class AutocompleteComponent extends InputComponent implements OnInit {
     this.filteredOptions$ = this.__searchControl.valueChanges.pipe(
       startWith(''),
       debounceTime(1000),
-
       map((e) => this.__filter(e)),
       map((e) => this.__slice(e))
     );

@@ -43,16 +43,8 @@ import { EntitySelectOption } from '@webpackages/types';
         <mat-option [value]="option">{{ option.label }}</mat-option>
         }
       </mat-autocomplete>
-
       <mat-error>{{ errorMessage$ | async }}</mat-error>
-      <button type="button" matSuffix mat-icon-button>
-        <mat-icon>help</mat-icon>
-      </button>
     </mat-form-field>
-
-    <br />
-
-    {{ inputControl.value | json }}
   `,
 })
 export class AutocompleteManyComponent
@@ -107,7 +99,6 @@ export class AutocompleteManyComponent
   }
 
   updateValue() {
-    this.inputControl.setValue([...this.selectedItems()]);
     this.inputControl.setValue([...this.selectedItems()]);
   }
 }
