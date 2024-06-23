@@ -7,7 +7,7 @@ import {
 } from '@angular/material/autocomplete';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 
-import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { EntitySelectOption } from '@webpackages/types';
 
 @Component({
@@ -51,7 +51,7 @@ export class AutocompleteManyComponent
   extends AutocompleteComponent
   implements OnInit
 {
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA, SPACE];
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   selectedItems = signal<Set<EntitySelectOption>>(new Set());
 

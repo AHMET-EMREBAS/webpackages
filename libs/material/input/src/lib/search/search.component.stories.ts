@@ -14,7 +14,7 @@ import { provideDefaultHttpSearchQueryBuilder } from '../input';
 import { getBuiltinCategories } from '@webpackages/types';
 import { of } from 'rxjs';
 
-class MockHttpClient {
+export class MockHttpCategoryClient {
   get(queryPath: string) {
     const search = queryPath.split('=')[1].split('&')[0];
     return of(
@@ -35,7 +35,7 @@ class MockHttpClient {
 
 const meta: Meta<SearchComponent> = {
   component: SearchComponent,
-  title: 'SearchComponent',
+  title: 'Search',
   decorators: [
     applicationConfig({
       providers: [
@@ -43,7 +43,7 @@ const meta: Meta<SearchComponent> = {
         provideDefaultHttpSearchQueryBuilder(),
         {
           provide: HttpClient,
-          useClass: MockHttpClient,
+          useClass: MockHttpCategoryClient,
         },
       ],
     }),
@@ -59,7 +59,7 @@ export const Primary: Story = {
     inputControl: new FormControl('', []),
     inputName: 'category',
     inputLabel: 'Search Category',
-    resourcePath: 'categorys',
+    pluralResourceName: 'categorys',
   },
 };
 

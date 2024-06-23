@@ -54,16 +54,15 @@ export class SearchComponent
   extends AutocompleteComponent
   implements OnInit, OnDestroy
 {
-  @Input() resourcePath: string;
+  @Input() pluralResourceName: string;
   searchQueryBuilder = inject(getHttpSearchQueryBuilderToken());
 
   foundOptions = signal<EntitySelectOption[]>([]);
   httpClient = inject(HttpClient);
 
   search$: Observable<EntitySelectOption[]>;
-  sub: Subscription;
 
-  @Output() foundEvent = new EventEmitter();
+  sub: Subscription;
 
   override ngOnInit(): void {
     this.sub = this.__searchControl.valueChanges
@@ -72,7 +71,7 @@ export class SearchComponent
         debounceTime(this.inputDebounceTime),
         switchMap((search) => {
           return this.httpClient.get(
-            this.searchQueryBuilder(this.resourcePath, search || '')
+            this.searchQueryBuilder(this.pluralResourceName, search || '')
           );
         }),
         map((data) => this.__toEntityOptions(data as any))
