@@ -12,7 +12,7 @@ import { InputType } from '@webpackages/types';
       <input
         type="text"
         matInput
-        [required]="inputRequired"
+        [required]="inputRequired!"
         [formControl]="inputControl"
         [minlength]="inputMinLength"
         [maxLength]="inputMaxLength"
@@ -25,7 +25,4 @@ import { InputType } from '@webpackages/types';
 })
 export class InputTextComponent extends InputComponent {
   override readonly inputType: InputType = 'text';
-  @Input() override inputRequired = false;
-  @Input() override inputMaxLength = Number.MAX_SAFE_INTEGER;
-  @Input() override inputMinLength = 0;
 }

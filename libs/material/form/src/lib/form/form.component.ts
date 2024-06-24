@@ -46,12 +46,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     <form class="w-full">
       @for(option of inputOptions; track option){
 
-      <!-- Number Input -->
+      <!-- Text Input -->
       @if(option.inputType ==='text'){
       <wp-input-text
         [inputName]="option.name"
         [inputControl]="control(option.name)"
         [inputLabel]="option.label"
+        [inputRequired]="option.required"
       ></wp-input-text>
       }
 
@@ -62,6 +63,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputControl]="control(option.name)"
         [inputLabel]="option.label"
         [inputMaxLength]="option.maxLength"
+        [inputRequired]="option.required"
       ></wp-input-textarea>
       }
 
@@ -71,6 +73,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputName]="option.name"
         [inputControl]="control(option.name)"
         [inputLabel]="option.label"
+        [inputRequired]="option.required"
       ></wp-input-number>
       }
 
@@ -80,7 +83,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputName]="option.name"
         [inputControl]="control(option.name)"
         [inputLabel]="option.label"
-        [inputRequired]="!!option.required"
+        [inputRequired]="option.required"
       ></wp-input-date>
       }
 
@@ -91,7 +94,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputName]="option.name"
         [inputControl]="control(option.name)"
         [inputLabel]="option.label"
-        [inputRequired]="!!option.required"
+        [inputRequired]="option.required"
       ></wp-search>
 
       }
@@ -114,7 +117,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputName]="option.name"
         [inputControl]="control(option.name)"
         [inputLabel]="option.label"
-        [inputRequired]="!!option.required"
+        [inputRequired]="option.required"
         [autocompleteOptions]="option.autocompleteOptions || []"
       ></wp-autocomplete>
       }
@@ -125,21 +128,28 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputName]="option.name"
         [inputControl]="control(option.name)"
         [inputLabel]="option.label"
-        [inputRequired]="!!option.required"
+        [inputRequired]="option.required"
         [autocompleteOptions]="option.autocompleteOptions || []"
       ></wp-autocomplete-many>
       }
 
-      <!-- Autocomplete Many -->
+      <!-- Checkbox -->
       @else if(option.inputType ==='checkbox'){
-      <mat-checkbox [formControl]="control(option.name)"></mat-checkbox>
+      <mat-checkbox
+        [name]="option.name"
+        [formControl]="control(option.name)"
+      ></mat-checkbox>
       }
 
       <!-- Text -->
       @else{
       <wp-input-text
-        [inputName]="option.name || 'unkown'"
-        [inputLabel]="option.label || 'unkown'"
+        [inputName]="option.name"
+        [inputLabel]="option.label"
+        [inputControl]="control(option.name)"
+        [inputRequired]="option.required"
+        [inputMinLength]="option.minLength"
+        [inputMaxLength]="option.maxLength"
       ></wp-input-text>
       }
 
@@ -154,7 +164,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         >
           Save
         </button>
-        <button class="w-full" mat-raised-button>Reset</button>
+        <button class="w-full" mat-raised-button (click)="reset()">
+          Reset
+        </button>
       </div>
     </form>
   `,
@@ -184,5 +196,10 @@ export class FormComponent<T = any> {
       return this.formGroup.get(name) as FormControl;
     }
     throw new Error(`Form group is not provided!`);
+  }
+
+  reset() {
+    this.formGroup.reset({}, { emitEvent: false });
+    this.formGroup.markAsUntouched();
   }
 }

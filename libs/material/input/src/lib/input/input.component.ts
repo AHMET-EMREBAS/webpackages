@@ -34,23 +34,21 @@ export const InputModules = [
   ...FormModules,
 ];
 @Component({ template: '' })
-export class InputComponent<T = unknown>
-  implements InputOptions, OnInit, AfterViewInit
-{
+export class InputComponent implements InputOptions, OnInit, AfterViewInit {
   @Input() inputType: InputType;
-  @Input() inputRequired: boolean | undefined = false;
+  @Input() inputRequired = false;
   @Input() inputControl: FormControl;
   @Input() inputName = 'unkown';
   @Input() inputLabel = 'unkown';
-  @Input() inputHint: string | undefined = '';
-  @Input() inputMinLength: number | undefined = 0;
-  @Input() inputMaxLength: number | undefined = 1000;
-  @Input() inputMin: number | undefined = Number.MIN_SAFE_INTEGER;
-  @Input() inputMax: number | undefined = Number.MAX_SAFE_INTEGER;
+  @Input() inputHint = '';
+  @Input() inputMinLength = 0;
+  @Input() inputMaxLength = 1000;
+  @Input() inputMin = 0;
+  @Input() inputMax = 1000000000;
   @Input() inputFormat: StringFormat = 'long';
   @Input() inputAutocomplete: HTMLInputElement['autocomplete'] = 'off';
-  @Input() inputEnums: string[] = [];
-  @Input() inputMultiple: boolean | undefined = false;
+  @Input() inputEnums: string[];
+  @Input() inputMultiple = false;
 
   constructor(
     @Inject(getInputErrorMessageHandlerToken())
@@ -81,7 +79,6 @@ export class InputComponent<T = unknown>
           `inputControl is not provided which is required for the input components! We assume it is intentianal and create the instance`
         );
       }
-
       this.inputControl = new FormControl('');
     }
 

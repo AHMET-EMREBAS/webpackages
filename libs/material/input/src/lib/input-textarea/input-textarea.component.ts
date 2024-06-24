@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { InputComponent, InputModules } from '../input/input.component';
 import { InputType } from '@webpackages/types';
 
@@ -12,7 +12,7 @@ import { InputType } from '@webpackages/types';
       style="resize: none; height:10em"
       type="text"
       matInput
-      [required]="!!inputRequired"
+      [required]="inputRequired!"
       [formControl]="inputControl"
       [minlength]="inputMinLength"
       [maxLength]="inputMaxLength"

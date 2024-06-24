@@ -14,6 +14,7 @@ import {
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import {
+  InputOption,
   MockEntityCollectionService,
   provideEntityCollectionService,
   provideFormGroup,
@@ -29,6 +30,7 @@ import {
   withEffects,
 } from '@ngrx/data';
 import { FormControl, FormGroup } from '@angular/forms';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 const entityMetadata: EntityMetadataMap = {
   Sample: {},
@@ -55,6 +57,7 @@ const meta: Meta<FormComponent<any>> = {
   decorators: [
     applicationConfig({
       providers: [
+        provideNativeDateAdapter(),
         provideAnimations(),
         provideDefaultInputErrorMesssageHandler(),
         provideDefaultInputStatusIndicatorHandler(),
@@ -88,7 +91,7 @@ const meta: Meta<FormComponent<any>> = {
             inputType: 'date',
             required: true,
           },
-        ]),
+        ] as InputOption[]),
       ],
     }),
   ],

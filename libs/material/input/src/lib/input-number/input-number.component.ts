@@ -26,7 +26,4 @@ import { InputType } from '@webpackages/types';
 })
 export class InputNumberComponent extends InputComponent {
   override readonly inputType: InputType = 'number';
-
-  @Input() override inputMin = Number.MIN_SAFE_INTEGER;
-  @Input() override inputMax = Number.MIN_SAFE_INTEGER;
 }

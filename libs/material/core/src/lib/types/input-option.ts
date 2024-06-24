@@ -3,6 +3,8 @@ import { EntitySelectOption, PropertyOptions } from '@webpackages/types';
 export type InputOption = Partial<
   Pick<
     PropertyOptions,
+    | 'name'
+    | 'inputType'
     | 'icon'
     | 'inputType'
     | 'required'
@@ -11,10 +13,8 @@ export type InputOption = Partial<
     | 'minimum'
     | 'maximum'
   >
-> &
-  Pick<PropertyOptions, 'name' | 'inputType'> & {
-    label: string;
-  } & Partial<{
-    resourceName: string;
-    autocompleteOptions: EntitySelectOption[];
-  }>;
+> & {
+  label: string;
+  resourceName: string;
+  autocompleteOptions: EntitySelectOption[];
+};

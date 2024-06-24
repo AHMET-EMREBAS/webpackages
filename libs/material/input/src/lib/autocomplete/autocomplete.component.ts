@@ -41,6 +41,7 @@ export class AutocompleteComponent extends InputComponent implements OnInit {
   @ViewChild('auto') autoRef: MatAutocomplete;
 
   @Input() autocompleteListSize = 20;
+  
   filteredOptions$: Observable<EntitySelectOption[]>;
 
   readonly __searchControl = new FormControl('');
