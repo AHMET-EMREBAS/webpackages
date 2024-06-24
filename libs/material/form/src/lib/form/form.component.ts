@@ -139,7 +139,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
       @else{
       <wp-input-text
         [inputName]="option.name || 'unkown'"
-        [inputLabel]="option.label || 'Unkown'"
+        [inputLabel]="option.label || 'unkown'"
       ></wp-input-text>
       }
 

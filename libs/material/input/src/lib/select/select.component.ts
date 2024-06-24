@@ -16,8 +16,6 @@ import { EntitySelectOption } from '@webpackages/types';
         }
       </mat-select>
     </mat-form-field>
-    <br />
-    {{ inputControl.value | json }}
   `,
 })
 export class SelectComponent extends InputComponent {

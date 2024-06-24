@@ -57,8 +57,6 @@ import { getHttpSearchQueryBuilderToken } from '@webpackages/material/core';
       </mat-autocomplete>
       <mat-error>{{ errorMessage$ | async }}</mat-error>
     </mat-form-field>
-
-    {{ inputControl.value | json }}
   `,
 })
 export class SearchManyComponent
@@ -66,7 +64,7 @@ export class SearchManyComponent
   implements OnInit, OnDestroy
 {
   @Input() pluralResourceName: string;
-  
+
   searchQueryBuilder = inject(getHttpSearchQueryBuilderToken());
 
   foundOptions = signal<EntitySelectOption[]>([]);
