@@ -52,6 +52,8 @@ export const Primary: Story = {
   args: {
     tableData,
     tableColumns: [{ name: 'label', label: 'Label' }],
+    tableItemsSize: 100,
+    pageSize: 5,
   },
 };
 

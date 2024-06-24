@@ -17,7 +17,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import {
+  MatPaginator,
+  MatPaginatorModule,
+  PageEvent,
+} from '@angular/material/paginator';
 import { HttpClient } from '@angular/common/http';
 import { TableColumnOption, TableColumnOptions } from './table-column-option';
 import {
@@ -41,6 +45,7 @@ import {
   fromEvent,
   map,
 } from 'rxjs';
+import { DataSource } from '@angular/cdk/collections';
 @Component({
   selector: 'wp-table',
   standalone: true,
@@ -69,6 +74,7 @@ import {
 })
 export class TableComponent implements OnInit, AfterViewInit {
   @ViewChild('searchInput') searchInput: ElementRef<HTMLInputElement>;
+  @ViewChild('paginator') paginator: MatPaginator;
 
   httpClient = inject(HttpClient);
   searchControl = new FormControl('', []);
@@ -108,10 +114,6 @@ export class TableComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.tableData) {
-      this.tableDataSource = new MatTableDataSource(this.tableData);
-    }
-
     this.idColumns.update(() => this.tableIdColumns.map((e) => e.name));
 
     this.timestampColumns.update(() =>
@@ -134,8 +136,17 @@ export class TableComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.search$ = fromEvent(this.searchInput.nativeElement, 'input').pipe(
       debounceTime(400),
-      map((value) => this.searchValue)
+      map(() => {
+        this.searchEvent.emit(this.searchValue);
+        this.filter();
+        return this.searchValue;
+      })
     );
+
+    if (this.tableData) {
+      this.tableDataSource = new MatTableDataSource(this.tableData);
+      this.tableDataSource.paginator = this.paginator;
+    }
   }
 
   emitSortChange(event: Sort) {
@@ -152,5 +163,9 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   dynamicClass(columnOption: TableColumnOption, value: any) {
     return columnOption.class ? columnOption.class(value) : '';
+  }
+
+  filter() {
+    this.tableDataSource.filter = this.searchValue;
   }
 }

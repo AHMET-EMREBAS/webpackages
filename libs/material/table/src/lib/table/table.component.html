@@ -89,13 +89,12 @@
       ></tr>
     </table>
   </div>
-
   <!-- Paginator -->
   <mat-paginator
-    [length]="tableItemsSize || 0"
-    [pageSize]="pageSize || 0"
+    #paginator
     [pageSizeOptions]="[5, 10, 25, 100]"
     (page)="emitPageChange($event)"
+    showFirstLastButtons
     class="z-10 sticky bottom-0"
   >
   </mat-paginator>
