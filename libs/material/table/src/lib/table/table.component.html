@@ -36,10 +36,10 @@
   <!-- Table container -->
   <div class="h-full overflow-y-auto">
     <table
+      #table
       mat-table
       matSort
       [dataSource]="tableDataSource"
-      #table
       (matSortChange)="emitSortChange($event)"
     >
       @for(item of tableIdColumns; track item ){
