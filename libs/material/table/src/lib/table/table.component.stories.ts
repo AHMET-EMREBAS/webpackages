@@ -56,6 +56,9 @@ export const Primary: Story = {
     pageSize: 5,
   },
 };
+export const NoTimestamp: Story = {
+  args: { ...Primary.args, showTimestamps: false },
+};
 
 export const Heading: Story = {
   ...Primary,

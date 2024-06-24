@@ -87,7 +87,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Input() tableColumns: TableColumnOptions;
   @Input() pluralResourceName: string;
   @Input() showCheckbox = true;
-
+  @Input() showTimestamps = true;
   @Output() sortChangeEvent = new EventEmitter<Sort>();
   @Output() pageChangeEvent = new EventEmitter<PageEvent>();
   @Output() searchEvent = new EventEmitter<string>();
@@ -117,7 +117,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.idColumns.update(() => this.tableIdColumns.map((e) => e.name));
 
     this.timestampColumns.update(() =>
-      this.tableTimestampColumns.map((e) => e.name)
+      this.showTimestamps ? this.tableTimestampColumns.map((e) => e.name) : []
     );
 
     this.columns.update(() => [
