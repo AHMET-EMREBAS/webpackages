@@ -2,10 +2,19 @@
   <mat-sidenav
     #leftSidenav
     class="mat-elevation-z4"
-    [mode]="(viewport.sidenavMode$ | async)!"
+    mode="side"
     [opened]="viewport.sidenavOpen$ | async"
   >
     <mat-nav-list>
+      @if(viewport.smallScreen$ | async){
+      <a (click)="leftSidenav.close()" mat-list-item matTooltip="Close Sidenav">
+        <mat-icon color="primary">arrow_back</mat-icon>
+      </a>
+      <hr />
+
+      }
+
+      <!-- Nav items -->
       @for(item of navlistItems; track item){
 
       <a
@@ -26,6 +35,16 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
+    @if(!leftSidenav.opened){
+    <button
+      class="absolute left-0 top-0"
+      mat-icon-button
+      (click)="leftSidenav.toggle()"
+      color="primary"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    }
     <div class="grow router-content">
       <ng-content></ng-content>
     </div>
