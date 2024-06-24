@@ -31,7 +31,7 @@ import {
   TableRowRouteValueHandler,
   getContextEditRouteValueToken,
   getContextDeleteRouteValueToken,
-} from './providers';
+} from './table.provider';
 
 import { MatSortModule, Sort } from '@angular/material/sort';
 import { CdkMenu, CdkMenuItem, CdkContextMenuTrigger } from '@angular/cdk/menu';
@@ -137,8 +137,8 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.search$ = fromEvent(this.searchInput.nativeElement, 'input').pipe(
       debounceTime(400),
       map(() => {
+        this.tableDataSource.filter = this.searchValue;
         this.searchEvent.emit(this.searchValue);
-        this.filter();
         return this.searchValue;
       })
     );
@@ -163,9 +163,5 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   dynamicClass(columnOption: TableColumnOption, value: any) {
     return columnOption.class ? columnOption.class(value) : '';
-  }
-
-  filter() {
-    this.tableDataSource.filter = this.searchValue;
   }
 }

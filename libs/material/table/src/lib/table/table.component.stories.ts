@@ -17,7 +17,7 @@ import {
   provideDefaultIdColumnOptions,
   provideDefaultTableRowRouteValueHandler,
   provideDefaultTimestampColumnOptions,
-} from './providers';
+} from './table.provider';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 

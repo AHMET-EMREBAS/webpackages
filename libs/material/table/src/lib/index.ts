@@ -1,1 +1,2 @@
-export const ____some___ = '';
+// @index('./*', f => `export * from '${f.path}'`)
+export * from './table';
