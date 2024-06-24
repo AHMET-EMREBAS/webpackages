@@ -1,0 +1,41 @@
+<mat-sidenav-container #viewport="wpViewport" fullscreen wpViewport>
+  <mat-sidenav
+    #leftSidenav
+    class="mat-elevation-z4"
+    [mode]="(viewport.sidenavMode$ | async)!"
+    [opened]="viewport.sidenavOpen$ | async"
+  >
+    <mat-nav-list>
+      @for(item of navlistItems; track item){
+      <a
+        [routerLink]="item.route"
+        routerLinkActive="router-link-active"
+        mat-list-item
+      >
+        <span matListItemLine> {{ item.label }} </span>
+        <span matListItemIcon>
+          <mat-icon color="primary">{{ item.icon }}</mat-icon>
+        </span>
+      </a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="leftSidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <div class="grow"></div>
+
+      <button mat-icon-button [routerLink]="['auth', 'logout']">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class="grow router-content">
+      <ng-content></ng-content>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
