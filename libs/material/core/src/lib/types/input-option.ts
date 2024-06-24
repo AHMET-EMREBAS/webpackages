@@ -17,4 +17,5 @@ export type InputOption = Partial<
   label: string;
   resourceName: string;
   autocompleteOptions: EntitySelectOption[];
+  class: string;
 };

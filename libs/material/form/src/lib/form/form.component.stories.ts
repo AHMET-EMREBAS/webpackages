@@ -76,6 +76,7 @@ const meta: Meta<FormComponent<any>> = {
             required: true,
             minLength: 3,
             maxLength: 100,
+            class: 'order-1 grow',
           },
           {
             name: 'description',
@@ -84,12 +85,14 @@ const meta: Meta<FormComponent<any>> = {
             required: true,
             minLength: 3,
             maxLength: 100,
+            class: 'w-full order-3',
           },
           {
             name: 'dob',
             label: 'Date of birth',
             inputType: 'date',
             required: true,
+            class: 'order-2 grow',
           },
         ] as InputOption[]),
       ],

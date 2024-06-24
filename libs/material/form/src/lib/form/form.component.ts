@@ -43,7 +43,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatCheckboxModule,
   ],
   template: `
-    <form class="w-full">
+    <form class="w-full flex flex-row flex-wrap gap-4">
       @for(option of inputOptions; track option){
 
       <!-- Text Input -->
@@ -53,6 +53,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputControl]="control(option.name)"
         [inputLabel]="option.label"
         [inputRequired]="option.required"
+        [class]="option.class"
       ></wp-input-text>
       }
 
@@ -64,6 +65,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputLabel]="option.label"
         [inputMaxLength]="option.maxLength"
         [inputRequired]="option.required"
+        [class]="option.class"
       ></wp-input-textarea>
       }
 
@@ -84,6 +86,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputControl]="control(option.name)"
         [inputLabel]="option.label"
         [inputRequired]="option.required"
+        [class]="option.class"
       ></wp-input-date>
       }
 
@@ -95,6 +98,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputControl]="control(option.name)"
         [inputLabel]="option.label"
         [inputRequired]="option.required"
+        [class]="option.class"
       ></wp-search>
 
       }
@@ -106,7 +110,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputName]="option.name"
         [inputControl]="control(option.name)"
         [inputLabel]="option.label"
-        [pluralResourceName]="option.resourceName || 'Unkown'"
+        [pluralResourceName]="option.resourceName"
+        [class]="option.class"
       ></wp-search-many>
 
       }
@@ -119,6 +124,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputLabel]="option.label"
         [inputRequired]="option.required"
         [autocompleteOptions]="option.autocompleteOptions || []"
+        [class]="option.class"
       ></wp-autocomplete>
       }
 
@@ -130,6 +136,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputLabel]="option.label"
         [inputRequired]="option.required"
         [autocompleteOptions]="option.autocompleteOptions || []"
+        [class]="option.class"
       ></wp-autocomplete-many>
       }
 
@@ -150,12 +157,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputRequired]="option.required"
         [inputMinLength]="option.minLength"
         [inputMaxLength]="option.maxLength"
+        class="w-full"
       ></wp-input-text>
       }
 
       <!-- End -->
       }
-      <div class="flex flex-row gap-4">
+      <div class="w-full flex flex-row gap-4 order-last">
         <button
           class="w-full"
           mat-raised-button
