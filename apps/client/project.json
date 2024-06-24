@@ -24,6 +24,7 @@
         ],
         "styles": [
           "@angular/material/prebuilt-themes/deeppurple-amber.css",
+          "@angular/cdk/overlay-prebuilt.css",
           "apps/client/src/styles.scss"
         ],
         "scripts": [],

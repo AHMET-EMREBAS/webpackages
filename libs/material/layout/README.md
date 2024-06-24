@@ -1,7 +1,7 @@
 # material-layout
 
-This library was generated with [Nx](https://nx.dev).
 
-## Running unit tests
+# Required Directives 
 
-Run `nx test material-layout` to execute the unit tests.
+- viewport 
+- fullscreen
