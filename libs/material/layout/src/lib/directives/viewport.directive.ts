@@ -1,4 +1,4 @@
-import { Directive, OnInit } from '@angular/core';
+import { Directive } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, map } from 'rxjs';
 
@@ -7,7 +7,7 @@ import { Observable, map } from 'rxjs';
   standalone: true,
   exportAs: 'wpViewport',
 })
-export class ViewportDirective implements OnInit {
+export class ViewportDirective {
   xSmall$: Observable<boolean> = this.bp
     .observe([Breakpoints.XSmall])
     .pipe(map((value) => value.matches));
@@ -87,7 +87,4 @@ export class ViewportDirective implements OnInit {
   );
 
   constructor(protected readonly bp: BreakpointObserver) {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
 }
