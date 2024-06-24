@@ -12,7 +12,7 @@ import {
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -76,7 +76,8 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   @Input() tableItemsSize: number;
   @Input() pageSize: number;
-  @Input() data: any[];
+  @Input() tableData: any[];
+  @Input() tableDataSource: MatTableDataSource<any>;
   @Input() tableColumns: TableColumnOptions;
   @Input() pluralResourceName: string;
   @Input() showCheckbox = true;
@@ -107,6 +108,10 @@ export class TableComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
+    if (this.tableData) {
+      this.tableDataSource = new MatTableDataSource(this.tableData);
+    }
+
     this.idColumns.update(() => this.tableIdColumns.map((e) => e.name));
 
     this.timestampColumns.update(() =>

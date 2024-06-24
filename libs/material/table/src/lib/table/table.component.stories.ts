@@ -21,6 +21,11 @@ import {
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 
+const tableData = getBuiltinCategories().map((e) => ({
+  eid: e.id,
+  ...e,
+}));
+
 const meta: Meta<TableComponent> = {
   component: TableComponent,
   title: 'TableComponent',
@@ -45,10 +50,7 @@ type Story = StoryObj<TableComponent>;
 
 export const Primary: Story = {
   args: {
-    data: getBuiltinCategories().map((e) => ({
-      eid: e.id,
-      ...e,
-    })),
+    tableData,
     tableColumns: [{ name: 'label', label: 'Label' }],
   },
 };
