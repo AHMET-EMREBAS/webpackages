@@ -19,62 +19,84 @@
       <span matListItemLine>Delete</span>
 
       <span matListItemIcon>
-        <mat-icon color="primary" class="fill">delete</mat-icon>
+        <mat-icon color="warn" class="fill">delete</mat-icon>
       </span>
     </a>
   </mat-nav-list>
 </ng-template>
 
-<table
-  mat-table
-  matSort
-  [dataSource]="data"
-  #table
-  (matSortChange)="emitSortChange($event)"
->
-  @for(item of tableIdColumns; track item ){
-  <ng-container [matColumnDef]="item.name">
-    <th mat-header-cell [mat-sort-header]="item.name" *matHeaderCellDef>
-      {{ item.label }}
-    </th>
-    <td class="w-4" mat-cell *matCellDef="let row; let i = index">
-      {{ row[item.name] }}
-    </td>
-  </ng-container>
-  }
+<div class="w-full flex flex-col h-svh overflow-hiden">
+  <!-- Search  -->
+  <ng-container *ngIf="search$ | async"></ng-container>
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input #searchInput [(ngModel)]="searchValue" type="text" matInput />
+  </mat-form-field>
 
-  <!-- Table Columns -->
-  @for(item of tableColumns; track item){
-  <ng-container [matColumnDef]="item.name">
-    <th mat-header-cell [mat-sort-header]="item.name" *matHeaderCellDef>
-      {{ item.label }}
-    </th>
-    <td [class]="dynamicClass(item, row)" mat-cell *matCellDef="let row">
-      {{ row[item.name] }}
-    </td>
-  </ng-container>
-  }
+  <!-- Table container -->
+  <div class="h-full overflow-y-auto">
+    <table
+      mat-table
+      matSort
+      [dataSource]="data"
+      #table
+      (matSortChange)="emitSortChange($event)"
+    >
+      @for(item of tableIdColumns; track item ){
+      <ng-container [matColumnDef]="item.name" sticky>
+        <th mat-header-cell [mat-sort-header]="item.name" *matHeaderCellDef>
+          {{ item.label }}
+        </th>
+        <td class="w-4" mat-cell *matCellDef="let row; let i = index">
+          {{ row[item.name] }}
+        </td>
+      </ng-container>
+      }
 
-  <!-- Timestamp columns -->
-  @for(item of tableTimestampColumns; track item){
-  <ng-container [matColumnDef]="item.name">
-    <th mat-header-cell [mat-sort-header]="item.name" *matHeaderCellDef>
-      {{ item.label }}
-    </th>
-    <td class="w-4" mat-cell *matCellDef="let row">
-      {{ row[item.name] || 'N/A' }}
-    </td>
-  </ng-container>
-  }
+      <!-- Table Columns -->
+      @for(item of tableColumns; track item){
+      <ng-container [matColumnDef]="item.name">
+        <th mat-header-cell [mat-sort-header]="item.name" *matHeaderCellDef>
+          {{ item.label }}
+        </th>
+        <td [class]="dynamicClass(item, row)" mat-cell *matCellDef="let row">
+          {{ row[item.name] }}
+        </td>
+      </ng-container>
+      }
 
-  <tr mat-header-row *matHeaderRowDef="columns()"></tr>
+      <!-- Timestamp columns -->
+      @for(item of tableTimestampColumns; track item){
+      <ng-container [matColumnDef]="item.name">
+        <th mat-header-cell [mat-sort-header]="item.name" *matHeaderCellDef>
+          {{ item.label }}
+        </th>
+        <td class="w-4" mat-cell *matCellDef="let row">
+          {{ row[item.name] || 'N/A' }}
+        </td>
+      </ng-container>
+      }
 
-  <tr
-    *matRowDef="let row; columns: columns()"
-    mat-row
-    class="odd:bg-slate-100 hover:cursor-pointer hover:bg-slate-300 transition-colors"
-    [cdkContextMenuTriggerFor]="rowContextMenu"
-    [routerLink]="rowRouteHandler(row)"
-    (cdkContextMenuOpened)="contextMenuOpened(row)"
-  ></tr>
-</table>
+      <tr mat-header-row *matHeaderRowDef="columns(); sticky: true" sticky></tr>
+
+      <tr
+        *matRowDef="let row; columns: columns()"
+        mat-row
+        class="odd:bg-slate-100 hover:cursor-pointer hover:bg-slate-300 transition-colors"
+        [cdkContextMenuTriggerFor]="rowContextMenu"
+        [routerLink]="rowRouteHandler(row)"
+        (cdkContextMenuOpened)="contextMenuOpened(row)"
+      ></tr>
+    </table>
+  </div>
+
+  <!-- Paginator -->
+  <mat-paginator
+    [length]="tableItemsSize || 0"
+    [pageSize]="pageSize || 0"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="emitPageChange($event)"
+    class="z-10 sticky bottom-0"
+  >
+  </mat-paginator>
+</div>

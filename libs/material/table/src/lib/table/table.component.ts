@@ -1,10 +1,13 @@
 import {
+  AfterViewInit,
   Component,
+  ElementRef,
   EventEmitter,
   Inject,
   Input,
   OnInit,
   Output,
+  ViewChild,
   inject,
   signal,
 } from '@angular/core';
@@ -14,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { HttpClient } from '@angular/common/http';
 import { TableColumnOption, TableColumnOptions } from './table-column-option';
 import {
@@ -30,11 +33,23 @@ import { MatSortModule, Sort } from '@angular/material/sort';
 import { CdkMenu, CdkMenuItem, CdkContextMenuTrigger } from '@angular/cdk/menu';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  BehaviorSubject,
+  Observable,
+  debounceTime,
+  fromEvent,
+  map,
+} from 'rxjs';
 @Component({
   selector: 'wp-table',
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatTableModule,
     MatButtonModule,
     MatIconModule,
@@ -47,28 +62,35 @@ import { MatListModule } from '@angular/material/list';
     CdkMenuItem,
     CdkContextMenuTrigger,
     RouterModule,
+    MatPaginatorModule,
   ],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
-export class TableComponent implements OnInit {
-  httpClient = inject(HttpClient);
+export class TableComponent implements OnInit, AfterViewInit {
+  @ViewChild('searchInput') searchInput: ElementRef<HTMLInputElement>;
 
+  httpClient = inject(HttpClient);
+  searchControl = new FormControl('', []);
   contextRowValue = signal<any>(null);
 
+  @Input() tableItemsSize: number;
+  @Input() pageSize: number;
   @Input() data: any[];
   @Input() tableColumns: TableColumnOptions;
   @Input() pluralResourceName: string;
   @Input() showCheckbox = true;
 
   @Output() sortChangeEvent = new EventEmitter<Sort>();
+  @Output() pageChangeEvent = new EventEmitter<PageEvent>();
+  @Output() searchEvent = new EventEmitter<string>();
+
+  searchValue = '';
+  search$: Observable<string>;
 
   columns = signal<string[] | null>(null);
-
   displayedColumns = signal<string[] | null>(null);
-
   idColumns = signal<string[]>([]);
-
   timestampColumns = signal<string[]>([]);
 
   constructor(
@@ -104,8 +126,19 @@ export class TableComponent implements OnInit {
     ]);
   }
 
+  ngAfterViewInit(): void {
+    this.search$ = fromEvent(this.searchInput.nativeElement, 'input').pipe(
+      debounceTime(400),
+      map((value) => this.searchValue)
+    );
+  }
+
   emitSortChange(event: Sort) {
     this.sortChangeEvent.emit(event);
+  }
+
+  emitPageChange(event: PageEvent) {
+    this.pageChangeEvent.emit(event);
   }
 
   contextMenuOpened(row: any) {
