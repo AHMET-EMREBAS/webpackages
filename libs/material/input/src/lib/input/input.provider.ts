@@ -6,6 +6,7 @@ import {
   MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
   MatAutocompleteDefaultOptions,
 } from '@angular/material/autocomplete';
+import { isNotUndefined } from '@webpackages/utils';
 
 export type InputIndicatorHandler<T> = (
   control: FormControl,
@@ -52,10 +53,11 @@ export const defaultInputStatusIndicatorHandler: InputStatusIndicatorHandler = (
   } else if (options.inputType === 'number') {
     const value = parseFloat(control.value + '');
 
-    if (value) {
-      if (value < options.inputMin) {
+    const { inputMin, inputMax } = options;
+    if (isNotUndefined(value)) {
+      if (inputMin != undefined && value < inputMin) {
         return `( ⬆ ${options.inputMin} )`;
-      } else if (value > options.inputMax) {
+      } else if (inputMax != undefined && value > inputMax) {
         return `( ⬇ ${options.inputMax} )`;
       }
       return '( ✔ )';
@@ -65,7 +67,6 @@ export const defaultInputStatusIndicatorHandler: InputStatusIndicatorHandler = (
   }
   return '';
 };
-
 
 export const {
   token: getInputErrorMessageHandlerToken,

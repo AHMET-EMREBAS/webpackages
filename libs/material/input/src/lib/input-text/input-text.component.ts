@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { InputComponent, InputModules } from '../input';
 import { InputType } from '@webpackages/types';
 
@@ -25,4 +25,7 @@ import { InputType } from '@webpackages/types';
 })
 export class InputTextComponent extends InputComponent {
   override readonly inputType: InputType = 'text';
+  @Input() override inputRequired = false;
+  @Input() override inputMaxLength = Number.MAX_SAFE_INTEGER;
+  @Input() override inputMinLength = 0;
 }

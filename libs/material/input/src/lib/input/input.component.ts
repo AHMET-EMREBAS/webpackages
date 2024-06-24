@@ -38,19 +38,19 @@ export class InputComponent<T = unknown>
   implements InputOptions, OnInit, AfterViewInit
 {
   @Input() inputType: InputType;
-  @Input() inputRequired = false;
+  @Input() inputRequired: boolean | undefined = false;
   @Input() inputControl: FormControl;
   @Input() inputName = 'unkown';
   @Input() inputLabel = 'unkown';
-  @Input() inputHint = '';
-  @Input() inputMinLength = 0;
-  @Input() inputMaxLength = 1000;
-  @Input() inputMin = Number.MIN_SAFE_INTEGER;
-  @Input() inputMax = Number.MAX_SAFE_INTEGER;
+  @Input() inputHint: string | undefined = '';
+  @Input() inputMinLength: number | undefined = 0;
+  @Input() inputMaxLength: number | undefined = 1000;
+  @Input() inputMin: number | undefined = Number.MIN_SAFE_INTEGER;
+  @Input() inputMax: number | undefined = Number.MAX_SAFE_INTEGER;
   @Input() inputFormat: StringFormat = 'long';
   @Input() inputAutocomplete: HTMLInputElement['autocomplete'] = 'off';
-  @Input() inputEnums: string[];
-  @Input() inputMultiple: boolean;
+  @Input() inputEnums: string[] = [];
+  @Input() inputMultiple: boolean | undefined = false;
 
   constructor(
     @Inject(getInputErrorMessageHandlerToken())
