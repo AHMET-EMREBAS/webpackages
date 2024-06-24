@@ -16,9 +16,34 @@ export const {
   provide: provideTableIdColumns,
   token: getTableIdColumnsToken,
 } = createValueProvider<TableColumnOption[]>('TableIdColumns', [
-  {
-    name: 'index',
-    label: '#',
-  },
-  { name: 'eid', label: 'id' },
+  { name: 'eid', label: '#' },
 ]);
+
+export type TableRowRouteValueHandler = (row: any) => string[];
+
+export const {
+  default: provideDefaultTableRowRouteValueHandler,
+  token: getTableRowRouteValueHandlerToken,
+  provide: provideTableRowRouteValueHandler,
+} = createValueProvider<TableRowRouteValueHandler>(
+  'TableRowRouteValueHandler',
+  (value) => ['editor', value.eid]
+);
+
+export const {
+  default: provideDefaultContextEditRouteValue,
+  token: getContextEditRouteValueToken,
+  provide: provideContextEditRouteValue,
+} = createValueProvider<TableRowRouteValueHandler>(
+  'ContextEditRouteValue',
+  (value) => ['editor', value.eid]
+);
+
+export const {
+  default: provideDefaultContextDeleteRouteValue,
+  token: getContextDeleteRouteValueToken,
+  provide: provideContextDeleteRouteValue,
+} = createValueProvider<TableRowRouteValueHandler>(
+  'ContextDeleteRouteValue',
+  (value) => ['delete', value.eid]
+);

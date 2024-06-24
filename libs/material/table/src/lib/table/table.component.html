@@ -1,15 +1,44 @@
-{{ tableIdColumns | json }} <br />
-{{ tableTimestampColumns | json }} <br />
-{{ tableColumns | json }} <br />
+<ng-template #rowContextMenu>
+  <mat-nav-list class="p-4 gap-2 bg-slate-200 shadow w-44" cdkMenu>
+    <a
+      mat-list-item
+      cdkMenuItem
+      [routerLink]="editRouteHandler(contextRowValue())"
+    >
+      <span matListItemLine>Edit</span>
+      <span matListItemIcon>
+        <mat-icon color="primary" class="fill">edit</mat-icon>
+      </span>
+    </a>
 
-<table mat-table [dataSource]="data" #table>
+    <a
+      mat-list-item
+      cdkMenuItem
+      [routerLink]="deleteRouteHandler(contextRowValue())"
+    >
+      <span matListItemLine>Delete</span>
+
+      <span matListItemIcon>
+        <mat-icon color="primary" class="fill">delete</mat-icon>
+      </span>
+    </a>
+  </mat-nav-list>
+</ng-template>
+
+<table
+  mat-table
+  matSort
+  [dataSource]="data"
+  #table
+  (matSortChange)="emitSortChange($event)"
+>
   @for(item of tableIdColumns; track item ){
   <ng-container [matColumnDef]="item.name">
-    <th class="w-4 " mat-header-cell *matHeaderCellDef>
+    <th mat-header-cell [mat-sort-header]="item.name" *matHeaderCellDef>
       {{ item.label }}
     </th>
     <td class="w-4" mat-cell *matCellDef="let row; let i = index">
-      {{ i + 1 }}
+      {{ row[item.name] }}
     </td>
   </ng-container>
   }
@@ -17,19 +46,35 @@
   <!-- Table Columns -->
   @for(item of tableColumns; track item){
   <ng-container [matColumnDef]="item.name">
-    <th mat-header-cell *matHeaderCellDef>{{ item.label }}</th>
-    <td mat-cell *matCellDef="let row">{{ row[item.name] }}</td>
+    <th mat-header-cell [mat-sort-header]="item.name" *matHeaderCellDef>
+      {{ item.label }}
+    </th>
+    <td [class]="dynamicClass(item, row)" mat-cell *matCellDef="let row">
+      {{ row[item.name] }}
+    </td>
   </ng-container>
   }
 
   <!-- Timestamp columns -->
   @for(item of tableTimestampColumns; track item){
   <ng-container [matColumnDef]="item.name">
-    <th mat-header-cell *matHeaderCellDef>{{ item.label }}</th>
-    <td mat-cell *matCellDef="let row">{{ row[item.name] }}</td>
+    <th mat-header-cell [mat-sort-header]="item.name" *matHeaderCellDef>
+      {{ item.label }}
+    </th>
+    <td class="w-4" mat-cell *matCellDef="let row">
+      {{ row[item.name] || 'N/A' }}
+    </td>
   </ng-container>
   }
 
   <tr mat-header-row *matHeaderRowDef="columns()"></tr>
-  <tr mat-row *matRowDef="let row; columns: columns()"></tr>
+
+  <tr
+    *matRowDef="let row; columns: columns()"
+    mat-row
+    class="odd:bg-slate-100 hover:cursor-pointer hover:bg-slate-300 transition-colors"
+    [cdkContextMenuTriggerFor]="rowContextMenu"
+    [routerLink]="rowRouteHandler(row)"
+    (cdkContextMenuOpened)="contextMenuOpened(row)"
+  ></tr>
 </table>

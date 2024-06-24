@@ -1,3 +1,11 @@
 .mat-column-index {
   background-color: gray;
 }
+
+mat-nav-list {
+  padding: 0.5em;
+}
+
+.mdc-list-item:not(:first-child) {
+  margin-top: 0.5em;
+}

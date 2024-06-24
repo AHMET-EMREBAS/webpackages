@@ -12,19 +12,30 @@ import {
 } from '@webpackages/material/core';
 import { getBuiltinCategories } from '@webpackages/types';
 import {
+  provideDefaultContextDeleteRouteValue,
+  provideDefaultContextEditRouteValue,
   provideDefaultIdColumnOptions,
+  provideDefaultTableRowRouteValueHandler,
   provideDefaultTimestampColumnOptions,
 } from './providers';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideRouter } from '@angular/router';
+
 const meta: Meta<TableComponent> = {
   component: TableComponent,
   title: 'TableComponent',
   decorators: [
     applicationConfig({
       providers: [
+        provideRouter([]),
+        provideAnimations(),
         provideDefaultHttpSearchQueryBuilder(),
         provideMockCategoryHttpClient(),
         provideDefaultIdColumnOptions(),
         provideDefaultTimestampColumnOptions(),
+        provideDefaultTableRowRouteValueHandler(),
+        provideDefaultContextDeleteRouteValue(),
+        provideDefaultContextEditRouteValue(),
       ],
     }),
   ],
@@ -34,7 +45,10 @@ type Story = StoryObj<TableComponent>;
 
 export const Primary: Story = {
   args: {
-    data: getBuiltinCategories(),
+    data: getBuiltinCategories().map((e) => ({
+      eid: e.id,
+      ...e,
+    })),
     tableColumns: [{ name: 'label', label: 'Label' }],
   },
 };
