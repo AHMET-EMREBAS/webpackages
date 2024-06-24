@@ -33,24 +33,19 @@ import {
   getContextDeleteRouteValueToken,
 } from './table.provider';
 
-import { MatSortModule, Sort } from '@angular/material/sort';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { CdkMenu, CdkMenuItem, CdkContextMenuTrigger } from '@angular/cdk/menu';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  BehaviorSubject,
-  Observable,
-  debounceTime,
-  fromEvent,
-  map,
-} from 'rxjs';
-import { DataSource } from '@angular/cdk/collections';
+import { Observable, debounceTime, fromEvent, map } from 'rxjs';
+import { LiveAnnouncer, A11yModule } from '@angular/cdk/a11y';
 @Component({
   selector: 'wp-table',
   standalone: true,
   imports: [
     CommonModule,
+    A11yModule,
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
@@ -75,6 +70,7 @@ import { DataSource } from '@angular/cdk/collections';
 export class TableComponent implements OnInit, AfterViewInit {
   @ViewChild('searchInput') searchInput: ElementRef<HTMLInputElement>;
   @ViewChild('paginator') paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   httpClient = inject(HttpClient);
   searchControl = new FormControl('', []);
@@ -110,7 +106,8 @@ export class TableComponent implements OnInit, AfterViewInit {
     @Inject(getContextEditRouteValueToken())
     public readonly editRouteHandler: TableRowRouteValueHandler,
     @Inject(getContextDeleteRouteValueToken())
-    public readonly deleteRouteHandler: TableRowRouteValueHandler
+    public readonly deleteRouteHandler: TableRowRouteValueHandler,
+    private liveAnnouncer: LiveAnnouncer
   ) {}
 
   ngOnInit(): void {
@@ -146,19 +143,23 @@ export class TableComponent implements OnInit, AfterViewInit {
     if (this.tableData) {
       this.tableDataSource = new MatTableDataSource(this.tableData);
       this.tableDataSource.paginator = this.paginator;
+      this.tableDataSource.sort = this.sort;
     }
   }
 
   emitSortChange(event: Sort) {
     this.sortChangeEvent.emit(event);
+    this.liveAnnouncer.announce('Sorting table data', 'polite');
   }
 
   emitPageChange(event: PageEvent) {
     this.pageChangeEvent.emit(event);
+    this.liveAnnouncer.announce('Paging table data', 'polite');
   }
 
   contextMenuOpened(row: any) {
     this.contextRowValue.update(() => row);
+    this.liveAnnouncer.announce('Context menu opened', 'polite');
   }
 
   dynamicClass(columnOption: TableColumnOption, value: any) {
