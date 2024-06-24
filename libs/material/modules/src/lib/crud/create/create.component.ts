@@ -12,14 +12,21 @@ import {
   SearchComponent,
   SearchManyComponent,
 } from '@webpackages/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'wp-create',
   standalone: true,
   imports: [
     CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    InputTextComponent,
+    InputNumberComponent,
+    InputDateComponent,
+    AutocompleteComponent,
+    SearchComponent,
+    SearchManyComponent,
     MatButtonModule,
     MatIconModule,
   ],
