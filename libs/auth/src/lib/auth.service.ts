@@ -101,7 +101,7 @@ export class AuthService {
 
     if (isNotUndefined(found)) {
       return {
-        message: 'Check your inbox. We just send a password reset link to you.',
+        message: 'Check your inbox. We just sent a password reset link.',
       };
     }
     throw new NotFoundException('User not found!');

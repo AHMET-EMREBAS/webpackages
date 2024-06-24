@@ -1,6 +1,8 @@
 import { AuthClient } from '@webpackages/auth-client';
 import { ISession } from '@webpackages/models';
 import { AuthPathBuilder } from '@webpackages/path';
+import { fail } from 'assert';
+import { AxiosError } from 'axios';
 
 const client = new AuthClient(
   new AuthPathBuilder({ prefix: 'api/auth' }),
@@ -28,8 +30,16 @@ describe('AuthClient', () => {
 
     it('should request forgot-password', async () => {
       const res = await client.forgotPassword({ username: 'root' });
+      expect(res.message).toBe(
+        'Check your inbox. We just sent a password reset link.'
+      );
+    });
 
-      expect(res.message).toBeTruthy();
+    it('should return User not found message for unkown user', async () => {
+      const res = (await client.forgotPassword({
+        username: 'unkown',
+      })) as AxiosError;
+      expect(res.message).toBe('User not found!');
     });
   });
 });

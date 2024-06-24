@@ -1,5 +1,5 @@
 import { AuthPathBuilder } from '@webpackages/path';
-import axos, { AxiosRequestConfig } from 'axios';
+import axos, { AxiosError, AxiosRequestConfig } from 'axios';
 import {
   ForgotPassword,
   Login,
@@ -28,8 +28,8 @@ export class AuthClient {
           baseURL: this.baseUrl,
         })
       ).data;
-    } catch (err) {
-      console.error(err);
+    } catch (res: any) {
+      return res.response.data;
     }
   }
 
