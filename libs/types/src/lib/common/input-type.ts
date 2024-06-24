@@ -1,36 +1,43 @@
 import { Arr } from './arr';
 
 export type InputType =
-  | 'text'
-  | 'number'
-  | 'textarea'
-  | 'checkbox'
-  | 'select'
+  | 'autocomplete-many'
   | 'autocomplete'
-  | 'list'
-  | 'chip-list'
-  | 'radio'
-  | 'slider'
   | 'button-toggle'
-  | 'slider-toggle'
+  | 'checkbox'
+  | 'chip-list'
+  | 'date-time'
   | 'date'
-  | 'time'
-  | 'date-time';
+  | 'list'
+  | 'number'
+  | 'radio'
+  | 'search-many'
+  | 'search'
+  | 'select'
+  | 'slider-toggle'
+  | 'slider'
+  | 'text'
+  | 'textarea'
+  | 'time';
 
+  
 export const InputTypes: Arr<InputType> = [
-  'text',
-  'number',
-  'textarea',
-  'checkbox',
-  'select',
+  'autocomplete-many',
   'autocomplete',
-  'list',
-  'chip-list',
-  'radio',
-  'slider',
   'button-toggle',
-  'slider-toggle',
-  'date',
-  'time',
+  'checkbox',
+  'chip-list',
   'date-time',
+  'date',
+  'list',
+  'number',
+  'radio',
+  'search-many',
+  'search',
+  'select',
+  'slider-toggle',
+  'slider',
+  'text',
+  'textarea',
+  'time',
 ];

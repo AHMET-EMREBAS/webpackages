@@ -28,3 +28,4 @@ export type HttpSearchQueryBuilder = (
   search: string,
   take?: number
 ) => string;
+

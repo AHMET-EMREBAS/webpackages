@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {
@@ -11,8 +9,17 @@ import {
   AutocompleteComponent,
   SearchComponent,
   SearchManyComponent,
+  InputTextareaComponent,
 } from '@webpackages/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  getEntityCollectionServiceToken,
+  getFormGroupToken,
+  getInputOptionsToken,
+} from '../crud.provider';
+import { EntityCollectionService } from '@ngrx/data';
+import { catchError, of } from 'rxjs';
+import { InputOption } from '@webpackages/material/core';
 
 @Component({
   selector: 'wp-create',
@@ -24,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     InputTextComponent,
     InputNumberComponent,
     InputDateComponent,
+    InputTextareaComponent,
     AutocompleteComponent,
     SearchComponent,
     SearchManyComponent,
@@ -31,10 +39,74 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
   ],
   template: `
-    <form>
-      <div class="flex row"></div>
+    <form class="w-full">
+      @for(option of inputOptions; track option){
+
+      <!-- Number Input -->
+      @if(option.inputType ==='text'){
+      <wp-input-text
+        [inputName]="option.name"
+        [inputLabel]="option.label"
+      ></wp-input-text>
+      }
+
+      <!-- Textarea -->
+      @else if(option.inputType ==='textarea'){
+      <wp-input-textarea
+        [inputName]="option.name || 'unkown'"
+        [inputLabel]="option.label || 'Unkown'"
+      ></wp-input-textarea>
+      }
+
+      <!-- Number -->
+      @else if(option.inputType ==='number'){
+      <wp-input-number
+        [inputName]="option.name || 'unkown'"
+        [inputLabel]="option.label || 'Unkown'"
+      ></wp-input-number>
+      }
+
+      <!-- Number -->
+      @else{
+      <wp-input-text
+        [inputName]="option.name || 'unkown'"
+        [inputLabel]="option.label || 'Unkown'"
+      ></wp-input-text>
+      }
+
+      <!-- End -->
+      }
+      <div class="flex flex-row gap-4">
+        <button
+          class="w-full"
+          mat-raised-button
+          color="primary"
+          (click)="saveItem()"
+        >
+          Save
+        </button>
+        <button class="w-full" mat-raised-button>Reset</button>
+      </div>
     </form>
   `,
   styles: ``,
 })
-export class CreateComponent {}
+export class CreateComponent<T = any> {
+  formGroup = inject(getFormGroupToken());
+
+  constructor(
+    @Inject(getEntityCollectionServiceToken())
+    protected readonly service: EntityCollectionService<T>,
+    @Inject(getInputOptionsToken())
+    public readonly inputOptions: InputOption[]
+  ) {}
+
+  saveItem() {
+    this.service?.add(this.formGroup?.value, { isOptimistic: false }).pipe(
+      catchError((error) => {
+        console.log('ERror : ', error);
+        return of(null);
+      })
+    );
+  }
+}
