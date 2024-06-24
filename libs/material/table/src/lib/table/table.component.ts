@@ -31,43 +31,7 @@ import {
     MatFormFieldModule,
     MatPaginatorModule,
   ],
-  template: `
-    {{ tableIdColumns | json }} <br />
-    {{ tableTimestampColumns | json }} <br />
-    {{ tableColumns | json }} <br />
-    <table mat-table [dataSource]="data" #table>
-      @for(item of tableIdColumns; track item ){
-      <ng-container [matColumnDef]="item.name">
-        <th class="w-4" mat-header-cell *matHeaderCellDef>
-          {{ item.label }}
-        </th>
-        <td class="w-4" mat-cell *matCellDef="let row; let i = index">
-          {{ i + 1 }}
-        </td>
-      </ng-container>
-      }
-
-      <!-- Table Columns -->
-      @for(item of tableColumns; track item){
-      <ng-container [matColumnDef]="item.name">
-        <th mat-header-cell *matHeaderCellDef>{{ item.label }}</th>
-        <td mat-cell *matCellDef="let row">{{ row[item.name] }}</td>
-      </ng-container>
-      }
-
-      <!-- Timestamp columns -->
-      @for(item of tableTimestampColumns; track item){
-      <ng-container [matColumnDef]="item.name">
-        <th mat-header-cell *matHeaderCellDef>{{ item.label }}</th>
-        <td mat-cell *matCellDef="let row">{{ row[item.name] }}</td>
-      </ng-container>
-      }
-
-      <tr mat-header-row *matHeaderRowDef="columns()"></tr>
-      <tr mat-row *matRowDef="let row; columns: columns()"></tr>
-    </table>
-  `,
-  styles: ``,
+  templateUrl: './table.component.html',
 })
 export class TableComponent implements OnInit {
   httpClient = inject(HttpClient);
