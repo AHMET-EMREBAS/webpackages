@@ -17,6 +17,7 @@ import {
       [formControl]="inputControl"
       [multiple]="inputMultiple"
       (change)="handleChange($event)"
+      [tabindex]="tabIndex"
     >
       @for(e of inputEnums ; track e){
       <mat-button-toggle #button class="w-full" [value]="e">

@@ -22,3 +22,18 @@ import { AuthModule, provideGlobalAuthGuard } from '@webpackages/auth';
   providers: [AppService, provideGlobalAuthGuard()],
 })
 export class AppModule {}
+
+@Module({
+  imports: [
+    CommonAppModule,
+    DatabaseModule.configure({
+      subscribers: [
+        ...Object.values(Subscribers).filter((e) =>
+          e.name.endsWith('Susbscriber')
+        ),
+      ],
+    }),
+    ...Object.values(RestModules).filter((e) => e.name.endsWith('Module')),
+  ],
+})
+export class PublicAppModule {}

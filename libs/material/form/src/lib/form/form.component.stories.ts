@@ -15,12 +15,15 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 import {
   InputOption,
+  MockCategoryCollectionService,
   MockEntityCollectionService,
+  provideDefaultHttpSearchQueryBuilder,
   provideEntityCollectionService,
   provideFormGroup,
   provideInputOptions,
+  provideMockCategoryHttpClient,
 } from '@webpackages/material/core';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import {
@@ -34,10 +37,12 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 
 const entityMetadata: EntityMetadataMap = {
   Sample: {},
+  Category: {},
 };
 
 const pluralNames = {
   Sample: 'Samples',
+  Category: 'Categorys',
 };
 
 export const entityConfig: EntityDataModuleConfig = {
@@ -49,6 +54,7 @@ const formGroup = new FormGroup({
   name: new FormControl(null, []),
   description: new FormControl(null, []),
   dob: new FormControl(null, []),
+  category: new FormControl(null, []),
 });
 
 const meta: Meta<FormComponent<any>> = {
@@ -62,12 +68,23 @@ const meta: Meta<FormComponent<any>> = {
         provideDefaultInputErrorMesssageHandler(),
         provideDefaultInputStatusIndicatorHandler(),
         provideDefaultInputDebounceTime(),
-        provideHttpClient(),
+        provideHttpClient(
+          withInterceptors([
+            (req, next) => {
+              return next(
+                req.clone({
+                  url: `http://localhost:3001/${req.url}`,
+                })
+              );
+            },
+          ])
+        ),
         provideStore(),
         provideEffects(),
         provideEntityData(entityConfig, withEffects()),
-        provideEntityCollectionService(MockEntityCollectionService),
+        provideEntityCollectionService(MockCategoryCollectionService),
         provideFormGroup(formGroup),
+        provideDefaultHttpSearchQueryBuilder(),
         provideInputOptions([
           {
             name: 'name',
@@ -77,6 +94,24 @@ const meta: Meta<FormComponent<any>> = {
             minLength: 3,
             maxLength: 100,
             class: 'order-1 grow',
+            tabIndex: 1,
+          },
+          {
+            name: 'dob',
+            label: 'Date of birth',
+            inputType: 'date',
+            required: true,
+            class: 'order-2 grow',
+            tabIndex: 2,
+          },
+          {
+            name: 'category',
+            label: 'Select Category',
+            inputType: 'search',
+            resourceName: 'categorys',
+            required: true,
+            class: 'grow order-3',
+            tabIndex: 3,
           },
           {
             name: 'description',
@@ -85,14 +120,8 @@ const meta: Meta<FormComponent<any>> = {
             required: true,
             minLength: 3,
             maxLength: 100,
-            class: 'w-full order-3',
-          },
-          {
-            name: 'dob',
-            label: 'Date of birth',
-            inputType: 'date',
-            required: true,
-            class: 'order-2 grow',
+            class: 'w-full order-4',
+            tabIndex: 4,
           },
         ] as InputOption[]),
       ],

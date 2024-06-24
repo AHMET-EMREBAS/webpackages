@@ -9,14 +9,15 @@ import { InputType } from '@webpackages/types';
   template: ` <mat-form-field class="w-full ">
     <mat-label>{{ inputLabel }} {{ statusIndicator$ | async }}</mat-label>
     <textarea
+      [tabIndex]="tabIndex"
       style="resize: none; height:10em"
       type="text"
       matInput
+      [tabindex]="tabIndex"
       [required]="inputRequired!"
       [formControl]="inputControl"
       [minlength]="inputMinLength"
       [maxLength]="inputMaxLength"
-      [attr.data-testid]="inputLabel"
     ></textarea>
     <mat-hint>{{ inputHint }}</mat-hint>
     <mat-error>{{ errorMessage$ | async }} </mat-error>

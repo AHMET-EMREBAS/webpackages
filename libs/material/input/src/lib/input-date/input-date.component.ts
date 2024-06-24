@@ -11,6 +11,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
       <mat-label>{{ inputLabel }} {{ statusIndicator$ | async }}</mat-label>
       <input
         matInput
+        [tabindex]="tabIndex"
         [matDatepicker]="picker"
         [formControl]="inputControl"
         [required]="inputRequired"

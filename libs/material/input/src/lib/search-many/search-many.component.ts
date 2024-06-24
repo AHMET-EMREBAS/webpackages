@@ -41,6 +41,7 @@ import { getHttpSearchQueryBuilderToken } from '@webpackages/material/core';
       </mat-chip-grid>
       <input
         [formControl]="__searchControl"
+        [tabindex]="tabIndex"
         [matChipInputFor]="chipGrid"
         [matAutocomplete]="auto"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"

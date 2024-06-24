@@ -8,7 +8,10 @@ import { InputComponent, InputModules } from '../input';
   template: `
     <div class="flex flex-row gap-4 w-60">
       <mat-label>{{ inputLabel }}</mat-label>
-      <mat-slide-toggle [formControl]="inputControl"></mat-slide-toggle>
+      <mat-slide-toggle
+        [tabindex]="tabIndex"
+        [formControl]="inputControl"
+      ></mat-slide-toggle>
     </div>
   `,
 })

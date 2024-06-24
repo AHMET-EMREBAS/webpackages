@@ -14,5 +14,6 @@ export type InputOptions = {
   inputMax: number | undefined;
   inputFormat: StringFormat;
   inputEnums: string[];
+  tabIndex: number | undefined;
   // inputMultiple: boolean | undefined;
 };

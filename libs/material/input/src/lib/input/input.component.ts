@@ -49,6 +49,7 @@ export class InputComponent implements InputOptions, OnInit, AfterViewInit {
   @Input() inputAutocomplete: HTMLInputElement['autocomplete'] = 'off';
   @Input() inputEnums: string[];
   @Input() inputMultiple = false;
+  @Input() tabIndex = 0;
 
   constructor(
     @Inject(getInputErrorMessageHandlerToken())

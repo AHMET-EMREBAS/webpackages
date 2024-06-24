@@ -34,6 +34,7 @@ import { getHttpSearchQueryBuilderToken } from '@webpackages/material/core';
       <input
         type="text"
         matInput
+        [tabindex]="tabIndex"
         [formControl]="__searchControl"
         [matAutocomplete]="auto"
         [multiple]="inputMultiple"

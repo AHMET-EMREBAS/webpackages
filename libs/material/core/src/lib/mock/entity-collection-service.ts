@@ -15,3 +15,9 @@ export class MockEntityCollectionService extends EntityCollectionServiceBase<Sam
     super('Sample', factory);
   }
 }
+@Injectable()
+export class MockCategoryCollectionService extends EntityCollectionServiceBase<Sample> {
+  constructor(factory: EntityCollectionServiceElementsFactory) {
+    super('Category', factory);
+  }
+}

@@ -10,7 +10,11 @@ import { EntitySelectOption } from '@webpackages/types';
   template: `
     <mat-form-field class="w-full">
       <mat-label>{{ inputLabel }}</mat-label>
-      <mat-select [formControl]="inputControl" [multiple]="inputMultiple">
+      <mat-select
+        [tabindex]="tabIndex"
+        [formControl]="inputControl"
+        [multiple]="inputMultiple"
+      >
         @for(option of enumOptions || selectOptions; track option){
         <mat-option [value]="__value(option)">{{ __label(option) }}</mat-option>
         }

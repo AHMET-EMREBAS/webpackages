@@ -28,6 +28,7 @@ import { EntitySelectOption } from '@webpackages/types';
         }
       </mat-chip-grid>
       <input
+        [tabindex]="tabIndex"
         [formControl]="__searchControl"
         [matChipInputFor]="chipGrid"
         [matAutocomplete]="auto"

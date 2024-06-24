@@ -54,6 +54,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputLabel]="option.label"
         [inputRequired]="option.required"
         [class]="option.class"
+        [tabindex]="option.tabIndex"
       ></wp-input-text>
       }
 
@@ -66,6 +67,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputMaxLength]="option.maxLength"
         [inputRequired]="option.required"
         [class]="option.class"
+        [tabindex]="option.tabIndex"
       ></wp-input-textarea>
       }
 
@@ -76,6 +78,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputControl]="control(option.name)"
         [inputLabel]="option.label"
         [inputRequired]="option.required"
+        [class]="option.class"
+        [tabindex]="option.tabIndex"
       ></wp-input-number>
       }
 
@@ -87,6 +91,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputLabel]="option.label"
         [inputRequired]="option.required"
         [class]="option.class"
+        [tabindex]="option.tabIndex"
       ></wp-input-date>
       }
 
@@ -98,7 +103,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputControl]="control(option.name)"
         [inputLabel]="option.label"
         [inputRequired]="option.required"
+        [pluralResourceName]="option.resourceName"
         [class]="option.class"
+        [tabindex]="option.tabIndex"
       ></wp-search>
 
       }
@@ -112,6 +119,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputLabel]="option.label"
         [pluralResourceName]="option.resourceName"
         [class]="option.class"
+        [tabindex]="option.tabIndex"
       ></wp-search-many>
 
       }
@@ -125,6 +133,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputRequired]="option.required"
         [autocompleteOptions]="option.autocompleteOptions || []"
         [class]="option.class"
+        [tabindex]="option.tabIndex"
       ></wp-autocomplete>
       }
 
@@ -137,6 +146,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputRequired]="option.required"
         [autocompleteOptions]="option.autocompleteOptions || []"
         [class]="option.class"
+        [tabindex]="option.tabIndex"
       ></wp-autocomplete-many>
       }
 
@@ -145,6 +155,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
       <mat-checkbox
         [name]="option.name"
         [formControl]="control(option.name)"
+        [tabindex]="option.tabIndex"
       ></mat-checkbox>
       }
 
@@ -158,6 +169,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputMinLength]="option.minLength"
         [inputMaxLength]="option.maxLength"
         class="w-full"
+        [tabindex]="option.tabIndex"
       ></wp-input-text>
       }
 

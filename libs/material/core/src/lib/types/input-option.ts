@@ -18,4 +18,5 @@ export type InputOption = Partial<
   resourceName: string;
   autocompleteOptions: EntitySelectOption[];
   class: string;
+  tabIndex: number;
 };
