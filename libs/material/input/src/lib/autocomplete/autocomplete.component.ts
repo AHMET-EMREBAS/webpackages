@@ -19,7 +19,7 @@ import { FormControl } from '@angular/forms';
       <input
         type="text"
         matInput
-        [required]="inputRequired"
+        [required]="!!inputRequired"
         [formControl]="__searchControl"
         [matAutocomplete]="auto"
         [multiple]="inputMultiple"

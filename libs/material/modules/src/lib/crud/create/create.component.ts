@@ -12,14 +12,15 @@ import {
   InputTextareaComponent,
 } from '@webpackages/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { EntityCollectionService } from '@ngrx/data';
+import { catchError, of } from 'rxjs';
 import {
+  InputOption,
   getEntityCollectionServiceToken,
   getFormGroupToken,
   getInputOptionsToken,
-} from '../crud.provider';
-import { EntityCollectionService } from '@ngrx/data';
-import { catchError, of } from 'rxjs';
-import { InputOption } from '@webpackages/material/core';
+} from '@webpackages/material/core';
 
 @Component({
   selector: 'wp-create',

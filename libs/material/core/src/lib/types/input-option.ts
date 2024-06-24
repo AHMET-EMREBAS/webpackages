@@ -1,4 +1,4 @@
-import { PropertyOptions } from '@webpackages/types';
+import { EntitySelectOption, PropertyOptions } from '@webpackages/types';
 
 export type InputOption = Partial<
   Pick<
@@ -16,4 +16,5 @@ export type InputOption = Partial<
     label: string;
   } & Partial<{
     resourceName: string;
+    autocompleteOptions: EntitySelectOption[];
   }>;
