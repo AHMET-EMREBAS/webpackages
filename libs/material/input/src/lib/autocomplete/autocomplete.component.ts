@@ -5,7 +5,7 @@ import {
   MatAutocompleteModule,
   MatAutocompleteSelectedEvent,
 } from '@angular/material/autocomplete';
-import { Observable, debounceTime, filter, map, startWith } from 'rxjs';
+import { Observable, debounceTime, map, startWith } from 'rxjs';
 import { EntitySelectOption } from '@webpackages/types';
 import { FormControl } from '@angular/forms';
 
