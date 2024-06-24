@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterViewInit,
   Component,
   Inject,
   Input,
@@ -33,7 +34,9 @@ export const InputModules = [
   ...FormModules,
 ];
 @Component({ template: '' })
-export class InputComponent<T = unknown> implements InputOptions, OnInit {
+export class InputComponent<T = unknown>
+  implements InputOptions, OnInit, AfterViewInit
+{
   @Input() inputType: InputType;
   @Input() inputRequired: boolean;
   @Input() inputControl: FormControl;
@@ -51,9 +54,9 @@ export class InputComponent<T = unknown> implements InputOptions, OnInit {
 
   constructor(
     @Inject(getInputErrorMessageHandlerToken())
-    protected readonly errorMessage: InputErrorMessageHandler,
+    protected readonly errorMessageHandler: InputErrorMessageHandler,
     @Inject(getInputStatusIndicatorHandlerToken())
-    protected readonly statusIndicator: InputStatusIndicatorHandler,
+    protected readonly statusIndicatorHandler: InputStatusIndicatorHandler,
     @Inject(getInputDebounceTimeToken())
     protected readonly inputDebounceTime: number
   ) {}
@@ -84,14 +87,25 @@ export class InputComponent<T = unknown> implements InputOptions, OnInit {
 
     this.errorMessage$ = this.inputControl.valueChanges.pipe(
       debounceTime(this.inputDebounceTime),
-      map((e) => this.errorMessage(this.inputControl, this))
+      map((e) => this.errorMessageHandler(this.inputControl, this))
     );
 
     this.statusIndicator$ = this.inputControl.valueChanges.pipe(
       debounceTime(this.inputDebounceTime),
       map((e) => {
-        return this.statusIndicator(this.inputControl, this);
+        return this.statusIndicatorHandler(this.inputControl, this);
       })
     );
+  }
+
+  ngAfterViewInit(): void {
+    if (isDevMode()) {
+      this.inputControl.valueChanges.subscribe((value) => {
+        console.log(
+          `${this.inputName || 'inputName is not provided'} : `,
+          value
+        );
+      });
+    }
   }
 }

@@ -1,19 +1,13 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
 import { InputModules } from '../input';
 import {
-  MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
   MatAutocompleteModule,
   MatAutocompleteSelectedEvent,
 } from '@angular/material/autocomplete';
-import {
-  MatChipEvent,
-  MatChipInputEvent,
-  MatChipsModule,
-} from '@angular/material/chips';
+import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { EntitySelectOption } from '@webpackages/types';
 
 @Component({
@@ -25,17 +19,16 @@ import { EntitySelectOption } from '@webpackages/types';
       <mat-label>{{ inputLabel }}</mat-label>
       <mat-chip-grid #chipGrid>
         @for (item of selectedItems(); track $index) {
-        <mat-chip-row (removed)="remove($event)">
+        <mat-chip-row [value]="item" (removed)="remove(item)">
           {{ item.label }}
-          <button matChipRemove [attr.aria-label]="'remove ' + item">
+          <button matChipRemove>
             <mat-icon>cancel</mat-icon>
           </button>
         </mat-chip-row>
         }
       </mat-chip-grid>
       <input
-        #itemInput
-        [formControl]="inputControl"
+        [formControl]="__searchControl"
         [matChipInputFor]="chipGrid"
         [matAutocomplete]="auto"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
@@ -50,20 +43,17 @@ import { EntitySelectOption } from '@webpackages/types';
         <mat-option [value]="option">{{ option.label }}</mat-option>
         }
       </mat-autocomplete>
+      <mat-error>{{ errorMessage$ | async }}</mat-error>
     </mat-form-field>
-
-    <br />
-
-    {{ inputControl.value | json }}
-    <br />
-    <!-- {{ auto.optionActivated | json }} -->
   `,
 })
-export class AutocompleteManyComponent extends AutocompleteComponent {
+export class AutocompleteManyComponent
+  extends AutocompleteComponent
+  implements OnInit
+{
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  readonly announcer = inject(LiveAnnouncer);
 
-  selectedItems = signal<EntitySelectOption[]>([]);
+  selectedItems = signal<Set<EntitySelectOption>>(new Set());
 
   protected findByLabel(label: string): EntitySelectOption | undefined {
     return this.autocompleteOptions.find((e) =>
@@ -74,22 +64,55 @@ export class AutocompleteManyComponent extends AutocompleteComponent {
   addByKeypress(event: MatChipInputEvent) {
     const found = this.findByLabel(event.value);
     if (found) {
-      this.selectedItems.update((items) => [...items, found]);
+      this.updateSelectedItems(found);
+      event.chipInput.clear();
     }
+    this.clearSearch();
+    this.clearAutoComplete();
+    this.openAutoComplete();
   }
 
   add(event: MatAutocompleteSelectedEvent) {
-    this.selectedItems.update((items) => [...items, event.option.value]);
+    if (event) {
+      this.updateSelectedItems(event.option.value);
+      this.updateValue();
+    }
+    this.clearSearch();
+    this.openAutoComplete();
   }
 
-  remove(event: MatChipEvent) {
-    const index = this.autocompleteOptions.indexOf(
-      this.findByLabel(event.chip.value)!
-    );
-
+  remove(event: EntitySelectOption) {
     this.selectedItems.update((items) => {
-      delete items[index];
-      return [...items];
+      const found = this.findByLabel(event.label);
+      if (found) items.delete(found);
+      return items;
     });
+    this.selectedItems().delete(event);
+    this.updateValue();
+  }
+
+  clearSearch() {
+    this.__searchControl.setValue('');
+  }
+
+  clearAutoComplete() {
+    this.autoRef.optionSelected.emit();
+  }
+
+  openAutoComplete() {
+    this.autoRef.opened.emit();
+  }
+
+  updateValue() {
+    this.inputControl.setValue([...this.selectedItems()]);
+  }
+
+  updateSelectedItems(item: EntitySelectOption) {
+    const oldSet = [...this.selectedItems()];
+    if (oldSet.find((e) => e.id === item.id)) {
+      return;
+    }
+
+    this.selectedItems.update((items) => new Set([...items, item]));
   }
 }

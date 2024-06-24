@@ -14,7 +14,7 @@ export const UserMetadata: Metadata = {
     },
     password: {
       type: 'string',
-      format: 'email',
+      format: 'password',
       required: true,
       unique: true,
       description: 'Strong password',

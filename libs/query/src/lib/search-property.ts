@@ -10,6 +10,7 @@ export function SearchProperty<T extends ID>(searchables: (keyof T)[]) {
     Property({ type: 'string', noValidate: true, example: '' }),
     Transform(({ value }) => {
       if (typeof value === 'string' && value.length > 0) {
+        value = value.trim();
         if (value.length > 100) {
           throw new UnprocessableEntityException(
             'Search must be shorter than 100 characters!'

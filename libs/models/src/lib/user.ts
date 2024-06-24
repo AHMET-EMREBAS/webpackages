@@ -1,12 +1,9 @@
-import { BaseEntity } from '@webpackages/types';
+import { AccessPolicy, BaseEntity } from '@webpackages/types';
 import { IDepartment } from './department';
 
 export interface IUser extends BaseEntity {
   username: string;
-
   password: string;
-
-  permissions: object;
-
+  permissions: AccessPolicy;
   department: IDepartment;
 }

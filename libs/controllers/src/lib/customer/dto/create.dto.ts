@@ -16,7 +16,7 @@ export class CreateCustomerDto {
   username: string;
   @Property({
     type: 'string',
-    format: 'email',
+    format: 'password',
     required: true,
     unique: true,
     description: 'Strong password',

@@ -66,6 +66,7 @@ export const defaultInputStatusIndicatorHandler: InputStatusIndicatorHandler = (
   return '';
 };
 
+
 export const {
   token: getInputErrorMessageHandlerToken,
   provide: provideInputErrorMessageHandler,
@@ -85,7 +86,7 @@ export const {
   default: provideDefaultInputDebounceTime,
   provide: provideInputDebounceTime,
   token: getInputDebounceTimeToken,
-} = createValueProvider<number>('InputDebouceTime', 600);
+} = createValueProvider<number>('InputDebouceTime', 400);
 
 export const provideDefaultAutocompleteOptions = (): Provider => {
   return {

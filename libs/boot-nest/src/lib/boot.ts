@@ -18,8 +18,8 @@ export async function boot(AppModule: Type) {
   const documentBuilder = new DocumentBuilder()
     .setTitle(APP_NAME)
     .setDescription(APP_DESCRIPTION)
-    .addBearerAuth({ type: 'http', name: AuthNames.BEARER_AUTH })
-    .addBasicAuth({ type: 'http', name: AuthNames.LOCAL_AUTH })
+    .addBearerAuth({ type: 'http', name: AuthNames.BEARER_AUTH, in: 'header' })
+    .addBasicAuth({ type: 'http', name: AuthNames.LOCAL_AUTH, in: 'body' })
     .addGlobalParameters({ in: 'header', name: AuthHeaders.X_ORGNAME })
     .addGlobalParameters({ in: 'header', name: AuthHeaders.X_DEVICE_ID })
     .addGlobalParameters({ in: 'header', name: AuthHeaders.X_SCOPE });

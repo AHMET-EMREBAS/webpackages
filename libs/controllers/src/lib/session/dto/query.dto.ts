@@ -7,7 +7,9 @@ export class QuerySessionDto
   extends BaseQueryDto
   implements QueryDto<SessionView>
 {
+  @QueryProperty() scope: string;
   @QueryProperty() deviceId: string;
+  @QueryProperty() token: string;
   @QueryProperty() userId: string;
   @QueryProperty() userActive: string;
   @QueryProperty() userUsername: string;
