@@ -53,4 +53,12 @@ export class SkuDetailController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QuerySkuDetailDto,
+    @Query() search: SearchSkuDetailDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

@@ -12,12 +12,12 @@ import { InputType } from '@webpackages/types';
       <input
         type="text"
         matInput
-        [tabindex]="tabIndex"
         [required]="inputRequired!"
         [formControl]="inputControl"
         [minlength]="inputMinLength"
         [maxLength]="inputMaxLength"
         [attr.data-testid]="inputLabel"
+        [tabindex]="tabIndex"
       />
       <mat-hint>{{ inputHint }}</mat-hint>
       <mat-error>{{ errorMessage$ | async }} </mat-error>

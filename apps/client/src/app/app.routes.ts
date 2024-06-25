@@ -9,11 +9,17 @@ import {
   provideDefaultInputErrorMesssageHandler,
   provideDefaultInputStatusIndicatorHandler,
 } from '@webpackages/material/input';
+import { ProductRoutes } from './product.routes';
 
 export const appRoutes: Route[] = [
   {
-    path: '',
-    component: AppComponent,
+    path: 'web',
+    loadComponent() {
+      return NxWelcomeComponent;
+    },
+  },
+  {
+    path: 'inventory',
     providers: [
       provideDefaultTableOptions(),
       provideDefaultInputErrorMesssageHandler(),
@@ -22,15 +28,15 @@ export const appRoutes: Route[] = [
     ],
     children: [
       {
-        path: 'web',
-        loadComponent() {
-          return NxWelcomeComponent;
-        },
-      },
-      {
         path: 'category',
         loadChildren() {
           return CategoryRoutes;
+        },
+      },
+      {
+        path: 'product',
+        loadChildren() {
+          return ProductRoutes;
         },
       },
     ],

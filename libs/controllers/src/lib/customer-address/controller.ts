@@ -53,4 +53,12 @@ export class CustomerAddressController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QueryCustomerAddressDto,
+    @Query() search: SearchCustomerAddressDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

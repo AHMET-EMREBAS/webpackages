@@ -49,4 +49,12 @@ export class SupplierController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QuerySupplierDto,
+    @Query() search: SearchSupplierDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

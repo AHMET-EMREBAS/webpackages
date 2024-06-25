@@ -49,4 +49,12 @@ export class MessageController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QueryMessageDto,
+    @Query() search: SearchMessageDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

@@ -52,7 +52,7 @@ import { getHttpSearchQueryBuilderToken } from '@webpackages/material/core';
         #auto="matAutocomplete"
         [displayWith]="displayWith"
         (optionSelected)="add($event)"
-      >
+        ><mat-option [value]="null"> ----None </mat-option>
         @for (option of foundOptions(); track option) {
         <mat-option [value]="option">{{ option.label }}</mat-option>
         }
@@ -65,7 +65,7 @@ export class SearchManyComponent
   extends AutocompleteManyComponent
   implements OnInit, OnDestroy
 {
-  @Input() pluralResourceName: string;
+  @Input() resourceName: string;
 
   searchQueryBuilder = inject(getHttpSearchQueryBuilderToken());
 
@@ -83,7 +83,7 @@ export class SearchManyComponent
         debounceTime(this.inputDebounceTime),
         switchMap((search) => {
           return this.httpClient.get(
-            this.searchQueryBuilder(this.pluralResourceName, search || '')
+            this.searchQueryBuilder(this.resourceName, search || '')
           );
         }),
         map((data) => this.__toEntityOptions(data as any))

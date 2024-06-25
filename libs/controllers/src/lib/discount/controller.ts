@@ -49,4 +49,12 @@ export class DiscountController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QueryDiscountDto,
+    @Query() search: SearchDiscountDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

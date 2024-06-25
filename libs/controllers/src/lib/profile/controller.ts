@@ -49,4 +49,12 @@ export class ProfileController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QueryProfileDto,
+    @Query() search: SearchProfileDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

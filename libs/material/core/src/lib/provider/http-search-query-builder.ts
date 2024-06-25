@@ -1,3 +1,4 @@
+import { names } from '@webpackages/utils';
 import { createValueProvider } from './create-provider';
 
 /**
@@ -8,10 +9,11 @@ import { createValueProvider } from './create-provider';
  */
 export const defaultHttpSearchQueryBuilder = (
   resourcePath: string,
-  search: string,
-  take = 50
+  search: string
 ) => {
-  return `api/${resourcePath}/?search=${search}&take=${take}`;
+  return `api/${
+    names(names(resourcePath).pluralName).fileName
+  }/?search=${search}&take=${10000}`;
 };
 
 export const {
@@ -28,4 +30,3 @@ export type HttpSearchQueryBuilder = (
   search: string,
   take?: number
 ) => string;
-

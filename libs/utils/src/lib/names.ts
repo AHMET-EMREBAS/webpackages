@@ -1,3 +1,5 @@
+import { plural } from './plural';
+
 /**
  * Util function to generate different strings based off the provided name.
  *
@@ -16,7 +18,17 @@ export function names(name: string) {
     propertyName: toPropertyName(name),
     constantName: toConstantName(name),
     fileName: toFileName(name),
+    titleName: toTitleName(name),
+    pluralName: plural(name),
   };
+}
+
+function toTitleName(name: string) {
+  return toConstantName(name)
+    .split('_')
+    .map((e) => e.toLowerCase())
+    .map(toCapitalCase)
+    .join(' ');
 }
 
 /**

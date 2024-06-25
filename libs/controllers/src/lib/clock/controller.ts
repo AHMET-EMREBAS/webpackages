@@ -49,4 +49,9 @@ export class ClockController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(@Query() query: QueryClockDto, @Query() search: SearchClockDto) {
+    return await this.service.count(query, search);
+  }
 }

@@ -53,4 +53,12 @@ export class DepartmentController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QueryDepartmentDto,
+    @Query() search: SearchDepartmentDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

@@ -49,4 +49,12 @@ export class UserImgController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QueryUserImgDto,
+    @Query() search: SearchUserImgDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

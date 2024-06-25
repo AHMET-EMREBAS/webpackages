@@ -49,4 +49,12 @@ export class ProductController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QueryProductDto,
+    @Query() search: SearchProductDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

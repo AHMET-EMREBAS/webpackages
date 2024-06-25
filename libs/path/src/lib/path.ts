@@ -15,7 +15,7 @@ export enum PathParam {
 
 export type PathBuilderOptions = {
   singularName: string;
-  pluralName?: string;
+  /** @deprecated */ pluralName?: string;
   prefix?: string;
 };
 
@@ -39,11 +39,11 @@ export class PathBuilder {
   protected readonly pluralPath: string;
   protected readonly prefix: string;
 
-  constructor(protected readonly options: PathBuilderOptions) {
-    const { singularName, pluralName, prefix } = options;
+  constructor(options: PathBuilderOptions) {
+    const { singularName, prefix } = options;
 
     this.singularPath = names(singularName).fileName;
-    this.pluralPath = names(pluralName || singularName + 's').fileName;
+    this.pluralPath = names(names(singularName).pluralName).fileName;
     this.prefix = prefix || '';
   }
 
@@ -111,7 +111,11 @@ export class PathBuilder {
       PathParam.RID_DEF
     );
   }
+  /**
+   *
+   * - `GET` `plural/count` - Query count
+   */
   count() {
-    return this.__singular(PathParam.COUNT);
+    return this.__plural(PathParam.COUNT);
   }
 }

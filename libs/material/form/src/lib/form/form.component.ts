@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, Inject, inject } from '@angular/core';
+import { Component, Inject, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,13 +18,14 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataServiceError, EntityCollectionService } from '@ngrx/data';
 import { firstValueFrom } from 'rxjs';
 import {
-  InputOption,
   getEntityCollectionServiceToken,
   getFormGroupToken,
   getInputOptionsToken,
 } from '@webpackages/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { isNotUndefined } from '@webpackages/utils';
+import { PropertyOptions } from '@webpackages/types';
 
 @Component({
   selector: 'wp-form',
@@ -48,24 +49,59 @@ import { RouterModule } from '@angular/router';
   ],
   templateUrl: './form.component.html',
 })
-export class FormComponent<T = any> {
+export class FormComponent<T = any> implements OnInit {
   submitted = false;
   formGroup = inject(getFormGroupToken());
+  entityId: number;
 
   constructor(
     @Inject(getEntityCollectionServiceToken())
     protected readonly service: EntityCollectionService<T>,
     @Inject(getInputOptionsToken())
-    public readonly inputOptions: InputOption[]
+    public readonly inputOptions: PropertyOptions[],
+    private readonly route: ActivatedRoute
   ) {}
+
+  async ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (isNotUndefined(id)) {
+      this.entityId = parseInt(id);
+
+      const foundItem = await firstValueFrom(
+        this.service.getByKey(this.entityId)
+      );
+
+      console.log(foundItem, '<< Found Item');
+
+      for (const [key, value] of Object.entries(foundItem)) {
+        const c = this.formGroup.get(key);
+        if (c) {
+          c.setValue(value);
+        }
+      }
+    }
+  }
 
   async saveItem() {
     try {
-      await firstValueFrom(
-        this.service?.add(this.formGroup?.value, {
-          isOptimistic: false,
-        })
-      );
+      if (this.entityId) {
+        await firstValueFrom(
+          this.service.update(
+            { ...this.formGroup.value, id: this.entityId },
+            { isOptimistic: false }
+          )
+        );
+      } else {
+        await firstValueFrom(
+          this.service?.add(
+            { ...this.formGroup.value },
+            {
+              isOptimistic: false,
+            }
+          )
+        );
+      }
       this.submitted = true;
     } catch (err) {
       const rawErrors = (err as DataServiceError).error.error.errors;

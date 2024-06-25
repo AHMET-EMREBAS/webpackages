@@ -38,7 +38,7 @@ export class CreateTaskDto {
   @Property({
     type: 'date',
     description: 'Set this date, when the tech starts the task',
-    example: '6/23/2024',
+    example: '6/25/2024',
   })
   startDate: Date;
   @Property({

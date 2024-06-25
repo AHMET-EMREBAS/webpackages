@@ -53,4 +53,12 @@ export class OrganizationController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QueryOrganizationDto,
+    @Query() search: SearchOrganizationDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

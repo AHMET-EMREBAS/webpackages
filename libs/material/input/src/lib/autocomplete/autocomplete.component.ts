@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { InputComponent, InputModules } from '../input';
 import {
   MatAutocomplete,
@@ -39,14 +45,17 @@ import { FormControl } from '@angular/forms';
     </mat-form-field>
   `,
 })
-export class AutocompleteComponent extends InputComponent implements OnInit {
+export class AutocompleteComponent
+  extends InputComponent
+  implements OnInit, AfterViewInit
+{
   @ViewChild('auto') autoRef: MatAutocomplete;
 
   @Input() autocompleteListSize = 20;
 
   filteredOptions$: Observable<EntitySelectOption[]>;
 
-  readonly __searchControl = new FormControl('');
+  readonly __searchControl = new FormControl<any>(null);
 
   @Input() autocompleteOptions: EntitySelectOption[];
 
@@ -60,8 +69,8 @@ export class AutocompleteComponent extends InputComponent implements OnInit {
     );
   }
 
-  displayWith(option: EntitySelectOption) {
-    return option?.label;
+  displayWith(option: any) {
+    return option.label;
   }
 
   __filter(search: string | null) {

@@ -53,4 +53,12 @@ export class SerialNumberController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QuerySerialNumberDto,
+    @Query() search: SearchSerialNumberDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

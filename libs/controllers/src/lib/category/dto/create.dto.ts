@@ -6,11 +6,13 @@ import { Exclude } from 'class-transformer';
 export class CreateCategoryDto {
   @Property({
     type: 'string',
+    label: 'Category Name',
     minLength: 3,
     maxLength: 100,
     required: true,
     unique: true,
     example: 'Default Category',
+    class: 'w-full',
   })
   name: string;
 }

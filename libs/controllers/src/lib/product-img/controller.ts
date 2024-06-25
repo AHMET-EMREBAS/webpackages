@@ -53,4 +53,12 @@ export class ProductImgController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QueryProductImgDto,
+    @Query() search: SearchProductImgDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

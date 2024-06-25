@@ -44,7 +44,7 @@
       @for(item of tableIdColumns; track item ){
       <ng-container [matColumnDef]="item.name" sticky>
         <th mat-header-cell [mat-sort-header]="item.name" *matHeaderCellDef>
-          {{ item.label }}
+          {{ item.label | titlecase }}
         </th>
         <td class="w-4" mat-cell *matCellDef="let row; let i = index">
           {{ row[item.name] }}
@@ -56,9 +56,9 @@
       @for(item of tableColumnOptions; track item){
       <ng-container [matColumnDef]="item.name">
         <th mat-header-cell [mat-sort-header]="item.name" *matHeaderCellDef>
-          {{ item.label }}
+          {{ item.label | titlecase }}
         </th>
-        <td [class]="dynamicClass(item, row)" mat-cell *matCellDef="let row">
+        <td [class]="columnClass(item, row)" mat-cell *matCellDef="let row">
           {{ row[item.name] }}
         </td>
       </ng-container>
@@ -68,7 +68,7 @@
       @for(item of tableTimestampColumns; track item){
       <ng-container [matColumnDef]="item.name">
         <th mat-header-cell [mat-sort-header]="item.name" *matHeaderCellDef>
-          {{ item.label }}
+          {{ item.label | titlecase }}
         </th>
         <td class="w-32" mat-cell *matCellDef="let row">
           {{ (row[item.name] | date) || 'N/A' }}

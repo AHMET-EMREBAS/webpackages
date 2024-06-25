@@ -49,4 +49,12 @@ export class AppEventController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QueryAppEventDto,
+    @Query() search: SearchAppEventDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

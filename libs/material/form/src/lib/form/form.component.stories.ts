@@ -14,7 +14,6 @@ import {
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import {
-  InputOption,
   MockCategoryCollectionService,
   provideDefaultHttpSearchQueryBuilder,
   provideEntityCollectionService,
@@ -33,6 +32,7 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { provideRouter } from '@angular/router';
+import { PropertyOptions } from '@webpackages/types';
 
 const entityMetadata: EntityMetadataMap = {
   Sample: {},
@@ -41,7 +41,7 @@ const entityMetadata: EntityMetadataMap = {
 
 const pluralNames = {
   Sample: 'Samples',
-  Category: 'Categorys',
+  Category: 'Categories',
 };
 
 export const entityConfig: EntityDataModuleConfig = {
@@ -125,7 +125,7 @@ const meta: Meta<FormComponent<any>> = {
             class: 'w-full order-4',
             tabIndex: 4,
           },
-        ] as InputOption[]),
+        ] as Partial<PropertyOptions>[]),
       ],
     }),
   ],

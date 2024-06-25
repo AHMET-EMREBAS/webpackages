@@ -49,4 +49,9 @@ export class TaskController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(@Query() query: QueryTaskDto, @Query() search: SearchTaskDto) {
+    return await this.service.count(query, search);
+  }
 }

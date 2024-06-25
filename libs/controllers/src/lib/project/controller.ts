@@ -49,4 +49,12 @@ export class ProjectController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QueryProjectDto,
+    @Query() search: SearchProjectDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

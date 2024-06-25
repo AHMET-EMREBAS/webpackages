@@ -1,4 +1,4 @@
-import { TableColumnOptions } from '@webpackages/types';
+import { PropertyOptions } from '@webpackages/types';
 import { createValueProvider } from './create-provider';
 import { provideDefaultHttpSearchQueryBuilder } from './http-search-query-builder';
 
@@ -6,7 +6,7 @@ export const {
   default: provideDefaultTimestampColumnOptions,
   provide: provideTimeStampColumnOptions,
   token: getTimestampColumOptionsToken,
-} = createValueProvider<TableColumnOptions>('TableTimestampColumns', [
+} = createValueProvider<Partial<PropertyOptions>[]>('TableTimestampColumns', [
   { name: 'createdAt', label: 'Created' },
   { name: 'updatedAt', label: 'Updated' },
   { name: 'deletedAt', label: 'Deleted' },
@@ -16,7 +16,7 @@ export const {
   default: provideDefaultIdColumnOptions,
   provide: provideTableIdColumns,
   token: getTableIdColumnsToken,
-} = createValueProvider<TableColumnOptions>('TableIdColumns', [
+} = createValueProvider<Partial<PropertyOptions>[]>('TableIdColumns', [
   { name: 'eid', label: '#' },
 ]);
 
@@ -53,7 +53,7 @@ export const {
   default: provideDefaultTableColumnOptions,
   provide: provideTableColumnOptions,
   token: getTableColumnOptionsToken,
-} = createValueProvider<TableColumnOptions>('TableColumnOptions', []);
+} = createValueProvider<Partial<PropertyOptions>[]>('TableColumnOptions', []);
 
 export function provideDefaultTableOptions() {
   return [

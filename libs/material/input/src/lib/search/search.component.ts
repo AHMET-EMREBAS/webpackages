@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   Input,
   OnDestroy,
@@ -11,12 +12,12 @@ import {
   Observable,
   Subscription,
   debounceTime,
-  map,
+  filter,
   startWith,
   switchMap,
 } from 'rxjs';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
-import { EntitySelectOption } from '@webpackages/types';
+import { ID } from '@webpackages/types';
 import { InputModules } from '../input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { getHttpSearchQueryBuilderToken } from '@webpackages/material/core';
@@ -39,28 +40,35 @@ import { getHttpSearchQueryBuilderToken } from '@webpackages/material/core';
       />
       <mat-autocomplete
         #auto="matAutocomplete"
-        [displayWith]="displayWith"
+        [displayWith]="searchDisplayWith"
         (optionSelected)="__optionSelect($event)"
+        [autoSelectActiveOption]="true"
+        autoActiveFirstOption
       >
         @for (option of foundOptions(); track option) {
-        <mat-option [value]="option">{{ option.label }}</mat-option>
+        <mat-option [value]="option">
+          {{ searchDisplayWith(option) }}
+        </mat-option>
         }
+        <mat-option [value]="null"> ----None </mat-option>
       </mat-autocomplete>
       <mat-error>{{ errorMessage$ | async }}</mat-error>
     </mat-form-field>
   `,
 })
-export class SearchComponent
+export class SearchComponent<T extends ID>
   extends AutocompleteComponent
-  implements OnInit, OnDestroy
+  implements OnInit, AfterViewInit, OnDestroy
 {
-  @Input() pluralResourceName: string;
+  @Input() resourceName: string;
+  @Input() resourceLabelProperty = 'name';
+
   searchQueryBuilder = inject(getHttpSearchQueryBuilderToken());
 
-  foundOptions = signal<EntitySelectOption[]>([]);
+  foundOptions = signal<T[]>([]);
   httpClient = inject(HttpClient);
 
-  search$: Observable<EntitySelectOption[]>;
+  search$: Observable<T[]>;
 
   sub: Subscription;
 
@@ -69,24 +77,35 @@ export class SearchComponent
       .pipe(
         startWith(''),
         debounceTime(this.inputDebounceTime),
+        filter((e) => typeof e == 'string'),
         switchMap((search) => {
-          return this.httpClient.get(
-            this.searchQueryBuilder(this.pluralResourceName, search || '')
+          return this.httpClient.get<T[]>(
+            this.searchQueryBuilder(this.resourceName, search || '')
           );
-        }),
-        map((data) => this.__toEntityOptions(data as any))
+        })
       )
       .subscribe((result) => {
-        this.foundOptions.update(() => result as EntitySelectOption[]);
+        this.foundOptions.update(() => result);
       });
   }
-  __toEntityOptions(items: any[]): EntitySelectOption[] {
-    return items.map((e) => {
-      return { id: e.id, label: e.name };
-    });
+  override ngAfterViewInit(): void {
+    setTimeout(() => {
+      console.log('Input Control : ', this.inputControl.value);
+      console.log('Searcn Control : ', this.__searchControl.value);
+
+      this.autoRef.options;
+    }, 3000);
   }
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
+  }
+
+  optionLabel(option: T) {
+    return (option as any)[this.resourceLabelProperty] ?? 'Not found';
+  }
+
+  searchDisplayWith(option: T): string {
+    return (option as any)[this.resourceLabelProperty] || 'None';
   }
 }

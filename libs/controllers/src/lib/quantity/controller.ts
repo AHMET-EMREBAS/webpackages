@@ -49,4 +49,12 @@ export class QuantityController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QueryQuantityDto,
+    @Query() search: SearchQuantityDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

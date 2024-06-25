@@ -49,4 +49,12 @@ export class SessionController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QuerySessionDto,
+    @Query() search: SearchSessionDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

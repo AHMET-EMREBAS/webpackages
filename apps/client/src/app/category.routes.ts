@@ -15,6 +15,7 @@ import { FormComponent } from '@webpackages/material/form';
 import { TableComponent } from '@webpackages/material/table';
 import { ICategory } from '@webpackages/models';
 import { CategoryMetadata } from '@webpackages/metadata';
+
 @Injectable()
 export class CategoryService extends EntityCollectionServiceBase<ICategory> {
   constructor(factory: EntityCollectionServiceElementsFactory) {
@@ -33,6 +34,17 @@ export const CategoryRoutes: Routes = [
         ...Object.entries(CategoryMetadata.properties).map(([key, value]) => {
           return { name: key, ...value };
         }),
+        ...Object.entries(CategoryMetadata.relations)
+          .map(([key, value]) => {
+            if (value.viewColumns) {
+              return value.viewColumns.map((viewName) => {
+                return { name: viewName };
+              });
+            }
+            return null;
+          })
+          .filter((e) => e)
+          .flat(),
       ]),
       provideFormGroup(
         new FormGroup({
@@ -46,7 +58,7 @@ export const CategoryRoutes: Routes = [
     ],
     children: [
       {
-        path: 'create',
+        path: 'editor',
         loadComponent() {
           return FormComponent;
         },

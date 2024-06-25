@@ -4,11 +4,14 @@ import { StringFormat } from './string-format';
 import { Constructor } from './constructor';
 import { InputType } from './input-type';
 import { ResourceName } from '../auth';
+import { EntitySelectOption } from './entity-option';
 
-export class PropertyOptions {
+export class PropertyOptions<T = any> {
   type: PropertyType;
   label: string;
-  class: string;
+  resourceName: string;
+  autocompleteOptions: EntitySelectOption[];
+  tabIndex: number;
   textPrefix: string;
   textPuffix: string;
   icon: string;
@@ -68,8 +71,13 @@ export class PropertyOptions {
   hideInTable: boolean;
   hideInCreate: boolean;
   hideInUpdate: boolean;
-  className: (value: any) => string;
+  conditionalClass: (value: T) => string;
+  class: string;
+  tableColumnClass: string;
+  tableColumnConditionalClass: (value: T) => string;
   from: string;
+
+  viewColumns: string[];
 }
 
 export class RelationOptions
@@ -77,14 +85,6 @@ export class RelationOptions
 {
   relationType: RelationType;
   target: Constructor<any>;
-}
-
-export class RelationOptionsMeta
-  implements Pick<PropertyOptions, 'relationType' | 'targetName'>
-{
-  targetName: ResourceName;
-  relationType: RelationType;
-  viewColumns?: string[];
 }
 
 export class ColumnOptions

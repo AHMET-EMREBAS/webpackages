@@ -53,4 +53,12 @@ export class AccessTokenController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QueryAccessTokenDto,
+    @Query() search: SearchAccessTokenDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

@@ -49,4 +49,12 @@ export class PurchaseController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QueryPurchaseDto,
+    @Query() search: SearchPurchaseDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

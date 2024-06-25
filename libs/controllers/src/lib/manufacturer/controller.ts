@@ -53,4 +53,12 @@ export class ManufacturerController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QueryManufacturerDto,
+    @Query() search: SearchManufacturerDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

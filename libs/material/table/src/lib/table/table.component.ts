@@ -5,9 +5,7 @@ import {
   ElementRef,
   EventEmitter,
   Inject,
-  Input,
   OnInit,
-  Optional,
   Output,
   ViewChild,
   signal,
@@ -42,7 +40,7 @@ import { Observable, debounceTime, merge, startWith } from 'rxjs';
 import { LiveAnnouncer, A11yModule } from '@angular/cdk/a11y';
 import { getEntityCollectionServiceToken } from '@webpackages/material/core';
 import { EntityCollectionService, MergeStrategy } from '@ngrx/data';
-import { TableColumnOption, TableColumnOptions } from '@webpackages/types';
+import { PropertyOptions } from '@webpackages/types';
 
 @Component({
   selector: 'wp-table',
@@ -95,9 +93,9 @@ export class TableComponent<T = any> implements OnInit, AfterViewInit {
 
   constructor(
     @Inject(getTableIdColumnsToken())
-    public readonly tableIdColumns: TableColumnOptions,
+    public readonly tableIdColumns: PropertyOptions[],
     @Inject(getTimestampColumOptionsToken())
-    public readonly tableTimestampColumns: TableColumnOptions,
+    public readonly tableTimestampColumns: PropertyOptions[],
     @Inject(getTableRowRouteValueHandlerToken())
     public readonly rowRouteHandler: TableRowRouteValueHandler,
     @Inject(getContextEditRouteValueToken())
@@ -108,7 +106,7 @@ export class TableComponent<T = any> implements OnInit, AfterViewInit {
     @Inject(getEntityCollectionServiceToken())
     private readonly service: EntityCollectionService<any>,
     @Inject(getTableColumnOptionsToken())
-    public readonly tableColumnOptions: TableColumnOption[]
+    public readonly tableColumnOptions: PropertyOptions[]
   ) {}
 
   ngOnInit(): void {
@@ -158,8 +156,13 @@ export class TableComponent<T = any> implements OnInit, AfterViewInit {
     this.liveAnnouncer.announce('Context menu opened', 'polite');
   }
 
-  dynamicClass(columnOption: TableColumnOption, value: any) {
-    return columnOption.class ? columnOption.class(value) : '';
+  columnClass(columnOption: PropertyOptions, value: any) {
+    const conditionalClass = columnOption.tableColumnConditionalClass
+      ? columnOption.tableColumnConditionalClass(value)
+      : '';
+    const staticClass = columnOption.tableColumnClass ?? '';
+
+    return conditionalClass + ' ' + staticClass;
   }
 
   loadData() {
