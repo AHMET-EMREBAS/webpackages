@@ -33,7 +33,7 @@ import { NavListItems } from '@webpackages/types';
 export class ModuleLayoutComponent {
   activeNavItem = signal<string | null>(null);
 
-  isRTL = signal(this.dir.dir === 'rtl');
+  isRTL = signal(this.dir.dir == 'rtl');
 
   constructor(
     @Inject(getSubModuleNavListItemsToken()) public navlistItems: NavListItems,
