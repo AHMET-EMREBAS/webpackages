@@ -6,7 +6,6 @@ import {
   Product,
   Store,
   Supplier,
-  entityList,
 } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import {
@@ -17,7 +16,9 @@ import {
   getBuiltinSuppliers,
 } from '@webpackages/data';
 @Module({
-  imports: [TypeOrmModule.forFeature([...entityList])],
+  imports: [
+    TypeOrmModule.forFeature([Category, Supplier, PriceLevel, Store, Product]),
+  ],
 })
 export class AppSeedModule {
   constructor(

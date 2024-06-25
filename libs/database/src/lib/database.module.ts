@@ -37,7 +37,7 @@ export class DatabaseModule {
               return { ...config, synchronize: true, dropSchema: true };
             } else if (isProduction) {
               new Logger().log(`[Production] Configured database`, 'Database');
-              return { ...config, synchronize: true, dropSchema: true };
+              return { ...config };
             }
 
             throw new Error('NODE_ENV is required!');
