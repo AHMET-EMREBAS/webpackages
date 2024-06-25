@@ -106,12 +106,14 @@ export class SearchComponent
       this.__searchControl.setValue(
         this.inputControl.value[this.resourceLabelProperty]
       );
-      const first = this.searchAutoComplete.options.first;
+      const first = this.searchAutoComplete?.options?.first;
 
-      this.searchAutoComplete.optionSelected.emit({
-        option: { ...first, active: true } as any,
-        source: this.searchAutoComplete,
-      });
+      if (first) {
+        this.searchAutoComplete.optionSelected.emit({
+          option: { ...first, active: true } as any,
+          source: this.searchAutoComplete,
+        });
+      }
     }
   }
 

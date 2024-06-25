@@ -798,7 +798,7 @@ import { RouterModule } from '@angular/router';
         <div id="commands" class="rounded shadow">
           <h2>Applications</h2>
           <p>Here are some things you can manage with BMS</p>
-          <a [routerLink]="['inventory-management']">
+          <a [routerLink]="['inventory']">
             <details>
               <summary>
                 <svg
@@ -814,7 +814,7 @@ import { RouterModule } from '@angular/router';
                     d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
-                Manage Inventory
+                Inventory
               </summary>
             </details>
           </a>
@@ -834,11 +834,11 @@ import { RouterModule } from '@angular/router';
                     d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
-                Point Of Sale
+                POS
               </summary>
             </details>
           </a>
-          <a [routerLink]="['customer-management']">
+          <a [routerLink]="['cms']">
             <details>
               <summary>
                 <svg
@@ -854,11 +854,11 @@ import { RouterModule } from '@angular/router';
                     d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
-                Manage Customers
+                CMS
               </summary>
             </details>
           </a>
-          <a [routerLink]="['project-management']">
+          <a [routerLink]="['pms']">
             <details>
               <summary>
                 <svg
@@ -874,7 +874,7 @@ import { RouterModule } from '@angular/router';
                     d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
-                Manage Project
+                PMS
               </summary>
             </details>
           </a>

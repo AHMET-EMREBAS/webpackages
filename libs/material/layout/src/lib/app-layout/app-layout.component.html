@@ -6,9 +6,12 @@
     [opened]="viewport.sidenavOpen$ | async"
   >
     <mat-toolbar style="background-color: transparent">
-      <img class="w-8" src="./icons/icon-72x72.png" alt="App Logo" />
+      <a [routerLink]="['/']">
+        <img class="w-8" src="./icons/icon-72x72.png" alt="App Logo" />
+      </a>
       <div class="grow"></div>
     </mat-toolbar>
+
     <mat-nav-list>
       @for(item of navlistItems; track item){
       <a
