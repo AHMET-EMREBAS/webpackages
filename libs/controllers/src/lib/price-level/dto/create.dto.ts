@@ -6,6 +6,7 @@ import { Exclude } from 'class-transformer';
 export class CreatePriceLevelDto {
   @Property({
     type: 'string',
+    label: 'Price Level Name',
     minLength: 3,
     maxLength: 100,
     required: true,
@@ -15,6 +16,7 @@ export class CreatePriceLevelDto {
   name: string;
   @Property({
     type: 'string',
+    label: 'Currency',
     required: true,
     minLength: 1,
     maxLength: 10,

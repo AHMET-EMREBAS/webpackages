@@ -7,6 +7,7 @@ import { PriceLevel } from '../price-level';
 
 @Entity()
 export class Discount extends BaseEntity implements IDiscount {
+  @Column({ type: 'string', required: true, unique: false }) name: string;
   @Column({ type: 'number', required: false, unique: false })
   fixedDiscount: number;
   @Column({ type: 'number', required: false, unique: false })

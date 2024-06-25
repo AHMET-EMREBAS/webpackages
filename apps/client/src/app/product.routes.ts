@@ -26,6 +26,12 @@ export class ProductService extends EntityCollectionServiceBase<IProduct> {
 
 export const ___ProductRoutes: Routes = [
   {
+    path: '',
+    loadComponent() {
+      return TableComponent;
+    },
+  },
+  {
     path: 'editor',
     loadComponent() {
       return FormComponent;
@@ -35,12 +41,6 @@ export const ___ProductRoutes: Routes = [
     path: 'editor/:id',
     loadComponent() {
       return FormComponent;
-    },
-  },
-  {
-    path: 'table',
-    loadComponent() {
-      return TableComponent;
     },
   },
 ];
@@ -53,7 +53,6 @@ export const ProductRoutes: Routes = [
     },
     providers: [
       provideEntityCollectionService(ProductService),
-
       provideTableColumnOptions(toTableColumnOptions(ProductMetadata)),
       provideInputOptions(toFormInputOptions(ProductMetadata)),
       provideFormGroup(

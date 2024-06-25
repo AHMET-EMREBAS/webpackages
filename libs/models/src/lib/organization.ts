@@ -1,12 +1,8 @@
-import {  BaseEntity } from '@webpackages/types';
+import { BaseEntity } from '@webpackages/types';
 import { IUser } from './user';
 
 export interface IOrganization extends BaseEntity {
- 
+  name: string;
 
-        name: string ;
-        
- 
-        manager: IUser;
-        
+  manager: IUser;
 }

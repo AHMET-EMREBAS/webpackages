@@ -4,6 +4,7 @@ import { Exclude } from 'class-transformer';
 
 @Exclude()
 export class OrderDiscountDto extends CreateOrderDto<DiscountView>([
+  'name',
   'fixedDiscount',
   'percentDiscount',
   'startDate',

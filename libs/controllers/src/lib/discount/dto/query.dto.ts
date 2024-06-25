@@ -7,6 +7,7 @@ export class QueryDiscountDto
   extends BaseQueryDto
   implements QueryDto<DiscountView>
 {
+  @QueryProperty() name: string;
   @QueryProperty() fixedDiscount: string;
   @QueryProperty() percentDiscount: string;
   @QueryProperty() startDate: string;

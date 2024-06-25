@@ -6,6 +6,7 @@ import { FindOptionsWhere } from 'typeorm';
 @Exclude()
 export class SearchDiscountDto implements SearchDto<DiscountView> {
   @SearchProperty<DiscountView>([
+    'name',
     'fixedDiscount',
     'percentDiscount',
     'startDate',

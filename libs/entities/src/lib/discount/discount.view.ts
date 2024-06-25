@@ -12,6 +12,7 @@ import { PriceLevel } from '../price-level';
   },
 })
 export class DiscountView extends BaseView {
+  @ViewColumn() name: string;
   @ViewColumn() fixedDiscount: number;
   @ViewColumn() percentDiscount: number;
   @ViewColumn() startDate: Date;
