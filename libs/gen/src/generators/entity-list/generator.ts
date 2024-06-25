@@ -1,6 +1,6 @@
 import { formatFiles, generateFiles, names, Tree } from '@nx/devkit';
 import * as path from 'path';
-import * as Metadata from 'reflect-metadata';
+import * as Metadata from '@webpackages/metadata';
 
 export async function entityListGenerator(tree: Tree) {
   const projectRoot = `libs/entities/src/lib`;
@@ -8,9 +8,9 @@ export async function entityListGenerator(tree: Tree) {
   const entityImports = Object.entries(Metadata)
     .map(([key, value]) => {
       const N = names(key.replace('Metadata', ''));
-      return `import {${N.className}} from './${N.fileName}';`;
+      return `import {${N.className}, ${N.className}Subscriber } from './${N.fileName}';`;
     })
-    .join(',');
+    .join('\n');
 
   const entityList =
     `export const entityList = [\n` +
@@ -21,9 +21,19 @@ export async function entityListGenerator(tree: Tree) {
       .join(',') +
     '\n]';
 
+  const subscriberList =
+    `export const subscriberList = [\n` +
+    Object.entries(Metadata)
+      .map(([key, value]) => {
+        return names(key.replace('Metadata', '')).className + 'Subscriber';
+      })
+      .join(',') +
+    '\n]';
+
   generateFiles(tree, path.join(__dirname, 'files'), projectRoot, {
     entityImports,
     entityList,
+    subscriberList,
   });
 
   await formatFiles(tree);

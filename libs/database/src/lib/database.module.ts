@@ -5,6 +5,7 @@ import { Constructor } from '@webpackages/types';
 
 export type DatabaseModuleOptions = {
   subscribers: Constructor[];
+  entities: Constructor[];
 };
 
 @Module({})
@@ -28,7 +29,7 @@ export class DatabaseModule {
               username,
               password,
               database,
-              autoLoadEntities: true,
+              entities: options.entities,
               subscribers: options.subscribers,
             } as TypeOrmModuleOptions;
 
