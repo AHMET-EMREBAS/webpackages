@@ -35,11 +35,47 @@ export class AppSeedModule {
   ) {}
 
   onModuleInit() {
-    this.category.save(getBuiltinCategories(), { transaction: false });
-    this.supplier.save(getBuiltinSuppliers(), { transaction: false });
-    this.supplier.save(getBuiltinSuppliers(), { transaction: false });
-    this.priceLevel.save(getBuiltinPriceLevels(), { transaction: false });
-    this.store.save(getBuiltinStores(), { transaction: false });
-    this.product.save(getBuiltinProducts(), { transaction: false });
+    for (const i of getBuiltinCategories()) {
+      try {
+        this.category.save(i, { transaction: false });
+      } catch (err) {
+        console.error(i, " : Not Saved");
+      }
+    }
+    for (const i of getBuiltinSuppliers()) {
+      try {
+        this.supplier.save(i, { transaction: false });
+      } catch (err) {
+        console.error(i, " : Not Saved");
+      }
+    }
+    for (const i of getBuiltinSuppliers()) {
+      try {
+        this.supplier.save(i, { transaction: false });
+      } catch (err) {
+        console.error(i, " : Not Saved");
+      }
+    }
+    for (const i of getBuiltinPriceLevels()) {
+      try {
+        this.priceLevel.save(i, { transaction: false });
+      } catch (err) {
+        console.error(i, " : Not Saved");
+      }
+    }
+    for (const i of getBuiltinStores()) {
+      try {
+        this.store.save(i, { transaction: false });
+      } catch (err) {
+        console.error(i, " : Not Saved");
+      }
+    }
+    for (const i of getBuiltinProducts()) {
+      try {
+        this.product.save(i, { transaction: false });
+      } catch (err) {
+        console.error(i, " : Not Saved");
+      }
+    }
   }
 }
