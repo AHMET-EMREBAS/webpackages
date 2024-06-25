@@ -7,7 +7,6 @@ import { ApiTags } from '@nestjs/swagger';
 export class AppController {
   // constructor(protected readonly notification: CommonNotificationService) {}
 
-  
   @Post('hello')
   hello() {
     // this.notification.pub('NEW_HELLO_MESSAGE');
