@@ -41,7 +41,6 @@ export class DatabaseModule {
             }
 
             throw new Error('NODE_ENV is required!');
-            return {};
           },
         }),
       ],

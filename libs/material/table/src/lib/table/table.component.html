@@ -26,11 +26,9 @@
 </ng-template>
 
 <div class="w-full flex flex-col h-svh overflow-hiden">
-  <!-- Search  -->
-  <ng-container *ngIf="search$ | async"></ng-container>
   <mat-form-field>
     <mat-label>Search</mat-label>
-    <input #searchInput [(ngModel)]="searchValue" type="text" matInput />
+    <input #searchInput [formControl]="searchControl" type="text" matInput />
   </mat-form-field>
 
   <!-- Table container -->
@@ -72,8 +70,8 @@
         <th mat-header-cell [mat-sort-header]="item.name" *matHeaderCellDef>
           {{ item.label }}
         </th>
-        <td class="w-4" mat-cell *matCellDef="let row">
-          {{ row[item.name] || 'N/A' }}
+        <td class="w-32" mat-cell *matCellDef="let row">
+          {{ (row[item.name] | date) || 'N/A' }}
         </td>
       </ng-container>
       }

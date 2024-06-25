@@ -36,7 +36,17 @@ import { CdkMenu, CdkMenuItem, CdkContextMenuTrigger } from '@angular/cdk/menu';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Observable, debounceTime, fromEvent, map } from 'rxjs';
+import {
+  Observable,
+  combineLatest,
+  debounceTime,
+  fromEvent,
+  map,
+  merge,
+  mergeAll,
+  pipe,
+  startWith,
+} from 'rxjs';
 import { LiveAnnouncer, A11yModule } from '@angular/cdk/a11y';
 import { getEntityCollectionServiceToken } from '@webpackages/material/core';
 import { EntityCollectionService, MergeStrategy } from '@ngrx/data';
@@ -75,13 +85,10 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   filteredData$: Observable<any[]> = this.service.filteredEntities$;
 
-  searchControl = new FormControl('', []);
+  searchControl = new FormControl<string>('');
   contextRowValue = signal<any>(null);
 
-  /** @deprecated */ @Input() tableItemsSize: number;
-  /** @deprecated */ @Input() pageSize: number;
-  /** @deprecated */ @Input() tableData: any[];
-  /** @deprecated */ @Input() tableDataSource: MatTableDataSource<any>;
+  withDeleted = false;
 
   @Input() tableColumns: TableColumnOptions;
   @Input() pluralResourceName: string;
@@ -91,8 +98,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Output() pageChangeEvent = new EventEmitter<PageEvent>();
   @Output() searchEvent = new EventEmitter<string>();
 
-  searchValue = '';
-  search$: Observable<string>;
+  /** @deprecated */ searchValue = '';
+  /** @deprecated */ search$: Observable<string>;
 
   columns = signal<string[] | null>(null);
   displayedColumns = signal<string[] | null>(null);
@@ -136,22 +143,15 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.search$ = fromEvent(this.searchInput.nativeElement, 'input').pipe(
-      debounceTime(400),
-      map(() => {
-        this.tableDataSource.filter = this.searchValue;
-        this.searchEvent.emit(this.searchValue);
-        return this.searchValue;
-      })
-    );
-
-    this.loadData();
-
-    if (this.tableData) {
-      this.tableDataSource = new MatTableDataSource(this.tableData);
-      this.tableDataSource.paginator = this.paginator;
-      this.tableDataSource.sort = this.sort;
-    }
+    merge(
+      this.searchControl.valueChanges.pipe(debounceTime(600)),
+      this.paginator.page,
+      this.sort.sortChange
+    )
+      .pipe(debounceTime(400), startWith(''))
+      .subscribe(() => {
+        this.loadData();
+      });
   }
 
   emitSortChange(event: Sort) {
@@ -175,11 +175,16 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   loadData() {
     const { pageIndex, pageSize } = this.paginator;
+    const { direction: orderDir, active: orderBy } = this.sort;
+    this.service.clearCache();
     this.service.getWithQuery(
       {
         take: pageSize,
         skip: pageSize * pageIndex,
-        search: this.searchValue,
+        search: this.searchControl.value || '',
+        orderDir: orderDir || 'asc',
+        orderBy: orderBy || 'eid',
+        withDeleted: this.withDeleted,
       },
       { mergeStrategy: MergeStrategy.OverwriteChanges, isOptimistic: false }
     );

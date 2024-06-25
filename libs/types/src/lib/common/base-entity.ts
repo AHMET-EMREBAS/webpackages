@@ -16,8 +16,17 @@ export class BaseEntity implements ID, Timestamps {
   active: boolean;
 }
 
-export const BaseEntityFields: Readonly<(keyof BaseEntity)[]> = [
+export class BaseView implements ID, Timestamps, BaseEntity {
+  active: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
+  id: number;
+  eid: number;
+}
+export const BaseEntityFields: Readonly<(keyof BaseView)[]> = [
   'id',
+  'eid',
   'createdAt',
   'updatedAt',
   'deletedAt',

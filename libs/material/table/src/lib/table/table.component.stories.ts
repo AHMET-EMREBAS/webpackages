@@ -85,10 +85,7 @@ type Story = StoryObj<TableComponent>;
 
 export const Primary: Story = {
   args: {
-    tableData,
-    tableColumns: [{ name: 'label', label: 'Label' }],
-    tableItemsSize: 100,
-    pageSize: 5,
+    tableColumns: [{ name: 'name', label: 'Name' }],
   },
 };
 export const NoTimestamp: Story = {
