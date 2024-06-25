@@ -1,10 +1,4 @@
-import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Routes } from '@angular/router';
-import {
-  EntityCollectionServiceBase,
-  EntityCollectionServiceElementsFactory,
-} from '@ngrx/data';
 import {
   provideEntityCollectionService,
   provideFormGroup,
@@ -15,8 +9,8 @@ import {
 import { ProductMetadata } from '@webpackages/metadata';
 import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
 import { ProductFormGroup } from '@webpackages/clients/form-groups';
-import { CrudRoutes } from './crud.routes';
 import { ProductService } from '@webpackages/clients/ngrx';
+import { CrudRoutes } from './__crud.routes';
 
 export const ProductRoutes: Routes = [
   {

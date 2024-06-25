@@ -1,0 +1,33 @@
+import { Routes } from '@angular/router';
+import {
+  provideEntityCollectionService,
+  provideFormGroup,
+  provideInputOptions,
+  provideSubModuleNavListItems,
+  provideTableColumnOptions,
+} from '@webpackages/material/core';
+import { <%- className %>Metadata } from '@webpackages/metadata';
+import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
+import { <%- className %>FormGroup } from '@webpackages/clients/form-groups';
+import { <%- className %>Service } from '@webpackages/clients/ngrx';
+import { CrudRoutes } from './__crud.routes';
+
+export const <%- className %>Routes: Routes = [
+  {
+    path: '',
+    title: '<%- className %>',
+    providers: [
+      provideSubModuleNavListItems([
+        { route: ['table'], label: 'View <%- className %>s', icon: 'table' },
+        { route: ['editor'], label: 'New <%- className %>', icon: 'add' },
+      ]),
+      provideEntityCollectionService(<%- className %>Service),
+      provideTableColumnOptions(toTableColumnOptions(<%- className %>Metadata)),
+      provideInputOptions(toFormInputOptions(<%- className %>Metadata)),
+      provideFormGroup(<%- className %>FormGroup),
+    ],
+    loadChildren() {
+      return CrudRoutes;
+    },
+  },
+];

@@ -11,7 +11,7 @@ import {
 } from '@webpackages/material/core';
 import { CategoryMetadata } from '@webpackages/metadata';
 import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { CrudRoutes } from './crud.routes';
+import { CrudRoutes } from './__crud.routes';
 import { names } from '@webpackages/utils';
 
 export function createRoutes(

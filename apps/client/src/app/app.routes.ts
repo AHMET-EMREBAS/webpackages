@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { CategoryRoutes, ProductRoutes, SkuRoutes } from './modules';
+import { ProductRoutes } from '@webpackages/clients/routes';
 import { AppLayoutComponent } from '@webpackages/material/layout';
 import { provideNavListItems } from '@webpackages/material/core';
 
@@ -24,18 +24,6 @@ export const appRoutes: Route[] = [
         path: 'product',
         loadChildren() {
           return ProductRoutes;
-        },
-      },
-      {
-        path: 'category',
-        loadChildren() {
-          return CategoryRoutes;
-        },
-      },
-      {
-        path: 'sku',
-        loadChildren() {
-          return SkuRoutes;
         },
       },
     ],

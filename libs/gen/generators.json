@@ -34,6 +34,11 @@
       "factory": "./src/generators/ngrx/generator",
       "schema": "./src/generators/ngrx/schema.json",
       "description": "ngrx generator"
+    },
+    "routes": {
+      "factory": "./src/generators/routes/generator",
+      "schema": "./src/generators/routes/schema.json",
+      "description": "routes generator"
     }
   }
 }
