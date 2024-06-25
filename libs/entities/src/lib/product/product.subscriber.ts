@@ -4,11 +4,6 @@ import {
   InsertEvent,
 } from 'typeorm';
 import { Product } from './product.entity';
-import { PriceLevel } from '../price-level';
-import { Store } from '../store';
-import { Price } from '../price';
-import { Quantity } from '../quantity';
-import { Sku } from '../sku';
 
 @EventSubscriber()
 export class ProductSubscriber implements EntitySubscriberInterface<Product> {
@@ -19,12 +14,12 @@ export class ProductSubscriber implements EntitySubscriberInterface<Product> {
   async afterInsert(event: InsertEvent<Product>) {
     const entity = event.entity;
 
-    const sku = event.manager.getRepository(Sku);
-    const savedSku = await sku.save({
-      ...entity,
-      sku: entity.upc,
-      product: entity,
-    });
+    // const sku = event.manager.getRepository(Sku);
+    // const savedSku = await sku.save({
+    //   ...entity,
+    //   sku: entity.upc,
+    //   product: entity,
+    // });
   }
 
   beforeInsert(event: InsertEvent<Product>): void | Promise<any> {
