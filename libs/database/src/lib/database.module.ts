@@ -29,8 +29,8 @@ export class DatabaseModule {
               username,
               password,
               database,
-              entities: options.entities,
-              subscribers: options.subscribers,
+              entities: [...options.entities],
+              subscribers: [...options.subscribers],
             } as TypeOrmModuleOptions;
 
             if (isDevelopment) {
