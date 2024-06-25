@@ -30,7 +30,7 @@
   }
 
   <!-- Number -->
-  @else if(option.inputType ==='number'){
+  @else if(option.inputType ==='number' || option.type ==='number'){
   <wp-input-number
     [inputName]="option.name"
     [inputControl]="control(option.name)"
@@ -44,7 +44,7 @@
   }
 
   <!-- Date -->
-  @else if(option.inputType ==='date'){
+  @else if(option.inputType ==='date' || option.type ==='date'){
   <wp-input-date
     [inputName]="option.name"
     [inputControl]="control(option.name)"
@@ -56,7 +56,7 @@
   }
 
   <!-- Search  -->
-  @else if(option.inputType ==='search'){
+  @else if(option.inputType ==='search' ){
 
   <wp-search
     [inputName]="option.name"
@@ -113,7 +113,7 @@
   }
 
   <!-- Checkbox -->
-  @else if(option.inputType ==='checkbox'){
+  @else if(option.inputType ==='checkbox' || option.type ==='boolean'){
   <mat-checkbox
     [name]="option.name"
     [formControl]="control(option.name)"

@@ -10,7 +10,6 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { provideStore } from '@ngrx/store';
 import { provideEntityData, withEffects } from '@ngrx/data';
-import { entityConfig } from './entity-metadata';
 import { provideEffects } from '@ngrx/effects';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { AppDevInterceptor } from './app-dev.interceptor';
@@ -19,8 +18,8 @@ import {
   provideDefaultInputDebounceTime,
   provideDefaultInputErrorMesssageHandler,
   provideDefaultInputStatusIndicatorHandler,
-  provideInputErrorMessageHandler,
 } from '@webpackages/material/input';
+import { entityConfig } from '@webpackages/clients/ngrx';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -35,9 +34,9 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideEffects(),
     provideEntityData(entityConfig, withEffects()),
-    ...provideDefaultTableOptions(),
     provideDefaultInputErrorMesssageHandler(),
     provideDefaultInputStatusIndicatorHandler(),
     provideDefaultInputDebounceTime(),
+    ...provideDefaultTableOptions(),
   ],
 };

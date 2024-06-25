@@ -1,31 +1,63 @@
-import { Route } from '@angular/router';
-import { ProductRoutes } from '@webpackages/clients/routes';
+import { Route, Routes } from '@angular/router';
+import {
+  CategoryRoutes,
+  PriceLevelRoutes,
+  PriceRoutes,
+  ProductRoutes,
+  QuantityRoutes,
+  SerialNumberRoutes,
+  SkuDetailRoutes,
+  SkuRoutes,
+  StoreRoutes,
+} from '@webpackages/clients/routes';
 import { AppLayoutComponent } from '@webpackages/material/layout';
 import { provideNavListItems } from '@webpackages/material/core';
 
-export const appRoutes: Route[] = [
+function __route(path: string, routes: Routes): Route {
+  return {
+    path,
+    loadChildren() {
+      return routes;
+    },
+  };
+}
+export const InventoryRoutes: Route[] = [
   {
     path: '',
     component: AppLayoutComponent,
     providers: [
       provideNavListItems([
-        { icon: 'inventory2', label: 'Product', route: 'product' },
-        { icon: 'barcode', label: 'Sku', route: 'sku' },
-        { icon: 'numbers', label: 'Quantity', route: 'quantity' },
-        { icon: 'money', label: 'Price', route: 'price' },
-        { icon: 'layers', label: 'Price Level', route: 'price-level' },
-        { icon: 'money', label: 'Price Level', route: 'price-level' },
-        { icon: 'store', label: 'Store', route: 'store' },
+        { label: 'Product', icon: 'inventory2', route: 'product' },
+        { label: 'Sku', icon: 'barcode', route: 'sku' },
+        { label: 'Sku Details', icon: 'info', route: 'sku-details' },
+
+        { label: 'Price', icon: 'money', route: 'price' },
+        { label: 'Price Level', icon: 'layers', route: 'price-level' },
+
+        {
+          label: 'Serial Number',
+          icon: '1x_mobiledata',
+          route: 'serial-number',
+        },
+        { label: 'Quantity', icon: 'numbers', route: 'quantity' },
+        { label: 'Store', icon: 'store', route: 'store' },
       ]),
     ],
 
     children: [
-      {
-        path: 'product',
-        loadChildren() {
-          return ProductRoutes;
-        },
-      },
+      __route('product', ProductRoutes),
+      __route('sku', SkuRoutes),
+      __route('sku-details', SkuDetailRoutes),
+
+      __route('price', PriceRoutes),
+      __route('price-level', PriceLevelRoutes),
+
+      __route('serial-number', SerialNumberRoutes),
+      __route('quantity', QuantityRoutes),
+
+      __route('category', CategoryRoutes),
+
+      __route('store', StoreRoutes),
     ],
   },
 ];

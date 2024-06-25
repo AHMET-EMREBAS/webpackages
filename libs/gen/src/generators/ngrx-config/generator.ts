@@ -7,16 +7,15 @@ import { plural } from '@webpackages/utils';
 export async function ngrxConfigGenerator(tree: Tree) {
   const projectRoot = `libs/clients/ngrx/src/lib`;
 
-  
   const entityConfigs = Object.entries(Metadata)
     .map(([key, value]) => {
-      return `${names(key.replace('Metadata', ''))}:{}`;
+      return `${names(key.replace('Metadata', '')).className}:{}`;
     })
     .join(',');
 
   const pluralNames = Object.entries(Metadata)
     .map(([key, value]) => {
-      return `${names(key.replace('Metadata', ''))}:'${plural(
+      return `${names(key.replace('Metadata', '')).className}:'${plural(
         names(key.replace('Metadata', '')).className
       )}'`;
     })
