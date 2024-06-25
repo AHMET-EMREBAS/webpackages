@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { FormComponent } from '@webpackages/material/form';
+import { DeleteComponent, FormComponent } from '@webpackages/material/form';
 import { ModuleLayoutComponent } from '@webpackages/material/layout';
 import { TableComponent } from '@webpackages/material/table';
 
@@ -29,7 +29,7 @@ export const CrudRoutes: Routes = [
       {
         path: 'delete/:id',
         loadComponent() {
-          return TableComponent;
+          return DeleteComponent;
         },
       },
     ],
