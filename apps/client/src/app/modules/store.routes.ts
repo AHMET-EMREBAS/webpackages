@@ -12,30 +12,30 @@ import {
   provideSubModuleNavListItems,
   provideTableColumnOptions,
 } from '@webpackages/material/core';
-import { ICategory } from '@webpackages/models';
-import { CategoryMetadata } from '@webpackages/metadata';
+import { IStore } from '@webpackages/models';
+import { StoreMetadata } from '@webpackages/metadata';
 import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
 import { CrudRoutes } from './crud.routes';
 
 @Injectable()
-export class CategoryService extends EntityCollectionServiceBase<ICategory> {
+export class StoreService extends EntityCollectionServiceBase<IStore> {
   constructor(factory: EntityCollectionServiceElementsFactory) {
-    super('Category', factory);
+    super('Store', factory);
   }
 }
 
-export const CategoryRoutes: Routes = [
+export const StoreRoutes: Routes = [
   {
     path: '',
-    title: 'Category',
+    title: 'Store',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View Categories', icon: 'table' },
-        { route: ['editor'], label: 'New Category', icon: 'add' },
+        { route: ['table'], label: 'View Stores', icon: 'table' },
+        { route: ['editor'], label: 'New Store', icon: 'add' },
       ]),
-      provideEntityCollectionService(CategoryService),
-      provideTableColumnOptions(toTableColumnOptions(CategoryMetadata)),
-      provideInputOptions(toFormInputOptions(CategoryMetadata)),
+      provideEntityCollectionService(StoreService),
+      provideTableColumnOptions(toTableColumnOptions(StoreMetadata)),
+      provideInputOptions(toFormInputOptions(StoreMetadata)),
       provideFormGroup(
         new FormGroup({
           name: new FormControl(null, [

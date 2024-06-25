@@ -9,6 +9,12 @@ export const CrudRoutes: Routes = [
     component: ModuleLayoutComponent,
     children: [
       {
+        path: 'table',
+        loadComponent() {
+          return TableComponent;
+        },
+      },
+      {
         path: 'editor',
         loadComponent() {
           return FormComponent;
@@ -18,12 +24,6 @@ export const CrudRoutes: Routes = [
         path: 'editor/:id',
         loadComponent() {
           return FormComponent;
-        },
-      },
-      {
-        path: 'table',
-        loadComponent() {
-          return TableComponent;
         },
       },
       {

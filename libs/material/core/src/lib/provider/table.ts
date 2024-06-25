@@ -28,7 +28,7 @@ export const {
   provide: provideTableRowRouteValueHandler,
 } = createValueProvider<TableRowRouteValueHandler>(
   'TableRowRouteValueHandler',
-  (value) => ['editor', value.eid]
+  (value) => ['..', 'editor', value.eid]
 );
 
 export const {
@@ -37,7 +37,7 @@ export const {
   provide: provideContextEditRouteValue,
 } = createValueProvider<TableRowRouteValueHandler>(
   'ContextEditRouteValue',
-  (value) => ['editor', value.eid]
+  (value) => ['..', 'editor', value.eid]
 );
 
 export const {
@@ -46,7 +46,7 @@ export const {
   provide: provideContextDeleteRouteValue,
 } = createValueProvider<TableRowRouteValueHandler>(
   'ContextDeleteRouteValue',
-  (value) => ['delete', value.eid]
+  (value) => ['..', 'delete', value.eid]
 );
 
 export const {

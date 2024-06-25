@@ -121,7 +121,7 @@ export class SearchComponent
       } else if (typeof option === 'object') {
         return option[propertyName];
       }
-      return 'Search ...';
+      return '';
     };
   }
 

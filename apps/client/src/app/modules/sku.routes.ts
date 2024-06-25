@@ -12,30 +12,30 @@ import {
   provideSubModuleNavListItems,
   provideTableColumnOptions,
 } from '@webpackages/material/core';
-import { ICategory } from '@webpackages/models';
-import { CategoryMetadata } from '@webpackages/metadata';
+import { ISku } from '@webpackages/models';
+import { SkuMetadata } from '@webpackages/metadata';
 import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
 import { CrudRoutes } from './crud.routes';
 
 @Injectable()
-export class CategoryService extends EntityCollectionServiceBase<ICategory> {
+export class SkuService extends EntityCollectionServiceBase<ISku> {
   constructor(factory: EntityCollectionServiceElementsFactory) {
-    super('Category', factory);
+    super('Sku', factory);
   }
 }
 
-export const CategoryRoutes: Routes = [
+export const SkuRoutes: Routes = [
   {
     path: '',
-    title: 'Category',
+    title: 'Sku',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View Categories', icon: 'table' },
-        { route: ['editor'], label: 'New Category', icon: 'add' },
+        { route: ['table'], label: 'View Skus', icon: 'table' },
+        { route: ['editor'], label: 'New Sku', icon: 'add' },
       ]),
-      provideEntityCollectionService(CategoryService),
-      provideTableColumnOptions(toTableColumnOptions(CategoryMetadata)),
-      provideInputOptions(toFormInputOptions(CategoryMetadata)),
+      provideEntityCollectionService(SkuService),
+      provideTableColumnOptions(toTableColumnOptions(SkuMetadata)),
+      provideInputOptions(toFormInputOptions(SkuMetadata)),
       provideFormGroup(
         new FormGroup({
           name: new FormControl(null, [
@@ -43,6 +43,13 @@ export const CategoryRoutes: Routes = [
             Validators.minLength(3),
             Validators.maxLength(100),
           ]),
+          description: new FormControl(null, [Validators.maxLength(1000)]),
+          sku: new FormControl(null, [
+            Validators.required,
+            Validators.maxLength(13),
+            Validators.minLength(8),
+          ]),
+          product: new FormControl(null, [Validators.required]),
         })
       ),
     ],

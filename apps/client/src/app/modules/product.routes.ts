@@ -30,7 +30,7 @@ export const ProductRoutes: Routes = [
     title: 'Product',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View Producs', icon: 'table' },
+        { route: ['table'], label: 'View Products', icon: 'table' },
         { route: ['editor'], label: 'New Product', icon: 'add' },
       ]),
       provideEntityCollectionService(ProductService),

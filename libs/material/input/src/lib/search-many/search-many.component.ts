@@ -131,7 +131,7 @@ export class SearchManyComponent
       if (option) {
         return option[propertyName];
       }
-      return 'Click here to start search';
+      return '';
     };
   }
 

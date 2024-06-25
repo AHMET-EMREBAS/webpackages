@@ -24,7 +24,7 @@
         [activated]="isActiveNavItem(item.label)"
         [routerLink]="item.route"
         [matTooltip]="item.label"
-        [matTooltipPosition]="isRTL() ? 'right' : 'left'"
+        [matTooltipPosition]="isRTL() ? 'left' : 'right'"
       >
         <mat-icon color="primary" [class.fill]="listItem.activated">
           {{ item.icon }}
