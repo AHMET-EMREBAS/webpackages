@@ -44,6 +44,11 @@
       "factory": "./src/generators/ngrx-config/generator",
       "schema": "./src/generators/ngrx-config/schema.json",
       "description": "ngrx-config generator"
+    },
+    "entity-list": {
+      "factory": "./src/generators/entity-list/generator",
+      "schema": "./src/generators/entity-list/schema.json",
+      "description": "entity-list generator"
     }
   }
 }

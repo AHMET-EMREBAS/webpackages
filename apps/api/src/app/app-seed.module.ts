@@ -4,6 +4,9 @@ import {
   Category,
   PriceLevel,
   Product,
+  Sku,
+  SkuDetail,
+  SkuView,
   Store,
   Supplier,
 } from '@webpackages/entities';
@@ -17,7 +20,16 @@ import {
 } from '@webpackages/data';
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Category, Supplier, PriceLevel, Store, Product]),
+    TypeOrmModule.forFeature([
+      Category,
+      Supplier,
+      PriceLevel,
+      Store,
+      Product,
+      Sku,
+      SkuView,
+      SkuDetail,
+    ]),
   ],
   controllers: [],
 })
