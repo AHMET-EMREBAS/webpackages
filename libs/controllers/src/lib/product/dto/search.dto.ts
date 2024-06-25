@@ -7,8 +7,8 @@ import { FindOptionsWhere } from 'typeorm';
 export class SearchProductDto implements SearchDto<ProductView> {
   @SearchProperty<ProductView>([
     'name',
-    'description',
     'upc',
+    'description',
     'categoryName',
     'supplierName',
   ])

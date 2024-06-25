@@ -184,28 +184,28 @@ export function printRelationImports(m: Metadata) {
 
 export function printRelationImportsFromResource(m: Metadata) {
   if (m.relations) {
-    const result = [
-      ...new Set(
-        ...Object.values(m.relations).map((e) => {
-          return `import { ${e.targetName} } from '@webpackages/entities'`;
-        })
-      ),
-    ];
+    const r1 = new Set(
+      Object.values(m.relations).map((e) => {
+        return `import { ${e.targetName} } from '@webpackages/entities'`;
+      })
+    );
 
-    return unifyAndJoin(result);
+    return [...r1].join('\n');
   }
+
   return '';
 }
 
 export function printRelationEntitiesFromResource(m: Metadata) {
-  const result = [
+  const r1 = [
     ...new Set(
-      ...Object.values(m.relations).map((e) => {
-        return `${e.targetName} }`;
+      Object.values(m.relations || {}).map((e) => {
+        return `${e.targetName}`;
       })
     ),
-  ].join(', ');
-  return result;
+  ].join(',');
+
+  return r1;
 }
 
 /**

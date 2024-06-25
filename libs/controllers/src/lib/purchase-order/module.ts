@@ -4,9 +4,13 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { PurchaseOrder, PurchaseOrderView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { PurchaseOrderService } from './service';
+import { Purchase } from '@webpackages/entities';
+import { Sku } from '@webpackages/entities';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([PurchaseOrder, PurchaseOrderView])],
+  imports: [
+    TypeOrmModule.forFeature([PurchaseOrder, PurchaseOrderView, Purchase, Sku]),
+  ],
   controllers: [PurchaseOrderController],
   providers: [PurchaseOrderService],
 })

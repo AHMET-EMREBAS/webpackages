@@ -5,8 +5,8 @@ import { Exclude } from 'class-transformer';
 @Exclude()
 export class OrderProductDto extends CreateOrderDto<ProductView>([
   'name',
-  'description',
   'upc',
+  'description',
   'categoryName',
   'supplierName',
 ]) {}

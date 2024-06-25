@@ -4,9 +4,10 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { Sku, SkuView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { SkuService } from './service';
+import { Product } from '@webpackages/entities';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Sku, SkuView])],
+  imports: [TypeOrmModule.forFeature([Sku, SkuView, Product])],
   controllers: [SkuController],
   providers: [SkuService],
 })

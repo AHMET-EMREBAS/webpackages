@@ -4,9 +4,18 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { CustomerAccount, CustomerAccountView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { CustomerAccountService } from './service';
+import { Customer } from '@webpackages/entities';
+import { PriceLevel } from '@webpackages/entities';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CustomerAccount, CustomerAccountView])],
+  imports: [
+    TypeOrmModule.forFeature([
+      CustomerAccount,
+      CustomerAccountView,
+      Customer,
+      PriceLevel,
+    ]),
+  ],
   controllers: [CustomerAccountController],
   providers: [CustomerAccountService],
 })

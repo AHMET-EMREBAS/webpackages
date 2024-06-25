@@ -9,6 +9,7 @@ export class CreateAccessTokenDto {
     required: true,
     minLength: 3,
     maxLength: 100,
+    inputType: 'text',
     example: 'Token name',
   })
   name: string;
@@ -17,6 +18,7 @@ export class CreateAccessTokenDto {
     required: true,
     minLength: 10,
     maxLength: 100,
+    inputType: 'text',
     example: 'wiqouer923784123uis918374jw892y43',
   })
   token: string;

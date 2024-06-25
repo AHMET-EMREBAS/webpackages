@@ -4,9 +4,10 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { Session, SessionView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { SessionService } from './service';
+import { User } from '@webpackages/entities';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Session, SessionView])],
+  imports: [TypeOrmModule.forFeature([Session, SessionView, User])],
   controllers: [SessionController],
   providers: [SessionService],
 })

@@ -4,9 +4,10 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { SerialNumber, SerialNumberView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { SerialNumberService } from './service';
+import { Sku } from '@webpackages/entities';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([SerialNumber, SerialNumberView])],
+  imports: [TypeOrmModule.forFeature([SerialNumber, SerialNumberView, Sku])],
   controllers: [SerialNumberController],
   providers: [SerialNumberService],
 })

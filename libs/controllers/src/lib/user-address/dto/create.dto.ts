@@ -9,6 +9,8 @@ export class CreateUserAddressDto {
     minLength: 1,
     maxLength: 100,
     required: true,
+    inputType: 'text',
+    class: 'order-1 w-5/12',
     example: 'Street Addreess',
   })
   street: string;
@@ -17,6 +19,8 @@ export class CreateUserAddressDto {
     minLength: 1,
     maxLength: 100,
     required: true,
+    inputType: 'text',
+    class: 'order-2 w-5/12',
     example: 'City',
   })
   city: string;
@@ -25,6 +29,8 @@ export class CreateUserAddressDto {
     minLength: 1,
     maxLength: 100,
     required: true,
+    inputType: 'text',
+    class: 'order-4 w-5/12',
     example: 'State',
   })
   state: string;
@@ -33,6 +39,8 @@ export class CreateUserAddressDto {
     minLength: 1,
     maxLength: 100,
     required: true,
+    inputType: 'text',
+    class: 'order-5 w-5/12',
     example: 'Zip',
   })
   zip: string;

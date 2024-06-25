@@ -8,8 +8,8 @@ export class QueryProductDto
   implements QueryDto<ProductView>
 {
   @QueryProperty() name: string;
-  @QueryProperty() description: string;
   @QueryProperty() upc: string;
+  @QueryProperty() description: string;
   @QueryProperty() categoryId: string;
   @QueryProperty() categoryActive: string;
   @QueryProperty() categoryName: string;
