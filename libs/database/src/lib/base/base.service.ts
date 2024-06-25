@@ -67,6 +67,7 @@ export class BaseEntityService<T extends BaseEntity, V extends BaseView> {
     query?: Partial<QueryDto<V>>,
     search?: SearchDto<V>
   ) {
+    console.log(paginator, order, query, search);
     const where = search?.search
       ? (search.search as FindOptionsWhere<V>)
       : (query as FindOptionsWhere<V>);

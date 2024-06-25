@@ -20,7 +20,7 @@ export function SearchProperty<T extends ID>(searchables: (keyof T)[]) {
           .map((e) => {
             return { [e]: ILike(`%${value}%`) };
           })
-          .reduce((p, c) => ({ ...p, ...c }));
+          // .reduce((p, c) => ({ ...p, ...c }));
       } else if (isArray(value)) {
         return value
           .map((v) => {

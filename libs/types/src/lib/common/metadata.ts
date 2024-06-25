@@ -62,9 +62,10 @@ export function toTableColumnOptions(
     ...(Object.entries(metadata.relations || {})
       .map(([key, value]) => {
         if (value.viewColumns) {
-          return value.viewColumns?.map((vc) => {
+          return value.viewColumns.map((vc) => {
             return {
               name: key + names(vc).className,
+              label: names(key + ' ' + names(vc).className).titleName,
             } as PropertyOptions;
           });
         }
