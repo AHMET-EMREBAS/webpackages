@@ -24,6 +24,11 @@
       "factory": "./src/generators/model/generator",
       "schema": "./src/generators/model/schema.json",
       "description": "model generator"
+    },
+    "form-group": {
+      "factory": "./src/generators/form-group/generator",
+      "schema": "./src/generators/form-group/schema.json",
+      "description": "form-group generator"
     }
   }
 }

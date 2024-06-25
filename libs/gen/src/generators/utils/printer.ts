@@ -1,9 +1,5 @@
 import { names } from '@nx/devkit';
-import {
-  Metadata,
-  PropertyOptions,
-  RelationOptionsMeta,
-} from '@webpackages/types';
+import { Metadata, PropertyOptions } from '@webpackages/types';
 
 export function uniqueItems(items: string[]) {
   return [...new Set(items)];
@@ -23,7 +19,7 @@ export function printArrayIndicatorOfProperty(
   return property.isArray ? '[]' : '';
 }
 
-export function isArrayRelation(relation: RelationOptionsMeta) {
+export function isArrayRelation(relation: Partial<PropertyOptions>) {
   return relation.relationType === 'many' ? true : false;
 }
 
@@ -32,7 +28,9 @@ export function isArrayRelation(relation: RelationOptionsMeta) {
  * @param relation
  * @returns [] | ''
  */
-export function printArrayIndicatorOfRelation(relation: RelationOptionsMeta) {
+export function printArrayIndicatorOfRelation(
+  relation: Partial<PropertyOptions>
+) {
   return isArrayRelation(relation) ? '[]' : '';
 }
 
@@ -41,7 +39,7 @@ export function printArrayIndicatorOfRelation(relation: RelationOptionsMeta) {
  * @param relation
  * @returns ClassName | ClassName[]
  */
-export function printRelationTypeInEntity(relation: RelationOptionsMeta) {
+export function printRelationTypeInEntity(relation: Partial<PropertyOptions>) {
   const type = relation.targetName;
   const isArray = printArrayIndicatorOfRelation(relation);
   return `${type}${isArray}`;
@@ -52,7 +50,7 @@ export function printRelationTypeInEntity(relation: RelationOptionsMeta) {
  * @param relation
  * @returns number | IDDto[]
  */
-export function printRelationTypeInDto(relation: RelationOptionsMeta) {
+export function printRelationTypeInDto(relation: Partial<PropertyOptions>) {
   if (isArrayRelation(relation)) {
     return `IDDto[]`;
   } else {
@@ -346,8 +344,7 @@ export function __relation__printQueryProperties(m: Metadata) {
       const cols = ['id', 'active', ...(value.viewColumns ?? [])];
       return cols
         .map((k) => {
-          const name =
-            names(key).propertyName + names(k).className;
+          const name = names(key).propertyName + names(k).className;
           return `@QueryProperty() ${name}: string`;
         })
         .join('\n');
