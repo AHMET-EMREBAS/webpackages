@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import * as ControllerModules from '@webpackages/controllers';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from '@webpackages/database';
-import { subscriberList, entitiesList } from '@webpackages/entities';
+import { subscriberList, entityList } from '@webpackages/entities';
 @Module({
   imports: [
     ConfigModule,
@@ -12,7 +12,7 @@ import { subscriberList, entitiesList } from '@webpackages/entities';
 
     DatabaseModule.configure({
       subscribers: [...subscriberList],
-      entities: [...entitiesList],
+      entities: [...entityList],
     }),
   ],
 })
