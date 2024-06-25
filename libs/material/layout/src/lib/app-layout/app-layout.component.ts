@@ -10,6 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ViewportDirective } from '../directives';
 import { NavListItems } from '@webpackages/types';
 import { getNavListItemsToken } from '@webpackages/material/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'wp-app-layout',
@@ -30,6 +31,7 @@ import { getNavListItemsToken } from '@webpackages/material/core';
 })
 export class AppLayoutComponent {
   constructor(
-    @Inject(getNavListItemsToken()) public readonly navlistItems: NavListItems
+    @Inject(getNavListItemsToken()) public readonly navlistItems: NavListItems,
+    public readonly title: Title
   ) {}
 }

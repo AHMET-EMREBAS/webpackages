@@ -3,7 +3,7 @@ mat-nav-list {
 }
 
 mat-sidenav-content {
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 93vh;
 }

@@ -5,6 +5,10 @@
     [mode]="(viewport.sidenavMode$ | async)!"
     [opened]="viewport.sidenavOpen$ | async"
   >
+    <mat-toolbar style="background-color: transparent">
+      <img class="w-8" src="./icons/icon-72x72.png" alt="App Logo" />
+      <div class="grow"></div>
+    </mat-toolbar>
     <mat-nav-list>
       @for(item of navlistItems; track item){
       <a
@@ -27,6 +31,9 @@
         <mat-icon> @if(leftSidenav.opened){ menu_open } @else {menu} </mat-icon>
       </button>
 
+      <h3 class="ml-4 font-light">
+        {{ title.getTitle() }}
+      </h3>
       <div class="grow"></div>
 
       <button mat-icon-button [routerLink]="['auth', 'logout']">

@@ -118,7 +118,10 @@
     [name]="option.name"
     [formControl]="control(option.name)"
     [tabindex]="option.tabIndex"
-  ></mat-checkbox>
+    class="mr-16"
+  >
+    {{ option.label }}
+  </mat-checkbox>
   }
 
   <!-- Text -->

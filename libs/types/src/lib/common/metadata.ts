@@ -12,9 +12,8 @@ export function toFormInputOptions(
 ): Partial<PropertyOptions>[] {
   const properties = Object.entries(metadata.properties || {}).map(
     ([key, value]) => {
-      return {
+      const common: Partial<PropertyOptions> = {
         name: key,
-        ...value,
         label: value.label || names(key).titleName,
         class: value.class
           ? value.class
@@ -22,14 +21,49 @@ export function toFormInputOptions(
           ? undefined
           : 'w-full',
         icon: value.icon ?? 'info',
-        minLength: value.minLength ?? 0,
-        maxLength: value.maxLength ?? 1_000,
-        maximum: value.maximum,
-        minimum: value.minimum,
-        tabIndex: value.tabIndex ?? 1,
       };
+
+      if (value.type === 'string') {
+        return {
+          ...value,
+          ...common,
+          minLength: value.minLength ?? 0,
+          maxLength: value.maxLength ?? 1_000,
+          tabIndex: value.tabIndex ?? 1,
+        };
+      } else if (value.type === 'number') {
+        return {
+          ...value,
+          ...common,
+          minimum: value.minimum ?? Number.MIN_SAFE_INTEGER,
+          maximum: value.maximum ?? Number.MAX_SAFE_INTEGER,
+          icon: value.icon ?? 'numbers',
+        };
+      } else if (value.type === 'date') {
+        return { ...value, ...common };
+      } else if (value.type === 'boolean') {
+        return {
+          ...value,
+          ...common,
+          inputType: value.inputType ?? 'checkbox',
+        };
+      } else if (value.type == 'object') {
+        return {
+          ...value,
+          ...common,
+          inputType: 'select-many',
+        };
+      }
+
+      return {
+        ...value,
+        ...common,
+        type: 'string',
+        inputType: 'text',
+        incon: 'info',
+      } as Partial<PropertyOptions>;
     }
-  );
+  ) as PropertyOptions[];
 
   const relations = Object.entries(metadata.relations || {}).map(
     ([key, value]) => {
