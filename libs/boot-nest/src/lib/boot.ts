@@ -5,7 +5,7 @@ import { GlobalValidationPipe } from './global-pipe';
 import { ConfigService } from '@nestjs/config';
 import { AuthNames, AuthHeaders } from '@webpackages/types';
 
-export async function boot(AppModule: Type, PublicAppModule: Type) {
+export async function boot(AppModule: Type) {
   {
     const app = await NestFactory.create(AppModule);
 
@@ -40,30 +40,5 @@ export async function boot(AppModule: Type, PublicAppModule: Type) {
     await app.listen(PORT);
 
     Logger.log(`🚀 Application is running on: http://localhost:${PORT}/api`);
-  }
-
-  // Client testing service, no auth
-  {
-    if (process.env['NODE_ENV'] === 'development') {
-      const app = await NestFactory.create(PublicAppModule);
-      app.setGlobalPrefix('api');
-      const PORT = 3001;
-      const APP_NAME = 'API with no auhentication';
-      const APP_DESCRIPTION = 'This service is for testing client components';
-
-      const documentBuilder = new DocumentBuilder()
-        .setTitle(APP_NAME)
-        .setDescription(APP_DESCRIPTION);
-
-      app.enableCors({ origin: '*' });
-
-      app.useGlobalPipes(GlobalValidationPipe);
-
-      const doc = SwaggerModule.createDocument(app, documentBuilder.build());
-
-      SwaggerModule.setup('api', app, doc);
-
-      await app.listen(PORT);
-    }
   }
 }
