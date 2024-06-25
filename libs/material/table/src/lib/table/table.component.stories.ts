@@ -8,16 +8,11 @@ import { TableComponent } from './table.component';
 import { within } from '@storybook/testing-library';
 import {
   MockCategoryCollectionService,
-  provideDefaultHttpSearchQueryBuilder,
   provideEntityCollectionService,
   provideMockCategoryHttpClient,
-  provideDefaultContextDeleteRouteValue,
-  provideDefaultContextEditRouteValue,
-  provideDefaultIdColumnOptions,
-  provideDefaultTableRowRouteValueHandler,
-  provideDefaultTimestampColumnOptions,
+  provideTableColumnOptions,
 } from '@webpackages/material/core';
-import { getBuiltinCategories } from '@webpackages/types';
+import { getBuiltinCategories } from '@webpackages/data';
 
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
@@ -25,11 +20,6 @@ import { provideEntityData, withEffects } from '@ngrx/data';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
-
-const tableData = getBuiltinCategories().map((e) => ({
-  eid: e.id,
-  ...e,
-}));
 
 const meta: Meta<TableComponent> = {
   component: TableComponent,
@@ -40,7 +30,7 @@ const meta: Meta<TableComponent> = {
         provideRouter([]),
         provideAnimations(),
         provideMockCategoryHttpClient(),
-
+        provideTableColumnOptions([{ name: 'name', label: 'Name' }]),
         provideHttpClient(
           withInterceptors([
             (req, next) => {
@@ -78,9 +68,7 @@ export default meta;
 type Story = StoryObj<TableComponent>;
 
 export const Primary: Story = {
-  args: {
-    tableColumns: [{ name: 'name', label: 'Name' }],
-  },
+  args: {},
 };
 export const NoTimestamp: Story = {
   args: { ...Primary.args, showTimestamps: false },

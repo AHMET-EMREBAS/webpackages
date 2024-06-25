@@ -53,7 +53,7 @@
       }
 
       <!-- Table Columns -->
-      @for(item of tableColumns; track item){
+      @for(item of tableColumnOptions; track item){
       <ng-container [matColumnDef]="item.name">
         <th mat-header-cell [mat-sort-header]="item.name" *matHeaderCellDef>
           {{ item.label }}

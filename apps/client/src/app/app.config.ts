@@ -12,8 +12,7 @@ import { provideStore } from '@ngrx/store';
 import { provideEntityData, withEffects } from '@ngrx/data';
 import { entityConfig } from './entity-metadata';
 import { provideEffects } from '@ngrx/effects';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { AppInterceptor } from './app.interceptor';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,7 +23,6 @@ export const appConfig: ApplicationConfig = {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    // provideHttpClient(withInterceptors([AppInterceptor])),
     provideHttpClient(),
     provideStore(),
     provideEffects(),

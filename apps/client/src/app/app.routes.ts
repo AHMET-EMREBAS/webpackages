@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { InventoryManagementModule } from '@webpackages/clients';
-import { ProductRoutes } from './product.routes';
+import { CategoryRoutes } from './category.routes';
 
 export const appRoutes: Route[] = [
   {
@@ -11,9 +11,9 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: '',
+    path: 'category',
     loadChildren() {
-      return ProductRoutes;
+      return CategoryRoutes;
     },
   },
 ];

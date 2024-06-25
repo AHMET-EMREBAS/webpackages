@@ -49,6 +49,12 @@ export const {
   (value) => ['delete', value.eid]
 );
 
+export const {
+  default: provideDefaultTableColumnOptions,
+  provide: provideTableColumnOptions,
+  token: getTableColumnOptionsToken,
+} = createValueProvider<TableColumnOptions>('TableColumnOptions', []);
+
 export function provideDefaultTableOptions() {
   return [
     provideDefaultHttpSearchQueryBuilder(),
@@ -57,5 +63,6 @@ export function provideDefaultTableOptions() {
     provideDefaultTableRowRouteValueHandler(),
     provideDefaultContextEditRouteValue(),
     provideDefaultContextDeleteRouteValue(),
+    provideDefaultTableColumnOptions(),
   ];
 }

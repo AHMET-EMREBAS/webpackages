@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   AfterViewInit,
   Component,
@@ -6,13 +7,13 @@ import {
   Inject,
   Input,
   OnInit,
+  Optional,
   Output,
   ViewChild,
-  inject,
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -29,7 +30,7 @@ import {
   TableRowRouteValueHandler,
   getContextEditRouteValueToken,
   getContextDeleteRouteValueToken,
-  provideDefaultTableOptions,
+  getTableColumnOptionsToken,
 } from '@webpackages/material/core';
 
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
@@ -37,21 +38,12 @@ import { CdkMenu, CdkMenuItem, CdkContextMenuTrigger } from '@angular/cdk/menu';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  Observable,
-  combineLatest,
-  debounceTime,
-  fromEvent,
-  map,
-  merge,
-  mergeAll,
-  pipe,
-  startWith,
-} from 'rxjs';
+import { Observable, debounceTime, merge, startWith } from 'rxjs';
 import { LiveAnnouncer, A11yModule } from '@angular/cdk/a11y';
 import { getEntityCollectionServiceToken } from '@webpackages/material/core';
 import { EntityCollectionService, MergeStrategy } from '@ngrx/data';
 import { TableColumnOption, TableColumnOptions } from '@webpackages/types';
+
 @Component({
   selector: 'wp-table',
   standalone: true,
@@ -78,35 +70,28 @@ import { TableColumnOption, TableColumnOptions } from '@webpackages/types';
   ],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
-  providers: [provideDefaultTableOptions()],
 })
-export class TableComponent implements OnInit, AfterViewInit {
-  @ViewChild('searchInput') searchInput: ElementRef<HTMLInputElement>;
-  @ViewChild('paginator') paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+export class TableComponent<T = any> implements OnInit, AfterViewInit {
+  @ViewChild('searchInput') readonly searchInput: ElementRef<HTMLInputElement>;
+  @ViewChild('paginator') readonly paginator: MatPaginator;
+  @ViewChild(MatSort) readonly sort: MatSort;
 
-  filteredData$: Observable<any[]> = this.service.filteredEntities$;
+  readonly filteredData$: Observable<T[]> = this.service.filteredEntities$;
 
-  searchControl = new FormControl<string>('');
-  contextRowValue = signal<any>(null);
+  readonly searchControl = new FormControl<string>('');
+  readonly contextRowValue = signal<any>(null);
 
   withDeleted = false;
+  showTimestamps = true;
 
-  @Input() tableColumns: TableColumnOptions;
-  @Input() pluralResourceName: string;
-  @Input() showCheckbox = true;
-  @Input() showTimestamps = true;
-  @Output() sortChangeEvent = new EventEmitter<Sort>();
-  @Output() pageChangeEvent = new EventEmitter<PageEvent>();
-  @Output() searchEvent = new EventEmitter<string>();
+  @Output() readonly sortChangeEvent = new EventEmitter<Sort>();
+  @Output() readonly pageChangeEvent = new EventEmitter<PageEvent>();
+  @Output() readonly searchEvent = new EventEmitter<string>();
 
-  /** @deprecated */ searchValue = '';
-  /** @deprecated */ search$: Observable<string>;
-
-  columns = signal<string[] | null>(null);
-  displayedColumns = signal<string[] | null>(null);
-  idColumns = signal<string[]>([]);
-  timestampColumns = signal<string[]>([]);
+  readonly columns = signal<string[] | null>(null);
+  readonly displayedColumns = signal<string[] | null>(null);
+  readonly idColumns = signal<string[]>([]);
+  readonly timestampColumns = signal<string[]>([]);
 
   constructor(
     @Inject(getTableIdColumnsToken())
@@ -121,7 +106,9 @@ export class TableComponent implements OnInit, AfterViewInit {
     public readonly deleteRouteHandler: TableRowRouteValueHandler,
     private liveAnnouncer: LiveAnnouncer,
     @Inject(getEntityCollectionServiceToken())
-    private readonly service: EntityCollectionService<any>
+    private readonly service: EntityCollectionService<any>,
+    @Inject(getTableColumnOptionsToken())
+    public readonly tableColumnOptions: TableColumnOption[]
   ) {}
 
   ngOnInit(): void {
@@ -133,13 +120,13 @@ export class TableComponent implements OnInit, AfterViewInit {
 
     this.columns.update(() => [
       ...this.idColumns(),
-      ...this.tableColumns.map((e) => e.name),
+      ...this.tableColumnOptions.map((e) => e.name),
       ...this.timestampColumns(),
     ]);
 
     this.displayedColumns.update(() => [
       ...this.idColumns(),
-      ...this.tableColumns.map((e) => e.name),
+      ...this.tableColumnOptions.map((e) => e.name),
       ...this.timestampColumns(),
     ]);
   }
