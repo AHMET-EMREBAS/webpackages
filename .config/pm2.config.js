@@ -38,5 +38,6 @@ module.exports = {
         DATABASE_PASSWORD: 'devuser',
       },
     },
+    
   ],
 };

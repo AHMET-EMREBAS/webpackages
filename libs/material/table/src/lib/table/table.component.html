@@ -39,7 +39,8 @@
       #table
       mat-table
       matSort
-      [dataSource]="tableDataSource"
+      *ngIf="filteredData$ | async as filteredData"
+      [dataSource]="filteredData"
       (matSortChange)="emitSortChange($event)"
     >
       @for(item of tableIdColumns; track item ){

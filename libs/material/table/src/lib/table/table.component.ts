@@ -22,8 +22,6 @@ import {
   MatPaginatorModule,
   PageEvent,
 } from '@angular/material/paginator';
-import { HttpClient } from '@angular/common/http';
-import { TableColumnOption, TableColumnOptions } from './table-column-option';
 import {
   getTableRowRouteValueHandlerToken,
   getTableIdColumnsToken,
@@ -31,7 +29,7 @@ import {
   TableRowRouteValueHandler,
   getContextEditRouteValueToken,
   getContextDeleteRouteValueToken,
-} from './table.provider';
+} from '@webpackages/material/core';
 
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { CdkMenu, CdkMenuItem, CdkContextMenuTrigger } from '@angular/cdk/menu';
@@ -40,6 +38,9 @@ import { MatListModule } from '@angular/material/list';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable, debounceTime, fromEvent, map } from 'rxjs';
 import { LiveAnnouncer, A11yModule } from '@angular/cdk/a11y';
+import { getEntityCollectionServiceToken } from '@webpackages/material/core';
+import { EntityCollectionService, MergeStrategy } from '@ngrx/data';
+import { TableColumnOption, TableColumnOptions } from '@webpackages/types';
 @Component({
   selector: 'wp-table',
   standalone: true,
@@ -72,14 +73,16 @@ export class TableComponent implements OnInit, AfterViewInit {
   @ViewChild('paginator') paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  httpClient = inject(HttpClient);
+  filteredData$: Observable<any[]> = this.service.filteredEntities$;
+
   searchControl = new FormControl('', []);
   contextRowValue = signal<any>(null);
 
-  @Input() tableItemsSize: number;
-  @Input() pageSize: number;
-  @Input() tableData: any[];
-  @Input() tableDataSource: MatTableDataSource<any>;
+  /** @deprecated */ @Input() tableItemsSize: number;
+  /** @deprecated */ @Input() pageSize: number;
+  /** @deprecated */ @Input() tableData: any[];
+  /** @deprecated */ @Input() tableDataSource: MatTableDataSource<any>;
+
   @Input() tableColumns: TableColumnOptions;
   @Input() pluralResourceName: string;
   @Input() showCheckbox = true;
@@ -107,7 +110,9 @@ export class TableComponent implements OnInit, AfterViewInit {
     public readonly editRouteHandler: TableRowRouteValueHandler,
     @Inject(getContextDeleteRouteValueToken())
     public readonly deleteRouteHandler: TableRowRouteValueHandler,
-    private liveAnnouncer: LiveAnnouncer
+    private liveAnnouncer: LiveAnnouncer,
+    @Inject(getEntityCollectionServiceToken())
+    private readonly service: EntityCollectionService<any>
   ) {}
 
   ngOnInit(): void {
@@ -140,6 +145,8 @@ export class TableComponent implements OnInit, AfterViewInit {
       })
     );
 
+    this.loadData();
+
     if (this.tableData) {
       this.tableDataSource = new MatTableDataSource(this.tableData);
       this.tableDataSource.paginator = this.paginator;
@@ -164,5 +171,17 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   dynamicClass(columnOption: TableColumnOption, value: any) {
     return columnOption.class ? columnOption.class(value) : '';
+  }
+
+  loadData() {
+    const { pageIndex, pageSize } = this.paginator;
+    this.service.getWithQuery(
+      {
+        take: pageSize,
+        skip: pageSize * pageIndex,
+        search: this.searchValue,
+      },
+      { mergeStrategy: MergeStrategy.OverwriteChanges, isOptimistic: false }
+    );
   }
 }

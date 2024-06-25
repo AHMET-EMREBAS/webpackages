@@ -7,19 +7,24 @@ import { TableComponent } from './table.component';
 
 import { within } from '@storybook/testing-library';
 import {
+  MockCategoryCollectionService,
   provideDefaultHttpSearchQueryBuilder,
+  provideEntityCollectionService,
   provideMockCategoryHttpClient,
-} from '@webpackages/material/core';
-import { getBuiltinCategories } from '@webpackages/types';
-import {
   provideDefaultContextDeleteRouteValue,
   provideDefaultContextEditRouteValue,
   provideDefaultIdColumnOptions,
   provideDefaultTableRowRouteValueHandler,
   provideDefaultTimestampColumnOptions,
-} from './table.provider';
+} from '@webpackages/material/core';
+import { getBuiltinCategories } from '@webpackages/types';
+
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
+import { provideEntityData, withEffects } from '@ngrx/data';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideEffects } from '@ngrx/effects';
+import { provideStore } from '@ngrx/store';
 
 const tableData = getBuiltinCategories().map((e) => ({
   eid: e.id,
@@ -34,8 +39,38 @@ const meta: Meta<TableComponent> = {
       providers: [
         provideRouter([]),
         provideAnimations(),
-        provideDefaultHttpSearchQueryBuilder(),
         provideMockCategoryHttpClient(),
+
+        provideHttpClient(
+          withInterceptors([
+            (req, next) => {
+              return next(
+                req.clone({
+                  url: `http://localhost:3001/${req.url}`,
+                })
+              );
+            },
+          ])
+        ),
+
+        provideStore({}),
+        provideEffects({}),
+        provideEntityData(
+          {
+            entityMetadata: {
+              Sample: {},
+              Category: {},
+            },
+            pluralNames: {
+              Sample: 'Samples',
+              Category: 'Categorys',
+            },
+          },
+          withEffects()
+        ),
+        provideEntityCollectionService(MockCategoryCollectionService),
+        //
+        provideDefaultHttpSearchQueryBuilder(),
         provideDefaultIdColumnOptions(),
         provideDefaultTimestampColumnOptions(),
         provideDefaultTableRowRouteValueHandler(),

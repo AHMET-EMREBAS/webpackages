@@ -1,11 +1,11 @@
-import { createValueProvider } from '@webpackages/material/core';
-import { TableColumnOption } from './table-column-option';
+import { TableColumnOptions } from '@webpackages/types';
+import { createValueProvider } from './create-provider';
 
 export const {
   default: provideDefaultTimestampColumnOptions,
   provide: provideTimeStampColumnOptions,
   token: getTimestampColumOptionsToken,
-} = createValueProvider<TableColumnOption[]>('TableTimestampColumns', [
+} = createValueProvider<TableColumnOptions>('TableTimestampColumns', [
   { name: 'createdAt', label: 'Created' },
   { name: 'updatedAt', label: 'Updated' },
   { name: 'deletedAt', label: 'Deleted' },
@@ -15,7 +15,7 @@ export const {
   default: provideDefaultIdColumnOptions,
   provide: provideTableIdColumns,
   token: getTableIdColumnsToken,
-} = createValueProvider<TableColumnOption[]>('TableIdColumns', [
+} = createValueProvider<TableColumnOptions>('TableIdColumns', [
   { name: 'eid', label: '#' },
 ]);
 
@@ -47,3 +47,13 @@ export const {
   'ContextDeleteRouteValue',
   (value) => ['delete', value.eid]
 );
+
+export function provideDefaultTableOptions() {
+  return [
+    provideDefaultTimestampColumnOptions(),
+    provideDefaultIdColumnOptions(),
+    provideDefaultTableRowRouteValueHandler(),
+    provideDefaultContextEditRouteValue(),
+    provideDefaultContextDeleteRouteValue(),
+  ];
+}

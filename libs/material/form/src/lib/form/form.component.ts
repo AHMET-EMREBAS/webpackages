@@ -199,10 +199,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         </button>
       </div>
     </form>
-    <br />
-    Submitted: {{ submitted }}
   `,
-  styles: ``,
 })
 export class FormComponent<T = any> {
   submitted = false;
@@ -223,12 +220,8 @@ export class FormComponent<T = any> {
         })
       );
       this.submitted = true;
-
-
-      
     } catch (err) {
       const rawErrors = (err as DataServiceError).error.error.errors;
-
       for (const rawError of rawErrors) {
         const errors = Object.values(rawError);
         for (const e of errors) {
