@@ -29,6 +29,7 @@ export const SessionMetadata: Metadata = {
       relationType: 'owner',
       targetName: 'User',
       viewColumns: ['username'],
+      resourceLabelProperty: 'name',
     },
   },
 };

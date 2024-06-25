@@ -5,6 +5,7 @@ export const PriceLevelMetadata: Metadata = {
   properties: {
     name: {
       type: 'string',
+      label: 'Price Level Name',
       minLength: 3,
       maxLength: 100,
       required: true,
@@ -13,6 +14,7 @@ export const PriceLevelMetadata: Metadata = {
     },
     currency: {
       type: 'string',
+      label: 'Currency',
       required: true,
       minLength: 1,
       maxLength: 10,
@@ -26,5 +28,4 @@ export const PriceLevelMetadata: Metadata = {
       example: 10.25,
     },
   },
-  relations: {},
 };

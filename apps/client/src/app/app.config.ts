@@ -14,6 +14,13 @@ import { entityConfig } from './entity-metadata';
 import { provideEffects } from '@ngrx/effects';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { DevInterceptor } from './app-dev.interceptor';
+import { provideDefaultTableOptions } from '@webpackages/material/core';
+import {
+  provideDefaultInputDebounceTime,
+  provideDefaultInputErrorMesssageHandler,
+  provideDefaultInputStatusIndicatorHandler,
+  provideInputErrorMessageHandler,
+} from '@webpackages/material/input';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,5 +35,9 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideEffects(),
     provideEntityData(entityConfig, withEffects()),
+    ...provideDefaultTableOptions(),
+    provideDefaultInputErrorMesssageHandler(),
+    provideDefaultInputStatusIndicatorHandler(),
+    provideDefaultInputDebounceTime(),
   ],
 };

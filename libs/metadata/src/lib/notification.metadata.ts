@@ -7,6 +7,5 @@ export const NotificationMetadata: Metadata = {
       type: 'string',
       maxLength: 1000,
     },
-  },
-  relations: {},
+  }
 };

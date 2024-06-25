@@ -37,6 +37,7 @@ export function toFormInputOptions(
         name: key,
         label: value.targetName,
         resourceName: names(value.targetName!).fileName,
+        resourceLabelProperty: value.resourceLabelProperty,
         class: 'w-full',
         inputType: value.relationType === 'many' ? 'search-many' : 'search',
         tabIndex: value.tabIndex ?? 1,
@@ -50,5 +51,25 @@ export function toFormInputOptions(
 export function toTableColumnOptions(
   metadata: Metadata
 ): Partial<PropertyOptions>[] {
-  return [];
+  return [
+    ...(Object.entries(metadata.properties || {}).map(([key, value]) => {
+      return {
+        ...value,
+        name: key,
+        label: value.label || key,
+      } as PropertyOptions;
+    }) || []),
+    ...(Object.entries(metadata.relations || {})
+      .map(([key, value]) => {
+        if (value.viewColumns) {
+          return value.viewColumns?.map((vc) => {
+            return {
+              name: key + names(vc).className,
+            } as PropertyOptions;
+          });
+        }
+        return [];
+      })
+      .flat() || []),
+  ];
 }

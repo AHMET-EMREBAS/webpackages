@@ -78,6 +78,7 @@ export class PropertyOptions<T = any> {
   from: string;
 
   viewColumns: string[];
+  resourceLabelProperty: string;
 }
 
 export class RelationOptions

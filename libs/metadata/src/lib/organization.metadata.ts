@@ -18,6 +18,7 @@ export const OrganizationMetadata: Metadata = {
       relationType: 'one',
       targetName: 'User',
       viewColumns: ['username'],
+      resourceLabelProperty: 'username',
     },
   },
 };

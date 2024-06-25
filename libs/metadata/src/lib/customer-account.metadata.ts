@@ -15,11 +15,13 @@ export const CustomerAccountMetadata: Metadata = {
       relationType: 'owner',
       targetName: 'Customer',
       viewColumns: ['username'],
+      resourceLabelProperty: 'username',
     },
     priceLevel: {
       relationType: 'one',
       targetName: 'PriceLevel',
       viewColumns: ['name', 'taxrate', 'currency'],
+      resourceLabelProperty: 'name',
     },
   },
 };

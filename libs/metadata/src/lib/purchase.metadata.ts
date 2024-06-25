@@ -19,9 +19,18 @@ export const PurchaseMetadata: Metadata = {
     },
     subTotal: { type: 'number', required: true, example: 500 },
     total: { type: 'number', required: true, example: 500 },
-    notes: { type: 'string', inputType: 'textarea', example: 'Explain the purchase ' },
+    notes: {
+      type: 'string',
+      inputType: 'textarea',
+      example: 'Explain the purchase ',
+    },
   },
   relations: {
-    user: { relationType: 'owner', targetName: 'User', viewColumns:['username'] },
+    user: {
+      relationType: 'owner',
+      targetName: 'User',
+      viewColumns: ['username'],
+      resourceLabelProperty: 'username',
+    },
   },
 };

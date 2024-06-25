@@ -18,6 +18,5 @@ export const AppEventMetadata: Metadata = {
         value: 'Event Value',
       },
     },
-  },
-  relations: {},
+  }
 };

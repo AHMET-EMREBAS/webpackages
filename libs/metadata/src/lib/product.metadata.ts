@@ -29,11 +29,13 @@ export const ProductMetadata: Metadata = {
       relationType: 'one',
       targetName: 'Category',
       viewColumns: ['name'],
+      resourceLabelProperty: 'name',
     },
     supplier: {
       relationType: 'one',
       targetName: 'Supplier',
       viewColumns: ['name'],
+      resourceLabelProperty: 'name',
     },
   },
 };

@@ -12,12 +12,18 @@ export const OrderMetadata: Metadata = {
       relationType: 'owner',
       targetName: 'Sku',
       viewColumns: ['sku', 'name'],
+      resourceLabelProperty: 'name',
     },
-    cart: { relationType: 'owner', targetName: 'Cart' },
+    cart: {
+      relationType: 'owner',
+      targetName: 'Cart',
+      resourceLabelProperty: 'id',
+    },
     discount: {
       relationType: 'one',
       targetName: 'Discount',
       viewColumns: ['fixedDiscount', 'percentDiscount'],
+      resourceLabelProperty: 'name',
     },
   },
 };

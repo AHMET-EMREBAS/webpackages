@@ -9,6 +9,7 @@ export const CustomerAddressMetadata: Metadata = {
       relationType: 'owner',
       targetName: 'Customer',
       viewColumns: ['username'],
+      resourceLabelProperty: 'username',
     },
   },
 };

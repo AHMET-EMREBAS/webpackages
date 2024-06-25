@@ -19,11 +19,13 @@ export const QuantityMetadata: Metadata = {
       relationType: 'owner',
       targetName: 'Sku',
       viewColumns: ['sku', 'name'],
+      resourceLabelProperty: 'name',
     },
     store: {
       relationType: 'owner',
       targetName: 'Store',
       viewColumns: ['name'],
+      resourceLabelProperty: 'name',
     },
   },
 };

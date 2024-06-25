@@ -11,5 +11,4 @@ export const ManufacturerMetadata: Metadata = {
       unique: true,
     },
   },
-  relations: {},
 };

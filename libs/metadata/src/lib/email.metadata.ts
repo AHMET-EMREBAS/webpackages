@@ -5,5 +5,4 @@ export const EmailMetadata: Metadata = {
   properties: {
     email: { type: 'string', format: 'email', required: true },
   },
-  relations: {},
 };

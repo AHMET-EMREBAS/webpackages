@@ -24,7 +24,17 @@ export const PriceMetadata: Metadata = {
     },
   },
   relations: {
-    sku: { relationType: 'owner', targetName: 'Sku' },
-    priceLevel: { relationType: 'owner', targetName: 'PriceLevel' },
+    sku: {
+      relationType: 'owner',
+      targetName: 'Sku',
+      viewColumns: ['name', 'sku'],
+      resourceLabelProperty: 'name',
+    },
+    priceLevel: {
+      relationType: 'owner',
+      targetName: 'PriceLevel',
+      viewColumns: ['name'],
+      resourceLabelProperty: 'name',
+    },
   },
 };

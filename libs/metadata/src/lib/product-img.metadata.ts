@@ -9,6 +9,7 @@ export const ProductImgMetadata: Metadata = {
       relationType: 'owner',
       targetName: 'Product',
       viewColumns: ['name', 'upc'],
+      resourceLabelProperty: 'name',
     },
   },
 };

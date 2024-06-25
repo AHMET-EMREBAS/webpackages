@@ -14,5 +14,4 @@ export const CategoryMetadata: Metadata = {
       class: 'w-full',
     },
   },
-  relations: {},
 };

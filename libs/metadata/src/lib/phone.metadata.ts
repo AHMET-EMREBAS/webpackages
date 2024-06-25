@@ -9,5 +9,4 @@ export const PhoneMetadata: Metadata = {
       required: true,
     },
   },
-  relations: {},
 };

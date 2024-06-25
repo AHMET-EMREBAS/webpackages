@@ -12,6 +12,5 @@ export const ImgMetadata: Metadata = {
       type: 'string',
       update: false,
     },
-  },
-  relations: {},
+  }
 };

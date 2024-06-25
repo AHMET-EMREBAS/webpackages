@@ -15,8 +15,7 @@ import { FormComponent } from '@webpackages/material/form';
 import { TableComponent } from '@webpackages/material/table';
 import { IProduct } from '@webpackages/models';
 import { ProductMetadata } from '@webpackages/metadata';
-import { names } from '@webpackages/utils';
-import { toFormInputOptions } from '@webpackages/types';
+import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
 
 @Injectable()
 export class ProductService extends EntityCollectionServiceBase<IProduct> {
@@ -25,34 +24,37 @@ export class ProductService extends EntityCollectionServiceBase<IProduct> {
   }
 }
 
+export const ___ProductRoutes: Routes = [
+  {
+    path: 'editor',
+    loadComponent() {
+      return FormComponent;
+    },
+  },
+  {
+    path: 'editor/:id',
+    loadComponent() {
+      return FormComponent;
+    },
+  },
+  {
+    path: 'table',
+    loadComponent() {
+      return TableComponent;
+    },
+  },
+];
+
 export const ProductRoutes: Routes = [
   {
     path: '',
-    title: 'Product',
+    loadChildren() {
+      return ___ProductRoutes;
+    },
     providers: [
       provideEntityCollectionService(ProductService),
-      provideTableColumnOptions([
-        ...Object.entries(ProductMetadata.properties || {}).map(
-          ([key, value]) => {
-            return { name: key, label: value.label || key, ...value };
-          }
-        ),
-        ...Object.entries(ProductMetadata.relations || {})
-          .map(([key, value]) => {
-            if (value.viewColumns) {
-              return value.viewColumns.map((e) => {
-                return {
-                  name:
-                    names(value.targetName).propertyName + names(e).className,
-                  label: value.targetName + ' ' + e,
-                };
-              });
-            }
-            return null;
-          })
-          .filter((e) => e)
-          .flat(),
-      ]),
+
+      provideTableColumnOptions(toTableColumnOptions(ProductMetadata)),
       provideInputOptions(toFormInputOptions(ProductMetadata)),
       provideFormGroup(
         new FormGroup({
@@ -71,26 +73,6 @@ export const ProductRoutes: Routes = [
           supplier: new FormControl(null, []),
         })
       ),
-    ],
-    children: [
-      {
-        path: 'editor',
-        loadComponent() {
-          return FormComponent;
-        },
-      },
-      {
-        path: 'editor/:id',
-        loadComponent() {
-          return FormComponent;
-        },
-      },
-      {
-        path: '',
-        loadComponent() {
-          return TableComponent;
-        },
-      },
     ],
   },
 ];

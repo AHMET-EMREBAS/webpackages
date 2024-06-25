@@ -7,7 +7,15 @@ export const MessageMetadata: Metadata = {
     readDate: { type: 'date' },
   },
   relations: {
-    user: { relationType: 'owner', targetName: 'User' },
-    to: { relationType: 'one', targetName: 'User' },
+    user: {
+      relationType: 'owner',
+      targetName: 'User',
+      resourceLabelProperty: 'username',
+    },
+    to: {
+      relationType: 'one',
+      targetName: 'User',
+      resourceLabelProperty: 'username',
+    },
   },
 };

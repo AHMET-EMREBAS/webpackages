@@ -59,6 +59,7 @@ export const TaskMetadata: Metadata = {
       relationType: 'one',
       targetName: 'User',
       viewColumns: ['username'],
+      resourceLabelProperty: 'username',
     },
   },
 };
