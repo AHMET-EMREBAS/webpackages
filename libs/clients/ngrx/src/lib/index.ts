@@ -1,4 +1,5 @@
 // @index('./*', f => `export * from '${f.path}'`)
+export * from './__ngrx-entity.config';
 export * from './access-token.service';
 export * from './address.service';
 export * from './app-event.service';
