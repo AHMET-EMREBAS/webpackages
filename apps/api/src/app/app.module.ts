@@ -2,10 +2,9 @@ import { Logger, Module } from '@nestjs/common';
 import { AppService } from './app.service';
 import { CommonAppModule } from '@webpackages/boot-nest';
 import * as RestModules from '@webpackages/controllers';
-import { DatabaseModule } from '@webpackages/database';
 import { AuthModule } from '@webpackages/auth';
 import { AppSeedModule } from './app-seed.module';
-import { entityList, subscriberList } from '@webpackages/entities';
+import { subscriberList } from '@webpackages/entities';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
 @Module({
@@ -23,13 +22,20 @@ import { ConfigService } from '@nestjs/config';
         const isDevelopment = c.getOrThrow('NODE_ENV') === 'development';
         const isProduction = c.getOrThrow('NODE_ENV') === 'production';
 
+        console.table({
+          database,
+          username,
+          password,
+          isDevelopment,
+          isProduction,
+        });
+
         const config = {
           type: 'postgres',
           username,
           password,
           database,
-          entities: [...entityList],
-          subscribers: [...subscriberList],
+          autoLoadEntities: true,
         } as TypeOrmModuleOptions;
 
         if (isDevelopment) {
