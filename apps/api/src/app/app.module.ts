@@ -1,21 +1,18 @@
 import { Module } from '@nestjs/common';
-import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import * as ControllerModules from '@webpackages/controllers';
 import { ConfigModule } from '@nestjs/config';
-import { entityList } from '@webpackages/entities';
+import { DatabaseModule } from '@webpackages/database';
+import { subscriberList, entityList } from '@webpackages/entities';
 @Module({
   imports: [
-    ConfigModule.forRoot(),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      database: 'somedb',
-      username: 'postgres',
-      password: 'strong-password',
+    ConfigModule,
+    ...Object.values(ControllerModules).filter((e) =>
+      e.name.endsWith('Module')
+    ),
+    DatabaseModule.configure({
+      subscribers: [...subscriberList],
       entities: [...entityList],
-      dropSchema: true,
-      synchronize: true,
     }),
   ],
-  providers: [AppService],
 })
 export class AppModule {}
