@@ -1,13 +1,5 @@
-import {
-  addProjectConfiguration,
-  formatFiles,
-  generateFiles,
-  names,
-  Tree,
-} from '@nx/devkit';
+import { formatFiles, generateFiles, names, Tree } from '@nx/devkit';
 import * as path from 'path';
-import { RoutesGeneratorSchema } from './schema';
-
 import * as Metadata from '@webpackages/metadata';
 export async function routesGenerator(tree: Tree) {
   const projectRoot = `libs/clients/routes/src/lib`;
