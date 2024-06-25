@@ -16,39 +16,44 @@ export class SkuSubscriber implements EntitySubscriberInterface<Sku> {
   }
 
   async afterInsert(event: InsertEvent<Sku>) {
+    try {
+      const price = event.manager.getRepository(Price);
+      // const price = event.manager.getRepository(Price);
+    } catch (err) {
+      console.log('I FOUND YOU ..... ', err);
+    }
     const entity = event.entity;
 
     const priceLevel = event.manager.getRepository(PriceLevel);
     const store = event.manager.getRepository(Store);
 
-    const price = event.manager.getRepository(Price);
     const quantity = event.manager.getRepository(Quantity);
     const priceLevels = await priceLevel.find();
     const stores = await store.find();
 
     // Create prices
-    for (const pl of priceLevels) {
-      await price.save({
-        price: 999999999,
-        cost: 99999999,
-        startDate: new Date(),
-        endDate: new Date('1/1/2200'),
-        sku: entity,
-        priceLevel: pl,
-      });
-    }
+    // for (const pl of priceLevels) {
+    //   await price.save({
+    //     price: 999999999,
+    //     cost: 99999999,
+    //     startDate: new Date(),
+    //     endDate: new Date('1/1/2200'),
+    //     sku: { id: entity.id },
+    //     priceLevel: pl,
+    //   });
+    // }
 
     // Create quantities
-    for (const store of stores) {
-      await quantity.save({
-        quantity: 99999999,
-        alertUnderQuantity: 5,
-        alert: true,
-        autoRepurchase: false,
-        sku: entity,
-        store: store,
-      });
-    }
+    // for (const store of stores) {
+    //   await quantity.save({
+    //     quantity: 99999999,
+    //     alertUnderQuantity: 5,
+    //     alert: true,
+    //     autoRepurchase: false,
+    //     sku: { id: entity.id },
+    //     store: store,
+    //   });
+    // }
   }
 
   beforeInsert(event: InsertEvent<Sku>): void | Promise<any> {

@@ -8,5 +8,4 @@ export class AppService {
   alive() {
     // Every Second
   }
-  
 }
