@@ -181,6 +181,33 @@ export function printRelationImports(m: Metadata) {
   }
   return '';
 }
+
+export function printRelationImportsFromResource(m: Metadata) {
+  if (m.relations) {
+    const result = [
+      ...new Set(
+        ...Object.values(m.relations).map((e) => {
+          return `import { ${e.targetName} } from '@webpackages/entities'`;
+        })
+      ),
+    ];
+
+    return unifyAndJoin(result);
+  }
+  return '';
+}
+
+export function printRelationEntitiesFromResource(m: Metadata) {
+  const result = [
+    ...new Set(
+      ...Object.values(m.relations).map((e) => {
+        return `${e.targetName} }`;
+      })
+    ),
+  ].join(', ');
+  return result;
+}
+
 /**
  * Print required imports for entity
  *

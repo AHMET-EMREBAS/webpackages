@@ -4,9 +4,10 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { <%- className %>, <%- className %>View } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { <%- className %>Service } from './service';
+<%- relationEntitiesImport %>
 
 @Module({
-  imports: [TypeOrmModule.forFeature([<%- className %>,<%- className %>View])],
+  imports: [TypeOrmModule.forFeature([<%- className %>,<%- className %>View, <%- relationEntities %>])],
   controllers: [<%- className %>Controller],
   providers: [<%- className %>Service],
 })

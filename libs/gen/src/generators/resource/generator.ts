@@ -7,9 +7,12 @@ import {
   printPropertiesForDto,
   printPropertyImports,
   printQueryProperties,
+  printRelationEntitiesFromResource,
+  printRelationImportsFromResource,
   printRelationPropertiesForDto,
 } from '../utils';
-
+// relationEntitiesImport
+// relationEntities
 export async function resourceGenerator(tree: Tree) {
   const projectRoot = `libs/controllers/src/lib`;
   const metadatas = Object.entries(ModelMetadatas);
@@ -23,12 +26,17 @@ export async function resourceGenerator(tree: Tree) {
       searchablePropertyNames: printOrderablePropertyNames(value),
       queriableProperties: printQueryProperties(value),
       imports: printPropertyImports(value),
+
+      //
+      relationEntitiesImport: printRelationImportsFromResource(value),
+      relationEntities: printRelationEntitiesFromResource(value),
     };
 
     generateFiles(
       tree,
       path.join(__dirname, 'files'),
       projectRoot,
+
       templateOptions
     );
   }
