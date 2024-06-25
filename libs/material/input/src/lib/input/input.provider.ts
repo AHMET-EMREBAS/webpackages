@@ -96,7 +96,7 @@ export const provideDefaultAutocompleteOptions = (): Provider => {
     provide: MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
     useValue: {
       autoActiveFirstOption: true,
-      hideSingleSelectionIndicator: true,
+      autoSelectActiveOption: true,
     } as MatAutocompleteDefaultOptions,
   };
 };

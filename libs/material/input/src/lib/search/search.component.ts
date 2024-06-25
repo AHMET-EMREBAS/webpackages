@@ -1,9 +1,12 @@
 import {
+  AfterContentInit,
+  AfterViewChecked,
   AfterViewInit,
   Component,
   Input,
   OnDestroy,
   OnInit,
+  ViewChild,
   inject,
   signal,
 } from '@angular/core';
@@ -16,11 +19,14 @@ import {
   startWith,
   switchMap,
 } from 'rxjs';
-import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
-import { ID } from '@webpackages/types';
-import { InputModules } from '../input';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { InputComponent, InputModules } from '../input';
+import {
+  MatAutocomplete,
+  MatAutocompleteModule,
+  MatAutocompleteSelectedEvent,
+} from '@angular/material/autocomplete';
 import { getHttpSearchQueryBuilderToken } from '@webpackages/material/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'wp-search',
@@ -34,41 +40,44 @@ import { getHttpSearchQueryBuilderToken } from '@webpackages/material/core';
         matInput
         [tabindex]="tabIndex"
         [formControl]="__searchControl"
-        [matAutocomplete]="auto"
+        [matAutocomplete]="searchAutoComplete"
         [multiple]="inputMultiple"
         [attr.data-testid]="inputLabel"
       />
       <mat-autocomplete
-        #auto="matAutocomplete"
-        [displayWith]="searchDisplayWith"
+        #searchAutoComplete="matAutocomplete"
+        [displayWith]="searchDisplayWith(resourceLabelProperty)"
         (optionSelected)="__optionSelect($event)"
+        [autoActiveFirstOption]="true"
         [autoSelectActiveOption]="true"
-        autoActiveFirstOption
       >
         @for (option of foundOptions(); track option) {
         <mat-option [value]="option">
-          {{ searchDisplayWith(option) }}
+          {{ option[resourceLabelProperty] }}
         </mat-option>
         }
-        <mat-option [value]="null"> ----None </mat-option>
+        <mat-option [value]="noneValue()"> ----None </mat-option>
       </mat-autocomplete>
       <mat-error>{{ errorMessage$ | async }}</mat-error>
     </mat-form-field>
+    Value : {{ inputControl.value }}
   `,
 })
-export class SearchComponent<T extends ID>
-  extends AutocompleteComponent
-  implements OnInit, AfterViewInit, OnDestroy
+export class SearchComponent
+  extends InputComponent
+  implements OnInit, OnDestroy, AfterViewInit, AfterContentInit
 {
+  @ViewChild('searchAutoComplete') searchAutoComplete: MatAutocomplete;
   @Input() resourceName: string;
-  @Input() resourceLabelProperty = 'name';
+  @Input() resourceLabelProperty: string;
 
+  __searchControl = new FormControl<string | null>(null);
   searchQueryBuilder = inject(getHttpSearchQueryBuilderToken());
 
-  foundOptions = signal<T[]>([]);
+  foundOptions = signal<any[]>([]);
   httpClient = inject(HttpClient);
 
-  search$: Observable<T[]>;
+  search$: Observable<any[]>;
 
   sub: Subscription;
 
@@ -79,7 +88,7 @@ export class SearchComponent<T extends ID>
         debounceTime(this.inputDebounceTime),
         filter((e) => typeof e == 'string'),
         switchMap((search) => {
-          return this.httpClient.get<T[]>(
+          return this.httpClient.get<any[]>(
             this.searchQueryBuilder(this.resourceName, search || '')
           );
         })
@@ -88,24 +97,43 @@ export class SearchComponent<T extends ID>
         this.foundOptions.update(() => result);
       });
   }
-  override ngAfterViewInit(): void {
-    setTimeout(() => {
-      console.log('Input Control : ', this.inputControl.value);
-      console.log('Searcn Control : ', this.__searchControl.value);
-
-      this.autoRef.options;
-    }, 3000);
-  }
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
   }
 
-  optionLabel(option: T) {
-    return (option as any)[this.resourceLabelProperty] ?? 'Not found';
+  ngAfterContentInit(): void {
+    if (this.inputControl.value) {
+      this.__searchControl.setValue(
+        this.inputControl.value[this.resourceLabelProperty]
+      );
+      const first = this.searchAutoComplete.options.first;
+
+      this.searchAutoComplete.optionSelected.emit({
+        option: { ...first, active: true } as any,
+        source: this.searchAutoComplete,
+      });
+    }
+  }
+  searchDisplayWith(propertyName: string) {
+    return (option: any) => {
+      if (typeof option === 'string') {
+        return option;
+      } else if (typeof option === 'object') {
+        return option[propertyName];
+      }
+      return 'Search ...';
+    };
   }
 
-  searchDisplayWith(option: T): string {
-    return (option as any)[this.resourceLabelProperty] || 'None';
+  __optionSelect(event: MatAutocompleteSelectedEvent) {
+    console.log('It it working ? : ', event.option.value);
+    this.inputControl.setValue(event.option.value.id);
+  }
+
+  noneValue() {
+    return {
+      [this.resourceLabelProperty]: '--- None ---',
+    };
   }
 }

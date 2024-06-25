@@ -35,7 +35,20 @@ export const Primary: Story = {
     inputControl: new FormControl('', []),
     inputName: 'categorys',
     inputLabel: 'Select Categories',
-    pluralResourceName: 'categorys',
+    resourceName: 'category',
+    resourceLabelProperty: 'name',
+  },
+};
+export const WithDefaultValue: Story = {
+  args: {
+    ...Primary.args,
+    inputControl: new FormControl(
+      [
+        { id: 8, name: 'Toys & Games' },
+        { id: 5, name: 'Sports & Outdoors' },
+      ],
+      []
+    ),
   },
 };
 

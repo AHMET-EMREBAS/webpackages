@@ -35,10 +35,18 @@ type Story = StoryObj<SearchComponent>;
 
 export const Primary: Story = {
   args: {
-    inputControl: new FormControl('', []),
+    inputControl: new FormControl(null, []),
     inputName: 'category',
     inputLabel: 'Search Category',
-    pluralResourceName: 'categorys',
+    resourceName: 'category',
+    resourceLabelProperty: 'name',
+  },
+};
+
+export const WithDefaultValue: Story = {
+  args: {
+    ...Primary.args,
+    inputControl: new FormControl({ id: 1, name: 'Clothing' }, []),
   },
 };
 

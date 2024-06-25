@@ -9,7 +9,7 @@ import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 import { INPUT_STORY_PROVIDERS } from '../__story';
 import { FormControl } from '@angular/forms';
-import { getBuiltinCategories } from '@webpackages/types';
+import { getBuiltinCategories } from '@webpackages/data';
 
 const meta: Meta<SelectComponent> = {
   component: SelectComponent,
@@ -23,12 +23,18 @@ const meta: Meta<SelectComponent> = {
 export default meta;
 type Story = StoryObj<SelectComponent>;
 
+const selectOptions = getBuiltinCategories().map((e) => ({
+  id: e.id,
+  label: e.name,
+}));
+const enumOptions = getBuiltinCategories().map((e) => e.name);
+
 export const Primary: Story = {
   args: {
     inputName: 'category',
     inputLabel: 'Select Item',
     inputControl: new FormControl('', []),
-    selectOptions: getBuiltinCategories(),
+    selectOptions: selectOptions,
   },
 };
 
@@ -36,8 +42,8 @@ export const MultipleObjectSelect: Story = {
   args: {
     inputName: 'category',
     inputLabel: 'Select Item',
-    inputControl: new FormControl('', []),
-    selectOptions: getBuiltinCategories(),
+    inputControl: new FormControl(1, []),
+    selectOptions: selectOptions,
     inputMultiple: true,
   },
 };
@@ -47,7 +53,7 @@ export const EnumSelect: Story = {
     inputName: 'category',
     inputLabel: 'Select Item',
     inputControl: new FormControl('', []),
-    enumOptions: getBuiltinCategories().map((e) => e.label),
+    enumOptions: enumOptions,
   },
 };
 
@@ -57,7 +63,7 @@ export const MultipleEnumSelect: Story = {
     inputLabel: 'Select Item',
     inputControl: new FormControl('', []),
     inputMultiple: true,
-    enumOptions: getBuiltinCategories().map((e) => e.label),
+    enumOptions: enumOptions,
   },
 };
 

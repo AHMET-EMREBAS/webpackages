@@ -8,8 +8,13 @@ import { AutocompleteComponent } from './autocomplete.component';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 import { FormControl } from '@angular/forms';
-import { getBuiltinCategories } from '@webpackages/types';
-import { INPUT_STORY_PROVIDERS} from '../__story'
+import { getBuiltinCategories } from '@webpackages/data';
+import { INPUT_STORY_PROVIDERS } from '../__story';
+
+const categoryOptions = getBuiltinCategories().map((e) => ({
+  id: e.id,
+  label: e.name,
+}));
 const meta: Meta<AutocompleteComponent> = {
   component: AutocompleteComponent,
   title: 'Autocomplete',
@@ -27,7 +32,7 @@ export const Primary: Story = {
     inputControl: new FormControl(''),
     inputName: 'category',
     inputLabel: 'Category',
-    autocompleteOptions: getBuiltinCategories(),
+    autocompleteOptions: categoryOptions,
   },
 };
 
