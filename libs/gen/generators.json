@@ -29,6 +29,11 @@
       "factory": "./src/generators/form-group/generator",
       "schema": "./src/generators/form-group/schema.json",
       "description": "form-group generator"
+    },
+    "ngrx": {
+      "factory": "./src/generators/ngrx/generator",
+      "schema": "./src/generators/ngrx/schema.json",
+      "description": "ngrx generator"
     }
   }
 }

@@ -1,0 +1,6 @@
+@Injectable()
+export class <%- className %>Service extends EntityCollectionServiceBase<I<%- className %>> {
+  constructor(factory: EntityCollectionServiceElementsFactory) {
+    super('<%- className %>', factory);
+  }
+}
