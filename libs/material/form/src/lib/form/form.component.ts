@@ -14,8 +14,12 @@ import {
 } from '@webpackages/material/input';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { EntityCollectionService } from '@ngrx/data';
-import { catchError, of } from 'rxjs';
+import {
+  DataServiceError,
+  EntityCollectionService,
+  MergeStrategy,
+} from '@ngrx/data';
+import { catchError, firstValueFrom, map, of } from 'rxjs';
 import {
   InputOption,
   getEntityCollectionServiceToken,
@@ -53,6 +57,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputControl]="control(option.name)"
         [inputLabel]="option.label"
         [inputRequired]="option.required"
+        [inputMinLength]="option.minLength"
+        [inputMaxLength]="option.maxLength"
         [class]="option.class"
         [tabindex]="option.tabIndex"
       ></wp-input-text>
@@ -64,8 +70,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputName]="option.name"
         [inputControl]="control(option.name)"
         [inputLabel]="option.label"
-        [inputMaxLength]="option.maxLength"
         [inputRequired]="option.required"
+        [inputMinLength]="option.minLength"
+        [inputMaxLength]="option.maxLength"
         [class]="option.class"
         [tabindex]="option.tabIndex"
       ></wp-input-textarea>
@@ -78,6 +85,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputControl]="control(option.name)"
         [inputLabel]="option.label"
         [inputRequired]="option.required"
+        [inputMin]="option.minimum"
+        [inputMax]="option.maximum"
         [class]="option.class"
         [tabindex]="option.tabIndex"
       ></wp-input-number>
@@ -168,7 +177,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         [inputRequired]="option.required"
         [inputMinLength]="option.minLength"
         [inputMaxLength]="option.maxLength"
-        class="w-full"
+        [class]="option.class"
         [tabindex]="option.tabIndex"
       ></wp-input-text>
       }
@@ -189,6 +198,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         </button>
       </div>
     </form>
+
+    {{ formGroup.get('name').errors | json }}
   `,
   styles: ``,
 })
@@ -202,13 +213,34 @@ export class FormComponent<T = any> {
     public readonly inputOptions: InputOption[]
   ) {}
 
-  saveItem() {
-    this.service?.add(this.formGroup?.value, { isOptimistic: false }).pipe(
-      catchError((error) => {
-        console.log('ERror : ', error);
-        return of(null);
-      })
-    );
+  async saveItem() {
+    try {
+      await firstValueFrom(
+        this.service?.add(this.formGroup?.value, {
+          isOptimistic: false,
+        })
+      );
+    } catch (err) {
+      const rawErrors = (err as DataServiceError).error.error.errors;
+
+      for (const rawError of rawErrors) {
+        const errors = Object.values(rawError);
+        for (const e of errors) {
+          const control = this.formGroup.get((e as any)?.property);
+
+          control.setErrors((e as any)?.constraints);
+        }
+        // const [key, error] = Object.entries(e) as any;
+        // console.log(key, error);
+
+        // const control = this.formGroup.get(key);
+
+        // if (!control) {
+        //   console.log(key, '<<<<<');
+        // }
+        // control.setErrors((error as any).constraints);
+      }
+    }
   }
 
   control(name: string) {

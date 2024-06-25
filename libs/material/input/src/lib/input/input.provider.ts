@@ -20,20 +20,20 @@ export const defaultErrorMessageHandler: InputErrorMessageHandler = function (
   control: FormControl,
   options: InputOptions
 ): string {
-  const errors = control.errors;
-  if (errors) {
-    if (errors['required']) return `Field is required!`;
-    if (errors['minlength'])
-      return `Field most be longer than ${options.inputMinLength} characters!`;
-    if (errors['maxlengh'])
-      return `Field most be shorter than ${options.inputMaxLength} characters!`;
-    if (errors['min'])
-      return `Field most be longer than ${options.inputMin} characters!`;
-    if (errors['max'])
-      return `Field most be shorter than ${options.inputMax} characters!`;
-    if (errors['email']) return `Field most be a valid email!`;
-    if (errors['password']) return `Field most be a strong password!`;
-  }
+  if (control.hasError('required')) return `Field is required!`;
+  else if (control.hasError('minlength'))
+    return `Field most be longer than ${options.inputMinLength} characters!`;
+  else if (control.hasError('maxlengh'))
+    return `Field most be shorter than ${options.inputMaxLength} characters!`;
+  else if (control.hasError('min'))
+    return `Field most be longer than ${options.inputMin} characters!`;
+  else if (control.hasError('max'))
+    return `Field most be shorter than ${options.inputMax} characters!`;
+  else if (control.hasError('email')) return `Field most be a valid email!`;
+  else if (control.hasError('password'))
+    return `Field most be a strong password!`;
+  else if (control.hasError('isUnique')) return `Field must be unique!`;
+
   return 'Field is invalid';
 };
 

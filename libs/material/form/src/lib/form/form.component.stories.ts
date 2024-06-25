@@ -16,12 +16,10 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import {
   InputOption,
   MockCategoryCollectionService,
-  MockEntityCollectionService,
   provideDefaultHttpSearchQueryBuilder,
   provideEntityCollectionService,
   provideFormGroup,
   provideInputOptions,
-  provideMockCategoryHttpClient,
 } from '@webpackages/material/core';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
@@ -32,7 +30,7 @@ import {
   EntityDataModuleConfig,
   withEffects,
 } from '@ngrx/data';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 
 const entityMetadata: EntityMetadataMap = {
@@ -51,10 +49,14 @@ export const entityConfig: EntityDataModuleConfig = {
 };
 
 const formGroup = new FormGroup({
-  name: new FormControl(null, []),
-  description: new FormControl(null, []),
-  dob: new FormControl(null, []),
-  category: new FormControl(null, []),
+  name: new FormControl(null, [
+    Validators.required,
+    Validators.minLength(3),
+    Validators.maxLength(100),
+  ]),
+  description: new FormControl(null, [Validators.maxLength(1000)]),
+  dob: new FormControl(null, [Validators.required]),
+  category: new FormControl(null, [Validators.required]),
 });
 
 const meta: Meta<FormComponent<any>> = {
@@ -117,9 +119,7 @@ const meta: Meta<FormComponent<any>> = {
             name: 'description',
             label: 'Description',
             inputType: 'textarea',
-            required: true,
-            minLength: 3,
-            maxLength: 100,
+            maxLength: 1000,
             class: 'w-full order-4',
             tabIndex: 4,
           },
