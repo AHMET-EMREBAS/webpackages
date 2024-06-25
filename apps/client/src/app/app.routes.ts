@@ -1,23 +1,21 @@
 import { Route } from '@angular/router';
 import { CategoryRoutes, ProductRoutes, SkuRoutes } from './modules';
 import { AppLayoutComponent } from '@webpackages/material/layout';
-import {
-  provideNavListItems,
-  provideSubModuleNavListItems,
-} from '@webpackages/material/core';
+import { provideNavListItems } from '@webpackages/material/core';
+
 export const appRoutes: Route[] = [
   {
     path: '',
     component: AppLayoutComponent,
     providers: [
       provideNavListItems([
-        { label: 'Product', route: 'product' },
-        { label: 'Sku', route: 'sku' },
-        { label: 'Quantity', route: 'quantity' },
-        { label: 'Price', route: 'price' },
-        { label: 'Price Level', route: 'price-level' },
-        { label: 'Price Level', route: 'price-level' },
-        { label: 'Store', route: 'store' },
+        { icon: 'inventory2', label: 'Product', route: 'product' },
+        { icon: 'barcode', label: 'Sku', route: 'sku' },
+        { icon: 'numbers', label: 'Quantity', route: 'quantity' },
+        { icon: 'money', label: 'Price', route: 'price' },
+        { icon: 'layers', label: 'Price Level', route: 'price-level' },
+        { icon: 'money', label: 'Price Level', route: 'price-level' },
+        { icon: 'store', label: 'Store', route: 'store' },
       ]),
     ],
 

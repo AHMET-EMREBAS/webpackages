@@ -13,7 +13,7 @@ import { provideEntityData, withEffects } from '@ngrx/data';
 import { entityConfig } from './entity-metadata';
 import { provideEffects } from '@ngrx/effects';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { DevInterceptor } from './app-dev.interceptor';
+import { AppDevInterceptor } from './app-dev.interceptor';
 import { provideDefaultTableOptions } from '@webpackages/material/core';
 import {
   provideDefaultInputDebounceTime,
@@ -31,7 +31,7 @@ export const appConfig: ApplicationConfig = {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    provideHttpClient(withInterceptors([DevInterceptor])),
+    provideHttpClient(withInterceptors([AppDevInterceptor])),
     provideStore(),
     provideEffects(),
     provideEntityData(entityConfig, withEffects()),

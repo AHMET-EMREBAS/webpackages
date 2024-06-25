@@ -11,4 +11,7 @@ export const {
   default: provideDefaultSubModuleNavListItems,
   provide: provideSubModuleNavListItems,
   token: getSubModuleNavListItemsToken,
-} = createValueProvider<NavListItems>('SubModuleSubModuleNavListItems', []);
+} = createValueProvider<NavListItems>('SubModuleSubModuleNavListItems', [
+  { route: ['table'], label: `View`, icon: 'table' },
+  { route: ['editor'], label: `New`, icon: 'add' },
+]);

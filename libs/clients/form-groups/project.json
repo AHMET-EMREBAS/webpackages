@@ -1,0 +1,36 @@
+{
+  "name": "clients-form-groups",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/clients/form-groups/src",
+  "prefix": "wp",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/clients/form-groups/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/clients/form-groups/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/clients/form-groups/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/clients/form-groups/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

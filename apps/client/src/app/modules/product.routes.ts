@@ -16,7 +16,22 @@ import { IProduct } from '@webpackages/models';
 import { ProductMetadata } from '@webpackages/metadata';
 import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
 import { CrudRoutes } from './crud.routes';
-
+import { ProductFormGroup } from '@webpackages/clients/form-groups';
+// new FormGroup({
+//   name: new FormControl(null, [
+//     Validators.required,
+//     Validators.minLength(3),
+//     Validators.maxLength(100),
+//   ]),
+//   description: new FormControl(null, [Validators.maxLength(1000)]),
+//   upc: new FormControl(null, [
+//     Validators.required,
+//     Validators.maxLength(13),
+//     Validators.minLength(8),
+//   ]),
+//   category: new FormControl(null, [Validators.required]),
+//   supplier: new FormControl(null, []),
+// })
 @Injectable()
 export class ProductService extends EntityCollectionServiceBase<IProduct> {
   constructor(factory: EntityCollectionServiceElementsFactory) {
@@ -36,23 +51,7 @@ export const ProductRoutes: Routes = [
       provideEntityCollectionService(ProductService),
       provideTableColumnOptions(toTableColumnOptions(ProductMetadata)),
       provideInputOptions(toFormInputOptions(ProductMetadata)),
-      provideFormGroup(
-        new FormGroup({
-          name: new FormControl(null, [
-            Validators.required,
-            Validators.minLength(3),
-            Validators.maxLength(100),
-          ]),
-          description: new FormControl(null, [Validators.maxLength(1000)]),
-          upc: new FormControl(null, [
-            Validators.required,
-            Validators.maxLength(13),
-            Validators.minLength(8),
-          ]),
-          category: new FormControl(null, [Validators.required]),
-          supplier: new FormControl(null, []),
-        })
-      ),
+      provideFormGroup(ProductFormGroup),
     ],
     loadChildren() {
       return CrudRoutes;

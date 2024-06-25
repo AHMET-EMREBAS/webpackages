@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'wp-pos',
+  selector: 'wp-admin',
   standalone: true,
   imports: [CommonModule],
-  template: `<p>pos works!</p>`,
+  template: `<p>admin works!</p>`,
   styles: ``,
 })
-export class PosComponent {}
+export class AdminComponent {}
