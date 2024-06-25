@@ -5,9 +5,9 @@ import {
 } from '@storybook/angular';
 import { AppLayoutComponent } from './app-layout.component';
 import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
+import { provideNavListItems } from '@webpackages/material/core';
 
 const meta: Meta<AppLayoutComponent> = {
   component: AppLayoutComponent,
@@ -31,6 +31,11 @@ const meta: Meta<AppLayoutComponent> = {
             component: AppLayoutComponent,
           },
         ]),
+        provideNavListItems([
+          { label: 'Home', route: 'home', icon: 'home' },
+          { label: 'About', route: 'about', icon: 'info' },
+          { label: 'Services', route: 'services', icon: 'apps' },
+        ]),
       ],
     }),
   ],
@@ -38,18 +43,9 @@ const meta: Meta<AppLayoutComponent> = {
 export default meta;
 type Story = StoryObj<AppLayoutComponent>;
 
-export const Primary: Story = {
-  args: {
-    navlistItems: [
-      { label: 'Home', route: 'home', icon: 'home' },
-      { label: 'About', route: 'about', icon: 'info' },
-      { label: 'Services', route: 'services', icon: 'apps' },
-    ],
-  },
-};
+export const Primary: Story = {};
 
 export const Heading: Story = {
-  args: {},
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     // expect(canvas.getByText(/app-layout works!/gi)).toBeTruthy();

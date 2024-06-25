@@ -9,12 +9,16 @@ import {
   provideEntityCollectionService,
   provideFormGroup,
   provideInputOptions,
+  provideSubModuleNavListItems,
   provideTableColumnOptions,
 } from '@webpackages/material/core';
 import { FormComponent } from '@webpackages/material/form';
 import { TableComponent } from '@webpackages/material/table';
 import { ICategory } from '@webpackages/models';
 import { CategoryMetadata } from '@webpackages/metadata';
+import { toFormInputOptions } from '@webpackages/types';
+import { ModuleLayoutComponent } from '@webpackages/material/layout';
+import { CrudRoutes } from './crud.routes';
 
 @Injectable()
 export class CategoryService extends EntityCollectionServiceBase<ICategory> {
@@ -27,25 +31,12 @@ export const CategoryRoutes: Routes = [
   {
     path: '',
     title: 'Category',
+    component: ModuleLayoutComponent,
     providers: [
+      provideSubModuleNavListItems([]),
       provideEntityCollectionService(CategoryService),
       provideTableColumnOptions([{ name: 'name', label: 'Category Name' }]),
-      provideInputOptions([
-        ...Object.entries(CategoryMetadata.properties).map(([key, value]) => {
-          return { name: key, ...value };
-        }),
-        ...Object.entries(CategoryMetadata.relations)
-          .map(([key, value]) => {
-            if (value.viewColumns) {
-              return value.viewColumns.map((viewName) => {
-                return { name: viewName };
-              });
-            }
-            return null;
-          })
-          .filter((e) => e)
-          .flat(),
-      ]),
+      provideInputOptions(toFormInputOptions(CategoryMetadata)),
       provideFormGroup(
         new FormGroup({
           name: new FormControl('', [
@@ -56,25 +47,8 @@ export const CategoryRoutes: Routes = [
         })
       ),
     ],
-    children: [
-      {
-        path: 'editor',
-        loadComponent() {
-          return FormComponent;
-        },
-      },
-      {
-        path: 'editor/:id',
-        loadComponent() {
-          return FormComponent;
-        },
-      },
-      {
-        path: '',
-        loadComponent() {
-          return TableComponent;
-        },
-      },
-    ],
+    loadChildren() {
+      return CrudRoutes;
+    },
   },
 ];

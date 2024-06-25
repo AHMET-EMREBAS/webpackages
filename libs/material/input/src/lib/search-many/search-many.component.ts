@@ -72,7 +72,6 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
       </mat-autocomplete>
       <mat-error>{{ errorMessage$ | async }}</mat-error>
     </mat-form-field>
-    {{ inputControl.value | json }}
   `,
 })
 export class SearchManyComponent

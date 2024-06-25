@@ -64,6 +64,7 @@
     [inputLabel]="option.label"
     [inputRequired]="option.required"
     [resourceName]="option.resourceName"
+    [resourceLabelProperty]="option.resourceLabelProperty"
     [class]="option.class"
     [tabindex]="option.tabIndex"
   ></wp-search>
@@ -78,6 +79,7 @@
     [inputControl]="control(option.name)"
     [inputLabel]="option.label"
     [resourceName]="option.resourceName"
+    [resourceLabelProperty]="option.resourceLabelProperty"
     [class]="option.class"
     [tabindex]="option.tabIndex"
   ></wp-search-many>
@@ -148,6 +150,3 @@
     <button class="w-full" mat-raised-button (click)="reset()">Reset</button>
   </div>
 </form>
-
-{{ formGroup.value | json }}
-{{ formGroup.invalid | json }}

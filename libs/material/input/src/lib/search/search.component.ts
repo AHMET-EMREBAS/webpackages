@@ -60,7 +60,6 @@ import { FormControl } from '@angular/forms';
       </mat-autocomplete>
       <mat-error>{{ errorMessage$ | async }}</mat-error>
     </mat-form-field>
-    Value : {{ inputControl.value }}
   `,
 })
 export class SearchComponent

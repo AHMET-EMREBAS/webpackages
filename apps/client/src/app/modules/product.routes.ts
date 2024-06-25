@@ -9,13 +9,13 @@ import {
   provideEntityCollectionService,
   provideFormGroup,
   provideInputOptions,
+  provideSubModuleNavListItems,
   provideTableColumnOptions,
 } from '@webpackages/material/core';
-import { FormComponent } from '@webpackages/material/form';
-import { TableComponent } from '@webpackages/material/table';
 import { IProduct } from '@webpackages/models';
 import { ProductMetadata } from '@webpackages/metadata';
 import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
+import { CrudRoutes } from './crud.routes';
 
 @Injectable()
 export class ProductService extends EntityCollectionServiceBase<IProduct> {
@@ -24,34 +24,15 @@ export class ProductService extends EntityCollectionServiceBase<IProduct> {
   }
 }
 
-export const ___ProductRoutes: Routes = [
-  {
-    path: '',
-    loadComponent() {
-      return TableComponent;
-    },
-  },
-  {
-    path: 'editor',
-    loadComponent() {
-      return FormComponent;
-    },
-  },
-  {
-    path: 'editor/:id',
-    loadComponent() {
-      return FormComponent;
-    },
-  },
-];
-
 export const ProductRoutes: Routes = [
   {
     path: '',
-    loadChildren() {
-      return ___ProductRoutes;
-    },
+    title: 'Product',
     providers: [
+      provideSubModuleNavListItems([
+        { route: ['table'], label: 'View Producs', icon: 'table' },
+        { route: ['editor'], label: 'New Product', icon: 'add' },
+      ]),
       provideEntityCollectionService(ProductService),
       provideTableColumnOptions(toTableColumnOptions(ProductMetadata)),
       provideInputOptions(toFormInputOptions(ProductMetadata)),
@@ -73,5 +54,8 @@ export const ProductRoutes: Routes = [
         })
       ),
     ],
+    loadChildren() {
+      return CrudRoutes;
+    },
   },
 ];
