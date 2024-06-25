@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { I<%- className %> } from '@webpackages/models';
+import { ICustomer } from '@webpackages/models';
 import {
   EntityCollectionServiceBase,
   EntityCollectionServiceElementsFactory,
 } from '@ngrx/data';
 
 @Injectable()
-export class <%- className %>Service extends EntityCollectionServiceBase<I<%- className %>> {
+export class CustomerService extends EntityCollectionServiceBase<ICustomer> {
   constructor(factory: EntityCollectionServiceElementsFactory) {
-    super('<%- className %>', factory);
+    super('Customer', factory);
   }
 }

@@ -11,7 +11,6 @@ export async function ngrxGenerator(tree: Tree) {
     });
   }
 
-  generateFiles(tree, path.join(__dirname, 'files'), projectRoot, {});
   await formatFiles(tree);
 }
 
