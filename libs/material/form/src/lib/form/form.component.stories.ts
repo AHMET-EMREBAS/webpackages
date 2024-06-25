@@ -53,6 +53,7 @@ const formGroup = new FormGroup({
     Validators.required,
     Validators.minLength(3),
     Validators.maxLength(100),
+ 
   ]),
   description: new FormControl(null, [Validators.maxLength(1000)]),
   dob: new FormControl(null, [Validators.required]),

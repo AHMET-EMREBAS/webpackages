@@ -32,7 +32,9 @@ export const defaultErrorMessageHandler: InputErrorMessageHandler = function (
   else if (control.hasError('email')) return `Field most be a valid email!`;
   else if (control.hasError('password'))
     return `Field most be a strong password!`;
-  else if (control.hasError('isUnique')) return `Field must be unique!`;
+  else if (control.hasError('isUnique')) {
+    return `Field must be unique!`;
+  }
 
   return 'Field is invalid';
 };

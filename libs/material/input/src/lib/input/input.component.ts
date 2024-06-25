@@ -5,7 +5,6 @@ import {
   Inject,
   Input,
   OnInit,
-  Optional,
   isDevMode,
 } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { Observable, debounceTime, map } from 'rxjs';
+import { Observable, debounceTime, map, repeat } from 'rxjs';
 import {
   InputErrorMessageHandler,
   InputStatusIndicatorHandler,
@@ -83,9 +82,11 @@ export class InputComponent implements InputOptions, OnInit, AfterViewInit {
       this.inputControl = new FormControl('');
     }
 
-    this.errorMessage$ = this.inputControl.valueChanges.pipe(
+    this.errorMessage$ = this.inputControl.statusChanges.pipe(
       debounceTime(this.inputDebounceTime),
-      map((e) => this.errorMessageHandler(this.inputControl, this))
+      map((e) => {
+        return this.errorMessageHandler(this.inputControl, this);
+      })
     );
 
     this.statusIndicator$ = this.inputControl.valueChanges.pipe(
@@ -105,5 +106,9 @@ export class InputComponent implements InputOptions, OnInit, AfterViewInit {
         );
       });
     }
+  }
+
+  serverSideError() {
+    return Object.values(this.inputControl.errors || {}).pop() as string;
   }
 }

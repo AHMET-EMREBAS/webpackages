@@ -46,7 +46,7 @@ import {
       <!-- Number Input -->
       @if(option.inputType ==='text'){
       <wp-input-text
-        [inputName]="option.name"
+        [inputName]="option.name!"
         [inputLabel]="option.label"
       ></wp-input-text>
       }

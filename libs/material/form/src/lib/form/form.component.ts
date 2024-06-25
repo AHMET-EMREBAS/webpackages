@@ -190,6 +190,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
           mat-raised-button
           color="primary"
           (click)="saveItem()"
+          [disabled]="formGroup.invalid || submitted"
         >
           Save
         </button>
@@ -198,12 +199,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         </button>
       </div>
     </form>
-
-    {{ formGroup.get('name').errors | json }}
+    <br />
+    Submitted: {{ submitted }}
   `,
   styles: ``,
 })
 export class FormComponent<T = any> {
+  submitted = false;
   formGroup = inject(getFormGroupToken());
 
   constructor(
@@ -220,25 +222,19 @@ export class FormComponent<T = any> {
           isOptimistic: false,
         })
       );
+      this.submitted = true;
+
+
+      
     } catch (err) {
       const rawErrors = (err as DataServiceError).error.error.errors;
 
       for (const rawError of rawErrors) {
         const errors = Object.values(rawError);
         for (const e of errors) {
-          const control = this.formGroup.get((e as any)?.property);
-
+          const control = this.control((e as any)?.property);
           control.setErrors((e as any)?.constraints);
         }
-        // const [key, error] = Object.entries(e) as any;
-        // console.log(key, error);
-
-        // const control = this.formGroup.get(key);
-
-        // if (!control) {
-        //   console.log(key, '<<<<<');
-        // }
-        // control.setErrors((error as any).constraints);
       }
     }
   }
