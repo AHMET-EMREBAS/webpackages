@@ -114,13 +114,15 @@ export class SearchComponent
       });
     }
   }
+
   searchDisplayWith(propertyName: string) {
     return (option: any) => {
-      if (typeof option === 'string') {
-        return option;
-      } else if (typeof option === 'object') {
-        return option[propertyName];
-      }
+      if (option)
+        if (typeof option == 'string') {
+          return option;
+        } else if (typeof option == 'object') {
+          return option[propertyName];
+        }
       return '';
     };
   }

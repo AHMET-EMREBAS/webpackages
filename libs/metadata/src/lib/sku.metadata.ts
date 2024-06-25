@@ -30,6 +30,8 @@ export const SkuMetadata: Metadata = {
       relationType: 'owner',
       targetName: 'Product',
       viewColumns: ['upc'],
+      label: 'Product',
+      resourceLabelProperty: 'name',
     },
   },
 };
