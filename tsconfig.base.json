@@ -21,6 +21,7 @@
       "@webpackages/boot-nest": ["libs/boot-nest/src/index.ts"],
       "@webpackages/clients": ["libs/clients/src/index.ts"],
       "@webpackages/controllers": ["libs/controllers/src/index.ts"],
+      "@webpackages/data": ["libs/data/src/index.ts"],
       "@webpackages/database": ["libs/database/src/index.ts"],
       "@webpackages/entities": ["libs/entities/src/index.ts"],
       "@webpackages/gen": ["libs/gen/src/index.ts"],

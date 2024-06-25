@@ -29,6 +29,7 @@ import {
   TableRowRouteValueHandler,
   getContextEditRouteValueToken,
   getContextDeleteRouteValueToken,
+  provideDefaultTableOptions,
 } from '@webpackages/material/core';
 
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
@@ -77,6 +78,7 @@ import { TableColumnOption, TableColumnOptions } from '@webpackages/types';
   ],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
+  providers: [provideDefaultTableOptions()],
 })
 export class TableComponent implements OnInit, AfterViewInit {
   @ViewChild('searchInput') searchInput: ElementRef<HTMLInputElement>;

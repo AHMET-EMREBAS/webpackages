@@ -1,10 +1,11 @@
-import { names } from '@nx/devkit';
+import { names } from '@webpackages/utils';
 
 export enum PathParam {
   ID_KEY = 'id',
   RID_KEY = 'rid',
   EN_KEY = 'en',
   RN_KEY = 'rn',
+  COUNT = 'count',
 
   ID_DEF = ':id',
   RID_DEF = ':rid',
@@ -109,5 +110,8 @@ export class PathBuilder {
       singularRelationName,
       PathParam.RID_DEF
     );
+  }
+  count() {
+    return this.__singular(PathParam.COUNT);
   }
 }

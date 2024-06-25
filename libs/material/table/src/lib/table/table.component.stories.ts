@@ -70,12 +70,6 @@ const meta: Meta<TableComponent> = {
         ),
         provideEntityCollectionService(MockCategoryCollectionService),
         //
-        provideDefaultHttpSearchQueryBuilder(),
-        provideDefaultIdColumnOptions(),
-        provideDefaultTimestampColumnOptions(),
-        provideDefaultTableRowRouteValueHandler(),
-        provideDefaultContextDeleteRouteValue(),
-        provideDefaultContextEditRouteValue(),
       ],
     }),
   ],

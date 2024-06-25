@@ -14,12 +14,8 @@ import {
 } from '@webpackages/material/input';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {
-  DataServiceError,
-  EntityCollectionService,
-  MergeStrategy,
-} from '@ngrx/data';
-import { catchError, firstValueFrom, map, of } from 'rxjs';
+import { DataServiceError, EntityCollectionService } from '@ngrx/data';
+import { firstValueFrom } from 'rxjs';
 import {
   InputOption,
   getEntityCollectionServiceToken,

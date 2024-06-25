@@ -27,7 +27,11 @@ import {
   CanWrite,
   ResourceName,
 } from '@webpackages/access-policy';
-import { MessageResponse, ValidationErrorDto } from './responses';
+import {
+  CountResponse,
+  MessageResponse,
+  ValidationErrorDto,
+} from './responses';
 import { PathBuilder } from '@webpackages/path';
 
 export type RestControllerOptions = {
@@ -91,6 +95,16 @@ export class RestController {
         description: `Invalid input for ${this.singularName}`,
       }),
       CanWrite()
+    );
+  }
+
+  Count() {
+    return applyDecorators(
+      ...this.__Common(),
+      ApiOperation({ summary: 'Get entity count' }),
+      Get(this.path.count()),
+      ApiOkResponse({ type: CountResponse, description: 'Success' }),
+      CanRead()
     );
   }
 

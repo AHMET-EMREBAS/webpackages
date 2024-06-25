@@ -1,5 +1,6 @@
 import { TableColumnOptions } from '@webpackages/types';
 import { createValueProvider } from './create-provider';
+import { provideDefaultHttpSearchQueryBuilder } from './http-search-query-builder';
 
 export const {
   default: provideDefaultTimestampColumnOptions,
@@ -50,6 +51,7 @@ export const {
 
 export function provideDefaultTableOptions() {
   return [
+    provideDefaultHttpSearchQueryBuilder(),
     provideDefaultTimestampColumnOptions(),
     provideDefaultIdColumnOptions(),
     provideDefaultTableRowRouteValueHandler(),

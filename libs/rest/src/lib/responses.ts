@@ -63,3 +63,7 @@ export class MessageResponse {
   @Property({ type: 'string', example: 'Error message' })
   message!: string;
 }
+
+export class CountResponse {
+    count: number;
+}
