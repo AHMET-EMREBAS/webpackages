@@ -2,7 +2,7 @@
   @for(option of inputOptions; track option){
 
   <!-- Text Input -->
-  @if(option.inputType ==='text'){
+  @if(option.inputType ==='text' ){
   <wp-input-text
     [inputName]="option.name"
     [inputControl]="control(option.name)"
@@ -16,7 +16,7 @@
   }
 
   <!-- Textarea -->
-  @else if(option.inputType ==='textarea'){
+  @else if(option.inputType ==='textarea' || option.maxLength > 400){
   <wp-input-textarea
     [inputName]="option.name"
     [inputControl]="control(option.name)"

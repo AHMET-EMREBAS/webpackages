@@ -22,6 +22,8 @@ export const ProductMetadata: Metadata = {
       unique: true,
       format: 'barcode',
       example: '787593827182',
+      minLength: 8,
+      maxLength: 13,
     },
   },
   relations: {

@@ -11,7 +11,7 @@ export function printInputValiators(
     property.format == 'email' && `Validators.email`,
     property.required && `Validators.required`,
   ]
-    .filter((e) => e)
+    ?.filter((e) => e)
     .join(', ');
 
   return `[${result}]`;
