@@ -34,6 +34,7 @@ import { EntitySelectOption } from '@webpackages/types';
         [matAutocomplete]="auto"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
         (matChipInputTokenEnd)="addByKeypress($event)"
+        [attr.data-testid]="inputLabel"
       />
       <mat-autocomplete
         #auto="matAutocomplete"

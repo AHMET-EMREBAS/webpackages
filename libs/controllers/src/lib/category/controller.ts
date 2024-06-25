@@ -49,4 +49,12 @@ export class CategoryController {
   async deleteById(@Param('id') id: number) {
     return await this.service.deleteById(id);
   }
+
+  @C.Count()
+  async count(
+    @Query() query: QueryCategoryDto,
+    @Query() search: SearchCategoryDto
+  ) {
+    return await this.service.count(query, search);
+  }
 }

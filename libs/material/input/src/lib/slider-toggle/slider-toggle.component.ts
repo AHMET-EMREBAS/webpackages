@@ -11,6 +11,7 @@ import { InputComponent, InputModules } from '../input';
       <mat-slide-toggle
         [tabindex]="tabIndex"
         [formControl]="inputControl"
+        [attr.data-testid]="inputLabel"
       ></mat-slide-toggle>
     </div>
   `,

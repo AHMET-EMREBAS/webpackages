@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { InputComponent, InputModules } from '../input/input.component';
 import { InputType } from '@webpackages/types';
 
@@ -16,15 +16,21 @@ import { InputType } from '@webpackages/types';
         [formControl]="inputControl"
         [min]="inputMin"
         [max]="inputMax"
-        [attr.data-testid]="inputLabel"
         [autocomplete]="inputAutocomplete || 'off'"
         [valueAsNumber]="true"
+        [attr.data-testid]="inputLabel"
       />
       <mat-hint>{{ inputHint }}</mat-hint>
       <mat-error>{{ errorMessage$ | async }} </mat-error>
     </mat-form-field>
   `,
 })
-export class InputNumberComponent extends InputComponent {
+export class InputNumberComponent extends InputComponent implements OnInit {
   override readonly inputType: InputType = 'number';
+
+  override ngOnInit(): void {
+    super.ngOnInit();
+    this.inputMin = this.inputMin ?? Number.MIN_SAFE_INTEGER;
+    this.inputMax = this.inputMax ?? Number.MAX_SAFE_INTEGER;
+  }
 }

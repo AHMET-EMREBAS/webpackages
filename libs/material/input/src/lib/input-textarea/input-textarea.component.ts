@@ -18,6 +18,7 @@ import { InputType } from '@webpackages/types';
       [formControl]="inputControl"
       [minlength]="inputMinLength"
       [maxLength]="inputMaxLength"
+      [attr.data-testid]="inputLabel"
     ></textarea>
     <mat-hint>{{ inputHint }}</mat-hint>
     <mat-error>{{ errorMessage$ | async }} </mat-error>

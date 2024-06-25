@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { InputComponent, InputModules } from '../input';
 import { InputType } from '@webpackages/types';
 
@@ -24,6 +24,12 @@ import { InputType } from '@webpackages/types';
     </mat-form-field>
   `,
 })
-export class InputTextComponent extends InputComponent {
+export class InputTextComponent extends InputComponent implements OnInit {
   override readonly inputType: InputType = 'text';
+
+  override ngOnInit(): void {
+    super.ngOnInit();
+    this.inputMinLength = this.inputMinLength ?? 0;
+    this.inputMaxLength = this.inputMaxLength ?? 1_000;
+  }
 }

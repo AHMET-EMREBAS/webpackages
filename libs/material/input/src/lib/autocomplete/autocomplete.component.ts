@@ -24,6 +24,7 @@ import { FormControl } from '@angular/forms';
         [matAutocomplete]="auto"
         [multiple]="inputMultiple"
         [tabindex]="tabIndex"
+        [attr.data-testid]="inputLabel"
       />
       <mat-autocomplete
         #auto="matAutocomplete"

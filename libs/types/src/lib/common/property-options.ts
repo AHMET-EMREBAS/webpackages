@@ -7,6 +7,11 @@ import { ResourceName } from '../auth';
 
 export class PropertyOptions {
   type: PropertyType;
+  label: string;
+  class: string;
+  textPrefix: string;
+  textPuffix: string;
+  icon: string;
   groupName: string;
   order: number;
   relationType: RelationType;
@@ -56,7 +61,7 @@ export class PropertyOptions {
   noValidate: boolean;
   isArray: boolean;
   inputType: InputType;
-  icon: string;
+
   dependsOn: string;
   update: boolean;
   unique: boolean;
@@ -64,7 +69,6 @@ export class PropertyOptions {
   hideInCreate: boolean;
   hideInUpdate: boolean;
   className: (value: any) => string;
-
   from: string;
 }
 

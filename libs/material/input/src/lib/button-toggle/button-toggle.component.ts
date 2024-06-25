@@ -18,6 +18,7 @@ import {
       [multiple]="inputMultiple"
       (change)="handleChange($event)"
       [tabindex]="tabIndex"
+      [attr.data-testid]="inputLabel"
     >
       @for(e of inputEnums ; track e){
       <mat-button-toggle #button class="w-full" [value]="e">

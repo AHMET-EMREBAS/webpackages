@@ -24,11 +24,14 @@ import {
   getInputOptionsToken,
 } from '@webpackages/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'wp-form',
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     InputTextComponent,

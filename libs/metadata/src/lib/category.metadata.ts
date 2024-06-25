@@ -5,11 +5,13 @@ export const CategoryMetadata: Metadata = {
   properties: {
     name: {
       type: 'string',
+      label: 'Category Name',
       minLength: 3,
       maxLength: 100,
       required: true,
       unique: true,
       example: 'Default Category',
+      class: 'w-full',
     },
   },
   relations: {},

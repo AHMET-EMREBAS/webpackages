@@ -14,6 +14,7 @@ import { EntitySelectOption } from '@webpackages/types';
         [tabindex]="tabIndex"
         [formControl]="inputControl"
         [multiple]="inputMultiple"
+        [attr.data-testid]="inputLabel"
       >
         @for(option of enumOptions || selectOptions; track option){
         <mat-option [value]="__value(option)">{{ __label(option) }}</mat-option>

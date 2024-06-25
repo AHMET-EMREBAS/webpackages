@@ -1,10 +1,8 @@
 import {
   Component,
-  EventEmitter,
   Input,
   OnDestroy,
   OnInit,
-  Output,
   inject,
   signal,
 } from '@angular/core';
@@ -14,7 +12,6 @@ import {
   Subscription,
   debounceTime,
   map,
-  of,
   startWith,
   switchMap,
 } from 'rxjs';
@@ -38,6 +35,7 @@ import { getHttpSearchQueryBuilderToken } from '@webpackages/material/core';
         [formControl]="__searchControl"
         [matAutocomplete]="auto"
         [multiple]="inputMultiple"
+        [attr.data-testid]="inputLabel"
       />
       <mat-autocomplete
         #auto="matAutocomplete"

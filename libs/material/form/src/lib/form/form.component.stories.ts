@@ -32,6 +32,7 @@ import {
 } from '@ngrx/data';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { provideRouter } from '@angular/router';
 
 const entityMetadata: EntityMetadataMap = {
   Sample: {},
@@ -53,7 +54,6 @@ const formGroup = new FormGroup({
     Validators.required,
     Validators.minLength(3),
     Validators.maxLength(100),
- 
   ]),
   description: new FormControl(null, [Validators.maxLength(1000)]),
   dob: new FormControl(null, [Validators.required]),
@@ -66,6 +66,7 @@ const meta: Meta<FormComponent<any>> = {
   decorators: [
     applicationConfig({
       providers: [
+        provideRouter([]),
         provideNativeDateAdapter(),
         provideAnimations(),
         provideDefaultInputErrorMesssageHandler(),

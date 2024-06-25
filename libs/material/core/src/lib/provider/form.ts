@@ -6,4 +6,4 @@ export const { provide: provideFormGroup, token: getFormGroupToken } =
   createValueProvider<FormGroup | null>('FormGroup', null);
 
 export const { provide: provideInputOptions, token: getInputOptionsToken } =
-  createValueProvider<InputOption[]>('InputOptions', []);
+  createValueProvider<Partial<InputOption>[]>('InputOptions', []);
