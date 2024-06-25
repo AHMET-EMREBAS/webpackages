@@ -18,7 +18,6 @@ import {
 } from '@webpackages/data';
 @Module({
   imports: [TypeOrmModule.forFeature([...entityList])],
-  controllers: [],
 })
 export class AppSeedModule {
   constructor(
