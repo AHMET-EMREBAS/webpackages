@@ -1,19 +1,39 @@
 import { Module } from '@nestjs/common';
-import * as ControllerModules from '@webpackages/controllers';
-import { ConfigModule } from '@nestjs/config';
+import { AppService } from './app.service';
+import { CommonAppModule } from '@webpackages/boot-nest';
+import * as RestModules from '@webpackages/controllers';
+import * as Subscribers from '@webpackages/entities';
 import { DatabaseModule } from '@webpackages/database';
-import { subscriberList, entityList } from '@webpackages/entities';
+import { AuthModule, provideGlobalAuthGuard } from '@webpackages/auth';
+
 @Module({
   imports: [
-    ConfigModule,
-    ...Object.values(ControllerModules).filter((e) =>
-      e.name.endsWith('Module')
-    ),
-
+    CommonAppModule,
+    AuthModule,
     DatabaseModule.configure({
-      subscribers: [...subscriberList],
-      entities: [...entityList],
+      subscribers: [
+        ...Object.values(Subscribers).filter((e) =>
+          e.name.endsWith('Susbscriber')
+        ),
+      ],
     }),
+    ...Object.values(RestModules).filter((e) => e.name.endsWith('Module')),
   ],
+  providers: [AppService, provideGlobalAuthGuard()],
 })
 export class AppModule {}
+
+@Module({
+  imports: [
+    CommonAppModule,
+    DatabaseModule.configure({
+      subscribers: [
+        ...Object.values(Subscribers).filter((e) =>
+          e.name.endsWith('Susbscriber')
+        ),
+      ],
+    }),
+    ...Object.values(RestModules).filter((e) => e.name.endsWith('Module')),
+  ],
+})
+export class PublicAppModule {}

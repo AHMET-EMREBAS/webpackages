@@ -15,7 +15,6 @@ export * from './customer-profile';
 export * from './department';
 export * from './discount';
 export * from './email';
-export * from './entity-list';
 export * from './img';
 export * from './inbox';
 export * from './manufacturer';
