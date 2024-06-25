@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { InputComponent, InputModules } from '../input/input.component';
 import { InputType } from '@webpackages/types';
 
@@ -7,12 +7,13 @@ import { InputType } from '@webpackages/types';
   standalone: true,
   imports: [InputModules],
   template: `
-    <mat-form-field class="w-full" [tabIndex]="tabIndex">
+    <mat-form-field class="w-full">
       <mat-label>{{ inputLabel }} {{ statusIndicator$ | async }}</mat-label>
       <textarea
         style="resize: none; height:10em"
         type="text"
         matInput
+        [tabIndex]="tabIndex"
         [required]="inputRequired!"
         [formControl]="inputControl"
         [minlength]="inputMinLength"
