@@ -112,6 +112,8 @@ import {
 import { User, UserSubscriber, UserView } from './user';
 
 export const entityList = [
+  Sku,
+  SkuView,
   AccessToken,
   AccessTokenView,
   Address,
@@ -186,8 +188,6 @@ export const entityList = [
   SessionView,
   SkuDetail,
   SkuDetailView,
-  Sku,
-  SkuView,
   Sprint,
   SprintView,
   Store,

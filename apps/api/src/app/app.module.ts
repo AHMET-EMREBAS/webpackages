@@ -1,19 +1,20 @@
 import { Module } from '@nestjs/common';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import {} from '@webpackages/resources';
+import { ConfigModule } from '@nestjs/config';
+import { entityList } from '@webpackages/entities';
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      database: 'devdb',
+      database: 'somedb',
       username: 'postgres',
       password: 'strong-password',
-      autoLoadEntities: true,
+      entities: [...entityList],
       dropSchema: true,
       synchronize: true,
     }),
-    SkuModule,
   ],
   providers: [AppService],
 })
