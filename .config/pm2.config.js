@@ -19,6 +19,7 @@ module.exports = {
         JWT_SECRET: 'Secret',
       },
     },
+    // For testing purpose
     {
       name: 'api-development',
       script: 'dist/apps/api/main.js',
