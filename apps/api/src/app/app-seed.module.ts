@@ -16,7 +16,9 @@ import {
   getBuiltinSuppliers,
 } from '@webpackages/data';
 @Module({
-  imports: [TypeOrmModule.forFeature([Category, Supplier, PriceLevel])],
+  imports: [
+    TypeOrmModule.forFeature([Category, Supplier, PriceLevel, Store, Product]),
+  ],
   controllers: [],
 })
 export class AppSeedModule {

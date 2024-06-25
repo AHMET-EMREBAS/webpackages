@@ -13,8 +13,8 @@ import { Supplier } from '../supplier';
 })
 export class ProductView extends BaseView {
   @ViewColumn() name: string;
-  @ViewColumn() description: string;
   @ViewColumn() upc: string;
+  @ViewColumn() description: string;
 
   @ViewColumn() categoryName: Category['name'];
   @ViewColumn() categoryId: Category['id'];
