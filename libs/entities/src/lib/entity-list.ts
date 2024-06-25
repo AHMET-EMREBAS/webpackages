@@ -1,101 +1,213 @@
-import { AccessToken, AccessTokenSubscriber } from './access-token';
-import { Address, AddressSubscriber } from './address';
-import { AppEvent, AppEventSubscriber } from './app-event';
-import { Cart, CartSubscriber } from './cart';
-import { Category, CategorySubscriber } from './category';
-import { Clock, ClockSubscriber } from './clock';
-import { CustomerAccount, CustomerAccountSubscriber } from './customer-account';
-import { CustomerAddress, CustomerAddressSubscriber } from './customer-address';
-import { CustomerEmail, CustomerEmailSubscriber } from './customer-email';
-import { CustomerImg, CustomerImgSubscriber } from './customer-img';
-import { CustomerPhone, CustomerPhoneSubscriber } from './customer-phone';
-import { CustomerProfile, CustomerProfileSubscriber } from './customer-profile';
-import { Customer, CustomerSubscriber } from './customer';
-import { Department, DepartmentSubscriber } from './department';
-import { Discount, DiscountSubscriber } from './discount';
-import { Email, EmailSubscriber } from './email';
-import { Img, ImgSubscriber } from './img';
-import { Inbox, InboxSubscriber } from './inbox';
-import { Manufacturer, ManufacturerSubscriber } from './manufacturer';
-import { Message, MessageSubscriber } from './message';
-import { Notification, NotificationSubscriber } from './notification';
-import { Order, OrderSubscriber } from './order';
-import { Organization, OrganizationSubscriber } from './organization';
-import { Phone, PhoneSubscriber } from './phone';
-import { PriceLevel, PriceLevelSubscriber } from './price-level';
-import { Price, PriceSubscriber } from './price';
-import { ProductImg, ProductImgSubscriber } from './product-img';
-import { Product, ProductSubscriber } from './product';
-import { Profile, ProfileSubscriber } from './profile';
-import { Project, ProjectSubscriber } from './project';
-import { PurchaseOrder, PurchaseOrderSubscriber } from './purchase-order';
-import { Purchase, PurchaseSubscriber } from './purchase';
-import { Quantity, QuantitySubscriber } from './quantity';
-import { Sale, SaleSubscriber } from './sale';
-import { SerialNumber, SerialNumberSubscriber } from './serial-number';
-import { Session, SessionSubscriber } from './session';
-import { SkuDetail, SkuDetailSubscriber } from './sku-detail';
-import { Sku, SkuSubscriber } from './sku';
-import { Sprint, SprintSubscriber } from './sprint';
-import { Store, StoreSubscriber } from './store';
-import { Supplier, SupplierSubscriber } from './supplier';
-import { Task, TaskSubscriber } from './task';
-import { UserAddress, UserAddressSubscriber } from './user-address';
-import { UserEmail, UserEmailSubscriber } from './user-email';
-import { UserImg, UserImgSubscriber } from './user-img';
-import { UserPhone, UserPhoneSubscriber } from './user-phone';
-import { UserProfile, UserProfileSubscriber } from './user-profile';
-import { User, UserSubscriber } from './user';
+import {
+  AccessToken,
+  AccessTokenSubscriber,
+  AccessTokenView,
+} from './access-token';
+import { Address, AddressSubscriber, AddressView } from './address';
+import { AppEvent, AppEventSubscriber, AppEventView } from './app-event';
+import { Cart, CartSubscriber, CartView } from './cart';
+import { Category, CategorySubscriber, CategoryView } from './category';
+import { Clock, ClockSubscriber, ClockView } from './clock';
+import {
+  CustomerAccount,
+  CustomerAccountSubscriber,
+  CustomerAccountView,
+} from './customer-account';
+import {
+  CustomerAddress,
+  CustomerAddressSubscriber,
+  CustomerAddressView,
+} from './customer-address';
+import {
+  CustomerEmail,
+  CustomerEmailSubscriber,
+  CustomerEmailView,
+} from './customer-email';
+import {
+  CustomerImg,
+  CustomerImgSubscriber,
+  CustomerImgView,
+} from './customer-img';
+import {
+  CustomerPhone,
+  CustomerPhoneSubscriber,
+  CustomerPhoneView,
+} from './customer-phone';
+import {
+  CustomerProfile,
+  CustomerProfileSubscriber,
+  CustomerProfileView,
+} from './customer-profile';
+import { Customer, CustomerSubscriber, CustomerView } from './customer';
+import { Department, DepartmentSubscriber, DepartmentView } from './department';
+import { Discount, DiscountSubscriber, DiscountView } from './discount';
+import { Email, EmailSubscriber, EmailView } from './email';
+import { Img, ImgSubscriber, ImgView } from './img';
+import { Inbox, InboxSubscriber, InboxView } from './inbox';
+import {
+  Manufacturer,
+  ManufacturerSubscriber,
+  ManufacturerView,
+} from './manufacturer';
+import { Message, MessageSubscriber, MessageView } from './message';
+import {
+  Notification,
+  NotificationSubscriber,
+  NotificationView,
+} from './notification';
+import { Order, OrderSubscriber, OrderView } from './order';
+import {
+  Organization,
+  OrganizationSubscriber,
+  OrganizationView,
+} from './organization';
+import { Phone, PhoneSubscriber, PhoneView } from './phone';
+import {
+  PriceLevel,
+  PriceLevelSubscriber,
+  PriceLevelView,
+} from './price-level';
+import { Price, PriceSubscriber, PriceView } from './price';
+import {
+  ProductImg,
+  ProductImgSubscriber,
+  ProductImgView,
+} from './product-img';
+import { Product, ProductSubscriber, ProductView } from './product';
+import { Profile, ProfileSubscriber, ProfileView } from './profile';
+import { Project, ProjectSubscriber, ProjectView } from './project';
+import {
+  PurchaseOrder,
+  PurchaseOrderSubscriber,
+  PurchaseOrderView,
+} from './purchase-order';
+import { Purchase, PurchaseSubscriber, PurchaseView } from './purchase';
+import { Quantity, QuantitySubscriber, QuantityView } from './quantity';
+import { Sale, SaleSubscriber, SaleView } from './sale';
+import {
+  SerialNumber,
+  SerialNumberSubscriber,
+  SerialNumberView,
+} from './serial-number';
+import { Session, SessionSubscriber, SessionView } from './session';
+import { SkuDetail, SkuDetailSubscriber, SkuDetailView } from './sku-detail';
+import { Sku, SkuSubscriber, SkuView } from './sku';
+import { Sprint, SprintSubscriber, SprintView } from './sprint';
+import { Store, StoreSubscriber, StoreView } from './store';
+import { Supplier, SupplierSubscriber, SupplierView } from './supplier';
+import { Task, TaskSubscriber, TaskView } from './task';
+import {
+  UserAddress,
+  UserAddressSubscriber,
+  UserAddressView,
+} from './user-address';
+import { UserEmail, UserEmailSubscriber, UserEmailView } from './user-email';
+import { UserImg, UserImgSubscriber, UserImgView } from './user-img';
+import { UserPhone, UserPhoneSubscriber, UserPhoneView } from './user-phone';
+import {
+  UserProfile,
+  UserProfileSubscriber,
+  UserProfileView,
+} from './user-profile';
+import { User, UserSubscriber, UserView } from './user';
 
 export const entityList = [
   AccessToken,
+  AccessTokenView,
   Address,
+  AddressView,
   AppEvent,
+  AppEventView,
   Cart,
+  CartView,
   Category,
+  CategoryView,
   Clock,
+  ClockView,
   CustomerAccount,
+  CustomerAccountView,
   CustomerAddress,
+  CustomerAddressView,
   CustomerEmail,
+  CustomerEmailView,
   CustomerImg,
+  CustomerImgView,
   CustomerPhone,
+  CustomerPhoneView,
   CustomerProfile,
+  CustomerProfileView,
   Customer,
+  CustomerView,
   Department,
+  DepartmentView,
   Discount,
+  DiscountView,
   Email,
+  EmailView,
   Img,
+  ImgView,
   Inbox,
+  InboxView,
   Manufacturer,
+  ManufacturerView,
   Message,
+  MessageView,
   Notification,
+  NotificationView,
   Order,
+  OrderView,
   Organization,
+  OrganizationView,
   Phone,
+  PhoneView,
   PriceLevel,
+  PriceLevelView,
   Price,
+  PriceView,
   ProductImg,
+  ProductImgView,
   Product,
+  ProductView,
   Profile,
+  ProfileView,
   Project,
+  ProjectView,
   PurchaseOrder,
+  PurchaseOrderView,
   Purchase,
+  PurchaseView,
   Quantity,
+  QuantityView,
   Sale,
+  SaleView,
   SerialNumber,
+  SerialNumberView,
   Session,
+  SessionView,
   SkuDetail,
+  SkuDetailView,
   Sku,
+  SkuView,
   Sprint,
+  SprintView,
   Store,
+  StoreView,
   Supplier,
+  SupplierView,
   Task,
+  TaskView,
   UserAddress,
+  UserAddressView,
   UserEmail,
+  UserEmailView,
   UserImg,
+  UserImgView,
   UserPhone,
+  UserPhoneView,
   UserProfile,
+  UserProfileView,
   User,
+  UserView,
 ];
 
 export const subscriberList = [

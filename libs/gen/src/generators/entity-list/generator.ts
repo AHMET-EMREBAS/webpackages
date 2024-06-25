@@ -8,7 +8,7 @@ export async function entityListGenerator(tree: Tree) {
   const entityImports = Object.entries(Metadata)
     .map(([key, value]) => {
       const N = names(key.replace('Metadata', ''));
-      return `import {${N.className}, ${N.className}Subscriber } from './${N.fileName}';`;
+      return `import {${N.className}, ${N.className}Subscriber,${N.className}View, } from './${N.fileName}';`;
     })
     .join('\n');
 
@@ -16,7 +16,10 @@ export async function entityListGenerator(tree: Tree) {
     `export const entityList = [\n` +
     Object.entries(Metadata)
       .map(([key, value]) => {
-        return names(key.replace('Metadata', '')).className;
+        return [
+          names(key.replace('Metadata', '')).className,
+          names(key.replace('Metadata', '')).className + 'View',
+        ].join(',');
       })
       .join(',') +
     '\n]';

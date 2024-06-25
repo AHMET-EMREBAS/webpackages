@@ -17,6 +17,6 @@ import { entityList, subscriberList } from '@webpackages/entities';
     AppSeedModule,
     ...Object.values(RestModules).filter((e) => e.name.endsWith('Module')),
   ],
-  providers: [AppService, provideGlobalAuthGuard()],
+  providers: [AppService],
 })
 export class AppModule {}

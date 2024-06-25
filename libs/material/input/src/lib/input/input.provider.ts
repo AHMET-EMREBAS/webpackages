@@ -100,3 +100,12 @@ export const provideDefaultAutocompleteOptions = (): Provider => {
     } as MatAutocompleteDefaultOptions,
   };
 };
+
+export function provideDefaultInputOptions() {
+  return [
+    provideDefaultInputErrorMesssageHandler(),
+    provideDefaultInputStatusIndicatorHandler(),
+    provideDefaultInputDebounceTime(),
+    provideDefaultAutocompleteOptions(),
+  ];
+}

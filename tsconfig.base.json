@@ -42,7 +42,6 @@
       "@webpackages/material/table": ["libs/material/table/src/index.ts"],
       "@webpackages/metadata": ["libs/metadata/src/index.ts"],
       "@webpackages/models": ["libs/models/src/index.ts"],
-      "@webpackages/ngrx": ["libs/ngrx/src/index.ts"],
       "@webpackages/notification": ["libs/notification/src/index.ts"],
       "@webpackages/path": ["libs/path/src/index.ts"],
       "@webpackages/property": ["libs/property/src/index.ts"],
