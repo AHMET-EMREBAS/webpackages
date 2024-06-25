@@ -9,5 +9,15 @@ export function getBuiltinSuppliers(): Partial<ISupplier>[] {
     { id: 5, name: 'Office Depot' },
     { id: 6, name: 'Home Depot' },
     { id: 7, name: 'Wallmart' },
+    { id: 1, name: 'Hikvision' },
+    { id: 2, name: 'Dahua Technology' },
+    { id: 3, name: 'Axis Communications' },
+    { id: 4, name: 'Hanwha Techwin' },
+    { id: 5, name: 'Lorex Technology' },
+    { id: 6, name: 'Vivotek' },
+    { id: 7, name: 'Uniview (UNV)' },
+    { id: 8, name: 'Pelco by Schneider Electric' },
+    { id: 9, name: 'Bosch Security Systems' },
+    { id: 10, name: 'FLIR Systems' },
   ];
 }

@@ -37,7 +37,7 @@ export class AppModule {}
         ),
       ],
     }),
-    TypeOrmModule.forFeature([Category, Supplier]),
+    TypeOrmModule.forFeature([Category, Supplier, PriceLevel]),
     ...Object.values(RestModules).filter((e) => e.name.endsWith('Module')),
   ],
 })
