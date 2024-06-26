@@ -41,6 +41,8 @@ export const InventoryRoutes: Route[] = [
         },
         { label: 'Quantity', icon: 'numbers', route: 'quantity' },
         { label: 'Store', icon: 'store', route: 'store' },
+        { label: 'Category', icon: 'category', route: 'category' },
+        
       ]),
     ],
 
@@ -58,6 +60,7 @@ export const InventoryRoutes: Route[] = [
       __route('category', CategoryRoutes),
 
       __route('store', StoreRoutes),
+      __route('category', CategoryRoutes),
     ],
   },
 ];

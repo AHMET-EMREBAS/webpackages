@@ -418,7 +418,6 @@ export function printOrderablePropertyNames(m: Metadata) {
     .filter((e) => e)
     .join(',');
 
-  console.log(result);
   return `[ ${result} ]`;
 }
 

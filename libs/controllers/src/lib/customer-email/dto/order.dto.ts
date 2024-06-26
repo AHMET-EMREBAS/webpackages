@@ -5,5 +5,5 @@ import { Exclude } from 'class-transformer';
 @Exclude()
 export class OrderCustomerEmailDto extends CreateOrderDto<CustomerEmailView>([
   'email',
-  'userUsername',
+  'customerUsername',
 ]) {}

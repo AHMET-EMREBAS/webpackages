@@ -4,5 +4,5 @@ import { Exclude } from 'class-transformer';
 
 @Exclude()
 export class OrderCustomerProfileDto extends CreateOrderDto<CustomerProfileView>(
-  ['firstName', 'lastName', 'middleName', 'userUsername']
+  ['firstName', 'lastName', 'middleName', 'customerUsername']
 ) {}
