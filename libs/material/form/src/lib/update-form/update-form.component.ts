@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, Inject, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,13 +20,16 @@ import {
   getEntityCollectionServiceToken,
   getFormGroupToken,
   getInputOptionsToken,
+  getUpdateFormGroupToken,
+  getUpdateInputOptionsToken,
 } from '@webpackages/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { PropertyOptions } from '@webpackages/types';
+import { isNotUndefined } from '@webpackages/utils';
 
 @Component({
-  selector: 'wp-form',
+  selector: 'wp-update-form',
   standalone: true,
   imports: [
     CommonModule,
@@ -46,30 +48,52 @@ import { PropertyOptions } from '@webpackages/types';
     MatIconModule,
     MatCheckboxModule,
   ],
-  templateUrl: './form.component.html',
+
+  templateUrl: './update-form.component.html',
 })
-export class FormComponent<T = any> {
+export class UpdateFormComponent<T = any> implements OnInit {
   submitted = false;
-  formGroup = inject(getFormGroupToken());
+  formGroup = inject(getUpdateFormGroupToken());
+
+  entityId: number;
 
   constructor(
     @Inject(getEntityCollectionServiceToken())
     protected readonly service: EntityCollectionService<T>,
-    @Inject(getInputOptionsToken())
-    public readonly inputOptions: PropertyOptions[]
+    @Inject(getUpdateInputOptionsToken())
+    public readonly inputOptions: PropertyOptions[],
+    private readonly route: ActivatedRoute
   ) {}
+
+  async ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (isNotUndefined(id)) {
+      this.entityId = parseInt(id);
+
+      const foundItem = await firstValueFrom(
+        this.service.getByKey(this.entityId)
+      );
+
+      for (const [key, value] of Object.entries(foundItem)) {
+        const c = this.formGroup.get(key);
+        if (c) {
+          c.setValue(value);
+        }
+      }
+    }
+  }
 
   async saveItem() {
     try {
       await firstValueFrom(
-        this.service?.add(
-          { ...this.formGroup.value },
+        this.service?.update(
+          { ...this.formGroup.value, id: this.entityId },
           {
             isOptimistic: false,
           }
         )
       );
-
       this.submitted = true;
     } catch (err) {
       const rawErrors = (err as DataServiceError).error.error.errors;

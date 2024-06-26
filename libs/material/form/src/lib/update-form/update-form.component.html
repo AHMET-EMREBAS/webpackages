@@ -1,0 +1,156 @@
+<form class="w-full flex flex-row flex-wrap gap-4">
+    @for(option of inputOptions; track option){
+  
+    <!-- Text Input -->
+    @if(option.inputType ==='text' ){
+    <wp-input-text
+      [inputName]="option.name"
+      [inputControl]="control(option.name)"
+      [inputLabel]="option.label"
+      [inputRequired]="option.required"
+      [inputMinLength]="option.minLength"
+      [inputMaxLength]="option.maxLength"
+      [class]="option.class"
+      [tabindex]="option.tabIndex"
+    ></wp-input-text>
+    }
+  
+    <!-- Textarea -->
+    @else if(option.inputType ==='textarea' || option.maxLength > 400){
+    <wp-input-textarea
+      [inputName]="option.name"
+      [inputControl]="control(option.name)"
+      [inputLabel]="option.label"
+      [inputRequired]="option.required"
+      [inputMinLength]="option.minLength"
+      [inputMaxLength]="option.maxLength"
+      [class]="option.class"
+      [tabindex]="option.tabIndex"
+    ></wp-input-textarea>
+    }
+  
+    <!-- Number -->
+    @else if(option.inputType ==='number' || option.type ==='number'){
+    <wp-input-number
+      [inputName]="option.name"
+      [inputControl]="control(option.name)"
+      [inputLabel]="option.label"
+      [inputRequired]="option.required"
+      [inputMin]="option.minimum"
+      [inputMax]="option.maximum"
+      [class]="option.class"
+      [tabindex]="option.tabIndex"
+    ></wp-input-number>
+    }
+  
+    <!-- Date -->
+    @else if(option.inputType ==='date' || option.type ==='date'){
+    <wp-input-date
+      [inputName]="option.name"
+      [inputControl]="control(option.name)"
+      [inputLabel]="option.label"
+      [inputRequired]="option.required"
+      [class]="option.class"
+      [tabindex]="option.tabIndex"
+    ></wp-input-date>
+    }
+  
+    <!-- Search  -->
+    @else if(option.inputType ==='search' ){
+  
+    <wp-search
+      [inputName]="option.name"
+      [inputControl]="control(option.name)"
+      [inputLabel]="option.label"
+      [inputRequired]="option.required"
+      [resourceName]="option.resourceName"
+      [resourceLabelProperty]="option.resourceLabelProperty"
+      [class]="option.class"
+      [tabindex]="option.tabIndex"
+    ></wp-search>
+  
+    }
+  
+    <!-- Search Many -->
+    @else if(option.inputType ==='search-many'){
+  
+    <wp-search-many
+      [inputName]="option.name"
+      [inputControl]="control(option.name)"
+      [inputLabel]="option.label"
+      [resourceName]="option.resourceName"
+      [resourceLabelProperty]="option.resourceLabelProperty"
+      [class]="option.class"
+      [tabindex]="option.tabIndex"
+    ></wp-search-many>
+  
+    }
+  
+    <!-- Autocomplete -->
+    @else if(option.inputType ==='autocomplete'){
+    <wp-autocomplete
+      [inputName]="option.name"
+      [inputControl]="control(option.name)"
+      [inputLabel]="option.label"
+      [inputRequired]="option.required"
+      [autocompleteOptions]="option.autocompleteOptions || []"
+      [class]="option.class"
+      [tabindex]="option.tabIndex"
+    ></wp-autocomplete>
+    }
+  
+    <!-- Autocomplete Many -->
+    @else if(option.inputType ==='autocomplete-many'){
+    <wp-autocomplete-many
+      [inputName]="option.name"
+      [inputControl]="control(option.name)"
+      [inputLabel]="option.label"
+      [inputRequired]="option.required"
+      [autocompleteOptions]="option.autocompleteOptions || []"
+      [class]="option.class"
+      [tabindex]="option.tabIndex"
+    ></wp-autocomplete-many>
+    }
+  
+    <!-- Checkbox -->
+    @else if(option.inputType ==='checkbox' || option.type ==='boolean'){
+    <mat-checkbox
+      [name]="option.name"
+      [formControl]="control(option.name)"
+      [tabindex]="option.tabIndex"
+      class="mr-16"
+    >
+      {{ option.label }}
+    </mat-checkbox>
+    }
+  
+    <!-- Text -->
+    @else{
+    <wp-input-text
+      [inputName]="option.name"
+      [inputLabel]="option.label"
+      [inputControl]="control(option.name)"
+      [inputRequired]="option.required"
+      [inputMinLength]="option.minLength"
+      [inputMaxLength]="option.maxLength"
+      [class]="option.class"
+      [tabindex]="option.tabIndex"
+    ></wp-input-text>
+    }
+  
+    <!-- End -->
+    }
+    <div class="w-full flex flex-row gap-4 order-last">
+      <button
+        class="w-full"
+        mat-raised-button
+        color="primary"
+        (click)="saveItem()"
+      >
+        <!-- [disabled]="formGroup.invalid || submitted" -->
+        Save
+      </button>
+      <button class="w-full" mat-raised-button (click)="reset()">Reset</button>
+    </div>
+  </form>
+  

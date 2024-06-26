@@ -20,6 +20,7 @@ export function toFormInputOptions(
           : value.conditionalClass
           ? undefined
           : 'w-full',
+        update: value.update == false ? false : true,
         icon: value.icon ?? 'info',
       };
 
@@ -107,4 +108,8 @@ export function toTableColumnOptions(
       })
       .flat() || []),
   ];
+}
+
+export function toUpdateFormInputOptions(metadata: Metadata) {
+  return toFormInputOptions(metadata).filter((e) => e.update);
 }
