@@ -8,7 +8,34 @@ import { PriceLevel } from '../price-level';
 
 @ViewEntity({
   expression(ds) {
-    return baseQueryBuilder<Price>(ds, Price, PriceMetadata);
+    return ds
+      .createQueryBuilder()
+
+      .select('ROW_NUMBER() OVER ()', 'id')
+      .addSelect('main.id', 'eid')
+      .addSelect('main.createdAt', 'createdAt')
+      .addSelect('main.updatedAt', 'updatedAt')
+      .addSelect('main.deletedAt', 'deletedAt')
+      .addSelect('main.active', 'active')
+      .addSelect('main.price', 'price')
+      .addSelect('main.cost', 'cost')
+      .addSelect('main.startDate', 'startDate')
+      .addSelect('main.endDate', 'endDate')
+
+      .addSelect('sku.name', 'skuName')
+      .addSelect('sku.sku', 'skuSku')
+      .addSelect('sku.id', 'skuId')
+      .addSelect('sku.active', 'skuActive')
+
+      .addSelect('priceLevel.name', 'priceLevelName')
+      .addSelect('priceLevel.id', 'priceLevelId')
+      .addSelect('priceLevel.active', 'priceLevelActive')
+      
+      .from(Price, 'main')
+
+      .leftJoin(Sku, 'sku', 'main.skuId = sku.id')
+
+      .leftJoin(PriceLevel, 'priceLevel');
   },
 })
 export class PriceView extends BaseView {

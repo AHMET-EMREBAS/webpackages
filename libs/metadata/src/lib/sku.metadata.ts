@@ -23,6 +23,7 @@ export const SkuMetadata: Metadata = {
     sku: {
       type: 'string',
       required: true,
+      unique: true,
       description: 'Unique sku code',
       format: 'barcode',
       inputType: 'text',

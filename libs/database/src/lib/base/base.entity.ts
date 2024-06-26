@@ -84,7 +84,6 @@ export function baseQueryBuilder<T extends BaseEntity>(
 ): SelectQueryBuilder<T> {
   const query = ds
     .createQueryBuilder()
-    .createQueryBuilder()
     .select('ROW_NUMBER() OVER ()', 'id')
     .addSelect('main.id', 'eid')
     .addSelect('main.createdAt', 'createdAt')

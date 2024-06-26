@@ -186,7 +186,7 @@ export function printRelationImportsFromResource(m: Metadata) {
   if (m.relations) {
     const r1 = new Set(
       Object.values(m.relations).map((e) => {
-        return `import { ${e.targetName} } from '@webpackages/entities'`;
+        return `import { ${e.targetName},${e.targetName}View } from '@webpackages/entities'`;
       })
     );
 
@@ -200,7 +200,7 @@ export function printRelationEntitiesFromResource(m: Metadata) {
   const r1 = [
     ...new Set(
       Object.values(m.relations || {}).map((e) => {
-        return `${e.targetName}`;
+        return `${e.targetName}, ${e.targetName}View`;
       })
     ),
   ].join(',');

@@ -4,11 +4,20 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { Cart, CartView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { CartService } from './service';
-import { Customer } from '@webpackages/entities';
-import { User } from '@webpackages/entities';
+import { Customer, CustomerView } from '@webpackages/entities';
+import { User, UserView } from '@webpackages/entities';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Cart, CartView, Customer, User])],
+  imports: [
+    TypeOrmModule.forFeature([
+      Cart,
+      CartView,
+      Customer,
+      CustomerView,
+      User,
+      UserView,
+    ]),
+  ],
   controllers: [CartController],
   providers: [CartService],
 })

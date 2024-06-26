@@ -5,6 +5,7 @@ import * as RestModules from '@webpackages/controllers';
 import * as Subscribers from '@webpackages/entities';
 import { DatabaseModule } from '@webpackages/database';
 import { AuthModule, provideGlobalAuthGuard } from '@webpackages/auth';
+import { AppSeedModule } from './app-seed.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { AuthModule, provideGlobalAuthGuard } from '@webpackages/auth';
         ),
       ],
     }),
+    AppSeedModule,
     ...Object.values(RestModules).filter((e) => e.name.endsWith('Module')),
   ],
   providers: [AppService, provideGlobalAuthGuard()],

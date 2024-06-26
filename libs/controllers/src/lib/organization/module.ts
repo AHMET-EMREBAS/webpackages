@@ -4,10 +4,12 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { Organization, OrganizationView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { OrganizationService } from './service';
-import { User } from '@webpackages/entities';
+import { User, UserView } from '@webpackages/entities';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Organization, OrganizationView, User])],
+  imports: [
+    TypeOrmModule.forFeature([Organization, OrganizationView, User, UserView]),
+  ],
   controllers: [OrganizationController],
   providers: [OrganizationService],
 })

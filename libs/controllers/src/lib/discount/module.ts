@@ -4,12 +4,19 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { Discount, DiscountView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { DiscountService } from './service';
-import { Sku } from '@webpackages/entities';
-import { PriceLevel } from '@webpackages/entities';
+import { Sku, SkuView } from '@webpackages/entities';
+import { PriceLevel, PriceLevelView } from '@webpackages/entities';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Discount, DiscountView, Sku, PriceLevel]),
+    TypeOrmModule.forFeature([
+      Discount,
+      DiscountView,
+      Sku,
+      SkuView,
+      PriceLevel,
+      PriceLevelView,
+    ]),
   ],
   controllers: [DiscountController],
   providers: [DiscountService],

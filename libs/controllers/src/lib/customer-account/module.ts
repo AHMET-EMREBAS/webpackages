@@ -4,8 +4,8 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { CustomerAccount, CustomerAccountView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { CustomerAccountService } from './service';
-import { Customer } from '@webpackages/entities';
-import { PriceLevel } from '@webpackages/entities';
+import { Customer, CustomerView } from '@webpackages/entities';
+import { PriceLevel, PriceLevelView } from '@webpackages/entities';
 
 @Module({
   imports: [
@@ -13,7 +13,9 @@ import { PriceLevel } from '@webpackages/entities';
       CustomerAccount,
       CustomerAccountView,
       Customer,
+      CustomerView,
       PriceLevel,
+      PriceLevelView,
     ]),
   ],
   controllers: [CustomerAccountController],

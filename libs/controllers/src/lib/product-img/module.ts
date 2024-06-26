@@ -4,10 +4,17 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { ProductImg, ProductImgView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { ProductImgService } from './service';
-import { Product } from '@webpackages/entities';
+import { Product, ProductView } from '@webpackages/entities';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ProductImg, ProductImgView, Product])],
+  imports: [
+    TypeOrmModule.forFeature([
+      ProductImg,
+      ProductImgView,
+      Product,
+      ProductView,
+    ]),
+  ],
   controllers: [ProductImgController],
   providers: [ProductImgService],
 })
