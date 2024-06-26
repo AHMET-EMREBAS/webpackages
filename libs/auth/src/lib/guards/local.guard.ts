@@ -1,4 +1,9 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  Logger,
+} from '@nestjs/common';
 import { AuthService } from '../auth.service';
 import { Request } from 'express';
 import { isNotUndefined } from '@webpackages/utils';
@@ -9,6 +14,8 @@ import { appendParams } from '../common';
  */
 @Injectable()
 export class LocalGuard implements CanActivate {
+  protected readonly logger = new Logger('LocalGuard');
+
   constructor(protected readonly authService: AuthService) {}
 
   async canActivate(ctx: ExecutionContext) {
@@ -16,6 +23,8 @@ export class LocalGuard implements CanActivate {
     const { username, password } = ctx.switchToHttp().getRequest().body;
     const foundSession = await this.authService.login({ username, password });
 
+
+    
     if (isNotUndefined(foundSession)) {
       appendParams(req, foundSession);
       return true;

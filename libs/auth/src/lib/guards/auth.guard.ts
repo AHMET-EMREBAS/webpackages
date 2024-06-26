@@ -1,25 +1,24 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  Logger,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import {
   PublicResourceToken,
-  RequiredRole,
   RequiredRoleToken,
   ResouceNameToken,
   ResourceOperationType,
 } from '@webpackages/access-policy';
 import { Request } from 'express';
 import { AuthService } from '../auth.service';
-import {
-  AuthHeaders,
-  Operation,
-  ResourceName,
-  RoleNames,
-} from '@webpackages/types';
+import { Operation, ResourceName, RoleNames } from '@webpackages/types';
 import { appendParams, extractToken } from '../common';
-import { v4 } from 'uuid';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+  protected readonly logger = new Logger('AuthGuard');
   constructor(
     protected readonly reflector: Reflector,
     protected readonly authService: AuthService
@@ -47,7 +46,7 @@ export class AuthGuard implements CanActivate {
       ctx.getHandler(),
     ]) as RoleNames;
 
-    console.log(operationName, resouceName);
+    this.logger.debug(`Resource Name : ${resouceName}, Operation Name : ${operationName}`);
 
     const req = ctx.switchToHttp().getRequest<Request>();
 

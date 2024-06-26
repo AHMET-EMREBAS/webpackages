@@ -1,6 +1,8 @@
 import {
+  BadRequestException,
   Injectable,
   InternalServerErrorException,
+  Logger,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -16,6 +18,8 @@ import { isNotUndefined } from '@webpackages/utils';
 
 @Injectable()
 export class AuthService {
+  protected readonly logger = new Logger('AuthService');
+
   constructor(
     @InjectRepository(User) protected readonly userRepo: Repository<User>,
     @InjectRepository(Session)
@@ -40,9 +44,11 @@ export class AuthService {
 
   async findByUsername(username: string) {
     try {
-      return await this.userRepo.findOneOrFail({
+      const foundUser = await this.userRepo.findOneOrFail({
         where: { username: Equal(username) },
       });
+      this.logger.debug(`Found user ${foundUser.username}`);
+      return foundUser;
     } catch (err) {
       throw new UnauthorizedException(`User not found!`);
     }
@@ -50,10 +56,18 @@ export class AuthService {
 
   async login(loginDto: LoginDto) {
     const { username, password } = loginDto;
+
+    this.logger.debug(`Trying to login with ${username}@${password}`);
     const foundUser = await this.findByUsername(username);
 
     const { password: hashedPassed } = foundUser;
+
     const isPasswordMatch = compareHash(password, hashedPassed);
+
+    if (isPasswordMatch != true) {
+      this.logger.debug(`Wrong password for ${username}@${password}`);
+      throw new BadRequestException(`Wrong password`);
+    }
 
     let newSession: Session;
     try {
@@ -65,21 +79,39 @@ export class AuthService {
         token: v4(),
       });
     } catch (err) {
-      console.error('Could not create the session');
-      console.error(err);
+      this.logger.debug('Could not create the session');
+      this.logger.debug(err);
       throw new InternalServerErrorException();
     }
 
-    if (isPasswordMatch) {
-      const token = this.sign(newSession.id);
+    this.logger.debug('Created session');
+    const token = this.sign(newSession.id);
 
+    this.logger.debug(
+      `Signed token for the user ${newSession.id}, ${newSession.user.username}@*`
+    );
+
+    try {
       await this.sessionRepo.update(newSession.id, { token });
-      return await this.sessionRepo.findOneBy({
-        id: newSession.id,
-      });
+
+      this.logger.debug('');
+    } catch (err) {
+      this.logger.debug(`Could not update the session token`);
+      this.logger.error(err);
+      throw new InternalServerErrorException();
     }
 
-    throw new UnauthorizedException('Wrong password');
+    try {
+      const session = await this.sessionRepo.findOneBy({
+        id: newSession.id,
+      });
+
+      this.logger.debug('Returning session');
+
+      return session;
+    } catch (err) {
+      throw new InternalServerErrorException();
+    }
   }
 
   async logout(session: Session) {
