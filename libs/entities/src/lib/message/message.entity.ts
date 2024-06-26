@@ -6,8 +6,8 @@ import { User } from '../user';
 
 @Entity()
 export class Message extends BaseEntity implements IMessage {
-  @Column({ type: 'string', required: false, unique: false }) message: string;
-  @Column({ type: 'date', required: false, unique: false }) readDate: Date;
+  @Column({ type: 'string' }) message: string;
+  @Column({ type: 'date' }) readDate: Date;
 
   @Relation({ relationType: 'owner', target: User }) user: User;
   @Relation({ relationType: 'one', target: User }) to: User;

@@ -8,9 +8,9 @@ import { Discount } from '../discount';
 
 @Entity()
 export class Order extends BaseEntity implements IOrder {
-  @Column({ type: 'number', required: true, unique: false }) unitPrice: number;
-  @Column({ type: 'number', required: true, unique: false }) subTotal: number;
-  @Column({ type: 'number', required: false, unique: false }) quantity: number;
+  @Column({ type: 'number', required: true }) unitPrice: number;
+  @Column({ type: 'number', required: true }) subTotal: number;
+  @Column({ type: 'number' }) quantity: number;
 
   @Relation({ relationType: 'owner', target: Sku }) sku: Sku;
   @Relation({ relationType: 'owner', target: Cart }) cart: Cart;

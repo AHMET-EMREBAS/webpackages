@@ -223,16 +223,23 @@ export function printEntityColumns(metadata: Metadata) {
     const result = Object.entries(metadata.properties).map(([key, value]) => {
       const propertyType = printPropertyType(value);
 
-      const __type = value.type != undefined ? `type:'${value.type}',` : '';
-      const __required =
-        value.required != undefined ? `required:'${value.required}',` : '';
+      const __type =
+        value.type != undefined ? `type:'${value.type}'` : undefined;
+   
+        const __required =
+        value.required != undefined
+          ? `required:${value.required}`
+          : undefined;
+
       const __unique =
-        value.unique != undefined ? `unique:'${value.unique}',` : '';
+        value.unique != undefined ? `unique:${value.unique}` : undefined;
 
       const __format =
-        value.format != undefined ? `format:'${value.format}',` : '';
+        value.format != undefined ? `format:'${value.format}'` : undefined;
 
-      const options = [__type, __required, __unique, __format].join(', ');
+      const options = [__type, __required, __unique, __format]
+        .filter((e) => e)
+        .join(',');
 
       return `@Column({ ${options} }) ${key}:${propertyType} `;
     });
