@@ -1,8 +1,18 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateCustomerProfileDto } from './create.dto';
 import { Exclude } from 'class-transformer';
+import { Property } from '@webpackages/property';
+import { IDDto } from '@webpackages/database';
 
 @Exclude()
-export class UpdateCustomerProfileDto extends PartialType(
-  CreateCustomerProfileDto
-) {}
+export class UpdateCustomerProfileDto {
+  @Property({ type: 'string', minLength: 3, maxLength: 100, example: 'Ahmet' })
+  firstName: string;
+  @Property({
+    type: 'string',
+    minLength: 3,
+    maxLength: 100,
+    example: 'Emrebas',
+  })
+  lastName: string;
+  @Property({ type: 'string', minLength: 3, maxLength: 100, example: 'N/A' })
+  middleName: string;
+}

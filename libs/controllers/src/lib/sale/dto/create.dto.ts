@@ -21,6 +21,7 @@ export class CreateSaleDto {
   @Property({ type: 'number', minimum: 0 }) creditCardPayment: number;
   @Property({ type: 'number', minimum: 0 }) cashPayment: number;
   @Property({ type: 'number', minimum: 0 }) balancePayment: number;
-  @Property({ type: 'number', minimum: 1 }) customerId: number;
-  @Property({ type: 'number', minimum: 1 }) employeeId: number;
+  @Property({ type: 'number', minimum: 1, update: false }) customerId: number;
+  @Property({ type: 'number', minimum: 1, from: 'userId', update: false })
+  userId: number;
 }

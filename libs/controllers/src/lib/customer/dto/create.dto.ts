@@ -18,7 +18,6 @@ export class CreateCustomerDto {
     type: 'string',
     format: 'password',
     required: true,
-    unique: true,
     description: 'Strong password',
     example: '!Password123.',
   })

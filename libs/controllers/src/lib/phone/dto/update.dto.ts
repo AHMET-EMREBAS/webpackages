@@ -1,6 +1,8 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreatePhoneDto } from './create.dto';
 import { Exclude } from 'class-transformer';
+import { Property } from '@webpackages/property';
+import { IDDto } from '@webpackages/database';
 
 @Exclude()
-export class UpdatePhoneDto extends PartialType(CreatePhoneDto) {}
+export class UpdatePhoneDto {
+  @Property({ type: 'string', format: 'phone' }) phone: string;
+}

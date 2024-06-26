@@ -10,5 +10,5 @@ export class QuerySaleDto extends BaseQueryDto implements QueryDto<SaleView> {
   @QueryProperty() cashPayment: string;
   @QueryProperty() balancePayment: string;
   @QueryProperty() customerId: string;
-  @QueryProperty() employeeId: string;
+  @QueryProperty() userId: string;
 }

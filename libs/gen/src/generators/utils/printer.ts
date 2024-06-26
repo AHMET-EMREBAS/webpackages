@@ -296,8 +296,9 @@ export function printUpdatePropertiesForDto(m: Metadata) {
 
       .filter(([key, value]) => value.update != false)
       .map(([key, value]) => {
+        const { required, ...nValue } = value;
         const decorator = () => {
-          return `@Property(${JSON.stringify(value || {})})`;
+          return `@Property(${JSON.stringify(nValue || {})})`;
         };
 
         return `${decorator()} ${key}:${printPropertyType(value)};`;
@@ -358,17 +359,11 @@ export function printUpdateRelationPropertiesForDto(m: Metadata) {
         const propertyName = () => {
           return value.relationType === 'many' ? key : key;
         };
-        const isRequired = () => {
-          return value.relationType === 'owner' ||
-            value.relationType === 'secure-owner'
-            ? ',required: true'
-            : '';
-        };
 
         const decoratorsOptions = () => {
           return value.relationType === 'many'
-            ? `{type:"object", target:IDDto, isArray:true ${isRequired()} }`
-            : `{ type:'number' ${isRequired()} }`;
+            ? `{type:"object", target:IDDto, isArray:true }`
+            : `{ type:'number'}`;
         };
 
         const decorator = () => {
