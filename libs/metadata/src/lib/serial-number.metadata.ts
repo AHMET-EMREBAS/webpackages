@@ -31,6 +31,7 @@ export const SerialNumberMetadata: Metadata = {
       targetName: 'Sku',
       viewColumns: ['sku', 'name'],
       resourceLabelProperty: 'name',
+      update: false,
     },
   },
 };

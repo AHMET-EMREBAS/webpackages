@@ -42,8 +42,10 @@ export class PathBuilder {
   constructor(options: PathBuilderOptions) {
     const { singularName, prefix } = options;
 
-    this.singularPath = names(singularName).fileName;
-    this.pluralPath = names(names(singularName).pluralName).fileName;
+    this.singularPath = names(singularName).className.toLowerCase();
+    this.pluralPath = names(
+      names(singularName).pluralName
+    ).className.toLowerCase();
     this.prefix = prefix || '';
   }
 

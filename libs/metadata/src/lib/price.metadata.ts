@@ -29,12 +29,14 @@ export const PriceMetadata: Metadata = {
       targetName: 'Sku',
       viewColumns: ['name', 'sku'],
       resourceLabelProperty: 'name',
+      update: false,
     },
     priceLevel: {
       relationType: 'owner',
       targetName: 'PriceLevel',
       viewColumns: ['name'],
       resourceLabelProperty: 'name',
+      update: false,
     },
   },
 };

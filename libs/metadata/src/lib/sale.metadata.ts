@@ -18,7 +18,7 @@ export const SaleMetadata: Metadata = {
     creditCardPayment: { type: 'number', minimum: 0 },
     cashPayment: { type: 'number', minimum: 0 },
     balancePayment: { type: 'number', minimum: 0 },
-    customerId: { type: 'number', minimum: 1 },
-    employeeId: { type: 'number', minimum: 1 },
+    customerId: { type: 'number', minimum: 1, update: false },
+    employeeId: { type: 'number', minimum: 1, update: false },
   },
 };
