@@ -2,13 +2,13 @@
   "name": "webpackages",
   "version": "1.0.0",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "stop": "pm2 delete api-production && pm2 delete api-development",
-    "prestart-production": "git pull &&  pnpm install &&  npx nx build api",
-    "start-production": "pm2 start ./.config/pm2.config.js -f",
-    "start-dev": "pm2 start ./.config/pm2.config.js -f"
+    "preinstall": "git pull",
+    "build": "npx nx build api",
+    "start:production": "pm2 start ./.config/pm2.config.js -f"
   },
-  "private": true,
   "husky": {
     "hooks": {}
   },
