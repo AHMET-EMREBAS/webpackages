@@ -10,6 +10,8 @@ import {
   printRelationEntitiesFromResource,
   printRelationImportsFromResource,
   printRelationPropertiesForDto,
+  printUpdatePropertiesForDto,
+  printUpdateRelationPropertiesForDto,
 } from '../utils';
 // relationEntitiesImport
 // relationEntities
@@ -22,6 +24,8 @@ export async function resourceGenerator(tree: Tree) {
       ...names(key.replace('Metadata', '')),
       properties: printPropertiesForDto(value),
       relations: printRelationPropertiesForDto(value),
+      updateProperties: printUpdatePropertiesForDto(value),
+      updateRelations: printUpdateRelationPropertiesForDto(value),
       orderablePropertyNames: printOrderablePropertyNames(value),
       searchablePropertyNames: printOrderablePropertyNames(value),
       queriableProperties: printQueryProperties(value),

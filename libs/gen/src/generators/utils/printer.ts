@@ -225,11 +225,9 @@ export function printEntityColumns(metadata: Metadata) {
 
       const __type =
         value.type != undefined ? `type:'${value.type}'` : undefined;
-   
-        const __required =
-        value.required != undefined
-          ? `required:${value.required}`
-          : undefined;
+
+      const __required =
+        value.required != undefined ? `required:${value.required}` : undefined;
 
       const __unique =
         value.unique != undefined ? `unique:${value.unique}` : undefined;
@@ -287,12 +285,75 @@ export function printPropertiesForDto(m: Metadata) {
 
   return '';
 }
+/**
+ * Print dto properties
+ * @param m
+ * @returns DTO properties
+ */
+export function printUpdatePropertiesForDto(m: Metadata) {
+  if (m.properties) {
+    const result = Object.entries(m.properties)
+
+      .filter(([key, value]) => value.update != false)
+      .map(([key, value]) => {
+        const decorator = () => {
+          return `@Property(${JSON.stringify(value || {})})`;
+        };
+
+        return `${decorator()} ${key}:${printPropertyType(value)};`;
+      });
+
+    return unifyAndJoin(result);
+  }
+
+  return '';
+}
 
 export function printRelationPropertiesForDto(m: Metadata) {
   // import { IDDto } from '@webpackages/database';
 
   if (m.relations)
     return Object.entries(m.relations)
+      .map(([key, value]) => {
+        const propertyName = () => {
+          return value.relationType === 'many' ? key : key;
+        };
+        const isRequired = () => {
+          return value.relationType === 'owner' ||
+            value.relationType === 'secure-owner'
+            ? ',required: true'
+            : '';
+        };
+
+        const decoratorsOptions = () => {
+          return value.relationType === 'many'
+            ? `{type:"object", target:IDDto, isArray:true ${isRequired()} }`
+            : `{ type:'number' ${isRequired()} }`;
+        };
+
+        const decorator = () => {
+          return `@Property(${decoratorsOptions()})`;
+        };
+
+        const type = () => {
+          return value.relationType === 'many' ? 'IDDto' + '[]' : 'IDDto';
+        };
+
+        return `
+      ${decorator()}
+      ${propertyName()}:${type()};`;
+      })
+      .join('\n');
+
+  return '';
+}
+
+export function printUpdateRelationPropertiesForDto(m: Metadata) {
+  // import { IDDto } from '@webpackages/database';
+
+  if (m.relations)
+    return Object.entries(m.relations)
+      .filter(([key, value]) => value.update != false)
       .map(([key, value]) => {
         const propertyName = () => {
           return value.relationType === 'many' ? key : key;
