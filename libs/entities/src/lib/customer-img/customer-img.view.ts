@@ -14,7 +14,7 @@ export class CustomerImgView extends BaseView {
   @ViewColumn() title: string;
   @ViewColumn() generatedName: string;
 
-  @ViewColumn() userUsername: Customer['username'];
-  @ViewColumn() userId: Customer['id'];
-  @ViewColumn() userActive: Customer['active'];
+  @ViewColumn() customerUsername: Customer['username'];
+  @ViewColumn() customerId: Customer['id'];
+  @ViewColumn() customerActive: Customer['active'];
 }

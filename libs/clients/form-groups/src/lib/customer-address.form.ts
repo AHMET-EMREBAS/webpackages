@@ -17,7 +17,7 @@ export const CustomerAddressFormGroup = new FormBuilder().group({
     null,
     [Validators.minLength(1), Validators.maxLength(100), Validators.required],
   ],
-  user: [null, []],
+  customer: [null, []],
 });
 
 export const UpdateCustomerAddressFormGroup = new FormBuilder().group({

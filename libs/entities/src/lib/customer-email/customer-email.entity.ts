@@ -8,5 +8,5 @@ import { Customer } from '../customer';
 export class CustomerEmail extends BaseEntity implements ICustomerEmail {
   @Column({ type: 'string', required: true, format: 'email' }) email: string;
 
-  @Relation({ relationType: 'owner', target: Customer }) user: Customer;
+  @Relation({ relationType: 'owner', target: Customer }) customer: Customer;
 }

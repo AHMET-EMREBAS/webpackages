@@ -10,5 +10,5 @@ export interface ICustomerAddress extends BaseEntity {
 
   zip: string;
 
-  user: ICustomer;
+  customer: ICustomer;
 }

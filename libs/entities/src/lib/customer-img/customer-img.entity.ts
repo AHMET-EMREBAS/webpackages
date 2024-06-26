@@ -9,5 +9,5 @@ export class CustomerImg extends BaseEntity implements ICustomerImg {
   @Column({ type: 'string' }) title: string;
   @Column({ type: 'string' }) generatedName: string;
 
-  @Relation({ relationType: 'owner', target: Customer }) user: Customer;
+  @Relation({ relationType: 'owner', target: Customer }) customer: Customer;
 }

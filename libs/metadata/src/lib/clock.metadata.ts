@@ -12,7 +12,7 @@ export const ClockMetadata: Metadata = {
     endDate: { type: 'date', example: new Date().toLocaleDateString() },
   },
   relations: {
-    user: {
+    employee: {
       relationType: 'owner',
       targetName: 'User',
       viewColumns: ['username'],

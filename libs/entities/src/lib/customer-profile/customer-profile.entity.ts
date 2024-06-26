@@ -10,5 +10,5 @@ export class CustomerProfile extends BaseEntity implements ICustomerProfile {
   @Column({ type: 'string', required: true }) lastName: string;
   @Column({ type: 'string' }) middleName: string;
 
-  @Relation({ relationType: 'owner', target: Customer }) user: Customer;
+  @Relation({ relationType: 'owner', target: Customer }) customer: Customer;
 }

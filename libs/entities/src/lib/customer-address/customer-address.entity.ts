@@ -11,5 +11,5 @@ export class CustomerAddress extends BaseEntity implements ICustomerAddress {
   @Column({ type: 'string', required: true }) state: string;
   @Column({ type: 'string', required: true }) zip: string;
 
-  @Relation({ relationType: 'owner', target: Customer }) user: Customer;
+  @Relation({ relationType: 'owner', target: Customer }) customer: Customer;
 }

@@ -20,7 +20,7 @@ export class CustomerAddressView extends BaseView {
   @ViewColumn() state: string;
   @ViewColumn() zip: string;
 
-  @ViewColumn() userUsername: Customer['username'];
-  @ViewColumn() userId: Customer['id'];
-  @ViewColumn() userActive: Customer['active'];
+  @ViewColumn() customerUsername: Customer['username'];
+  @ViewColumn() customerId: Customer['id'];
+  @ViewColumn() customerActive: Customer['active'];
 }

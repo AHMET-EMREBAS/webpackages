@@ -4,5 +4,5 @@ import { ICustomer } from './customer';
 export interface ICustomerEmail extends BaseEntity {
   email: string;
 
-  user: ICustomer;
+  customer: ICustomer;
 }

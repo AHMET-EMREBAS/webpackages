@@ -9,5 +9,5 @@ export class Clock extends BaseEntity implements IClock {
   @Column({ type: 'date', required: true }) starDate: Date;
   @Column({ type: 'date' }) endDate: Date;
 
-  @Relation({ relationType: 'owner', target: User }) user: User;
+  @Relation({ relationType: 'owner', target: User }) employee: User;
 }
