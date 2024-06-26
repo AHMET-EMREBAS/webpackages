@@ -81,7 +81,10 @@ export class UpdateFormComponent<T = any> implements OnInit {
           c.setValue(value);
         }
       }
+      return;
     }
+
+    throw new Error('UpdateForm need id parameters from URL');
   }
 
   async saveItem() {

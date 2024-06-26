@@ -1,5 +1,9 @@
 import { Routes } from '@angular/router';
-import { DeleteComponent, FormComponent } from '@webpackages/material/form';
+import {
+  DeleteComponent,
+  FormComponent,
+  UpdateFormComponent,
+} from '@webpackages/material/form';
 import { ModuleLayoutComponent } from '@webpackages/material/layout';
 import { TableComponent } from '@webpackages/material/table';
 
@@ -23,7 +27,7 @@ export const CrudRoutes: Routes = [
       {
         path: 'editor/:id',
         loadComponent() {
-          return FormComponent;
+          return UpdateFormComponent;
         },
       },
       {
