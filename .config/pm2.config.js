@@ -4,7 +4,7 @@ module.exports = {
       name: 'api-prod',
       script: 'dist/apps/api/main.js',
       autorestart: true,
-      watch: false,
+      watch: true,
       max_memory_restart: '1G',
       env: {
         NODE_ENV: 'production',
@@ -25,7 +25,7 @@ module.exports = {
       name: 'api-dev',
       script: 'dist/apps/api/main.js',
       autorestart: true,
-      watch: false,
+      watch: true,
       max_memory_restart: '1G',
       env: {
         NODE_ENV: 'development',
@@ -45,7 +45,7 @@ module.exports = {
       name: 'api-no-security',
       script: 'dist/apps/api/main.js',
       autorestart: true,
-      watch: false,
+      watch: true,
       max_memory_restart: '1G',
       env: {
         NODE_ENV: 'development',
