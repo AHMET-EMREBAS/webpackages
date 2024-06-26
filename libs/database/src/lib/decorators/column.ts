@@ -111,6 +111,10 @@ export function Column(options: Partial<ColumnOptions>) {
     return ObjectColumn(options);
   }
 
+  if (options.format === 'password') {
+    return PasswordColumn();
+  }
+
   throw new Error(`Column type ${options.type} is unkown!`);
 }
 

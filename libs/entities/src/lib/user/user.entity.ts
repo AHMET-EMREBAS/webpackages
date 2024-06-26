@@ -7,7 +7,8 @@ import { Department } from '../department';
 @Entity()
 export class User extends BaseEntity implements IUser {
   @Column({ type: 'string', required: true, unique: true }) username: string;
-  @Column({ type: 'string', required: true, unique: true }) password: string;
+  @Column({ type: 'string', format: 'password', required: true })
+  password: string;
   @Column({ type: 'object', required: false, unique: false })
   permissions: AccessPolicy;
 

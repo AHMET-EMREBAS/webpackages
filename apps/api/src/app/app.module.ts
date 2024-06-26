@@ -24,10 +24,12 @@ export class AppModule {}
 @Module({
   imports: [
     CommonAppModule,
+    AuthModule,
     DatabaseModule.configure({
       subscribers: [...subscriberList],
     }),
     ...Object.values(RestModules).filter((e) => e.name.endsWith('Module')),
   ],
+  providers: [AppService],
 })
 export class PublicAppModule {}

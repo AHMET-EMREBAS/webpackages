@@ -31,25 +31,41 @@ export class AuthService {
   ) {}
 
   sign(sessionId: number) {
-    return this.jwt.sign({ sub: sessionId });
+    try {
+      this.logger.debug(`Trying to sign JWT token for ${sessionId}`);
+      return this.jwt.sign({ sub: sessionId });
+    } catch (err) {
+      this.logger.debug(`Could not sign the token for ${sessionId}`);
+      throw new InternalServerErrorException();
+    }
   }
 
   async verify(token: string): Promise<Session> {
     const { sub } = this.jwt.verify(token);
+
     if (sub) {
-      return await this.sessionRepo.findOneByOrFail({ id: sub });
+      try {
+        this.logger.debug(`Trying to find the session by id ${sub}`);
+        return await this.sessionRepo.findOneByOrFail({ id: sub });
+      } catch (err) {
+        this.logger.debug(`Session ${sub} is not found`);
+        throw new InternalServerErrorException();
+      }
     }
     throw new UnauthorizedException(`There is no valid session!`);
   }
 
   async findByUsername(username: string) {
+    this.logger.debug(`Trying to find the user by username ${username}`);
     try {
       const foundUser = await this.userRepo.findOneOrFail({
-        where: { username: Equal(username) },
+        where: { username },
       });
       this.logger.debug(`Found user ${foundUser.username}`);
+
       return foundUser;
     } catch (err) {
+      this.logger.debug('User not found!');
       throw new UnauthorizedException(`User not found!`);
     }
   }

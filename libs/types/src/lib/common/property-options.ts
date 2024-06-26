@@ -99,8 +99,10 @@ export class ColumnOptions
       | 'target'
       | 'example'
       | 'default'
+      | 'format'
     >
 {
+  format: StringFormat;
   target: Constructor<any>;
   type: PropertyType;
   required: boolean;
