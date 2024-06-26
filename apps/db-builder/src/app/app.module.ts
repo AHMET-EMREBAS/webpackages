@@ -11,7 +11,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       database: 'bms',
       username: 'postgres',
       password: 'strong-password',
-      entities: [...viewList, ...entityList],
+      entities: [...entityList, ...viewList],
       subscribers: [...subscriberList],
       synchronize: true,
       dropSchema: true,
