@@ -11,11 +11,13 @@ export const MessageMetadata: Metadata = {
       relationType: 'owner',
       targetName: 'User',
       resourceLabelProperty: 'username',
+      update: false,
     },
     to: {
       relationType: 'one',
       targetName: 'User',
       resourceLabelProperty: 'username',
+      update: false,
     },
   },
 };

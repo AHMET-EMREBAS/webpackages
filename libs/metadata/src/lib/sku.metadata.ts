@@ -38,6 +38,7 @@ export const SkuMetadata: Metadata = {
       viewColumns: ['upc'],
       label: 'Product',
       resourceLabelProperty: 'name',
+      update: false,
     },
   },
 };

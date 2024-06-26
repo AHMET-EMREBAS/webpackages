@@ -88,6 +88,7 @@ export const SkuDetailMetadata: Metadata = {
       targetName: 'Sku',
       viewColumns: ['sku', 'name'],
       resourceLabelProperty: 'name',
+      update: false,
     },
   },
 };

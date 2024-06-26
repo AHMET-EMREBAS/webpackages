@@ -31,6 +31,7 @@ export const PurchaseMetadata: Metadata = {
       targetName: 'User',
       viewColumns: ['username'],
       resourceLabelProperty: 'username',
+      update: false,
     },
   },
 };

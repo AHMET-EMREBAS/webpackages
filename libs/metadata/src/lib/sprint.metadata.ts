@@ -26,6 +26,7 @@ export const SprintMetadata: Metadata = {
       targetName: 'Project',
       viewColumns: ['name'],
       resourceLabelProperty: 'name',
+      update: false,
     },
   },
 };

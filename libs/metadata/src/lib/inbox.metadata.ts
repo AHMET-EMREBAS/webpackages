@@ -7,6 +7,7 @@ export const InboxMetadata: Metadata = {
       relationType: 'owner',
       targetName: 'User',
       resourceLabelProperty: 'username',
+      update: false,
     },
   },
 };

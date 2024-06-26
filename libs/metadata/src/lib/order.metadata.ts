@@ -13,11 +13,13 @@ export const OrderMetadata: Metadata = {
       targetName: 'Sku',
       viewColumns: ['sku', 'name'],
       resourceLabelProperty: 'name',
+      update: false,
     },
     cart: {
       relationType: 'owner',
       targetName: 'Cart',
       resourceLabelProperty: 'id',
+      update: false,
     },
     discount: {
       relationType: 'one',

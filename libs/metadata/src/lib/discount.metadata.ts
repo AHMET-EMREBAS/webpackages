@@ -30,12 +30,14 @@ export const DiscountMetadata: Metadata = {
       targetName: 'Sku',
       viewColumns: ['name', 'sku'],
       resourceLabelProperty: 'name',
+      update: false,
     },
     priceLevel: {
       relationType: 'owner',
       targetName: 'PriceLevel',
       viewColumns: ['name', 'currency', 'taxrate'],
       resourceLabelProperty: 'name',
+      update: false,
     },
   },
 };

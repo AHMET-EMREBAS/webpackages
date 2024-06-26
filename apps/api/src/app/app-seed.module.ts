@@ -2,6 +2,7 @@ import { Logger, Module, OnModuleInit } from '@nestjs/common';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import {
   Category,
+  Department,
   PriceLevel,
   Product,
   Store,
@@ -10,6 +11,7 @@ import {
 import { Repository } from 'typeorm';
 import {
   getBuiltinCategories,
+  getBuiltinDepartments,
   getBuiltinPriceLevels,
   getBuiltinProducts,
   getBuiltinStores,
@@ -25,6 +27,8 @@ export class AppSeedModule implements OnModuleInit {
   constructor(
     @InjectRepository(Category)
     protected readonly category: Repository<Category>,
+    @InjectRepository(Department)
+    protected readonly department: Repository<Department>,
     @InjectRepository(Supplier)
     protected readonly supplier: Repository<Supplier>,
     @InjectRepository(PriceLevel)
@@ -91,7 +95,17 @@ export class AppSeedModule implements OnModuleInit {
           this.logger.log(i, ' already exist.');
         }
       }
-      
+
+      // Departments
+      for (const i of getBuiltinDepartments()) {
+        try {
+          const saved = await this.department.save(i);
+          this.logger.debug(`Saving ${i.name}`);
+          this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
+        } catch (err) {
+          this.logger.log(i, ' already exist.');
+        }
+      }
     }, 5000);
   }
 }

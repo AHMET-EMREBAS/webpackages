@@ -17,6 +17,7 @@ export const ClockMetadata: Metadata = {
       targetName: 'User',
       viewColumns: ['username'],
       resourceLabelProperty: 'username',
+      update: false,
     },
   },
 };

@@ -10,6 +10,7 @@ export const ProductImgMetadata: Metadata = {
       targetName: 'Product',
       viewColumns: ['name', 'upc'],
       resourceLabelProperty: 'name',
+      update: false,
     },
   },
 };

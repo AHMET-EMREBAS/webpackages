@@ -10,6 +10,7 @@ export const CustomerAddressMetadata: Metadata = {
       targetName: 'Customer',
       viewColumns: ['username'],
       resourceLabelProperty: 'username',
+      update: false,
     },
   },
 };
