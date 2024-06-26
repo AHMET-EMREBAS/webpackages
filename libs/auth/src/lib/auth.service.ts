@@ -5,7 +5,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Equal, Repository } from 'typeorm';
 import { ForgotPasswordDto, LoginDto } from './dto';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
@@ -40,7 +40,9 @@ export class AuthService {
 
   async findByUsername(username: string) {
     try {
-      return await this.userRepo.findOneByOrFail({ username });
+      return await this.userRepo.findOneOrFail({
+        where: { username: Equal(username) },
+      });
     } catch (err) {
       throw new UnauthorizedException(`User not found!`);
     }
@@ -49,6 +51,7 @@ export class AuthService {
   async login(loginDto: LoginDto) {
     const { username, password } = loginDto;
     const foundUser = await this.findByUsername(username);
+
     const { password: hashedPassed } = foundUser;
     const isPasswordMatch = compareHash(password, hashedPassed);
 
