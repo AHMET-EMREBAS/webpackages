@@ -15,16 +15,26 @@ import { Request } from 'express';
 import { AuthService } from '../auth.service';
 import { Operation, ResourceName, RoleNames } from '@webpackages/types';
 import { appendParams, extractToken } from '../common';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   protected readonly logger = new Logger('AuthGuard');
   constructor(
     protected readonly reflector: Reflector,
-    protected readonly authService: AuthService
+    protected readonly authService: AuthService,
+    protected readonly config: ConfigService
   ) {}
 
   async canActivate(ctx: ExecutionContext) {
+    const port = this.config.get('PORT');
+    const isAuthGuardByPassed = this.config.get('BYPASS_AUTH_GUARD');
+
+    if (isAuthGuardByPassed === 'true') {
+      this.logger.warn(`!! Auth Guard is bypassed for the port ${port}!`);
+      return true;
+    }
+
     const isPublic = this.reflector.getAllAndOverride(PublicResourceToken, [
       ctx.getClass(),
       ctx.getHandler(),
@@ -46,7 +56,9 @@ export class AuthGuard implements CanActivate {
       ctx.getHandler(),
     ]) as RoleNames;
 
-    this.logger.debug(`Resource Name : ${resouceName}, Operation Name : ${operationName}`);
+    this.logger.debug(
+      `Resource Name : ${resouceName}, Operation Name : ${operationName}`
+    );
 
     const req = ctx.switchToHttp().getRequest<Request>();
 

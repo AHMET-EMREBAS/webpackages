@@ -49,6 +49,11 @@
       "factory": "./src/generators/entity-list/generator",
       "schema": "./src/generators/entity-list/schema.json",
       "description": "entity-list generator"
+    },
+    "resource-list": {
+      "factory": "./src/generators/resource-list/generator",
+      "schema": "./src/generators/resource-list/schema.json",
+      "description": "resource-list generator"
     }
   }
 }

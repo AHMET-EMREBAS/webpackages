@@ -32,6 +32,8 @@ export * from './project';
 export * from './purchase';
 export * from './purchase-order';
 export * from './quantity';
+export * from './resource-list';
+export * from './resource.module';
 export * from './sale';
 export * from './serial-number';
 export * from './session';
