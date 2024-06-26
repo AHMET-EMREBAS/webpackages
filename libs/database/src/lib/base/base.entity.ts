@@ -113,7 +113,7 @@ export function baseQueryBuilder<T extends BaseEntity>(
 
       {
         const colName = names(alias).propertyName + 'Id';
-        query.addSelect(`${alias}.eid`, colName);
+        query.addSelect(`${alias}.id`, colName);
       }
       {
         const colName = names(alias).propertyName + names('active').className;
@@ -130,9 +130,12 @@ export function baseQueryBuilder<T extends BaseEntity>(
 
       const entityId = names(alias).propertyName + 'Id';
 
-      const con = `${alias}.eid = main.${entityId}`;
+      const con = `${alias}.id = main.${entityId}`;
 
-      query.leftJoin(relationOptions.targetName + 'View', alias, con);
+      if (!relationOptions.targetName) {
+        throw new Error('Relation targetName is required!');
+      }
+      query.leftJoin(relationOptions.targetName, alias, con);
     }
   }
   return query;

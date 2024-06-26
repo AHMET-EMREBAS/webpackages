@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { entityList } from '@webpackages/entities';
+import { entityList, subscriberList, viewList } from '@webpackages/entities';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -11,7 +11,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       database: 'bms',
       username: 'postgres',
       password: 'strong-password',
-      entities: [...entityList],
+      entities: [...viewList, ...entityList],
+      subscribers: [...subscriberList],
       synchronize: true,
       dropSchema: true,
     }),
