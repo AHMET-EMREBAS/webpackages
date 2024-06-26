@@ -221,15 +221,20 @@ export function printEntityImports(m: Metadata) {
 export function printEntityColumns(metadata: Metadata) {
   if (metadata.properties) {
     const result = Object.entries(metadata.properties).map(([key, value]) => {
-      const type = printPropertyType(value);
+      const propertyType = printPropertyType(value);
 
-      const options = [
-        `type: '${value.type}'`,
-        `required: ${!!value.required}`,
-        `unique:${!!value.unique}`,
-      ].join(', ');
+      const __type = value.type != undefined ? `type:'${value.type}',` : '';
+      const __required =
+        value.required != undefined ? `required:'${value.required}',` : '';
+      const __unique =
+        value.unique != undefined ? `unique:'${value.unique}',` : '';
 
-      return `@Column({ ${options} }) ${key}:${type} `;
+      const __format =
+        value.format != undefined ? `format:'${value.format}',` : '';
+
+      const options = [__type, __required, __unique, __format].join(', ');
+
+      return `@Column({ ${options} }) ${key}:${propertyType} `;
     });
 
     return unifyAndJoin(result);
