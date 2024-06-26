@@ -6,6 +6,7 @@ import { Exclude } from 'class-transformer';
 export class Update<%- className %>Dto  {
 
 <%- updateProperties %>
+
 <%- updateRelations %>
 
 }
