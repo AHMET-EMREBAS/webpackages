@@ -17,6 +17,7 @@ module.exports = {
         DATABASE_USERNAME: 'appuser',
         DATABASE_PASSWORD: 'appuser',
         JWT_SECRET: 'Secret',
+        LOG_LEVEL: 'fatal,error',
       },
     },
     // For testing purpose
@@ -37,6 +38,7 @@ module.exports = {
         DATABASE: 'devdb',
         DATABASE_USERNAME: 'devuser',
         DATABASE_PASSWORD: 'devuser',
+        LOG_LEVEL: 'debug,fatal,error,warn',
       },
     },
   ],

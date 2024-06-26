@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import {
   Category,
@@ -21,6 +21,7 @@ import {
   ],
 })
 export class AppSeedModule {
+  protected readonly logger = new Logger('AppSeedModule');
   constructor(
     @InjectRepository(Category)
     protected readonly category: Repository<Category>,
@@ -39,42 +40,42 @@ export class AppSeedModule {
       try {
         this.category.save(i, { transaction: false });
       } catch (err) {
-        console.error(i, ' : Not Saved');
+        this.logger.debug(i, ' : Not Saved');
       }
     }
     for (const i of getBuiltinSuppliers()) {
       try {
         this.supplier.save(i, { transaction: false });
       } catch (err) {
-        console.error(i, ' : Not Saved');
+        this.logger.debug(i, ' : Not Saved');
       }
     }
     for (const i of getBuiltinSuppliers()) {
       try {
         this.supplier.save(i, { transaction: false });
       } catch (err) {
-        console.error(i, ' : Not Saved');
+        this.logger.debug(i, ' : Not Saved');
       }
     }
     for (const i of getBuiltinPriceLevels()) {
       try {
         this.priceLevel.save(i, { transaction: false });
       } catch (err) {
-        console.error(i, ' : Not Saved');
+        this.logger.debug(i, ' : Not Saved');
       }
     }
     for (const i of getBuiltinStores()) {
       try {
         this.store.save(i, { transaction: false });
       } catch (err) {
-        console.error(i, ' : Not Saved');
+        this.logger.debug(i, ' : Not Saved');
       }
     }
     for (const i of getBuiltinProducts()) {
       try {
         this.product.save(i, { transaction: false });
       } catch (err) {
-        console.error(i, ' : Not Saved');
+        this.logger.debug(i, ' : Not Saved');
       }
     }
   }
