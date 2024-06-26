@@ -100,6 +100,9 @@ export function ObjectColumn(options: Partial<ColumnOptions>) {
 
 export function Column(options: Partial<ColumnOptions>) {
   if (options.type === 'string') {
+    if (options.format === 'password') {
+      return PasswordColumn();
+    }
     return StringColumn(options);
   } else if (options.type === 'number') {
     return NumberColumn(options);
@@ -109,10 +112,6 @@ export function Column(options: Partial<ColumnOptions>) {
     return DateColumn(options);
   } else if (options.type === 'object') {
     return ObjectColumn(options);
-  }
-
-  if (options.format === 'password') {
-    return PasswordColumn();
   }
 
   throw new Error(`Column type ${options.type} is unkown!`);
