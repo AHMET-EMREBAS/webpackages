@@ -9,8 +9,8 @@ export class QueryMessageDto
 {
   @QueryProperty() message: string;
   @QueryProperty() readDate: string;
-  @QueryProperty() userId: string;
-  @QueryProperty() userActive: string;
-  @QueryProperty() toId: string;
-  @QueryProperty() toActive: string;
+  @QueryProperty() fromUserId: string;
+  @QueryProperty() fromUserActive: string;
+  @QueryProperty() toUserId: string;
+  @QueryProperty() toUserActive: string;
 }

@@ -8,7 +8,7 @@ export class QueryOrganizationDto
   implements QueryDto<OrganizationView>
 {
   @QueryProperty() name: string;
-  @QueryProperty() managerId: string;
-  @QueryProperty() managerActive: string;
-  @QueryProperty() managerUsername: string;
+  @QueryProperty() managerEmployeeId: string;
+  @QueryProperty() managerEmployeeActive: string;
+  @QueryProperty() managerEmployeeUsername: string;
 }

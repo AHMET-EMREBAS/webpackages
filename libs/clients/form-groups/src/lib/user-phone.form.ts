@@ -7,5 +7,4 @@ export const UserPhoneFormGroup = new FormBuilder().group({
 
 export const UpdateUserPhoneFormGroup = new FormBuilder().group({
   phone: [null, [Validators.required]],
-  user: [null, []],
 });

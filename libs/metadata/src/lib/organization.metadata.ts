@@ -14,7 +14,7 @@ export const OrganizationMetadata: Metadata = {
     },
   },
   relations: {
-    manager: {
+    managerEmployee: {
       relationType: 'one',
       targetName: 'User',
       viewColumns: ['username'],

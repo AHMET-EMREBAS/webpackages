@@ -13,7 +13,7 @@ export class CreateCustomerAccountDto {
   blance: number;
 
   @Property({ type: 'number', required: true })
-  user: IDDto;
+  customer: IDDto;
 
   @Property({ type: 'number' })
   priceLevel: IDDto;

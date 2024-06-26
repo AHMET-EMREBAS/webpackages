@@ -7,7 +7,7 @@ export const PurchaseFormGroup = new FormBuilder().group({
   subTotal: [null, [Validators.required]],
   total: [null, [Validators.required]],
   notes: [null, []],
-  user: [null, []],
+  employee: [null, []],
 });
 
 export const UpdatePurchaseFormGroup = new FormBuilder().group({

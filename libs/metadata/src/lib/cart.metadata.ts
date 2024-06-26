@@ -13,7 +13,7 @@ export const CartMetadata: Metadata = {
       resourceLabelProperty: 'username',
       update: false,
     },
-    user: {
+    employee: {
       relationType: 'owner',
       targetName: 'User',
       viewColumns: ['username'],

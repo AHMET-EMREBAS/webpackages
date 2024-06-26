@@ -5,9 +5,9 @@ import { ISupplier } from './supplier';
 export interface IProduct extends BaseEntity {
   name: string;
 
-  description: string;
-
   upc: string;
+
+  description: string;
 
   category: ICategory;
 

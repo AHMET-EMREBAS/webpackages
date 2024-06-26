@@ -13,7 +13,7 @@ export class QueryPurchaseDto
   @QueryProperty() subTotal: string;
   @QueryProperty() total: string;
   @QueryProperty() notes: string;
-  @QueryProperty() userId: string;
-  @QueryProperty() userActive: string;
-  @QueryProperty() userUsername: string;
+  @QueryProperty() employeeId: string;
+  @QueryProperty() employeeActive: string;
+  @QueryProperty() employeeUsername: string;
 }

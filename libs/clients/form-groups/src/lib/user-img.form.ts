@@ -8,5 +8,4 @@ export const UserImgFormGroup = new FormBuilder().group({
 
 export const UpdateUserImgFormGroup = new FormBuilder().group({
   title: [null, [Validators.minLength(3), Validators.maxLength(100)]],
-  user: [null, []],
 });

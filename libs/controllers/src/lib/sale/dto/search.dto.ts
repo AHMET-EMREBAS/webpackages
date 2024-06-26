@@ -12,7 +12,7 @@ export class SearchSaleDto implements SearchDto<SaleView> {
     'cashPayment',
     'balancePayment',
     'customerId',
-    'userId',
+    'employeeId',
   ])
   search: FindOptionsWhere<SaleView>;
 }

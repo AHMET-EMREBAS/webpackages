@@ -9,6 +9,6 @@ export class Message extends BaseEntity implements IMessage {
   @Column({ type: 'string' }) message: string;
   @Column({ type: 'date' }) readDate: Date;
 
-  @Relation({ relationType: 'owner', target: User }) user: User;
-  @Relation({ relationType: 'one', target: User }) to: User;
+  @Relation({ relationType: 'owner', target: User }) fromUser: User;
+  @Relation({ relationType: 'one', target: User }) toUser: User;
 }

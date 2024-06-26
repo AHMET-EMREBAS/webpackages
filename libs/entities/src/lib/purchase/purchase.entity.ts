@@ -13,5 +13,5 @@ export class Purchase extends BaseEntity implements IPurchase {
   @Column({ type: 'number', required: true }) total: number;
   @Column({ type: 'string' }) notes: string;
 
-  @Relation({ relationType: 'owner', target: User }) user: User;
+  @Relation({ relationType: 'owner', target: User }) employee: User;
 }

@@ -11,7 +11,7 @@ export const CustomerAccountMetadata: Metadata = {
     },
   },
   relations: {
-    user: {
+    customer: {
       relationType: 'owner',
       targetName: 'Customer',
       viewColumns: ['username'],

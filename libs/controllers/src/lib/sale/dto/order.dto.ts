@@ -10,5 +10,5 @@ export class OrderSaleDto extends CreateOrderDto<SaleView>([
   'cashPayment',
   'balancePayment',
   'customerId',
-  'userId',
+  'employeeId',
 ]) {}

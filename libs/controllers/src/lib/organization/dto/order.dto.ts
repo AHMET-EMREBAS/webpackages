@@ -5,5 +5,5 @@ import { Exclude } from 'class-transformer';
 @Exclude()
 export class OrderOrganizationDto extends CreateOrderDto<OrganizationView>([
   'name',
-  'managerUsername',
+  'managerEmployeeUsername',
 ]) {}

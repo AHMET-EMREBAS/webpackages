@@ -6,7 +6,7 @@ import { Exclude } from 'class-transformer';
 export class OrderCustomerAccountDto extends CreateOrderDto<CustomerAccountView>(
   [
     'blance',
-    'userUsername',
+    'customerUsername',
     'priceLevelName',
     'priceLevelTaxrate',
     'priceLevelCurrency',

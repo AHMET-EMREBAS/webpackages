@@ -404,7 +404,7 @@ export function __relation_printOrderablePropertyNames(m: Metadata) {
           })
           .join(',');
       }
-      return '';
+      return undefined;
     });
     return result.filter((e) => e).join(',');
   }

@@ -26,7 +26,7 @@ export const PurchaseMetadata: Metadata = {
     },
   },
   relations: {
-    user: {
+    employee: {
       relationType: 'owner',
       targetName: 'User',
       viewColumns: ['username'],

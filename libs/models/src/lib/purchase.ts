@@ -14,5 +14,5 @@ export interface IPurchase extends BaseEntity {
 
   notes: string;
 
-  user: IUser;
+  employee: IUser;
 }

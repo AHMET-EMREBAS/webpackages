@@ -15,5 +15,5 @@ export class UpdateOrganizationDto {
   name: string;
 
   @Property({ type: 'number' })
-  manager: IDDto;
+  managerEmployee: IDDto;
 }

@@ -8,7 +8,7 @@ export class UpdateCustomerAccountDto {
   blance: number;
 
   @Property({ type: 'number' })
-  user: IDDto;
+  customer: IDDto;
 
   @Property({ type: 'number' })
   priceLevel: IDDto;

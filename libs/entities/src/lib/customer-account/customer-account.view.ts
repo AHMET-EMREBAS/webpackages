@@ -18,9 +18,9 @@ import { PriceLevel } from '../price-level';
 export class CustomerAccountView extends BaseView {
   @ViewColumn() blance: number;
 
-  @ViewColumn() userUsername: Customer['username'];
-  @ViewColumn() userId: Customer['id'];
-  @ViewColumn() userActive: Customer['active'];
+  @ViewColumn() customerUsername: Customer['username'];
+  @ViewColumn() customerId: Customer['id'];
+  @ViewColumn() customerActive: Customer['active'];
   @ViewColumn() priceLevelName: PriceLevel['name'];
   @ViewColumn() priceLevelTaxrate: PriceLevel['taxrate'];
   @ViewColumn() priceLevelCurrency: PriceLevel['currency'];

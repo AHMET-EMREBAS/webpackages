@@ -1,6 +1,7 @@
 import { Exclude } from 'class-transformer';
 import { Property } from '@webpackages/property';
 import { IDDto } from '@webpackages/database';
+import { AccessPolicy } from '@webpackages/types';
 
 @Exclude()
 export class UpdateUserDto {
