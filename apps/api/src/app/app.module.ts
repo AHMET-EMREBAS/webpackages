@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppService } from './app.service';
 import { CommonAppModule } from '@webpackages/boot-nest';
 import * as RestModules from '@webpackages/controllers';
-import * as Subscribers from '@webpackages/entities';
+import { subscriberList } from '@webpackages/entities';
 import { DatabaseModule } from '@webpackages/database';
 import { AuthModule, provideGlobalAuthGuard } from '@webpackages/auth';
 import { AppSeedModule } from './app-seed.module';
@@ -12,11 +12,7 @@ import { AppSeedModule } from './app-seed.module';
     CommonAppModule,
     AuthModule,
     DatabaseModule.configure({
-      subscribers: [
-        ...Object.values(Subscribers).filter((e) =>
-          e.name.endsWith('Susbscriber')
-        ),
-      ],
+      subscribers: [...subscriberList],
     }),
     AppSeedModule,
     ...Object.values(RestModules).filter((e) => e.name.endsWith('Module')),
@@ -29,11 +25,7 @@ export class AppModule {}
   imports: [
     CommonAppModule,
     DatabaseModule.configure({
-      subscribers: [
-        ...Object.values(Subscribers).filter((e) =>
-          e.name.endsWith('Susbscriber')
-        ),
-      ],
+      subscribers: [...subscriberList],
     }),
     ...Object.values(RestModules).filter((e) => e.name.endsWith('Module')),
   ],
