@@ -5,10 +5,19 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { CartMetadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { CartFormGroup } from '@webpackages/clients/form-groups';
+import {
+  toFormInputOptions,
+  toTableColumnOptions,
+  toUpdateFormInputOptions,
+} from '@webpackages/types';
+import {
+  CartFormGroup,
+  UpdateCartFormGroup,
+} from '@webpackages/clients/form-groups';
 import { CartService } from '@webpackages/clients/ngrx';
 import { CrudRoutes } from './__crud.routes';
 
@@ -18,13 +27,15 @@ export const CartRoutes: Routes = [
     title: 'Cart',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View Carts', icon: 'table' },
+        { route: ['table'], label: 'View Cart', icon: 'table' },
         { route: ['editor'], label: 'New Cart', icon: 'add' },
       ]),
       provideEntityCollectionService(CartService),
       provideTableColumnOptions(toTableColumnOptions(CartMetadata)),
       provideInputOptions(toFormInputOptions(CartMetadata)),
+      provideUpdateInputOptions(toUpdateFormInputOptions(CartMetadata)),
       provideFormGroup(CartFormGroup),
+      provideUpdateFormGroup(UpdateCartFormGroup),
     ],
     loadChildren() {
       return CrudRoutes;

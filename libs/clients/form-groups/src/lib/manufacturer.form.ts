@@ -6,3 +6,10 @@ export const ManufacturerFormGroup = new FormBuilder().group({
     [Validators.minLength(3), Validators.maxLength(100), Validators.required],
   ],
 });
+
+export const UpdateManufacturerFormGroup = new FormBuilder().group({
+  name: [
+    null,
+    [Validators.minLength(3), Validators.maxLength(100), Validators.required],
+  ],
+});

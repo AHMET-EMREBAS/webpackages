@@ -9,3 +9,11 @@ export const QuantityFormGroup = new FormBuilder().group({
   sku: [null, []],
   store: [null, []],
 });
+
+export const UpdateQuantityFormGroup = new FormBuilder().group({
+  quantity: [null, [Validators.required]],
+  alert: [null, []],
+  alertUnderQuantity: [null, []],
+  autoRepurchase: [null, []],
+  notSellLastOne: [null, []],
+});

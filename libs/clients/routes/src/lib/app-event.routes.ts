@@ -5,10 +5,19 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { AppEventMetadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { AppEventFormGroup } from '@webpackages/clients/form-groups';
+import {
+  toFormInputOptions,
+  toTableColumnOptions,
+  toUpdateFormInputOptions,
+} from '@webpackages/types';
+import {
+  AppEventFormGroup,
+  UpdateAppEventFormGroup,
+} from '@webpackages/clients/form-groups';
 import { AppEventService } from '@webpackages/clients/ngrx';
 import { CrudRoutes } from './__crud.routes';
 
@@ -18,13 +27,15 @@ export const AppEventRoutes: Routes = [
     title: 'AppEvent',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View AppEvents', icon: 'table' },
+        { route: ['table'], label: 'View AppEvent', icon: 'table' },
         { route: ['editor'], label: 'New AppEvent', icon: 'add' },
       ]),
       provideEntityCollectionService(AppEventService),
       provideTableColumnOptions(toTableColumnOptions(AppEventMetadata)),
       provideInputOptions(toFormInputOptions(AppEventMetadata)),
+      provideUpdateInputOptions(toUpdateFormInputOptions(AppEventMetadata)),
       provideFormGroup(AppEventFormGroup),
+      provideUpdateFormGroup(UpdateAppEventFormGroup),
     ],
     loadChildren() {
       return CrudRoutes;

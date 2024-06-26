@@ -5,10 +5,19 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { UserEmailMetadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { UserEmailFormGroup } from '@webpackages/clients/form-groups';
+import {
+  toFormInputOptions,
+  toTableColumnOptions,
+  toUpdateFormInputOptions,
+} from '@webpackages/types';
+import {
+  UserEmailFormGroup,
+  UpdateUserEmailFormGroup,
+} from '@webpackages/clients/form-groups';
 import { UserEmailService } from '@webpackages/clients/ngrx';
 import { CrudRoutes } from './__crud.routes';
 
@@ -18,13 +27,15 @@ export const UserEmailRoutes: Routes = [
     title: 'UserEmail',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View UserEmails', icon: 'table' },
+        { route: ['table'], label: 'View UserEmail', icon: 'table' },
         { route: ['editor'], label: 'New UserEmail', icon: 'add' },
       ]),
       provideEntityCollectionService(UserEmailService),
       provideTableColumnOptions(toTableColumnOptions(UserEmailMetadata)),
       provideInputOptions(toFormInputOptions(UserEmailMetadata)),
+      provideUpdateInputOptions(toUpdateFormInputOptions(UserEmailMetadata)),
       provideFormGroup(UserEmailFormGroup),
+      provideUpdateFormGroup(UpdateUserEmailFormGroup),
     ],
     loadChildren() {
       return CrudRoutes;

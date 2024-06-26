@@ -22,10 +22,14 @@ export async function resourceGenerator(tree: Tree) {
   for (const [key, value] of metadatas) {
     const templateOptions = {
       ...names(key.replace('Metadata', '')),
+
       properties: printPropertiesForDto(value),
       relations: printRelationPropertiesForDto(value),
+
       updateProperties: printUpdatePropertiesForDto(value),
       updateRelations: printUpdateRelationPropertiesForDto(value),
+
+      //
       orderablePropertyNames: printOrderablePropertyNames(value),
       searchablePropertyNames: printOrderablePropertyNames(value),
       queriableProperties: printQueryProperties(value),
@@ -40,7 +44,6 @@ export async function resourceGenerator(tree: Tree) {
       tree,
       path.join(__dirname, 'files'),
       projectRoot,
-
       templateOptions
     );
   }

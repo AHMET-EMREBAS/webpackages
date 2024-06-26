@@ -5,10 +5,15 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { <%- className %>Metadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { <%- className %>FormGroup } from '@webpackages/clients/form-groups';
+import { toFormInputOptions, toTableColumnOptions, toUpdateFormInputOptions } from '@webpackages/types';
+import {
+  <%- className %>FormGroup,
+  Update<%- className %>FormGroup,
+} from '@webpackages/clients/form-groups';
 import { <%- className %>Service } from '@webpackages/clients/ngrx';
 import { CrudRoutes } from './__crud.routes';
 
@@ -18,13 +23,15 @@ export const <%- className %>Routes: Routes = [
     title: '<%- className %>',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View <%- className %>s', icon: 'table' },
+        { route: ['table'], label: 'View <%- className %>', icon: 'table' },
         { route: ['editor'], label: 'New <%- className %>', icon: 'add' },
       ]),
       provideEntityCollectionService(<%- className %>Service),
       provideTableColumnOptions(toTableColumnOptions(<%- className %>Metadata)),
       provideInputOptions(toFormInputOptions(<%- className %>Metadata)),
+      provideUpdateInputOptions(toUpdateFormInputOptions(<%- className %>Metadata)),
       provideFormGroup(<%- className %>FormGroup),
+      provideUpdateFormGroup(Update<%- className %>FormGroup),
     ],
     loadChildren() {
       return CrudRoutes;

@@ -6,3 +6,8 @@ export const MessageFormGroup = new FormBuilder().group({
   user: [null, []],
   to: [null, []],
 });
+
+export const UpdateMessageFormGroup = new FormBuilder().group({
+  message: [null, [Validators.maxLength(2000)]],
+  readDate: [null, []],
+});

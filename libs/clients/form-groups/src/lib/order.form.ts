@@ -8,3 +8,10 @@ export const OrderFormGroup = new FormBuilder().group({
   cart: [null, []],
   discount: [null, []],
 });
+
+export const UpdateOrderFormGroup = new FormBuilder().group({
+  unitPrice: [null, [Validators.required]],
+  subTotal: [null, [Validators.required]],
+  quantity: [null, [Validators.min(1)]],
+  discount: [null, []],
+});

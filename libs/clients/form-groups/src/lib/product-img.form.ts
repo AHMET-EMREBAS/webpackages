@@ -5,3 +5,7 @@ export const ProductImgFormGroup = new FormBuilder().group({
   generatedName: [null, []],
   product: [null, []],
 });
+
+export const UpdateProductImgFormGroup = new FormBuilder().group({
+  title: [null, [Validators.minLength(3), Validators.maxLength(100)]],
+});

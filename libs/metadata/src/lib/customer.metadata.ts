@@ -9,7 +9,6 @@ export const CustomerMetadata: Metadata = {
       relationType: 'one',
       targetName: 'PriceLevel',
       viewColumns: ['name'],
-      
       resourceLabelProperty: 'name',
     },
   },

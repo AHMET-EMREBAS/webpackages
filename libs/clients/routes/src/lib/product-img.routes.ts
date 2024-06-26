@@ -5,10 +5,19 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { ProductImgMetadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { ProductImgFormGroup } from '@webpackages/clients/form-groups';
+import {
+  toFormInputOptions,
+  toTableColumnOptions,
+  toUpdateFormInputOptions,
+} from '@webpackages/types';
+import {
+  ProductImgFormGroup,
+  UpdateProductImgFormGroup,
+} from '@webpackages/clients/form-groups';
 import { ProductImgService } from '@webpackages/clients/ngrx';
 import { CrudRoutes } from './__crud.routes';
 
@@ -18,13 +27,15 @@ export const ProductImgRoutes: Routes = [
     title: 'ProductImg',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View ProductImgs', icon: 'table' },
+        { route: ['table'], label: 'View ProductImg', icon: 'table' },
         { route: ['editor'], label: 'New ProductImg', icon: 'add' },
       ]),
       provideEntityCollectionService(ProductImgService),
       provideTableColumnOptions(toTableColumnOptions(ProductImgMetadata)),
       provideInputOptions(toFormInputOptions(ProductImgMetadata)),
+      provideUpdateInputOptions(toUpdateFormInputOptions(ProductImgMetadata)),
       provideFormGroup(ProductImgFormGroup),
+      provideUpdateFormGroup(UpdateProductImgFormGroup),
     ],
     loadChildren() {
       return CrudRoutes;

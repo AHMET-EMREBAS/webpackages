@@ -11,12 +11,14 @@ export const CartMetadata: Metadata = {
       targetName: 'Customer',
       viewColumns: ['username'],
       resourceLabelProperty: 'username',
+      update: false,
     },
     user: {
       relationType: 'owner',
       targetName: 'User',
       viewColumns: ['username'],
       resourceLabelProperty: 'username',
+      update: false,
     },
   },
 };

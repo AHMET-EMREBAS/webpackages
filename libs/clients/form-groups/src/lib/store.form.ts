@@ -7,3 +7,11 @@ export const StoreFormGroup = new FormBuilder().group({
   ],
   manager: [null, []],
 });
+
+export const UpdateStoreFormGroup = new FormBuilder().group({
+  name: [
+    null,
+    [Validators.minLength(3), Validators.maxLength(100), Validators.required],
+  ],
+  manager: [null, []],
+});

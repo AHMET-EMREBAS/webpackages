@@ -6,3 +6,10 @@ export const UserFormGroup = new FormBuilder().group({
   permissions: [null, []],
   department: [null, []],
 });
+
+export const UpdateUserFormGroup = new FormBuilder().group({
+  username: [null, [Validators.email, Validators.required]],
+  password: [null, [Validators.required]],
+  permissions: [null, []],
+  department: [null, []],
+});

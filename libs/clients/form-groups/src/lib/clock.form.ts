@@ -5,3 +5,7 @@ export const ClockFormGroup = new FormBuilder().group({
   endDate: [null, []],
   user: [null, []],
 });
+
+export const UpdateClockFormGroup = new FormBuilder().group({
+  endDate: [null, []],
+});

@@ -5,3 +5,9 @@ export const CartFormGroup = new FormBuilder().group({
   customer: [null, []],
   user: [null, []],
 });
+
+export const UpdateCartFormGroup = new FormBuilder().group({
+  complete: [null, []],
+  customer: [null, []],
+  user: [null, []],
+});

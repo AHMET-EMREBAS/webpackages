@@ -5,10 +5,19 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { ManufacturerMetadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { ManufacturerFormGroup } from '@webpackages/clients/form-groups';
+import {
+  toFormInputOptions,
+  toTableColumnOptions,
+  toUpdateFormInputOptions,
+} from '@webpackages/types';
+import {
+  ManufacturerFormGroup,
+  UpdateManufacturerFormGroup,
+} from '@webpackages/clients/form-groups';
 import { ManufacturerService } from '@webpackages/clients/ngrx';
 import { CrudRoutes } from './__crud.routes';
 
@@ -18,13 +27,15 @@ export const ManufacturerRoutes: Routes = [
     title: 'Manufacturer',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View Manufacturers', icon: 'table' },
+        { route: ['table'], label: 'View Manufacturer', icon: 'table' },
         { route: ['editor'], label: 'New Manufacturer', icon: 'add' },
       ]),
       provideEntityCollectionService(ManufacturerService),
       provideTableColumnOptions(toTableColumnOptions(ManufacturerMetadata)),
       provideInputOptions(toFormInputOptions(ManufacturerMetadata)),
+      provideUpdateInputOptions(toUpdateFormInputOptions(ManufacturerMetadata)),
       provideFormGroup(ManufacturerFormGroup),
+      provideUpdateFormGroup(UpdateManufacturerFormGroup),
     ],
     loadChildren() {
       return CrudRoutes;

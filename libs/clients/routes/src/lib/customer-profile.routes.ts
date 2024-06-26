@@ -5,10 +5,19 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { CustomerProfileMetadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { CustomerProfileFormGroup } from '@webpackages/clients/form-groups';
+import {
+  toFormInputOptions,
+  toTableColumnOptions,
+  toUpdateFormInputOptions,
+} from '@webpackages/types';
+import {
+  CustomerProfileFormGroup,
+  UpdateCustomerProfileFormGroup,
+} from '@webpackages/clients/form-groups';
 import { CustomerProfileService } from '@webpackages/clients/ngrx';
 import { CrudRoutes } from './__crud.routes';
 
@@ -18,13 +27,17 @@ export const CustomerProfileRoutes: Routes = [
     title: 'CustomerProfile',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View CustomerProfiles', icon: 'table' },
+        { route: ['table'], label: 'View CustomerProfile', icon: 'table' },
         { route: ['editor'], label: 'New CustomerProfile', icon: 'add' },
       ]),
       provideEntityCollectionService(CustomerProfileService),
       provideTableColumnOptions(toTableColumnOptions(CustomerProfileMetadata)),
       provideInputOptions(toFormInputOptions(CustomerProfileMetadata)),
+      provideUpdateInputOptions(
+        toUpdateFormInputOptions(CustomerProfileMetadata)
+      ),
       provideFormGroup(CustomerProfileFormGroup),
+      provideUpdateFormGroup(UpdateCustomerProfileFormGroup),
     ],
     loadChildren() {
       return CrudRoutes;
