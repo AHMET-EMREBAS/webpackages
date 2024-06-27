@@ -26,6 +26,7 @@ export const AccessTokenMetadata: Metadata = {
       targetName: 'User',
       viewColumns: ['username'],
       resourceLabelProperty: 'username',
+      update: false,
     },
   },
 };

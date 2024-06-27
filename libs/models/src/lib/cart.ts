@@ -7,5 +7,5 @@ export interface ICart extends BaseEntity {
 
   customer: ICustomer;
 
-  user: IUser;
+  employee: IUser;
 }

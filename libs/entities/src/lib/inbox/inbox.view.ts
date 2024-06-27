@@ -11,6 +11,6 @@ import { User } from '../user';
   },
 })
 export class InboxView extends BaseView {
-  @ViewColumn() userId: User['id'];
-  @ViewColumn() userActive: User['active'];
+  @ViewColumn() employeeId: User['id'];
+  @ViewColumn() employeeActive: User['active'];
 }

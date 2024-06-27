@@ -6,5 +6,5 @@ import { User } from '../user';
 
 @Entity()
 export class Inbox extends BaseEntity implements IInbox {
-  @Relation({ relationType: 'owner', target: User }) user: User;
+  @Relation({ relationType: 'owner', target: User }) employee: User;
 }

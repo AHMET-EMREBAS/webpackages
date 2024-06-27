@@ -9,7 +9,7 @@ export class SearchCustomerAccountDto
 {
   @SearchProperty<CustomerAccountView>([
     'blance',
-    'userUsername',
+    'customerUsername',
     'priceLevelName',
     'priceLevelTaxrate',
     'priceLevelCurrency',

@@ -5,6 +5,9 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { CommonNotificationModule } from '@webpackages/notification';
+import { AuthModule } from '@webpackages/auth';
+import { DatabaseModule } from '@webpackages/database';
+import { subscriberList } from '@webpackages/entities';
 
 const modules = [
   ConfigModule.forRoot(),
@@ -12,6 +15,8 @@ const modules = [
   EventEmitterModule.forRoot({ delimiter: '.' }),
   ScheduleModule.forRoot(),
   CommonNotificationModule,
+  DatabaseModule.configure({ subscribers: [...subscriberList] }),
+  AuthModule,
 ];
 
 @Module({

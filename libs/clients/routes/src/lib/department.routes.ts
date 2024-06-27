@@ -5,12 +5,21 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { DepartmentMetadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { DepartmentFormGroup } from '@webpackages/clients/form-groups';
+import {
+  toFormInputOptions,
+  toTableColumnOptions,
+  toUpdateFormInputOptions,
+} from '@webpackages/types';
+import {
+  DepartmentFormGroup,
+  UpdateDepartmentFormGroup,
+} from '@webpackages/clients/form-groups';
 import { DepartmentService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const DepartmentRoutes: Routes = [
   {
@@ -18,16 +27,18 @@ export const DepartmentRoutes: Routes = [
     title: 'Department',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View Departments', icon: 'table' },
+        { route: ['table'], label: 'View Department', icon: 'table' },
         { route: ['editor'], label: 'New Department', icon: 'add' },
       ]),
       provideEntityCollectionService(DepartmentService),
       provideTableColumnOptions(toTableColumnOptions(DepartmentMetadata)),
       provideInputOptions(toFormInputOptions(DepartmentMetadata)),
+      provideUpdateInputOptions(toUpdateFormInputOptions(DepartmentMetadata)),
       provideFormGroup(DepartmentFormGroup),
+      provideUpdateFormGroup(UpdateDepartmentFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Department');
     },
   },
 ];

@@ -4,10 +4,10 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { Inbox, InboxView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { InboxService } from './service';
-import { User } from '@webpackages/entities';
+import { User, UserView } from '@webpackages/entities';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Inbox, InboxView, User])],
+  imports: [TypeOrmModule.forFeature([Inbox, InboxView, User, UserView])],
   controllers: [InboxController],
   providers: [InboxService],
 })

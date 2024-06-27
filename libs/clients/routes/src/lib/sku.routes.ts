@@ -5,12 +5,21 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { SkuMetadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { SkuFormGroup } from '@webpackages/clients/form-groups';
+import {
+  toFormInputOptions,
+  toTableColumnOptions,
+  toUpdateFormInputOptions,
+} from '@webpackages/types';
+import {
+  SkuFormGroup,
+  UpdateSkuFormGroup,
+} from '@webpackages/clients/form-groups';
 import { SkuService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const SkuRoutes: Routes = [
   {
@@ -18,16 +27,18 @@ export const SkuRoutes: Routes = [
     title: 'Sku',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View Skus', icon: 'table' },
+        { route: ['table'], label: 'View Sku', icon: 'table' },
         { route: ['editor'], label: 'New Sku', icon: 'add' },
       ]),
       provideEntityCollectionService(SkuService),
       provideTableColumnOptions(toTableColumnOptions(SkuMetadata)),
       provideInputOptions(toFormInputOptions(SkuMetadata)),
+      provideUpdateInputOptions(toUpdateFormInputOptions(SkuMetadata)),
       provideFormGroup(SkuFormGroup),
+      provideUpdateFormGroup(UpdateSkuFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Sku');
     },
   },
 ];

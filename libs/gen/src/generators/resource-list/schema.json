@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "ResourceList",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    }
+  }
+}

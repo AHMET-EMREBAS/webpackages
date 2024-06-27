@@ -6,10 +6,10 @@ import { User } from '../user';
 
 @Entity()
 export class UserAddress extends BaseEntity implements IUserAddress {
-  @Column({ type: 'string', required: true, unique: false }) street: string;
-  @Column({ type: 'string', required: true, unique: false }) city: string;
-  @Column({ type: 'string', required: true, unique: false }) state: string;
-  @Column({ type: 'string', required: true, unique: false }) zip: string;
+  @Column({ type: 'string', required: true }) street: string;
+  @Column({ type: 'string', required: true }) city: string;
+  @Column({ type: 'string', required: true }) state: string;
+  @Column({ type: 'string', required: true }) zip: string;
 
   @Relation({ relationType: 'owner', target: User }) user: User;
 }

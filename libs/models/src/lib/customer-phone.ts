@@ -4,5 +4,5 @@ import { ICustomer } from './customer';
 export interface ICustomerPhone extends BaseEntity {
   phone: string;
 
-  user: ICustomer;
+  customer: ICustomer;
 }

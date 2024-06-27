@@ -6,9 +6,8 @@ import { User } from '../user';
 
 @Entity()
 export class UserImg extends BaseEntity implements IUserImg {
-  @Column({ type: 'string', required: false, unique: false }) title: string;
-  @Column({ type: 'string', required: false, unique: false })
-  generatedName: string;
+  @Column({ type: 'string' }) title: string;
+  @Column({ type: 'string' }) generatedName: string;
 
   @Relation({ relationType: 'owner', target: User }) user: User;
 }

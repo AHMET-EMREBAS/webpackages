@@ -5,12 +5,21 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { MessageMetadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { MessageFormGroup } from '@webpackages/clients/form-groups';
+import {
+  toFormInputOptions,
+  toTableColumnOptions,
+  toUpdateFormInputOptions,
+} from '@webpackages/types';
+import {
+  MessageFormGroup,
+  UpdateMessageFormGroup,
+} from '@webpackages/clients/form-groups';
 import { MessageService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const MessageRoutes: Routes = [
   {
@@ -18,16 +27,18 @@ export const MessageRoutes: Routes = [
     title: 'Message',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View Messages', icon: 'table' },
+        { route: ['table'], label: 'View Message', icon: 'table' },
         { route: ['editor'], label: 'New Message', icon: 'add' },
       ]),
       provideEntityCollectionService(MessageService),
       provideTableColumnOptions(toTableColumnOptions(MessageMetadata)),
       provideInputOptions(toFormInputOptions(MessageMetadata)),
+      provideUpdateInputOptions(toUpdateFormInputOptions(MessageMetadata)),
       provideFormGroup(MessageFormGroup),
+      provideUpdateFormGroup(UpdateMessageFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Message');
     },
   },
 ];

@@ -3,3 +3,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 export const <%- className %>FormGroup = new FormBuilder().group({
     <%- properties %>
 });
+
+
+export const Update<%- className %>FormGroup = new FormBuilder().group({
+    <%- updateProperties %>
+});
+
+

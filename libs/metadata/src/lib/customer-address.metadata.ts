@@ -5,11 +5,12 @@ export const CustomerAddressMetadata: Metadata = {
   groupName: 'customer-management',
   properties: AddressMetadata.properties,
   relations: {
-    user: {
+    customer: {
       relationType: 'owner',
       targetName: 'Customer',
       viewColumns: ['username'],
       resourceLabelProperty: 'username',
+      update: false,
     },
   },
 };

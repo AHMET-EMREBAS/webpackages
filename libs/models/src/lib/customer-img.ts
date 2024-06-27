@@ -6,5 +6,5 @@ export interface ICustomerImg extends BaseEntity {
 
   generatedName: string;
 
-  user: ICustomer;
+  customer: ICustomer;
 }

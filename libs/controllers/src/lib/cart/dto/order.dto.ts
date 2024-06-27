@@ -6,5 +6,5 @@ import { Exclude } from 'class-transformer';
 export class OrderCartDto extends CreateOrderDto<CartView>([
   'complete',
   'customerUsername',
-  'userUsername',
+  'employeeUsername',
 ]) {}

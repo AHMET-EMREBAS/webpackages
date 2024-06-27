@@ -186,7 +186,7 @@ export function printRelationImportsFromResource(m: Metadata) {
   if (m.relations) {
     const r1 = new Set(
       Object.values(m.relations).map((e) => {
-        return `import { ${e.targetName} } from '@webpackages/entities'`;
+        return `import { ${e.targetName},${e.targetName}View } from '@webpackages/entities'`;
       })
     );
 
@@ -200,7 +200,7 @@ export function printRelationEntitiesFromResource(m: Metadata) {
   const r1 = [
     ...new Set(
       Object.values(m.relations || {}).map((e) => {
-        return `${e.targetName}`;
+        return `${e.targetName}, ${e.targetName}View`;
       })
     ),
   ].join(',');
@@ -221,15 +221,25 @@ export function printEntityImports(m: Metadata) {
 export function printEntityColumns(metadata: Metadata) {
   if (metadata.properties) {
     const result = Object.entries(metadata.properties).map(([key, value]) => {
-      const type = printPropertyType(value);
+      const propertyType = printPropertyType(value);
 
-      const options = [
-        `type: '${value.type}'`,
-        `required: ${!!value.required}`,
-        `unique:${!!value.unique}`,
-      ].join(', ');
+      const __type =
+        value.type != undefined ? `type:'${value.type}'` : undefined;
 
-      return `@Column({ ${options} }) ${key}:${type} `;
+      const __required =
+        value.required != undefined ? `required:${value.required}` : undefined;
+
+      const __unique =
+        value.unique != undefined ? `unique:${value.unique}` : undefined;
+
+      const __format =
+        value.format != undefined ? `format:'${value.format}'` : undefined;
+
+      const options = [__type, __required, __unique, __format]
+        .filter((e) => e)
+        .join(',');
+
+      return `@Column({ ${options} }) ${key}:${propertyType} `;
     });
 
     return unifyAndJoin(result);
@@ -269,6 +279,30 @@ export function printPropertiesForDto(m: Metadata) {
 
       return `${decorator()} ${key}:${printPropertyType(value)};`;
     });
+
+    return unifyAndJoin(result);
+  }
+
+  return '';
+}
+/**
+ * Print dto properties
+ * @param m
+ * @returns DTO properties
+ */
+export function printUpdatePropertiesForDto(m: Metadata) {
+  if (m.properties) {
+    const result = Object.entries(m.properties)
+
+      .filter(([key, value]) => value.update != false)
+      .map(([key, value]) => {
+        const { required, ...nValue } = value;
+        const decorator = () => {
+          return `@Property(${JSON.stringify(nValue || {})})`;
+        };
+
+        return `${decorator()} ${key}:${printPropertyType(value)};`;
+      });
 
     return unifyAndJoin(result);
   }
@@ -315,6 +349,40 @@ export function printRelationPropertiesForDto(m: Metadata) {
   return '';
 }
 
+export function printUpdateRelationPropertiesForDto(m: Metadata) {
+  // import { IDDto } from '@webpackages/database';
+
+  if (m.relations)
+    return Object.entries(m.relations)
+      .filter(([key, value]) => value.update != false)
+      .map(([key, value]) => {
+        const propertyName = () => {
+          return value.relationType === 'many' ? key : key;
+        };
+
+        const decoratorsOptions = () => {
+          return value.relationType === 'many'
+            ? `{type:"object", target:IDDto, isArray:true }`
+            : `{ type:'number'}`;
+        };
+
+        const decorator = () => {
+          return `@Property(${decoratorsOptions()})`;
+        };
+
+        const type = () => {
+          return value.relationType === 'many' ? 'IDDto' + '[]' : 'IDDto';
+        };
+
+        return `
+      ${decorator()}
+      ${propertyName()}:${type()};`;
+      })
+      .join('\n');
+
+  return '';
+}
+
 export function __property_printOrderablePropertyNames(m: Metadata) {
   if (m.properties) {
     const result = Object.entries(m.properties).map(([key]) => {
@@ -336,7 +404,7 @@ export function __relation_printOrderablePropertyNames(m: Metadata) {
           })
           .join(',');
       }
-      return '';
+      return undefined;
     });
     return result.filter((e) => e).join(',');
   }
@@ -350,7 +418,6 @@ export function printOrderablePropertyNames(m: Metadata) {
     .filter((e) => e)
     .join(',');
 
-  console.log(result);
   return `[ ${result} ]`;
 }
 

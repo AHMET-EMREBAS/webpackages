@@ -1,6 +1,37 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateCustomerDto } from './create.dto';
 import { Exclude } from 'class-transformer';
+import { Property } from '@webpackages/property';
+import { IDDto } from '@webpackages/database';
+import { AccessPolicy } from '@webpackages/types';
 
 @Exclude()
-export class UpdateCustomerDto extends PartialType(CreateCustomerDto) {}
+export class UpdateCustomerDto {
+  @Property({
+    type: 'string',
+    format: 'email',
+    unique: true,
+    description: 'Username',
+    example: 'admin@domain.com',
+  })
+  username: string;
+  @Property({
+    type: 'string',
+    format: 'password',
+    description: 'Strong password',
+    example: '!Password123.',
+  })
+  password: string;
+  @Property({
+    type: 'object',
+    targetName: 'AccessPolicy',
+    description: 'User permissions',
+    example: {
+      Admin: true,
+      Product: { manage: true },
+      User: { read: true, write: true, update: true, delete: true },
+    },
+  })
+  permissions: AccessPolicy;
+
+  @Property({ type: 'number' })
+  priceLevel: IDDto;
+}

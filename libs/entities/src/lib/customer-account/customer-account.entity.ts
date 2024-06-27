@@ -7,8 +7,8 @@ import { PriceLevel } from '../price-level';
 
 @Entity()
 export class CustomerAccount extends BaseEntity implements ICustomerAccount {
-  @Column({ type: 'number', required: true, unique: false }) blance: number;
+  @Column({ type: 'number', required: true }) blance: number;
 
-  @Relation({ relationType: 'owner', target: Customer }) user: Customer;
+  @Relation({ relationType: 'owner', target: Customer }) customer: Customer;
   @Relation({ relationType: 'one', target: PriceLevel }) priceLevel: PriceLevel;
 }

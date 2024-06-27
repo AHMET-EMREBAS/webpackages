@@ -1,6 +1,9 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateMessageDto } from './create.dto';
 import { Exclude } from 'class-transformer';
+import { Property } from '@webpackages/property';
+import { IDDto } from '@webpackages/database';
 
 @Exclude()
-export class UpdateMessageDto extends PartialType(CreateMessageDto) {}
+export class UpdateMessageDto {
+  @Property({ type: 'string', maxLength: 2000 }) message: string;
+  @Property({ type: 'date' }) readDate: Date;
+}

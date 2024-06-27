@@ -19,22 +19,22 @@ import {
 import { names } from '@nx/devkit';
 
 export class IDEntity implements ID {
-  @Property({ type: 'number', example: 1 })
+  @Property({ type: 'string', example: 1 })
   @PrimaryGeneratedColumn()
   id: number;
 }
 
 export class BaseEntity extends IDEntity implements IBaseEntity {
-  @Property({ type: 'number', example: new Date().toString() })
-  @CreateDateColumn()
+  @Property({ type: 'string', example: new Date().toString() })
+  @CreateDateColumn({ type: 'varchar' })
   createdAt: Date;
 
-  @Property({ type: 'number', example: new Date().toString() })
-  @UpdateDateColumn()
+  @Property({ type: 'string', example: new Date().toString() })
+  @UpdateDateColumn({ type: 'varchar' })
   updatedAt: Date;
 
-  @Property({ type: 'number', example: new Date().toString() })
-  @DeleteDateColumn()
+  @Property({ type: 'string', example: new Date().toString() })
+  @DeleteDateColumn({ type: 'varchar' })
   deletedAt: Date;
 
   @Property({ type: 'boolean' })
@@ -84,7 +84,6 @@ export function baseQueryBuilder<T extends BaseEntity>(
 ): SelectQueryBuilder<T> {
   const query = ds
     .createQueryBuilder()
-    .createQueryBuilder()
     .select('ROW_NUMBER() OVER ()', 'id')
     .addSelect('main.id', 'eid')
     .addSelect('main.createdAt', 'createdAt')
@@ -114,7 +113,7 @@ export function baseQueryBuilder<T extends BaseEntity>(
 
       {
         const colName = names(alias).propertyName + 'Id';
-        query.addSelect(`${alias}.eid`, colName);
+        query.addSelect(`${alias}.id`, colName);
       }
       {
         const colName = names(alias).propertyName + names('active').className;
@@ -131,9 +130,12 @@ export function baseQueryBuilder<T extends BaseEntity>(
 
       const entityId = names(alias).propertyName + 'Id';
 
-      const con = `${alias}.eid = main.${entityId}`;
+      const con = `${alias}.id = main.${entityId}`;
 
-      query.leftJoin(relationOptions.targetName + 'View', alias, con);
+      if (!relationOptions.targetName) {
+        throw new Error('Relation targetName is required!');
+      }
+      query.leftJoin(relationOptions.targetName, alias, con);
     }
   }
   return query;

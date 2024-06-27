@@ -8,9 +8,9 @@ export class QueryCustomerAccountDto
   implements QueryDto<CustomerAccountView>
 {
   @QueryProperty() blance: string;
-  @QueryProperty() userId: string;
-  @QueryProperty() userActive: string;
-  @QueryProperty() userUsername: string;
+  @QueryProperty() customerId: string;
+  @QueryProperty() customerActive: string;
+  @QueryProperty() customerUsername: string;
   @QueryProperty() priceLevelId: string;
   @QueryProperty() priceLevelActive: string;
   @QueryProperty() priceLevelName: string;

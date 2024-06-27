@@ -20,6 +20,7 @@ export function toFormInputOptions(
           : value.conditionalClass
           ? undefined
           : 'w-full',
+        update: value.update == false ? false : true,
         icon: value.icon ?? 'info',
       };
 
@@ -90,7 +91,7 @@ export function toTableColumnOptions(
       return {
         ...value,
         name: key,
-        label: value.label || key,
+        label: names(value.label || key).titleName,
       } as PropertyOptions;
     }) || []),
     ...(Object.entries(metadata.relations || {})
@@ -99,7 +100,7 @@ export function toTableColumnOptions(
           return value.viewColumns.map((vc) => {
             return {
               name: key + names(vc).className,
-              label: names(key + ' ' + names(vc).className).titleName,
+              label: names(key).titleName + ' ' + names(vc).titleName,
             } as PropertyOptions;
           });
         }
@@ -107,4 +108,8 @@ export function toTableColumnOptions(
       })
       .flat() || []),
   ];
+}
+
+export function toUpdateFormInputOptions(metadata: Metadata) {
+  return toFormInputOptions(metadata).filter((e) => e.update);
 }

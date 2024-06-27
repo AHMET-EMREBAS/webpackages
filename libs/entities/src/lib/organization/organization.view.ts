@@ -17,7 +17,7 @@ import { User } from '../user';
 export class OrganizationView extends BaseView {
   @ViewColumn() name: string;
 
-  @ViewColumn() managerUsername: User['username'];
-  @ViewColumn() managerId: User['id'];
-  @ViewColumn() managerActive: User['active'];
+  @ViewColumn() managerEmployeeUsername: User['username'];
+  @ViewColumn() managerEmployeeId: User['id'];
+  @ViewColumn() managerEmployeeActive: User['active'];
 }

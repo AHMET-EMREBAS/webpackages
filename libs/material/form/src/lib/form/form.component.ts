@@ -24,7 +24,6 @@ import {
 } from '@webpackages/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { isNotUndefined } from '@webpackages/utils';
 import { PropertyOptions } from '@webpackages/types';
 
 @Component({
@@ -49,58 +48,28 @@ import { PropertyOptions } from '@webpackages/types';
   ],
   templateUrl: './form.component.html',
 })
-export class FormComponent<T = any> implements OnInit {
+export class FormComponent<T = any> {
   submitted = false;
   formGroup = inject(getFormGroupToken());
-  entityId: number;
 
   constructor(
     @Inject(getEntityCollectionServiceToken())
     protected readonly service: EntityCollectionService<T>,
     @Inject(getInputOptionsToken())
-    public readonly inputOptions: PropertyOptions[],
-    private readonly route: ActivatedRoute
+    public readonly inputOptions: PropertyOptions[]
   ) {}
-
-  async ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-
-    if (isNotUndefined(id)) {
-      this.entityId = parseInt(id);
-
-      const foundItem = await firstValueFrom(
-        this.service.getByKey(this.entityId)
-      );
-
-
-      for (const [key, value] of Object.entries(foundItem)) {
-        const c = this.formGroup.get(key);
-        if (c) {
-          c.setValue(value);
-        }
-      }
-    }
-  }
 
   async saveItem() {
     try {
-      if (this.entityId) {
-        await firstValueFrom(
-          this.service.update(
-            { ...this.formGroup.value, id: this.entityId },
-            { isOptimistic: false }
-          )
-        );
-      } else {
-        await firstValueFrom(
-          this.service?.add(
-            { ...this.formGroup.value },
-            {
-              isOptimistic: false,
-            }
-          )
-        );
-      }
+      await firstValueFrom(
+        this.service?.add(
+          { ...this.formGroup.value },
+          {
+            isOptimistic: false,
+          }
+        )
+      );
+
       this.submitted = true;
     } catch (err) {
       const rawErrors = (err as DataServiceError).error.error.errors;

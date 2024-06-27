@@ -1,6 +1,7 @@
 import { IProduct } from '@webpackages/models';
 
-const upc = () => '5822' + Math.random() * 9999999 + '45';
+const upc = () => '5822' + Math.floor(Math.random() * 9999999) + '45';
+
 export function getBuiltinProducts(): Partial<IProduct>[] {
   return [
     { id: 1, upc: upc(), name: 'iPhone 13 Pro' },

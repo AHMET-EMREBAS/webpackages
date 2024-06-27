@@ -5,12 +5,21 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { AccessTokenMetadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { AccessTokenFormGroup } from '@webpackages/clients/form-groups';
+import {
+  toFormInputOptions,
+  toTableColumnOptions,
+  toUpdateFormInputOptions,
+} from '@webpackages/types';
+import {
+  AccessTokenFormGroup,
+  UpdateAccessTokenFormGroup,
+} from '@webpackages/clients/form-groups';
 import { AccessTokenService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const AccessTokenRoutes: Routes = [
   {
@@ -18,16 +27,18 @@ export const AccessTokenRoutes: Routes = [
     title: 'AccessToken',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View AccessTokens', icon: 'table' },
+        { route: ['table'], label: 'View AccessToken', icon: 'table' },
         { route: ['editor'], label: 'New AccessToken', icon: 'add' },
       ]),
       provideEntityCollectionService(AccessTokenService),
       provideTableColumnOptions(toTableColumnOptions(AccessTokenMetadata)),
       provideInputOptions(toFormInputOptions(AccessTokenMetadata)),
+      provideUpdateInputOptions(toUpdateFormInputOptions(AccessTokenMetadata)),
       provideFormGroup(AccessTokenFormGroup),
+      provideUpdateFormGroup(UpdateAccessTokenFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('AccessToken');
     },
   },
 ];

@@ -5,6 +5,10 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchCustomerImgDto implements SearchDto<CustomerImgView> {
-  @SearchProperty<CustomerImgView>(['title', 'generatedName', 'userUsername'])
+  @SearchProperty<CustomerImgView>([
+    'title',
+    'generatedName',
+    'customerUsername',
+  ])
   search: FindOptionsWhere<CustomerImgView>;
 }

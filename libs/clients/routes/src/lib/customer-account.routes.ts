@@ -5,12 +5,21 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { CustomerAccountMetadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { CustomerAccountFormGroup } from '@webpackages/clients/form-groups';
+import {
+  toFormInputOptions,
+  toTableColumnOptions,
+  toUpdateFormInputOptions,
+} from '@webpackages/types';
+import {
+  CustomerAccountFormGroup,
+  UpdateCustomerAccountFormGroup,
+} from '@webpackages/clients/form-groups';
 import { CustomerAccountService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const CustomerAccountRoutes: Routes = [
   {
@@ -18,16 +27,20 @@ export const CustomerAccountRoutes: Routes = [
     title: 'CustomerAccount',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View CustomerAccounts', icon: 'table' },
+        { route: ['table'], label: 'View CustomerAccount', icon: 'table' },
         { route: ['editor'], label: 'New CustomerAccount', icon: 'add' },
       ]),
       provideEntityCollectionService(CustomerAccountService),
       provideTableColumnOptions(toTableColumnOptions(CustomerAccountMetadata)),
       provideInputOptions(toFormInputOptions(CustomerAccountMetadata)),
+      provideUpdateInputOptions(
+        toUpdateFormInputOptions(CustomerAccountMetadata)
+      ),
       provideFormGroup(CustomerAccountFormGroup),
+      provideUpdateFormGroup(UpdateCustomerAccountFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('CustomerAccount');
     },
   },
 ];

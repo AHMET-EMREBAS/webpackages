@@ -1,8 +1,15 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateCustomerAccountDto } from './create.dto';
 import { Exclude } from 'class-transformer';
+import { Property } from '@webpackages/property';
+import { IDDto } from '@webpackages/database';
 
 @Exclude()
-export class UpdateCustomerAccountDto extends PartialType(
-  CreateCustomerAccountDto
-) {}
+export class UpdateCustomerAccountDto {
+  @Property({ type: 'number', description: 'Sale subtotal', example: 400 })
+  blance: number;
+
+  @Property({ type: 'number' })
+  customer: IDDto;
+
+  @Property({ type: 'number' })
+  priceLevel: IDDto;
+}

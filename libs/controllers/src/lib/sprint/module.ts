@@ -4,10 +4,12 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { Sprint, SprintView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { SprintService } from './service';
-import { Project } from '@webpackages/entities';
+import { Project, ProjectView } from '@webpackages/entities';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Sprint, SprintView, Project])],
+  imports: [
+    TypeOrmModule.forFeature([Sprint, SprintView, Project, ProjectView]),
+  ],
   controllers: [SprintController],
   providers: [SprintService],
 })

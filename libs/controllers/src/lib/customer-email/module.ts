@@ -4,11 +4,16 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { CustomerEmail, CustomerEmailView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { CustomerEmailService } from './service';
-import { Customer } from '@webpackages/entities';
+import { Customer, CustomerView } from '@webpackages/entities';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([CustomerEmail, CustomerEmailView, Customer]),
+    TypeOrmModule.forFeature([
+      CustomerEmail,
+      CustomerEmailView,
+      Customer,
+      CustomerView,
+    ]),
   ],
   controllers: [CustomerEmailController],
   providers: [CustomerEmailService],

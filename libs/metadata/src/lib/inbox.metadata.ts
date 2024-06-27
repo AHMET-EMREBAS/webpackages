@@ -3,10 +3,11 @@ import { Metadata } from '@webpackages/types';
 export const InboxMetadata: Metadata = {
   groupName: 'administation',
   relations: {
-    user: {
+    employee: {
       relationType: 'owner',
       targetName: 'User',
       resourceLabelProperty: 'username',
+      update: false,
     },
   },
 };

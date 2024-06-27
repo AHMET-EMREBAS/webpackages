@@ -1,6 +1,9 @@
 import { formatFiles, generateFiles, names, Tree } from '@nx/devkit';
 import * as path from 'path';
-import { printFormGroupProperties } from '../utils';
+import {
+  printFormGroupProperties,
+  printUpdateFormGroupProperties,
+} from '../utils';
 import * as Metadata from '@webpackages/metadata';
 
 export async function formGroupGenerator(tree: Tree) {
@@ -11,6 +14,7 @@ export async function formGroupGenerator(tree: Tree) {
     generateFiles(tree, path.join(__dirname, 'files'), projectRoot, {
       ...N,
       properties: printFormGroupProperties(value),
+      updateProperties: printUpdateFormGroupProperties(value),
     });
   }
 

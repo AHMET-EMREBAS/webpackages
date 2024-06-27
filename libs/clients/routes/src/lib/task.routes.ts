@@ -5,12 +5,21 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { TaskMetadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { TaskFormGroup } from '@webpackages/clients/form-groups';
+import {
+  toFormInputOptions,
+  toTableColumnOptions,
+  toUpdateFormInputOptions,
+} from '@webpackages/types';
+import {
+  TaskFormGroup,
+  UpdateTaskFormGroup,
+} from '@webpackages/clients/form-groups';
 import { TaskService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const TaskRoutes: Routes = [
   {
@@ -18,16 +27,18 @@ export const TaskRoutes: Routes = [
     title: 'Task',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View Tasks', icon: 'table' },
+        { route: ['table'], label: 'View Task', icon: 'table' },
         { route: ['editor'], label: 'New Task', icon: 'add' },
       ]),
       provideEntityCollectionService(TaskService),
       provideTableColumnOptions(toTableColumnOptions(TaskMetadata)),
       provideInputOptions(toFormInputOptions(TaskMetadata)),
+      provideUpdateInputOptions(toUpdateFormInputOptions(TaskMetadata)),
       provideFormGroup(TaskFormGroup),
+      provideUpdateFormGroup(UpdateTaskFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Task');
     },
   },
 ];

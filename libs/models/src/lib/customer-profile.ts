@@ -8,5 +8,5 @@ export interface ICustomerProfile extends BaseEntity {
 
   middleName: string;
 
-  user: ICustomer;
+  customer: ICustomer;
 }

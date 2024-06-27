@@ -6,13 +6,12 @@ import { User } from '../user';
 
 @Entity()
 export class Purchase extends BaseEntity implements IPurchase {
-  @Column({ type: 'date', required: true, unique: false }) orderDate: Date;
-  @Column({ type: 'date', required: true, unique: false })
-  expectedShippingDate: Date;
-  @Column({ type: 'date', required: false, unique: false }) shippingDate: Date;
-  @Column({ type: 'number', required: true, unique: false }) subTotal: number;
-  @Column({ type: 'number', required: true, unique: false }) total: number;
-  @Column({ type: 'string', required: false, unique: false }) notes: string;
+  @Column({ type: 'date', required: true }) orderDate: Date;
+  @Column({ type: 'date', required: true }) expectedShippingDate: Date;
+  @Column({ type: 'date' }) shippingDate: Date;
+  @Column({ type: 'number', required: true }) subTotal: number;
+  @Column({ type: 'number', required: true }) total: number;
+  @Column({ type: 'string' }) notes: string;
 
-  @Relation({ relationType: 'owner', target: User }) user: User;
+  @Relation({ relationType: 'owner', target: User }) employee: User;
 }

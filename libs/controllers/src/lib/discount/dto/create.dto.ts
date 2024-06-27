@@ -15,9 +15,9 @@ export class CreateDiscountDto {
   name: string;
   @Property({ type: 'number', minimum: 0, example: 40 }) fixedDiscount: number;
   @Property({ type: 'number', minimum: 0 }) percentDiscount: number;
-  @Property({ type: 'date', required: true, example: '6/25/2024' })
+  @Property({ type: 'date', required: true, example: '6/26/2024' })
   startDate: Date;
-  @Property({ type: 'date', required: true, example: '6/25/2024' })
+  @Property({ type: 'date', required: true, example: '6/26/2024' })
   endDate: Date;
 
   @Property({ type: 'number', required: true })

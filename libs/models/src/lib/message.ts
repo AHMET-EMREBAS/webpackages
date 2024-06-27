@@ -6,7 +6,7 @@ export interface IMessage extends BaseEntity {
 
   readDate: Date;
 
-  user: IUser;
+  fromUser: IUser;
 
-  to: IUser;
+  toUser: IUser;
 }

@@ -1,11 +1,13 @@
 import {
+  BadRequestException,
   Injectable,
   InternalServerErrorException,
+  Logger,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Equal, Repository } from 'typeorm';
 import { ForgotPasswordDto, LoginDto } from './dto';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
@@ -16,6 +18,8 @@ import { isNotUndefined } from '@webpackages/utils';
 
 @Injectable()
 export class AuthService {
+  protected readonly logger = new Logger('AuthService');
+
   constructor(
     @InjectRepository(User) protected readonly userRepo: Repository<User>,
     @InjectRepository(Session)
@@ -27,30 +31,59 @@ export class AuthService {
   ) {}
 
   sign(sessionId: number) {
-    return this.jwt.sign({ sub: sessionId });
+    try {
+      this.logger.debug(`Trying to sign JWT token for ${sessionId}`);
+      return this.jwt.sign({ sub: sessionId });
+    } catch (err) {
+      this.logger.debug(`Could not sign the token for ${sessionId}`);
+      throw new InternalServerErrorException();
+    }
   }
 
   async verify(token: string): Promise<Session> {
     const { sub } = this.jwt.verify(token);
+
     if (sub) {
-      return await this.sessionRepo.findOneByOrFail({ id: sub });
+      try {
+        this.logger.debug(`Trying to find the session by id ${sub}`);
+        return await this.sessionRepo.findOneByOrFail({ id: sub });
+      } catch (err) {
+        this.logger.debug(`Session ${sub} is not found`);
+        throw new InternalServerErrorException();
+      }
     }
     throw new UnauthorizedException(`There is no valid session!`);
   }
 
   async findByUsername(username: string) {
+    this.logger.debug(`Trying to find the user by username ${username}`);
     try {
-      return await this.userRepo.findOneByOrFail({ username });
+      const foundUser = await this.userRepo.findOneOrFail({
+        where: { username },
+      });
+      this.logger.debug(`Found user ${foundUser.username}`);
+
+      return foundUser;
     } catch (err) {
+      this.logger.debug('User not found!');
       throw new UnauthorizedException(`User not found!`);
     }
   }
 
   async login(loginDto: LoginDto) {
     const { username, password } = loginDto;
+
+    this.logger.debug(`Trying to login with ${username}@${password}`);
     const foundUser = await this.findByUsername(username);
+
     const { password: hashedPassed } = foundUser;
+
     const isPasswordMatch = compareHash(password, hashedPassed);
+
+    if (isPasswordMatch != true) {
+      this.logger.debug(`Wrong password for ${username}@${password}`);
+      throw new BadRequestException(`Wrong password`);
+    }
 
     let newSession: Session;
     try {
@@ -62,21 +95,39 @@ export class AuthService {
         token: v4(),
       });
     } catch (err) {
-      console.error('Could not create the session');
-      console.error(err);
+      this.logger.debug('Could not create the session');
+      this.logger.debug(err);
       throw new InternalServerErrorException();
     }
 
-    if (isPasswordMatch) {
-      const token = this.sign(newSession.id);
+    this.logger.debug('Created session');
+    const token = this.sign(newSession.id);
 
+    this.logger.debug(
+      `Signed token for the user ${newSession.id}, ${newSession.user.username}@*`
+    );
+
+    try {
       await this.sessionRepo.update(newSession.id, { token });
-      return await this.sessionRepo.findOneBy({
-        id: newSession.id,
-      });
+
+      this.logger.debug('');
+    } catch (err) {
+      this.logger.debug(`Could not update the session token`);
+      this.logger.error(err);
+      throw new InternalServerErrorException();
     }
 
-    throw new UnauthorizedException('Wrong password');
+    try {
+      const session = await this.sessionRepo.findOneBy({
+        id: newSession.id,
+      });
+
+      this.logger.debug('Returning session');
+
+      return session;
+    } catch (err) {
+      throw new InternalServerErrorException();
+    }
   }
 
   async logout(session: Session) {

@@ -23,6 +23,7 @@ export const SkuMetadata: Metadata = {
     sku: {
       type: 'string',
       required: true,
+      unique: true,
       description: 'Unique sku code',
       format: 'barcode',
       inputType: 'text',
@@ -37,6 +38,7 @@ export const SkuMetadata: Metadata = {
       viewColumns: ['upc'],
       label: 'Product',
       resourceLabelProperty: 'name',
+      update: false,
     },
   },
 };

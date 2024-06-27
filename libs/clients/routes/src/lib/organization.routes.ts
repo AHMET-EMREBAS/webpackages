@@ -5,12 +5,21 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { OrganizationMetadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { OrganizationFormGroup } from '@webpackages/clients/form-groups';
+import {
+  toFormInputOptions,
+  toTableColumnOptions,
+  toUpdateFormInputOptions,
+} from '@webpackages/types';
+import {
+  OrganizationFormGroup,
+  UpdateOrganizationFormGroup,
+} from '@webpackages/clients/form-groups';
 import { OrganizationService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const OrganizationRoutes: Routes = [
   {
@@ -18,16 +27,18 @@ export const OrganizationRoutes: Routes = [
     title: 'Organization',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View Organizations', icon: 'table' },
+        { route: ['table'], label: 'View Organization', icon: 'table' },
         { route: ['editor'], label: 'New Organization', icon: 'add' },
       ]),
       provideEntityCollectionService(OrganizationService),
       provideTableColumnOptions(toTableColumnOptions(OrganizationMetadata)),
       provideInputOptions(toFormInputOptions(OrganizationMetadata)),
+      provideUpdateInputOptions(toUpdateFormInputOptions(OrganizationMetadata)),
       provideFormGroup(OrganizationFormGroup),
+      provideUpdateFormGroup(UpdateOrganizationFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Organization');
     },
   },
 ];

@@ -5,7 +5,7 @@ import { IPriceLevel } from './price-level';
 export interface ICustomerAccount extends BaseEntity {
   blance: number;
 
-  user: ICustomer;
+  customer: ICustomer;
 
   priceLevel: IPriceLevel;
 }

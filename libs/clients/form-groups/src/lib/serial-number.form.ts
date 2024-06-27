@@ -9,3 +9,12 @@ export const SerialNumberFormGroup = new FormBuilder().group({
   generated: [null, []],
   sku: [null, []],
 });
+
+export const UpdateSerialNumberFormGroup = new FormBuilder().group({
+  serialNumber: [
+    null,
+    [Validators.minLength(3), Validators.maxLength(100), Validators.required],
+  ],
+  inStock: [null, []],
+  generated: [null, []],
+});

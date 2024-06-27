@@ -19,7 +19,7 @@ export class CustomerProfileView extends BaseView {
   @ViewColumn() lastName: string;
   @ViewColumn() middleName: string;
 
-  @ViewColumn() userUsername: Customer['username'];
-  @ViewColumn() userId: Customer['id'];
-  @ViewColumn() userActive: Customer['active'];
+  @ViewColumn() customerUsername: Customer['username'];
+  @ViewColumn() customerId: Customer['id'];
+  @ViewColumn() customerActive: Customer['active'];
 }

@@ -1,0 +1,34 @@
+import {BaseView, baseQueryBuilder } from '@webpackages/database';
+import { ViewColumn, ViewEntity } from 'typeorm';
+import { <%- className %> } from './<%- fileName %>.entity';
+import { <%- className %>Metadata } from '@webpackages/metadata';
+<%- imports %>
+
+@ViewEntity({
+   expression(ds) {
+    return ds
+      .createQueryBuilder()
+      .select('ROW_NUMBER() OVER ()', 'id')
+      .addSelect('main.id', 'eid')
+      .addSelect('main.createdAt', 'createdAt')
+      .addSelect('main.updatedAt', 'updatedAt')
+      .addSelect('main.deletedAt', 'deletedAt')
+      .addSelect('main.active', 'active')
+
+      <%- selectedProperties %>
+
+      <%- selectedRelationProperties %>
+ 
+      .from(<%- className %>, 'main')
+
+      <%- relationJoins %>
+      
+  },
+})
+export class <%- className %>View extends BaseView {
+
+  <%- viewProperties %>
+  
+  <%- viewRelations %>
+  
+}

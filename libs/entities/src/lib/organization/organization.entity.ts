@@ -8,5 +8,5 @@ import { User } from '../user';
 export class Organization extends BaseEntity implements IOrganization {
   @Column({ type: 'string', required: true, unique: true }) name: string;
 
-  @Relation({ relationType: 'one', target: User }) manager: User;
+  @Relation({ relationType: 'one', target: User }) managerEmployee: User;
 }

@@ -30,6 +30,7 @@ export const SessionMetadata: Metadata = {
       targetName: 'User',
       viewColumns: ['username'],
       resourceLabelProperty: 'name',
+      update: false,
     },
   },
 };

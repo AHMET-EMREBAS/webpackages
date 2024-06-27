@@ -29,6 +29,9 @@ export async function entityGenerator(
         propertyNames: printPropertyNames(value),
         viewProperties: printViewProperties(value), //viewProperties
         viewRelations: printViewRelations(value), //viewRelations
+        // relationJoins: printRelationJoins(value),
+        // selectedProperties: printSelectedProperties(value),
+        // selectedRelationProperties: '',
       });
     }
   } else {
@@ -44,6 +47,9 @@ export async function entityGenerator(
         propertyNames: printPropertyNames(value),
         viewProperties: printViewProperties(value), //viewProperties
         viewRelations: printViewRelations(value), //viewRelations
+        // printRelationJoins: printRelationJoins(value),
+        // selectedProperties: printSelectedProperties(value),
+        // selectedRelationProperties: '',
       });
       return;
     }

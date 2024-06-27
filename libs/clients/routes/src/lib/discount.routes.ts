@@ -5,12 +5,21 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { DiscountMetadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { DiscountFormGroup } from '@webpackages/clients/form-groups';
+import {
+  toFormInputOptions,
+  toTableColumnOptions,
+  toUpdateFormInputOptions,
+} from '@webpackages/types';
+import {
+  DiscountFormGroup,
+  UpdateDiscountFormGroup,
+} from '@webpackages/clients/form-groups';
 import { DiscountService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const DiscountRoutes: Routes = [
   {
@@ -18,16 +27,18 @@ export const DiscountRoutes: Routes = [
     title: 'Discount',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View Discounts', icon: 'table' },
+        { route: ['table'], label: 'View Discount', icon: 'table' },
         { route: ['editor'], label: 'New Discount', icon: 'add' },
       ]),
       provideEntityCollectionService(DiscountService),
       provideTableColumnOptions(toTableColumnOptions(DiscountMetadata)),
       provideInputOptions(toFormInputOptions(DiscountMetadata)),
+      provideUpdateInputOptions(toUpdateFormInputOptions(DiscountMetadata)),
       provideFormGroup(DiscountFormGroup),
+      provideUpdateFormGroup(UpdateDiscountFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Discount');
     },
   },
 ];

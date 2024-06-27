@@ -1,6 +1,17 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateCategoryDto } from './create.dto';
 import { Exclude } from 'class-transformer';
+import { Property } from '@webpackages/property';
+import { IDDto } from '@webpackages/database';
 
 @Exclude()
-export class UpdateCategoryDto extends PartialType(CreateCategoryDto) {}
+export class UpdateCategoryDto {
+  @Property({
+    type: 'string',
+    label: 'Category Name',
+    minLength: 3,
+    maxLength: 100,
+    unique: true,
+    example: 'Default Category',
+    class: 'w-full',
+  })
+  name: string;
+}

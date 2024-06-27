@@ -8,7 +8,7 @@ export class QueryCartDto extends BaseQueryDto implements QueryDto<CartView> {
   @QueryProperty() customerId: string;
   @QueryProperty() customerActive: string;
   @QueryProperty() customerUsername: string;
-  @QueryProperty() userId: string;
-  @QueryProperty() userActive: string;
-  @QueryProperty() userUsername: string;
+  @QueryProperty() employeeId: string;
+  @QueryProperty() employeeActive: string;
+  @QueryProperty() employeeUsername: string;
 }

@@ -14,8 +14,8 @@ export class MessageView extends BaseView {
   @ViewColumn() message: string;
   @ViewColumn() readDate: Date;
 
-  @ViewColumn() userId: User['id'];
-  @ViewColumn() userActive: User['active'];
-  @ViewColumn() toId: User['id'];
-  @ViewColumn() toActive: User['active'];
+  @ViewColumn() fromUserId: User['id'];
+  @ViewColumn() fromUserActive: User['active'];
+  @ViewColumn() toUserId: User['id'];
+  @ViewColumn() toUserActive: User['active'];
 }

@@ -4,5 +4,5 @@ import { INotification } from '@webpackages/models';
 
 @Entity()
 export class Notification extends BaseEntity implements INotification {
-  @Column({ type: 'string', required: false, unique: false }) message: string;
+  @Column({ type: 'string' }) message: string;
 }

@@ -17,7 +17,7 @@ export class CartView extends BaseView {
   @ViewColumn() customerUsername: Customer['username'];
   @ViewColumn() customerId: Customer['id'];
   @ViewColumn() customerActive: Customer['active'];
-  @ViewColumn() userUsername: User['username'];
-  @ViewColumn() userId: User['id'];
-  @ViewColumn() userActive: User['active'];
+  @ViewColumn() employeeUsername: User['username'];
+  @ViewColumn() employeeId: User['id'];
+  @ViewColumn() employeeActive: User['active'];
 }

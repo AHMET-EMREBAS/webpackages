@@ -1,6 +1,22 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateAppEventDto } from './create.dto';
 import { Exclude } from 'class-transformer';
+import { Property } from '@webpackages/property';
+import { IDDto } from '@webpackages/database';
+import { EventPayload } from '@webpackages/types';
 
 @Exclude()
-export class UpdateAppEventDto extends PartialType(CreateAppEventDto) {}
+export class UpdateAppEventDto {
+  @Property({
+    type: 'string',
+    minLength: 3,
+    maxLength: 100,
+    unique: true,
+    example: 'Event Name',
+  })
+  name: string;
+  @Property({
+    type: 'object',
+    targetName: 'EventPayload',
+    example: { value: 'Event Value' },
+  })
+  payload: EventPayload;
+}

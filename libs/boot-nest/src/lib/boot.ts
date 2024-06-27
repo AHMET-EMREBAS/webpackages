@@ -1,4 +1,4 @@
-import { Logger, Type } from '@nestjs/common';
+import { LogLevel, Logger, Type } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { GlobalValidationPipe } from './global-pipe';
@@ -6,6 +6,7 @@ import { ConfigService } from '@nestjs/config';
 import { AuthNames, AuthHeaders } from '@webpackages/types';
 
 export async function boot(AppModule: Type, PublicAppModule: Type) {
+  const logger = new Logger('Boot');
   {
     const app = await NestFactory.create(AppModule);
 
@@ -15,7 +16,13 @@ export async function boot(AppModule: Type, PublicAppModule: Type) {
     const PORT = C.getOrThrow('PORT');
     const APP_NAME = C.getOrThrow('APP_NAME');
     const APP_DESCRIPTION = C.getOrThrow('APP_DESCRIPTION');
+    const LOG_LEVELS = C.getOrThrow<string>('LOG_LEVEL')
+      ?.split(',')
+      .map((e) => e.trim()) as LogLevel[];
 
+    if (LOG_LEVELS) {
+      app.useLogger(LOG_LEVELS);
+    }
     const documentBuilder = new DocumentBuilder()
       .setTitle(APP_NAME)
       .setDescription(APP_DESCRIPTION)
@@ -39,17 +46,19 @@ export async function boot(AppModule: Type, PublicAppModule: Type) {
 
     await app.listen(PORT);
 
-    Logger.log(`🚀 Application is running on: http://localhost:${PORT}/api`);
+    logger.debug(
+      `🚀 Production Service is up and running : http://localhost:${PORT}/api`
+    );
   }
 
-  // Client testing service, no auth
+  // Client testing Service, no auth
   {
     if (process.env['NODE_ENV'] === 'development') {
       const app = await NestFactory.create(PublicAppModule);
       app.setGlobalPrefix('api');
       const PORT = 3001;
       const APP_NAME = 'API with no auhentication';
-      const APP_DESCRIPTION = 'This service is for testing client components';
+      const APP_DESCRIPTION = 'This Service is for testing client components';
 
       const documentBuilder = new DocumentBuilder()
         .setTitle(APP_NAME)
@@ -64,6 +73,10 @@ export async function boot(AppModule: Type, PublicAppModule: Type) {
       SwaggerModule.setup('api', app, doc);
 
       await app.listen(PORT);
+
+      logger.debug(
+        `🚀 Development Service is up and running : http://localhost:${PORT}/api`
+      );
     }
   }
 }

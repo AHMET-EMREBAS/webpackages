@@ -6,7 +6,7 @@ import { User } from '../user';
 
 @Entity()
 export class UserEmail extends BaseEntity implements IUserEmail {
-  @Column({ type: 'string', required: true, unique: false }) email: string;
+  @Column({ type: 'string', required: true, format: 'email' }) email: string;
 
   @Relation({ relationType: 'owner', target: User }) user: User;
 }

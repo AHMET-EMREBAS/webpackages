@@ -5,12 +5,21 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { InboxMetadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { InboxFormGroup } from '@webpackages/clients/form-groups';
+import {
+  toFormInputOptions,
+  toTableColumnOptions,
+  toUpdateFormInputOptions,
+} from '@webpackages/types';
+import {
+  InboxFormGroup,
+  UpdateInboxFormGroup,
+} from '@webpackages/clients/form-groups';
 import { InboxService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const InboxRoutes: Routes = [
   {
@@ -18,16 +27,18 @@ export const InboxRoutes: Routes = [
     title: 'Inbox',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View Inboxs', icon: 'table' },
+        { route: ['table'], label: 'View Inbox', icon: 'table' },
         { route: ['editor'], label: 'New Inbox', icon: 'add' },
       ]),
       provideEntityCollectionService(InboxService),
       provideTableColumnOptions(toTableColumnOptions(InboxMetadata)),
       provideInputOptions(toFormInputOptions(InboxMetadata)),
+      provideUpdateInputOptions(toUpdateFormInputOptions(InboxMetadata)),
       provideFormGroup(InboxFormGroup),
+      provideUpdateFormGroup(UpdateInboxFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Inbox');
     },
   },
 ];

@@ -6,5 +6,5 @@ export interface IClock extends BaseEntity {
 
   endDate: Date;
 
-  user: IUser;
+  employee: IUser;
 }

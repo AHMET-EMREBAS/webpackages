@@ -5,12 +5,21 @@ import {
   provideInputOptions,
   provideSubModuleNavListItems,
   provideTableColumnOptions,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { UserMetadata } from '@webpackages/metadata';
-import { toFormInputOptions, toTableColumnOptions } from '@webpackages/types';
-import { UserFormGroup } from '@webpackages/clients/form-groups';
+import {
+  toFormInputOptions,
+  toTableColumnOptions,
+  toUpdateFormInputOptions,
+} from '@webpackages/types';
+import {
+  UserFormGroup,
+  UpdateUserFormGroup,
+} from '@webpackages/clients/form-groups';
 import { UserService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const UserRoutes: Routes = [
   {
@@ -18,16 +27,18 @@ export const UserRoutes: Routes = [
     title: 'User',
     providers: [
       provideSubModuleNavListItems([
-        { route: ['table'], label: 'View Users', icon: 'table' },
+        { route: ['table'], label: 'View User', icon: 'table' },
         { route: ['editor'], label: 'New User', icon: 'add' },
       ]),
       provideEntityCollectionService(UserService),
       provideTableColumnOptions(toTableColumnOptions(UserMetadata)),
       provideInputOptions(toFormInputOptions(UserMetadata)),
+      provideUpdateInputOptions(toUpdateFormInputOptions(UserMetadata)),
       provideFormGroup(UserFormGroup),
+      provideUpdateFormGroup(UpdateUserFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('User');
     },
   },
 ];

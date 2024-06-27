@@ -4,10 +4,12 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { UserAddress, UserAddressView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { UserAddressService } from './service';
-import { User } from '@webpackages/entities';
+import { User, UserView } from '@webpackages/entities';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserAddress, UserAddressView, User])],
+  imports: [
+    TypeOrmModule.forFeature([UserAddress, UserAddressView, User, UserView]),
+  ],
   controllers: [UserAddressController],
   providers: [UserAddressService],
 })
