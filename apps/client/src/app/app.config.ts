@@ -3,7 +3,7 @@ import {
   provideZoneChangeDetection,
   isDevMode,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withHashLocation } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -23,7 +23,7 @@ import { entityConfig } from '@webpackages/clients/ngrx';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(appRoutes),
+    provideRouter(appRoutes, withHashLocation()),
     provideAnimations(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideServiceWorker('ngsw-worker.js', {
