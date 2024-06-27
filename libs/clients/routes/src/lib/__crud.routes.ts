@@ -45,7 +45,13 @@ export function buildCrudRoutes(entityName: string): Routes {
     {
       path: '',
       component: ModuleLayoutComponent,
+
       children: [
+        {
+          path: '',
+          redirectTo: 'table',
+          pathMatch: 'full',
+        },
         {
           path: 'table',
           title: `View ${entityName}`,
