@@ -19,7 +19,7 @@ import {
   UpdateInboxFormGroup,
 } from '@webpackages/clients/form-groups';
 import { InboxService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const InboxRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const InboxRoutes: Routes = [
       provideUpdateFormGroup(UpdateInboxFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Inbox');
     },
   },
 ];

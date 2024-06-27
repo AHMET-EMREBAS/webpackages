@@ -19,7 +19,7 @@ import {
   UpdateSessionFormGroup,
 } from '@webpackages/clients/form-groups';
 import { SessionService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const SessionRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const SessionRoutes: Routes = [
       provideUpdateFormGroup(UpdateSessionFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Session');
     },
   },
 ];

@@ -19,7 +19,7 @@ import {
   UpdateUserPhoneFormGroup,
 } from '@webpackages/clients/form-groups';
 import { UserPhoneService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const UserPhoneRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const UserPhoneRoutes: Routes = [
       provideUpdateFormGroup(UpdateUserPhoneFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('UserPhone');
     },
   },
 ];

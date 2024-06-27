@@ -19,7 +19,7 @@ import {
   UpdateSaleFormGroup,
 } from '@webpackages/clients/form-groups';
 import { SaleService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const SaleRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const SaleRoutes: Routes = [
       provideUpdateFormGroup(UpdateSaleFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Sale');
     },
   },
 ];

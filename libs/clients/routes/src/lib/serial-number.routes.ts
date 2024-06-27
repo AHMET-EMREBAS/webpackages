@@ -19,7 +19,7 @@ import {
   UpdateSerialNumberFormGroup,
 } from '@webpackages/clients/form-groups';
 import { SerialNumberService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const SerialNumberRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const SerialNumberRoutes: Routes = [
       provideUpdateFormGroup(UpdateSerialNumberFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('SerialNumber');
     },
   },
 ];

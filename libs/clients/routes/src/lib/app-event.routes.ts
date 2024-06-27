@@ -19,7 +19,7 @@ import {
   UpdateAppEventFormGroup,
 } from '@webpackages/clients/form-groups';
 import { AppEventService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const AppEventRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const AppEventRoutes: Routes = [
       provideUpdateFormGroup(UpdateAppEventFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('AppEvent');
     },
   },
 ];

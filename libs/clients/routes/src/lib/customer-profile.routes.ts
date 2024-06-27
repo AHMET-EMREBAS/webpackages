@@ -19,7 +19,7 @@ import {
   UpdateCustomerProfileFormGroup,
 } from '@webpackages/clients/form-groups';
 import { CustomerProfileService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const CustomerProfileRoutes: Routes = [
   {
@@ -40,7 +40,7 @@ export const CustomerProfileRoutes: Routes = [
       provideUpdateFormGroup(UpdateCustomerProfileFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('CustomerProfile');
     },
   },
 ];

@@ -19,7 +19,7 @@ import {
   UpdateClockFormGroup,
 } from '@webpackages/clients/form-groups';
 import { ClockService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const ClockRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const ClockRoutes: Routes = [
       provideUpdateFormGroup(UpdateClockFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Clock');
     },
   },
 ];

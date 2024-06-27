@@ -19,7 +19,7 @@ import {
   UpdateUserAddressFormGroup,
 } from '@webpackages/clients/form-groups';
 import { UserAddressService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const UserAddressRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const UserAddressRoutes: Routes = [
       provideUpdateFormGroup(UpdateUserAddressFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('UserAddress');
     },
   },
 ];

@@ -19,7 +19,7 @@ import {
   UpdateQuantityFormGroup,
 } from '@webpackages/clients/form-groups';
 import { QuantityService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const QuantityRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const QuantityRoutes: Routes = [
       provideUpdateFormGroup(UpdateQuantityFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Quantity');
     },
   },
 ];

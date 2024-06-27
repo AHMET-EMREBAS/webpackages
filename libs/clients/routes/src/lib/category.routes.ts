@@ -19,7 +19,7 @@ import {
   UpdateCategoryFormGroup,
 } from '@webpackages/clients/form-groups';
 import { CategoryService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const CategoryRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const CategoryRoutes: Routes = [
       provideUpdateFormGroup(UpdateCategoryFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Category');
     },
   },
 ];

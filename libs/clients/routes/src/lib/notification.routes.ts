@@ -19,7 +19,7 @@ import {
   UpdateNotificationFormGroup,
 } from '@webpackages/clients/form-groups';
 import { NotificationService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const NotificationRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const NotificationRoutes: Routes = [
       provideUpdateFormGroup(UpdateNotificationFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Notification');
     },
   },
 ];

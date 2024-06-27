@@ -19,7 +19,7 @@ import {
   UpdateUserProfileFormGroup,
 } from '@webpackages/clients/form-groups';
 import { UserProfileService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const UserProfileRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const UserProfileRoutes: Routes = [
       provideUpdateFormGroup(UpdateUserProfileFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('UserProfile');
     },
   },
 ];

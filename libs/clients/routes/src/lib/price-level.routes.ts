@@ -19,7 +19,7 @@ import {
   UpdatePriceLevelFormGroup,
 } from '@webpackages/clients/form-groups';
 import { PriceLevelService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const PriceLevelRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const PriceLevelRoutes: Routes = [
       provideUpdateFormGroup(UpdatePriceLevelFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('PriceLevel');
     },
   },
 ];

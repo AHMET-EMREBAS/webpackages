@@ -19,7 +19,7 @@ import {
   UpdateProductImgFormGroup,
 } from '@webpackages/clients/form-groups';
 import { ProductImgService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const ProductImgRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const ProductImgRoutes: Routes = [
       provideUpdateFormGroup(UpdateProductImgFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('ProductImg');
     },
   },
 ];

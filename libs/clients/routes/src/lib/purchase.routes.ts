@@ -19,7 +19,7 @@ import {
   UpdatePurchaseFormGroup,
 } from '@webpackages/clients/form-groups';
 import { PurchaseService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const PurchaseRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const PurchaseRoutes: Routes = [
       provideUpdateFormGroup(UpdatePurchaseFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Purchase');
     },
   },
 ];

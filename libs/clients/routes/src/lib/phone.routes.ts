@@ -19,7 +19,7 @@ import {
   UpdatePhoneFormGroup,
 } from '@webpackages/clients/form-groups';
 import { PhoneService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const PhoneRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const PhoneRoutes: Routes = [
       provideUpdateFormGroup(UpdatePhoneFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Phone');
     },
   },
 ];

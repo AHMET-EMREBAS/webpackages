@@ -19,7 +19,7 @@ import {
   UpdateMessageFormGroup,
 } from '@webpackages/clients/form-groups';
 import { MessageService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const MessageRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const MessageRoutes: Routes = [
       provideUpdateFormGroup(UpdateMessageFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Message');
     },
   },
 ];

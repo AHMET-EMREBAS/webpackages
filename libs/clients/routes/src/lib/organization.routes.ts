@@ -19,7 +19,7 @@ import {
   UpdateOrganizationFormGroup,
 } from '@webpackages/clients/form-groups';
 import { OrganizationService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const OrganizationRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const OrganizationRoutes: Routes = [
       provideUpdateFormGroup(UpdateOrganizationFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Organization');
     },
   },
 ];

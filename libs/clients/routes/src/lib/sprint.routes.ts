@@ -19,7 +19,7 @@ import {
   UpdateSprintFormGroup,
 } from '@webpackages/clients/form-groups';
 import { SprintService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const SprintRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const SprintRoutes: Routes = [
       provideUpdateFormGroup(UpdateSprintFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Sprint');
     },
   },
 ];

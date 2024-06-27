@@ -19,7 +19,7 @@ import {
   UpdateDepartmentFormGroup,
 } from '@webpackages/clients/form-groups';
 import { DepartmentService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const DepartmentRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const DepartmentRoutes: Routes = [
       provideUpdateFormGroup(UpdateDepartmentFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('Department');
     },
   },
 ];
