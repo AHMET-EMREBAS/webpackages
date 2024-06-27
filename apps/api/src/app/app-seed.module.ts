@@ -8,6 +8,7 @@ import {
   Store,
   Supplier,
   Task,
+  entityList,
 } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import {
@@ -20,17 +21,7 @@ import {
   getBuiltinTasks,
 } from '@webpackages/data';
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      Department,
-      Category,
-      Supplier,
-      PriceLevel,
-      Store,
-      Product,
-      Task,
-    ]),
-  ],
+  imports: [TypeOrmModule.forFeature([...entityList])],
 })
 export class AppSeedModule implements OnModuleInit {
   protected readonly logger = new Logger('AppSeedModule');
@@ -61,7 +52,7 @@ export class AppSeedModule implements OnModuleInit {
             this.logger.debug(`Saving ${i.name}`);
             this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
           } catch (err) {
-            this.logger.log(i, ' already exist.');
+            this.logger.debug(i, ' already exist.');
           }
         }
 
@@ -72,7 +63,7 @@ export class AppSeedModule implements OnModuleInit {
             this.logger.debug(`Saving ${i.name}`);
             this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
           } catch (err) {
-            this.logger.log(i, ' already exist.');
+            this.logger.debug(i, ' already exist.');
           }
         }
 
@@ -83,7 +74,7 @@ export class AppSeedModule implements OnModuleInit {
             this.logger.debug(`Saving ${i.name}`);
             this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
           } catch (err) {
-            this.logger.log(i, ' already exist.');
+            this.logger.debug(i, ' already exist.');
           }
         }
 
@@ -94,18 +85,7 @@ export class AppSeedModule implements OnModuleInit {
             this.logger.debug(`Saving ${i.name}`);
             this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
           } catch (err) {
-            this.logger.log(i, ' already exist.');
-          }
-        }
-
-        // Products
-        for (const i of getBuiltinProducts()) {
-          try {
-            const saved = await this.product.save(i);
-            this.logger.debug(`Saving ${i.name}`);
-            this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
-          } catch (err) {
-            this.logger.log(i, ' already exist.');
+            this.logger.debug(i, ' already exist.');
           }
         }
 
@@ -116,7 +96,7 @@ export class AppSeedModule implements OnModuleInit {
             this.logger.debug(`Saving ${i.name}`);
             this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
           } catch (err) {
-            this.logger.log(i, ' already exist.');
+            this.logger.debug(i, ' already exist.');
           }
         }
 
@@ -128,7 +108,17 @@ export class AppSeedModule implements OnModuleInit {
             this.logger.debug(`Saving ${saved.name}`);
             this.logger.debug(`Saved ID: ${saved.id}`);
           } catch (err) {
-            this.logger.log(i, ' already exist');
+            this.logger.debug(i, ' already exist');
+          }
+        }
+        // Products
+        for (const i of getBuiltinProducts()) {
+          try {
+            const saved = await this.product.save(i);
+            this.logger.debug(`Saving ${i.name}`);
+            this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
+          } catch (err) {
+            this.logger.debug(i, ' already exist.');
           }
         }
       }, 5000);

@@ -18,16 +18,17 @@ export class ProductSubscriber implements EntitySubscriberInterface<Product> {
   }
 
   async afterInsert(event: InsertEvent<Product>) {
-    const entity = event.entity;
+    const { id, ...entity } = event.entity;
 
     const sku = event.manager.getRepository(Sku);
-    const defaultSku = await sku.save({
+
+    const defaultOne = await sku.save({
       ...entity,
-      sku: createSkuCode(entity.upc, entity.name),
+      sku: createSkuCode(entity.upc, entity.name, 'N'),
       product: entity,
     });
 
-    const usedSKU = await sku.save({
+    const usedOne = await sku.save({
       ...entity,
       sku: createSkuCode(entity.upc, entity.name, 'U'),
       product: entity,

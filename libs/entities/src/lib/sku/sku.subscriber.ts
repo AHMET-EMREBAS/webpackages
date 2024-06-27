@@ -30,10 +30,9 @@ export class SkuSubscriber implements EntitySubscriberInterface<Sku> {
     // Create prices
     for (const pl of priceLevels) {
       await price.save({
-        price: 999999999,
-        cost: 99999999,
+        price: 0,
+        cost: 0,
         startDate: new Date(),
-        endDate: new Date('1/1/2200'),
         sku: { id: entity.id },
         priceLevel: pl,
       });
@@ -42,7 +41,7 @@ export class SkuSubscriber implements EntitySubscriberInterface<Sku> {
     // Create quantities
     for (const store of stores) {
       await quantity.save({
-        quantity: 99999999,
+        quantity: 0,
         alertUnderQuantity: 5,
         alert: true,
         autoRepurchase: false,
