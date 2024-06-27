@@ -88,13 +88,13 @@ export function ObjectColumn(options: Partial<ColumnOptions>) {
       nullable: true,
       transformer: {
         to(value) {
-          if (typeof value === 'object') {
+          if (value != undefined) {
             return JSON.stringify(value);
           }
           return value;
         },
         from(value) {
-          if (typeof value === 'string') {
+          if (value != undefined) {
             return JSON.parse(value);
           }
           return value;

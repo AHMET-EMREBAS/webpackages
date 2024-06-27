@@ -91,9 +91,10 @@ export function toTableColumnOptions(
         ...value,
         name: key,
         label: names(value.label || key).titleName,
+        
       } as PropertyOptions;
     }) || []),
-    
+
     ...(Object.entries(metadata.relations || {})
       .map(([key, value]) => {
         if (value.viewColumns) {
