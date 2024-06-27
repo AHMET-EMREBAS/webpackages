@@ -6,6 +6,5 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `<p>product-form works!</p>`,
-  styles: ``,
 })
 export class ProductFormComponent {}
