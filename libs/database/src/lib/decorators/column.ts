@@ -94,9 +94,6 @@ export function ObjectColumn(options: Partial<ColumnOptions>) {
           return value;
         },
         from(value) {
-          if (value != undefined) {
-            return JSON.parse(value);
-          }
           return value;
         },
       },
