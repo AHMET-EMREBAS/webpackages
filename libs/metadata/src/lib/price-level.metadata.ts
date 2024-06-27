@@ -11,6 +11,7 @@ export const PriceLevelMetadata: Metadata = {
       required: true,
       unique: true,
       example: 'Chicago Retail',
+      tabIndex: 1,
     },
     currency: {
       type: 'string',
@@ -19,13 +20,16 @@ export const PriceLevelMetadata: Metadata = {
       minLength: 1,
       maxLength: 10,
       example: 'USD',
+      tabIndex: 2,
     },
 
     taxrate: {
       type: 'number',
+      label: 'Location Taxrate',
       required: true,
       minimum: 0,
       example: 10.25,
+      tabIndex: 3,
     },
   },
 };

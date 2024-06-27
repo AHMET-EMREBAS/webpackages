@@ -11,9 +11,24 @@ export const QuantityMetadata: Metadata = {
       tabIndex: 3,
     },
     alert: { type: 'boolean', example: false },
-    alertUnderQuantity: { type: 'number', example: 3, tabIndex: 5 },
-    autoRepurchase: { type: 'boolean', example: false, tabIndex: 5 },
-    notSellLastOne: { type: 'boolean', example: false, tabIndex: 5 },
+    alertUnderQuantity: {
+      type: 'number',
+      example: 3,
+      tabIndex: 5,
+      tableColumnClass: '!mw-8',
+    },
+    autoRepurchase: {
+      type: 'boolean',
+      example: false,
+      tabIndex: 5,
+      tableColumnClass: '!mw-8',
+    },
+    notSellLastOne: {
+      type: 'boolean',
+      example: false,
+      tabIndex: 5,
+      tableColumnClass: '!mw-8',
+    },
   },
   relations: {
     sku: {

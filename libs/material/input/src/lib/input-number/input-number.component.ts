@@ -12,7 +12,6 @@ import { InputType } from '@webpackages/types';
       <input
         matInput
         type="number"
-        [tabindex]="tabIndex"
         [formControl]="inputControl"
         [min]="inputMin"
         [max]="inputMax"
