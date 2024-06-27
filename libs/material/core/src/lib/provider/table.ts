@@ -1,6 +1,7 @@
 import { PropertyOptions } from '@webpackages/types';
 import { createValueProvider } from './create-provider';
 import { provideDefaultHttpSearchQueryBuilder } from './http-search-query-builder';
+import { provideDefaultHttpCountQueryBuilder } from './http-entity-count-path-builder';
 
 export const {
   default: provideDefaultTimestampColumnOptions,
@@ -58,6 +59,8 @@ export const {
 export function provideDefaultTableOptions() {
   return [
     provideDefaultHttpSearchQueryBuilder(),
+    provideDefaultHttpCountQueryBuilder(),
+    
     provideDefaultTimestampColumnOptions(),
     provideDefaultIdColumnOptions(),
     provideDefaultTableRowRouteValueHandler(),

@@ -7,6 +7,7 @@ import {
   Product,
   Store,
   Supplier,
+  Task,
 } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import {
@@ -16,6 +17,7 @@ import {
   getBuiltinProducts,
   getBuiltinStores,
   getBuiltinSuppliers,
+  getBuiltinTasks,
 } from '@webpackages/data';
 @Module({
   imports: [
@@ -26,12 +28,15 @@ import {
       PriceLevel,
       Store,
       Product,
+      Task,
     ]),
   ],
 })
 export class AppSeedModule implements OnModuleInit {
   protected readonly logger = new Logger('AppSeedModule');
   constructor(
+    @InjectRepository(Task)
+    protected readonly task: Repository<Task>,
     @InjectRepository(Category)
     protected readonly category: Repository<Category>,
     @InjectRepository(Department)
@@ -112,6 +117,18 @@ export class AppSeedModule implements OnModuleInit {
             this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
           } catch (err) {
             this.logger.log(i, ' already exist.');
+          }
+        }
+
+        // Tasks
+
+        for (const i of getBuiltinTasks()) {
+          try {
+            const saved = await this.task.save(i);
+            this.logger.debug(`Saving ${saved.name}`);
+            this.logger.debug(`Saved ID: ${saved.id}`);
+          } catch (err) {
+            this.logger.log(i, ' already exist');
           }
         }
       }, 5000);

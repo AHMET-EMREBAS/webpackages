@@ -42,7 +42,6 @@ export function ValidateFormat(
       MinLength(8, validationOptions),
       MaxLength(13, validationOptions),
       NotContains(' ', validationOptions),
-      IsAlphanumeric('en-US', validationOptions),
     ];
   } else if (sf === 'credit-card') {
     return [IsCreditCard(validationOptions)];

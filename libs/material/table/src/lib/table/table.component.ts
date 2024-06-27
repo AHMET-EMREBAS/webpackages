@@ -6,8 +6,10 @@ import {
   EventEmitter,
   Inject,
   OnInit,
+  Optional,
   Output,
   ViewChild,
+  inject,
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -29,6 +31,9 @@ import {
   getContextEditRouteValueToken,
   getContextDeleteRouteValueToken,
   getTableColumnOptionsToken,
+  getResourceNameToken,
+  getHttpCountQueryBuilderToken,
+  HttpCountQueryBuilder,
 } from '@webpackages/material/core';
 
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
@@ -36,11 +41,12 @@ import { CdkMenu, CdkMenuItem, CdkContextMenuTrigger } from '@angular/cdk/menu';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Observable, debounceTime, merge, startWith } from 'rxjs';
+import { Observable, debounceTime, map, merge, of, startWith } from 'rxjs';
 import { LiveAnnouncer, A11yModule } from '@angular/cdk/a11y';
 import { getEntityCollectionServiceToken } from '@webpackages/material/core';
 import { EntityCollectionService, MergeStrategy } from '@ngrx/data';
-import { PropertyOptions } from '@webpackages/types';
+import { CountResponse, PropertyOptions } from '@webpackages/types';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'wp-table',
@@ -70,6 +76,7 @@ import { PropertyOptions } from '@webpackages/types';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent<T = any> implements OnInit, AfterViewInit {
+  httpClient = inject(HttpClient);
   @ViewChild('searchInput') readonly searchInput: ElementRef<HTMLInputElement>;
   @ViewChild('paginator') readonly paginator: MatPaginator;
   @ViewChild(MatSort) readonly sort: MatSort;
@@ -78,6 +85,10 @@ export class TableComponent<T = any> implements OnInit, AfterViewInit {
 
   readonly searchControl = new FormControl<string>('');
   readonly contextRowValue = signal<any>(null);
+
+  length$ = this.httpClient
+    .get<CountResponse>(this.httpCountQueryBuilder(this.resourceName))
+    .pipe(map((d) => d.count));
 
   withDeleted = false;
   showTimestamps = true;
@@ -106,7 +117,11 @@ export class TableComponent<T = any> implements OnInit, AfterViewInit {
     @Inject(getEntityCollectionServiceToken())
     private readonly service: EntityCollectionService<any>,
     @Inject(getTableColumnOptionsToken())
-    public readonly tableColumnOptions: PropertyOptions[]
+    public readonly tableColumnOptions: PropertyOptions[],
+    @Inject(getResourceNameToken())
+    public readonly resourceName: string,
+    @Inject(getHttpCountQueryBuilderToken())
+    public readonly httpCountQueryBuilder: HttpCountQueryBuilder
   ) {}
 
   ngOnInit(): void {

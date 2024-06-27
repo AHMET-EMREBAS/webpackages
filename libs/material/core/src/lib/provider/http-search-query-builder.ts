@@ -1,6 +1,12 @@
 import { names } from '@webpackages/utils';
 import { createValueProvider } from './create-provider';
 
+export type HttpSearchQueryBuilder = (
+  resourceName: string,
+  search: string,
+  take?: number
+) => string;
+
 /**
  *
  * @param resourcePath categorys | departments | products ...
@@ -24,9 +30,3 @@ export const {
   'HttpSearchQueryBuilder',
   defaultHttpSearchQueryBuilder
 );
-
-export type HttpSearchQueryBuilder = (
-  resourceName: string,
-  search: string,
-  take?: number
-) => string;

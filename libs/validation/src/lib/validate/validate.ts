@@ -30,7 +30,11 @@ export function Validate(options: ApiPropertyOptions) {
 
   if (options.type === 'string') {
     decorators.push(ValidateString(options, validationOptions));
-    decorators.push(PrepareString());
+    if (options.isArray) {
+      // TODO
+    } else {
+      decorators.push(PrepareString());
+    }
   } else if (type === 'date') {
     decorators.push(ValidateDate(options, validationOptions));
     decorators.push(PrepareDate());

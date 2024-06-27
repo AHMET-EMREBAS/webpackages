@@ -43,8 +43,9 @@ export const TaskMetadata: Metadata = {
       multiple: true,
       class: 'order-3 w-3/12 grow',
       tabIndex: 3,
+
       map(value) {
-        return value?.tags?.join(' | ');
+        return value.tags?.join(', ') || '';
       },
     },
 

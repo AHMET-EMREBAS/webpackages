@@ -18,6 +18,25 @@ export function StringColumn(options: Partial<ColumnOptions>) {
       unique: options.unique,
       update: options.update,
       default: options.default,
+      transformer: {
+        to(value) {
+          if (options.isArray) {
+            if (value) {
+              return JSON.stringify(value);
+            }
+          }
+          return value;
+        },
+
+        from(value) {
+          if (options.isArray) {
+            if (value) {
+              return JSON.parse(value);
+            }
+          }
+          return value;
+        },
+      },
     })
   );
 }
@@ -32,11 +51,25 @@ export function NumberColumn(options: Partial<ColumnOptions>) {
       update: options.update,
       default: options.default,
       transformer: {
-        from(value) {
-          return parseFloat(value);
-        },
         to(value) {
+          if (options.isArray) {
+            if (value != undefined) {
+              return JSON.stringify(
+                value.map((e: number) => {
+                  return e;
+                })
+              );
+            }
+          }
           return value;
+        },
+        from(value) {
+          if (options.isArray) {
+            if (value) {
+              return JSON.parse(value);
+            }
+          }
+          return parseFloat(value);
         },
       },
     })
@@ -88,7 +121,7 @@ export function ObjectColumn(options: Partial<ColumnOptions>) {
       nullable: true,
       transformer: {
         to(value) {
-          if (value != undefined) {
+          if (value != undefined && typeof value === 'object') {
             return JSON.stringify(value);
           }
           return value;
