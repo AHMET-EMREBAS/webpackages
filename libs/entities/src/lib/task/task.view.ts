@@ -13,7 +13,17 @@ import { User } from '../user';
 export class TaskView extends BaseView {
   @ViewColumn() name: string;
   @ViewColumn() description: string;
-  @ViewColumn() tags: string[];
+  @ViewColumn({
+    transformer: {
+      from(value) {
+        return JSON.parse(value);
+      },
+      to(value) {
+        return value;
+      },
+    },
+  })
+  tags: string[];
   @ViewColumn() dueDate: Date;
   @ViewColumn() startDate: Date;
   @ViewColumn() endDate: Date;

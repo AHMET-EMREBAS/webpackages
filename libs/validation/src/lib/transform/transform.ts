@@ -58,10 +58,6 @@ export function PrepareBoolean() {
 
 export function PrepareObject() {
   return Transform(({ value }) =>
-    typeof value === 'string'
-      ? isStringObject(value)
-        ? JSON.parse(value)
-        : value
-      : value
+    typeof value === 'string' ? JSON.parse(value) : value
   );
 }
