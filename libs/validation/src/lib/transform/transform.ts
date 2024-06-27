@@ -1,6 +1,5 @@
 import { Transform } from 'class-transformer';
-import { isBooleanString, isDateString, isNumberString } from 'class-validator';
-import { isStringObject } from 'util/types';
+import { isBooleanString, isNumberString } from 'class-validator';
 
 export function PrepareString() {
   return Transform(({ value }) =>
@@ -58,10 +57,6 @@ export function PrepareBoolean() {
 
 export function PrepareObject() {
   return Transform(({ value }) =>
-    typeof value === 'string'
-      ? isStringObject(value)
-        ? JSON.parse(value)
-        : value
-      : value
+    typeof value === 'string' ? JSON.parse(value) : value
   );
 }

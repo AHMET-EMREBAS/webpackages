@@ -29,8 +29,8 @@ import { FormControl } from '@angular/forms';
         [formControl]="__searchControl"
         [matAutocomplete]="auto"
         [multiple]="inputMultiple"
-        [tabindex]="tabIndex"
         [attr.data-testid]="inputLabel"
+        [tabindex]="tabIndex"
       />
       <mat-autocomplete
         #auto="matAutocomplete"

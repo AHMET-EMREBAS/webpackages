@@ -58,6 +58,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
         (matChipInputTokenEnd)="addByKeypress($event)"
         [attr.data-testid]="inputLabel"
+        [tabindex]="tabIndex"
       />
       <mat-autocomplete
         #searchAutoComplete="matAutocomplete"

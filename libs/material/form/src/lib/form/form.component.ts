@@ -1,5 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, Inject, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  Optional,
+  Output,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,6 +20,7 @@ import {
   SearchManyComponent,
   InputTextareaComponent,
   AutocompleteManyComponent,
+  SelectComponent,
 } from '@webpackages/material/input';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -23,7 +32,7 @@ import {
   getInputOptionsToken,
 } from '@webpackages/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { PropertyOptions } from '@webpackages/types';
 
 @Component({
@@ -42,17 +51,34 @@ import { PropertyOptions } from '@webpackages/types';
     AutocompleteManyComponent,
     SearchComponent,
     SearchManyComponent,
+    SelectComponent,
+
     MatButtonModule,
     MatIconModule,
     MatCheckboxModule,
   ],
   templateUrl: './form.component.html',
+
+  styles: ` 
+  @media screen and (max-width:600px){ 
+    form > *{ 
+        width:100%
+    }
+  }
+  `,
 })
 export class FormComponent<T = any> {
   submitted = false;
   formGroup = inject(getFormGroupToken());
 
+  @Input() onlyEmitEvent: boolean;
+  @Input() submitButtonLabel = 'Submit';
+
+  @Output()
+  submitEvent = new EventEmitter<T>();
+
   constructor(
+    @Optional()
     @Inject(getEntityCollectionServiceToken())
     protected readonly service: EntityCollectionService<T>,
     @Inject(getInputOptionsToken())
@@ -60,24 +86,33 @@ export class FormComponent<T = any> {
   ) {}
 
   async saveItem() {
-    try {
-      await firstValueFrom(
-        this.service?.add(
-          { ...this.formGroup.value },
-          {
-            isOptimistic: false,
-          }
-        )
-      );
+    if (this.onlyEmitEvent) {
+      this.submitEvent.emit(this.formGroup.value);
+    } else {
+      // Submitting
+      try {
+        if (this.service) {
+          await firstValueFrom(
+            this.service?.add(
+              { ...this.formGroup.value },
+              {
+                isOptimistic: false,
+              }
+            )
+          );
 
-      this.submitted = true;
-    } catch (err) {
-      const rawErrors = (err as DataServiceError).error.error.errors;
-      for (const rawError of rawErrors) {
-        const errors = Object.values(rawError);
-        for (const e of errors) {
-          const control = this.control((e as any)?.property);
-          control.setErrors((e as any)?.constraints);
+          this.submitted = true;
+        } else {
+          console.warn(`[FormComponent] EntityService is  not provided`);
+        }
+      } catch (err) {
+        const rawErrors = (err as DataServiceError).error.error.errors;
+        for (const rawError of rawErrors) {
+          const errors = Object.values(rawError);
+          for (const e of errors) {
+            const control = this.control((e as any)?.property);
+            control.setErrors((e as any)?.constraints);
+          }
         }
       }
     }

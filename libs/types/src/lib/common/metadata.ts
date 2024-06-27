@@ -46,13 +46,11 @@ export function toFormInputOptions(
         return {
           ...value,
           ...common,
-          inputType: value.inputType ?? 'checkbox',
         };
       } else if (value.type == 'object') {
         return {
           ...value,
           ...common,
-          inputType: 'select-many',
         };
       }
 
@@ -60,8 +58,7 @@ export function toFormInputOptions(
         ...value,
         ...common,
         type: 'string',
-        inputType: 'text',
-        incon: 'info',
+        icon: 'info',
       } as Partial<PropertyOptions>;
     }
   ) as PropertyOptions[];
@@ -73,9 +70,11 @@ export function toFormInputOptions(
         label: value.targetName,
         resourceName: names(value.targetName!).fileName,
         resourceLabelProperty: value.resourceLabelProperty,
-        class: 'w-full',
-        inputType: value.relationType === 'many' ? 'search-many' : 'search',
-        tabIndex: value.tabIndex ?? 1,
+        class: value.class ?? 'order-6 w-4/12',
+        inputType:
+          value.inputType ||
+          (value.relationType === 'many' ? 'search-many' : 'search'),
+        tabIndex: value.tabIndex ?? 6,
       } as PropertyOptions;
     }
   );
@@ -92,22 +91,28 @@ export function toTableColumnOptions(
         ...value,
         name: key,
         label: names(value.label || key).titleName,
+        
       } as PropertyOptions;
     }) || []),
+
     ...(Object.entries(metadata.relations || {})
       .map(([key, value]) => {
         if (value.viewColumns) {
+          const prefix = value.label ? names(value.label).titleName : '';
+
           return value.viewColumns.map((vc) => {
             return {
               name: key + names(vc).className,
-              label: names(key).titleName + ' ' + names(vc).titleName,
+              label: prefix + ' ' + names(vc).titleName,
             } as PropertyOptions;
           });
         }
         return [];
       })
       .flat() || []),
-  ];
+  ].sort((p, c) => {
+    return p.tabIndex > c.tabIndex ? 1 : p.tabIndex == c.tabIndex ? 0 : -1;
+  });
 }
 
 export function toUpdateFormInputOptions(metadata: Metadata) {

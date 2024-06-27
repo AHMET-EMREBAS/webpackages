@@ -1,5 +1,5 @@
 import { EntityCollectionServiceBase } from '@ngrx/data';
-import { createClassProvider } from './create-provider';
+import { createClassProvider, createValueProvider } from './create-provider';
 import { MockEntityCollectionService } from '../mock';
 
 export const {
@@ -9,3 +9,6 @@ export const {
   'EntityCollectionService',
   MockEntityCollectionService
 );
+
+export const { provide: provideResouceName, token: getResourceNameToken } =
+  createValueProvider<string>('ResouceEntityName', 'Unkown');

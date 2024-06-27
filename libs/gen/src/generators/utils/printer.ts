@@ -235,7 +235,9 @@ export function printEntityColumns(metadata: Metadata) {
       const __format =
         value.format != undefined ? `format:'${value.format}'` : undefined;
 
-      const options = [__type, __required, __unique, __format]
+      const __isArray = value.isArray === true ? 'isArray:true' : undefined;
+
+      const options = [__type, __required, __unique, __format, __isArray]
         .filter((e) => e)
         .join(',');
 

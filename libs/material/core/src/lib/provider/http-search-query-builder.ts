@@ -1,6 +1,12 @@
 import { names } from '@webpackages/utils';
 import { createValueProvider } from './create-provider';
 
+export type HttpSearchQueryBuilder = (
+  resourceName: string,
+  search: string,
+  take?: number
+) => string;
+
 /**
  *
  * @param resourcePath categorys | departments | products ...
@@ -11,9 +17,9 @@ export const defaultHttpSearchQueryBuilder = (
   resourcePath: string,
   search: string
 ) => {
-  return `api/${
-    names(names(resourcePath).pluralName).fileName
-  }/?search=${search}&take=${10000}`;
+  return `api/${names(
+    names(resourcePath).pluralName
+  ).className.toLowerCase()}/?search=${search}&take=${10000}`;
 };
 
 export const {
@@ -24,9 +30,3 @@ export const {
   'HttpSearchQueryBuilder',
   defaultHttpSearchQueryBuilder
 );
-
-export type HttpSearchQueryBuilder = (
-  resourceName: string,
-  search: string,
-  take?: number
-) => string;

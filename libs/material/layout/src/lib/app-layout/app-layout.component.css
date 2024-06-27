@@ -5,6 +5,10 @@
     font-weight: 700;
     letter-spacing: 2px;
   }
+  * {
+    font-weight: bolder;
+    letter-spacing: 0.2em;
+  }
 }
 
 mat-sidenav {
@@ -16,7 +20,7 @@ mat-nav-list {
 }
 
 .mat-mdc-list-item:not(:first-child) {
-  margin-top: 0.3em;
+  margin-top: 0.1em;
 }
 
 mat-sidenav-content {

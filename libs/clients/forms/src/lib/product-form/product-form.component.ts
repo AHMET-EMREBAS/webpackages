@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@webpackages/material/core';
-import { FormComponent } from '@webpackages/material/form';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'wp-product-form',
   standalone: true,
-  imports: [FormsModule, FormComponent],
-  templateUrl: './product-form.component.html',
+  imports: [CommonModule],
+  template: `<p>product-form works!</p>`,
 })
 export class ProductFormComponent {}

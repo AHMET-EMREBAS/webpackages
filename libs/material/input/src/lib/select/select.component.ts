@@ -15,6 +15,7 @@ import { EntitySelectOption } from '@webpackages/types';
         [formControl]="inputControl"
         [multiple]="inputMultiple"
         [attr.data-testid]="inputLabel"
+        [tabindex]="tabIndex"
       >
         @for(option of enumOptions || selectOptions; track option){
         <mat-option [value]="__value(option)">{{ __label(option) }}</mat-option>
@@ -25,7 +26,7 @@ import { EntitySelectOption } from '@webpackages/types';
 })
 export class SelectComponent extends InputComponent {
   @Input() selectOptions: EntitySelectOption[];
-  @Input() enumOptions: string[];
+  @Input() enumOptions: Readonly<string[]>;
 
   __value(item: any) {
     if (this.enumOptions) {

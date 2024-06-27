@@ -20,6 +20,9 @@
       "@webpackages/auth-client": ["libs/auth-client/src/index.ts"],
       "@webpackages/boot-nest": ["libs/boot-nest/src/index.ts"],
       "@webpackages/clients": ["libs/clients/src/index.ts"],
+      "@webpackages/clients/custom-forms": [
+        "libs/clients/custom-forms/src/index.ts"
+      ],
       "@webpackages/clients/form-groups": [
         "libs/clients/form-groups/src/index.ts"
       ],
