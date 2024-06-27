@@ -5,16 +5,18 @@ import {
   TaskRoutes,
 } from '@webpackages/clients/routes';
 import { AppLayoutComponent } from '@webpackages/material/layout';
-import { provideNavListItems } from '@webpackages/material/core';
+import { provideNavListItems, provideResouceName } from '@webpackages/material/core';
 
-function __route(path: string, routes: Routes): Route {
+function __route(resourceName: string, routes: Routes): Route {
   return {
-    path,
+    path: resourceName.toLowerCase(),
+    providers: [provideResouceName(resourceName)],
     loadChildren() {
       return routes;
     },
   };
 }
+
 export const PmsRoutes: Route[] = [
   {
     path: '',

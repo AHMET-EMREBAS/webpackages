@@ -64,11 +64,11 @@ export const TaskMetadata: Metadata = {
       enum: ['new', 'done', 'in-progress', 'delayed'],
       description: 'What is the status of the task?',
       example: 'new',
-      class: 'order-4 w-4/12 grow',
+      class: 'order-4 w-3/12 grow',
       inputType: 'select',
       tabIndex: 4,
       tableColumnConditionalClass(value: any) {
-        return value.status === 'done' ? 'bg-green-400' : 'bg-orange-400';
+        return value.status === 'done' ? 'bg-green-400' : 'bg-red-400';
       },
     },
 

@@ -8,13 +8,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      database: 'bms',
+      database: 'database-to-syncronize',
       username: 'postgres',
       password: 'strong-password',
       entities: [...entityList, ...viewList],
       subscribers: [...subscriberList],
-      synchronize: true,
-      dropSchema: true,
     }),
   ],
   controllers: [AppController],
