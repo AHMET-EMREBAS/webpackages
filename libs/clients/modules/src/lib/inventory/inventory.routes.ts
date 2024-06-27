@@ -9,6 +9,7 @@ import {
   SkuDetailRoutes,
   SkuRoutes,
   StoreRoutes,
+  SupplierRoutes,
 } from '@webpackages/clients/routes';
 import { AppLayoutComponent } from '@webpackages/material/layout';
 import {
@@ -46,8 +47,9 @@ export const InventoryRoutes: Route[] = [
           route: 'serialnumber',
         },
         { label: 'Quantity', icon: 'numbers', route: 'quantity' },
-        { label: 'Store', icon: 'store', route: 'store' },
         { label: 'Category', icon: 'category', route: 'category' },
+        { label: 'Store', icon: 'store', route: 'store' },
+        { label: 'Supplier', icon: 'forklift', route: 'supplier' },
       ]),
     ],
 
@@ -64,8 +66,9 @@ export const InventoryRoutes: Route[] = [
 
       __route('Category', CategoryRoutes),
 
-      __route('Store', StoreRoutes),
       __route('Category', CategoryRoutes),
+      __route('Store', StoreRoutes),
+      __route('Supplier', SupplierRoutes),
     ],
   },
 ];
