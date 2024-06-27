@@ -1,3 +1,34 @@
 # Database
 
-- Create form-group form each entity and store it under clients/form-groups
+# Form
+
+- [ ] input prefix icon
+- [ ] input order and index values
+- [ ] upate form
+- [ ] sub entity routes
+
+# Table
+
+- [ ] Add specific context menu items for entities
+
+# Product Table
+
+- [ ] Add Serial Number context-menu item
+
+# Order Table
+
+# Authentication
+
+- [ ] login
+- [ ] forgot password
+- [ ] sso login
+- [ ] pin
+- [ ] multiple sessions
+- [ ]
+
+
+
+
+# Clock In 
+
+- [ ] 
