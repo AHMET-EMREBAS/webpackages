@@ -19,7 +19,7 @@ import { provideDefaultInputOptions } from '@webpackages/material/input';
 import { provideEntityData, withEffects } from '@ngrx/data';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { toFormInputOptions } from '@webpackages/types';
 import { ProductMetadata } from '@webpackages/metadata';
 import { provideRouter } from '@angular/router';
@@ -37,7 +37,12 @@ const meta: Meta<ProductFormComponent> = {
         provideFormGroup(ProductFormGroup),
         provideInputOptions(toFormInputOptions(ProductMetadata)),
         provideDefaultHttpSearchQueryBuilder(),
-        provideHttpClient(),
+        provideHttpClient(
+          withInterceptors([
+            (req, next) =>
+              next(req.clone({ url: `http://localhost:3001/${req.url}` })),
+          ])
+        ),
         provideStore(),
         provideEffects(),
         provideEntityData(entityConfig, withEffects()),

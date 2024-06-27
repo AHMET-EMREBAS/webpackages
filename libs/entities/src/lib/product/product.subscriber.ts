@@ -27,27 +27,12 @@ export class ProductSubscriber implements EntitySubscriberInterface<Product> {
     try {
       const defaultOne = await sku.save({
         ...entity,
-        name: `${entity.name} [New]`,
-        description: `${entity.description} [New]`,
-        sku: createSkuCode(entity.upc, entity.name, 'N'),
+        name: `${entity.name}`,
+        description: `${entity.description}`,
+        sku: entity.upc,
         product: { id: productId },
       });
       console.table(defaultOne);
-    } catch (err) {
-      this.logger.error(err);
-      this.logger.debug(sku);
-    }
-
-    try {
-      const usedOne = await sku.save({
-        ...entity,
-        name: `${entity.name} [Used]`,
-
-        description: `${entity.description} [Used]`,
-        sku: createSkuCode(entity.upc, entity.name, 'U'),
-        product: { id: productId },
-      });
-      console.table(usedOne);
     } catch (err) {
       this.logger.error(err);
       this.logger.debug(sku);
