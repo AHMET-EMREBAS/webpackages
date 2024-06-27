@@ -24,6 +24,7 @@ function __route(path: string, routes: Routes): Route {
 export const InventoryRoutes: Route[] = [
   {
     path: '',
+    title: 'Inventory',
     component: AppLayoutComponent,
     providers: [
       provideNavListItems([
@@ -42,7 +43,6 @@ export const InventoryRoutes: Route[] = [
         { label: 'Quantity', icon: 'numbers', route: 'quantity' },
         { label: 'Store', icon: 'store', route: 'store' },
         { label: 'Category', icon: 'category', route: 'category' },
-        
       ]),
     ],
 

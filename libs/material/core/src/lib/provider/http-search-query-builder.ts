@@ -12,7 +12,7 @@ export const defaultHttpSearchQueryBuilder = (
   search: string
 ) => {
   return `api/${
-    names(names(resourcePath).pluralName).fileName
+    names(names(resourcePath).pluralName).className.toLowerCase
   }/?search=${search}&take=${10000}`;
 };
 
