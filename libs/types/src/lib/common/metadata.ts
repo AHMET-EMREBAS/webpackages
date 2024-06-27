@@ -91,7 +91,7 @@ export function toTableColumnOptions(
       return {
         ...value,
         name: key,
-        label: value.label || key,
+        label: names(value.label || key).titleName,
       } as PropertyOptions;
     }) || []),
     ...(Object.entries(metadata.relations || {})
@@ -100,7 +100,7 @@ export function toTableColumnOptions(
           return value.viewColumns.map((vc) => {
             return {
               name: key + names(vc).className,
-              label: names(key + ' ' + names(vc).className).titleName,
+              label: names(key).titleName + ' ' + names(vc).titleName,
             } as PropertyOptions;
           });
         }
