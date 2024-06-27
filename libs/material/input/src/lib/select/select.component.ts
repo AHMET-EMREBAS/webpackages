@@ -26,7 +26,7 @@ import { EntitySelectOption } from '@webpackages/types';
 })
 export class SelectComponent extends InputComponent {
   @Input() selectOptions: EntitySelectOption[];
-  @Input() enumOptions: string[];
+  @Input() enumOptions: Readonly<string[]>;
 
   __value(item: any) {
     if (this.enumOptions) {

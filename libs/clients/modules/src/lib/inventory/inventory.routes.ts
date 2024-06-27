@@ -21,6 +21,7 @@ function __route(path: string, routes: Routes): Route {
     },
   };
 }
+
 export const InventoryRoutes: Route[] = [
   {
     path: '',

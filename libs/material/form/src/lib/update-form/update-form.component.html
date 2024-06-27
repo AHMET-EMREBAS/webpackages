@@ -1,5 +1,4 @@
-<p class="w-full pb-4 pt-4">Updating item #{{ entityId }}</p>
-<form class="w-full flex flex-row flex-wrap gap-4">
+<p class="w-full pb-4 pt-4">Updating item #{{ entityId }}</p><form class="w-full flex flex-row flex-wrap gap-4">
   @for(option of inputOptions; track option){
 
   <!-- Text Input -->
@@ -119,7 +118,7 @@
     [name]="option.name"
     [formControl]="control(option.name)"
     [tabindex]="option.tabIndex"
-    class="mr-16"
+    [class]="option.class + 'mr-16'"
   >
     {{ option.label }}
   </mat-checkbox>

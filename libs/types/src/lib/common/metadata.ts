@@ -94,17 +94,21 @@ export function toTableColumnOptions(
     ...(Object.entries(metadata.relations || {})
       .map(([key, value]) => {
         if (value.viewColumns) {
+          const prefix = value.label ? names(value.label).titleName : '';
+
           return value.viewColumns.map((vc) => {
             return {
               name: key + names(vc).className,
-              label: names(key).titleName + ' ' + names(vc).titleName,
+              label: prefix + ' ' + names(vc).titleName,
             } as PropertyOptions;
           });
         }
         return [];
       })
       .flat() || []),
-  ];
+  ].sort((p, c) => {
+    return p.tabIndex > c.tabIndex ? 1 : p.tabIndex == c.tabIndex ? 0 : -1;
+  });
 }
 
 export function toUpdateFormInputOptions(metadata: Metadata) {

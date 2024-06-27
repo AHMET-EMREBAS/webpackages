@@ -3,7 +3,6 @@ import { PropertyType, RelationType } from './property-type';
 import { StringFormat } from './string-format';
 import { Constructor } from './constructor';
 import { InputType } from './input-type';
-import { ResourceName } from '../auth';
 import { EntitySelectOption } from './entity-option';
 
 export class PropertyOptions<T = any> {
@@ -13,7 +12,7 @@ export class PropertyOptions<T = any> {
   autocompleteOptions: EntitySelectOption[];
   tabIndex: number;
   textPrefix: string;
-  textPuffix: string;
+  textSuffix: string;
   icon: string;
   groupName: string;
   order: number;
@@ -22,7 +21,7 @@ export class PropertyOptions<T = any> {
   targetName: string;
   format: StringFormat;
   name: string;
-  enum: Readonly<any[]>;
+  enum: Readonly<string[]>;
   forbidden: string[];
   startsWith: string;
   notStartsWith: string;
@@ -58,6 +57,7 @@ export class PropertyOptions<T = any> {
   isInt?: boolean;
   moreThan: string;
   lessThan: string;
+
   moreThanOrEqual: string;
   lessThanOrEqual: string;
 
@@ -79,6 +79,8 @@ export class PropertyOptions<T = any> {
 
   viewColumns: string[];
   resourceLabelProperty: string;
+  map: (value: T) => any;
+  multiple: boolean;
 }
 
 export class RelationOptions

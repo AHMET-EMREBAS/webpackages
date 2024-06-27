@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, Inject, OnInit, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,6 +12,8 @@ import {
   SearchManyComponent,
   InputTextareaComponent,
   AutocompleteManyComponent,
+  SelectComponent,
+  
 } from '@webpackages/material/input';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -23,7 +25,7 @@ import {
   getInputOptionsToken,
 } from '@webpackages/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { PropertyOptions } from '@webpackages/types';
 
 @Component({
@@ -42,11 +44,21 @@ import { PropertyOptions } from '@webpackages/types';
     AutocompleteManyComponent,
     SearchComponent,
     SearchManyComponent,
+    SelectComponent, 
+    
     MatButtonModule,
     MatIconModule,
     MatCheckboxModule,
   ],
   templateUrl: './form.component.html',
+
+  styles: ` 
+  @media screen and (max-width:600px){ 
+    form > *{ 
+        width:100%
+    }
+  }
+  `,
 })
 export class FormComponent<T = any> {
   submitted = false;

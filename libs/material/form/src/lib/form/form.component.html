@@ -16,7 +16,7 @@
   }
 
   <!-- Textarea -->
-  @else if(option.inputType ==='textarea' || option.maxLength > 400){
+  @else if(option.inputType ==='textarea' ){
   <wp-input-textarea
     [inputName]="option.name"
     [inputControl]="control(option.name)"
@@ -112,13 +112,27 @@
   ></wp-autocomplete-many>
   }
 
+  <!-- Select -->
+  @else if(option.inputType ==='select'){
+  <wp-select
+    [inputName]="option.name"
+    [inputControl]="control(option.name)"
+    [inputLabel]="option.label"
+    [inputRequired]="option.required"
+    [enumOptions]="option.enum || []"
+    [class]="option.class"
+    [tabindex]="option.tabIndex"
+    [inputMultiple]="option.multiple"
+  ></wp-select>
+  }
+
   <!-- Checkbox -->
   @else if(option.inputType ==='checkbox' || option.type ==='boolean'){
   <mat-checkbox
     [name]="option.name"
     [formControl]="control(option.name)"
     [tabindex]="option.tabIndex"
-    class="mr-16"
+    [class]="option.class + 'mr-16'"
   >
     {{ option.label }}
   </mat-checkbox>

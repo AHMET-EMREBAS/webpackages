@@ -162,7 +162,7 @@ export class TableComponent<T = any> implements OnInit, AfterViewInit {
       : '';
     const staticClass = columnOption.tableColumnClass ?? '';
 
-    return conditionalClass + ' ' + staticClass;
+    return '!' + conditionalClass + ' ' + staticClass;
   }
 
   loadData() {

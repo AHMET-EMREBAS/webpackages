@@ -11,6 +11,8 @@ export const SprintMetadata: Metadata = {
       unique: true,
       description: 'Sprint name',
       example: 'Project Analisys',
+      class: 'order-2 w-full ',
+      tabIndex: 2,
     },
     description: {
       type: 'string',
@@ -18,6 +20,8 @@ export const SprintMetadata: Metadata = {
       description: 'Sprint description',
       example:
         'Focus on high level project specs and review similar projects to establish a reliable insight',
+      class: 'order-3 w-full ',
+      tabIndex: 3,
     },
   },
   relations: {
@@ -27,6 +31,8 @@ export const SprintMetadata: Metadata = {
       viewColumns: ['name'],
       resourceLabelProperty: 'name',
       update: false,
+      class: 'order-1 w-full',
+      tabIndex: 1,
     },
   },
 };
