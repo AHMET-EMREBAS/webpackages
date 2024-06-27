@@ -98,7 +98,6 @@ export const TaskMetadata: Metadata = {
       viewColumns: ['username'],
       resourceLabelProperty: 'username',
       class: 'order-8 w-full grow',
-      inputType: 'search-many',
       tabIndex: 8,
     },
   },

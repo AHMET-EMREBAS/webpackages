@@ -71,7 +71,9 @@ export function toFormInputOptions(
         resourceName: names(value.targetName!).fileName,
         resourceLabelProperty: value.resourceLabelProperty,
         class: value.class ?? 'order-6 w-4/12',
-        inputType: value.relationType === 'many' ? 'search-many' : 'search',
+        inputType:
+          value.inputType ||
+          (value.relationType === 'many' ? 'search-many' : 'search'),
         tabIndex: value.tabIndex ?? 6,
       } as PropertyOptions;
     }
