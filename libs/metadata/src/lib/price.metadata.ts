@@ -82,6 +82,7 @@ export const PriceMetadata: Metadata = {
     sku: {
       relationType: 'owner',
       targetName: 'Sku',
+      label: '',
       viewColumns: ['name', 'sku'],
       resourceLabelProperty: 'name',
       update: false,
@@ -91,6 +92,7 @@ export const PriceMetadata: Metadata = {
     priceLevel: {
       relationType: 'owner',
       targetName: 'PriceLevel',
+      label: 'Price Level',
       viewColumns: ['name'],
       resourceLabelProperty: 'name',
       update: false,

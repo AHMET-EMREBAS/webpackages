@@ -52,7 +52,8 @@ export class AppSeedModule implements OnModuleInit {
             this.logger.debug(`Saving ${i.name}`);
             this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
           } catch (err) {
-            this.logger.debug(i, ' already exist.');
+            this.logger.error(err);
+            // this.logger.debug(i, ' already exist.');
           }
         }
 
@@ -63,7 +64,8 @@ export class AppSeedModule implements OnModuleInit {
             this.logger.debug(`Saving ${i.name}`);
             this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
           } catch (err) {
-            this.logger.debug(i, ' already exist.');
+            this.logger.error(err);
+            // this.logger.debug(i, ' already exist.');
           }
         }
 
@@ -74,7 +76,8 @@ export class AppSeedModule implements OnModuleInit {
             this.logger.debug(`Saving ${i.name}`);
             this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
           } catch (err) {
-            this.logger.debug(i, ' already exist.');
+            this.logger.error(err);
+            // this.logger.debug(i, ' already exist.');
           }
         }
 
@@ -85,7 +88,8 @@ export class AppSeedModule implements OnModuleInit {
             this.logger.debug(`Saving ${i.name}`);
             this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
           } catch (err) {
-            this.logger.debug(i, ' already exist.');
+            this.logger.error(err);
+            // this.logger.debug(i, ' already exist.');
           }
         }
 
@@ -96,7 +100,8 @@ export class AppSeedModule implements OnModuleInit {
             this.logger.debug(`Saving ${i.name}`);
             this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
           } catch (err) {
-            this.logger.debug(i, ' already exist.');
+            this.logger.error(err);
+            // this.logger.debug(i, ' already exist.');
           }
         }
 
@@ -108,17 +113,19 @@ export class AppSeedModule implements OnModuleInit {
             this.logger.debug(`Saving ${saved.name}`);
             this.logger.debug(`Saved ID: ${saved.id}`);
           } catch (err) {
-            this.logger.debug(i, ' already exist');
+            this.logger.error(err);
+            // this.logger.debug(i, ' already exist');
           }
         }
         // Products
         for (const i of getBuiltinProducts()) {
           try {
-            const saved = await this.product.save(i);
+            const saved = await this.product.save({ ...i, description: '' });
             this.logger.debug(`Saving ${i.name}`);
             this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
           } catch (err) {
-            this.logger.debug(i, ' already exist.');
+            this.logger.error(err);
+            // this.logger.debug(i, ' already exist.');
           }
         }
       }, 5000);

@@ -42,7 +42,7 @@ export const SkuMetadata: Metadata = {
       relationType: 'owner',
       targetName: 'Product',
       viewColumns: ['upc'],
-      label: 'Select Product',
+      label: 'Product',
       resourceLabelProperty: 'name',
       update: false,
       class: 'order-1 w-full',

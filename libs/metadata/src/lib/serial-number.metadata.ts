@@ -15,7 +15,7 @@ export const SerialNumberMetadata: Metadata = {
     },
     inStock: {
       type: 'boolean',
-      label: 'Stk',
+      label: 'In Stock',
       inputType: 'checkbox',
       example: true,
       description:
