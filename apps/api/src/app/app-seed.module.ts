@@ -47,72 +47,74 @@ export class AppSeedModule implements OnModuleInit {
   ) {}
 
   async onModuleInit() {
-    setTimeout(async () => {
-      // Categories
-      for (const i of getBuiltinCategories()) {
-        try {
-          const saved = await this.category.save(i);
-          this.logger.debug(`Saving ${i.name}`);
-          this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
-        } catch (err) {
-          this.logger.log(i, ' already exist.');
+    if (process.env.NODE_ENV === 'development') {
+      setTimeout(async () => {
+        // Categories
+        for (const i of getBuiltinCategories()) {
+          try {
+            const saved = await this.category.save(i);
+            this.logger.debug(`Saving ${i.name}`);
+            this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
+          } catch (err) {
+            this.logger.log(i, ' already exist.');
+          }
         }
-      }
 
-      // Suppliers
-      for (const i of getBuiltinSuppliers()) {
-        try {
-          const saved = await this.supplier.save(i);
-          this.logger.debug(`Saving ${i.name}`);
-          this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
-        } catch (err) {
-          this.logger.log(i, ' already exist.');
+        // Suppliers
+        for (const i of getBuiltinSuppliers()) {
+          try {
+            const saved = await this.supplier.save(i);
+            this.logger.debug(`Saving ${i.name}`);
+            this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
+          } catch (err) {
+            this.logger.log(i, ' already exist.');
+          }
         }
-      }
 
-      // Price Levels
-      for (const i of getBuiltinPriceLevels()) {
-        try {
-          const saved = await this.priceLevel.save(i);
-          this.logger.debug(`Saving ${i.name}`);
-          this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
-        } catch (err) {
-          this.logger.log(i, ' already exist.');
+        // Price Levels
+        for (const i of getBuiltinPriceLevels()) {
+          try {
+            const saved = await this.priceLevel.save(i);
+            this.logger.debug(`Saving ${i.name}`);
+            this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
+          } catch (err) {
+            this.logger.log(i, ' already exist.');
+          }
         }
-      }
 
-      // Stores
-      for (const i of getBuiltinStores()) {
-        try {
-          const saved = await this.store.save(i);
-          this.logger.debug(`Saving ${i.name}`);
-          this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
-        } catch (err) {
-          this.logger.log(i, ' already exist.');
+        // Stores
+        for (const i of getBuiltinStores()) {
+          try {
+            const saved = await this.store.save(i);
+            this.logger.debug(`Saving ${i.name}`);
+            this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
+          } catch (err) {
+            this.logger.log(i, ' already exist.');
+          }
         }
-      }
 
-      // Products
-      for (const i of getBuiltinProducts()) {
-        try {
-          const saved = await this.product.save(i);
-          this.logger.debug(`Saving ${i.name}`);
-          this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
-        } catch (err) {
-          this.logger.log(i, ' already exist.');
+        // Products
+        for (const i of getBuiltinProducts()) {
+          try {
+            const saved = await this.product.save(i);
+            this.logger.debug(`Saving ${i.name}`);
+            this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
+          } catch (err) {
+            this.logger.log(i, ' already exist.');
+          }
         }
-      }
 
-      // Departments
-      for (const i of getBuiltinDepartments()) {
-        try {
-          const saved = await this.department.save(i);
-          this.logger.debug(`Saving ${i.name}`);
-          this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
-        } catch (err) {
-          this.logger.log(i, ' already exist.');
+        // Departments
+        for (const i of getBuiltinDepartments()) {
+          try {
+            const saved = await this.department.save(i);
+            this.logger.debug(`Saving ${i.name}`);
+            this.logger.debug(`Saved ID: ${saved.id}  name: ${i.name}  `);
+          } catch (err) {
+            this.logger.log(i, ' already exist.');
+          }
         }
-      }
-    }, 5000);
+      }, 5000);
+    }
   }
 }
