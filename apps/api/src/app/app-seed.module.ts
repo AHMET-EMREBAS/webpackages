@@ -19,7 +19,14 @@ import {
 } from '@webpackages/data';
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Category, Supplier, PriceLevel, Store, Product]),
+    TypeOrmModule.forFeature([
+      Department,
+      Category,
+      Supplier,
+      PriceLevel,
+      Store,
+      Product,
+    ]),
   ],
 })
 export class AppSeedModule implements OnModuleInit {

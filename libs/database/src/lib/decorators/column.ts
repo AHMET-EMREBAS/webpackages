@@ -26,11 +26,19 @@ export function NumberColumn(options: Partial<ColumnOptions>) {
   return applyDecorators(
     Property({ ...options, type: 'number', example: options.example || 100 }),
     Col({
-      type: 'numeric',
+      type: 'varchar',
       nullable: options.required != true,
       unique: options.unique,
       update: options.update,
       default: options.default,
+      transformer: {
+        from(value) {
+          return parseFloat(value);
+        },
+        to(value) {
+          return value;
+        },
+      },
     })
   );
 }
@@ -43,7 +51,7 @@ export function DateColumn(options: Partial<ColumnOptions>) {
       example: options.example || '10-10-2025',
     }),
     Col({
-      type: 'timestamptz',
+      type: 'varchar',
       nullable: options.required != true,
       unique: options.unique,
       update: options.update,

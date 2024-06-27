@@ -19,22 +19,22 @@ import {
 import { names } from '@nx/devkit';
 
 export class IDEntity implements ID {
-  @Property({ type: 'number', example: 1 })
+  @Property({ type: 'string', example: 1 })
   @PrimaryGeneratedColumn()
   id: number;
 }
 
 export class BaseEntity extends IDEntity implements IBaseEntity {
-  @Property({ type: 'number', example: new Date().toString() })
-  @CreateDateColumn()
+  @Property({ type: 'string', example: new Date().toString() })
+  @CreateDateColumn({ type: 'varchar' })
   createdAt: Date;
 
-  @Property({ type: 'number', example: new Date().toString() })
-  @UpdateDateColumn()
+  @Property({ type: 'string', example: new Date().toString() })
+  @UpdateDateColumn({ type: 'varchar' })
   updatedAt: Date;
 
-  @Property({ type: 'number', example: new Date().toString() })
-  @DeleteDateColumn()
+  @Property({ type: 'string', example: new Date().toString() })
+  @DeleteDateColumn({ type: 'varchar' })
   deletedAt: Date;
 
   @Property({ type: 'boolean' })

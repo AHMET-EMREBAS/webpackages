@@ -39,3 +39,42 @@ export const CrudRoutes: Routes = [
     ],
   },
 ];
+
+export function buildCrudRoutes(entityName: string): Routes {
+  return [
+    {
+      path: '',
+      component: ModuleLayoutComponent,
+      children: [
+        {
+          path: 'table',
+          title: `View ${entityName}`,
+          loadComponent() {
+            return TableComponent;
+          },
+        },
+        {
+          title: `New ${entityName}`,
+          path: 'editor',
+          loadComponent() {
+            return FormComponent;
+          },
+        },
+        {
+          title: `Edit ${entityName}`,
+          path: 'editor/:id',
+          loadComponent() {
+            return UpdateFormComponent;
+          },
+        },
+        {
+          title: `Delete ${entityName}`,
+          path: 'delete/:id',
+          loadComponent() {
+            return DeleteComponent;
+          },
+        },
+      ],
+    },
+  ];
+}

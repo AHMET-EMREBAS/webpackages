@@ -19,7 +19,7 @@ import {
   UpdateAccessTokenFormGroup,
 } from '@webpackages/clients/form-groups';
 import { AccessTokenService } from '@webpackages/clients/ngrx';
-import { CrudRoutes } from './__crud.routes';
+import { buildCrudRoutes } from './__crud.routes';
 
 export const AccessTokenRoutes: Routes = [
   {
@@ -38,7 +38,7 @@ export const AccessTokenRoutes: Routes = [
       provideUpdateFormGroup(UpdateAccessTokenFormGroup),
     ],
     loadChildren() {
-      return CrudRoutes;
+      return buildCrudRoutes('AccessToken');
     },
   },
 ];
