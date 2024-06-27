@@ -4,6 +4,7 @@ import {
   PriceLevelRoutes,
   PriceRoutes,
   ProductRoutes,
+  PurchaseRoutes,
   QuantityRoutes,
   SerialNumberRoutes,
   SkuDetailRoutes,
@@ -48,8 +49,9 @@ export const InventoryRoutes: Route[] = [
         },
         { label: 'Quantity', icon: 'numbers', route: 'quantity' },
         { label: 'Category', icon: 'category', route: 'category' },
-        { label: 'Store', icon: 'store', route: 'store' },
         { label: 'Supplier', icon: 'forklift', route: 'supplier' },
+        { label: 'Store', icon: 'store', route: 'store' },
+        { label: 'Purchase', icon: 'shopping_bag', route: 'purchase' },
       ]),
     ],
 
@@ -69,6 +71,7 @@ export const InventoryRoutes: Route[] = [
       __route('Category', CategoryRoutes),
       __route('Store', StoreRoutes),
       __route('Supplier', SupplierRoutes),
+      __route('Purchase', PurchaseRoutes),
     ],
   },
 ];

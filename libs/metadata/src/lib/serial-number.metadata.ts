@@ -6,6 +6,7 @@ export const SerialNumberMetadata: Metadata = {
     serialNumber: {
       type: 'string',
       required: true,
+      unique: true,
       minLength: 3,
       maxLength: 100,
       example: '1236846182674312',
@@ -22,7 +23,6 @@ export const SerialNumberMetadata: Metadata = {
         'When the product is sold, uncheckk this property (internal)',
       class: 'order-3 w-full ',
       tabIndex: 3,
-
       tableColumnClass: 'w-16',
       tableColumnConditionalClass(value: any) {
         return value.inStock == true ? 'bg-green-400' : 'bg-red-400';
