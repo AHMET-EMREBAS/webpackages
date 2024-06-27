@@ -46,13 +46,11 @@ export function toFormInputOptions(
         return {
           ...value,
           ...common,
-          inputType: value.inputType ?? 'checkbox',
         };
       } else if (value.type == 'object') {
         return {
           ...value,
           ...common,
-          inputType: 'select-many',
         };
       }
 
@@ -60,8 +58,7 @@ export function toFormInputOptions(
         ...value,
         ...common,
         type: 'string',
-        inputType: 'text',
-        incon: 'info',
+        icon: 'info',
       } as Partial<PropertyOptions>;
     }
   ) as PropertyOptions[];
@@ -73,9 +70,9 @@ export function toFormInputOptions(
         label: value.targetName,
         resourceName: names(value.targetName!).fileName,
         resourceLabelProperty: value.resourceLabelProperty,
-        class: 'w-full',
+        class: value.class ?? 'order-6 w-4/12',
         inputType: value.relationType === 'many' ? 'search-many' : 'search',
-        tabIndex: value.tabIndex ?? 1,
+        tabIndex: value.tabIndex ?? 6,
       } as PropertyOptions;
     }
   );

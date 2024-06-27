@@ -11,9 +11,9 @@ export const defaultHttpSearchQueryBuilder = (
   resourcePath: string,
   search: string
 ) => {
-  return `api/${
-    names(names(resourcePath).pluralName).className.toLowerCase
-  }/?search=${search}&take=${10000}`;
+  return `api/${names(
+    names(resourcePath).pluralName
+  ).className.toLowerCase()}/?search=${search}&take=${10000}`;
 };
 
 export const {

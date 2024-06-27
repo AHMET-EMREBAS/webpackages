@@ -19,6 +19,7 @@ import { InputType } from '@webpackages/types';
         [minlength]="inputMinLength"
         [maxLength]="inputMaxLength"
         [attr.data-testid]="inputLabel"
+        [tabindex]="tabIndex"
       ></textarea>
       <mat-hint>{{ inputHint }}</mat-hint>
       <mat-error>{{ errorMessage$ | async }} </mat-error>

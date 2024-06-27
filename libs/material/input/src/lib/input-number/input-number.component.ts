@@ -19,6 +19,7 @@ import { InputType } from '@webpackages/types';
         [autocomplete]="inputAutocomplete || 'off'"
         [valueAsNumber]="true"
         [attr.data-testid]="inputLabel"
+        [tabindex]="tabIndex"
       />
       <mat-hint>{{ inputHint }}</mat-hint>
       <mat-error>{{ errorMessage$ | async }} </mat-error>

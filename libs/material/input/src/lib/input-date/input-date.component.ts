@@ -17,6 +17,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
         [formControl]="inputControl"
         [required]="inputRequired"
         [attr.data-testid]="inputLabel"
+        [tabindex]="tabIndex"
       />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
