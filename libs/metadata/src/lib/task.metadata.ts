@@ -63,6 +63,9 @@ export const TaskMetadata: Metadata = {
       class: 'order-4 w-4/12 grow',
       inputType: 'select',
       tabIndex: 4,
+      tableColumnConditionalClass(value: any) {
+        return value.status === 'done' ? 'bg-green-400' : 'bg-orange-400';
+      },
     },
 
     startDate: {
@@ -71,6 +74,9 @@ export const TaskMetadata: Metadata = {
       example: new Date().toLocaleDateString(),
       class: 'order-5 w-3/12 grow',
       tabIndex: 5,
+      map(value) {
+        return new Date(value.startDate).toDateString();
+      },
     },
 
     endDate: {
@@ -79,6 +85,9 @@ export const TaskMetadata: Metadata = {
       example: new Date('6-28-2024').toLocaleDateString(),
       class: 'order-6 w-3/12 grow',
       tabIndex: 6,
+      map(value) {
+        return new Date(value.startDate).toDateString();
+      },
     },
 
     dueDate: {
@@ -88,6 +97,9 @@ export const TaskMetadata: Metadata = {
       example: new Date('10-12-2024').toLocaleDateString(),
       class: 'order-7 w-3/12 grow',
       tabIndex: 7,
+      map(value) {
+        return new Date(value.startDate).toDateString();
+      },
     },
   },
   relations: {

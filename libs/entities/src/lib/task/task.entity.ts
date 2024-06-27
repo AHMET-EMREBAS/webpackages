@@ -8,7 +8,7 @@ import { User } from '../user';
 export class Task extends BaseEntity implements ITask {
   @Column({ type: 'string', required: true, unique: true }) name: string;
   @Column({ type: 'string' }) description: string;
-  @Column({ type: 'string' }) tags: string[];
+  @Column({ type: 'string', isArray:true }) tags: string[];
   @Column({ type: 'date', required: true }) dueDate: Date;
   @Column({ type: 'date' }) startDate: Date;
   @Column({ type: 'date' }) endDate: Date;

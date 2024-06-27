@@ -118,7 +118,7 @@ export function Column(options: Partial<ColumnOptions>) {
     return BooleanColumn(options);
   } else if (options.type === 'date') {
     return DateColumn(options);
-  } else if (options.type === 'object') {
+  } else if (options.type === 'object' || options.isArray === true) {
     return ObjectColumn(options);
   }
 

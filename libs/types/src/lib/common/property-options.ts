@@ -102,8 +102,10 @@ export class ColumnOptions
       | 'example'
       | 'default'
       | 'format'
+      | 'isArray'
     >
 {
+  isArray: boolean;
   format: StringFormat;
   target: Constructor<any>;
   type: PropertyType;

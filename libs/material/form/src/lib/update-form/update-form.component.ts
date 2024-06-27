@@ -11,6 +11,7 @@ import {
   SearchManyComponent,
   InputTextareaComponent,
   AutocompleteManyComponent,
+  SelectComponent,
 } from '@webpackages/material/input';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -18,8 +19,6 @@ import { DataServiceError, EntityCollectionService } from '@ngrx/data';
 import { firstValueFrom } from 'rxjs';
 import {
   getEntityCollectionServiceToken,
-  getFormGroupToken,
-  getInputOptionsToken,
   getUpdateFormGroupToken,
   getUpdateInputOptionsToken,
 } from '@webpackages/material/core';
@@ -44,6 +43,7 @@ import { isNotUndefined } from '@webpackages/utils';
     AutocompleteManyComponent,
     SearchComponent,
     SearchManyComponent,
+    SelectComponent,
     MatButtonModule,
     MatIconModule,
     MatCheckboxModule,
