@@ -1,4 +1,8 @@
-import { isDevMode } from './mode';
+import { devModeStore } from './mode';
+
+export function isDevMode() {
+  return devModeStore.get() === true;
+}
 
 /**
  * Log

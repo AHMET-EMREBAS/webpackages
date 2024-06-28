@@ -100,10 +100,13 @@ export class FormComponent<T = any> implements OnInit {
     const localStoreName = this.resourceName || this.formStoreName;
     if (localStoreName) {
       this.formStore = LocalStoreController.create(localStoreName);
-      const defaultValue = this.formStore.get();
-      if (defaultValue) {
-        this.formGroup.setValue(defaultValue);
+      if (this.formStore) {
+        const defaultValue = this.formStore?.get();
+        if (defaultValue) {
+          this.formGroup.setValue(defaultValue);
+        }
       }
+      throw new Error('Local Store is not created!');
     }
 
     this.valueChange = this.formGroup.valueChanges.pipe(

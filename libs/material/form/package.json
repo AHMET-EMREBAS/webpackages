@@ -3,7 +3,22 @@
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0"
+    "@angular/core": "^18.0.0",
+    "@storybook/angular": "7.6.19",
+    "@angular/material": "^18.0.3",
+    "@webpackages/material/core": "0.0.1",
+    "@ngrx/data": "^18.0.0",
+    "@angular/router": "~18.0.0",
+    "@storybook/testing-library": "^0.2.2",
+    "@webpackages/material/input": "0.0.1",
+    "@angular/platform-browser": "~18.0.0",
+    "@ngrx/store": "^18.0.0",
+    "@ngrx/effects": "^18.0.0",
+    "@angular/forms": "~18.0.0",
+    "@webpackages/types": "1.0.0",
+    "rxjs": "~7.8.0",
+    "@webpackages/utils": "1.0.0",
+    "jest-preset-angular": "~14.1.0"
   },
   "sideEffects": false
 }
