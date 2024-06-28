@@ -116,6 +116,9 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
 
   @Output() submittedEvent = new EventEmitter<any>();
 
+  @Output() submittedEventSuccess = new EventEmitter<any>();
+  @Output() submittedEventError = new EventEmitter<any>();
+
   /**
    *
    * @param service entity colleciton service
@@ -169,15 +172,16 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
       // Submitting
       try {
         if (this.service) {
-          await firstValueFrom(
+          const result = await firstValueFrom(
             this.service?.add(formValue, { isOptimistic: false })
           );
-
           this.isFormSubmitted = true;
+          this.submittedEventSuccess.emit(result);
         } else {
           console.warn(`[FormComponent] EntityService is  not provided`);
         }
       } catch (err) {
+        this.submittedEventError.emit(err);
         setFormGroupErrors(this.formGroup, err);
       }
     }

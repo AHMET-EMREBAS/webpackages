@@ -12,6 +12,7 @@ function createSkuCode(upc: string, name: string, type: 'N' | 'U' = 'N') {
   const upcPart = upc.slice(upc.length - 6); // 6
   return `${type}-${namePart}-${upcPart}`; // +2
 }
+
 @EventSubscriber()
 export class ProductSubscriber implements EntitySubscriberInterface<Product> {
   protected logger = new Logger('ProductSubscriber');

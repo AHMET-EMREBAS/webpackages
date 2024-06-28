@@ -1,14 +1,10 @@
 import {
-  AfterContentInit,
-  AfterViewInit,
   Component,
-  EventEmitter,
   Inject,
   Input,
   OnDestroy,
   OnInit,
   Optional,
-  Output,
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -25,18 +21,11 @@ import {
   AutocompleteManyComponent,
   SelectComponent,
 } from '@webpackages/material/input';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { DataServiceError, EntityCollectionService } from '@ngrx/data';
+import { EntityCollectionService } from '@ngrx/data';
+import { firstValueFrom } from 'rxjs';
 import {
-  Observable,
-  Subscription,
-  debounceTime,
-  firstValueFrom,
-  map,
-} from 'rxjs';
-import {
-  LocalStoreController,
   getEntityCollectionServiceToken,
   getResourceNameToken,
   getUpdateFormGroupToken,
@@ -46,7 +35,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { PropertyOptions } from '@webpackages/types';
 import { isNotUndefined } from '@webpackages/utils';
-import { setFormGroupErrors } from '../form';
+import { FormComponent, setFormGroupErrors } from '../form';
 
 @Component({
   selector: 'wp-update-form',
@@ -73,44 +62,30 @@ import { setFormGroupErrors } from '../form';
   templateUrl: './update-form.component.html',
 })
 export class UpdateFormComponent<T = any>
-  implements OnInit, OnDestroy, AfterViewInit, AfterContentInit
+  extends FormComponent
+  implements OnInit, OnDestroy
 {
-  isFormSubmitted = false;
-  formStore: LocalStoreController<any>;
-  formGroup = inject(getUpdateFormGroupToken());
-  valueChange: Observable<T>;
-  valueChangeSub: Subscription;
+  override formGroup = inject(getUpdateFormGroupToken());
+
   /**
    * The entity id
    */
   @Input() entityId: number;
 
-  /**
-   * Localstore name for form value
-   */
-  @Input() formStoreName: string;
-
-  /**
-   * Only emit the form value NOT http request
-   */
-  @Input() onlyEmitEvent: boolean;
-
-  @Input() submitButtonLabel = 'Submit';
-
-  @Output() submittedEvent = new EventEmitter<any>();
-
   constructor(
     @Inject(getEntityCollectionServiceToken())
-    protected readonly service: EntityCollectionService<T>,
+    service: EntityCollectionService<T>,
     @Inject(getUpdateInputOptionsToken())
-    public readonly inputOptions: PropertyOptions[],
-    private readonly route: ActivatedRoute,
+    inputOptions: PropertyOptions[],
     @Optional()
     @Inject(getResourceNameToken())
-    public readonly resourceName: string
-  ) {}
+    resourceName: string,
+    protected readonly route: ActivatedRoute
+  ) {
+    super(service, inputOptions, resourceName);
+  }
 
-  async ngOnInit() {
+  override async ngOnInit() {
     this.entityId =
       this.entityId || parseInt(this.route.snapshot.paramMap.get('id'));
 
@@ -123,67 +98,39 @@ export class UpdateFormComponent<T = any>
 
       for (const [key, value] of entries) {
         this.formGroup.get(key)?.setValue(value);
-        this.formGroup.enable();
       }
 
-      this.valueChange = this.formGroup.valueChanges.pipe(
-        debounceTime(600),
-        map((data) => {
-          this.formStore?.set(data);
-          return data;
-        })
-      );
-
-      this.valueChangeSub = this.valueChange.subscribe();
-
+      super.ngOnInit();
       return;
     }
 
     throw new Error('UpdateForm need id parameters from URL');
   }
 
-  async ngAfterViewInit() {}
-
-  async ngAfterContentInit() {}
-
-  ngOnDestroy(): void {
-    this.valueChangeSub?.unsubscribe();
-  }
-
-  async handleFormSubmit(event?: any) {
+  override async handleFormSubmit(event?: any) {
     const formValue = event || { ...this.formGroup.value };
 
     if (this.onlyEmitEvent) {
       this.submittedEvent.emit({ id: this.entityId, ...formValue });
     } else {
-      // Submitting
       try {
         if (this.service) {
-          await firstValueFrom(
+          const result = await firstValueFrom(
             this.service?.update(
               { id: this.entityId, ...formValue },
               { isOptimistic: false }
             )
           );
+          this.submittedEventSuccess.emit(result);
+
           this.isFormSubmitted = true;
         } else {
           console.warn(`[FormComponent] EntityService is  not provided`);
         }
       } catch (err) {
+        this.submittedEventError.emit(err);
         setFormGroupErrors(this.formGroup, err);
       }
     }
-  }
-
-  control(name: string) {
-    if (this.formGroup) {
-      return this.formGroup.get(name) as FormControl;
-    }
-    throw new Error(`Form group is not provided!`);
-  }
-
-  reset() {
-    this.formGroup.reset({}, { emitEvent: false });
-    this.formGroup.markAsUntouched();
   }
 }
