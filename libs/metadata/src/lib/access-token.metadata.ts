@@ -21,6 +21,7 @@ export const AccessTokenMetadata: Metadata = {
       maxLength: 100,
       inputType: 'text',
       example: 'Token name',
+      tabIndex: 1,
     },
     token: {
       type: 'string',
@@ -31,10 +32,12 @@ export const AccessTokenMetadata: Metadata = {
       format: 'token',
       update: false,
       example: 'wiqouer923784123uis918374jw892y43',
+      tabIndex: 2,
     },
     permissions: {
       type: 'object',
       targetName: 'AccessPolicy',
+      inputType:'resource-permissions', 
       description: 'User permissions',
       example: {
         Admin: true,
@@ -49,6 +52,7 @@ export const AccessTokenMetadata: Metadata = {
         },
       },
       update: false,
+      tabIndex: 3,
     },
   },
 };

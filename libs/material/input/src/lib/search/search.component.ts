@@ -82,7 +82,6 @@ export class SearchComponent
     super.ngOnInit();
     this.sub = this.__searchControl.valueChanges
       .pipe(
-        repeat(2),
         startWith(''),
         debounceTime(this.inputDebounceTime),
         filter((e) => typeof e == 'string'),
@@ -95,7 +94,6 @@ export class SearchComponent
       .subscribe((result) => {
         this.foundOptions.update(() => result);
       });
-
 
     this.__searchControl.setValue(this.inputControl.value);
   }

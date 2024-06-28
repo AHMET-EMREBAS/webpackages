@@ -18,9 +18,9 @@ export type InputType =
   | 'slider'
   | 'text'
   | 'textarea'
-  | 'time';
+  | 'time'
+  | 'resource-permissions';
 
-  
 export const InputTypes: Arr<InputType> = [
   'autocomplete-many',
   'autocomplete',
