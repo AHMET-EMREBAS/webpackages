@@ -15,7 +15,8 @@ export type StringFormat =
   | 'ip4'
   | 'ip6'
   | 'url'
-  | 'data-uri';
+  | 'data-uri'
+  | 'token';
 
 export const StringFormats: Arr<StringFormat> = [
   'name',
