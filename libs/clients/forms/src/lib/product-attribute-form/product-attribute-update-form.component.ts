@@ -20,6 +20,8 @@ import { UpdateProductAttributeFormGroup } from '@webpackages/clients/form-group
     [entityId]="entityId"
     [onlyEmitEvent]="onlyEmitEvent"
     [submitButtonLabel]="submitButtonLabel"
+    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+    (submittedEventError)="handleFormSubmitError($event)"
   ></wp-update-form>`,
   providers: [
     ProductAttributeService,

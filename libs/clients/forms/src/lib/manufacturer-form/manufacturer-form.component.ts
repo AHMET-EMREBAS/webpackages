@@ -19,6 +19,8 @@ import { ManufacturerFormGroup } from '@webpackages/clients/form-groups';
     (submittedEvent)="handleFormSubmit($event)"
     [onlyEmitEvent]="onlyEmitEvent"
     [submitButtonLabel]="submitButtonLabel"
+    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+    (submittedEventError)="handleFormSubmitError($event)"
   ></wp-form>`,
   providers: [
     ManufacturerService,

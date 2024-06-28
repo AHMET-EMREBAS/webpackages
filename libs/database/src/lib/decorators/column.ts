@@ -97,10 +97,24 @@ export function BooleanColumn(options: Partial<ColumnOptions>) {
   return applyDecorators(
     Property({ type: 'boolean', example: options.example || true }),
     Col({
-      type: 'boolean',
+      type: 'varchar',
       nullable: true,
       update: options.update,
       default: options.default,
+      transformer: {
+        to(value) {
+          if (value != undefined) {
+            return JSON.stringify(value);
+          }
+          return value;
+        },
+        from(value) {
+          if (value != undefined) {
+            return JSON.parse(value);
+          }
+          return value;
+        },
+      },
     })
   );
 }

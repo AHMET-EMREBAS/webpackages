@@ -19,7 +19,9 @@ import { Update<%- className %>FormGroup } from '@webpackages/clients/form-group
     (submittedEvent)="handleFormSubmit($event)"
     [entityId]="entityId"
     [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
+    [submitButtonLabel]="submitButtonLabel"  
+    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+    (submittedEventError)="handleFormSubmitError($event)"
   ></wp-update-form>`,
   providers: [
     <%- className %>Service,

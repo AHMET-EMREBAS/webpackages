@@ -94,11 +94,7 @@ export class UpdateFormComponent<T = any>
         this.service.getByKey(this.entityId)
       );
 
-      const entries = Object.entries(foundItem);
-
-      for (const [key, value] of entries) {
-        this.formGroup.get(key)?.setValue(value);
-      }
+      this.setFormValue(foundItem);
 
       super.ngOnInit();
       return;

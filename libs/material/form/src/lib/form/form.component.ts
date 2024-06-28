@@ -186,10 +186,18 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
       }
     }
   }
+
+  setFormValue(formValue: any) {
+    const entries = Object.entries(formValue);
+    for (const [key, value] of entries) {
+      this.formGroup.get(key)?.setValue(value);
+    }
+  }
+
   handleFormSubmitSuccess(event: any) {
     this.submittedEventSuccess.emit(event);
   }
-  
+
   handleFormSubmitError(event: any) {
     this.submittedEventError.emit(event);
   }

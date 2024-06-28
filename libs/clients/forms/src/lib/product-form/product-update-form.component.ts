@@ -22,7 +22,7 @@ import { UpdateProductFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
-  ></wp-update-form> `,
+  ></wp-update-form>`,
   providers: [
     ProductService,
     provideEntityCollectionService(ProductService),

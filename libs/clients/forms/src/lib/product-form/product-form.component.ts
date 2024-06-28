@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '@webpackages/clients/ngrx';
 import { FormComponent } from '@webpackages/material/form';

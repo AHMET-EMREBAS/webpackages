@@ -1,5 +1,9 @@
-<mat-stepper [linear]="true">
-  <mat-step [stepControl]="productForm.formGroup" label="Create Product">
+<mat-stepper #productEditorStepper [linear]="true">
+  <mat-step
+    #productStep
+    [stepControl]="productForm.formGroup"
+    label="Create Product"
+  >
     <wp-product-form
       #productForm
       submitButtonLabel="Next"
@@ -8,5 +12,6 @@
       (submittedEventError)="handleProductSubmitError($event)"
     ></wp-product-form>
   </mat-step>
+
   <mat-step label="Pricing"> </mat-step>
 </mat-stepper>

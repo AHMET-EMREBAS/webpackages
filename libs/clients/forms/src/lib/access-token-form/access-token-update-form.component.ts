@@ -20,6 +20,8 @@ import { UpdateAccessTokenFormGroup } from '@webpackages/clients/form-groups';
     [entityId]="entityId"
     [onlyEmitEvent]="onlyEmitEvent"
     [submitButtonLabel]="submitButtonLabel"
+    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+    (submittedEventError)="handleFormSubmitError($event)"
   ></wp-update-form>`,
   providers: [
     AccessTokenService,
