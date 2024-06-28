@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, inject } from '@angular/core';
+import { Component, Inject, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -55,8 +55,11 @@ export class UpdateFormComponent<T = any> implements OnInit {
   submitted = false;
   formGroup = inject(getUpdateFormGroupToken());
 
-  entityId: number;
-
+  @Input() entityId: number;
+  @Input() formStoreName: string;
+  @Input() onlyEmitEvent: boolean;
+  @Input() submitButtonLabel = 'Submit';
+  
   constructor(
     @Inject(getEntityCollectionServiceToken())
     protected readonly service: EntityCollectionService<T>,
@@ -66,11 +69,10 @@ export class UpdateFormComponent<T = any> implements OnInit {
   ) {}
 
   async ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
+    this.entityId =
+      this.entityId || parseInt(this.route.snapshot.paramMap.get('id'));
 
-    if (isNotUndefined(id)) {
-      this.entityId = parseInt(id);
-
+    if (isNotUndefined(this.entityId)) {
       const foundItem = await firstValueFrom(
         this.service.getByKey(this.entityId)
       );

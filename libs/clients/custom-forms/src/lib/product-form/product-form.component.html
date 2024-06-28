@@ -1,5 +1,9 @@
 <mat-stepper [linear]="true">
-  <mat-step [stepControl]="form.formGroup" label="Initial Product Details">
+  <mat-step
+    #productStep
+    [stepControl]="form.formGroup"
+    label="Initial Product Details"
+  >
     <wp-form
       #form
       formStoreName="product"
@@ -11,9 +15,11 @@
     {{ form.formGroup.value | json }}
   </mat-step>
 
-  <mat-step label="Pricing"> </mat-step>
-
   <mat-step label="Quantity"> </mat-step>
+
+  <mat-step label="Pricing">
+    <wp-price-form></wp-price-form>
+  </mat-step>
 
   <mat-step label="Serial Number"> </mat-step>
 

@@ -30,13 +30,33 @@ import {
   AutocompleteManyComponent,
   SelectComponent,
 } from '@webpackages/material/input';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  ValidationErrors,
+} from '@angular/forms';
 
 import { DataServiceError, EntityCollectionService } from '@ngrx/data';
 import { Observable, debounceTime, firstValueFrom, map } from 'rxjs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { RouterModule } from '@angular/router';
 import { PropertyOptions } from '@webpackages/types';
+
+export function setFormGroupErrors(
+  formGruop: FormGroup,
+  dataServiceError: DataServiceError
+) {
+  const rawErrors = (dataServiceError as DataServiceError).error.error.errors;
+  for (const rawError of rawErrors) {
+    const errors = Object.values(rawError);
+    for (const e of errors) {
+      const control = formGruop.get((e as any)?.property);
+      control.setErrors((e as any)?.constraints);
+    }
+  }
+}
 
 @Component({
   selector: 'wp-form',
@@ -121,20 +141,18 @@ export class FormComponent<T = any> implements OnInit {
       console.log(value);
     });
   }
-  async saveItem() {
+
+  async submitForm(event?: any) {
+    const formValue = event || { ...this.formGroup.value };
+
     if (this.onlyEmitEvent) {
-      this.submitEvent.emit(this.formGroup.value);
+      this.submitEvent.emit({ ...formValue });
     } else {
       // Submitting
       try {
         if (this.service) {
           await firstValueFrom(
-            this.service?.add(
-              { ...this.formGroup.value },
-              {
-                isOptimistic: false,
-              }
-            )
+            this.service?.add(formValue, { isOptimistic: false })
           );
 
           this.submitted = true;
@@ -142,14 +160,7 @@ export class FormComponent<T = any> implements OnInit {
           console.warn(`[FormComponent] EntityService is  not provided`);
         }
       } catch (err) {
-        const rawErrors = (err as DataServiceError).error.error.errors;
-        for (const rawError of rawErrors) {
-          const errors = Object.values(rawError);
-          for (const e of errors) {
-            const control = this.control((e as any)?.property);
-            control.setErrors((e as any)?.constraints);
-          }
-        }
+        setFormGroupErrors(this.formGroup, err);
       }
     }
   }
