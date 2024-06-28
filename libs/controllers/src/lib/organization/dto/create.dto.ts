@@ -15,6 +15,6 @@ export class CreateOrganizationDto {
   })
   name: string;
 
-  @Property({ type: 'number' })
+  @Property({ type: 'object', target: IDDto })
   managerEmployee: IDDto;
 }

@@ -7,9 +7,9 @@ export class UpdateCustomerAccountDto {
   @Property({ type: 'number', description: 'Sale subtotal', example: 400 })
   blance: number;
 
-  @Property({ type: 'number' })
+  @Property({ type: 'object', target: IDDto })
   customer: IDDto;
 
-  @Property({ type: 'number' })
+  @Property({ type: 'object', target: IDDto })
   priceLevel: IDDto;
 }

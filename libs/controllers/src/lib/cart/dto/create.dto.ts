@@ -6,9 +6,9 @@ import { Exclude } from 'class-transformer';
 export class CreateCartDto {
   @Property({ type: 'boolean', example: false }) complete: boolean;
 
-  @Property({ type: 'number', required: true })
+  @Property({ type: 'object', target: IDDto, required: true })
   customer: IDDto;
 
-  @Property({ type: 'number', required: true })
+  @Property({ type: 'object', target: IDDto, required: true })
   employee: IDDto;
 }

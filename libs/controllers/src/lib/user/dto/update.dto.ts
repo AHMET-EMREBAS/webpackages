@@ -32,6 +32,6 @@ export class UpdateUserDto {
   })
   permissions: AccessPolicy;
 
-  @Property({ type: 'number' })
+  @Property({ type: 'object', target: IDDto })
   department: IDDto;
 }

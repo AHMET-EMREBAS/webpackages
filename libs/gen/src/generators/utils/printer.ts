@@ -331,7 +331,7 @@ export function printRelationPropertiesForDto(m: Metadata) {
         const decoratorsOptions = () => {
           return value.relationType === 'many'
             ? `{type:"object", target:IDDto, isArray:true ${isRequired()} }`
-            : `{ type:"object", target:IDDto, ${isRequired()} }`;
+            : `{ type:"object", target:IDDto ${isRequired()} }`;
         };
 
         const decorator = () => {

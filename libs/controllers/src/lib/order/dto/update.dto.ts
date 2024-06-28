@@ -8,6 +8,6 @@ export class UpdateOrderDto {
   @Property({ type: 'number', minimum: 0 }) subTotal: number;
   @Property({ type: 'number', minimum: 1 }) quantity: number;
 
-  @Property({ type: 'number' })
+  @Property({ type: 'object', target: IDDto })
   discount: IDDto;
 }

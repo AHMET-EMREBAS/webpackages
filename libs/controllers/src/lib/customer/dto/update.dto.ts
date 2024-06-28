@@ -32,6 +32,6 @@ export class UpdateCustomerDto {
   })
   permissions: AccessPolicy;
 
-  @Property({ type: 'number' })
+  @Property({ type: 'object', target: IDDto })
   priceLevel: IDDto;
 }

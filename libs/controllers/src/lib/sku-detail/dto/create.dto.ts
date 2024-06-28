@@ -93,6 +93,6 @@ export class CreateSkuDetailDto {
   })
   highlight: string;
 
-  @Property({ type: 'number', required: true })
+  @Property({ type: 'object', target: IDDto, required: true })
   sku: IDDto;
 }

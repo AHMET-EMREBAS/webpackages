@@ -9,11 +9,11 @@ export class SearchTaskDto implements SearchDto<TaskView> {
     'name',
     'description',
     'tags',
-    'dueDate',
+    'difficulty',
+    'status',
     'startDate',
     'endDate',
-    'status',
-    'difficulty',
+    'dueDate',
     'usersUsername',
   ])
   search: FindOptionsWhere<TaskView>;

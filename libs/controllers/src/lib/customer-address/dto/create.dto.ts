@@ -45,6 +45,6 @@ export class CreateCustomerAddressDto {
   })
   zip: string;
 
-  @Property({ type: 'number', required: true })
+  @Property({ type: 'object', target: IDDto, required: true })
   customer: IDDto;
 }

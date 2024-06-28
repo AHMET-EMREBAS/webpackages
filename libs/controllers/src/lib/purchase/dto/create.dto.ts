@@ -18,6 +18,6 @@ export class CreatePurchaseDto {
   })
   notes: string;
 
-  @Property({ type: 'number', required: true })
+  @Property({ type: 'object', target: IDDto, required: true })
   employee: IDDto;
 }

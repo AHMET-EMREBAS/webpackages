@@ -14,6 +14,6 @@ export class UpdateStoreDto {
   })
   name: string;
 
-  @Property({ type: 'number' })
+  @Property({ type: 'object', target: IDDto })
   manager: IDDto;
 }

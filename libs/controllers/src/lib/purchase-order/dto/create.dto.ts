@@ -18,9 +18,9 @@ export class CreatePurchaseOrderDto {
   @Property({ type: 'number', required: true, minimum: 0, example: 297 })
   total: number;
 
-  @Property({ type: 'number', required: true })
+  @Property({ type: 'object', target: IDDto, required: true })
   purchase: IDDto;
 
-  @Property({ type: 'number', required: true })
+  @Property({ type: 'object', target: IDDto, required: true })
   sku: IDDto;
 }

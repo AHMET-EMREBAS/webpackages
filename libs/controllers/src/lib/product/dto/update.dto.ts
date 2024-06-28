@@ -20,6 +20,7 @@ export class UpdateProductDto {
     format: 'barcode',
     minLength: 8,
     maxLength: 13,
+    inputType: 'text',
     class: ' order-2 w-4/12 grow',
     example: '787593827182',
   })
@@ -28,13 +29,14 @@ export class UpdateProductDto {
     type: 'string',
     maxLength: 1000,
     example: 'Product Description',
-    class: ' order-5 w-full',
+    inputType: 'textarea',
+    class: ' order-3 w-full',
   })
   description: string;
 
-  @Property({ type: 'number' })
+  @Property({ type: 'object', target: IDDto })
   category: IDDto;
 
-  @Property({ type: 'number' })
+  @Property({ type: 'object', target: IDDto })
   supplier: IDDto;
 }

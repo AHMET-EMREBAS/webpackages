@@ -7,10 +7,10 @@ export class OrderTaskDto extends CreateOrderDto<TaskView>([
   'name',
   'description',
   'tags',
-  'dueDate',
+  'difficulty',
+  'status',
   'startDate',
   'endDate',
-  'status',
-  'difficulty',
+  'dueDate',
   'usersUsername',
 ]) {}

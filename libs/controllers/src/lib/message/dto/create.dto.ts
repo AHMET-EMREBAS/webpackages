@@ -7,9 +7,9 @@ export class CreateMessageDto {
   @Property({ type: 'string', maxLength: 2000 }) message: string;
   @Property({ type: 'date' }) readDate: Date;
 
-  @Property({ type: 'number', required: true })
+  @Property({ type: 'object', target: IDDto, required: true })
   fromUser: IDDto;
 
-  @Property({ type: 'number' })
+  @Property({ type: 'object', target: IDDto })
   toUser: IDDto;
 }

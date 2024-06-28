@@ -23,6 +23,6 @@ export class CreateCustomerProfileDto {
   @Property({ type: 'string', minLength: 3, maxLength: 100, example: 'N/A' })
   middleName: string;
 
-  @Property({ type: 'number', required: true })
+  @Property({ type: 'object', target: IDDto, required: true })
   customer: IDDto;
 }

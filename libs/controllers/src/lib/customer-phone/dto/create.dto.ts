@@ -6,6 +6,6 @@ import { Exclude } from 'class-transformer';
 export class CreateCustomerPhoneDto {
   @Property({ type: 'string', format: 'phone', required: true }) phone: string;
 
-  @Property({ type: 'number', required: true })
+  @Property({ type: 'object', target: IDDto, required: true })
   customer: IDDto;
 }

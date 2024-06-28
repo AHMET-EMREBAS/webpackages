@@ -4,6 +4,6 @@ import { Exclude } from 'class-transformer';
 
 @Exclude()
 export class CreateInboxDto {
-  @Property({ type: 'number', required: true })
+  @Property({ type: 'object', target: IDDto, required: true })
   employee: IDDto;
 }

@@ -11,8 +11,8 @@ export class SearchQuantityDto implements SearchDto<QuantityView> {
     'alertUnderQuantity',
     'autoRepurchase',
     'notSellLastOne',
-    'skuSku',
     'skuName',
+    'skuSku',
     'storeName',
   ])
   search: FindOptionsWhere<QuantityView>;

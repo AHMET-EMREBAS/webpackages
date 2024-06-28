@@ -14,8 +14,8 @@ export class QueryQuantityDto
   @QueryProperty() notSellLastOne: string;
   @QueryProperty() skuId: string;
   @QueryProperty() skuActive: string;
-  @QueryProperty() skuSku: string;
   @QueryProperty() skuName: string;
+  @QueryProperty() skuSku: string;
   @QueryProperty() storeId: string;
   @QueryProperty() storeActive: string;
   @QueryProperty() storeName: string;
