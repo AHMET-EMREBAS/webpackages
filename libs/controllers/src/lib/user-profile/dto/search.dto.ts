@@ -5,11 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchUserProfileDto implements SearchDto<UserProfileView> {
-  @SearchProperty<UserProfileView>([
-    'firstName',
-    'lastName',
-    'middleName',
-    'userUsername',
-  ])
+  @SearchProperty<UserProfileView>(['firstName', 'lastName', 'middleName'])
   search: FindOptionsWhere<UserProfileView>;
 }

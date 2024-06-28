@@ -8,15 +8,15 @@ export interface ITask extends BaseEntity {
 
   tags: string[];
 
-  dueDate: Date;
+  difficulty: string;
+
+  status: string;
 
   startDate: Date;
 
   endDate: Date;
 
-  status: string;
-
-  difficulty: string;
+  dueDate: Date;
 
   users: IUser;
 }

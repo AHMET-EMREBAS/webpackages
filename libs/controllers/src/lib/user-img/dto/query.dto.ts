@@ -9,7 +9,4 @@ export class QueryUserImgDto
 {
   @QueryProperty() title: string;
   @QueryProperty() generatedName: string;
-  @QueryProperty() userId: string;
-  @QueryProperty() userActive: string;
-  @QueryProperty() userUsername: string;
 }

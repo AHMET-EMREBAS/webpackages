@@ -10,7 +10,6 @@ export const UserProfileFormGroup = new FormBuilder().group({
     [Validators.minLength(3), Validators.maxLength(100), Validators.required],
   ],
   middleName: [null, [Validators.minLength(3), Validators.maxLength(100)]],
-  user: [null, []],
 });
 
 export const UpdateUserProfileFormGroup = new FormBuilder().group({

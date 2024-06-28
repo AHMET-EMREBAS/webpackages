@@ -8,10 +8,8 @@ import { Department } from '../department';
 export class User extends BaseEntity implements IUser {
   @Column({ type: 'string', required: true, unique: true, format: 'email' })
   username: string;
-
   @Column({ type: 'string', required: true, format: 'password' })
   password: string;
-  
   @Column({ type: 'object' }) permissions: AccessPolicy;
 
   @Relation({ relationType: 'one', target: Department }) department: Department;

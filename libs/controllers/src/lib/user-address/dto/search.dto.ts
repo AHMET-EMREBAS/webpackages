@@ -5,12 +5,6 @@ import { FindOptionsWhere } from 'typeorm';
 
 @Exclude()
 export class SearchUserAddressDto implements SearchDto<UserAddressView> {
-  @SearchProperty<UserAddressView>([
-    'street',
-    'city',
-    'state',
-    'zip',
-    'userUsername',
-  ])
+  @SearchProperty<UserAddressView>(['street', 'city', 'state', 'zip'])
   search: FindOptionsWhere<UserAddressView>;
 }

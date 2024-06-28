@@ -18,8 +18,8 @@ export class QuantityView extends BaseView {
   @ViewColumn() autoRepurchase: boolean;
   @ViewColumn() notSellLastOne: boolean;
 
-  @ViewColumn() skuSku: Sku['sku'];
   @ViewColumn() skuName: Sku['name'];
+  @ViewColumn() skuSku: Sku['sku'];
   @ViewColumn() skuId: Sku['id'];
   @ViewColumn() skuActive: Sku['active'];
   @ViewColumn() storeName: Store['name'];

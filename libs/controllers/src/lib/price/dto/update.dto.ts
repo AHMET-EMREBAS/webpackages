@@ -25,7 +25,7 @@ export class UpdatePriceDto {
   cost: number;
   @Property({
     type: 'date',
-    example: '6/27/2024, 10:12:35 PM',
+    example: '6/28/2024, 11:46:00 AM',
     class: 'order-5 w-4/12 grow',
     tabIndex: 5,
   })

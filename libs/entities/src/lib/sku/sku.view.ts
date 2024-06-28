@@ -12,8 +12,8 @@ import { Product } from '../product';
 })
 export class SkuView extends BaseView {
   @ViewColumn() name: string;
-  @ViewColumn() description: string;
   @ViewColumn() sku: string;
+  @ViewColumn() description: string;
 
   @ViewColumn() productUpc: Product['upc'];
   @ViewColumn() productId: Product['id'];

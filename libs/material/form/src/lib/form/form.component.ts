@@ -35,7 +35,6 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
-  ValidationErrors,
 } from '@angular/forms';
 
 import { DataServiceError, EntityCollectionService } from '@ngrx/data';

@@ -8,10 +8,10 @@ export class CreateClockDto {
     type: 'date',
     required: true,
     update: false,
-    example: '6/27/2024',
+    example: '6/28/2024',
   })
   starDate: Date;
-  @Property({ type: 'date', example: '6/27/2024' }) endDate: Date;
+  @Property({ type: 'date', example: '6/28/2024' }) endDate: Date;
 
   @Property({ type: 'object', target: IDDto, required: true })
   employee: IDDto;

@@ -1,16 +1,10 @@
-import {  BaseEntity } from '@webpackages/types';
+import { BaseEntity } from '@webpackages/types';
 import { IProduct } from './product';
 
 export interface IProductAttribute extends BaseEntity {
- 
+  key: string;
 
-        key: string ;
-        
+  value: string;
 
-
-        value: string ;
-        
- 
-        product: IProduct;
-        
+  product: IProduct;
 }

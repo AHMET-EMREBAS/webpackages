@@ -8,5 +8,4 @@ export class OrderUserAddressDto extends CreateOrderDto<UserAddressView>([
   'city',
   'state',
   'zip',
-  'userUsername',
 ]) {}

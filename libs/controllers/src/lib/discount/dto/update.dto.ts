@@ -14,6 +14,6 @@ export class UpdateDiscountDto {
   name: string;
   @Property({ type: 'number', minimum: 0, example: 40 }) fixedDiscount: number;
   @Property({ type: 'number', minimum: 0 }) percentDiscount: number;
-  @Property({ type: 'date', example: '6/27/2024' }) startDate: Date;
-  @Property({ type: 'date', example: '6/27/2024' }) endDate: Date;
+  @Property({ type: 'date', example: '6/28/2024' }) startDate: Date;
+  @Property({ type: 'date', example: '6/28/2024' }) endDate: Date;
 }

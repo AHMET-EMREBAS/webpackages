@@ -6,5 +6,4 @@ import { Exclude } from 'class-transformer';
 export class OrderUserImgDto extends CreateOrderDto<UserImgView>([
   'title',
   'generatedName',
-  'userUsername',
 ]) {}

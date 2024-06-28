@@ -16,12 +16,14 @@ function printImports(metadata: Metadata) {
   }
 
   if (metadata.properties) {
-    content.push(
-      `import { ${Object.values(metadata.properties)
-        .filter((e) => e.targetName)
-        .map((e) => e)
-        .join(', ')} } from '@webpackages/types';`
-    );
+    const types = Object.values(metadata.properties)
+      .filter((e) => e.targetName)
+      .map((e) => e.targetName)
+      .join(', ');
+
+    if (types && types.length > 0) {
+      content.push(`import { ${types} } from '@webpackages/types';`);
+    }
   }
   return [...new Set(content)].join('\n');
 }

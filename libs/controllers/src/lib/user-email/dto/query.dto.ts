@@ -8,7 +8,4 @@ export class QueryUserEmailDto
   implements QueryDto<UserEmailView>
 {
   @QueryProperty() email: string;
-  @QueryProperty() userId: string;
-  @QueryProperty() userActive: string;
-  @QueryProperty() userUsername: string;
 }

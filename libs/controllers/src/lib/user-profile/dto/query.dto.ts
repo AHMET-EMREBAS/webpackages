@@ -10,7 +10,4 @@ export class QueryUserProfileDto
   @QueryProperty() firstName: string;
   @QueryProperty() lastName: string;
   @QueryProperty() middleName: string;
-  @QueryProperty() userId: string;
-  @QueryProperty() userActive: string;
-  @QueryProperty() userUsername: string;
 }

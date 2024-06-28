@@ -5,7 +5,4 @@ import { Exclude } from 'class-transformer';
 @Exclude()
 export class CreateUserEmailDto {
   @Property({ type: 'string', format: 'email', required: true }) email: string;
-
-  @Property({ type: 'object', target: IDDto, required: true })
-  user: IDDto;
 }

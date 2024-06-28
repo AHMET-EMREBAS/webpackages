@@ -44,7 +44,4 @@ export class CreateUserAddressDto {
     example: 'Zip',
   })
   zip: string;
-
-  @Property({ type: 'object', target: IDDto, required: true })
-  user: IDDto;
 }

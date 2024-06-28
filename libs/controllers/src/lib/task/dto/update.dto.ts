@@ -69,7 +69,7 @@ export class UpdateTaskDto {
   @Property({
     type: 'date',
     description: 'Set this date, when the tech starts the task',
-    example: '6/27/2024',
+    example: '6/28/2024',
     class: 'order-5 w-3/12 grow',
     tabIndex: 5,
   })

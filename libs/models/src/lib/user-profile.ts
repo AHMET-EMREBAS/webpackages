@@ -1,5 +1,4 @@
 import { BaseEntity } from '@webpackages/types';
-import { IUser } from './user';
 
 export interface IUserProfile extends BaseEntity {
   firstName: string;
@@ -7,6 +6,4 @@ export interface IUserProfile extends BaseEntity {
   lastName: string;
 
   middleName: string;
-
-  user: IUser;
 }
