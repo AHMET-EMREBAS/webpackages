@@ -3,6 +3,7 @@ import {
   EventEmitter,
   Inject,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   inject,
@@ -24,7 +25,13 @@ import {
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DataServiceError, EntityCollectionService } from '@ngrx/data';
-import { firstValueFrom } from 'rxjs';
+import {
+  Observable,
+  Subscription,
+  debounceTime,
+  firstValueFrom,
+  map,
+} from 'rxjs';
 import {
   LocalStoreController,
   getEntityCollectionServiceToken,
@@ -61,10 +68,14 @@ import { setFormGroupErrors } from '../form';
 
   templateUrl: './update-form.component.html',
 })
-export class UpdateFormComponent<T = any> implements OnInit {
+export class UpdateFormComponent<T = any> implements OnInit, OnDestroy {
   submitted = false;
+  formStore: LocalStoreController<any>;
+
   formGroup = inject(getUpdateFormGroupToken());
 
+  valueChange: Observable<T>;
+  valueChangeSub: Subscription;
   /**
    * The entity id
    */
@@ -81,8 +92,6 @@ export class UpdateFormComponent<T = any> implements OnInit {
   @Input() onlyEmitEvent: boolean;
 
   @Input() submitButtonLabel = 'Submit';
-
-  formStore: LocalStoreController<any>;
 
   @Output() formSubmitEvent = new EventEmitter<any>();
 
@@ -109,10 +118,29 @@ export class UpdateFormComponent<T = any> implements OnInit {
           c.setValue(value);
         }
       }
+
+      this.valueChange = this.formGroup.valueChanges.pipe(
+        debounceTime(600),
+        map((data) => {
+          this.formStore?.set(data);
+          return data;
+        })
+      );
+
+      this.valueChangeSub = this.valueChange.subscribe((value) => {
+        console.log('Form Component--------------------------------------');
+        console.table(value);
+        console.log('Form Component--------------------------------------End');
+      });
+
       return;
     }
 
     throw new Error('UpdateForm need id parameters from URL');
+  }
+
+  ngOnDestroy(): void {
+    this.valueChangeSub.unsubscribe();
   }
 
   async handleFormSubmit(event?: any) {

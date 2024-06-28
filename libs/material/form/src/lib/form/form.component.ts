@@ -11,6 +11,7 @@ import {
   EventEmitter,
   Inject,
   Input,
+  OnDestroy,
   OnInit,
   Optional,
   Output,
@@ -38,7 +39,13 @@ import {
 } from '@angular/forms';
 
 import { DataServiceError, EntityCollectionService } from '@ngrx/data';
-import { Observable, debounceTime, firstValueFrom, map } from 'rxjs';
+import {
+  Observable,
+  Subscription,
+  debounceTime,
+  firstValueFrom,
+  map,
+} from 'rxjs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { RouterModule } from '@angular/router';
 import { PropertyOptions } from '@webpackages/types';
@@ -89,13 +96,15 @@ export function setFormGroupErrors(
   }
   `,
 })
-export class FormComponent<T = any> implements OnInit {
+export class FormComponent<T = any> implements OnInit, OnDestroy {
   submitted = false;
 
   formGroup = inject(getFormGroupToken());
 
   formStore: LocalStoreController<any>;
 
+  valueChange: Observable<T>;
+  valueChangeSub: Subscription;
   /**
    * Localstore name to store the form data
    */
@@ -109,8 +118,6 @@ export class FormComponent<T = any> implements OnInit {
   @Input() submitButtonLabel = 'Submit';
 
   @Output() formSubmitEvent = new EventEmitter<any>();
-
-  valueChange: Observable<T>;
 
   /**
    *
@@ -151,11 +158,17 @@ export class FormComponent<T = any> implements OnInit {
         return data;
       })
     );
-    this.valueChange.subscribe((value) => {
-      console.log(value);
+
+    this.valueChangeSub = this.valueChange.subscribe((value) => {
+      console.log("Form Component--------------------------------------")
+      console.table(value);
+      console.log("Form Component--------------------------------------End")
     });
   }
 
+  ngOnDestroy(): void {
+    this.valueChangeSub.unsubscribe();
+  }
   async handleFormSubmit(event?: any) {
     const formValue = event || { ...this.formGroup.value };
 

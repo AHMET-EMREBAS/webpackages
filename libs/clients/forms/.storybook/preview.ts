@@ -16,10 +16,14 @@ import {
   provideDefaultHttpSearchQueryBuilder,
 } from '@webpackages/material/core';
 import { provideRouter } from '@angular/router';
-
+import { withActions } from '@storybook/addon-actions/decorator';
 const preview: Preview = {
-  parameters: {},
+  parameters: {
+    actions: { argTypesRegex: '^.*Event$' },
+  },
+
   decorators: [
+    withActions,
     applicationConfig({
       providers: [
         provideRouter([]),

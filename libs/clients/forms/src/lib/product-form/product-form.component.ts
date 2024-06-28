@@ -10,14 +10,13 @@ import {
 import { toFormInputOptions } from '@webpackages/types';
 import { ProductMetadata } from '@webpackages/metadata';
 import { ProductFormGroup } from '@webpackages/clients/form-groups';
-import { IProduct } from '@webpackages/models';
 
 @Component({
   selector: 'wp-product-form',
   standalone: true,
   imports: [CommonModule, FormComponent],
   template: `<wp-form
-    (submitEvent)="handleFormSubmit($event)"
+    (formSubmitEvent)="handleFormSubmit($event)"
     [onlyEmitEvent]="onlyEmitEvent"
     [submitButtonLabel]="submitButtonLabel"
   ></wp-form>`,
@@ -28,8 +27,4 @@ import { IProduct } from '@webpackages/models';
     provideInputOptions(toFormInputOptions(ProductMetadata)),
   ],
 })
-export class ProductFormComponent extends FormComponent {
-  override async handleFormSubmit(event?: Partial<IProduct>) {
-    this.formSubmitEvent.emit(event);
-  }
-}
+export class ProductFormComponent extends FormComponent {}

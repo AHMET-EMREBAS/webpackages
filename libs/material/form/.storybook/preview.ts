@@ -3,6 +3,8 @@ import { Preview } from '@storybook/angular';
 
 const preview: Preview = {
   parameters: {},
+
+  decorators: [],
 };
 
 export default preview;

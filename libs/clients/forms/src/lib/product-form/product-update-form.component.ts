@@ -17,7 +17,7 @@ import { IProduct } from '@webpackages/models';
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
   template: `<wp-update-form
-    (submitEvent)="handleFormSubmit($event)"
+    (formSubmitEvent)="handleFormSubmit($event)"
     [entityId]="entityId"
     [onlyEmitEvent]="onlyEmitEvent"
     [submitButtonLabel]="submitButtonLabel"
