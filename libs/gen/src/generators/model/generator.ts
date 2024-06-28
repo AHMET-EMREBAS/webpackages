@@ -14,6 +14,15 @@ function printImports(metadata: Metadata) {
       })
     );
   }
+
+  if (metadata.properties) {
+    content.push(
+      `import { ${Object.values(metadata.properties)
+        .filter((e) => e.targetName)
+        .map((e) => e)
+        .join(', ')} } from '@webpackages/types';`
+    );
+  }
   return [...new Set(content)].join('\n');
 }
 
@@ -24,9 +33,13 @@ function printProperties(metadata: Metadata) {
       ...Object.entries(metadata.properties).map(([key, value]) => {
         return `
 
-        ${key}: ${value.type === 'date' ? 'Date' : value.type} ${
-          value.isArray ? '[]' : ''
-        };
+        ${key}: ${
+          value.type === 'date'
+            ? 'Date'
+            : value.type === 'object'
+            ? value.targetName
+            : value.type
+        } ${value.isArray ? '[]' : ''};
         `;
       })
     );
