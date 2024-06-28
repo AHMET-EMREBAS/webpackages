@@ -97,6 +97,10 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {}
 
+  cleanup() {
+    this.productEditorStore.delete();
+  }
+
   ngAfterViewInit(): void {
     this.completedSteps = this.productEditorStore.get();
 
@@ -133,28 +137,31 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   _2_createdPrices() {
     this.priceStep.completed = true;
     this.priceStep.editable = false;
+    this.productEditorStepper.next();
   }
 
   _3_createdQuantities() {
     this.quantityStep.completed = true;
     this.quantityStep.editable = false;
+    this.productEditorStepper.next();
   }
 
   _4_createdSerialNumbers() {
     this.serialStep.completed = true;
     this.serialStep.editable = false;
+    this.productEditorStepper.next();
   }
 
   _5_completed() {
     this.finalStep.completed = true;
     this.finalStep.editable = false;
+    this.productEditorStore.delete();
+    this.productForm.reset();
+    this.productEditorStepper.reset();
   }
 
   async handleProductSubmitSuccess(event: IProduct) {
     this.savedProduct = event;
-    this.productStep.editable = false;
-
-    this.productEditorStepper.next();
 
     this.snackbar.open(`Product is created, moving to next step.`, undefined, {
       verticalPosition: 'top',
@@ -188,6 +195,7 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
     console.log('Skus: ', this.savedSkus);
     console.log('Prices: ', this.savedPrices);
     console.log('Quantities: ', this.savedQuantities);
+    this._1_createdProduct();
   }
 
   handleProductSubmitError(event: any) {
@@ -203,5 +211,9 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
         duration: 3000,
       }
     );
+  }
+
+  finishProcess() {
+    this._5_completed();
   }
 }

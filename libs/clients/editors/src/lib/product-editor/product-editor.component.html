@@ -11,15 +11,18 @@
 
   <mat-step label="Pricing" completedLabel="Done">
     Add pricing for each price level
+
+    <button next-button>Next</button>
   </mat-step>
-  <mat-step label="Quantity" completedLabel="Done">
-    Add quantity if avaiable, (for each store)
-  </mat-step>
+
+  <mat-step label="Quantity" completedLabel="Done"> </mat-step>
   <mat-step label="Serial Number" completedLabel="Done">
     Add serial number if necessary
     <ol>
       <li>provide generator and manual creation</li>
     </ol>
+
+    <button next-button>Next</button>
   </mat-step>
 
   <mat-step #finalStep label="Complete" completedLabel="Done">
@@ -27,7 +30,20 @@
       class="flex flex-col w-full gap-4 p-4 justify-center items-center content-center"
     >
       <p>Product is successfully created.</p>
-      <button class="max-w-32" mat-raised-button color="primary">Finish</button>
+      <button
+        class="max-w-32"
+        mat-raised-button
+        color="primary"
+        (click)="finishProcess()"
+      >
+        Finish
+      </button>
     </div>
   </mat-step>
 </mat-stepper>
+<!--  -->
+<div class="w-full flex flex-row justify-end p-4">
+  <button mat-raised-button color="warn" (click)="finishProcess()">
+    Cancel
+  </button>
+</div>

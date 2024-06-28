@@ -29,4 +29,8 @@ export class LocalStoreController<T> {
       this.set(value);
     }
   }
+
+  delete() {
+    localStorage.removeItem(this.storeName);
+  }
 }

@@ -212,5 +212,6 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
   reset() {
     this.formGroup.reset({}, { emitEvent: false });
     this.formGroup.markAsUntouched();
+    this.formGroup.setErrors(null);
   }
 }
