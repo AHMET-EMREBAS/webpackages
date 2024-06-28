@@ -1,4 +1,6 @@
-import { devModeStore } from './mode';
+import { LocalStoreController } from '../local-store';
+
+export const devModeStore = new LocalStoreController('___isDevMode___');
 
 export function isDevMode() {
   return devModeStore.get() === true;

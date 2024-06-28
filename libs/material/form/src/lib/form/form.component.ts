@@ -99,7 +99,7 @@ export class FormComponent<T = any> implements OnInit {
   ngOnInit(): void {
     const localStoreName = this.resourceName || this.formStoreName;
     if (localStoreName) {
-      this.formStore = LocalStoreController.create(localStoreName);
+      this.formStore =  new LocalStoreController(localStoreName);
       if (this.formStore) {
         const defaultValue = this.formStore?.get();
         if (defaultValue) {

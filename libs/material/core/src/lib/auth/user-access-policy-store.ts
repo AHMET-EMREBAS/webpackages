@@ -6,4 +6,4 @@ export const {
   getOrThrow: getUserAccessPolicyOrThrow,
   set: setUserAccessPolicy,
   setIfNotExist: setUserAccessPolicyIfNotExist,
-} = LocalStoreController.create<AccessPolicy>('UserAccessPolicy');
+} = new LocalStoreController<AccessPolicy>('UserAccessPolicy');
