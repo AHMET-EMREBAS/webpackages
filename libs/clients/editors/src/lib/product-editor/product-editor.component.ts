@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+/**
+ * ### Create Product 
+ * - Price
+ * - Quantity
+ * - Serial Number
+ */
 @Component({
   selector: 'wp-product-editor',
   standalone: true,
   imports: [CommonModule],
-  template: `<p>product-editor works!</p>`,
-  styles: ``,
+  templateUrl: `./product-editor.component.html`,
 })
 export class ProductEditorComponent {}
