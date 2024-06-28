@@ -1,9 +1,5 @@
 <mat-stepper #productEditorStepper [linear]="true">
-  <mat-step
-    #productStep
-    [stepControl]="productForm.formGroup"
-    label="Create Product"
-  >
+  <mat-step #productStep completedLabel="Done" label="Create Product">
     <wp-product-form
       #productForm
       submitButtonLabel="Next"
@@ -13,5 +9,25 @@
     ></wp-product-form>
   </mat-step>
 
-  <mat-step label="Pricing"> </mat-step>
+  <mat-step label="Pricing" completedLabel="Done">
+    Add pricing for each price level
+  </mat-step>
+  <mat-step label="Quantity" completedLabel="Done">
+    Add quantity if avaiable, (for each store)
+  </mat-step>
+  <mat-step label="Serial Number" completedLabel="Done">
+    Add serial number if necessary
+    <ol>
+      <li>provide generator and manual creation</li>
+    </ol>
+  </mat-step>
+
+  <mat-step #finalStep label="Complete" completedLabel="Done">
+    <div
+      class="flex flex-col w-full gap-4 p-4 justify-center items-center content-center"
+    >
+      <p>Product is successfully created.</p>
+      <button class="max-w-32" mat-raised-button color="primary">Finish</button>
+    </div>
+  </mat-step>
 </mat-stepper>

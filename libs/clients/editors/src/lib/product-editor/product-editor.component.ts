@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   PriceService,
@@ -18,9 +18,30 @@ import {
   ProductFormComponent,
   QuantityFormComponent,
 } from '@webpackages/clients/forms';
-import { IPrice, IProduct, IQuantity, ISku } from '@webpackages/models';
+import {
+  IPrice,
+  IProduct,
+  IQuantity,
+  ISerialNumber,
+  ISku,
+} from '@webpackages/models';
 import { firstValueFrom } from 'rxjs';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { LocalStoreController } from '@webpackages/material/core';
+
+export type ProductEditorStepType<T> = {
+  complete: boolean;
+  data: Partial<T>;
+};
+
+export type ProductEditorSteps = {
+  _1_createdProduct?: ProductEditorStepType<IProduct>;
+  _2_createdPrices?: ProductEditorStepType<IPrice[]>;
+  _3_createdQuantities?: ProductEditorStepType<IQuantity[]>;
+  _4_createdSerialNumbers?: ProductEditorStepType<ISerialNumber[]>;
+  _5_completed?: boolean;
+};
+
 /**
  * ### Product Editor
  * - Create Product
@@ -46,18 +67,25 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   templateUrl: `./product-editor.component.html`,
   providers: [ProductService, SkuService, PriceService, QuantityService],
 })
-export class ProductEditorComponent {
+export class ProductEditorComponent implements OnInit, AfterViewInit {
+  completedSteps?: ProductEditorSteps;
+
   savedProduct: IProduct;
   savedSkus: ISku[];
   savedPrices: IPrice[];
   savedQuantities: IQuantity[];
+  productEditorStore = new LocalStoreController<ProductEditorSteps>(
+    'ProductEditorComponentStore'
+  );
 
+  @ViewChild('productForm') productForm: ProductFormComponent;
   @ViewChild('productEditorStepper') productEditorStepper: MatStepper;
   @ViewChild('productStep') productStep: MatStep;
   @ViewChild('priceStep') priceStep: MatStep;
   @ViewChild('quantityStep') quantityStep: MatStep;
   @ViewChild('serialStep') serialStep: MatStep;
   @ViewChild('attributesStep') attributesStep: MatStep;
+  @ViewChild('finalStep') finalStep: MatStep;
 
   constructor(
     protected readonly productService: ProductService,
@@ -67,11 +95,67 @@ export class ProductEditorComponent {
     protected readonly snackbar: MatSnackBar
   ) {}
 
-  async handleProductSubmitSuccess(event: IProduct) {
-    console.log('Success: ', event);
-    this.savedProduct = event;
+  ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    this.completedSteps = this.productEditorStore.get();
+
+    if (this.completedSteps) {
+      // Check all steps and
+      if (this.completedSteps._1_createdProduct?.complete) {
+        this._1_createdProduct();
+      }
+      if (this.completedSteps._2_createdPrices?.complete) {
+        this._2_createdPrices();
+      }
+
+      if (this.completedSteps._3_createdQuantities?.complete) {
+        this._3_createdQuantities();
+      }
+
+      if (this.completedSteps._4_createdSerialNumbers?.complete) {
+        this._4_createdSerialNumbers();
+      }
+
+      if (this.completedSteps._5_completed) {
+        this._5_completed();
+      }
+      // Done
+    }
+  }
+
+  _1_createdProduct() {
+    this.productStep.completed = true;
     this.productStep.editable = false;
     this.productEditorStepper.next();
+  }
+
+  _2_createdPrices() {
+    this.priceStep.completed = true;
+    this.priceStep.editable = false;
+  }
+
+  _3_createdQuantities() {
+    this.quantityStep.completed = true;
+    this.quantityStep.editable = false;
+  }
+
+  _4_createdSerialNumbers() {
+    this.serialStep.completed = true;
+    this.serialStep.editable = false;
+  }
+
+  _5_completed() {
+    this.finalStep.completed = true;
+    this.finalStep.editable = false;
+  }
+
+  async handleProductSubmitSuccess(event: IProduct) {
+    this.savedProduct = event;
+    this.productStep.editable = false;
+
+    this.productEditorStepper.next();
+
     this.snackbar.open(`Product is created, moving to next step.`, undefined, {
       verticalPosition: 'top',
       horizontalPosition: 'center',
@@ -79,6 +163,7 @@ export class ProductEditorComponent {
       politeness: 'polite',
       announcementMessage:
         'Successfuly created product and moving to next step.',
+      duration: 3000,
     });
 
     this.savedSkus = await firstValueFrom(
@@ -93,13 +178,19 @@ export class ProductEditorComponent {
       this.quantityService.getWithQuery({ search: event.upc })
     );
 
+    this.productEditorStore.set({
+      _1_createdProduct: {
+        complete: true,
+        data: this.savedProduct,
+      },
+    });
+
     console.log('Skus: ', this.savedSkus);
     console.log('Prices: ', this.savedPrices);
     console.log('Quantities: ', this.savedQuantities);
   }
 
   handleProductSubmitError(event: any) {
-    console.log('Error: ', event);
     this.snackbar.open(
       `Please fix the errors in the form to continue.`,
       undefined,
@@ -109,6 +200,7 @@ export class ProductEditorComponent {
         panelClass: ['!bg-red-400'],
         politeness: 'polite',
         announcementMessage: 'Form is not valid',
+        duration: 3000,
       }
     );
   }
