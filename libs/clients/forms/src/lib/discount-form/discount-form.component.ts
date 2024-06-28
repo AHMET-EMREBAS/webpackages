@@ -35,7 +35,7 @@ import {
 })
 export class DiscountFormComponent extends FormComponent {
   override async handleFormSubmit(event?: any) {
-    this.formSubmitEvent.emit(event);
+    this.submitted.emit(event);
   }
 }
 
@@ -56,6 +56,6 @@ export class DiscountFormComponent extends FormComponent {
 })
 export class DiscountUpdateFormComponent extends FormComponent {
   override async handleFormSubmit(event?: any) {
-    this.formSubmitEvent.emit(event);
+    this.submitted.emit(event);
   }
 }

@@ -31,6 +31,6 @@ import { IProduct } from '@webpackages/models';
 })
 export class ProductUpdateFormComponent extends UpdateFormComponent {
   override async handleFormSubmit(event?: Partial<IProduct>) {
-    this.formSubmitEvent.emit(event);
+    this.submitted.emit(event);
   }
 }

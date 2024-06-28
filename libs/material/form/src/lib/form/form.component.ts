@@ -97,12 +97,9 @@ export function setFormGroupErrors(
   `,
 })
 export class FormComponent<T = any> implements OnInit, OnDestroy {
-  submitted = false;
-
+  isFormSubmitted = false;
   formGroup = inject(getFormGroupToken());
-
   formStore: LocalStoreController<any>;
-
   valueChange: Observable<T>;
   valueChangeSub: Subscription;
   /**
@@ -117,7 +114,7 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
 
   @Input() submitButtonLabel = 'Submit';
 
-  @Output() formSubmitEvent = new EventEmitter<any>();
+  @Output() submitted = new EventEmitter<any>();
 
   /**
    *
@@ -160,9 +157,9 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
     );
 
     this.valueChangeSub = this.valueChange.subscribe((value) => {
-      console.log("Form Component--------------------------------------")
+      console.log('Form Component--------------------------------------');
       console.table(value);
-      console.log("Form Component--------------------------------------End")
+      console.log('Form Component--------------------------------------End');
     });
   }
 
@@ -173,7 +170,7 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
     const formValue = event || { ...this.formGroup.value };
 
     if (this.onlyEmitEvent) {
-      this.formSubmitEvent.emit({ ...formValue });
+      this.submitted.emit({ ...formValue });
     } else {
       // Submitting
       try {
@@ -182,7 +179,7 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
             this.service?.add(formValue, { isOptimistic: false })
           );
 
-          this.submitted = true;
+          this.isFormSubmitted = true;
         } else {
           console.warn(`[FormComponent] EntityService is  not provided`);
         }

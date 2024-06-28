@@ -35,7 +35,7 @@ import {
 })
 export class NotificationFormComponent extends FormComponent {
   override async handleFormSubmit(event?: any) {
-    this.formSubmitEvent.emit(event);
+    this.submitted.emit(event);
   }
 }
 
@@ -56,6 +56,6 @@ export class NotificationFormComponent extends FormComponent {
 })
 export class NotificationUpdateFormComponent extends FormComponent {
   override async handleFormSubmit(event?: any) {
-    this.formSubmitEvent.emit(event);
+    this.submitted.emit(event);
   }
 }

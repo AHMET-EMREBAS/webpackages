@@ -35,7 +35,7 @@ import {
 })
 export class CustomerAddressFormComponent extends FormComponent {
   override async handleFormSubmit(event?: any) {
-    this.formSubmitEvent.emit(event);
+    this.submitted.emit(event);
   }
 }
 
@@ -58,6 +58,6 @@ export class CustomerAddressFormComponent extends FormComponent {
 })
 export class CustomerAddressUpdateFormComponent extends FormComponent {
   override async handleFormSubmit(event?: any) {
-    this.formSubmitEvent.emit(event);
+    this.submitted.emit(event);
   }
 }

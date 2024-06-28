@@ -69,11 +69,9 @@ import { setFormGroupErrors } from '../form';
   templateUrl: './update-form.component.html',
 })
 export class UpdateFormComponent<T = any> implements OnInit, OnDestroy {
-  submitted = false;
+  isFormSubmitted = false;
   formStore: LocalStoreController<any>;
-
   formGroup = inject(getUpdateFormGroupToken());
-
   valueChange: Observable<T>;
   valueChangeSub: Subscription;
   /**
@@ -93,7 +91,7 @@ export class UpdateFormComponent<T = any> implements OnInit, OnDestroy {
 
   @Input() submitButtonLabel = 'Submit';
 
-  @Output() formSubmitEvent = new EventEmitter<any>();
+  @Output() submitted = new EventEmitter<any>();
 
   constructor(
     @Inject(getEntityCollectionServiceToken())
@@ -147,7 +145,7 @@ export class UpdateFormComponent<T = any> implements OnInit, OnDestroy {
     const formValue = event || { ...this.formGroup.value };
 
     if (this.onlyEmitEvent) {
-      this.formSubmitEvent.emit({ id: this.entityId, ...formValue });
+      this.submitted.emit({ id: this.entityId, ...formValue });
     } else {
       // Submitting
       try {
@@ -158,7 +156,7 @@ export class UpdateFormComponent<T = any> implements OnInit, OnDestroy {
               { isOptimistic: false }
             )
           );
-          this.submitted = true;
+          this.isFormSubmitted = true;
         } else {
           console.warn(`[FormComponent] EntityService is  not provided`);
         }

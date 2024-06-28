@@ -17,11 +17,8 @@ import {
 } from '@webpackages/material/core';
 import { provideRouter } from '@angular/router';
 import { withActions } from '@storybook/addon-actions/decorator';
-const preview: Preview = {
-  parameters: {
-    actions: { argTypesRegex: '^.*Event$' },
-  },
 
+const preview: Preview = {
   decorators: [
     withActions,
     applicationConfig({

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { type Meta, type StoryObj } from '@storybook/angular';
 import { ProductFormComponent } from './product-form.component';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
@@ -7,6 +7,7 @@ const meta: Meta<ProductFormComponent> = {
   component: ProductFormComponent,
   title: 'ProductFormComponent',
 };
+
 export default meta;
 
 type Story = StoryObj<ProductFormComponent>;
@@ -33,6 +34,7 @@ export const EventHeading: Story = {
     expect(canvas.getByText(/Emit Form/gi)).toBeTruthy();
   },
 };
+
 export const HttpHeading: Story = {
   ...HttpForm,
   play: async ({ canvasElement }) => {
