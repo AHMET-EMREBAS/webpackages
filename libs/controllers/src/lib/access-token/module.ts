@@ -4,12 +4,9 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { AccessToken, AccessTokenView } from '@webpackages/entities';
 import { Repository } from 'typeorm';
 import { AccessTokenService } from './service';
-import { User, UserView } from '@webpackages/entities';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([AccessToken, AccessTokenView, User, UserView]),
-  ],
+  imports: [TypeOrmModule.forFeature([AccessToken, AccessTokenView])],
   controllers: [AccessTokenController],
   providers: [AccessTokenService],
 })

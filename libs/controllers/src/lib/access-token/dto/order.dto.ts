@@ -6,5 +6,5 @@ import { Exclude } from 'class-transformer';
 export class OrderAccessTokenDto extends CreateOrderDto<AccessTokenView>([
   'name',
   'token',
-  'userUsername',
+  'permissions',
 ]) {}

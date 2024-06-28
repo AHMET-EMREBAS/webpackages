@@ -9,7 +9,5 @@ export class QueryAccessTokenDto
 {
   @QueryProperty() name: string;
   @QueryProperty() token: string;
-  @QueryProperty() userId: string;
-  @QueryProperty() userActive: string;
-  @QueryProperty() userUsername: string;
+  @QueryProperty() permissions: string;
 }

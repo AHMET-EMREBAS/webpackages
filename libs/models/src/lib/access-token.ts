@@ -1,10 +1,9 @@
-import { BaseEntity } from '@webpackages/types';
-import { IUser } from './user';
+import { AccessPolicy, BaseEntity } from '@webpackages/types';
 
 export interface IAccessToken extends BaseEntity {
   name: string;
 
   token: string;
 
-  user: IUser;
+  permissions: AccessPolicy;
 }

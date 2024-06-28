@@ -1,9 +1,9 @@
-import { BaseView, baseQueryBuilder } from '@webpackages/database';
+import {BaseView, baseQueryBuilder } from '@webpackages/database';
 import { ViewColumn, ViewEntity } from 'typeorm';
 import { AccessToken } from './access-token.entity';
 import { AccessTokenMetadata } from '@webpackages/metadata';
+import {AccessPolicy} from '@webpackages/types';
 
-import { User } from '../user';
 
 @ViewEntity({
   expression(ds) {
@@ -11,10 +11,11 @@ import { User } from '../user';
   },
 })
 export class AccessTokenView extends BaseView {
-  @ViewColumn() name: string;
-  @ViewColumn() token: string;
 
-  @ViewColumn() userUsername: User['username'];
-  @ViewColumn() userId: User['id'];
-  @ViewColumn() userActive: User['active'];
+  @ViewColumn() name: string;
+@ViewColumn() token: string;
+@ViewColumn() permissions: AccessPolicy;
+  
+  
+  
 }
