@@ -1,7 +1,4 @@
 import {
-  AfterContentInit,
-  AfterViewChecked,
-  AfterViewInit,
   Component,
   Input,
   OnDestroy,
@@ -16,6 +13,7 @@ import {
   Subscription,
   debounceTime,
   filter,
+  repeat,
   startWith,
   switchMap,
 } from 'rxjs';
@@ -57,15 +55,16 @@ import { FormControl } from '@angular/forms';
           {{ option[resourceLabelProperty] }}
         </mat-option>
         }
-        <mat-option [value]="noneValue()"> ----None </mat-option>
+        <mat-option [value]="noneValue()"> --- None --- </mat-option>
       </mat-autocomplete>
+
       <mat-error>{{ errorMessage$ | async }}</mat-error>
     </mat-form-field>
   `,
 })
 export class SearchComponent
   extends InputComponent
-  implements OnInit, OnDestroy, AfterViewInit, AfterContentInit
+  implements OnInit, OnDestroy
 {
   @ViewChild('searchAutoComplete') searchAutoComplete: MatAutocomplete;
   @Input() resourceName: string;
@@ -76,14 +75,14 @@ export class SearchComponent
 
   foundOptions = signal<any[]>([]);
   httpClient = inject(HttpClient);
-
   search$: Observable<any[]>;
-
   sub: Subscription;
 
   override ngOnInit(): void {
+    super.ngOnInit();
     this.sub = this.__searchControl.valueChanges
       .pipe(
+        repeat(2),
         startWith(''),
         debounceTime(this.inputDebounceTime),
         filter((e) => typeof e == 'string'),
@@ -96,26 +95,13 @@ export class SearchComponent
       .subscribe((result) => {
         this.foundOptions.update(() => result);
       });
+
+
+    this.__searchControl.setValue(this.inputControl.value);
   }
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
-  }
-
-  ngAfterContentInit(): void {
-    if (this.inputControl.value) {
-      this.__searchControl.setValue(
-        this.inputControl.value[this.resourceLabelProperty]
-      );
-      const first = this.searchAutoComplete?.options?.first;
-
-      if (first) {
-        this.searchAutoComplete.optionSelected.emit({
-          option: { ...first, active: true } as any,
-          source: this.searchAutoComplete,
-        });
-      }
-    }
   }
 
   searchDisplayWith(propertyName: string) {
@@ -132,7 +118,7 @@ export class SearchComponent
 
   __optionSelect(event: MatAutocompleteSelectedEvent) {
     console.log('It it working ? : ', event.option.value);
-    this.inputControl.setValue(event.option.value.id);
+    this.inputControl.setValue(event.option.value);
   }
 
   noneValue() {

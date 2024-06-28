@@ -1,5 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
+  getEntityCollectionServiceToken,
+  getFormGroupToken,
+  getInputOptionsToken,
+  getResourceNameToken,
+  LocalStoreController,
+} from '@webpackages/material/core';
+import {
   Component,
   EventEmitter,
   Inject,
@@ -26,14 +33,7 @@ import {
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DataServiceError, EntityCollectionService } from '@ngrx/data';
-import { Observable, debounceTime, firstValueFrom, map, } from 'rxjs';
-import {
-  getEntityCollectionServiceToken,
-  getFormGroupToken,
-  getInputOptionsToken,
-  getResourceNameToken,
-  LocalStoreController,
-} from '@webpackages/material/core';
+import { Observable, debounceTime, firstValueFrom, map } from 'rxjs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { RouterModule } from '@angular/router';
 import { PropertyOptions } from '@webpackages/types';
@@ -99,14 +99,15 @@ export class FormComponent<T = any> implements OnInit {
   ngOnInit(): void {
     const localStoreName = this.resourceName || this.formStoreName;
     if (localStoreName) {
-      this.formStore =  new LocalStoreController(localStoreName);
-      if (this.formStore) {
+      if (LocalStoreController) {
+        this.formStore = new LocalStoreController(localStoreName);
         const defaultValue = this.formStore?.get();
         if (defaultValue) {
-          this.formGroup.setValue(defaultValue);
+          for (const [key, value] of Object.entries(defaultValue)) {
+            this.formGroup.get(key).setValue(value);
+          }
         }
       }
-      throw new Error('Local Store is not created!');
     }
 
     this.valueChange = this.formGroup.valueChanges.pipe(

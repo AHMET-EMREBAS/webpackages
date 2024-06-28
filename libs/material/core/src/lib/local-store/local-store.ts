@@ -1,4 +1,3 @@
-import { error } from '../dev';
 import { isUndefined, isNotUndefined } from '@webpackages/utils';
 
 export class LocalStoreController<T> {
@@ -9,7 +8,7 @@ export class LocalStoreController<T> {
     if (isNotUndefined(raw)) {
       return JSON.parse(raw);
     }
-    error(`Could not get the ${this.storeName} store!`);
+    console.error(`Could not get the ${this.storeName} store!`);
     return undefined;
   }
 
