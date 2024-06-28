@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '@webpackages/clients/ngrx';
 import { UpdateFormComponent } from '@webpackages/material/form';
 import {
+  provideEntityCollectionService,
   provideUpdateFormGroup,
   provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { ProductMetadata } from '@webpackages/metadata';
 import { UpdateProductFormGroup } from '@webpackages/clients/form-groups';
+import { IProduct } from '@webpackages/models';
 
 @Component({
   selector: 'wp-product-update-form',
@@ -22,8 +24,13 @@ import { UpdateProductFormGroup } from '@webpackages/clients/form-groups';
   ></wp-update-form>`,
   providers: [
     ProductService,
+    provideEntityCollectionService(ProductService),
     provideUpdateFormGroup(UpdateProductFormGroup),
     provideUpdateInputOptions(toUpdateFormInputOptions(ProductMetadata)),
   ],
 })
-export class ProductUpdateFormComponent extends UpdateFormComponent {}
+export class ProductUpdateFormComponent extends UpdateFormComponent {
+  override async submitForm(event?: Partial<IProduct>) {
+    this.submitEvent.emit(event);
+  }
+}

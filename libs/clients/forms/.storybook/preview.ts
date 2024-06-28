@@ -1,5 +1,5 @@
 // Replace your-framework with the framework you are using (e.g., react, vue3)
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideEntityData, withEffects } from '@ngrx/data';
 import { Preview, applicationConfig } from '@storybook/angular';
@@ -15,13 +15,20 @@ import {
   provideDefaultHttpCountQueryBuilder,
   provideDefaultHttpSearchQueryBuilder,
 } from '@webpackages/material/core';
+import { provideRouter } from '@angular/router';
 
 const preview: Preview = {
   parameters: {},
   decorators: [
     applicationConfig({
       providers: [
-        provideHttpClient(),
+        provideRouter([]),
+        provideHttpClient(
+          withInterceptors([
+            (req, next) =>
+              next(req.clone({ url: `http://localhost:3001/${req.url}` })),
+          ])
+        ),
         provideAnimations(),
         provideStore(),
         provideEffects(),
