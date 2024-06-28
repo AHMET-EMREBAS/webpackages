@@ -24,6 +24,7 @@ import { OrganizationModule } from './organization';
 import { PhoneModule } from './phone';
 import { PriceLevelModule } from './price-level';
 import { PriceModule } from './price';
+import { ProductAttributeModule } from './product-attribute';
 import { ProductImgModule } from './product-img';
 import { ProductModule } from './product';
 import { ProfileModule } from './profile';
@@ -74,6 +75,7 @@ export const resourceList = [
   PhoneModule,
   PriceLevelModule,
   PriceModule,
+  ProductAttributeModule,
   ProductImgModule,
   ProductModule,
   ProfileModule,

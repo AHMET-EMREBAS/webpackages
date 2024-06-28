@@ -3,17 +3,12 @@
     "resource": {
       "factory": "./src/generators/resource/generator",
       "schema": "./src/generators/resource/schema.json",
-      "description": "resource generator"
-    },
-    "client-resource": {
-      "factory": "./src/generators/client-resource/generator",
-      "schema": "./src/generators/client-resource/schema.json",
-      "description": "client-resource generator"
+      "description": "Rest Module generator"
     },
     "entity": {
       "factory": "./src/generators/entity/generator",
       "schema": "./src/generators/entity/schema.json",
-      "description": "entity generator"
+      "description": "Typeorm Entity"
     },
     "metadata": {
       "factory": "./src/generators/metadata/generator",
@@ -23,27 +18,27 @@
     "model": {
       "factory": "./src/generators/model/generator",
       "schema": "./src/generators/model/schema.json",
-      "description": "model generator"
+      "description": "Entity interfaces generator"
     },
     "form-group": {
       "factory": "./src/generators/form-group/generator",
       "schema": "./src/generators/form-group/schema.json",
-      "description": "form-group generator"
+      "description": "Angular FormGroup generator"
     },
     "ngrx": {
       "factory": "./src/generators/ngrx/generator",
       "schema": "./src/generators/ngrx/schema.json",
-      "description": "ngrx generator"
+      "description": "NgRX Service generator "
     },
     "routes": {
       "factory": "./src/generators/routes/generator",
       "schema": "./src/generators/routes/schema.json",
-      "description": "routes generator"
+      "description": "Angular Routes generators"
     },
     "ngrx-config": {
       "factory": "./src/generators/ngrx-config/generator",
       "schema": "./src/generators/ngrx-config/schema.json",
-      "description": "ngrx-config generator"
+      "description": "Ngrx config generator"
     },
     "entity-list": {
       "factory": "./src/generators/entity-list/generator",
