@@ -13,13 +13,18 @@ import {
   printUpdatePropertiesForDto,
   printUpdateRelationPropertiesForDto,
 } from '../utils';
+import { ResourceGeneratorSchema } from './schema';
+import { Metadata } from '@webpackages/types';
 // relationEntitiesImport
 // relationEntities
-export async function resourceGenerator(tree: Tree) {
+export async function resourceGenerator(
+  tree: Tree,
+  options: ResourceGeneratorSchema
+) {
   const projectRoot = `libs/controllers/src/lib`;
   const metadatas = Object.entries(ModelMetadatas);
 
-  for (const [key, value] of metadatas) {
+  const printIt = (key: string, value: Metadata) => {
     const templateOptions = {
       ...names(key.replace('Metadata', '')),
 
@@ -46,6 +51,22 @@ export async function resourceGenerator(tree: Tree) {
       projectRoot,
       templateOptions
     );
+  };
+
+  if (options.name === 'print-all') {
+    for (const [key, value] of metadatas) {
+      printIt(key, value);
+    }
+  } else {
+    const [key, value] = metadatas.find(([key, value]) =>
+      names(key).fileName.startsWith(options.name)
+    );
+
+    if (key && value) {
+      printIt(key, value);
+    } else {
+      throw new Error('Could not find the metadata!');
+    }
   }
   await formatFiles(tree);
 }

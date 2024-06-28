@@ -1,7 +1,10 @@
 import { PropertyOptions } from '@webpackages/types';
 
 type Options = Partial<PropertyOptions>;
-
+/**
+ * 
+ * TODO: ? Maybe
+ */
 export const Property = {
   string(options: Options = {}): Options {
     return {

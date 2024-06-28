@@ -23,6 +23,7 @@
       "@webpackages/clients/custom-forms": [
         "libs/clients/custom-forms/src/index.ts"
       ],
+      "@webpackages/clients/editors": ["libs/clients/editors/src/index.ts"],
       "@webpackages/clients/form-groups": [
         "libs/clients/form-groups/src/index.ts"
       ],
