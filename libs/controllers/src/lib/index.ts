@@ -26,6 +26,7 @@ export * from './phone';
 export * from './price';
 export * from './price-level';
 export * from './product';
+export * from './product-attribute';
 export * from './product-img';
 export * from './profile';
 export * from './project';
