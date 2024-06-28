@@ -34,8 +34,8 @@ import {
   ],
 })
 export class ImgFormComponent extends FormComponent {
-  override async submitForm(event?: any) {
-    this.submitEvent.emit(event);
+  override async handleFormSubmit(event?: any) {
+    this.formSubmitEvent.emit(event);
   }
 }
 
@@ -55,7 +55,7 @@ export class ImgFormComponent extends FormComponent {
   ],
 })
 export class ImgUpdateFormComponent extends FormComponent {
-  override async submitForm(event?: any) {
-    this.submitEvent.emit(event);
+  override async handleFormSubmit(event?: any) {
+    this.formSubmitEvent.emit(event);
   }
 }

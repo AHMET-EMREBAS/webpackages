@@ -17,7 +17,7 @@ import { IProduct } from '@webpackages/models';
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
   template: `<wp-update-form
-    (submitEvent)="submitForm($event)"
+    (submitEvent)="handleFormSubmit($event)"
     [entityId]="entityId"
     [onlyEmitEvent]="onlyEmitEvent"
     [submitButtonLabel]="submitButtonLabel"
@@ -30,7 +30,7 @@ import { IProduct } from '@webpackages/models';
   ],
 })
 export class ProductUpdateFormComponent extends UpdateFormComponent {
-  override async submitForm(event?: Partial<IProduct>) {
-    this.submitEvent.emit(event);
+  override async handleFormSubmit(event?: Partial<IProduct>) {
+    this.formSubmitEvent.emit(event);
   }
 }

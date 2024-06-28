@@ -65,15 +65,25 @@ export class UpdateFormComponent<T = any> implements OnInit {
   submitted = false;
   formGroup = inject(getUpdateFormGroupToken());
 
+  /**
+   * The entity id
+   */
   @Input() entityId: number;
+
+  /**
+   * Localstore name for form value
+   */
   @Input() formStoreName: string;
+
+  /**
+   * Only emit the form value NOT http request
+   */
   @Input() onlyEmitEvent: boolean;
   @Input() submitButtonLabel = 'Submit';
 
   formStore: LocalStoreController<any>;
 
-  @Output()
-  submitEvent = new EventEmitter<T>();
+  @Output() formSubmitEvent = new EventEmitter<any>();
 
   constructor(
     @Inject(getEntityCollectionServiceToken())
@@ -103,11 +113,11 @@ export class UpdateFormComponent<T = any> implements OnInit {
 
     throw new Error('UpdateForm need id parameters from URL');
   }
-  async submitForm(event?: any) {
+  async handleFormSubmit(event?: any) {
     const formValue = event || { ...this.formGroup.value };
 
     if (this.onlyEmitEvent) {
-      this.submitEvent.emit({ id: this.entityId, ...formValue });
+      this.formSubmitEvent.emit({ id: this.entityId, ...formValue });
     } else {
       // Submitting
       try {

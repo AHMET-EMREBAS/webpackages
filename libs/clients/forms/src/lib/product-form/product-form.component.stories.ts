@@ -9,23 +9,35 @@ const meta: Meta<ProductFormComponent> = {
   title: 'ProductFormComponent',
 };
 export default meta;
+
 type Story = StoryObj<ProductFormComponent>;
 
-export const Primary: Story = {
-  args: {},
-};
-export const EmitEVent: Story = {
+export const HttpForm: Story = {
   args: {
-    onlyEmitEvent: true,
-    submitButtonLabel: 'Emit Event',
-    formStoreName: 'ProductFormEmitEvent',
+    submitButtonLabel: 'Post Form',
+    formStoreName: 'ProductHttpForm',
   },
 };
 
-export const Heading: Story = {
-  args: {},
+export const EventForm: Story = {
+  args: {
+    onlyEmitEvent: true,
+    submitButtonLabel: 'Emit Form',
+    formStoreName: 'ProductEventForm',
+  },
+};
+
+export const EventHeading: Story = {
+  ...EventForm,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/product-form works!/gi)).toBeTruthy();
+    expect(canvas.getByText(/Emit Form/gi)).toBeTruthy();
+  },
+};
+export const HttpHeading: Story = {
+  ...HttpForm,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(canvas.getByText(/Post Form/gi)).toBeTruthy();
   },
 };

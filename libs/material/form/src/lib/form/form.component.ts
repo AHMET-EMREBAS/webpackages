@@ -91,15 +91,24 @@ export function setFormGroupErrors(
 })
 export class FormComponent<T = any> implements OnInit {
   submitted = false;
+
   formGroup = inject(getFormGroupToken());
+
   formStore: LocalStoreController<any>;
 
+  /**
+   * Localstore name to store the form data
+   */
   @Input() formStoreName: string;
+
+  /**
+   * Only emit the form value NOT make a http request
+   */
   @Input() onlyEmitEvent: boolean;
+
   @Input() submitButtonLabel = 'Submit';
 
-  @Output()
-  submitEvent = new EventEmitter<T>();
+  @Output() formSubmitEvent = new EventEmitter<any>();
 
   valueChange: Observable<T>;
 
@@ -147,11 +156,11 @@ export class FormComponent<T = any> implements OnInit {
     });
   }
 
-  async submitForm(event?: any) {
+  async handleFormSubmit(event?: any) {
     const formValue = event || { ...this.formGroup.value };
 
     if (this.onlyEmitEvent) {
-      this.submitEvent.emit({ ...formValue });
+      this.formSubmitEvent.emit({ ...formValue });
     } else {
       // Submitting
       try {
