@@ -45,18 +45,18 @@ export function printRelationTypeInEntity(relation: Partial<PropertyOptions>) {
   return `${type}${isArray}`;
 }
 
-/**
- *
- * @param relation
- * @returns number | IDDto[]
- */
-export function printRelationTypeInDto(relation: Partial<PropertyOptions>) {
-  if (isArrayRelation(relation)) {
-    return `IDDto[]`;
-  } else {
-    return 'number';
-  }
-}
+// /**
+//  *
+//  * @param relation
+//  * @returns number | IDDto[]
+//  */
+// export function printRelationTypeInDto(relation: Partial<PropertyOptions>) {
+//   if (isArrayRelation(relation)) {
+//     return `IDDto[]`;
+//   } else {
+//     return 'number';
+//   }
+// }
 
 /**
  *
@@ -331,7 +331,7 @@ export function printRelationPropertiesForDto(m: Metadata) {
         const decoratorsOptions = () => {
           return value.relationType === 'many'
             ? `{type:"object", target:IDDto, isArray:true ${isRequired()} }`
-            : `{ type:'number' ${isRequired()} }`;
+            : `{ type:"object", target:IDDto, ${isRequired()} }`;
         };
 
         const decorator = () => {
@@ -365,7 +365,7 @@ export function printUpdateRelationPropertiesForDto(m: Metadata) {
         const decoratorsOptions = () => {
           return value.relationType === 'many'
             ? `{type:"object", target:IDDto, isArray:true }`
-            : `{ type:'number'}`;
+            : `{ type:'object', target:IDDto }`;
         };
 
         const decorator = () => {
