@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   Input,
   OnDestroy,
@@ -12,6 +13,7 @@ import {
   Observable,
   Subscription,
   debounceTime,
+  delay,
   filter,
   repeat,
   startWith,
@@ -64,13 +66,13 @@ import { FormControl } from '@angular/forms';
 })
 export class SearchComponent
   extends InputComponent
-  implements OnInit, OnDestroy
+  implements OnInit, OnDestroy, AfterViewInit
 {
   @ViewChild('searchAutoComplete') searchAutoComplete: MatAutocomplete;
   @Input() resourceName: string;
   @Input() resourceLabelProperty: string;
 
-  __searchControl = new FormControl<string | null>(null);
+  __searchControl = new FormControl<string | null>('');
   searchQueryBuilder = inject(getHttpSearchQueryBuilderToken());
 
   foundOptions = signal<any[]>([]);
@@ -78,24 +80,28 @@ export class SearchComponent
   search$: Observable<any[]>;
   sub: Subscription;
 
-  override ngOnInit(): void {
-    super.ngOnInit();
+  override ngAfterViewInit(): void {
+    super.ngAfterViewInit();
+
+    this.__searchControl.setValue(this.inputControl.value);
     this.sub = this.__searchControl.valueChanges
       .pipe(
         startWith(''),
         debounceTime(this.inputDebounceTime),
-        filter((e) => typeof e == 'string'),
         switchMap((search) => {
+          if (typeof search == 'string') {
+            return this.httpClient.get<any[]>(
+              this.searchQueryBuilder(this.resourceName, search || '')
+            );
+          }
           return this.httpClient.get<any[]>(
-            this.searchQueryBuilder(this.resourceName, search || '')
+            this.searchQueryBuilder(this.resourceName, '')
           );
         })
       )
       .subscribe((result) => {
         this.foundOptions.update(() => result);
       });
-
-    this.__searchControl.setValue(this.inputControl.value);
   }
 
   ngOnDestroy(): void {

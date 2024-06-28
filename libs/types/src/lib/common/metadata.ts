@@ -75,6 +75,7 @@ export function toFormInputOptions(
           value.inputType ||
           (value.relationType === 'many' ? 'search-many' : 'search'),
         tabIndex: value.tabIndex ?? 6,
+        update: value.update == false ? false : true,
       } as PropertyOptions;
     }
   );
@@ -91,7 +92,6 @@ export function toTableColumnOptions(
         ...value,
         name: key,
         label: names(value.label || key).titleName,
-        
       } as PropertyOptions;
     }) || []),
 

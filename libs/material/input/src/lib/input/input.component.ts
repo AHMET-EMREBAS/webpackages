@@ -98,14 +98,7 @@ export class InputComponent implements InputOptions, OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (isDevMode()) {
-      this.inputControl.valueChanges.subscribe((value) => {
-        console.log(
-          `${this.inputName || 'inputName is not provided'} : `,
-          value
-        );
-      });
-    }
+    // TODO
   }
 
   serverSideError() {

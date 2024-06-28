@@ -136,13 +136,11 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
   ngOnInit(): void {
     const localStoreName = this.resourceName || this.formStoreName;
     if (localStoreName) {
-      if (LocalStoreController) {
-        this.formStore = new LocalStoreController(localStoreName);
-        const defaultValue = this.formStore?.get();
-        if (defaultValue) {
-          for (const [key, value] of Object.entries(defaultValue)) {
-            this.formGroup.get(key).setValue(value);
-          }
+      this.formStore = new LocalStoreController(localStoreName);
+      const defaultValue = this.formStore?.get();
+      if (defaultValue) {
+        for (const [key, value] of Object.entries(defaultValue)) {
+          this.formGroup.get(key).setValue(value);
         }
       }
     }

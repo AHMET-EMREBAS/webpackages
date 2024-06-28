@@ -16,11 +16,12 @@ import { UpdateProductFormGroup } from '@webpackages/clients/form-groups';
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
   template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-  ></wp-update-form>`,
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+    ></wp-update-form>
+    {{ formGroup.value | json }} `,
   providers: [
     ProductService,
     provideEntityCollectionService(ProductService),

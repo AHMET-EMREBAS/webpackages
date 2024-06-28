@@ -1,10 +1,12 @@
 import {
+  AfterViewInit,
   Component,
   EventEmitter,
   Inject,
   Input,
   OnDestroy,
   OnInit,
+  Optional,
   Output,
   inject,
 } from '@angular/core';
@@ -35,6 +37,7 @@ import {
 import {
   LocalStoreController,
   getEntityCollectionServiceToken,
+  getResourceNameToken,
   getUpdateFormGroupToken,
   getUpdateInputOptionsToken,
 } from '@webpackages/material/core';
@@ -68,7 +71,9 @@ import { setFormGroupErrors } from '../form';
 
   templateUrl: './update-form.component.html',
 })
-export class UpdateFormComponent<T = any> implements OnInit, OnDestroy {
+export class UpdateFormComponent<T = any>
+  implements OnInit, OnDestroy, AfterViewInit
+{
   isFormSubmitted = false;
   formStore: LocalStoreController<any>;
   formGroup = inject(getUpdateFormGroupToken());
@@ -98,10 +103,26 @@ export class UpdateFormComponent<T = any> implements OnInit, OnDestroy {
     protected readonly service: EntityCollectionService<T>,
     @Inject(getUpdateInputOptionsToken())
     public readonly inputOptions: PropertyOptions[],
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    @Optional()
+    @Inject(getResourceNameToken())
+    public readonly resourceName: string
   ) {}
 
   async ngOnInit() {
+    const localStoreName = this.resourceName || this.formStoreName;
+    if (localStoreName) {
+      this.formStore = new LocalStoreController(localStoreName);
+      const defaultValue = this.formStore?.get();
+      if (defaultValue) {
+        for (const [key, value] of Object.entries(defaultValue)) {
+          this.formGroup.get(key).setValue(value);
+        }
+      }
+    }
+  }
+
+  async ngAfterViewInit() {
     this.entityId =
       this.entityId || parseInt(this.route.snapshot.paramMap.get('id'));
 
@@ -112,9 +133,7 @@ export class UpdateFormComponent<T = any> implements OnInit, OnDestroy {
 
       for (const [key, value] of Object.entries(foundItem)) {
         const c = this.formGroup.get(key);
-        if (c) {
-          c.setValue(value);
-        }
+        if (c) c.setValue(value);
       }
 
       this.valueChange = this.formGroup.valueChanges.pipe(
