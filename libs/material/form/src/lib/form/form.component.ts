@@ -166,7 +166,7 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
   async handleFormSubmit(event?: any) {
     const formValue = event || { ...this.formGroup.value };
 
-    if (this.onlyEmitEvent) {
+    if (this.onlyEmitEvent == true) {
       this.submittedEvent.emit({ ...formValue });
     } else {
       // Submitting
@@ -185,6 +185,13 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
         setFormGroupErrors(this.formGroup, err);
       }
     }
+  }
+  handleFormSubmitSuccess(event: any) {
+    this.submittedEventSuccess.emit(event);
+  }
+  
+  handleFormSubmitError(event: any) {
+    this.submittedEventError.emit(event);
   }
 
   control(name: string) {

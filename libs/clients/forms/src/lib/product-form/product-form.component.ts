@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '@webpackages/clients/ngrx';
 import { FormComponent } from '@webpackages/material/form';
@@ -19,6 +19,8 @@ import { ProductFormGroup } from '@webpackages/clients/form-groups';
     (submittedEvent)="handleFormSubmit($event)"
     [onlyEmitEvent]="onlyEmitEvent"
     [submitButtonLabel]="submitButtonLabel"
+    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+    (submittedEventError)="handleFormSubmitError($event)"
   ></wp-form>`,
   providers: [
     ProductService,

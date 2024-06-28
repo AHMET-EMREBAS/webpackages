@@ -41,9 +41,18 @@ export class ProductEditorComponent {
     protected readonly productService: ProductService,
     protected readonly skuService: SkuService
   ) {}
-  async handleProductSubmit(event: any) {
-    await firstValueFrom(
-      this.productService.add(event, { isOptimistic: false })
-    );
+
+  // async handleProductSubmit(event: any) {
+  //   await firstValueFrom(
+  //     this.productService.add(event, { isOptimistic: false })
+  //   );
+  // }
+
+  handleProductSubmitSuccess(event: any) {
+    console.log('Success: ', event);
+  }
+
+  handleProductSubmitError(event: any) {
+    console.log('Error: ', event);
   }
 }

@@ -4,8 +4,8 @@
       #productForm
       submitButtonLabel="Next"
       formStoreName="ProductEditor"
-      [onlyEmitEvent]="true"
-      (submittedEvent)="handleProductSubmit($event)"
+      (submittedEventSuccess)="handleProductSubmitSuccess($event)"
+      (submittedEventError)="handleProductSubmitError($event)"
     ></wp-product-form>
   </mat-step>
   <mat-step label="Pricing"> </mat-step>
