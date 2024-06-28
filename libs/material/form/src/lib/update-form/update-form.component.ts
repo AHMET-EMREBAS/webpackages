@@ -1,4 +1,5 @@
 import {
+  AfterContentInit,
   AfterViewInit,
   Component,
   EventEmitter,
@@ -72,7 +73,7 @@ import { setFormGroupErrors } from '../form';
   templateUrl: './update-form.component.html',
 })
 export class UpdateFormComponent<T = any>
-  implements OnInit, OnDestroy, AfterViewInit
+  implements OnInit, OnDestroy, AfterViewInit, AfterContentInit
 {
   isFormSubmitted = false;
   formStore: LocalStoreController<any>;
@@ -110,19 +111,6 @@ export class UpdateFormComponent<T = any>
   ) {}
 
   async ngOnInit() {
-    const localStoreName = this.resourceName || this.formStoreName;
-    if (localStoreName) {
-      this.formStore = new LocalStoreController(localStoreName);
-      const defaultValue = this.formStore?.get();
-      if (defaultValue) {
-        for (const [key, value] of Object.entries(defaultValue)) {
-          this.formGroup.get(key).setValue(value);
-        }
-      }
-    }
-  }
-
-  async ngAfterViewInit() {
     this.entityId =
       this.entityId || parseInt(this.route.snapshot.paramMap.get('id'));
 
@@ -131,9 +119,11 @@ export class UpdateFormComponent<T = any>
         this.service.getByKey(this.entityId)
       );
 
-      for (const [key, value] of Object.entries(foundItem)) {
-        const c = this.formGroup.get(key);
-        if (c) c.setValue(value);
+      const entries = Object.entries(foundItem);
+
+      for (const [key, value] of entries) {
+        this.formGroup.get(key)?.setValue(value);
+        this.formGroup.enable();
       }
 
       this.valueChange = this.formGroup.valueChanges.pipe(
@@ -151,6 +141,10 @@ export class UpdateFormComponent<T = any>
 
     throw new Error('UpdateForm need id parameters from URL');
   }
+
+  async ngAfterViewInit() {}
+
+  async ngAfterContentInit() {}
 
   ngOnDestroy(): void {
     this.valueChangeSub?.unsubscribe();

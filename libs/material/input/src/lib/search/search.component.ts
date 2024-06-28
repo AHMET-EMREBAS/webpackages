@@ -83,25 +83,25 @@ export class SearchComponent
   override ngAfterViewInit(): void {
     super.ngAfterViewInit();
 
-    this.__searchControl.setValue(this.inputControl.value);
     this.sub = this.__searchControl.valueChanges
       .pipe(
+        repeat(2),
         startWith(''),
         debounceTime(this.inputDebounceTime),
+        filter((value) => typeof value === 'string'),
         switchMap((search) => {
-          if (typeof search == 'string') {
-            return this.httpClient.get<any[]>(
-              this.searchQueryBuilder(this.resourceName, search || '')
-            );
-          }
           return this.httpClient.get<any[]>(
-            this.searchQueryBuilder(this.resourceName, '')
+            this.searchQueryBuilder(this.resourceName, search || '')
           );
         })
       )
       .subscribe((result) => {
         this.foundOptions.update(() => result);
       });
+
+    setTimeout(() => {
+      this.__searchControl.setValue(this.inputControl.value);
+    }, 2000);
   }
 
   ngOnDestroy(): void {
