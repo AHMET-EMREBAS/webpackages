@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Inject,
   Input,
+  OnInit,
   Optional,
   Output,
   inject,
@@ -25,11 +26,13 @@ import {
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DataServiceError, EntityCollectionService } from '@ngrx/data';
-import { firstValueFrom } from 'rxjs';
+import { Observable, debounceTime, firstValueFrom, map, tap } from 'rxjs';
 import {
+  LocalStoreController,
   getEntityCollectionServiceToken,
   getFormGroupToken,
   getInputOptionsToken,
+  getResourceNameToken,
 } from '@webpackages/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { RouterModule } from '@angular/router';
@@ -67,24 +70,53 @@ import { PropertyOptions } from '@webpackages/types';
   }
   `,
 })
-export class FormComponent<T = any> {
+export class FormComponent<T = any> implements OnInit {
   submitted = false;
   formGroup = inject(getFormGroupToken());
+  formStore: LocalStoreController<any>;
 
+  @Input() formStoreName: string;
   @Input() onlyEmitEvent: boolean;
   @Input() submitButtonLabel = 'Submit';
 
   @Output()
   submitEvent = new EventEmitter<T>();
 
+  valueChange: Observable<T>;
+
   constructor(
     @Optional()
     @Inject(getEntityCollectionServiceToken())
     protected readonly service: EntityCollectionService<T>,
     @Inject(getInputOptionsToken())
-    public readonly inputOptions: PropertyOptions[]
+    public readonly inputOptions: PropertyOptions[],
+
+    @Optional()
+    @Inject(getResourceNameToken())
+    public readonly resourceName: string
   ) {}
 
+  ngOnInit(): void {
+    const localStoreName = this.resourceName || this.formStoreName;
+    if (localStoreName) {
+      this.formStore = LocalStoreController.create(localStoreName);
+      const defaultValue = this.formStore.get();
+      if (defaultValue) {
+        this.formGroup.setValue(defaultValue);
+      }
+    }
+
+    this.valueChange = this.formGroup.valueChanges.pipe(
+      debounceTime(600),
+      map((data) => {
+        this.formStore?.set(data);
+        return data;
+      })
+    );
+    this.valueChange.subscribe((value) => {
+      console.log(value);
+    });
+  }
   async saveItem() {
     if (this.onlyEmitEvent) {
       this.submitEvent.emit(this.formGroup.value);

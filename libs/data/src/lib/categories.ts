@@ -54,4 +54,5 @@ export const getBuiltinCategories: () => Pick<
   { id: 48, name: 'Outdoor Furniture' },
   { id: 49, name: 'Home Décor' },
   { id: 50, name: 'Lighting & Ceiling Fans' },
+  { id: 51, name: 'Camera' },
 ];

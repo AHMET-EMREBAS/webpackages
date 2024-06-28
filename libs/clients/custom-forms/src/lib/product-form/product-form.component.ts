@@ -1,9 +1,10 @@
-import { Component, Inject } from '@angular/core';
-import { FormsModule, getFormGroupToken } from '@webpackages/material/core';
+import { Component } from '@angular/core';
+import { FormsModule } from '@webpackages/material/core';
 import { FormComponent } from '@webpackages/material/form';
 import { MatStepperModule } from '@angular/material/stepper';
-import { FormGroup } from '@angular/forms';
 import { PriceFormGroup } from '@webpackages/clients/form-groups';
+import { IProduct } from '@webpackages/models';
+
 @Component({
   selector: 'wp-product-form',
   standalone: true,
@@ -13,7 +14,7 @@ import { PriceFormGroup } from '@webpackages/clients/form-groups';
 export class ProductFormComponent {
   priceFormGroup = PriceFormGroup;
 
-  constructor(
-    @Inject(getFormGroupToken()) public readonly formGroup: FormGroup
-  ) {}
+  formDetailSubmit(event: Partial<IProduct>) {
+    console.log(event);
+  }
 }
