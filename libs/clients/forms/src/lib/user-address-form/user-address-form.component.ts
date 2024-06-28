@@ -35,7 +35,7 @@ import {
 })
 export class UserAddressFormComponent extends FormComponent {
   override async handleFormSubmit(event?: any) {
-    this.submitted.emit(event);
+    this.submittedEvent.emit(event);
   }
 }
 
@@ -56,6 +56,6 @@ export class UserAddressFormComponent extends FormComponent {
 })
 export class UserAddressUpdateFormComponent extends FormComponent {
   override async handleFormSubmit(event?: any) {
-    this.submitted.emit(event);
+    this.submittedEvent.emit(event);
   }
 }

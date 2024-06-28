@@ -35,7 +35,7 @@ import {
 })
 export class SerialNumberFormComponent extends FormComponent {
   override async handleFormSubmit(event?: any) {
-    this.submitted.emit(event);
+    this.submittedEvent.emit(event);
   }
 }
 
@@ -56,6 +56,6 @@ export class SerialNumberFormComponent extends FormComponent {
 })
 export class SerialNumberUpdateFormComponent extends FormComponent {
   override async handleFormSubmit(event?: any) {
-    this.submitted.emit(event);
+    this.submittedEvent.emit(event);
   }
 }

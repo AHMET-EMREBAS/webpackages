@@ -91,7 +91,7 @@ export class UpdateFormComponent<T = any> implements OnInit, OnDestroy {
 
   @Input() submitButtonLabel = 'Submit';
 
-  @Output() submitted = new EventEmitter<any>();
+  @Output() submittedEvent = new EventEmitter<any>();
 
   constructor(
     @Inject(getEntityCollectionServiceToken())
@@ -125,11 +125,7 @@ export class UpdateFormComponent<T = any> implements OnInit, OnDestroy {
         })
       );
 
-      this.valueChangeSub = this.valueChange.subscribe((value) => {
-        console.log('Form Component--------------------------------------');
-        console.table(value);
-        console.log('Form Component--------------------------------------End');
-      });
+      this.valueChangeSub = this.valueChange.subscribe();
 
       return;
     }
@@ -138,14 +134,14 @@ export class UpdateFormComponent<T = any> implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.valueChangeSub.unsubscribe();
+    this.valueChangeSub?.unsubscribe();
   }
 
   async handleFormSubmit(event?: any) {
     const formValue = event || { ...this.formGroup.value };
 
     if (this.onlyEmitEvent) {
-      this.submitted.emit({ id: this.entityId, ...formValue });
+      this.submittedEvent.emit({ id: this.entityId, ...formValue });
     } else {
       // Submitting
       try {

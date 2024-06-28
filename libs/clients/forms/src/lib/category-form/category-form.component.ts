@@ -35,7 +35,7 @@ import {
 })
 export class CategoryFormComponent extends FormComponent {
   override async handleFormSubmit(event?: any) {
-    this.submitted.emit(event);
+    this.submittedEvent.emit(event);
   }
 }
 
@@ -56,6 +56,6 @@ export class CategoryFormComponent extends FormComponent {
 })
 export class CategoryUpdateFormComponent extends FormComponent {
   override async handleFormSubmit(event?: any) {
-    this.submitted.emit(event);
+    this.submittedEvent.emit(event);
   }
 }

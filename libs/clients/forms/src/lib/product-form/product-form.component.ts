@@ -16,7 +16,7 @@ import { ProductFormGroup } from '@webpackages/clients/form-groups';
   standalone: true,
   imports: [CommonModule, FormComponent],
   template: `<wp-form
-    (formSubmitEvent)="handleFormSubmit($event)"
+    (submittedEvent)="handleFormSubmit($event)"
     [onlyEmitEvent]="onlyEmitEvent"
     [submitButtonLabel]="submitButtonLabel"
   ></wp-form>`,

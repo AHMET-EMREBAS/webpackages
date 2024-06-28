@@ -114,7 +114,7 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
 
   @Input() submitButtonLabel = 'Submit';
 
-  @Output() submitted = new EventEmitter<any>();
+  @Output() submittedEvent = new EventEmitter<any>();
 
   /**
    *
@@ -128,7 +128,6 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
     protected readonly service: EntityCollectionService<T>,
     @Inject(getInputOptionsToken())
     public readonly inputOptions: PropertyOptions[],
-
     @Optional()
     @Inject(getResourceNameToken())
     public readonly resourceName: string
@@ -156,11 +155,7 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
       })
     );
 
-    this.valueChangeSub = this.valueChange.subscribe((value) => {
-      console.log('Form Component--------------------------------------');
-      console.table(value);
-      console.log('Form Component--------------------------------------End');
-    });
+    this.valueChangeSub = this.valueChange.subscribe();
   }
 
   ngOnDestroy(): void {
@@ -171,7 +166,7 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
     const formValue = event || { ...this.formGroup.value };
 
     if (this.onlyEmitEvent) {
-      this.submitted.emit({ ...formValue });
+      this.submittedEvent.emit({ ...formValue });
     } else {
       // Submitting
       try {
