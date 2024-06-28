@@ -19,6 +19,7 @@ import { provideRouter } from '@angular/router';
 import { withActions } from '@storybook/addon-actions/decorator';
 
 const preview: Preview = {
+  parameters: {},
   decorators: [
     withActions,
     applicationConfig({

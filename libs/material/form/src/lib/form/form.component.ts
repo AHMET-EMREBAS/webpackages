@@ -166,6 +166,7 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.valueChangeSub.unsubscribe();
   }
+
   async handleFormSubmit(event?: any) {
     const formValue = event || { ...this.formGroup.value };
 
