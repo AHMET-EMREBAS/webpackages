@@ -1,1 +1,2 @@
 export * from './<%- fileName %>-form.component';
+export * from './<%- fileName %>-update-form.component';

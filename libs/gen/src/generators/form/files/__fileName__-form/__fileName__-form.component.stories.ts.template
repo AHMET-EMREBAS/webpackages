@@ -1,0 +1,44 @@
+import { type Meta, type StoryObj } from '@storybook/angular';
+import { <%- className %>FormComponent } from './<%- fileName %>-form.component';
+import { within } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
+
+const meta: Meta<<%- className %>FormComponent> = {
+  component: <%- className %>FormComponent,
+  title: '<%- className %>FormComponent',
+};
+
+export default meta;
+
+type Story = StoryObj<<%- className %>FormComponent>;
+
+export const HttpForm: Story = {
+  args: {
+    submitButtonLabel: 'Post Form',
+    formStoreName: '<%- className %>HttpForm',
+  },
+};
+
+export const EventForm: Story = {
+  args: {
+    onlyEmitEvent: true,
+    submitButtonLabel: 'Emit Form',
+    formStoreName: '<%- className %>EventForm',
+  },
+};
+
+export const EventHeading: Story = {
+  ...EventForm,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(canvas.getByText(/Emit Form/gi)).toBeTruthy();
+  },
+};
+
+export const HttpHeading: Story = {
+  ...HttpForm,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(canvas.getByText(/Post Form/gi)).toBeTruthy();
+  },
+};
