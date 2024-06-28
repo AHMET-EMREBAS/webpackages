@@ -14,6 +14,13 @@ type Story = StoryObj<ProductFormComponent>;
 export const Primary: Story = {
   args: {},
 };
+export const EmitEVent: Story = {
+  args: {
+    onlyEmitEvent: true,
+    submitButtonLabel: 'Emit Event',
+    formStoreName: 'ProductFormEmitEvent',
+  },
+};
 
 export const Heading: Story = {
   args: {},

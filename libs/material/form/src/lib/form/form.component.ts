@@ -103,6 +103,12 @@ export class FormComponent<T = any> implements OnInit {
 
   valueChange: Observable<T>;
 
+  /**
+   *
+   * @param service entity colleciton service
+   * @param inputOptions input options that used to create the input elements
+   * @param resourceName resource name is used to create local-store for the form also you can pass formStoreName if you are using inline form.
+   */
   constructor(
     @Optional()
     @Inject(getEntityCollectionServiceToken())
