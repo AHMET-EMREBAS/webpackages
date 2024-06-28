@@ -1,61 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SerialNumberService } from '@webpackages/clients/ngrx';
-import { FormComponent, UpdateFormComponent } from '@webpackages/material/form';
+import { FormComponent } from '@webpackages/material/form';
 import {
+  provideEntityCollectionService,
   provideFormGroup,
   provideInputOptions,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
 } from '@webpackages/material/core';
-import {
-  toFormInputOptions,
-  toUpdateFormInputOptions,
-} from '@webpackages/types';
+import { toFormInputOptions } from '@webpackages/types';
 import { SerialNumberMetadata } from '@webpackages/metadata';
-import {
-  SerialNumberFormGroup,
-  UpdateSerialNumberFormGroup,
-} from '@webpackages/clients/form-groups';
+import { SerialNumberFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-serial-number-form',
   standalone: true,
   imports: [CommonModule, FormComponent],
   template: `<wp-form
-    (submitEvent)="submitForm($event)"
+    (submittedEvent)="handleFormSubmit($event)"
     [onlyEmitEvent]="onlyEmitEvent"
     [submitButtonLabel]="submitButtonLabel"
   ></wp-form>`,
   providers: [
     SerialNumberService,
+    provideEntityCollectionService(SerialNumberService),
     provideFormGroup(SerialNumberFormGroup),
     provideInputOptions(toFormInputOptions(SerialNumberMetadata)),
   ],
 })
-export class SerialNumberFormComponent extends FormComponent {
-  override async handleFormSubmit(event?: any) {
-    this.submittedEvent.emit(event);
-  }
-}
-
-@Component({
-  selector: 'wp-serial-number-form',
-  standalone: true,
-  imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submitEvent)="submitForm($event)"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-  ></wp-update-form>`,
-  providers: [
-    SerialNumberService,
-    provideUpdateFormGroup(UpdateSerialNumberFormGroup),
-    provideUpdateInputOptions(toUpdateFormInputOptions(SerialNumberMetadata)),
-  ],
-})
-export class SerialNumberUpdateFormComponent extends FormComponent {
-  override async handleFormSubmit(event?: any) {
-    this.submittedEvent.emit(event);
-  }
-}
+export class SerialNumberFormComponent extends FormComponent {}

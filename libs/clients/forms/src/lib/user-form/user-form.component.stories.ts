@@ -1,6 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { type Meta, type StoryObj } from '@storybook/angular';
 import { UserFormComponent } from './user-form.component';
-
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
@@ -8,17 +7,38 @@ const meta: Meta<UserFormComponent> = {
   component: UserFormComponent,
   title: 'UserFormComponent',
 };
+
 export default meta;
+
 type Story = StoryObj<UserFormComponent>;
 
-export const Primary: Story = {
-  args: {},
+export const HttpForm: Story = {
+  args: {
+    submitButtonLabel: 'Post Form',
+    formStoreName: 'UserHttpForm',
+  },
 };
 
-export const Heading: Story = {
-  args: {},
+export const EventForm: Story = {
+  args: {
+    onlyEmitEvent: true,
+    submitButtonLabel: 'Emit Form',
+    formStoreName: 'UserEventForm',
+  },
+};
+
+export const EventHeading: Story = {
+  ...EventForm,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/user-form works!/gi)).toBeTruthy();
+    expect(canvas.getByText(/Emit Form/gi)).toBeTruthy();
+  },
+};
+
+export const HttpHeading: Story = {
+  ...HttpForm,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(canvas.getByText(/Post Form/gi)).toBeTruthy();
   },
 };

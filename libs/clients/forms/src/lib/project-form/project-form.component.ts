@@ -1,61 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectService } from '@webpackages/clients/ngrx';
-import { FormComponent, UpdateFormComponent } from '@webpackages/material/form';
+import { FormComponent } from '@webpackages/material/form';
 import {
+  provideEntityCollectionService,
   provideFormGroup,
   provideInputOptions,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
 } from '@webpackages/material/core';
-import {
-  toFormInputOptions,
-  toUpdateFormInputOptions,
-} from '@webpackages/types';
+import { toFormInputOptions } from '@webpackages/types';
 import { ProjectMetadata } from '@webpackages/metadata';
-import {
-  ProjectFormGroup,
-  UpdateProjectFormGroup,
-} from '@webpackages/clients/form-groups';
+import { ProjectFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-project-form',
   standalone: true,
   imports: [CommonModule, FormComponent],
   template: `<wp-form
-    (submitEvent)="submitForm($event)"
+    (submittedEvent)="handleFormSubmit($event)"
     [onlyEmitEvent]="onlyEmitEvent"
     [submitButtonLabel]="submitButtonLabel"
   ></wp-form>`,
   providers: [
     ProjectService,
+    provideEntityCollectionService(ProjectService),
     provideFormGroup(ProjectFormGroup),
     provideInputOptions(toFormInputOptions(ProjectMetadata)),
   ],
 })
-export class ProjectFormComponent extends FormComponent {
-  override async handleFormSubmit(event?: any) {
-    this.submittedEvent.emit(event);
-  }
-}
-
-@Component({
-  selector: 'wp-project-form',
-  standalone: true,
-  imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submitEvent)="submitForm($event)"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-  ></wp-update-form>`,
-  providers: [
-    ProjectService,
-    provideUpdateFormGroup(UpdateProjectFormGroup),
-    provideUpdateInputOptions(toUpdateFormInputOptions(ProjectMetadata)),
-  ],
-})
-export class ProjectUpdateFormComponent extends FormComponent {
-  override async handleFormSubmit(event?: any) {
-    this.submittedEvent.emit(event);
-  }
-}
+export class ProjectFormComponent extends FormComponent {}
