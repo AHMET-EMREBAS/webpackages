@@ -54,6 +54,11 @@
       "factory": "./src/generators/resource-list/generator",
       "schema": "./src/generators/resource-list/schema.json",
       "description": "resource-list generator"
+    },
+    "form": {
+      "factory": "./src/generators/form/generator",
+      "schema": "./src/generators/form/schema.json",
+      "description": "form generator"
     }
   }
 }
