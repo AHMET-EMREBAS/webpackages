@@ -79,6 +79,7 @@ export class UpdateFormComponent<T = any> implements OnInit {
    * Only emit the form value NOT http request
    */
   @Input() onlyEmitEvent: boolean;
+
   @Input() submitButtonLabel = 'Submit';
 
   formStore: LocalStoreController<any>;
@@ -113,6 +114,7 @@ export class UpdateFormComponent<T = any> implements OnInit {
 
     throw new Error('UpdateForm need id parameters from URL');
   }
+
   async handleFormSubmit(event?: any) {
     const formValue = event || { ...this.formGroup.value };
 
@@ -137,6 +139,7 @@ export class UpdateFormComponent<T = any> implements OnInit {
       }
     }
   }
+
   control(name: string) {
     if (this.formGroup) {
       return this.formGroup.get(name) as FormControl;
