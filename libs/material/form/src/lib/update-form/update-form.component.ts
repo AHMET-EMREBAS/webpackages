@@ -73,10 +73,12 @@ export class UpdateFormComponent<T = any>
   @Input() entityId: number;
 
   constructor(
+    @Optional()
     @Inject(getEntityCollectionServiceToken())
     service: EntityCollectionService<T>,
+    @Optional()
     @Inject(getUpdateInputOptionsToken())
-    inputOptions: PropertyOptions[],
+    inputOptions: Partial<PropertyOptions>[],
     @Optional()
     @Inject(getResourceNameToken())
     resourceName: string,

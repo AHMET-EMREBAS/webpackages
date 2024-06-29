@@ -14,13 +14,10 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {
-  PriceFormComponent,
   PriceUpdateFormComponent,
   ProductFormComponent,
-  QuantityFormComponent,
   QuantityUpdateFormComponent,
   SerialNumberFormComponent,
-  SerialNumberUpdateFormComponent,
 } from '@webpackages/clients/forms';
 import {
   IPrice,
@@ -65,6 +62,7 @@ export type ProductEditorSteps = {
     MatButtonModule,
     MatIconModule,
     ProductFormComponent,
+
     PriceUpdateFormComponent,
     QuantityUpdateFormComponent,
     SerialNumberFormComponent,
@@ -103,7 +101,9 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
     protected readonly snackbar: MatSnackBar
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // TODO
+  }
 
   cleanup() {
     this.productEditorStore.delete();

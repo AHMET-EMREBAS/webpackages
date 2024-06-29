@@ -15,14 +15,13 @@
 
   <mat-step label="Serial Number" [editable]="false">
     <div class="flex flex-col">
-      <mat-checkbox [(ngModel)]="enforceSerialNumber">
-        Enforce Serial Number
-      </mat-checkbox>
+    
     </div>
   </mat-step>
 
   <mat-step label="Pricing" [editable]="false">
-    <wp-update-price-form></wp-update-price-form>
+    
+    <wp-price-update-form [entityId]="" ></wp-price-update-form>
   </mat-step>
 
   <mat-step label="Quantity" [editable]="false">

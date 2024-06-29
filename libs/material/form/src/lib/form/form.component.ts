@@ -129,8 +129,10 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
     @Optional()
     @Inject(getEntityCollectionServiceToken())
     protected readonly service: EntityCollectionService<T>,
+
+    @Optional()
     @Inject(getInputOptionsToken())
-    public readonly inputOptions: PropertyOptions[],
+    public readonly inputOptions: Partial<PropertyOptions>[],
     @Optional()
     @Inject(getResourceNameToken())
     public readonly resourceName: string

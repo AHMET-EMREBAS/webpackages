@@ -2,14 +2,11 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PriceService } from '@webpackages/clients/ngrx';
 import { UpdateFormComponent } from '@webpackages/material/form';
-import {
-  provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
-} from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { PriceMetadata } from '@webpackages/metadata';
 import { UpdatePriceFormGroup } from '@webpackages/clients/form-groups';
+import { ActivatedRoute } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'wp-price-update-form',
@@ -23,13 +20,14 @@ import { UpdatePriceFormGroup } from '@webpackages/clients/form-groups';
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
   ></wp-update-form>`,
-  providers: [
-    PriceService,
-    provideEntityCollectionService(PriceService),
-    provideUpdateFormGroup(UpdatePriceFormGroup),
-    provideUpdateInputOptions(toUpdateFormInputOptions(PriceMetadata)),
-  ],
+  providers: [PriceService],
 })
 export class PriceUpdateFormComponent extends UpdateFormComponent {
+  
   @Input() override onlyEmitEvent = true;
+  override formGroup: FormGroup<any> = UpdatePriceFormGroup;
+
+  constructor(service: PriceService, route: ActivatedRoute) {
+    super(service, toUpdateFormInputOptions(PriceMetadata), 'Price', route);
+  }
 }
