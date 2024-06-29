@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   CustomerProfileFormGroup,
-  UpdateCustomerProfileFormGroup,
+  CustomerProfileUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { CustomerProfileService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -37,7 +37,7 @@ export const CustomerProfileRoutes: Routes = [
         toUpdateFormInputOptions(CustomerProfileMetadata)
       ),
       provideFormGroup(CustomerProfileFormGroup()),
-      provideUpdateFormGroup(UpdateCustomerProfileFormGroup()),
+      provideUpdateFormGroup(CustomerProfileUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('CustomerProfile');

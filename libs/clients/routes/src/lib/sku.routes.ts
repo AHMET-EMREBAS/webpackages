@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   SkuFormGroup,
-  UpdateSkuFormGroup,
+  SkuUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { SkuService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const SkuRoutes: Routes = [
       provideInputOptions(toFormInputOptions(SkuMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(SkuMetadata)),
       provideFormGroup(SkuFormGroup()),
-      provideUpdateFormGroup(UpdateSkuFormGroup()),
+      provideUpdateFormGroup(SkuUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Sku');

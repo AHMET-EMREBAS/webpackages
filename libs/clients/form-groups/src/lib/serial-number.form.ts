@@ -10,7 +10,7 @@ export const SerialNumberFormGroup = () =>
       null,
       [Validators.minLength(3), Validators.maxLength(100), Validators.required],
     ],
-    sku: [null, []],
+    product: [null, []],
   });
 
 export const SerialNumberUpdateFormGroup = () =>

@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   CustomerImgFormGroup,
-  UpdateCustomerImgFormGroup,
+  CustomerImgUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { CustomerImgService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const CustomerImgRoutes: Routes = [
       provideInputOptions(toFormInputOptions(CustomerImgMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(CustomerImgMetadata)),
       provideFormGroup(CustomerImgFormGroup()),
-      provideUpdateFormGroup(UpdateCustomerImgFormGroup()),
+      provideUpdateFormGroup(CustomerImgUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('CustomerImg');

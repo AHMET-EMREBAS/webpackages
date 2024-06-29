@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   SessionFormGroup,
-  UpdateSessionFormGroup,
+  SessionUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { SessionService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const SessionRoutes: Routes = [
       provideInputOptions(toFormInputOptions(SessionMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(SessionMetadata)),
       provideFormGroup(SessionFormGroup()),
-      provideUpdateFormGroup(UpdateSessionFormGroup()),
+      provideUpdateFormGroup(SessionUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Session');

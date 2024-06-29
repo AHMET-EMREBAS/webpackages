@@ -5,27 +5,12 @@ import { Exclude } from 'class-transformer';
 @Exclude()
 export class CreateSerialNumberDto {
   @Property({
-    type: 'string',
-    required: true,
-    unique: true,
-    minLength: 3,
-    maxLength: 100,
-    example: '1236846182674312',
-    description: 'Unique product serial number to track product',
-    class: 'order-2 w-full',
-    tabIndex: 2,
-    update: false,
-  })
-  serialNumber: string;
-  @Property({
     type: 'boolean',
     label: 'Enforce Serial Number',
-    default: false,
-    example: false,
+    inputType: 'checkbox',
     description: 'Is serial number required for the product?',
-    class: 'order-3 w-full',
-    tabIndex: 3,
-    update: false,
+    class: 'w-full grow',
+    tabIndex: 1,
   })
   required: boolean;
   @Property({
@@ -35,28 +20,40 @@ export class CreateSerialNumberDto {
     inputType: 'select',
     required: true,
     default: 'incremental',
-    tabIndex: 4,
-    class: 'order-4 w-full',
-    update: false,
+    class: 'order-1 w-full',
+    tabIndex: 2,
   })
   type: string;
   @Property({
     type: 'string',
-    label: 'Serial Number Prefix',
+    label: 'Prefix',
     inputType: 'text',
-    class: 'order-6, w-4/12 grow',
-    tabIndex: 5,
+    class: 'order-3, w-4/12 grow',
+    tabIndex: 3,
   })
   prefix: string;
   @Property({
     type: 'string',
-    label: 'Serial Number Suffix',
+    label: 'Suffix',
     inputType: 'text',
-    class: 'order-6, w-4/12 grow',
-    tabIndex: 6,
+    class: 'order-4, w-4/12 grow',
+    tabIndex: 4,
   })
   suffix: string;
+  @Property({
+    type: 'string',
+    required: true,
+    unique: true,
+    update: false,
+    minLength: 3,
+    maxLength: 100,
+    example: '1236846182674312',
+    description: 'Unique product serial number to track product',
+    class: 'order-5 w-full',
+    tabIndex: 5,
+  })
+  serialNumber: string;
 
   @Property({ type: 'object', target: IDDto, required: true })
-  sku: IDDto;
+  product: IDDto;
 }

@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   AddressFormGroup,
-  UpdateAddressFormGroup,
+  AddressUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { AddressService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const AddressRoutes: Routes = [
       provideInputOptions(toFormInputOptions(AddressMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(AddressMetadata)),
       provideFormGroup(AddressFormGroup()),
-      provideUpdateFormGroup(UpdateAddressFormGroup()),
+      provideUpdateFormGroup(AddressUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Address');

@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   DepartmentFormGroup,
-  UpdateDepartmentFormGroup,
+  DepartmentUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { DepartmentService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const DepartmentRoutes: Routes = [
       provideInputOptions(toFormInputOptions(DepartmentMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(DepartmentMetadata)),
       provideFormGroup(DepartmentFormGroup()),
-      provideUpdateFormGroup(UpdateDepartmentFormGroup()),
+      provideUpdateFormGroup(DepartmentUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Department');

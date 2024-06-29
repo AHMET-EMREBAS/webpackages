@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   AccessTokenFormGroup,
-  UpdateAccessTokenFormGroup,
+  AccessTokenUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { AccessTokenService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const AccessTokenRoutes: Routes = [
       provideInputOptions(toFormInputOptions(AccessTokenMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(AccessTokenMetadata)),
       provideFormGroup(AccessTokenFormGroup()),
-      provideUpdateFormGroup(UpdateAccessTokenFormGroup()),
+      provideUpdateFormGroup(AccessTokenUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('AccessToken');

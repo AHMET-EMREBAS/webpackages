@@ -6,13 +6,13 @@ import { FindOptionsWhere } from 'typeorm';
 @Exclude()
 export class SearchSerialNumberDto implements SearchDto<SerialNumberView> {
   @SearchProperty<SerialNumberView>([
-    'serialNumber',
     'required',
     'type',
     'prefix',
     'suffix',
-    'skuSku',
-    'skuName',
+    'serialNumber',
+    'productName',
+    'productUpc',
   ])
   search: FindOptionsWhere<SerialNumberView>;
 }

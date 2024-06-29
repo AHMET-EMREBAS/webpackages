@@ -68,7 +68,7 @@
     <wp-serial-number-raw-form
       #serialNumberForm
       submitButtonLabel="Next"
-      
+      (submittedEvent)="handleSerialNumberSubmitEvent($event)"
     ></wp-serial-number-raw-form>
   </mat-step>
 

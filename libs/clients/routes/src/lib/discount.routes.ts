@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   DiscountFormGroup,
-  UpdateDiscountFormGroup,
+  DiscountUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { DiscountService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const DiscountRoutes: Routes = [
       provideInputOptions(toFormInputOptions(DiscountMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(DiscountMetadata)),
       provideFormGroup(DiscountFormGroup()),
-      provideUpdateFormGroup(UpdateDiscountFormGroup()),
+      provideUpdateFormGroup(DiscountUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Discount');

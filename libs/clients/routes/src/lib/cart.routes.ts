@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   CartFormGroup,
-  UpdateCartFormGroup,
+  CartUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { CartService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const CartRoutes: Routes = [
       provideInputOptions(toFormInputOptions(CartMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(CartMetadata)),
       provideFormGroup(CartFormGroup()),
-      provideUpdateFormGroup(UpdateCartFormGroup()),
+      provideUpdateFormGroup(CartUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Cart');

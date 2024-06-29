@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   PhoneFormGroup,
-  UpdatePhoneFormGroup,
+  PhoneUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { PhoneService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const PhoneRoutes: Routes = [
       provideInputOptions(toFormInputOptions(PhoneMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(PhoneMetadata)),
       provideFormGroup(PhoneFormGroup()),
-      provideUpdateFormGroup(UpdatePhoneFormGroup()),
+      provideUpdateFormGroup(PhoneUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Phone');

@@ -7,13 +7,13 @@ export class QuerySerialNumberDto
   extends BaseQueryDto
   implements QueryDto<SerialNumberView>
 {
-  @QueryProperty() serialNumber: string;
   @QueryProperty() required: string;
   @QueryProperty() type: string;
   @QueryProperty() prefix: string;
   @QueryProperty() suffix: string;
-  @QueryProperty() skuId: string;
-  @QueryProperty() skuActive: string;
-  @QueryProperty() skuSku: string;
-  @QueryProperty() skuName: string;
+  @QueryProperty() serialNumber: string;
+  @QueryProperty() productId: string;
+  @QueryProperty() productActive: string;
+  @QueryProperty() productName: string;
+  @QueryProperty() productUpc: string;
 }

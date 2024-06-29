@@ -11,6 +11,7 @@ import {
   PriceService,
   ProductService,
   QuantityService,
+  SerialNumberService,
   SkuService,
 } from '@webpackages/clients/ngrx';
 import {
@@ -33,6 +34,7 @@ import {
   IProduct,
   IQuantity,
   ISerialNumber,
+  ISku,
 } from '@webpackages/models';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { LocalStoreController } from '@webpackages/material/core';
@@ -50,6 +52,7 @@ export type ProductEditorState = {
   price?: ProductEditorStepState<IPrice[]>;
   quantity?: ProductEditorStepState<IQuantity[]>;
   serial?: ProductEditorStepState<ISerialNumber[]>;
+  sku?: ProductEditorStepState<ISku[]>;
 };
 
 function debug(msg: string, data?: any) {
@@ -84,6 +87,9 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
     product: {},
     quantity: {},
     serial: {},
+    sku: {
+      complete: true,
+    },
   });
 
   store = new LocalStoreController<ProductEditorState>(
@@ -103,6 +109,7 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
     protected readonly skuService: SkuService,
     protected readonly priceService: PriceService,
     protected readonly quantityService: QuantityService,
+    protected readonly serialService: SerialNumberService,
     protected readonly snackbar: MatSnackBar
   ) {}
 
@@ -131,12 +138,47 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
     return prices;
   }
 
+  async getSkus() {
+    debug('Getting default skus');
+    const savedProduct = this.state().product.data;
+    if (!savedProduct) {
+      throw new Error('The state must have the saved product data!');
+    }
+    const skus = await firstValueFrom(
+      this.skuService.getWithQuery({ productUpc: `eq:${savedProduct.upc}` })
+    );
+    return skus;
+  }
+
   async handleProductSubmitSuccessEvent(event: IProduct) {
     debug('Product success event ', event);
     this.finishAndLock('product', event);
     this.anounce('Created Product');
     const prices = await this.getPrices();
-    this.updateState({ price: { data: prices } });
+    const skus = await this.getSkus();
+
+    this.updateState({
+      price: { data: prices },
+      sku: { data: skus, complete: true },
+    });
+  }
+
+  async handleSerialNumberSubmitEvent(event: Partial<ISerialNumber>) {
+    debug('Serial Number Submit Event: ', event);
+    const skus = this.state().sku.data;
+
+    if (!skus) {
+      debug('State', this.state());
+      throw new Error('Skus must be saved into the satate');
+    }
+
+    for (const sku of skus) {
+      await firstValueFrom(
+        this.serialService.add({
+          ...event,
+        })
+      );
+    }
   }
 
   async handleDefaultPriceSubmitEvent(event: Partial<IPrice>) {
@@ -152,7 +194,6 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
         }
       }
       const updatedPrices = await this.getPrices();
-
       this.updateState({ price: {} });
       this.updateState({ price: { data: updatedPrices, complete: true } });
     }

@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   UserEmailFormGroup,
-  UpdateUserEmailFormGroup,
+  UserEmailUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { UserEmailService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const UserEmailRoutes: Routes = [
       provideInputOptions(toFormInputOptions(UserEmailMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(UserEmailMetadata)),
       provideFormGroup(UserEmailFormGroup()),
-      provideUpdateFormGroup(UpdateUserEmailFormGroup()),
+      provideUpdateFormGroup(UserEmailUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('UserEmail');

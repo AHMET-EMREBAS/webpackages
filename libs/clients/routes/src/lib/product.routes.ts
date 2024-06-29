@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   ProductFormGroup,
-  UpdateProductFormGroup,
+  ProductUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { ProductService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const ProductRoutes: Routes = [
       provideInputOptions(toFormInputOptions(ProductMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(ProductMetadata)),
       provideFormGroup(ProductFormGroup()),
-      provideUpdateFormGroup(UpdateProductFormGroup()),
+      provideUpdateFormGroup(ProductUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Product');

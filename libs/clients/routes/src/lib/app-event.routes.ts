@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   AppEventFormGroup,
-  UpdateAppEventFormGroup,
+  AppEventUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { AppEventService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const AppEventRoutes: Routes = [
       provideInputOptions(toFormInputOptions(AppEventMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(AppEventMetadata)),
       provideFormGroup(AppEventFormGroup()),
-      provideUpdateFormGroup(UpdateAppEventFormGroup()),
+      provideUpdateFormGroup(AppEventUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('AppEvent');

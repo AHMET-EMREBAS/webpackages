@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   ClockFormGroup,
-  UpdateClockFormGroup,
+  ClockUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { ClockService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const ClockRoutes: Routes = [
       provideInputOptions(toFormInputOptions(ClockMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(ClockMetadata)),
       provideFormGroup(ClockFormGroup()),
-      provideUpdateFormGroup(UpdateClockFormGroup()),
+      provideUpdateFormGroup(ClockUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Clock');

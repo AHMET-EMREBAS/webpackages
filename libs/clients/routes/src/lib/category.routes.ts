@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   CategoryFormGroup,
-  UpdateCategoryFormGroup,
+  CategoryUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { CategoryService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const CategoryRoutes: Routes = [
       provideInputOptions(toFormInputOptions(CategoryMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(CategoryMetadata)),
       provideFormGroup(CategoryFormGroup()),
-      provideUpdateFormGroup(UpdateCategoryFormGroup()),
+      provideUpdateFormGroup(CategoryUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Category');

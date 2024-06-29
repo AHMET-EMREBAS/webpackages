@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   MessageFormGroup,
-  UpdateMessageFormGroup,
+  MessageUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { MessageService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const MessageRoutes: Routes = [
       provideInputOptions(toFormInputOptions(MessageMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(MessageMetadata)),
       provideFormGroup(MessageFormGroup()),
-      provideUpdateFormGroup(UpdateMessageFormGroup()),
+      provideUpdateFormGroup(MessageUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Message');

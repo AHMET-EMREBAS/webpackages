@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   TaskFormGroup,
-  UpdateTaskFormGroup,
+  TaskUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { TaskService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const TaskRoutes: Routes = [
       provideInputOptions(toFormInputOptions(TaskMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(TaskMetadata)),
       provideFormGroup(TaskFormGroup()),
-      provideUpdateFormGroup(UpdateTaskFormGroup()),
+      provideUpdateFormGroup(TaskUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Task');

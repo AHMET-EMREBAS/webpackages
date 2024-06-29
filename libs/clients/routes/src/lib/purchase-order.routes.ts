@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   PurchaseOrderFormGroup,
-  UpdatePurchaseOrderFormGroup,
+  PurchaseOrderUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { PurchaseOrderService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -37,7 +37,7 @@ export const PurchaseOrderRoutes: Routes = [
         toUpdateFormInputOptions(PurchaseOrderMetadata)
       ),
       provideFormGroup(PurchaseOrderFormGroup()),
-      provideUpdateFormGroup(UpdatePurchaseOrderFormGroup()),
+      provideUpdateFormGroup(PurchaseOrderUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('PurchaseOrder');

@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   InboxFormGroup,
-  UpdateInboxFormGroup,
+  InboxUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { InboxService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const InboxRoutes: Routes = [
       provideInputOptions(toFormInputOptions(InboxMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(InboxMetadata)),
       provideFormGroup(InboxFormGroup()),
-      provideUpdateFormGroup(UpdateInboxFormGroup()),
+      provideUpdateFormGroup(InboxUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Inbox');

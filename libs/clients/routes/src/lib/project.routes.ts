@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   ProjectFormGroup,
-  UpdateProjectFormGroup,
+  ProjectUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { ProjectService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const ProjectRoutes: Routes = [
       provideInputOptions(toFormInputOptions(ProjectMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(ProjectMetadata)),
       provideFormGroup(ProjectFormGroup()),
-      provideUpdateFormGroup(UpdateProjectFormGroup()),
+      provideUpdateFormGroup(ProjectUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Project');

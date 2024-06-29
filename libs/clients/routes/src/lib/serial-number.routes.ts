@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   SerialNumberFormGroup,
-  UpdateSerialNumberFormGroup,
+  SerialNumberUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { SerialNumberService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const SerialNumberRoutes: Routes = [
       provideInputOptions(toFormInputOptions(SerialNumberMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(SerialNumberMetadata)),
       provideFormGroup(SerialNumberFormGroup()),
-      provideUpdateFormGroup(UpdateSerialNumberFormGroup()),
+      provideUpdateFormGroup(SerialNumberUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('SerialNumber');

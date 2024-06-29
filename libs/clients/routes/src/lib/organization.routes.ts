@@ -16,7 +16,7 @@ import {
 } from '@webpackages/types';
 import {
   OrganizationFormGroup,
-  UpdateOrganizationFormGroup,
+  OrganizationUpdateFormGroup,
 } from '@webpackages/clients/form-groups';
 import { OrganizationService } from '@webpackages/clients/ngrx';
 import { buildCrudRoutes } from './__crud.routes';
@@ -35,7 +35,7 @@ export const OrganizationRoutes: Routes = [
       provideInputOptions(toFormInputOptions(OrganizationMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(OrganizationMetadata)),
       provideFormGroup(OrganizationFormGroup()),
-      provideUpdateFormGroup(UpdateOrganizationFormGroup()),
+      provideUpdateFormGroup(OrganizationUpdateFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Organization');

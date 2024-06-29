@@ -4,11 +4,11 @@ import { Exclude } from 'class-transformer';
 
 @Exclude()
 export class OrderSerialNumberDto extends CreateOrderDto<SerialNumberView>([
-  'serialNumber',
   'required',
   'type',
   'prefix',
   'suffix',
-  'skuSku',
-  'skuName',
+  'serialNumber',
+  'productName',
+  'productUpc',
 ]) {}

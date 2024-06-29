@@ -51,11 +51,11 @@ export const SerialNumberMetadata: Metadata = {
     },
   },
   relations: {
-    sku: {
+    product: {
       relationType: 'owner',
-      targetName: 'Sku',
+      targetName: 'Product',
       label: '',
-      viewColumns: ['sku', 'name'],
+      viewColumns: ['name', 'upc'],
       resourceLabelProperty: 'name',
       update: false,
       class: 'order-6 w-4/12 grow',

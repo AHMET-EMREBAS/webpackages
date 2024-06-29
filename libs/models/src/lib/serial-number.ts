@@ -1,12 +1,8 @@
 import {  BaseEntity } from '@webpackages/types';
-import { ISku } from './sku';
+import { IProduct } from './product';
 
 export interface ISerialNumber extends BaseEntity {
  
-
-        serialNumber: string ;
-        
-
 
         required: boolean ;
         
@@ -22,7 +18,11 @@ export interface ISerialNumber extends BaseEntity {
 
         suffix: string ;
         
+
+
+        serialNumber: string ;
+        
  
-        sku: ISku;
+        product: IProduct;
         
 }
