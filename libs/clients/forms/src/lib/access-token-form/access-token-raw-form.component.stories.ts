@@ -1,22 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { RawFormComponent } from './-raw-form.component';
+import { AccessTokenRawFormComponent } from './-raw-form.component';
 
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
-const meta: Meta<RawFormComponent> = {
-  component: RawFormComponent,
-  title: 'RawFormComponent',
+const meta: Meta<AccessTokenRawFormComponent> = {
+  component: AccessTokenRawFormComponent,
+  title: 'AccessTokenRawFormComponent',
 };
 export default meta;
-type Story = StoryObj<RawFormComponent>;
+type Story = StoryObj<AccessTokenRawFormComponent>;
 
 export const Primary: Story = {
-  args: { submitButtonLabel: 'Emit Form', formStoreName: 'RawForm' },
+  args: { submitButtonLabel: 'Emit Form', formStoreName: 'AccessTokenRawForm' },
 };
 
 export const Heading: Story = {
-  args: { submitButtonLabel: 'Emit Form', formStoreName: 'RawForm' },
+  args: { submitButtonLabel: 'Emit Form', formStoreName: 'AccessTokenRawForm' },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Emit Form/gi)).toBeTruthy();

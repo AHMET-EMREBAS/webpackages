@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Service } from '@webpackages/clients/ngrx';
+import { SaleService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
@@ -8,8 +8,8 @@ import {
   provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
-import { Metadata } from '@webpackages/metadata';
-import { RawFormGroup } from '@webpackages/clients/form-groups';
+import { SaleMetadata } from '@webpackages/metadata';
+import { SaleRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp--raw-form',
@@ -24,12 +24,12 @@ import { RawFormGroup } from '@webpackages/clients/form-groups';
     ></wp-raw-form>
   `,
   providers: [
-    Service,
-    provideEntityCollectionService(Service),
-    provideUpdateFormGroup(RawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(Metadata)),
+    SaleService,
+    provideEntityCollectionService(SaleService),
+    provideUpdateFormGroup(SaleRawFormGroup()),
+    provideUpdateInputOptions(toRawFormInputOptions(SaleMetadata)),
   ],
 })
-export class RawFormComponent extends RawFormComponent {
+export class SaleRawFormComponent extends RawFormComponent {
   @ViewChild('rawFormRef') rawFormRef: RawFormComponent;
 }

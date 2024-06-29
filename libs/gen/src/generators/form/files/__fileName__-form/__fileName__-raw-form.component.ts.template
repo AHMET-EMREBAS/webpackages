@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { <% className %>Service } from '@webpackages/clients/ngrx';
+import { <%- className %>Service } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
@@ -8,8 +8,8 @@ import {
   provideUpdateInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
-import { <% className %>Metadata } from '@webpackages/metadata';
-import { <% className %>RawFormGroup } from '@webpackages/clients/form-groups';
+import { <%- className %>Metadata } from '@webpackages/metadata';
+import { <%- className %>RawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-<% fileName %>-raw-form',
@@ -24,12 +24,12 @@ import { <% className %>RawFormGroup } from '@webpackages/clients/form-groups';
     ></wp-raw-form>
   `,
   providers: [
-    <% className %>Service,
-    provideEntityCollectionService(<% className %>Service),
-    provideUpdateFormGroup(<% className %>RawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(<% className %>Metadata)),
+    <%- className %>Service,
+    provideEntityCollectionService(<%- className %>Service),
+    provideUpdateFormGroup(<%- className %>RawFormGroup()),
+    provideUpdateInputOptions(toRawFormInputOptions(<%- className %>Metadata)),
   ],
 })
-export class <% className %>RawFormComponent extends RawFormComponent {
+export class <%- className %>RawFormComponent extends RawFormComponent {
   @ViewChild('rawFormRef') rawFormRef: RawFormComponent;
 }

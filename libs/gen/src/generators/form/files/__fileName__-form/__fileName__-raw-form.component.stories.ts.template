@@ -1,22 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { <% className %>RawFormComponent } from './<% fileName %>-raw-form.component';
+import { <%- className %>RawFormComponent } from './<% fileName %>-raw-form.component';
 
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
-const meta: Meta<<% className %>RawFormComponent> = {
-  component: <% className %>RawFormComponent,
-  title: '<% className %>RawFormComponent',
+const meta: Meta<<%- className %>RawFormComponent> = {
+  component: <%- className %>RawFormComponent,
+  title: '<%- className %>RawFormComponent',
 };
 export default meta;
-type Story = StoryObj<<% className %>RawFormComponent>;
+type Story = StoryObj<<%- className %>RawFormComponent>;
 
 export const Primary: Story = {
-  args: { submitButtonLabel: 'Emit Form', formStoreName: '<% className %>RawForm' },
+  args: { submitButtonLabel: 'Emit Form', formStoreName: '<%- className %>RawForm' },
 };
 
 export const Heading: Story = {
-  args: { submitButtonLabel: 'Emit Form', formStoreName: '<% className %>RawForm' },
+  args: { submitButtonLabel: 'Emit Form', formStoreName: '<%- className %>RawForm' },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Emit Form/gi)).toBeTruthy();
