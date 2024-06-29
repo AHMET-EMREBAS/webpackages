@@ -15,7 +15,6 @@ export class SerialNumberView extends BaseView {
   @ViewColumn() required: boolean;
 @ViewColumn() type: string;
 @ViewColumn() prefix: string;
-@ViewColumn() suffix: string;
 @ViewColumn() serialNumber: string;
   
   @ViewColumn() productName: Product['name'];

@@ -16,7 +16,7 @@ export class UpdateSerialNumberDto {
   @Property({
     type: 'string',
     label: 'Serial Number Type',
-    enum: ['incremental', 'actual'],
+    enum: ['none', 'incremental', 'actual'],
     inputType: 'select',
     default: 'incremental',
     class: 'order-1 w-full',
@@ -27,16 +27,8 @@ export class UpdateSerialNumberDto {
     type: 'string',
     label: 'Prefix',
     inputType: 'text',
-    class: 'order-3, w-4/12 grow',
+    class: 'order-3, w-full grow',
     tabIndex: 3,
   })
   prefix: string;
-  @Property({
-    type: 'string',
-    label: 'Suffix',
-    inputType: 'text',
-    class: 'order-4, w-4/12 grow',
-    tabIndex: 4,
-  })
-  suffix: string;
 }

@@ -16,10 +16,6 @@ export interface ISerialNumber extends BaseEntity {
         
 
 
-        suffix: string ;
-        
-
-
         serialNumber: string ;
         
  

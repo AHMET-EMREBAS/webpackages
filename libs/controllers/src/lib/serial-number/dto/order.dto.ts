@@ -7,7 +7,6 @@ export class OrderSerialNumberDto extends CreateOrderDto<SerialNumberView>([
   'required',
   'type',
   'prefix',
-  'suffix',
   'serialNumber',
   'productName',
   'productUpc',

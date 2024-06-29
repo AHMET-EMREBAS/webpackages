@@ -103,11 +103,13 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   );
 
   @ViewChild('productEditorStepper') stepper: MatStepper;
+
   @ViewChild('priceTabGroup') priceTabGroup: MatTabGroup;
 
   @ViewChild('productStep') productStep: MatStep;
+
   @ViewChild('priceStep') priceStep: MatStep;
-  @ViewChild('quantityStep') quantityStep: MatStep;
+
   @ViewChild('serialStep') serialStep: MatStep;
 
   constructor(
@@ -172,16 +174,11 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   async handleSerialNumberSubmitEvent(event: Partial<ISerialNumber>) {
     debug('Serial Number Submit Event: ', event);
 
-    let { prefix, suffix } = event;
-
-    prefix = prefix ? prefix + '-' : '';
-    suffix = suffix ? '-' + suffix : '';
-
     const savedSerial = await firstValueFrom(
       this.serialService.add({
         ...event,
         product: this.state().product.data as IProduct,
-        serialNumber: `${prefix}placeholder${suffix}`,
+        serialNumber: `${event.prefix || ''}placeholder`,
       } as any)
     );
 
@@ -269,15 +266,11 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
       this.priceStep.editable = false;
       this.priceStep.completed = true;
       this.stepper.next();
-    } else if (step === 'quantity') {
-      debug('Locking quantity step');
-      this.quantityStep.editable = false;
-      this.quantityStep.completed = true;
-      this.stepper.next();
     } else if (step === 'serial') {
       debug('Locking serial step');
       this.serialStep.editable = false;
       this.serialStep.completed = true;
+
       this.stepper.next();
     }
   }
@@ -309,5 +302,10 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
 
   cleanStore() {
     this.store.delete();
+  }
+
+  restartSteps() {
+    this.stepper.reset();
+    this.cleanStore();
   }
 }

@@ -1,8 +1,4 @@
-<!--  -->
-<div class="w-full flex flex-row justify-end p-4">
-  <button mat-raised-button color="warn">Start Over</button>
-</div>
-<mat-stepper #productEditorStepper>
+<mat-stepper #productEditorStepper [linear]="true">
   <mat-step
     #productStep
     [stepControl]="productForm.formGroup"
@@ -65,7 +61,11 @@
   </mat-step>
 
   <!-- Serial Number Step -->
-  <mat-step #serialNumberStep label="Serial Number">
+  <mat-step
+    #serialStep
+    [stepControl]="serialNumberForm.formGroup"
+    label="Serial Number"
+  >
     <wp-serial-number-raw-form
       #serialNumberForm
       submitButtonLabel="Next"
@@ -73,20 +73,16 @@
     ></wp-serial-number-raw-form>
   </mat-step>
 
-  <!-- Quantity Step -->
-  <mat-step #quantityStep label="Quantity">
-    Adding quantity for each sku
-  </mat-step>
-
   <!-- Final Step -->
   <mat-step #finalStep label="Complete">
     <div
       class="flex flex-col w-full gap-4 p-4 justify-center items-center content-center"
     >
-      <p>Good Job 😀.</p>
+      <p>Good Job</p>
+      <p>😀</p>
       <p>You made it!</p>
 
-      <button class="max-w-32" mat-raised-button color="primary">Finish</button>
+      <button class="max-w-32" mat-raised-button color="primary" (click)="restartSteps()">New</button>
     </div>
   </mat-step>
 </mat-stepper>

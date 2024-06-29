@@ -5,11 +5,7 @@ export const SerialNumberFormGroup = () =>
     required: [null, []],
     type: [null, [Validators.required]],
     prefix: [null, []],
-    suffix: [null, []],
-    serialNumber: [
-      null,
-      [Validators.minLength(3), Validators.maxLength(100), Validators.required],
-    ],
+    serialNumber: [null, [Validators.minLength(3), Validators.maxLength(100)]],
     product: [null, []],
   });
 
@@ -18,7 +14,6 @@ export const SerialNumberUpdateFormGroup = () =>
     required: [null, []],
     type: [null, [Validators.required]],
     prefix: [null, []],
-    suffix: [null, []],
   });
 
 export const SerialNumberRawFormGroup = () =>
@@ -26,5 +21,4 @@ export const SerialNumberRawFormGroup = () =>
     required: [null, []],
     type: [null, [Validators.required]],
     prefix: [null, []],
-    suffix: [null, []],
   });

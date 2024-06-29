@@ -10,7 +10,6 @@ export class QuerySerialNumberDto
   @QueryProperty() required: string;
   @QueryProperty() type: string;
   @QueryProperty() prefix: string;
-  @QueryProperty() suffix: string;
   @QueryProperty() serialNumber: string;
   @QueryProperty() productId: string;
   @QueryProperty() productActive: string;

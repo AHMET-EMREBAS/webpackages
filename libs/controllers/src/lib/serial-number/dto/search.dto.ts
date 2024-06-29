@@ -9,7 +9,6 @@ export class SearchSerialNumberDto implements SearchDto<SerialNumberView> {
     'required',
     'type',
     'prefix',
-    'suffix',
     'serialNumber',
     'productName',
     'productUpc',
