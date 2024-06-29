@@ -6,10 +6,9 @@ export const SerialNumberMetadata: Metadata = {
     required: {
       type: 'boolean',
       label: 'Enforce Serial Number',
-      default: false,
-      example: false,
+      inputType: 'checkbox',
       description: 'Is serial number required for the product?',
-      class: 'order-1 w-full grow',
+      class: 'w-full grow',
       tabIndex: 1,
     },
     type: {
@@ -19,7 +18,7 @@ export const SerialNumberMetadata: Metadata = {
       inputType: 'select',
       required: true,
       default: 'incremental',
-      class: 'order-2 w-full',
+      class: 'order-1 w-full',
 
       tabIndex: 2,
     },
@@ -42,6 +41,7 @@ export const SerialNumberMetadata: Metadata = {
       type: 'string',
       required: true,
       unique: true,
+      update: false,
       minLength: 3,
       maxLength: 100,
       example: '1236846182674312',
@@ -57,7 +57,7 @@ export const SerialNumberMetadata: Metadata = {
       label: '',
       viewColumns: ['sku', 'name'],
       resourceLabelProperty: 'name',
-
+      update: false,
       class: 'order-6 w-4/12 grow',
       tabIndex: 6,
     },
