@@ -34,6 +34,8 @@ const preview: Preview = {
         provideAnimations(),
         provideDefaultInputErrorMesssageHandler(),
         provideDefaultInputStatusIndicatorHandler(),
+        provideEntityCollectionService(MockCategoryCollectionService),
+        provideDefaultHttpSearchQueryBuilder(),
         provideDefaultInputDebounceTime(),
         provideHttpClient(
           withInterceptors([
@@ -52,7 +54,7 @@ const preview: Preview = {
           {
             pluralNames: {
               Product: 'Products',
-              Category: 'Category',
+              Category: 'Categories',
             },
             entityMetadata: {
               Category: {},
@@ -61,8 +63,6 @@ const preview: Preview = {
           },
           withEffects()
         ),
-        provideEntityCollectionService(MockCategoryCollectionService),
-        provideDefaultHttpSearchQueryBuilder(),
       ],
     }),
   ],

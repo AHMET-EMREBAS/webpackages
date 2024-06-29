@@ -34,11 +34,7 @@
     },
 
     "storybook": {
-      "executor": "@storybook/angular:start-storybook",
       "options": {
-        "port": 4400,
-        "configDir": "libs/material/form/.storybook",
-        "browserTarget": "material-form:build-storybook",
         "compodoc": true,
         "compodocArgs": [
           "-e",
@@ -48,12 +44,8 @@
           "-p",
           "libs/material/form/tsconfig.json"
         ]
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
       }
+    
     },
     "build-storybook": {
       "executor": "@storybook/angular:build-storybook",

@@ -6,11 +6,11 @@ const config: StorybookConfig = {
   framework: {
     name: '@storybook/angular',
     options: {
-      docs: {
-        autodocs: true,
-        defaultName: 'Docs',
-      },
     },
+  },
+  docs: {
+    autodocs: true,
+    defaultName: 'Docs',
   },
   staticDirs: ['../../../../public'],
 };
