@@ -22,6 +22,7 @@ import { UpdateProfileFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     ProfileService,
@@ -30,6 +31,4 @@ import { UpdateProfileFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(ProfileMetadata)),
   ],
 })
-export class ProfileUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class ProfileUpdateFormComponent extends UpdateFormComponent {}

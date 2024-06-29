@@ -22,6 +22,7 @@ import { UpdateCustomerFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     CustomerService,
@@ -30,6 +31,4 @@ import { UpdateCustomerFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(CustomerMetadata)),
   ],
 })
-export class CustomerUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class CustomerUpdateFormComponent extends UpdateFormComponent {}

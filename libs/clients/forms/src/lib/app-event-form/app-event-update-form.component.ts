@@ -22,6 +22,7 @@ import { UpdateAppEventFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     AppEventService,
@@ -30,6 +31,4 @@ import { UpdateAppEventFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(AppEventMetadata)),
   ],
 })
-export class AppEventUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class AppEventUpdateFormComponent extends UpdateFormComponent {}

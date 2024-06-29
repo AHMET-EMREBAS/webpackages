@@ -30,6 +30,8 @@ import { firstValueFrom } from 'rxjs';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { LocalStoreController } from '@webpackages/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTabsModule } from '@angular/material/tabs';
+
 export type ProductEditorStepType<T> = {
   complete: boolean;
   data: Partial<T>;
@@ -62,7 +64,7 @@ export type ProductEditorSteps = {
     MatButtonModule,
     MatIconModule,
     ProductFormComponent,
-
+    MatTabsModule,
     PriceUpdateFormComponent,
     QuantityUpdateFormComponent,
     SerialNumberFormComponent,
@@ -102,7 +104,7 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    // TODO
+    this.completedSteps = this.productEditorStore.get();
   }
 
   cleanup() {
@@ -110,8 +112,6 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.completedSteps = this.productEditorStore.get();
-
     if (this.completedSteps) {
       // Check all steps and
       if (this.completedSteps._1_createdProduct?.complete) {
@@ -139,12 +139,17 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   _1_createdProduct() {
     this.productStep.completed = true;
     this.productStep.editable = false;
-    this.productEditorStepper.next();
+
+    this.savedPrices = this.completedSteps._2_createdPrices.data;
+    setTimeout(() => {
+      this.productEditorStepper.next();
+    }, 2000);
   }
 
   _2_createdPrices() {
     this.priceStep.completed = true;
     this.priceStep.editable = false;
+    this.savedQuantities = this.completedSteps._3_createdQuantities.data;
     this.productEditorStepper.next();
   }
 
@@ -198,6 +203,14 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
         complete: true,
         data: this.savedProduct,
       },
+      _2_createdPrices: {
+        data: this.savedPrices,
+        complete: false,
+      },
+      _3_createdQuantities: {
+        data: this.savedQuantities,
+        complete: false,
+      },
     });
 
     console.log('Skus: ', this.savedSkus);
@@ -219,6 +232,10 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
         duration: 3000,
       }
     );
+  }
+
+  handleDefaultPriceSubmitSucces(event: Partial<IPrice>) {
+    console.log('Default Price : ', event);
   }
 
   finishProcess() {

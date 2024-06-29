@@ -22,6 +22,7 @@ import { UpdateDepartmentFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     DepartmentService,
@@ -30,6 +31,4 @@ import { UpdateDepartmentFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(DepartmentMetadata)),
   ],
 })
-export class DepartmentUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class DepartmentUpdateFormComponent extends UpdateFormComponent {}

@@ -22,6 +22,7 @@ import { UpdateProjectFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     ProjectService,
@@ -30,6 +31,4 @@ import { UpdateProjectFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(ProjectMetadata)),
   ],
 })
-export class ProjectUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class ProjectUpdateFormComponent extends UpdateFormComponent {}

@@ -22,6 +22,7 @@ import { UpdateUserEmailFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     UserEmailService,
@@ -30,6 +31,4 @@ import { UpdateUserEmailFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(UserEmailMetadata)),
   ],
 })
-export class UserEmailUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class UserEmailUpdateFormComponent extends UpdateFormComponent {}

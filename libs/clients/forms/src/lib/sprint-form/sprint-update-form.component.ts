@@ -22,6 +22,7 @@ import { UpdateSprintFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     SprintService,
@@ -30,6 +31,4 @@ import { UpdateSprintFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(SprintMetadata)),
   ],
 })
-export class SprintUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class SprintUpdateFormComponent extends UpdateFormComponent {}

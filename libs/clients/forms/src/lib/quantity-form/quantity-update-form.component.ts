@@ -22,6 +22,7 @@ import { UpdateQuantityFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     QuantityService,
@@ -30,6 +31,4 @@ import { UpdateQuantityFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(QuantityMetadata)),
   ],
 })
-export class QuantityUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class QuantityUpdateFormComponent extends UpdateFormComponent {}

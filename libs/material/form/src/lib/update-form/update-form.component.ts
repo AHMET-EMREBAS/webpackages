@@ -60,12 +60,19 @@ import { FormComponent, setFormGroupErrors } from '../form';
   ],
 
   templateUrl: './update-form.component.html',
+  styles: `
+  @media screen and (max-width:600px){ 
+    form > * { 
+      width:100% !important; 
+    } 
+  }
+`,
 })
 export class UpdateFormComponent<T = any>
   extends FormComponent
   implements OnInit, OnDestroy
 {
-  override formGroup = inject(getUpdateFormGroupToken());
+  override formGroup = inject(getUpdateFormGroupToken(), { optional: true });
 
   /**
    * The entity id

@@ -22,6 +22,7 @@ import { UpdateSessionFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     SessionService,
@@ -30,6 +31,4 @@ import { UpdateSessionFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(SessionMetadata)),
   ],
 })
-export class SessionUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class SessionUpdateFormComponent extends UpdateFormComponent {}

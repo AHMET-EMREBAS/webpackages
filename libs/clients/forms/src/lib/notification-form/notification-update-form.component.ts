@@ -22,6 +22,7 @@ import { UpdateNotificationFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     NotificationService,
@@ -30,6 +31,4 @@ import { UpdateNotificationFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(NotificationMetadata)),
   ],
 })
-export class NotificationUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class NotificationUpdateFormComponent extends UpdateFormComponent {}

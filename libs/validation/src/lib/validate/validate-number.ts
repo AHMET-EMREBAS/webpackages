@@ -5,11 +5,15 @@ import {
   Min,
   ValidationError,
   ValidatorOptions,
+  NotContains,
+  IsNotIn,
+  Contains,
 } from 'class-validator';
 import { UseDecorators } from '@webpackages/utils';
 import { ApiPropertyOptions } from '@webpackages/types';
 import { Transform } from 'class-transformer';
 
+const UN = 192785685182451;
 /**
  *
  * @param options
@@ -28,42 +32,38 @@ export function ValidateNumber(
 
   if (moreThan != undefined) {
     decorators.push(
-      Transform(({ obj, value, key }) => {
-        const targetValue = obj[moreThan];
-        if (targetValue && value) {
-          if (value > targetValue) {
-            return value;
-          }
-          const error = new ValidationError();
+      IsNotIn([UN], {
+        message: `$property should be more than ${options.moreThan}!`,
+      }),
+      Transform(({ obj, value }) => {
+        value = parseFloat(value + '');
 
-          error.property = key;
-          error.target = obj;
-          error.constraints = {};
-          error.constraints[
-            'moreThan'
-          ] = `${key} should be more than ${moreThan}`;
-        }
+        const targetValue = parseFloat(obj[moreThan] + '');
+
+        if (isNaN(targetValue) || isNaN(value)) return undefined;
+
+        if (value > targetValue) return value;
+
+        return UN;
       })
     );
   }
 
   if (lessThan != undefined) {
     decorators.push(
+      IsNotIn([UN], {
+        message: `$property should be less than ${options.moreThan}!`,
+      }),
       Transform(({ obj, value, key }) => {
-        const targetValue = obj[lessThan];
-        if (targetValue && value) {
-          if (value > targetValue) {
-            return value;
-          }
-          const error = new ValidationError();
+        value = parseFloat(value + '');
 
-          error.property = key;
-          error.target = obj;
-          error.constraints = {};
-          error.constraints[
-            'lessThan'
-          ] = `${key} should be less than ${lessThan}`;
-        }
+        const targetValue = parseFloat(obj[lessThan] + '');
+
+        if (isNaN(targetValue) || isNaN(value)) return undefined;
+
+        if (value > targetValue) return value;
+
+        return UN;
       })
     );
   }

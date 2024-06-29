@@ -22,6 +22,7 @@ import { UpdateClockFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     ClockService,
@@ -30,6 +31,4 @@ import { UpdateClockFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(ClockMetadata)),
   ],
 })
-export class ClockUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class ClockUpdateFormComponent extends UpdateFormComponent {}

@@ -22,6 +22,7 @@ import { Update<%- className %>FormGroup } from '@webpackages/clients/form-group
     [submitButtonLabel]="submitButtonLabel"  
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     <%- className %>Service,
@@ -30,6 +31,4 @@ import { Update<%- className %>FormGroup } from '@webpackages/clients/form-group
     provideUpdateInputOptions(toUpdateFormInputOptions(<%- className %>Metadata)),
   ],
 })
-export class <%- className %>UpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class <%- className %>UpdateFormComponent extends UpdateFormComponent {}

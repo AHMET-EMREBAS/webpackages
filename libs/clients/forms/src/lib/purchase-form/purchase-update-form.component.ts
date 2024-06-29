@@ -22,6 +22,7 @@ import { UpdatePurchaseFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     PurchaseService,
@@ -30,6 +31,4 @@ import { UpdatePurchaseFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(PurchaseMetadata)),
   ],
 })
-export class PurchaseUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class PurchaseUpdateFormComponent extends UpdateFormComponent {}

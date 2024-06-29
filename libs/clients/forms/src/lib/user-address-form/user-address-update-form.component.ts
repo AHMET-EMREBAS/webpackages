@@ -22,6 +22,7 @@ import { UpdateUserAddressFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     UserAddressService,
@@ -30,6 +31,4 @@ import { UpdateUserAddressFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(UserAddressMetadata)),
   ],
 })
-export class UserAddressUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class UserAddressUpdateFormComponent extends UpdateFormComponent {}

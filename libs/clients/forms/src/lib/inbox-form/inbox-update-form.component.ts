@@ -22,6 +22,7 @@ import { UpdateInboxFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     InboxService,
@@ -30,6 +31,4 @@ import { UpdateInboxFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(InboxMetadata)),
   ],
 })
-export class InboxUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class InboxUpdateFormComponent extends UpdateFormComponent {}

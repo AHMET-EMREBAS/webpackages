@@ -22,6 +22,7 @@ import { UpdateAccessTokenFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     AccessTokenService,
@@ -30,6 +31,4 @@ import { UpdateAccessTokenFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(AccessTokenMetadata)),
   ],
 })
-export class AccessTokenUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class AccessTokenUpdateFormComponent extends UpdateFormComponent {}

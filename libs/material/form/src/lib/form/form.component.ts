@@ -59,6 +59,8 @@ export function setFormGroupErrors(
     const errors = Object.values(rawError);
     for (const e of errors) {
       const control = formGruop.get((e as any)?.property);
+
+      console.log(e, (e as any).constraints);
       control.setErrors((e as any)?.constraints);
     }
   }
@@ -90,15 +92,17 @@ export function setFormGroupErrors(
 
   styles: ` 
   @media screen and (max-width:600px){ 
-    form > *{ 
-        width:100%
+
+    form > * { 
+      width:100% !important; 
     }
+    
   }
   `,
 })
 export class FormComponent<T = any> implements OnInit, OnDestroy {
   isFormSubmitted = false;
-  formGroup = inject(getFormGroupToken());
+  formGroup = inject(getFormGroupToken(), { optional: true });
   formStore: LocalStoreController<any>;
   valueChange: Observable<T>;
   valueChangeSub: Subscription;

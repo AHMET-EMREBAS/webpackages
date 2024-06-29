@@ -22,6 +22,7 @@ import { UpdateMessageFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     MessageService,
@@ -30,6 +31,4 @@ import { UpdateMessageFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(MessageMetadata)),
   ],
 })
-export class MessageUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class MessageUpdateFormComponent extends UpdateFormComponent {}

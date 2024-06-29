@@ -22,6 +22,7 @@ import { UpdateCategoryFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     CategoryService,
@@ -30,6 +31,4 @@ import { UpdateCategoryFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(CategoryMetadata)),
   ],
 })
-export class CategoryUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class CategoryUpdateFormComponent extends UpdateFormComponent {}

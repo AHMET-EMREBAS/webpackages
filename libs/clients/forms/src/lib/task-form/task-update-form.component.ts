@@ -22,6 +22,7 @@ import { UpdateTaskFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     TaskService,
@@ -30,6 +31,4 @@ import { UpdateTaskFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(TaskMetadata)),
   ],
 })
-export class TaskUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class TaskUpdateFormComponent extends UpdateFormComponent {}

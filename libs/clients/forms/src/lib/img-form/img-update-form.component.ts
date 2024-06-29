@@ -22,6 +22,7 @@ import { UpdateImgFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     ImgService,
@@ -30,6 +31,4 @@ import { UpdateImgFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(ImgMetadata)),
   ],
 })
-export class ImgUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class ImgUpdateFormComponent extends UpdateFormComponent {}

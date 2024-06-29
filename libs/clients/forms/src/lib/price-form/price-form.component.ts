@@ -21,11 +21,12 @@ import { PriceFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-form>`,
   providers: [
     PriceService,
     provideEntityCollectionService(PriceService),
-    provideFormGroup(PriceFormGroup),
+    provideFormGroup(PriceFormGroup()),
     provideInputOptions(toFormInputOptions(PriceMetadata)),
   ],
 })

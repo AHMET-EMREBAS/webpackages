@@ -22,6 +22,7 @@ import { UpdateSerialNumberFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     SerialNumberService,
@@ -30,6 +31,4 @@ import { UpdateSerialNumberFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(SerialNumberMetadata)),
   ],
 })
-export class SerialNumberUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class SerialNumberUpdateFormComponent extends UpdateFormComponent {}

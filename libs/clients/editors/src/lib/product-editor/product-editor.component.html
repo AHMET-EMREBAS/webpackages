@@ -3,32 +3,85 @@
   <button mat-raised-button color="warn" (click)="finishProcess()">New</button>
 </div>
 <mat-stepper #productEditorStepper [linear]="true">
-  <mat-step #productStep label="Create Product" [editable]="false">
+  <mat-step
+    #productStep
+    [stepControl]="productForm.formGroup"
+    label="Create Product"
+    [completed]="false"
+    [editable]="false"
+  >
     <wp-product-form
       #productForm
       submitButtonLabel="Next"
       formStoreName="ProductEditor"
       (submittedEventSuccess)="handleProductSubmitSuccess($event)"
       (submittedEventError)="handleProductSubmitError($event)"
+      formStoreName="ProductEditorProductForm"
     ></wp-product-form>
   </mat-step>
 
-  <mat-step label="Serial Number" [editable]="false">
-    <div class="flex flex-col">
-    
-    </div>
+  <mat-step label="Pricing" [completed]="true" editable="false">
+    <!--  -->
+    <mat-tab-group #tabGroup>
+      <!--  -->
+
+      <mat-tab label="Default Price">
+        <div class="flex flex-row items-center gap-4 py-4">
+          <button
+            mat-flat-button
+            color="accent"
+            (click)="tabGroup.selectedIndex = 1"
+          >
+            <mat-icon>info</mat-icon>
+            Skip
+          </button>
+          <div class="text-orange-600">
+            <p>This form will update all prices!</p>
+            <p>If you want to create specific prices, click the skip button.</p>
+          </div>
+        </div>
+        <div class="flex flex-col py-4">
+          <wp-price-update-form
+            formStoreName="ProductEditorDefaultPriceForm"
+            [onlyEmitEvent]="true"
+            (submittedEventSuccess)="handleDefaultPriceSubmitSucces($event)"
+            submitButtonLabel="Next"
+          ></wp-price-update-form>
+        </div>
+      </mat-tab>
+
+      @for(item of savedPrices; track item.id; let index=$index;){
+      <mat-tab [label]="item['priceLevelName']">
+        <div class="flex flex-col py-4">
+          <wp-price-update-form
+            [formStoreName]="'ProductEditorPriceForm' + item.id"
+            [entityId]="item.id"
+            submitButtonLabel="Next"
+            (submittedEventSuccess)="tabGroup.selectedIndex = index + 2"
+          ></wp-price-update-form>
+        </div>
+      </mat-tab>
+      <!--  -->
+      }
+    </mat-tab-group>
+    <!--  -->
   </mat-step>
 
-  <mat-step label="Pricing" [editable]="false">
-    
-    <wp-price-update-form [entityId]="" ></wp-price-update-form>
+  <mat-step
+    #serialNumberStep
+    [stepControl]="serialNumberForm.formGroup"
+    label="Serial Number"
+    [completed]="false"
+    [editable]="false"
+  >
+    <wp-serial-number-form #serialNumberForm></wp-serial-number-form>
   </mat-step>
 
-  <mat-step label="Quantity" [editable]="false">
+  <mat-step label="Quantity" [completed]="false" [editable]="false">
     Adding quantity for each sku
   </mat-step>
 
-  <mat-step #finalStep label="Complete" [editable]="false">
+  <mat-step #finalStep label="Complete" [completed]="false" [editable]="false">
     <div
       class="flex flex-col w-full gap-4 p-4 justify-center items-center content-center"
     >

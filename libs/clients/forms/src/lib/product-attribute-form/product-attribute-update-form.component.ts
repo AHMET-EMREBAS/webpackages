@@ -22,6 +22,7 @@ import { UpdateProductAttributeFormGroup } from '@webpackages/clients/form-group
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     ProductAttributeService,
@@ -32,6 +33,4 @@ import { UpdateProductAttributeFormGroup } from '@webpackages/clients/form-group
     ),
   ],
 })
-export class ProductAttributeUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class ProductAttributeUpdateFormComponent extends UpdateFormComponent {}

@@ -22,6 +22,7 @@ import { UpdateSkuFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     SkuService,
@@ -30,6 +31,4 @@ import { UpdateSkuFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(SkuMetadata)),
   ],
 })
-export class SkuUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class SkuUpdateFormComponent extends UpdateFormComponent {}

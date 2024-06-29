@@ -22,6 +22,7 @@ import { UpdateDiscountFormGroup } from '@webpackages/clients/form-groups';
     [submitButtonLabel]="submitButtonLabel"
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
+    [formStoreName]="formStoreName"
   ></wp-update-form>`,
   providers: [
     DiscountService,
@@ -30,6 +31,4 @@ import { UpdateDiscountFormGroup } from '@webpackages/clients/form-groups';
     provideUpdateInputOptions(toUpdateFormInputOptions(DiscountMetadata)),
   ],
 })
-export class DiscountUpdateFormComponent extends UpdateFormComponent {
-  @Input() override onlyEmitEvent = true;
-}
+export class DiscountUpdateFormComponent extends UpdateFormComponent {}

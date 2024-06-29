@@ -20,6 +20,7 @@ export const defaultErrorMessageHandler: InputErrorMessageHandler = function (
   control: FormControl,
   options: InputOptions
 ): string {
+  const foundErrror = Object.values(control.errors || {}).pop();
   if (control.hasError('required')) return `Field is required!`;
   else if (control.hasError('minlength'))
     return `Field most be longer than ${options.inputMinLength} characters!`;
@@ -34,6 +35,8 @@ export const defaultErrorMessageHandler: InputErrorMessageHandler = function (
     return `Field most be a strong password!`;
   else if (control.hasError('isUnique')) {
     return `Field must be unique!`;
+  } else if (foundErrror) {
+    return foundErrror;
   }
 
   return 'Field is invalid';
