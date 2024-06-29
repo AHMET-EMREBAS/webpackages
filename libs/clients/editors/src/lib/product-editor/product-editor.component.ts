@@ -41,6 +41,7 @@ import { LocalStoreController } from '@webpackages/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { firstValueFrom } from 'rxjs';
+import { RawFormComponent } from '@webpackages/material/form';
 
 export type ProductEditorStepState<T> = {
   complete?: boolean;
@@ -101,6 +102,8 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   store = new LocalStoreController<ProductEditorState>(
     'ProductEditorStateStore'
   );
+
+  @ViewChild('defaultPriceForm') defaultPriceForm: RawFormComponent;
 
   @ViewChild('productEditorStepper') stepper: MatStepper;
 
@@ -186,31 +189,35 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   }
 
   async handleDefaultPriceSubmitEvent(event: Partial<IPrice>) {
+    debug('Default Price Submit Event : ', event);
+
     const priceData = this.state().price.data;
     if (priceData) {
       for (const price of priceData) {
         try {
-          await firstValueFrom(
+          const result = await firstValueFrom(
             this.priceService.update({ id: price.id, ...event } as any)
           );
         } catch (err) {
-          console.error(err);
+          this.defaultPriceForm.setErrors(err);
+          this.anounce('Fix the form errors to continue!');
+
+          break;
         }
       }
-      const updatedPrices = await this.getPrices();
-      this.updateState({ price: {} });
-      this.updateState({ price: { data: updatedPrices, complete: true } });
+      if (this.defaultPriceForm.formGroup.valid) {
+        const updatedPrices = await this.getPrices();
+        this.finishAndLock('price', updatedPrices);
+      }
     }
-    this.nextPriceTab();
-    this.finishAndLock('price', this.state().price.data);
-    debug('Default Price Submit Event : ', event);
   }
 
-  nextPriceTab(selectedIndex?: number) {
+  async nextPriceTab(selectedIndex?: number) {
     selectedIndex = selectedIndex ?? this.priceTabGroup.selectedIndex;
     const l = this.priceTabGroup._allTabs.length;
-    if (selectedIndex == l) {
-      this.nextStep();
+    if (selectedIndex == l - 1) {
+      const prices = await this.getPrices();
+      this.finishAndLock('price', prices);
     } else {
       this.priceTabGroup.selectedIndex = selectedIndex + 1;
     }

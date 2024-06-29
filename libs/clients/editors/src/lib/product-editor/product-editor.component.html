@@ -32,6 +32,7 @@
         </div>
         <div class="flex flex-col py-4">
           <wp-price-raw-form
+            #defaultPriceForm
             (submittedEvent)="handleDefaultPriceSubmitEvent($event)"
             submitButtonLabel="Next"
             formStoreName="ProductEditorDefaultPriceForm"
@@ -40,7 +41,7 @@
       </mat-tab>
 
       <ng-container *ngIf="state() as state">
-        @for(item of state.price.data;track item; let index=$index;){
+        @for(item of state.price.data;track item.id;){
         <mat-tab [label]="item['priceLevelName']">
           <div class="flex flex-col py-4">
             <wp-price-update-form
@@ -82,7 +83,24 @@
       <p>😀</p>
       <p>You made it!</p>
 
-      <button class="max-w-32" mat-raised-button color="primary" (click)="restartSteps()">New</button>
+      <button
+        class="max-w-32"
+        mat-raised-button
+        color="primary"
+        (click)="restartSteps()"
+      >
+        New
+      </button>
     </div>
   </mat-step>
 </mat-stepper>
+<div class="flex flex-row-reverse gap-4 px-6">
+  <button
+    class="w-full"
+    mat-raised-button
+    color="accent"
+    (click)="restartSteps()"
+  >
+    Restart Stepper
+  </button>
+</div>
