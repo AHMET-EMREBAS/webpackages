@@ -6,48 +6,13 @@ import {
 import { FormComponent } from './form.component';
 
 import { within } from '@storybook/testing-library';
-import {
-  provideDefaultInputDebounceTime,
-  provideDefaultInputErrorMesssageHandler,
-  provideDefaultInputStatusIndicatorHandler,
-} from '@webpackages/material/input';
-import { provideAnimations } from '@angular/platform-browser/animations';
 
 import {
-  MockCategoryCollectionService,
-  provideDefaultHttpSearchQueryBuilder,
-  provideEntityCollectionService,
   provideFormGroup,
   provideInputOptions,
 } from '@webpackages/material/core';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { provideStore } from '@ngrx/store';
-import { provideEffects } from '@ngrx/effects';
-import {
-  provideEntityData,
-  EntityMetadataMap,
-  EntityDataModuleConfig,
-  withEffects,
-} from '@ngrx/data';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { provideNativeDateAdapter } from '@angular/material/core';
-import { provideRouter } from '@angular/router';
 import { PropertyOptions } from '@webpackages/types';
-
-const entityMetadata: EntityMetadataMap = {
-  Sample: {},
-  Category: {},
-};
-
-const pluralNames = {
-  Sample: 'Samples',
-  Category: 'Categories',
-};
-
-export const entityConfig: EntityDataModuleConfig = {
-  entityMetadata,
-  pluralNames,
-};
 
 const formGroup = new FormGroup({
   name: new FormControl(null, [
@@ -66,29 +31,7 @@ const meta: Meta<FormComponent<any>> = {
   decorators: [
     applicationConfig({
       providers: [
-        provideRouter([]),
-        provideNativeDateAdapter(),
-        provideAnimations(),
-        provideDefaultInputErrorMesssageHandler(),
-        provideDefaultInputStatusIndicatorHandler(),
-        provideDefaultInputDebounceTime(),
-        provideHttpClient(
-          withInterceptors([
-            (req, next) => {
-              return next(
-                req.clone({
-                  url: `http://localhost:3001/${req.url}`,
-                })
-              );
-            },
-          ])
-        ),
-        provideStore(),
-        provideEffects(),
-        provideEntityData(entityConfig, withEffects()),
-        provideEntityCollectionService(MockCategoryCollectionService),
         provideFormGroup(formGroup),
-        provideDefaultHttpSearchQueryBuilder(),
         provideInputOptions([
           {
             name: 'name',
