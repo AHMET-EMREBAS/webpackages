@@ -45,15 +45,9 @@
           "libs/material/form/tsconfig.json"
         ]
       }
-    
     },
     "build-storybook": {
-      "executor": "@storybook/angular:build-storybook",
-      "outputs": ["{options.outputDir}"],
       "options": {
-        "outputDir": "dist/libs/material-form-docs",
-        "configDir": "libs/material/form/.storybook",
-        "browserTarget": "material-form:build-storybook",
         "compodoc": true,
         "compodocArgs": [
           "-e",

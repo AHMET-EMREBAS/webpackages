@@ -719,7 +719,7 @@
         },
         {
             "name": "RawFormComponent",
-            "id": "component-RawFormComponent-04cc5cea657c5f48c11de2b39a0bdd9bbc3017fade256e3f72451b00a1687ff458ff076427738b5a49bfe3daaaa84b185b839dda436923ba09a2afc50d753f76",
+            "id": "component-RawFormComponent-4f4ab1b39e54092dba2acc9c6dfd8ae5d0ef230879a7a4dbbc911422046b613ce129020d062040e7c055cde095c1468fb863fe3a6e3fa0dc64a9a8958ca9f9cb",
             "file": "libs/material/form/src/lib/raw-form/raw-form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -742,7 +742,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nLocalstore name to store the form data\n",
                     "description": "<p>Localstore name to store the form data</p>\n",
-                    "line": 255,
+                    "line": 275,
                     "type": "string",
                     "decorators": []
                 },
@@ -752,7 +752,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nOnly emit the form value NOT make a http request\n",
                     "description": "<p>Only emit the form value NOT make a http request</p>\n",
-                    "line": 260,
+                    "line": 280,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -761,7 +761,7 @@
                     "defaultValue": "'Submit'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 262,
+                    "line": 282,
                     "type": "string",
                     "decorators": []
                 }
@@ -772,7 +772,7 @@
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 264,
+                    "line": 284,
                     "type": "EventEmitter"
                 },
                 {
@@ -780,7 +780,7 @@
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 266,
+                    "line": 286,
                     "type": "EventEmitter"
                 },
                 {
@@ -788,7 +788,7 @@
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 265,
+                    "line": 285,
                     "type": "EventEmitter"
                 }
             ],
@@ -801,7 +801,8 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 248
+                    "line": 255,
+                    "rawdescription": "\n\n\n"
                 },
                 {
                     "name": "formStore",
@@ -810,7 +811,8 @@
                     "type": "LocalStoreController<any>",
                     "optional": false,
                     "description": "",
-                    "line": 249
+                    "line": 260,
+                    "rawdescription": "\n\n\n"
                 },
                 {
                     "name": "inputOptions",
@@ -820,7 +822,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 268,
+                    "line": 288,
                     "modifierKind": [
                         148
                     ]
@@ -833,7 +835,8 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 247
+                    "line": 250,
+                    "rawdescription": "\n\n\n"
                 },
                 {
                     "name": "resourceName",
@@ -843,7 +846,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 269,
+                    "line": 289,
                     "modifierKind": [
                         148
                     ]
@@ -855,7 +858,8 @@
                     "type": "Observable<T>",
                     "optional": false,
                     "description": "",
-                    "line": 250
+                    "line": 265,
+                    "rawdescription": "\n\n\n"
                 },
                 {
                     "name": "valueChangeSub",
@@ -864,7 +868,8 @@
                     "type": "Subscription",
                     "optional": false,
                     "description": "",
-                    "line": 251
+                    "line": 270,
+                    "rawdescription": "\n\n\n"
                 }
             ],
             "methodsClass": [
@@ -881,7 +886,7 @@
                     "optional": false,
                     "returnType": "FormControl",
                     "typeParameters": [],
-                    "line": 321,
+                    "line": 341,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -910,7 +915,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 298,
+                    "line": 318,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -942,7 +947,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 306,
+                    "line": 326,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -970,7 +975,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 302,
+                    "line": 322,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -991,7 +996,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 294,
+                    "line": 314,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1001,7 +1006,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 271,
+                    "line": 291,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1011,7 +1016,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 328,
+                    "line": 348,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1028,7 +1033,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 317,
+                    "line": 337,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1056,7 +1061,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 310,
+                    "line": 330,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1146,7 +1151,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\r\n  Component,\r\n  EventEmitter,\r\n  Input,\r\n  OnDestroy,\r\n  OnInit,\r\n  Output,\r\n  inject,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport {\r\n  LocalStoreController,\r\n  getFormGroupToken,\r\n  getInputOptionsToken,\r\n  getResourceNameToken,\r\n} from '@webpackages/material/core';\r\nimport { Observable, Subscription, debounceTime, map } from 'rxjs';\r\nimport { FormControl } from '@angular/forms';\r\nimport { setFormGroupErrors } from '../form';\r\n\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport {\r\n  InputTextComponent,\r\n  InputNumberComponent,\r\n  InputDateComponent,\r\n  AutocompleteComponent,\r\n  SearchComponent,\r\n  SearchManyComponent,\r\n  InputTextareaComponent,\r\n  AutocompleteManyComponent,\r\n  SelectComponent,\r\n} from '@webpackages/material/input';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\n\r\nimport { MatCheckboxModule } from '@angular/material/checkbox';\r\nimport { RouterModule } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'wp-raw-form',\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    RouterModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    InputTextComponent,\r\n    InputNumberComponent,\r\n    InputDateComponent,\r\n    InputTextareaComponent,\r\n    AutocompleteComponent,\r\n    AutocompleteManyComponent,\r\n    SearchComponent,\r\n    SearchManyComponent,\r\n    SelectComponent,\r\n\r\n    MatButtonModule,\r\n    MatIconModule,\r\n    MatCheckboxModule,\r\n  ],\r\n  template: `\r\n    <form class=\"w-full flex flex-row flex-wrap gap-4\">\r\n      @for(option of inputOptions; track option){\r\n\r\n      <!-- Text Input -->\r\n      @if(option.inputType ==='text' ){\r\n      <wp-input-text\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputRequired]=\"option.required\"\r\n        [inputMinLength]=\"option.minLength\"\r\n        [inputMaxLength]=\"option.maxLength\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-input-text>\r\n      }\r\n\r\n      <!-- Textarea -->\r\n      @else if(option.inputType ==='textarea' ){\r\n      <wp-input-textarea\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputRequired]=\"option.required\"\r\n        [inputMinLength]=\"option.minLength\"\r\n        [inputMaxLength]=\"option.maxLength\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-input-textarea>\r\n      }\r\n\r\n      <!-- Number -->\r\n      @else if(option.inputType ==='number' || option.type ==='number'){\r\n      <wp-input-number\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputRequired]=\"option.required\"\r\n        [inputMin]=\"option.minimum\"\r\n        [inputMax]=\"option.maximum\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-input-number>\r\n      }\r\n\r\n      <!-- Date -->\r\n      @else if(option.inputType ==='date' || option.type ==='date'){\r\n      <wp-input-date\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputRequired]=\"option.required\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-input-date>\r\n      }\r\n\r\n      <!-- Search  -->\r\n      @else if(option.inputType ==='search' ){\r\n\r\n      <wp-search\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputRequired]=\"option.required\"\r\n        [resourceName]=\"option.resourceName\"\r\n        [resourceLabelProperty]=\"option.resourceLabelProperty\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-search>\r\n\r\n      }\r\n\r\n      <!-- Search Many -->\r\n      @else if(option.inputType ==='search-many'){\r\n\r\n      <wp-search-many\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [resourceName]=\"option.resourceName\"\r\n        [resourceLabelProperty]=\"option.resourceLabelProperty\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-search-many>\r\n\r\n      }\r\n\r\n      <!-- Autocomplete -->\r\n      @else if(option.inputType ==='autocomplete'){\r\n      <wp-autocomplete\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputRequired]=\"option.required\"\r\n        [autocompleteOptions]=\"option.autocompleteOptions || []\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-autocomplete>\r\n      }\r\n\r\n      <!-- Autocomplete Many -->\r\n      @else if(option.inputType ==='autocomplete-many'){\r\n      <wp-autocomplete-many\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputRequired]=\"option.required\"\r\n        [autocompleteOptions]=\"option.autocompleteOptions || []\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-autocomplete-many>\r\n      }\r\n\r\n      <!-- Select -->\r\n      @else if(option.inputType ==='select'){\r\n      <wp-select\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputRequired]=\"option.required\"\r\n        [enumOptions]=\"option.enum || []\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n        [inputMultiple]=\"option.multiple\"\r\n      ></wp-select>\r\n      }\r\n\r\n      <!-- Checkbox -->\r\n      @else if(option.inputType ==='checkbox' || option.type ==='boolean'){\r\n      <mat-checkbox\r\n        [name]=\"option.name\"\r\n        [formControl]=\"control(option.name)\"\r\n        [tabindex]=\"option.tabIndex\"\r\n        [class]=\"option.class + ' mr-16'\"\r\n      >\r\n        {{ option.label }}\r\n      </mat-checkbox>\r\n      }\r\n\r\n      <!-- Text -->\r\n      @else{\r\n      <wp-input-text\r\n        [inputName]=\"option.name\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputRequired]=\"option.required\"\r\n        [inputMinLength]=\"option.minLength\"\r\n        [inputMaxLength]=\"option.maxLength\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-input-text>\r\n      }\r\n\r\n      <!-- End -->\r\n      }\r\n      <div class=\"w-full flex flex-row gap-4 order-last\">\r\n        <button\r\n          class=\"w-full\"\r\n          mat-raised-button\r\n          color=\"primary\"\r\n          (click)=\"handleFormSubmit()\"\r\n          [disabled]=\"formGroup.invalid\"\r\n        >\r\n          {{ submitButtonLabel }}\r\n        </button>\r\n        <button class=\"w-full\" mat-raised-button (click)=\"reset()\">\r\n          Reset\r\n        </button>\r\n      </div>\r\n    </form>\r\n  `,\r\n\r\n  styles: ` \r\n  @media screen and (max-width:600px){ \r\n\r\n    form > * { \r\n      width:100% !important; \r\n    }\r\n    \r\n  }\r\n`,\r\n})\r\nexport class RawFormComponent<T = any> implements OnInit, OnDestroy {\r\n  isFormSubmitted = false;\r\n  formGroup = inject(getFormGroupToken(), { optional: true });\r\n  formStore: LocalStoreController<any>;\r\n  valueChange: Observable<T>;\r\n  valueChangeSub: Subscription;\r\n  /**\r\n   * Localstore name to store the form data\r\n   */\r\n  @Input() formStoreName: string;\r\n\r\n  /**\r\n   * Only emit the form value NOT make a http request\r\n   */\r\n  @Input() onlyEmitEvent: boolean;\r\n\r\n  @Input() submitButtonLabel = 'Submit';\r\n\r\n  @Output() submittedEvent = new EventEmitter<any>();\r\n  @Output() submittedEventSuccess = new EventEmitter<any>();\r\n  @Output() submittedEventError = new EventEmitter<any>();\r\n\r\n  readonly inputOptions = inject(getInputOptionsToken());\r\n  readonly resourceName = inject(getResourceNameToken());\r\n\r\n  ngOnInit(): void {\r\n    const localStoreName = this.resourceName || this.formStoreName;\r\n    if (localStoreName) {\r\n      this.formStore = new LocalStoreController(localStoreName);\r\n      const defaultValue = this.formStore?.get();\r\n      if (defaultValue) {\r\n        for (const [key, value] of Object.entries(defaultValue)) {\r\n          this.formGroup.get(key).setValue(value);\r\n        }\r\n      }\r\n    }\r\n\r\n    this.valueChange = this.formGroup.valueChanges.pipe(\r\n      debounceTime(600),\r\n      map((data) => {\r\n        this.formStore?.set(data);\r\n        return data;\r\n      })\r\n    );\r\n\r\n    this.valueChangeSub = this.valueChange.subscribe();\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.valueChangeSub.unsubscribe();\r\n  }\r\n\r\n  async handleFormSubmit(event?: any) {\r\n    this.submittedEvent.emit(event || this.formGroup.value);\r\n  }\r\n\r\n  handleFormSubmitSuccess(event: any) {\r\n    this.submittedEventSuccess.emit(event);\r\n  }\r\n\r\n  handleFormSubmitError(event: any) {\r\n    this.submittedEventError.emit(event);\r\n  }\r\n\r\n  setFormValue(formValue: any) {\r\n    const entries = Object.entries(formValue);\r\n    for (const [key, value] of entries) {\r\n      this.formGroup.get(key)?.setValue(value);\r\n    }\r\n  }\r\n\r\n  setErrors(errors: any) {\r\n    setFormGroupErrors(this.formGroup, errors);\r\n  }\r\n\r\n  control(name: string) {\r\n    if (this.formGroup) {\r\n      return this.formGroup.get(name) as FormControl;\r\n    }\r\n    throw new Error(`Form group is not provided!`);\r\n  }\r\n\r\n  reset() {\r\n    this.formGroup.reset();\r\n    this.formGroup.markAsUntouched();\r\n    const controls = this.formGroup.controls;\r\n\r\n    for (const [, value] of Object.entries(controls)) {\r\n      value.markAsUntouched();\r\n      value.reset();\r\n      value.setValue(null);\r\n      value.setErrors(null);\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  EventEmitter,\r\n  Input,\r\n  OnDestroy,\r\n  OnInit,\r\n  Output,\r\n  inject,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport {\r\n  LocalStoreController,\r\n  getFormGroupToken,\r\n  getInputOptionsToken,\r\n  getResourceNameToken,\r\n} from '@webpackages/material/core';\r\nimport { Observable, Subscription, debounceTime, map } from 'rxjs';\r\nimport { FormControl } from '@angular/forms';\r\nimport { setFormGroupErrors } from '../form';\r\n\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport {\r\n  InputTextComponent,\r\n  InputNumberComponent,\r\n  InputDateComponent,\r\n  AutocompleteComponent,\r\n  SearchComponent,\r\n  SearchManyComponent,\r\n  InputTextareaComponent,\r\n  AutocompleteManyComponent,\r\n  SelectComponent,\r\n} from '@webpackages/material/input';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\n\r\nimport { MatCheckboxModule } from '@angular/material/checkbox';\r\nimport { RouterModule } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'wp-raw-form',\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    RouterModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    InputTextComponent,\r\n    InputNumberComponent,\r\n    InputDateComponent,\r\n    InputTextareaComponent,\r\n    AutocompleteComponent,\r\n    AutocompleteManyComponent,\r\n    SearchComponent,\r\n    SearchManyComponent,\r\n    SelectComponent,\r\n\r\n    MatButtonModule,\r\n    MatIconModule,\r\n    MatCheckboxModule,\r\n  ],\r\n  template: `\r\n    <form class=\"w-full flex flex-row flex-wrap gap-4\">\r\n      @for(option of inputOptions; track option){\r\n\r\n      <!-- Text Input -->\r\n      @if(option.inputType ==='text' ){\r\n      <wp-input-text\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputRequired]=\"option.required\"\r\n        [inputMinLength]=\"option.minLength\"\r\n        [inputMaxLength]=\"option.maxLength\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-input-text>\r\n      }\r\n\r\n      <!-- Textarea -->\r\n      @else if(option.inputType ==='textarea' ){\r\n      <wp-input-textarea\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputRequired]=\"option.required\"\r\n        [inputMinLength]=\"option.minLength\"\r\n        [inputMaxLength]=\"option.maxLength\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-input-textarea>\r\n      }\r\n\r\n      <!-- Number -->\r\n      @else if(option.inputType ==='number' || option.type ==='number'){\r\n      <wp-input-number\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputRequired]=\"option.required\"\r\n        [inputMin]=\"option.minimum\"\r\n        [inputMax]=\"option.maximum\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-input-number>\r\n      }\r\n\r\n      <!-- Date -->\r\n      @else if(option.inputType ==='date' || option.type ==='date'){\r\n      <wp-input-date\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputRequired]=\"option.required\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-input-date>\r\n      }\r\n\r\n      <!-- Search  -->\r\n      @else if(option.inputType ==='search' ){\r\n\r\n      <wp-search\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputRequired]=\"option.required\"\r\n        [resourceName]=\"option.resourceName\"\r\n        [resourceLabelProperty]=\"option.resourceLabelProperty\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-search>\r\n\r\n      }\r\n\r\n      <!-- Search Many -->\r\n      @else if(option.inputType ==='search-many'){\r\n\r\n      <wp-search-many\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [resourceName]=\"option.resourceName\"\r\n        [resourceLabelProperty]=\"option.resourceLabelProperty\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-search-many>\r\n\r\n      }\r\n\r\n      <!-- Autocomplete -->\r\n      @else if(option.inputType ==='autocomplete'){\r\n      <wp-autocomplete\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputRequired]=\"option.required\"\r\n        [autocompleteOptions]=\"option.autocompleteOptions || []\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-autocomplete>\r\n      }\r\n\r\n      <!-- Autocomplete Many -->\r\n      @else if(option.inputType ==='autocomplete-many'){\r\n      <wp-autocomplete-many\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputRequired]=\"option.required\"\r\n        [autocompleteOptions]=\"option.autocompleteOptions || []\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-autocomplete-many>\r\n      }\r\n\r\n      <!-- Select -->\r\n      @else if(option.inputType ==='select'){\r\n      <wp-select\r\n        [inputName]=\"option.name\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputRequired]=\"option.required\"\r\n        [enumOptions]=\"option.enum || []\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n        [inputMultiple]=\"option.multiple\"\r\n      ></wp-select>\r\n      }\r\n\r\n      <!-- Checkbox -->\r\n      @else if(option.inputType ==='checkbox' || option.type ==='boolean'){\r\n      <mat-checkbox\r\n        [name]=\"option.name\"\r\n        [formControl]=\"control(option.name)\"\r\n        [tabindex]=\"option.tabIndex\"\r\n        [class]=\"option.class + ' mr-16'\"\r\n      >\r\n        {{ option.label }}\r\n      </mat-checkbox>\r\n      }\r\n\r\n      <!-- Text -->\r\n      @else{\r\n      <wp-input-text\r\n        [inputName]=\"option.name\"\r\n        [inputLabel]=\"option.label\"\r\n        [inputControl]=\"control(option.name)\"\r\n        [inputRequired]=\"option.required\"\r\n        [inputMinLength]=\"option.minLength\"\r\n        [inputMaxLength]=\"option.maxLength\"\r\n        [class]=\"option.class\"\r\n        [tabindex]=\"option.tabIndex\"\r\n      ></wp-input-text>\r\n      }\r\n\r\n      <!-- End -->\r\n      }\r\n      <div class=\"w-full flex flex-row gap-4 order-last\">\r\n        <button\r\n          class=\"w-full\"\r\n          mat-raised-button\r\n          color=\"primary\"\r\n          (click)=\"handleFormSubmit()\"\r\n          [disabled]=\"formGroup.invalid\"\r\n        >\r\n          {{ submitButtonLabel }}\r\n        </button>\r\n        <button class=\"w-full\" mat-raised-button (click)=\"reset()\">\r\n          Reset\r\n        </button>\r\n      </div>\r\n    </form>\r\n  `,\r\n\r\n  styles: ` \r\n  @media screen and (max-width:600px){ \r\n\r\n    form > * { \r\n      width:100% !important; \r\n    }\r\n    \r\n  }\r\n`,\r\n})\r\nexport class RawFormComponent<T = any> implements OnInit, OnDestroy {\r\n  /**\r\n   *\r\n   */\r\n  isFormSubmitted = false;\r\n\r\n  /**\r\n   *\r\n   */\r\n  formGroup = inject(getFormGroupToken(), { optional: true });\r\n\r\n  /**\r\n   *\r\n   */\r\n  formStore: LocalStoreController<any>;\r\n\r\n  /**\r\n   *\r\n   */\r\n  valueChange: Observable<T>;\r\n\r\n  /**\r\n   *\r\n   */\r\n  valueChangeSub: Subscription;\r\n\r\n  /**\r\n   * Localstore name to store the form data\r\n   */\r\n  @Input() formStoreName: string;\r\n\r\n  /**\r\n   * Only emit the form value NOT make a http request\r\n   */\r\n  @Input() onlyEmitEvent: boolean;\r\n\r\n  @Input() submitButtonLabel = 'Submit';\r\n\r\n  @Output() submittedEvent = new EventEmitter<any>();\r\n  @Output() submittedEventSuccess = new EventEmitter<any>();\r\n  @Output() submittedEventError = new EventEmitter<any>();\r\n\r\n  readonly inputOptions = inject(getInputOptionsToken());\r\n  readonly resourceName = inject(getResourceNameToken());\r\n\r\n  ngOnInit(): void {\r\n    const localStoreName = this.resourceName || this.formStoreName;\r\n    if (localStoreName) {\r\n      this.formStore = new LocalStoreController(localStoreName);\r\n      const defaultValue = this.formStore?.get();\r\n      if (defaultValue) {\r\n        for (const [key, value] of Object.entries(defaultValue)) {\r\n          this.formGroup.get(key).setValue(value);\r\n        }\r\n      }\r\n    }\r\n\r\n    this.valueChange = this.formGroup.valueChanges.pipe(\r\n      debounceTime(600),\r\n      map((data) => {\r\n        this.formStore?.set(data);\r\n        return data;\r\n      })\r\n    );\r\n\r\n    this.valueChangeSub = this.valueChange.subscribe();\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.valueChangeSub.unsubscribe();\r\n  }\r\n\r\n  async handleFormSubmit(event?: any) {\r\n    this.submittedEvent.emit(event || this.formGroup.value);\r\n  }\r\n\r\n  handleFormSubmitSuccess(event: any) {\r\n    this.submittedEventSuccess.emit(event);\r\n  }\r\n\r\n  handleFormSubmitError(event: any) {\r\n    this.submittedEventError.emit(event);\r\n  }\r\n\r\n  setFormValue(formValue: any) {\r\n    const entries = Object.entries(formValue);\r\n    for (const [key, value] of entries) {\r\n      this.formGroup.get(key)?.setValue(value);\r\n    }\r\n  }\r\n\r\n  setErrors(errors: any) {\r\n    setFormGroupErrors(this.formGroup, errors);\r\n  }\r\n\r\n  control(name: string) {\r\n    if (this.formGroup) {\r\n      return this.formGroup.get(name) as FormControl;\r\n    }\r\n    throw new Error(`Form group is not provided!`);\r\n  }\r\n\r\n  reset() {\r\n    this.formGroup.reset();\r\n    this.formGroup.markAsUntouched();\r\n    const controls = this.formGroup.controls;\r\n\r\n    for (const [, value] of Object.entries(controls)) {\r\n      value.markAsUntouched();\r\n      value.reset();\r\n      value.setValue(null);\r\n      value.setErrors(null);\r\n    }\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": " \n  @media screen and (max-width:600px){ \n\n    form > * { \n      width:100% !important; \n    }\n    \n  }\n\n",
@@ -1785,21 +1790,21 @@
                 "name": "Heading",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "libs/material/form/src/lib/update-form/update-form.component.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    entityId: 0,\r\n  },\r\n  play: async ({ canvasElement }) => {\r\n    const canvas = within(canvasElement);\r\n    // expect(canvas.getByText(/update-form works!/gi)).toBeTruthy();\r\n  },\r\n}"
-            },
-            {
-                "name": "Heading",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "libs/material/form/src/lib/raw-form/raw-form.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n    formStoreName: 'RawFormStory',\r\n    submitButtonLabel: 'Submit',\r\n  },\r\n  play: async ({ canvasElement }) => {\r\n    const canvas = within(canvasElement);\r\n    expect(canvas.getByText(/Input Label/gi)).toBeTruthy();\r\n  },\r\n}"
+            },
+            {
+                "name": "Heading",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/material/form/src/lib/update-form/update-form.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    entityId: 0,\r\n  },\r\n  play: async ({ canvasElement }) => {\r\n    const canvas = within(canvasElement);\r\n    // expect(canvas.getByText(/update-form works!/gi)).toBeTruthy();\r\n  },\r\n}"
             },
             {
                 "name": "meta",
@@ -1825,21 +1830,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "libs/material/form/src/lib/update-form/update-form.component.stories.ts",
+                "file": "libs/material/form/src/lib/raw-form/raw-form.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<UpdateFormComponent>",
-                "defaultValue": "{\r\n  component: UpdateFormComponent,\r\n  title: 'UpdateFormComponent',\r\n}"
+                "type": "Meta<RawFormComponent>",
+                "defaultValue": "{\r\n  component: RawFormComponent,\r\n  title: 'RawFormComponent',\r\n  decorators: [\r\n    moduleMetadata({\r\n      providers: [\r\n        provideDefaultInputErrorMesssageHandler(),\r\n        provideDefaultInputStatusIndicatorHandler(),\r\n        provideDefaultInputDebounceTime(),\r\n        provideResouceName('Category'),\r\n        provideFormGroup(\r\n          new FormGroup({\r\n            name: new FormControl('', [Validators.required]),\r\n          })\r\n        ),\r\n        provideInputOptions(\r\n          toFormInputOptions({\r\n            properties: {\r\n              name: { type: 'string', label: 'Input Label' },\r\n            },\r\n            relations: {},\r\n          })\r\n        ),\r\n      ],\r\n    }),\r\n  ],\r\n\r\n  // args: {\r\n  //   handleFormSubmit: fn(),\r\n  // },\r\n}"
             },
             {
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "libs/material/form/src/lib/raw-form/raw-form.component.stories.ts",
+                "file": "libs/material/form/src/lib/update-form/update-form.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<RawFormComponent>",
-                "defaultValue": "{\r\n  component: RawFormComponent,\r\n  title: 'RawFormComponent',\r\n  decorators: [\r\n    applicationConfig({\r\n      providers: [\r\n        provideResouceName('Category'),\r\n        provideFormGroup(\r\n          new FormGroup({\r\n            name: new FormControl('', [Validators.required]),\r\n          })\r\n        ),\r\n        provideInputOptions(\r\n          toFormInputOptions({\r\n            properties: {\r\n              name: { type: 'string', label: 'Input Label' },\r\n            },\r\n            relations: {},\r\n          })\r\n        ),\r\n      ],\r\n    }),\r\n  ],\r\n\r\n  // args: {\r\n  //   handleFormSubmit: fn(),\r\n  // },\r\n}"
+                "type": "Meta<UpdateFormComponent>",
+                "defaultValue": "{\r\n  component: UpdateFormComponent,\r\n  title: 'UpdateFormComponent',\r\n}"
             },
             {
                 "name": "Primary",
@@ -1865,21 +1870,21 @@
                 "name": "Primary",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "libs/material/form/src/lib/update-form/update-form.component.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    entityId: 0,\r\n  },\r\n}"
-            },
-            {
-                "name": "Primary",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "libs/material/form/src/lib/raw-form/raw-form.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n    formStoreName: 'RawFormStory',\r\n    submitButtonLabel: 'Submit',\r\n  },\r\n}"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/material/form/src/lib/update-form/update-form.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    entityId: 0,\r\n  },\r\n}"
             }
         ],
         "functions": [
@@ -1954,8 +1959,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<UpdateFormComponent>",
-                "file": "libs/material/form/src/lib/update-form/update-form.component.stories.ts",
+                "rawtype": "StoryObj<RawFormComponent>",
+                "file": "libs/material/form/src/lib/raw-form/raw-form.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1965,8 +1970,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<RawFormComponent>",
-                "file": "libs/material/form/src/lib/raw-form/raw-form.component.stories.ts",
+                "rawtype": "StoryObj<UpdateFormComponent>",
+                "file": "libs/material/form/src/lib/update-form/update-form.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -2049,6 +2054,38 @@
                     "defaultValue": "{\r\n  args: {},\r\n}"
                 }
             ],
+            "libs/material/form/src/lib/raw-form/raw-form.component.stories.ts": [
+                {
+                    "name": "Heading",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/material/form/src/lib/raw-form/raw-form.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    formStoreName: 'RawFormStory',\r\n    submitButtonLabel: 'Submit',\r\n  },\r\n  play: async ({ canvasElement }) => {\r\n    const canvas = within(canvasElement);\r\n    expect(canvas.getByText(/Input Label/gi)).toBeTruthy();\r\n  },\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/material/form/src/lib/raw-form/raw-form.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<RawFormComponent>",
+                    "defaultValue": "{\r\n  component: RawFormComponent,\r\n  title: 'RawFormComponent',\r\n  decorators: [\r\n    moduleMetadata({\r\n      providers: [\r\n        provideDefaultInputErrorMesssageHandler(),\r\n        provideDefaultInputStatusIndicatorHandler(),\r\n        provideDefaultInputDebounceTime(),\r\n        provideResouceName('Category'),\r\n        provideFormGroup(\r\n          new FormGroup({\r\n            name: new FormControl('', [Validators.required]),\r\n          })\r\n        ),\r\n        provideInputOptions(\r\n          toFormInputOptions({\r\n            properties: {\r\n              name: { type: 'string', label: 'Input Label' },\r\n            },\r\n            relations: {},\r\n          })\r\n        ),\r\n      ],\r\n    }),\r\n  ],\r\n\r\n  // args: {\r\n  //   handleFormSubmit: fn(),\r\n  // },\r\n}"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/material/form/src/lib/raw-form/raw-form.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    formStoreName: 'RawFormStory',\r\n    submitButtonLabel: 'Submit',\r\n  },\r\n}"
+                }
+            ],
             "libs/material/form/src/lib/update-form/update-form.component.stories.ts": [
                 {
                     "name": "Heading",
@@ -2079,38 +2116,6 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\r\n  args: {\r\n    entityId: 0,\r\n  },\r\n}"
-                }
-            ],
-            "libs/material/form/src/lib/raw-form/raw-form.component.stories.ts": [
-                {
-                    "name": "Heading",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "libs/material/form/src/lib/raw-form/raw-form.component.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    formStoreName: 'RawFormStory',\r\n    submitButtonLabel: 'Submit',\r\n  },\r\n  play: async ({ canvasElement }) => {\r\n    const canvas = within(canvasElement);\r\n    expect(canvas.getByText(/Input Label/gi)).toBeTruthy();\r\n  },\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "libs/material/form/src/lib/raw-form/raw-form.component.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<RawFormComponent>",
-                    "defaultValue": "{\r\n  component: RawFormComponent,\r\n  title: 'RawFormComponent',\r\n  decorators: [\r\n    applicationConfig({\r\n      providers: [\r\n        provideResouceName('Category'),\r\n        provideFormGroup(\r\n          new FormGroup({\r\n            name: new FormControl('', [Validators.required]),\r\n          })\r\n        ),\r\n        provideInputOptions(\r\n          toFormInputOptions({\r\n            properties: {\r\n              name: { type: 'string', label: 'Input Label' },\r\n            },\r\n            relations: {},\r\n          })\r\n        ),\r\n      ],\r\n    }),\r\n  ],\r\n\r\n  // args: {\r\n  //   handleFormSubmit: fn(),\r\n  // },\r\n}"
-                },
-                {
-                    "name": "Primary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "libs/material/form/src/lib/raw-form/raw-form.component.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    formStoreName: 'RawFormStory',\r\n    submitButtonLabel: 'Submit',\r\n  },\r\n}"
                 }
             ]
         },
@@ -2189,19 +2194,6 @@
                     "kind": 183
                 }
             ],
-            "libs/material/form/src/lib/update-form/update-form.component.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<UpdateFormComponent>",
-                    "file": "libs/material/form/src/lib/update-form/update-form.component.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "libs/material/form/src/lib/raw-form/raw-form.component.stories.ts": [
                 {
                     "name": "Story",
@@ -2209,6 +2201,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<RawFormComponent>",
                     "file": "libs/material/form/src/lib/raw-form/raw-form.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "libs/material/form/src/lib/update-form/update-form.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<UpdateFormComponent>",
+                    "file": "libs/material/form/src/lib/update-form/update-form.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
