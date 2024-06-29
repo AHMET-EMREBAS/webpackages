@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterContentInit,
+  AfterViewInit,
+  Component,
+  OnInit,
+  ViewChild,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   PriceService,
@@ -19,42 +26,37 @@ import {
   ProductFormComponent,
   QuantityUpdateFormComponent,
   SerialNumberFormComponent,
+  SerialNumberRawFormComponent,
 } from '@webpackages/clients/forms';
 import {
   IPrice,
   IProduct,
   IQuantity,
   ISerialNumber,
-  ISku,
 } from '@webpackages/models';
-import { firstValueFrom } from 'rxjs';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { LocalStoreController } from '@webpackages/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
+import { firstValueFrom } from 'rxjs';
 
-export type ProductEditorStepType<T> = {
+export type ProductEditorStepState<T> = {
   complete?: boolean;
   data?: Partial<T>;
 };
 
-export type ProductEditorSteps = {
-  product?: ProductEditorStepType<IProduct>;
-  price?: ProductEditorStepType<IPrice[]>;
-  quantity?: ProductEditorStepType<IQuantity[]>;
-  serial?: ProductEditorStepType<ISerialNumber[]>;
-  complete?: boolean;
+export type ProductEditorState = {
+  product?: ProductEditorStepState<IProduct>;
+  price?: ProductEditorStepState<IPrice[]>;
+  quantity?: ProductEditorStepState<IQuantity[]>;
+  serial?: ProductEditorStepState<ISerialNumber[]>;
 };
 
-/**
- * ### Product Editor
- * - Create Product
- *    - After created the product
- *    - Set the default SKU attributes
- * - Price
- * - Quantity
- * - Serial Number
- */
+function debug(msg: string, data?: any) {
+  console.log(`[ Product Editor ]  `, msg);
+  data && console.table(data);
+}
+
 @Component({
   selector: 'wp-product-editor',
   standalone: true,
@@ -70,39 +72,31 @@ export type ProductEditorSteps = {
     PriceRawFormComponent,
     QuantityUpdateFormComponent,
     SerialNumberFormComponent,
+    SerialNumberRawFormComponent,
     MatCheckboxModule,
   ],
   templateUrl: `./product-editor.component.html`,
   providers: [ProductService, SkuService, PriceService, QuantityService],
 })
 export class ProductEditorComponent implements OnInit, AfterViewInit {
-  completedSteps?: ProductEditorSteps = {
-    complete: false,
+  state = signal<ProductEditorState>({
     price: {},
     product: {},
     quantity: {},
     serial: {},
-  };
+  });
 
-  savedProduct: IProduct;
-  savedSkus: ISku[];
-  savedPrices: IPrice[];
-  savedQuantities: IQuantity[];
-  productEditorStore = new LocalStoreController<ProductEditorSteps>(
-    'ProductEditorComponentStore'
+  store = new LocalStoreController<ProductEditorState>(
+    'ProductEditorStateStore'
   );
 
-  enforceSerialNumber = false;
-
+  @ViewChild('productEditorStepper') stepper: MatStepper;
   @ViewChild('priceTabGroup') priceTabGroup: MatTabGroup;
-  @ViewChild('productForm') productForm: ProductFormComponent;
-  @ViewChild('productEditorStepper') productEditorStepper: MatStepper;
+
   @ViewChild('productStep') productStep: MatStep;
   @ViewChild('priceStep') priceStep: MatStep;
   @ViewChild('quantityStep') quantityStep: MatStep;
   @ViewChild('serialStep') serialStep: MatStep;
-  @ViewChild('attributesStep') attributesStep: MatStep;
-  @ViewChild('finalStep') finalStep: MatStep;
 
   constructor(
     protected readonly productService: ProductService,
@@ -113,154 +107,159 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    this.completedSteps = this.productEditorStore.get();
-  }
-
-  cleanup() {
-    this.productEditorStore.delete();
+    debug('OnInit');
+    this.updateState(this.store.get());
+    debug('OnInit end');
   }
 
   ngAfterViewInit(): void {
-    if (this.completedSteps) {
-      // Check all steps and
-      if (this.completedSteps.product?.complete) {
-        this.finishProductStep();
-      }
-      if (this.completedSteps.price?.complete) {
-        this.finishPriceStep();
-      }
+    debug('Trying to prepare editor');
+    this.prepareEditor();
+    debug('Prepared end');
+  }
 
-      if (this.completedSteps.quantity?.complete) {
-        this.finishQuantityStep();
-      }
-
-      if (this.completedSteps.serial?.complete) {
-        this.finishSerialStep();
-      }
-
-      if (this.completedSteps.complete) {
-        this.finishAll();
-      }
-      // Done
+  async getPrices() {
+    debug('Getting prices');
+    const savedProduct = this.state().product.data;
+    if (!savedProduct) {
+      throw new Error('The state must have the saved product data!');
     }
-  }
-
-  finishProductStep() {
-    this.productStep.completed = true;
-    this.productStep.editable = false;
-
-    this.savedPrices = this.completedSteps.price.data;
-
-    if (this.savedPrices) {
-      this.productEditorStepper.next();
-    }
-  }
-
-  finishPriceStep() {
-    this.priceStep.completed = true;
-    this.priceStep.editable = false;
-    this.savedQuantities = this.completedSteps.quantity.data;
-    this.productEditorStepper.next();
-  }
-
-  finishQuantityStep() {
-    this.quantityStep.completed = true;
-    this.quantityStep.editable = false;
-    this.productEditorStepper.next();
-  }
-
-  finishSerialStep() {
-    this.serialStep.completed = true;
-    this.serialStep.editable = false;
-    this.productEditorStepper.next();
-  }
-
-  finishAll() {
-    this.finalStep.completed = true;
-    this.finalStep.editable = false;
-    this.productForm.reset();
-    this.productEditorStore.delete();
-    this.productEditorStepper.reset();
-  }
-
-  async handleProductSubmitSuccess(event: IProduct) {
-    this.savedProduct = event;
-
-    this.snackbar.open(`Product is created, moving to next step.`, undefined, {
-      verticalPosition: 'top',
-      horizontalPosition: 'center',
-      panelClass: ['!bg-green-400'],
-      politeness: 'polite',
-      announcementMessage:
-        'Successfuly created product and moving to next step.',
-      duration: 3000,
-    });
-
-    this.savedSkus = await firstValueFrom(
-      this.skuService.getWithQuery({ search: event.upc })
+    const prices = await firstValueFrom(
+      this.priceService.getWithQuery({ skuSku: `eq:${savedProduct.upc}` })
     );
 
-    this.savedPrices = await firstValueFrom(
-      this.priceService.getWithQuery({ search: event.upc })
-    );
-
-    this.completedSteps;
-
-    this.savedQuantities = await firstValueFrom(
-      this.quantityService.getWithQuery({ search: event.upc })
-    );
-
-    this.productEditorStore.set({
-      product: {
-        complete: true,
-        data: this.savedProduct,
-      },
-      price: {
-        data: this.savedPrices,
-        complete: false,
-      },
-      quantity: {
-        data: this.savedQuantities,
-        complete: false,
-      },
-    });
-
-    console.log('Skus: ', this.savedSkus);
-    console.log('Prices: ', this.savedPrices);
-    console.log('Quantities: ', this.savedQuantities);
-    this.finishProductStep();
+    return prices;
   }
 
-  handleProductSubmitError(event: any) {
-    this.snackbar.open(
-      `Please fix the errors in the form to continue.`,
-      undefined,
-      {
-        verticalPosition: 'top',
-        horizontalPosition: 'center',
-        panelClass: ['!bg-red-400'],
-        politeness: 'polite',
-        announcementMessage: 'Form is not valid',
-        duration: 3000,
+  async handleProductSubmitSuccessEvent(event: IProduct) {
+    debug('Product success event ', event);
+    this.finishAndLock('product', event);
+    this.anounce('Created Product');
+    const prices = await this.getPrices();
+    this.updateState({ price: { data: prices } });
+  }
+
+  async handleDefaultPriceSubmitEvent(event: Partial<IPrice>) {
+    const priceData = this.state().price.data;
+    if (priceData) {
+      for (const price of priceData) {
+        try {
+          await firstValueFrom(
+            this.priceService.update({ id: price.id, ...event } as any)
+          );
+        } catch (err) {
+          console.error(err);
+        }
       }
-    );
+      const updatedPrices = await this.getPrices();
+
+      this.updateState({ price: {} });
+      this.updateState({ price: { data: updatedPrices, complete: true } });
+    }
+    this.nextPriceTab();
+    this.finishAndLock('price', this.state().price.data);
+    debug('Default Price Submit Event : ', event);
   }
 
-  handleDefaultPriceSubmitSucces(event: Partial<IPrice>) {
-    console.log('Default Price : ', event);
-  }
-
-  finishProcess() {
-    this.finishAll();
-  }
-
-  nextPriceTab(selectedIndex: number) {
+  nextPriceTab(selectedIndex?: number) {
+    selectedIndex = selectedIndex ?? this.priceTabGroup.selectedIndex;
     const l = this.priceTabGroup._allTabs.length;
     if (selectedIndex == l) {
-      this.productEditorStepper.next();
-      this.finishPriceStep();
+      this.nextStep();
     } else {
-      this.priceTabGroup.selectedIndex = selectedIndex;
+      this.priceTabGroup.selectedIndex = selectedIndex + 1;
     }
+  }
+
+  previousPreiceTab(selectedIndex: number) {
+    const l = this.priceTabGroup._allTabs.length;
+    if (selectedIndex == l) {
+      this.nextStep();
+    } else {
+      this.priceTabGroup.selectedIndex = selectedIndex - 1;
+    }
+  }
+
+  nextStep() {
+    this.stepper.next();
+  }
+
+  previousStep() {
+    this.stepper.previous();
+  }
+
+  isComplete(key: keyof ProductEditorState) {
+    return this.state()[key];
+  }
+
+  getStepData(key: keyof ProductEditorState) {
+    return this.state()[key].complete;
+  }
+
+  anounce(announcementMessage: string) {
+    this.snackbar.open(announcementMessage, undefined, {
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      politeness: 'polite',
+      announcementMessage,
+      duration: 3000,
+    });
+  }
+
+  finishAndLock(step: keyof ProductEditorState, data: any) {
+    debug(`Atemping to lock the ${step} step`);
+
+    this.updateState({ [step]: { complete: true, data } });
+
+    if (step === 'product') {
+      debug('Locking product step');
+      this.productStep.editable = false;
+      this.productStep.completed = true;
+      this.stepper.next();
+    } else if (step === 'price') {
+      debug('Locking price step');
+      this.priceStep.editable = false;
+      this.priceStep.completed = true;
+      this.stepper.next();
+    } else if (step === 'quantity') {
+      debug('Locking quantity step');
+      this.quantityStep.editable = false;
+      this.quantityStep.completed = true;
+      this.stepper.next();
+    } else if (step === 'serial') {
+      debug('Locking serial step');
+      this.serialStep.editable = false;
+      this.serialStep.completed = true;
+      this.stepper.next();
+    }
+  }
+
+  updateState(newValue?: Partial<ProductEditorState>) {
+    debug('trying to update state with ', newValue);
+    this.state.update((value) => {
+      const updatedValue = { ...value, ...(newValue || {}) };
+      debug('saving state to the local store');
+      this.store.set(updatedValue);
+      return updatedValue;
+    });
+    debug('Updated state', this.state());
+  }
+
+  /**
+   * After Loading data detect the active step
+   */
+  prepareEditor() {
+    debug('Preperation start');
+    for (const [key, value] of Object.entries(this.state())) {
+      if (value.complete) {
+        debug(`Configuring steps for ${key} state value `, value.data);
+        this.finishAndLock(key as any, value.data);
+      }
+    }
+    debug('Preperation end');
+  }
+
+  cleanStore() {
+    this.store.delete();
   }
 }

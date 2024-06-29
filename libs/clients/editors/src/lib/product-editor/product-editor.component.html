@@ -1,6 +1,6 @@
 <!--  -->
 <div class="w-full flex flex-row justify-end p-4">
-  <button mat-raised-button color="warn" (click)="finishProcess()">New</button>
+  <button mat-raised-button color="warn">Start Over</button>
 </div>
 <mat-stepper #productEditorStepper>
   <mat-step
@@ -11,24 +11,20 @@
     <wp-product-form
       #productForm
       submitButtonLabel="Next"
-      (submittedEventSuccess)="handleProductSubmitSuccess($event)"
-      (submittedEventError)="handleProductSubmitError($event)"
+      (submittedEventSuccess)="handleProductSubmitSuccessEvent($event)"
       formStoreName="ProductEditorProductForm"
     ></wp-product-form>
   </mat-step>
 
-  <!-- Saving Prices -->
-  <mat-step label="Pricing" [completed]="true" editable="false">
-    <!--  -->
+  <!--  Prices -->
+  <mat-step #priceStep label="Pricing">
     <mat-tab-group #priceTabGroup>
-      <!--  -->
-
       <mat-tab label="Default Price">
         <div class="flex flex-row items-center gap-4 py-4">
           <button
             mat-flat-button
             color="accent"
-            (click)="nextPriceTab(priceTabGroup.selectedIndex + 1)"
+            (click)="nextPriceTab(priceTabGroup.selectedIndex)"
           >
             <mat-icon>info</mat-icon>
             Skip
@@ -40,59 +36,56 @@
         </div>
         <div class="flex flex-col py-4">
           <wp-price-raw-form
-            (submittedEventSuccess)="handleDefaultPriceSubmitSucces($event)"
+            (submittedEvent)="handleDefaultPriceSubmitEvent($event)"
             submitButtonLabel="Next"
             formStoreName="ProductEditorDefaultPriceForm"
           ></wp-price-raw-form>
         </div>
       </mat-tab>
 
-      @for(item of savedPrices; track item.id; let index=$index;){
-      <mat-tab [label]="item['priceLevelName']">
-        <div class="flex flex-col py-4">
-          <wp-price-update-form
-            [entityId]="item['id']"
-            submitButtonLabel="Next"
-            (submittedEventSuccess)="
-              nextPriceTab(priceTabGroup.selectedIndex + 1)
-            "
-            [formStoreName]="'ProductEditorPriceForm' + item.id"
-          ></wp-price-update-form>
-        </div>
-      </mat-tab>
+      <ng-container *ngIf="state() as state">
+        @for(item of state.price.data;track item; let index=$index;){
+        <mat-tab [label]="item['priceLevelName']">
+          <div class="flex flex-col py-4">
+            <wp-price-update-form
+              [entityId]="item['id']"
+              submitButtonLabel="Next"
+              (submittedEventSuccess)="
+                nextPriceTab(priceTabGroup.selectedIndex + 1)
+              "
+            ></wp-price-update-form>
+          </div>
+        </mat-tab>
+        }
+      </ng-container>
       <!--  -->
-      }
     </mat-tab-group>
     <!--  -->
   </mat-step>
 
   <!-- Serial Number Step -->
-  <mat-step
-    #serialNumberStep
-    [stepControl]="serialNumberForm.formGroup"
-    label="Serial Number"
-  >
-    <wp-serial-number-form #serialNumberForm></wp-serial-number-form>
+  <mat-step #serialNumberStep label="Serial Number">
+    <wp-serial-number-raw-form
+      #serialNumberForm
+      submitButtonLabel="Next"
+      
+    ></wp-serial-number-raw-form>
   </mat-step>
 
   <!-- Quantity Step -->
-  <mat-step label="Quantity"> Adding quantity for each sku </mat-step>
+  <mat-step #quantityStep label="Quantity">
+    Adding quantity for each sku
+  </mat-step>
 
   <!-- Final Step -->
   <mat-step #finalStep label="Complete">
     <div
       class="flex flex-col w-full gap-4 p-4 justify-center items-center content-center"
     >
-      <p>Product is successfully created.</p>
+      <p>Good Job 😀.</p>
+      <p>You made it!</p>
 
-      <button
-        class="max-w-32"
-        mat-raised-button
-        color="primary"
-        (click)="finishProcess()"
-      >
-        Finish
-      </button>
+      <button class="max-w-32" mat-raised-button color="primary">Finish</button>
     </div>
   </mat-step>
 </mat-stepper>

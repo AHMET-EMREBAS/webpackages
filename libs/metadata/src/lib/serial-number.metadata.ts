@@ -28,9 +28,9 @@ export const SerialNumberMetadata: Metadata = {
       type: 'string',
       label: 'Prefix',
       inputType: 'text',
+      update: false,
       class: 'order-3, w-4/12 grow',
       tabIndex: 3,
-      update: false,
     },
     suffix: {
       type: 'string',

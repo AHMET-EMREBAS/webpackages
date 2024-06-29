@@ -11,11 +11,8 @@ import {
 import { CommonModule } from '@angular/common';
 import {
   LocalStoreController,
-  getFormGroupToken,
-  getInputOptionsToken,
   getRawFormGroupToken,
   getRawInputOptionsToken,
-  getResourceNameToken,
 } from '@webpackages/material/core';
 import { Observable, Subscription, debounceTime, map } from 'rxjs';
 import { FormControl } from '@angular/forms';
@@ -62,7 +59,7 @@ import { RouterModule } from '@angular/router';
   ],
   template: `
     <form class="w-full flex flex-row flex-wrap gap-4">
-      @for(option of inputOptions; track option){
+      @for(option of inputOptions; track option.name){
 
       <!-- Text Input -->
       @if(option.inputType ==='text' ){
@@ -191,14 +188,16 @@ import { RouterModule } from '@angular/router';
 
       <!-- Checkbox -->
       @else if(option.inputType ==='checkbox' || option.type ==='boolean'){
+
       <mat-checkbox
         [name]="option.name"
         [formControl]="control(option.name)"
         [tabindex]="option.tabIndex"
-        [class]="option.class + ' mr-16'"
+        [classList]="[option.class]"
       >
         {{ option.label }}
       </mat-checkbox>
+
       }
 
       <!-- Text -->
@@ -253,7 +252,7 @@ export class RawFormComponent<T = any> implements OnInit, OnDestroy {
   /**
    *
    */
-  formGroup = inject(getRawFormGroupToken(), { optional: true });
+  formGroup = inject(getRawFormGroupToken());
 
   /**
    *
@@ -283,8 +282,6 @@ export class RawFormComponent<T = any> implements OnInit, OnDestroy {
   @Input() submitButtonLabel = 'Submit';
 
   @Output() submittedEvent = new EventEmitter<any>();
-  @Output() submittedEventSuccess = new EventEmitter<any>();
-  @Output() submittedEventError = new EventEmitter<any>();
 
   readonly inputOptions = inject(getRawInputOptionsToken());
 
@@ -316,14 +313,6 @@ export class RawFormComponent<T = any> implements OnInit, OnDestroy {
 
   async handleFormSubmit(event?: any) {
     this.submittedEvent.emit(event || this.formGroup.value);
-  }
-
-  handleFormSubmitSuccess(event: any) {
-    this.submittedEventSuccess.emit(event);
-  }
-
-  handleFormSubmitError(event: any) {
-    this.submittedEventError.emit(event);
   }
 
   setFormValue(formValue: any) {
