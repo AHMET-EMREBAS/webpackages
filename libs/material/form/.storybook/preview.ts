@@ -8,7 +8,6 @@ setCompodocJson(await import('./documentation.json'));
 
 const preview: Preview = {
   parameters: {},
-
   decorators: [withActions],
 };
 
