@@ -38,11 +38,11 @@ export type ProductEditorStepType<T> = {
 };
 
 export type ProductEditorSteps = {
-  _1_createdProduct?: ProductEditorStepType<IProduct>;
-  _2_createdPrices?: ProductEditorStepType<IPrice[]>;
-  _3_createdQuantities?: ProductEditorStepType<IQuantity[]>;
-  _4_createdSerialNumbers?: ProductEditorStepType<ISerialNumber[]>;
-  _5_completed?: boolean;
+  product?: ProductEditorStepType<IProduct>;
+  price?: ProductEditorStepType<IPrice[]>;
+  quantity?: ProductEditorStepType<IQuantity[]>;
+  serial?: ProductEditorStepType<ISerialNumber[]>;
+  complete?: boolean;
 };
 
 /**
@@ -114,22 +114,22 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     if (this.completedSteps) {
       // Check all steps and
-      if (this.completedSteps._1_createdProduct?.complete) {
+      if (this.completedSteps.product?.complete) {
         this._1_createdProduct();
       }
-      if (this.completedSteps._2_createdPrices?.complete) {
+      if (this.completedSteps.price?.complete) {
         this._2_createdPrices();
       }
 
-      if (this.completedSteps._3_createdQuantities?.complete) {
+      if (this.completedSteps.quantity?.complete) {
         this._3_createdQuantities();
       }
 
-      if (this.completedSteps._4_createdSerialNumbers?.complete) {
+      if (this.completedSteps.serial?.complete) {
         this._4_createdSerialNumbers();
       }
 
-      if (this.completedSteps._5_completed) {
+      if (this.completedSteps.complete) {
         this._5_completed();
       }
       // Done
@@ -140,7 +140,7 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
     this.productStep.completed = true;
     this.productStep.editable = false;
 
-    this.savedPrices = this.completedSteps._2_createdPrices.data;
+    this.savedPrices = this.completedSteps.price.data;
     setTimeout(() => {
       this.productEditorStepper.next();
     }, 2000);
@@ -149,7 +149,7 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   _2_createdPrices() {
     this.priceStep.completed = true;
     this.priceStep.editable = false;
-    this.savedQuantities = this.completedSteps._3_createdQuantities.data;
+    this.savedQuantities = this.completedSteps.quantity.data;
     this.productEditorStepper.next();
   }
 
@@ -199,15 +199,15 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
     );
 
     this.productEditorStore.set({
-      _1_createdProduct: {
+      product: {
         complete: true,
         data: this.savedProduct,
       },
-      _2_createdPrices: {
+      price: {
         data: this.savedPrices,
         complete: false,
       },
-      _3_createdQuantities: {
+      quantity: {
         data: this.savedQuantities,
         complete: false,
       },

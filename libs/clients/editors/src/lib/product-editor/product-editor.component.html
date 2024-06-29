@@ -67,18 +67,17 @@
     <!--  -->
   </mat-step>
 
+  <mat-step label="Quantity" [completed]="false" [editable]="false">
+    Adding quantity for each sku
+  </mat-step>
+
+  
   <mat-step
     #serialNumberStep
     [stepControl]="serialNumberForm.formGroup"
     label="Serial Number"
-    [completed]="false"
-    [editable]="false"
   >
     <wp-serial-number-form #serialNumberForm></wp-serial-number-form>
-  </mat-step>
-
-  <mat-step label="Quantity" [completed]="false" [editable]="false">
-    Adding quantity for each sku
   </mat-step>
 
   <mat-step #finalStep label="Complete" [completed]="false" [editable]="false">
