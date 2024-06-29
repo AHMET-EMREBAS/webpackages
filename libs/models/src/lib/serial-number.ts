@@ -1,12 +1,28 @@
-import { BaseEntity } from '@webpackages/types';
+import {  BaseEntity } from '@webpackages/types';
 import { ISku } from './sku';
 
 export interface ISerialNumber extends BaseEntity {
-  serialNumber: string;
+ 
 
-  inStock: boolean;
+        serialNumber: string ;
+        
 
-  generated: boolean;
 
-  sku: ISku;
+        required: boolean ;
+        
+
+
+        type: string ;
+        
+
+
+        prefix: string ;
+        
+
+
+        suffix: string ;
+        
+ 
+        sku: ISku;
+        
 }

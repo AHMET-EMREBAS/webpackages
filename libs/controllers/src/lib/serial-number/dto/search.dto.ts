@@ -7,8 +7,10 @@ import { FindOptionsWhere } from 'typeorm';
 export class SearchSerialNumberDto implements SearchDto<SerialNumberView> {
   @SearchProperty<SerialNumberView>([
     'serialNumber',
-    'inStock',
-    'generated',
+    'required',
+    'type',
+    'prefix',
+    'suffix',
     'skuSku',
     'skuName',
   ])

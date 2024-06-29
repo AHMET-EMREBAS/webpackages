@@ -38,14 +38,14 @@ export const SerialNumberMetadata: Metadata = {
     },
     prefix: {
       type: 'string',
-      label: 'Serial Number Prefix',
+      label: 'Prefix',
       inputType: 'text',
       class: 'order-6, w-4/12 grow',
       tabIndex: 5,
     },
     suffix: {
       type: 'string',
-      label: 'Serial Number Suffix',
+      label: 'Suffix',
       inputType: 'text',
       class: 'order-6, w-4/12 grow',
       tabIndex: 6,

@@ -8,8 +8,10 @@ export class QuerySerialNumberDto
   implements QueryDto<SerialNumberView>
 {
   @QueryProperty() serialNumber: string;
-  @QueryProperty() inStock: string;
-  @QueryProperty() generated: string;
+  @QueryProperty() required: string;
+  @QueryProperty() type: string;
+  @QueryProperty() prefix: string;
+  @QueryProperty() suffix: string;
   @QueryProperty() skuId: string;
   @QueryProperty() skuActive: string;
   @QueryProperty() skuSku: string;
