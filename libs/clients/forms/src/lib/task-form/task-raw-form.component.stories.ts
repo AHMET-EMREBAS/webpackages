@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { TaskRawFormComponent } from './-raw-form.component';
+import { TaskRawFormComponent } from './task-raw-form.component';
 
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';

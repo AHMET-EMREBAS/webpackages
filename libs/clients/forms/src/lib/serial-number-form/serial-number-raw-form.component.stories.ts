@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { SerialNumberRawFormComponent } from './-raw-form.component';
+import { SerialNumberRawFormComponent } from './serial-number-raw-form.component';
 
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';

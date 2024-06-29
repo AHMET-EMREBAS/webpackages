@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { AccessTokenRawFormComponent } from './-raw-form.component';
+import { AccessTokenRawFormComponent } from './access-token-raw-form.component';
 
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';

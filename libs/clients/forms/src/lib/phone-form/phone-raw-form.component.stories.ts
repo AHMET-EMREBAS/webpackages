@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { PhoneRawFormComponent } from './-raw-form.component';
+import { PhoneRawFormComponent } from './phone-raw-form.component';
 
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';

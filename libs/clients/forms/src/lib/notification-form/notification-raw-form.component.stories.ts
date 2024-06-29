@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { NotificationRawFormComponent } from './-raw-form.component';
+import { NotificationRawFormComponent } from './notification-raw-form.component';
 
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';

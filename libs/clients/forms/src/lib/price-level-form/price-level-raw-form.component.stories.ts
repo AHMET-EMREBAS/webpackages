@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { PriceLevelRawFormComponent } from './-raw-form.component';
+import { PriceLevelRawFormComponent } from './price-level-raw-form.component';
 
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
