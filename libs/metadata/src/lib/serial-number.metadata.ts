@@ -14,32 +14,23 @@ export const SerialNumberMetadata: Metadata = {
     type: {
       type: 'string',
       label: 'Serial Number Type',
-      enum: ['incremental', 'actual'],
+      enum: ['none', 'incremental', 'actual'],
       inputType: 'select',
       required: true,
       default: 'incremental',
       class: 'order-1 w-full',
-
       tabIndex: 2,
     },
     prefix: {
       type: 'string',
       label: 'Prefix',
       inputType: 'text',
-
-      class: 'order-3, w-4/12 grow',
+      class: 'order-3, w-full grow',
       tabIndex: 3,
-    },
-    suffix: {
-      type: 'string',
-      label: 'Suffix',
-      inputType: 'text',
-      class: 'order-4, w-4/12 grow',
-      tabIndex: 4,
     },
     serialNumber: {
       type: 'string',
-      required: true,
+      dependsOn: 'required',
       unique: true,
       update: false,
       minLength: 3,

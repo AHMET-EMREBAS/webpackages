@@ -79,7 +79,13 @@ function debug(msg: string, data?: any) {
     MatCheckboxModule,
   ],
   templateUrl: `./product-editor.component.html`,
-  providers: [ProductService, SkuService, PriceService, QuantityService],
+  providers: [
+    ProductService,
+    SkuService,
+    PriceService,
+    SerialNumberService,
+    QuantityService,
+  ],
 })
 export class ProductEditorComponent implements OnInit, AfterViewInit {
   state = signal<ProductEditorState>({
@@ -165,20 +171,21 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
 
   async handleSerialNumberSubmitEvent(event: Partial<ISerialNumber>) {
     debug('Serial Number Submit Event: ', event);
-    const skus = this.state().sku.data;
 
-    if (!skus) {
-      debug('State', this.state());
-      throw new Error('Skus must be saved into the satate');
-    }
+    let { prefix, suffix } = event;
 
-    for (const sku of skus) {
-      await firstValueFrom(
-        this.serialService.add({
-          ...event,
-        })
-      );
-    }
+    prefix = prefix ? prefix + '-' : '';
+    suffix = suffix ? '-' + suffix : '';
+
+    const savedSerial = await firstValueFrom(
+      this.serialService.add({
+        ...event,
+        product: this.state().product.data as IProduct,
+        serialNumber: `${prefix}placeholder${suffix}`,
+      } as any)
+    );
+
+    this.finishAndLock('serial', savedSerial);
   }
 
   async handleDefaultPriceSubmitEvent(event: Partial<IPrice>) {
