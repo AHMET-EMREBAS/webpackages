@@ -34,7 +34,6 @@ import {
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { PropertyOptions } from '@webpackages/types';
-import { isNotUndefined } from '@webpackages/utils';
 import { FormComponent, setFormGroupErrors } from '../form';
 
 @Component({
@@ -95,21 +94,17 @@ export class UpdateFormComponent<T = any>
   }
 
   override async ngOnInit() {
-    this.entityId =
-      this.entityId || parseInt(this.route.snapshot.paramMap.get('id'));
-
-    if (isNotUndefined(this.entityId)) {
-      const foundItem = await firstValueFrom(
-        this.service.getByKey(this.entityId)
-      );
-
-      this.setFormValue(foundItem);
-
-      super.ngOnInit();
-      return;
+    if (!this.entityId) {
+      this.entityId = parseInt(this.route.snapshot.paramMap.get('id')) || -1;
     }
+    
+    const foundItem = await firstValueFrom(
+      this.service.getByKey(this.entityId)
+    );
 
-    throw new Error('UpdateForm need id parameters from URL');
+    this.setFormValue(foundItem);
+
+    super.ngOnInit();
   }
 
   override async handleFormSubmit(event?: any) {

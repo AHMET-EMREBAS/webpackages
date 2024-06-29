@@ -2,18 +2,11 @@
 <div class="w-full flex flex-row justify-end p-4">
   <button mat-raised-button color="warn" (click)="finishProcess()">New</button>
 </div>
-<mat-stepper #productEditorStepper [linear]="true">
-  <mat-step
-    #productStep
-    [stepControl]="productForm.formGroup"
-    label="Create Product"
-    [completed]="false"
-    [editable]="false"
-  >
+<mat-stepper #productEditorStepper>
+  <mat-step #productStep label="Create Product">
     <wp-product-form
       #productForm
       submitButtonLabel="Next"
-      formStoreName="ProductEditor"
       (submittedEventSuccess)="handleProductSubmitSuccess($event)"
       (submittedEventError)="handleProductSubmitError($event)"
       formStoreName="ProductEditorProductForm"
@@ -42,10 +35,10 @@
         </div>
         <div class="flex flex-col py-4">
           <wp-price-update-form
-            formStoreName="ProductEditorDefaultPriceForm"
             [onlyEmitEvent]="true"
             (submittedEventSuccess)="handleDefaultPriceSubmitSucces($event)"
             submitButtonLabel="Next"
+            formStoreName="ProductEditorDefaultPriceForm"
           ></wp-price-update-form>
         </div>
       </mat-tab>
@@ -54,10 +47,10 @@
       <mat-tab [label]="item['priceLevelName']">
         <div class="flex flex-col py-4">
           <wp-price-update-form
-            [formStoreName]="'ProductEditorPriceForm' + item.id"
-            [entityId]="item.id"
+            [entityId]="item['id']"
             submitButtonLabel="Next"
             (submittedEventSuccess)="tabGroup.selectedIndex = index + 2"
+            [formStoreName]="'ProductEditorPriceForm' + item.id"
           ></wp-price-update-form>
         </div>
       </mat-tab>
@@ -67,11 +60,8 @@
     <!--  -->
   </mat-step>
 
-  <mat-step label="Quantity" [completed]="false" [editable]="false">
-    Adding quantity for each sku
-  </mat-step>
+  <mat-step label="Quantity"> Adding quantity for each sku </mat-step>
 
-  
   <mat-step
     #serialNumberStep
     [stepControl]="serialNumberForm.formGroup"
@@ -80,7 +70,7 @@
     <wp-serial-number-form #serialNumberForm></wp-serial-number-form>
   </mat-step>
 
-  <mat-step #finalStep label="Complete" [completed]="false" [editable]="false">
+  <mat-step #finalStep label="Complete">
     <div
       class="flex flex-col w-full gap-4 p-4 justify-center items-center content-center"
     >
@@ -97,3 +87,5 @@
     </div>
   </mat-step>
 </mat-stepper>
+
+{{ completedSteps | json }}

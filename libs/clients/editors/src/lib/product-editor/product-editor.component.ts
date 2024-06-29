@@ -33,8 +33,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
 
 export type ProductEditorStepType<T> = {
-  complete: boolean;
-  data: Partial<T>;
+  complete?: boolean;
+  data?: Partial<T>;
 };
 
 export type ProductEditorSteps = {
@@ -74,7 +74,13 @@ export type ProductEditorSteps = {
   providers: [ProductService, SkuService, PriceService, QuantityService],
 })
 export class ProductEditorComponent implements OnInit, AfterViewInit {
-  completedSteps?: ProductEditorSteps;
+  completedSteps?: ProductEditorSteps = {
+    complete: false,
+    price: {},
+    product: {},
+    quantity: {},
+    serial: {},
+  };
 
   savedProduct: IProduct;
   savedSkus: ISku[];
@@ -115,28 +121,28 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
     if (this.completedSteps) {
       // Check all steps and
       if (this.completedSteps.product?.complete) {
-        this._1_createdProduct();
+        this.finishProductStep();
       }
       if (this.completedSteps.price?.complete) {
-        this._2_createdPrices();
+        this.finishPriceStep();
       }
 
       if (this.completedSteps.quantity?.complete) {
-        this._3_createdQuantities();
+        this.finishQuantityStep();
       }
 
       if (this.completedSteps.serial?.complete) {
-        this._4_createdSerialNumbers();
+        this.finishSerialStep();
       }
 
       if (this.completedSteps.complete) {
-        this._5_completed();
+        this.finishAll();
       }
       // Done
     }
   }
 
-  _1_createdProduct() {
+  finishProductStep() {
     this.productStep.completed = true;
     this.productStep.editable = false;
 
@@ -146,26 +152,26 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
     }, 2000);
   }
 
-  _2_createdPrices() {
+  finishPriceStep() {
     this.priceStep.completed = true;
     this.priceStep.editable = false;
     this.savedQuantities = this.completedSteps.quantity.data;
     this.productEditorStepper.next();
   }
 
-  _3_createdQuantities() {
+  finishQuantityStep() {
     this.quantityStep.completed = true;
     this.quantityStep.editable = false;
     this.productEditorStepper.next();
   }
 
-  _4_createdSerialNumbers() {
+  finishSerialStep() {
     this.serialStep.completed = true;
     this.serialStep.editable = false;
     this.productEditorStepper.next();
   }
 
-  _5_completed() {
+  finishAll() {
     this.finalStep.completed = true;
     this.finalStep.editable = false;
     this.productForm.reset();
@@ -194,6 +200,8 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
       this.priceService.getWithQuery({ search: event.upc })
     );
 
+    this.completedSteps;
+
     this.savedQuantities = await firstValueFrom(
       this.quantityService.getWithQuery({ search: event.upc })
     );
@@ -216,7 +224,7 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
     console.log('Skus: ', this.savedSkus);
     console.log('Prices: ', this.savedPrices);
     console.log('Quantities: ', this.savedQuantities);
-    this._1_createdProduct();
+    this.finishProductStep();
   }
 
   handleProductSubmitError(event: any) {
@@ -239,6 +247,6 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   }
 
   finishProcess() {
-    this._5_completed();
+    this.finishAll();
   }
 }

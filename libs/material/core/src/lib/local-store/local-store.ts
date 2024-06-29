@@ -5,10 +5,8 @@ export class LocalStoreController<T> {
 
   get(): T | undefined {
     const raw = localStorage.getItem(this.storeName);
-    if (isNotUndefined(raw)) {
-      return JSON.parse(raw);
-    }
-    console.error(`Could not get the ${this.storeName} store!`);
+    if (isNotUndefined(raw)) return JSON.parse(raw);
+
     return undefined;
   }
 
@@ -25,9 +23,7 @@ export class LocalStoreController<T> {
 
   setIfNotExist(value: T) {
     const foundItem = this.get();
-    if (isUndefined(foundItem)) {
-      this.set(value);
-    }
+    if (isUndefined(foundItem)) this.set(value);
   }
 
   delete() {
