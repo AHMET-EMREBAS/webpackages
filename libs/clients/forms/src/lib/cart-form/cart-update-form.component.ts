@@ -27,7 +27,7 @@ import { UpdateCartFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     CartService,
     provideEntityCollectionService(CartService),
-    provideUpdateFormGroup(UpdateCartFormGroup),
+    provideUpdateFormGroup(UpdateCartFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(CartMetadata)),
   ],
 })

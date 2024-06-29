@@ -26,7 +26,7 @@ import { UserAddressFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     UserAddressService,
     provideEntityCollectionService(UserAddressService),
-    provideFormGroup(UserAddressFormGroup),
+    provideFormGroup(UserAddressFormGroup()),
     provideInputOptions(toFormInputOptions(UserAddressMetadata)),
   ],
 })

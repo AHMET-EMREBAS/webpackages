@@ -26,7 +26,7 @@ import { PurchaseOrderFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     PurchaseOrderService,
     provideEntityCollectionService(PurchaseOrderService),
-    provideFormGroup(PurchaseOrderFormGroup),
+    provideFormGroup(PurchaseOrderFormGroup()),
     provideInputOptions(toFormInputOptions(PurchaseOrderMetadata)),
   ],
 })

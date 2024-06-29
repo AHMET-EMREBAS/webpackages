@@ -27,7 +27,7 @@ import { UpdateImgFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     ImgService,
     provideEntityCollectionService(ImgService),
-    provideUpdateFormGroup(UpdateImgFormGroup),
+    provideUpdateFormGroup(UpdateImgFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(ImgMetadata)),
   ],
 })

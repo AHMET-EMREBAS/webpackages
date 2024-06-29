@@ -26,7 +26,7 @@ import { ClockFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     ClockService,
     provideEntityCollectionService(ClockService),
-    provideFormGroup(ClockFormGroup),
+    provideFormGroup(ClockFormGroup()),
     provideInputOptions(toFormInputOptions(ClockMetadata)),
   ],
 })

@@ -26,7 +26,7 @@ import { CustomerProfileFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     CustomerProfileService,
     provideEntityCollectionService(CustomerProfileService),
-    provideFormGroup(CustomerProfileFormGroup),
+    provideFormGroup(CustomerProfileFormGroup()),
     provideInputOptions(toFormInputOptions(CustomerProfileMetadata)),
   ],
 })

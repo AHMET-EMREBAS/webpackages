@@ -26,7 +26,7 @@ import { CategoryFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     CategoryService,
     provideEntityCollectionService(CategoryService),
-    provideFormGroup(CategoryFormGroup),
+    provideFormGroup(CategoryFormGroup()),
     provideInputOptions(toFormInputOptions(CategoryMetadata)),
   ],
 })

@@ -1,11 +1,13 @@
 import { FormBuilder, Validators } from '@angular/forms';
 
-export const ClockFormGroup = new FormBuilder().group({
-  starDate: [null, [Validators.required]],
-  endDate: [null, []],
-  employee: [null, []],
-});
+export const ClockFormGroup = () =>
+  new FormBuilder().group({
+    starDate: [null, [Validators.required]],
+    endDate: [null, []],
+    employee: [null, []],
+  });
 
-export const UpdateClockFormGroup = new FormBuilder().group({
-  endDate: [null, []],
-});
+export const UpdateClockFormGroup = () =>
+  new FormBuilder().group({
+    endDate: [null, []],
+  });

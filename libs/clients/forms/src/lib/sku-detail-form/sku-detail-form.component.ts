@@ -26,7 +26,7 @@ import { SkuDetailFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     SkuDetailService,
     provideEntityCollectionService(SkuDetailService),
-    provideFormGroup(SkuDetailFormGroup),
+    provideFormGroup(SkuDetailFormGroup()),
     provideInputOptions(toFormInputOptions(SkuDetailMetadata)),
   ],
 })

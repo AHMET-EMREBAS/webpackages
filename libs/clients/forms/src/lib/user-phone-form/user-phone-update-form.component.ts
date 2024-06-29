@@ -27,7 +27,7 @@ import { UpdateUserPhoneFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     UserPhoneService,
     provideEntityCollectionService(UserPhoneService),
-    provideUpdateFormGroup(UpdateUserPhoneFormGroup),
+    provideUpdateFormGroup(UpdateUserPhoneFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(UserPhoneMetadata)),
   ],
 })

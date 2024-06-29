@@ -27,7 +27,7 @@ import { UpdateClockFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     ClockService,
     provideEntityCollectionService(ClockService),
-    provideUpdateFormGroup(UpdateClockFormGroup),
+    provideUpdateFormGroup(UpdateClockFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(ClockMetadata)),
   ],
 })

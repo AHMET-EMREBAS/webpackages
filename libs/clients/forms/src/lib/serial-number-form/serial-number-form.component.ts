@@ -26,7 +26,7 @@ import { SerialNumberFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     SerialNumberService,
     provideEntityCollectionService(SerialNumberService),
-    provideFormGroup(SerialNumberFormGroup),
+    provideFormGroup(SerialNumberFormGroup()),
     provideInputOptions(toFormInputOptions(SerialNumberMetadata)),
   ],
 })

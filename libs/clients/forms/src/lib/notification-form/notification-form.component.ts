@@ -26,7 +26,7 @@ import { NotificationFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     NotificationService,
     provideEntityCollectionService(NotificationService),
-    provideFormGroup(NotificationFormGroup),
+    provideFormGroup(NotificationFormGroup()),
     provideInputOptions(toFormInputOptions(NotificationMetadata)),
   ],
 })

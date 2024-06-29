@@ -27,7 +27,7 @@ import { UpdateProductAttributeFormGroup } from '@webpackages/clients/form-group
   providers: [
     ProductAttributeService,
     provideEntityCollectionService(ProductAttributeService),
-    provideUpdateFormGroup(UpdateProductAttributeFormGroup),
+    provideUpdateFormGroup(UpdateProductAttributeFormGroup()),
     provideUpdateInputOptions(
       toUpdateFormInputOptions(ProductAttributeMetadata)
     ),

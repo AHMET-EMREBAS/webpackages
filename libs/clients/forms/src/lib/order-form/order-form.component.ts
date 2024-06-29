@@ -26,7 +26,7 @@ import { OrderFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     OrderService,
     provideEntityCollectionService(OrderService),
-    provideFormGroup(OrderFormGroup),
+    provideFormGroup(OrderFormGroup()),
     provideInputOptions(toFormInputOptions(OrderMetadata)),
   ],
 })

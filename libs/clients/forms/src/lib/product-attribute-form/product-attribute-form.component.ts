@@ -26,7 +26,7 @@ import { ProductAttributeFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     ProductAttributeService,
     provideEntityCollectionService(ProductAttributeService),
-    provideFormGroup(ProductAttributeFormGroup),
+    provideFormGroup(ProductAttributeFormGroup()),
     provideInputOptions(toFormInputOptions(ProductAttributeMetadata)),
   ],
 })

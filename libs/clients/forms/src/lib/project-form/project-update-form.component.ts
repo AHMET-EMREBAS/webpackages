@@ -27,7 +27,7 @@ import { UpdateProjectFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     ProjectService,
     provideEntityCollectionService(ProjectService),
-    provideUpdateFormGroup(UpdateProjectFormGroup),
+    provideUpdateFormGroup(UpdateProjectFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(ProjectMetadata)),
   ],
 })

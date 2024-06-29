@@ -1,10 +1,12 @@
 import { FormBuilder, Validators } from '@angular/forms';
 
-export const CustomerEmailFormGroup = new FormBuilder().group({
-  email: [null, [Validators.email, Validators.required]],
-  customer: [null, []],
-});
+export const CustomerEmailFormGroup = () =>
+  new FormBuilder().group({
+    email: [null, [Validators.email, Validators.required]],
+    customer: [null, []],
+  });
 
-export const UpdateCustomerEmailFormGroup = new FormBuilder().group({
-  email: [null, [Validators.email, Validators.required]],
-});
+export const UpdateCustomerEmailFormGroup = () =>
+  new FormBuilder().group({
+    email: [null, [Validators.email, Validators.required]],
+  });

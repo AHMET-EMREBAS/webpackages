@@ -27,7 +27,7 @@ import { UpdatePriceLevelFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     PriceLevelService,
     provideEntityCollectionService(PriceLevelService),
-    provideUpdateFormGroup(UpdatePriceLevelFormGroup),
+    provideUpdateFormGroup(UpdatePriceLevelFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(PriceLevelMetadata)),
   ],
 })

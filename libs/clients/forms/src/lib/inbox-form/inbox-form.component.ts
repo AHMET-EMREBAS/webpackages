@@ -26,7 +26,7 @@ import { InboxFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     InboxService,
     provideEntityCollectionService(InboxService),
-    provideFormGroup(InboxFormGroup),
+    provideFormGroup(InboxFormGroup()),
     provideInputOptions(toFormInputOptions(InboxMetadata)),
   ],
 })

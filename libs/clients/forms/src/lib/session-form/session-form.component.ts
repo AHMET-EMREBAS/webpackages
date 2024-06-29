@@ -26,7 +26,7 @@ import { SessionFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     SessionService,
     provideEntityCollectionService(SessionService),
-    provideFormGroup(SessionFormGroup),
+    provideFormGroup(SessionFormGroup()),
     provideInputOptions(toFormInputOptions(SessionMetadata)),
   ],
 })

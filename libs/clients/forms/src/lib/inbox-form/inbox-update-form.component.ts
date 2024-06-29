@@ -27,7 +27,7 @@ import { UpdateInboxFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     InboxService,
     provideEntityCollectionService(InboxService),
-    provideUpdateFormGroup(UpdateInboxFormGroup),
+    provideUpdateFormGroup(UpdateInboxFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(InboxMetadata)),
   ],
 })

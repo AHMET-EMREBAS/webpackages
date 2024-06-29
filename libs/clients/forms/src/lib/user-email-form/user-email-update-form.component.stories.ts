@@ -32,7 +32,7 @@ export const EventHeading: Story = {
   ...EventEmitter,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/Put Form/gi)).toBeTruthy();
+    expect(canvas.getByText(/Emit Form/gi)).toBeTruthy();
   },
 };
 

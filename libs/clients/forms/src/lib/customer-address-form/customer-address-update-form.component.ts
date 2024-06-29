@@ -27,7 +27,7 @@ import { UpdateCustomerAddressFormGroup } from '@webpackages/clients/form-groups
   providers: [
     CustomerAddressService,
     provideEntityCollectionService(CustomerAddressService),
-    provideUpdateFormGroup(UpdateCustomerAddressFormGroup),
+    provideUpdateFormGroup(UpdateCustomerAddressFormGroup()),
     provideUpdateInputOptions(
       toUpdateFormInputOptions(CustomerAddressMetadata)
     ),

@@ -26,7 +26,7 @@ import { CustomerImgFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     CustomerImgService,
     provideEntityCollectionService(CustomerImgService),
-    provideFormGroup(CustomerImgFormGroup),
+    provideFormGroup(CustomerImgFormGroup()),
     provideInputOptions(toFormInputOptions(CustomerImgMetadata)),
   ],
 })

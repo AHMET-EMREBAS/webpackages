@@ -26,7 +26,7 @@ import { ManufacturerFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     ManufacturerService,
     provideEntityCollectionService(ManufacturerService),
-    provideFormGroup(ManufacturerFormGroup),
+    provideFormGroup(ManufacturerFormGroup()),
     provideInputOptions(toFormInputOptions(ManufacturerMetadata)),
   ],
 })

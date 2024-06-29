@@ -26,7 +26,7 @@ import { DiscountFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     DiscountService,
     provideEntityCollectionService(DiscountService),
-    provideFormGroup(DiscountFormGroup),
+    provideFormGroup(DiscountFormGroup()),
     provideInputOptions(toFormInputOptions(DiscountMetadata)),
   ],
 })

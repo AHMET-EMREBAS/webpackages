@@ -27,7 +27,7 @@ import { Update<%- className %>FormGroup } from '@webpackages/clients/form-group
   providers: [
     <%- className %>Service,
     provideEntityCollectionService(<%- className %>Service),
-    provideUpdateFormGroup(Update<%- className %>FormGroup),
+    provideUpdateFormGroup(Update<%- className %>FormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(<%- className %>Metadata)),
   ],
 })

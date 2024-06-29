@@ -26,7 +26,7 @@ import { OrganizationFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     OrganizationService,
     provideEntityCollectionService(OrganizationService),
-    provideFormGroup(OrganizationFormGroup),
+    provideFormGroup(OrganizationFormGroup()),
     provideInputOptions(toFormInputOptions(OrganizationMetadata)),
   ],
 })

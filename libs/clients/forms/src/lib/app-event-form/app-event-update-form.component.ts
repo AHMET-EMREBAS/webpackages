@@ -27,7 +27,7 @@ import { UpdateAppEventFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     AppEventService,
     provideEntityCollectionService(AppEventService),
-    provideUpdateFormGroup(UpdateAppEventFormGroup),
+    provideUpdateFormGroup(UpdateAppEventFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(AppEventMetadata)),
   ],
 })

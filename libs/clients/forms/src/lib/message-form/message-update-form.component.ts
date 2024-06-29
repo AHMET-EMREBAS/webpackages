@@ -27,7 +27,7 @@ import { UpdateMessageFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     MessageService,
     provideEntityCollectionService(MessageService),
-    provideUpdateFormGroup(UpdateMessageFormGroup),
+    provideUpdateFormGroup(UpdateMessageFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(MessageMetadata)),
   ],
 })

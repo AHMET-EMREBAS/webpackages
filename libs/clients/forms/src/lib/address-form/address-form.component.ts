@@ -26,7 +26,7 @@ import { AddressFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     AddressService,
     provideEntityCollectionService(AddressService),
-    provideFormGroup(AddressFormGroup),
+    provideFormGroup(AddressFormGroup()),
     provideInputOptions(toFormInputOptions(AddressMetadata)),
   ],
 })

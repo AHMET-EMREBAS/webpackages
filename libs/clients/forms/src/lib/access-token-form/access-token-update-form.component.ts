@@ -27,7 +27,7 @@ import { UpdateAccessTokenFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     AccessTokenService,
     provideEntityCollectionService(AccessTokenService),
-    provideUpdateFormGroup(UpdateAccessTokenFormGroup),
+    provideUpdateFormGroup(UpdateAccessTokenFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(AccessTokenMetadata)),
   ],
 })

@@ -27,7 +27,7 @@ import { UpdateOrderFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     OrderService,
     provideEntityCollectionService(OrderService),
-    provideUpdateFormGroup(UpdateOrderFormGroup),
+    provideUpdateFormGroup(UpdateOrderFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(OrderMetadata)),
   ],
 })

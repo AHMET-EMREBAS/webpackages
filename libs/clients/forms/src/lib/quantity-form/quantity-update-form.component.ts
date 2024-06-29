@@ -27,7 +27,7 @@ import { UpdateQuantityFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     QuantityService,
     provideEntityCollectionService(QuantityService),
-    provideUpdateFormGroup(UpdateQuantityFormGroup),
+    provideUpdateFormGroup(UpdateQuantityFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(QuantityMetadata)),
   ],
 })

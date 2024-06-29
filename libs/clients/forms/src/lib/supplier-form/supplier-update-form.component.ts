@@ -27,7 +27,7 @@ import { UpdateSupplierFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     SupplierService,
     provideEntityCollectionService(SupplierService),
-    provideUpdateFormGroup(UpdateSupplierFormGroup),
+    provideUpdateFormGroup(UpdateSupplierFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(SupplierMetadata)),
   ],
 })

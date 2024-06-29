@@ -27,7 +27,7 @@ import { UpdateNotificationFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     NotificationService,
     provideEntityCollectionService(NotificationService),
-    provideUpdateFormGroup(UpdateNotificationFormGroup),
+    provideUpdateFormGroup(UpdateNotificationFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(NotificationMetadata)),
   ],
 })

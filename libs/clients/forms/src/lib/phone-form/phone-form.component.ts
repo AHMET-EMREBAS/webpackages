@@ -26,7 +26,7 @@ import { PhoneFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     PhoneService,
     provideEntityCollectionService(PhoneService),
-    provideFormGroup(PhoneFormGroup),
+    provideFormGroup(PhoneFormGroup()),
     provideInputOptions(toFormInputOptions(PhoneMetadata)),
   ],
 })

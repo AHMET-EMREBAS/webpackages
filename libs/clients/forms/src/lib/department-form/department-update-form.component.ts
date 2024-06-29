@@ -27,7 +27,7 @@ import { UpdateDepartmentFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     DepartmentService,
     provideEntityCollectionService(DepartmentService),
-    provideUpdateFormGroup(UpdateDepartmentFormGroup),
+    provideUpdateFormGroup(UpdateDepartmentFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(DepartmentMetadata)),
   ],
 })

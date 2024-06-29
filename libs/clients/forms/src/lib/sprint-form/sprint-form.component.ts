@@ -26,7 +26,7 @@ import { SprintFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     SprintService,
     provideEntityCollectionService(SprintService),
-    provideFormGroup(SprintFormGroup),
+    provideFormGroup(SprintFormGroup()),
     provideInputOptions(toFormInputOptions(SprintMetadata)),
   ],
 })

@@ -26,7 +26,7 @@ import { SaleFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     SaleService,
     provideEntityCollectionService(SaleService),
-    provideFormGroup(SaleFormGroup),
+    provideFormGroup(SaleFormGroup()),
     provideInputOptions(toFormInputOptions(SaleMetadata)),
   ],
 })

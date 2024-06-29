@@ -27,7 +27,7 @@ import { UpdateEmailFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     EmailService,
     provideEntityCollectionService(EmailService),
-    provideUpdateFormGroup(UpdateEmailFormGroup),
+    provideUpdateFormGroup(UpdateEmailFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(EmailMetadata)),
   ],
 })

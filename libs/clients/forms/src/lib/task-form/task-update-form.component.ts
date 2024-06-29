@@ -27,7 +27,7 @@ import { UpdateTaskFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     TaskService,
     provideEntityCollectionService(TaskService),
-    provideUpdateFormGroup(UpdateTaskFormGroup),
+    provideUpdateFormGroup(UpdateTaskFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(TaskMetadata)),
   ],
 })

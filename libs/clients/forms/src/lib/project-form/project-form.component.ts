@@ -26,7 +26,7 @@ import { ProjectFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     ProjectService,
     provideEntityCollectionService(ProjectService),
-    provideFormGroup(ProjectFormGroup),
+    provideFormGroup(ProjectFormGroup()),
     provideInputOptions(toFormInputOptions(ProjectMetadata)),
   ],
 })

@@ -27,7 +27,7 @@ import { UpdateProfileFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     ProfileService,
     provideEntityCollectionService(ProfileService),
-    provideUpdateFormGroup(UpdateProfileFormGroup),
+    provideUpdateFormGroup(UpdateProfileFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(ProfileMetadata)),
   ],
 })

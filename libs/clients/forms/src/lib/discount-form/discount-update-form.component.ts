@@ -27,7 +27,7 @@ import { UpdateDiscountFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     DiscountService,
     provideEntityCollectionService(DiscountService),
-    provideUpdateFormGroup(UpdateDiscountFormGroup),
+    provideUpdateFormGroup(UpdateDiscountFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(DiscountMetadata)),
   ],
 })
