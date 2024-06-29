@@ -333,5 +333,10 @@ export function getBuiltinProducts(): Partial<any>[] {
       category: { id: catId() },
       supplier: { id: supId() },
     },
-  ];
+  ].map((e) => {
+    return {
+      ...e,
+      name: `DMY ${e.name}`,
+    };
+  });
 }

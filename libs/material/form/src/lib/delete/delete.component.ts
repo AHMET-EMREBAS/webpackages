@@ -34,7 +34,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styles: ``,
 })
 export class DeleteComponent {
-  entityId = this.activatedRoute.snapshot.paramMap.get('id');
+  entityId = this.activatedRoute.snapshot.paramMap.get('id') || 1;
   itemToDelete$ = this.service.getByKey(this.entityId);
 
   constructor(
@@ -49,8 +49,8 @@ export class DeleteComponent {
     this.router.navigate(['../../table'], { relativeTo: this.activatedRoute });
   }
 
-  properties(data: any) {
-    return Object.entries(data).map(([key, value]) => {
+  properties(data?: any) {
+    return Object.entries(data || {}).map(([key, value]) => {
       return { key, value };
     });
   }

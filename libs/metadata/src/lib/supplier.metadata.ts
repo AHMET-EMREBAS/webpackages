@@ -10,6 +10,25 @@ export const SupplierMetadata: Metadata = {
       required: true,
       unique: true,
       example: 'ABC Wholesale 68',
+      inputType: 'text',
     },
-  }
+    // summary: {
+    //   type: 'string',
+    //   minLength: 3,
+    //   maxLength: 1000,
+    //   inputType: 'textarea',
+    // },
+    // webiste: {
+    //   type: 'string',
+    //   maxLength: 300,
+    //   inputType: 'text',
+    //   format: 'url',
+    // },
+    // phone: {
+    //   type: 'string',
+    //   maxLength: 300,
+    //   inputType: 'text',
+    //   format: 'url',
+    // },
+  },
 };

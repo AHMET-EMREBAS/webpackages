@@ -1,12 +1,27 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import {
+  applicationConfig,
+  type Meta,
+  type StoryObj,
+} from '@storybook/angular';
 import { DeleteComponent } from './delete.component';
 
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
+import {
+  MockCategoryCollectionService,
+  provideEntityCollectionService,
+} from '@webpackages/material/core';
 
 const meta: Meta<DeleteComponent> = {
   component: DeleteComponent,
   title: 'DeleteComponent',
+  decorators: [
+    applicationConfig({
+      providers: [
+        provideEntityCollectionService(MockCategoryCollectionService),
+      ],
+    }),
+  ],
 };
 export default meta;
 type Story = StoryObj<DeleteComponent>;
