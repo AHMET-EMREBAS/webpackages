@@ -1789,7 +1789,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    formStoreName: 'RawFormStory',\r\n    submitButtonLabel: 'Submit',\r\n  },\r\n  play: async ({ canvasElement }) => {\r\n    const canvas = within(canvasElement);\r\n    expect(canvas.getByText(/Category Name/gi)).toBeTruthy();\r\n  },\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    formStoreName: 'RawFormStory',\r\n    submitButtonLabel: 'Submit',\r\n  },\r\n  play: async ({ canvasElement }) => {\r\n    const canvas = within(canvasElement);\r\n    expect(canvas.getByText(/Input Label/gi)).toBeTruthy();\r\n  },\r\n}"
             },
             {
                 "name": "Heading",
@@ -1829,7 +1829,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<RawFormComponent>",
-                "defaultValue": "{\r\n  component: RawFormComponent,\r\n  title: 'RawFormComponent',\r\n  decorators: [\r\n    applicationConfig({\r\n      providers: [\r\n        provideResouceName('Category'),\r\n        provideFormGroup(\r\n          new FormGroup({\r\n            name: new FormControl('', [Validators.required]),\r\n          })\r\n        ),\r\n        provideInputOptions(toFormInputOptions(CategoryMetadata)),\r\n      ],\r\n    }),\r\n  ],\r\n\r\n  // args: {\r\n  //   handleFormSubmit: fn(),\r\n  // },\r\n}"
+                "defaultValue": "{\r\n  component: RawFormComponent,\r\n  title: 'RawFormComponent',\r\n  decorators: [\r\n    applicationConfig({\r\n      providers: [\r\n        provideResouceName('Category'),\r\n        provideFormGroup(\r\n          new FormGroup({\r\n            name: new FormControl('', [Validators.required]),\r\n          })\r\n        ),\r\n        provideInputOptions(\r\n          toFormInputOptions({\r\n            properties: {\r\n              name: { type: 'string', label: 'Input Label' },\r\n            },\r\n            relations: {},\r\n          })\r\n        ),\r\n      ],\r\n    }),\r\n  ],\r\n\r\n  // args: {\r\n  //   handleFormSubmit: fn(),\r\n  // },\r\n}"
             },
             {
                 "name": "meta",
@@ -2058,7 +2058,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    formStoreName: 'RawFormStory',\r\n    submitButtonLabel: 'Submit',\r\n  },\r\n  play: async ({ canvasElement }) => {\r\n    const canvas = within(canvasElement);\r\n    expect(canvas.getByText(/Category Name/gi)).toBeTruthy();\r\n  },\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    formStoreName: 'RawFormStory',\r\n    submitButtonLabel: 'Submit',\r\n  },\r\n  play: async ({ canvasElement }) => {\r\n    const canvas = within(canvasElement);\r\n    expect(canvas.getByText(/Input Label/gi)).toBeTruthy();\r\n  },\r\n}"
                 },
                 {
                     "name": "meta",
@@ -2068,7 +2068,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<RawFormComponent>",
-                    "defaultValue": "{\r\n  component: RawFormComponent,\r\n  title: 'RawFormComponent',\r\n  decorators: [\r\n    applicationConfig({\r\n      providers: [\r\n        provideResouceName('Category'),\r\n        provideFormGroup(\r\n          new FormGroup({\r\n            name: new FormControl('', [Validators.required]),\r\n          })\r\n        ),\r\n        provideInputOptions(toFormInputOptions(CategoryMetadata)),\r\n      ],\r\n    }),\r\n  ],\r\n\r\n  // args: {\r\n  //   handleFormSubmit: fn(),\r\n  // },\r\n}"
+                    "defaultValue": "{\r\n  component: RawFormComponent,\r\n  title: 'RawFormComponent',\r\n  decorators: [\r\n    applicationConfig({\r\n      providers: [\r\n        provideResouceName('Category'),\r\n        provideFormGroup(\r\n          new FormGroup({\r\n            name: new FormControl('', [Validators.required]),\r\n          })\r\n        ),\r\n        provideInputOptions(\r\n          toFormInputOptions({\r\n            properties: {\r\n              name: { type: 'string', label: 'Input Label' },\r\n            },\r\n            relations: {},\r\n          })\r\n        ),\r\n      ],\r\n    }),\r\n  ],\r\n\r\n  // args: {\r\n  //   handleFormSubmit: fn(),\r\n  // },\r\n}"
                 },
                 {
                     "name": "Primary",
