@@ -31,7 +31,6 @@ import { ActivatedRoute, Router } from '@angular/router';
       </button>
     </div>
   `,
-  styles: ``,
 })
 export class DeleteComponent {
   entityId = this.activatedRoute.snapshot.paramMap.get('id') || 1;

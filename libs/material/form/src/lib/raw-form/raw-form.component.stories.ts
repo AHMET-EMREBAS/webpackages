@@ -13,8 +13,8 @@ import {
 } from '@webpackages/material/core';
 import { toFormInputOptions } from '@webpackages/types';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
-// import { fn } from '@storybook/test';
+import { importProvidersFrom } from '@angular/core';
+import { FormTestingModule } from './../testing';
 
 const meta: Meta<RawFormComponent> = {
   component: RawFormComponent,
@@ -22,6 +22,7 @@ const meta: Meta<RawFormComponent> = {
   decorators: [
     applicationConfig({
       providers: [
+        importProvidersFrom(FormTestingModule),
         provideResouceName('Category'),
         provideFormGroup(
           new FormGroup({
@@ -39,10 +40,6 @@ const meta: Meta<RawFormComponent> = {
       ],
     }),
   ],
-
-  // args: {
-  //   handleFormSubmit: fn(),
-  // },
 };
 export default meta;
 

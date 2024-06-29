@@ -11,6 +11,8 @@ import {
   MockCategoryCollectionService,
   provideEntityCollectionService,
 } from '@webpackages/material/core';
+import { importProvidersFrom } from '@angular/core';
+import { FormTestingModule } from '../testing';
 
 const meta: Meta<DeleteComponent> = {
   component: DeleteComponent,
@@ -18,6 +20,7 @@ const meta: Meta<DeleteComponent> = {
   decorators: [
     applicationConfig({
       providers: [
+        importProvidersFrom(FormTestingModule),
         provideEntityCollectionService(MockCategoryCollectionService),
       ],
     }),
