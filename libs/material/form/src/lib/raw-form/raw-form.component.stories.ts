@@ -14,7 +14,9 @@ import {
 } from '@webpackages/material/core';
 import { toFormInputOptions } from '@webpackages/types';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { fn } from '@storybook/test';
+
 const meta: Meta<RawFormComponent> = {
   component: RawFormComponent,
   title: 'RawFormComponent',
@@ -31,6 +33,31 @@ const meta: Meta<RawFormComponent> = {
       ],
     }),
   ],
+
+  args: {
+    handleFormSubmit: fn(),
+  },
+  argTypes: {
+    isFormSubmitted: {
+      description: 'Arg type description.',
+    },
+    formGroup: {
+      description: 'Arg type description.',
+    },
+    formStore: {
+      description: 'Arg type description.',
+    },
+    valueChange: {
+      description: 'Arg type description.',
+    },
+    valueChangeSub: {
+      description: 'Arg type description.',
+    },
+
+    submittedEvent: { action: 'submittedEvent' },
+    submittedEventSuccess: { action: 'submittedEventSuccess' },
+    submittedEventError: { action: 'submittedEventError' },
+  },
 };
 export default meta;
 type Story = StoryObj<RawFormComponent>;
@@ -39,12 +66,14 @@ export const Primary: Story = {
   args: {
     formStoreName: 'RawFormStory',
     submitButtonLabel: 'Submit',
-    handleFormSubmit: fn(),
   },
 };
 
 export const Heading: Story = {
-  ...Primary.args,
+  args: {
+    formStoreName: 'RawFormStory',
+    submitButtonLabel: 'Submit',
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Category Name/gi)).toBeTruthy();

@@ -1,7 +1,6 @@
 // Replace your-framework with the framework you are using (e.g., react, vue3)
 import { Preview, applicationConfig } from '@storybook/angular';
 import { withActions } from '@storybook/addon-actions/decorator';
-import { within } from '@storybook/testing-library';
 import {
   provideDefaultInputDebounceTime,
   provideDefaultInputErrorMesssageHandler,
@@ -13,22 +12,18 @@ import {
   MockCategoryCollectionService,
   provideDefaultHttpSearchQueryBuilder,
   provideEntityCollectionService,
-  provideFormGroup,
-  provideInputOptions,
 } from '@webpackages/material/core';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import {
-  provideEntityData,
-  EntityMetadataMap,
-  EntityDataModuleConfig,
-  withEffects,
-} from '@ngrx/data';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { provideEntityData, withEffects } from '@ngrx/data';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { provideRouter } from '@angular/router';
-import { PropertyOptions } from '@webpackages/types';
+
+import { setCompodocJson } from '@storybook/addon-docs/angular';
+
+setCompodocJson(await import('./documentation.json'));
+
 const preview: Preview = {
   decorators: [
     withActions,

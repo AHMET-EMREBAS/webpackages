@@ -4,7 +4,7 @@
   "peerDependencies": {
     "@angular/common": "^18.0.0",
     "@angular/core": "^18.0.0",
-    "@storybook/angular": "7.6.19",
+    "@storybook/angular": "8.1.11",
     "@angular/material": "^18.0.3",
     "@webpackages/material/core": "0.0.1",
     "@ngrx/data": "^18.0.0",
@@ -17,8 +17,11 @@
     "@angular/forms": "~18.0.0",
     "@webpackages/types": "1.0.0",
     "rxjs": "~7.8.0",
-    "@webpackages/utils": "1.0.0",
-    "jest-preset-angular": "~14.1.0"
+    "jest-preset-angular": "~14.1.0",
+    "@storybook/addon-actions": "^8.1.11",
+    "@storybook/jest": "^0.2.3",
+    "@webpackages/metadata": "0.0.1",
+    "@storybook/test": "^8.1.11"
   },
   "sideEffects": false
 }
