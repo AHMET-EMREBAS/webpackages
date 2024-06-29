@@ -31,33 +31,6 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
-    },
-
-    "storybook": {
-      "options": {
-        "compodoc": true,
-        "compodocArgs": [
-          "-e",
-          "json",
-          "-d",
-          "libs/material/form/.storybook",
-          "-p",
-          "libs/material/form/tsconfig.json"
-        ]
-      }
-    },
-    "build-storybook": {
-      "options": {
-        "compodoc": true,
-        "compodocArgs": [
-          "-e",
-          "json",
-          "-d",
-          "libs/material/form/.storybook",
-          "-p",
-          "libs/material/form/tsconfig.json"
-        ]
-      }
     }
   }
 }

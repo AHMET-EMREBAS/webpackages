@@ -9,12 +9,6 @@ import {
 } from '@webpackages/material/core';
 import { toFormInputOptions } from '@webpackages/types';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {
-  provideDefaultInputDebounceTime,
-  provideDefaultInputErrorMesssageHandler,
-  provideDefaultInputStatusIndicatorHandler,
-  provideInputErrorMessageHandler,
-} from '@webpackages/material/input';
 
 // import { fn } from '@storybook/test';
 
@@ -24,9 +18,6 @@ const meta: Meta<RawFormComponent> = {
   decorators: [
     moduleMetadata({
       providers: [
-        provideDefaultInputErrorMesssageHandler(),
-        provideDefaultInputStatusIndicatorHandler(),
-        provideDefaultInputDebounceTime(),
         provideResouceName('Category'),
         provideFormGroup(
           new FormGroup({
@@ -50,6 +41,7 @@ const meta: Meta<RawFormComponent> = {
   // },
 };
 export default meta;
+
 type Story = StoryObj<RawFormComponent>;
 
 export const Primary: Story = {
