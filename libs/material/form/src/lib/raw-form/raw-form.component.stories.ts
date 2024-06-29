@@ -15,7 +15,7 @@ import {
 import { toFormInputOptions } from '@webpackages/types';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { fn } from '@storybook/test';
+// import { fn } from '@storybook/test';
 
 const meta: Meta<RawFormComponent> = {
   component: RawFormComponent,
@@ -34,30 +34,9 @@ const meta: Meta<RawFormComponent> = {
     }),
   ],
 
-  args: {
-    handleFormSubmit: fn(),
-  },
-  argTypes: {
-    isFormSubmitted: {
-      description: 'Arg type description.',
-    },
-    formGroup: {
-      description: 'Arg type description.',
-    },
-    formStore: {
-      description: 'Arg type description.',
-    },
-    valueChange: {
-      description: 'Arg type description.',
-    },
-    valueChangeSub: {
-      description: 'Arg type description.',
-    },
-
-    submittedEvent: { action: 'submittedEvent' },
-    submittedEventSuccess: { action: 'submittedEventSuccess' },
-    submittedEventError: { action: 'submittedEventError' },
-  },
+  // args: {
+  //   handleFormSubmit: fn(),
+  // },
 };
 export default meta;
 type Story = StoryObj<RawFormComponent>;
