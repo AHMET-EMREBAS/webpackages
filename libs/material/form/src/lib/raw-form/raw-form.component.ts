@@ -262,7 +262,6 @@ export class RawFormComponent<T = any> implements OnInit, OnDestroy {
   @Input() submitButtonLabel = 'Submit';
 
   @Output() submittedEvent = new EventEmitter<any>();
-
   @Output() submittedEventSuccess = new EventEmitter<any>();
   @Output() submittedEventError = new EventEmitter<any>();
 
