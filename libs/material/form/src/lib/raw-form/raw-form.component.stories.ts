@@ -1,4 +1,8 @@
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import {
+  applicationConfig,
+  type Meta,
+  type StoryObj,
+} from '@storybook/angular';
 import { RawFormComponent } from './raw-form.component';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
@@ -16,7 +20,7 @@ const meta: Meta<RawFormComponent> = {
   component: RawFormComponent,
   title: 'RawFormComponent',
   decorators: [
-    moduleMetadata({
+    applicationConfig({
       providers: [
         provideResouceName('Category'),
         provideFormGroup(

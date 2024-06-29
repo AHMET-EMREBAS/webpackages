@@ -9,9 +9,7 @@ const config: StorybookConfig = {
   ],
   framework: {
     name: '@storybook/angular',
-    options: {
-      enableIvy: true,
-    },
+    options: {},
   },
   docs: {
     autodocs: true,

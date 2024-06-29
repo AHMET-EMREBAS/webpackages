@@ -107,16 +107,7 @@
         "serveStorybookTargetName": "storybook",
         "buildStorybookTargetName": "build-storybook",
         "testStorybookTargetName": "test-storybook",
-        "staticStorybookTargetName": "static-storybook",
-        "compodoc": true,
-        "compodocArgs": [
-          "-e",
-          "json",
-          "-d",
-          "libs/material/.storybook",
-          "-p",
-          "libs/material/tsconfig.json"
-        ]
+        "staticStorybookTargetName": "static-storybook"
       }
     }
   ],
