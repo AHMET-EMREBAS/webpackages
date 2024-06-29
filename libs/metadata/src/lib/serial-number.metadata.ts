@@ -11,7 +11,6 @@ export const SerialNumberMetadata: Metadata = {
       description: 'Is serial number required for the product?',
       class: 'order-1 w-full grow',
       tabIndex: 1,
-      update: false,
     },
     type: {
       type: 'string',
@@ -21,14 +20,14 @@ export const SerialNumberMetadata: Metadata = {
       required: true,
       default: 'incremental',
       class: 'order-2 w-full',
-      update: false,
+
       tabIndex: 2,
     },
     prefix: {
       type: 'string',
       label: 'Prefix',
       inputType: 'text',
-      update: false,
+
       class: 'order-3, w-4/12 grow',
       tabIndex: 3,
     },
@@ -38,7 +37,6 @@ export const SerialNumberMetadata: Metadata = {
       inputType: 'text',
       class: 'order-4, w-4/12 grow',
       tabIndex: 4,
-      update: false,
     },
     serialNumber: {
       type: 'string',
@@ -50,7 +48,6 @@ export const SerialNumberMetadata: Metadata = {
       description: 'Unique product serial number to track product',
       class: 'order-5 w-full',
       tabIndex: 5,
-      update: false,
     },
   },
   relations: {
@@ -60,7 +57,7 @@ export const SerialNumberMetadata: Metadata = {
       label: '',
       viewColumns: ['sku', 'name'],
       resourceLabelProperty: 'name',
-      update: false,
+
       class: 'order-6 w-4/12 grow',
       tabIndex: 6,
     },

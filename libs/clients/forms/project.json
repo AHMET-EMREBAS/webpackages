@@ -31,6 +31,32 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "storybook": {
+      "options": {
+        "compodoc": true,
+        "compodocArgs": [
+          "-e",
+          "json",
+          "-d",
+          "libs/clients/forms/.storybook",
+          "-p",
+          "libs/clients/forms/tsconfig.json"
+        ]
+      }
+    },
+    "build-storybook": {
+      "options": {
+        "compodoc": true,
+        "compodocArgs": [
+          "-e",
+          "json",
+          "-d",
+          "libs/clients/forms/.storybook",
+          "-p",
+          "libs/clients/forms/tsconfig.json"
+        ]
+      }
     }
   }
 }
