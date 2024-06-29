@@ -1,5 +1,4 @@
 import {
-  AfterContentInit,
   AfterViewInit,
   Component,
   OnInit,
@@ -42,6 +41,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { firstValueFrom } from 'rxjs';
 import { RawFormComponent } from '@webpackages/material/form';
+import { v4 } from 'uuid';
 
 export type ProductEditorStepState<T> = {
   complete?: boolean;
@@ -181,7 +181,7 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
       this.serialService.add({
         ...event,
         product: this.state().product.data as IProduct,
-        serialNumber: `${event.prefix || ''}placeholder`,
+        serialNumber: `${event.prefix || ''}${v4()}`,
       } as any)
     );
 
@@ -207,7 +207,9 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
       }
       if (this.defaultPriceForm.formGroup.valid) {
         const updatedPrices = await this.getPrices();
-        this.finishAndLock('price', updatedPrices);
+        this.updateState({ price: { data: updatedPrices } });
+        this.priceTabGroup.selectedIndex += 1;
+        this.anounce('Successfully updated the prices.');
       }
     }
   }
@@ -215,7 +217,7 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   async nextPriceTab(selectedIndex?: number) {
     selectedIndex = selectedIndex ?? this.priceTabGroup.selectedIndex;
     const l = this.priceTabGroup._allTabs.length;
-    if (selectedIndex == l - 1) {
+    if (selectedIndex == l) {
       const prices = await this.getPrices();
       this.finishAndLock('price', prices);
     } else {
@@ -314,5 +316,7 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   restartSteps() {
     this.stepper.reset();
     this.cleanStore();
+    this.priceTabGroup.selectedIndex = 0;
+    this.defaultPriceForm.formGroup.reset();
   }
 }

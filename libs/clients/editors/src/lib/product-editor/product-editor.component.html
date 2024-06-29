@@ -17,17 +17,8 @@
     <mat-tab-group #priceTabGroup>
       <mat-tab label="Default Price">
         <div class="flex flex-row items-center gap-4 py-4">
-          <button
-            mat-flat-button
-            color="accent"
-            (click)="nextPriceTab(priceTabGroup.selectedIndex)"
-          >
-            <mat-icon>info</mat-icon>
-            Skip
-          </button>
           <div class="text-orange-600">
-            <p>This form will update all prices!</p>
-            <p>If you want to create specific prices, click the skip button.</p>
+            <p>This operation updates all prices levels!</p>
           </div>
         </div>
         <div class="flex flex-col py-4">
@@ -40,8 +31,8 @@
         </div>
       </mat-tab>
 
-      <ng-container *ngIf="state() as state">
-        @for(item of state.price.data;track item.id;){
+      <ng-container>
+        @for(item of state().price.data;track item;){
         <mat-tab [label]="item['priceLevelName']">
           <div class="flex flex-col py-4">
             <wp-price-update-form
@@ -95,12 +86,7 @@
   </mat-step>
 </mat-stepper>
 <div class="flex flex-row-reverse gap-4 px-6">
-  <button
-    class="w-full"
-    mat-raised-button
-    color="accent"
-    (click)="restartSteps()"
-  >
+  <button mat-raised-button color="accent" (click)="restartSteps()">
     Restart Stepper
   </button>
 </div>
