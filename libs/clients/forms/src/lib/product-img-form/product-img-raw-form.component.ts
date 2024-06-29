@@ -4,15 +4,15 @@ import { ProductImgService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { ProductImgMetadata } from '@webpackages/metadata';
 import { ProductImgRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-product-img-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { ProductImgRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     ProductImgService,
     provideEntityCollectionService(ProductImgService),
-    provideUpdateFormGroup(ProductImgRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(ProductImgMetadata)),
+    provideRawFormGroup(ProductImgRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(ProductImgMetadata)),
   ],
 })
 export class ProductImgRawFormComponent extends RawFormComponent {

@@ -4,15 +4,15 @@ import { AppEventService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { AppEventMetadata } from '@webpackages/metadata';
 import { AppEventRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-app-event-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { AppEventRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     AppEventService,
     provideEntityCollectionService(AppEventService),
-    provideUpdateFormGroup(AppEventRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(AppEventMetadata)),
+    provideRawFormGroup(AppEventRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(AppEventMetadata)),
   ],
 })
 export class AppEventRawFormComponent extends RawFormComponent {

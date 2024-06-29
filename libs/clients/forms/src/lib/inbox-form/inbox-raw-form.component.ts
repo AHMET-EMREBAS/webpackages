@@ -4,15 +4,15 @@ import { InboxService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { InboxMetadata } from '@webpackages/metadata';
 import { InboxRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-inbox-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { InboxRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     InboxService,
     provideEntityCollectionService(InboxService),
-    provideUpdateFormGroup(InboxRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(InboxMetadata)),
+    provideRawFormGroup(InboxRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(InboxMetadata)),
   ],
 })
 export class InboxRawFormComponent extends RawFormComponent {

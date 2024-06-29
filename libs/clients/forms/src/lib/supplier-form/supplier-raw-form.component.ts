@@ -4,15 +4,15 @@ import { SupplierService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { SupplierMetadata } from '@webpackages/metadata';
 import { SupplierRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-supplier-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { SupplierRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     SupplierService,
     provideEntityCollectionService(SupplierService),
-    provideUpdateFormGroup(SupplierRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(SupplierMetadata)),
+    provideRawFormGroup(SupplierRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(SupplierMetadata)),
   ],
 })
 export class SupplierRawFormComponent extends RawFormComponent {

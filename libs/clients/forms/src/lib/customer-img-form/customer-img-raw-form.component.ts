@@ -4,15 +4,15 @@ import { CustomerImgService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { CustomerImgMetadata } from '@webpackages/metadata';
 import { CustomerImgRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-customer-img-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { CustomerImgRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     CustomerImgService,
     provideEntityCollectionService(CustomerImgService),
-    provideUpdateFormGroup(CustomerImgRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(CustomerImgMetadata)),
+    provideRawFormGroup(CustomerImgRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(CustomerImgMetadata)),
   ],
 })
 export class CustomerImgRawFormComponent extends RawFormComponent {

@@ -4,15 +4,15 @@ import { ClockService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { ClockMetadata } from '@webpackages/metadata';
 import { ClockRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-clock-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { ClockRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     ClockService,
     provideEntityCollectionService(ClockService),
-    provideUpdateFormGroup(ClockRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(ClockMetadata)),
+    provideRawFormGroup(ClockRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(ClockMetadata)),
   ],
 })
 export class ClockRawFormComponent extends RawFormComponent {

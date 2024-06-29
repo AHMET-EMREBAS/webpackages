@@ -4,15 +4,15 @@ import { UserService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { UserMetadata } from '@webpackages/metadata';
 import { UserRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-user-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { UserRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     UserService,
     provideEntityCollectionService(UserService),
-    provideUpdateFormGroup(UserRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(UserMetadata)),
+    provideRawFormGroup(UserRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(UserMetadata)),
   ],
 })
 export class UserRawFormComponent extends RawFormComponent {

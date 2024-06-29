@@ -4,15 +4,15 @@ import { UserAddressService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { UserAddressMetadata } from '@webpackages/metadata';
 import { UserAddressRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-user-address-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { UserAddressRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     UserAddressService,
     provideEntityCollectionService(UserAddressService),
-    provideUpdateFormGroup(UserAddressRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(UserAddressMetadata)),
+    provideRawFormGroup(UserAddressRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(UserAddressMetadata)),
   ],
 })
 export class UserAddressRawFormComponent extends RawFormComponent {

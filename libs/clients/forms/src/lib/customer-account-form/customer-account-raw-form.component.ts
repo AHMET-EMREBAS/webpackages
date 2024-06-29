@@ -4,15 +4,15 @@ import { CustomerAccountService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { CustomerAccountMetadata } from '@webpackages/metadata';
 import { CustomerAccountRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-customer-account-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { CustomerAccountRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     CustomerAccountService,
     provideEntityCollectionService(CustomerAccountService),
-    provideUpdateFormGroup(CustomerAccountRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(CustomerAccountMetadata)),
+    provideRawFormGroup(CustomerAccountRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(CustomerAccountMetadata)),
   ],
 })
 export class CustomerAccountRawFormComponent extends RawFormComponent {

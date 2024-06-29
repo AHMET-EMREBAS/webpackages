@@ -4,15 +4,15 @@ import { PurchaseOrderService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { PurchaseOrderMetadata } from '@webpackages/metadata';
 import { PurchaseOrderRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-purchase-order-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { PurchaseOrderRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     PurchaseOrderService,
     provideEntityCollectionService(PurchaseOrderService),
-    provideUpdateFormGroup(PurchaseOrderRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(PurchaseOrderMetadata)),
+    provideRawFormGroup(PurchaseOrderRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(PurchaseOrderMetadata)),
   ],
 })
 export class PurchaseOrderRawFormComponent extends RawFormComponent {

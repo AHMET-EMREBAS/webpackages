@@ -4,15 +4,15 @@ import { OrganizationService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { OrganizationMetadata } from '@webpackages/metadata';
 import { OrganizationRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-organization-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { OrganizationRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     OrganizationService,
     provideEntityCollectionService(OrganizationService),
-    provideUpdateFormGroup(OrganizationRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(OrganizationMetadata)),
+    provideRawFormGroup(OrganizationRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(OrganizationMetadata)),
   ],
 })
 export class OrganizationRawFormComponent extends RawFormComponent {

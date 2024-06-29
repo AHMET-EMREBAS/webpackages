@@ -4,15 +4,15 @@ import { StoreService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { StoreMetadata } from '@webpackages/metadata';
 import { StoreRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-store-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { StoreRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     StoreService,
     provideEntityCollectionService(StoreService),
-    provideUpdateFormGroup(StoreRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(StoreMetadata)),
+    provideRawFormGroup(StoreRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(StoreMetadata)),
   ],
 })
 export class StoreRawFormComponent extends RawFormComponent {

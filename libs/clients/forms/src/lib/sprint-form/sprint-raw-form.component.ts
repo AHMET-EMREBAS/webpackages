@@ -4,15 +4,15 @@ import { SprintService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { SprintMetadata } from '@webpackages/metadata';
 import { SprintRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-sprint-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { SprintRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     SprintService,
     provideEntityCollectionService(SprintService),
-    provideUpdateFormGroup(SprintRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(SprintMetadata)),
+    provideRawFormGroup(SprintRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(SprintMetadata)),
   ],
 })
 export class SprintRawFormComponent extends RawFormComponent {

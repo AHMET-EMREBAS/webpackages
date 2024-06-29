@@ -4,15 +4,15 @@ import { DepartmentService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { DepartmentMetadata } from '@webpackages/metadata';
 import { DepartmentRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-department-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { DepartmentRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     DepartmentService,
     provideEntityCollectionService(DepartmentService),
-    provideUpdateFormGroup(DepartmentRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(DepartmentMetadata)),
+    provideRawFormGroup(DepartmentRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(DepartmentMetadata)),
   ],
 })
 export class DepartmentRawFormComponent extends RawFormComponent {

@@ -4,15 +4,15 @@ import { DiscountService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { DiscountMetadata } from '@webpackages/metadata';
 import { DiscountRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-discount-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { DiscountRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     DiscountService,
     provideEntityCollectionService(DiscountService),
-    provideUpdateFormGroup(DiscountRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(DiscountMetadata)),
+    provideRawFormGroup(DiscountRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(DiscountMetadata)),
   ],
 })
 export class DiscountRawFormComponent extends RawFormComponent {

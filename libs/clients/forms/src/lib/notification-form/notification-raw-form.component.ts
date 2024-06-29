@@ -4,15 +4,15 @@ import { NotificationService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { NotificationMetadata } from '@webpackages/metadata';
 import { NotificationRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-notification-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { NotificationRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     NotificationService,
     provideEntityCollectionService(NotificationService),
-    provideUpdateFormGroup(NotificationRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(NotificationMetadata)),
+    provideRawFormGroup(NotificationRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(NotificationMetadata)),
   ],
 })
 export class NotificationRawFormComponent extends RawFormComponent {

@@ -4,15 +4,15 @@ import { CategoryService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { CategoryMetadata } from '@webpackages/metadata';
 import { CategoryRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-category-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { CategoryRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     CategoryService,
     provideEntityCollectionService(CategoryService),
-    provideUpdateFormGroup(CategoryRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(CategoryMetadata)),
+    provideRawFormGroup(CategoryRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(CategoryMetadata)),
   ],
 })
 export class CategoryRawFormComponent extends RawFormComponent {

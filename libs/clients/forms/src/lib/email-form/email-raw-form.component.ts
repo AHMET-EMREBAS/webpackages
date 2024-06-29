@@ -4,15 +4,15 @@ import { EmailService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { EmailMetadata } from '@webpackages/metadata';
 import { EmailRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-email-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { EmailRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     EmailService,
     provideEntityCollectionService(EmailService),
-    provideUpdateFormGroup(EmailRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(EmailMetadata)),
+    provideRawFormGroup(EmailRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(EmailMetadata)),
   ],
 })
 export class EmailRawFormComponent extends RawFormComponent {

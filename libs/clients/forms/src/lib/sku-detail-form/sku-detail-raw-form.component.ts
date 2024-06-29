@@ -4,15 +4,15 @@ import { SkuDetailService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { SkuDetailMetadata } from '@webpackages/metadata';
 import { SkuDetailRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-sku-detail-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { SkuDetailRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     SkuDetailService,
     provideEntityCollectionService(SkuDetailService),
-    provideUpdateFormGroup(SkuDetailRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(SkuDetailMetadata)),
+    provideRawFormGroup(SkuDetailRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(SkuDetailMetadata)),
   ],
 })
 export class SkuDetailRawFormComponent extends RawFormComponent {

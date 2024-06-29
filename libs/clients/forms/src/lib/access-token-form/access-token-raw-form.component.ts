@@ -4,15 +4,15 @@ import { AccessTokenService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { AccessTokenMetadata } from '@webpackages/metadata';
 import { AccessTokenRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-access-token-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { AccessTokenRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     AccessTokenService,
     provideEntityCollectionService(AccessTokenService),
-    provideUpdateFormGroup(AccessTokenRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(AccessTokenMetadata)),
+    provideRawFormGroup(AccessTokenRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(AccessTokenMetadata)),
   ],
 })
 export class AccessTokenRawFormComponent extends RawFormComponent {

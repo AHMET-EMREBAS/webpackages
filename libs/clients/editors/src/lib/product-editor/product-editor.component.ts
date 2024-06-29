@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {
   PriceUpdateFormComponent,
+  PriceRawFormComponent,
   ProductFormComponent,
   QuantityUpdateFormComponent,
   SerialNumberFormComponent,
@@ -30,7 +31,7 @@ import { firstValueFrom } from 'rxjs';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { LocalStoreController } from '@webpackages/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 
 export type ProductEditorStepType<T> = {
   complete?: boolean;
@@ -66,6 +67,7 @@ export type ProductEditorSteps = {
     ProductFormComponent,
     MatTabsModule,
     PriceUpdateFormComponent,
+    PriceRawFormComponent,
     QuantityUpdateFormComponent,
     SerialNumberFormComponent,
     MatCheckboxModule,
@@ -92,6 +94,7 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
 
   enforceSerialNumber = false;
 
+  @ViewChild('priceTabGroup') priceTabGroup: MatTabGroup;
   @ViewChild('productForm') productForm: ProductFormComponent;
   @ViewChild('productEditorStepper') productEditorStepper: MatStepper;
   @ViewChild('productStep') productStep: MatStep;
@@ -147,9 +150,10 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
     this.productStep.editable = false;
 
     this.savedPrices = this.completedSteps.price.data;
-    setTimeout(() => {
+
+    if (this.savedPrices) {
       this.productEditorStepper.next();
-    }, 2000);
+    }
   }
 
   finishPriceStep() {
@@ -248,5 +252,15 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
 
   finishProcess() {
     this.finishAll();
+  }
+
+  nextPriceTab(selectedIndex: number) {
+    const l = this.priceTabGroup._allTabs.length;
+    if (selectedIndex == l) {
+      this.productEditorStepper.next();
+      this.finishPriceStep();
+    } else {
+      this.priceTabGroup.selectedIndex = selectedIndex;
+    }
   }
 }

@@ -4,15 +4,15 @@ import { TaskService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { TaskMetadata } from '@webpackages/metadata';
 import { TaskRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-task-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { TaskRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     TaskService,
     provideEntityCollectionService(TaskService),
-    provideUpdateFormGroup(TaskRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(TaskMetadata)),
+    provideRawFormGroup(TaskRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(TaskMetadata)),
   ],
 })
 export class TaskRawFormComponent extends RawFormComponent {

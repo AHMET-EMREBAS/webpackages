@@ -4,15 +4,15 @@ import { OrderService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { OrderMetadata } from '@webpackages/metadata';
 import { OrderRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-order-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { OrderRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     OrderService,
     provideEntityCollectionService(OrderService),
-    provideUpdateFormGroup(OrderRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(OrderMetadata)),
+    provideRawFormGroup(OrderRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(OrderMetadata)),
   ],
 })
 export class OrderRawFormComponent extends RawFormComponent {

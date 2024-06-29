@@ -4,15 +4,15 @@ import { PriceService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { PriceMetadata } from '@webpackages/metadata';
 import { PriceRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-price-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { PriceRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     PriceService,
     provideEntityCollectionService(PriceService),
-    provideUpdateFormGroup(PriceRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(PriceMetadata)),
+    provideRawFormGroup(PriceRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(PriceMetadata)),
   ],
 })
 export class PriceRawFormComponent extends RawFormComponent {

@@ -4,15 +4,15 @@ import { CartService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { CartMetadata } from '@webpackages/metadata';
 import { CartRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-cart-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { CartRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     CartService,
     provideEntityCollectionService(CartService),
-    provideUpdateFormGroup(CartRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(CartMetadata)),
+    provideRawFormGroup(CartRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(CartMetadata)),
   ],
 })
 export class CartRawFormComponent extends RawFormComponent {

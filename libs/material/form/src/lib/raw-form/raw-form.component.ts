@@ -13,6 +13,8 @@ import {
   LocalStoreController,
   getFormGroupToken,
   getInputOptionsToken,
+  getRawFormGroupToken,
+  getRawInputOptionsToken,
   getResourceNameToken,
 } from '@webpackages/material/core';
 import { Observable, Subscription, debounceTime, map } from 'rxjs';
@@ -251,7 +253,7 @@ export class RawFormComponent<T = any> implements OnInit, OnDestroy {
   /**
    *
    */
-  formGroup = inject(getFormGroupToken(), { optional: true });
+  formGroup = inject(getRawFormGroupToken(), { optional: true });
 
   /**
    *
@@ -284,13 +286,11 @@ export class RawFormComponent<T = any> implements OnInit, OnDestroy {
   @Output() submittedEventSuccess = new EventEmitter<any>();
   @Output() submittedEventError = new EventEmitter<any>();
 
-  readonly inputOptions = inject(getInputOptionsToken());
-  readonly resourceName = inject(getResourceNameToken());
+  readonly inputOptions = inject(getRawInputOptionsToken());
 
   ngOnInit(): void {
-    const localStoreName = this.resourceName || this.formStoreName;
-    if (localStoreName) {
-      this.formStore = new LocalStoreController(localStoreName);
+    if (this.formStoreName) {
+      this.formStore = new LocalStoreController(this.formStoreName);
       const defaultValue = this.formStore?.get();
       if (defaultValue) {
         for (const [key, value] of Object.entries(defaultValue)) {

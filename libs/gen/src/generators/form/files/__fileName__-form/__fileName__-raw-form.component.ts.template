@@ -4,15 +4,15 @@ import { <%- className %>Service } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { <%- className %>Metadata } from '@webpackages/metadata';
 import { <%- className %>RawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp-<% fileName %>-raw-form',
+  selector: 'wp-<%- fileName %>-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { <%- className %>RawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     <%- className %>Service,
     provideEntityCollectionService(<%- className %>Service),
-    provideUpdateFormGroup(<%- className %>RawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(<%- className %>Metadata)),
+    provideRawFormGroup(<%- className %>RawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(<%- className %>Metadata)),
   ],
 })
 export class <%- className %>RawFormComponent extends RawFormComponent {

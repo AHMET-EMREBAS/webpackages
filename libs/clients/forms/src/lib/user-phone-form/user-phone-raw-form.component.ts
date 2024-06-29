@@ -4,15 +4,15 @@ import { UserPhoneService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { UserPhoneMetadata } from '@webpackages/metadata';
 import { UserPhoneRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-user-phone-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { UserPhoneRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     UserPhoneService,
     provideEntityCollectionService(UserPhoneService),
-    provideUpdateFormGroup(UserPhoneRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(UserPhoneMetadata)),
+    provideRawFormGroup(UserPhoneRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(UserPhoneMetadata)),
   ],
 })
 export class UserPhoneRawFormComponent extends RawFormComponent {

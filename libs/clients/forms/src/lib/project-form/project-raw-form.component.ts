@@ -4,15 +4,15 @@ import { ProjectService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { ProjectMetadata } from '@webpackages/metadata';
 import { ProjectRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-project-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { ProjectRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     ProjectService,
     provideEntityCollectionService(ProjectService),
-    provideUpdateFormGroup(ProjectRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(ProjectMetadata)),
+    provideRawFormGroup(ProjectRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(ProjectMetadata)),
   ],
 })
 export class ProjectRawFormComponent extends RawFormComponent {

@@ -4,15 +4,15 @@ import { CustomerProfileService } from '@webpackages/clients/ngrx';
 import { RawFormComponent } from '@webpackages/material/form';
 import {
   provideEntityCollectionService,
-  provideUpdateFormGroup,
-  provideUpdateInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
 } from '@webpackages/material/core';
 import { toRawFormInputOptions } from '@webpackages/types';
 import { CustomerProfileMetadata } from '@webpackages/metadata';
 import { CustomerProfileRawFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
-  selector: 'wp--raw-form',
+  selector: 'wp-customer-profile-raw-form',
   standalone: true,
   imports: [CommonModule, RawFormComponent],
   template: `
@@ -26,8 +26,8 @@ import { CustomerProfileRawFormGroup } from '@webpackages/clients/form-groups';
   providers: [
     CustomerProfileService,
     provideEntityCollectionService(CustomerProfileService),
-    provideUpdateFormGroup(CustomerProfileRawFormGroup()),
-    provideUpdateInputOptions(toRawFormInputOptions(CustomerProfileMetadata)),
+    provideRawFormGroup(CustomerProfileRawFormGroup()),
+    provideRawInputOptions(toRawFormInputOptions(CustomerProfileMetadata)),
   ],
 })
 export class CustomerProfileRawFormComponent extends RawFormComponent {
