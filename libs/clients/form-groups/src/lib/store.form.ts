@@ -9,7 +9,16 @@ export const StoreFormGroup = () =>
     manager: [null, []],
   });
 
-export const UpdateStoreFormGroup = () =>
+export const StoreUpdateFormGroup = () =>
+  new FormBuilder().group({
+    name: [
+      null,
+      [Validators.minLength(3), Validators.maxLength(100), Validators.required],
+    ],
+    manager: [null, []],
+  });
+
+export const StoreRawFormGroup = () =>
   new FormBuilder().group({
     name: [
       null,

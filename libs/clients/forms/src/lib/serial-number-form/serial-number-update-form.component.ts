@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { SerialNumberMetadata } from '@webpackages/metadata';
-import { UpdateSerialNumberFormGroup } from '@webpackages/clients/form-groups';
+import { SerialNumberUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-serial-number-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     SerialNumberService,
     provideEntityCollectionService(SerialNumberService),
-    provideUpdateFormGroup(UpdateSerialNumberFormGroup()),
+    provideUpdateFormGroup(SerialNumberUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(SerialNumberMetadata)),
   ],
 })

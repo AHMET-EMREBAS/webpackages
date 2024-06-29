@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { ManufacturerMetadata } from '@webpackages/metadata';
-import { UpdateManufacturerFormGroup } from '@webpackages/clients/form-groups';
+import { ManufacturerUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-manufacturer-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     ManufacturerService,
     provideEntityCollectionService(ManufacturerService),
-    provideUpdateFormGroup(UpdateManufacturerFormGroup()),
+    provideUpdateFormGroup(ManufacturerUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(ManufacturerMetadata)),
   ],
 })

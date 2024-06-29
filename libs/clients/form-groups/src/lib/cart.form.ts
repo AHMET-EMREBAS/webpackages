@@ -7,7 +7,12 @@ export const CartFormGroup = () =>
     employee: [null, []],
   });
 
-export const UpdateCartFormGroup = () =>
+export const CartUpdateFormGroup = () =>
+  new FormBuilder().group({
+    complete: [null, []],
+  });
+
+export const CartRawFormGroup = () =>
   new FormBuilder().group({
     complete: [null, []],
   });

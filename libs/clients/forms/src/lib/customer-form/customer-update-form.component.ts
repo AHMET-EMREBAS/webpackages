@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { CustomerMetadata } from '@webpackages/metadata';
-import { UpdateCustomerFormGroup } from '@webpackages/clients/form-groups';
+import { CustomerUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-customer-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     CustomerService,
     provideEntityCollectionService(CustomerService),
-    provideUpdateFormGroup(UpdateCustomerFormGroup()),
+    provideUpdateFormGroup(CustomerUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(CustomerMetadata)),
   ],
 })

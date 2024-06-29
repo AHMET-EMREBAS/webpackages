@@ -11,7 +11,16 @@ export const SaleFormGroup = () =>
     employeeId: [null, [Validators.min(1)]],
   });
 
-export const UpdateSaleFormGroup = () =>
+export const SaleUpdateFormGroup = () =>
+  new FormBuilder().group({
+    subTotal: [null, [Validators.required]],
+    total: [null, [Validators.required]],
+    creditCardPayment: [null, []],
+    cashPayment: [null, []],
+    balancePayment: [null, []],
+  });
+
+export const SaleRawFormGroup = () =>
   new FormBuilder().group({
     subTotal: [null, [Validators.required]],
     total: [null, [Validators.required]],

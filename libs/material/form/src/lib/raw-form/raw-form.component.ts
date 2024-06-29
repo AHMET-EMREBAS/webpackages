@@ -54,7 +54,6 @@ import { RouterModule } from '@angular/router';
     SearchComponent,
     SearchManyComponent,
     SelectComponent,
-
     MatButtonModule,
     MatIconModule,
     MatCheckboxModule,

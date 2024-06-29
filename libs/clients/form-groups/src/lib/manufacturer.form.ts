@@ -8,7 +8,15 @@ export const ManufacturerFormGroup = () =>
     ],
   });
 
-export const UpdateManufacturerFormGroup = () =>
+export const ManufacturerUpdateFormGroup = () =>
+  new FormBuilder().group({
+    name: [
+      null,
+      [Validators.minLength(3), Validators.maxLength(100), Validators.required],
+    ],
+  });
+
+export const ManufacturerRawFormGroup = () =>
   new FormBuilder().group({
     name: [
       null,

@@ -10,7 +10,15 @@ export const OrderFormGroup = () =>
     discount: [null, []],
   });
 
-export const UpdateOrderFormGroup = () =>
+export const OrderUpdateFormGroup = () =>
+  new FormBuilder().group({
+    unitPrice: [null, [Validators.required]],
+    subTotal: [null, [Validators.required]],
+    quantity: [null, [Validators.min(1)]],
+    discount: [null, []],
+  });
+
+export const OrderRawFormGroup = () =>
   new FormBuilder().group({
     unitPrice: [null, [Validators.required]],
     subTotal: [null, [Validators.required]],

@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { DepartmentMetadata } from '@webpackages/metadata';
-import { UpdateDepartmentFormGroup } from '@webpackages/clients/form-groups';
+import { DepartmentUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-department-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     DepartmentService,
     provideEntityCollectionService(DepartmentService),
-    provideUpdateFormGroup(UpdateDepartmentFormGroup()),
+    provideUpdateFormGroup(DepartmentUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(DepartmentMetadata)),
   ],
 })

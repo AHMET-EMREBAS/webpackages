@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { CustomerEmailMetadata } from '@webpackages/metadata';
-import { UpdateCustomerEmailFormGroup } from '@webpackages/clients/form-groups';
+import { CustomerEmailUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-customer-email-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     CustomerEmailService,
     provideEntityCollectionService(CustomerEmailService),
-    provideUpdateFormGroup(UpdateCustomerEmailFormGroup()),
+    provideUpdateFormGroup(CustomerEmailUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(CustomerEmailMetadata)),
   ],
 })

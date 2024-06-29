@@ -10,7 +10,15 @@ export const AccessTokenFormGroup = () =>
     permissions: [null, []],
   });
 
-export const UpdateAccessTokenFormGroup = () =>
+export const AccessTokenUpdateFormGroup = () =>
+  new FormBuilder().group({
+    name: [
+      null,
+      [Validators.minLength(3), Validators.maxLength(100), Validators.required],
+    ],
+  });
+
+export const AccessTokenRawFormGroup = () =>
   new FormBuilder().group({
     name: [
       null,

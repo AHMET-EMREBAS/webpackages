@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { AccessTokenMetadata } from '@webpackages/metadata';
-import { UpdateAccessTokenFormGroup } from '@webpackages/clients/form-groups';
+import { AccessTokenUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-access-token-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     AccessTokenService,
     provideEntityCollectionService(AccessTokenService),
-    provideUpdateFormGroup(UpdateAccessTokenFormGroup()),
+    provideUpdateFormGroup(AccessTokenUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(AccessTokenMetadata)),
   ],
 })

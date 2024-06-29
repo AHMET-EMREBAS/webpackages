@@ -7,7 +7,12 @@ export const CustomerImgFormGroup = () =>
     customer: [null, []],
   });
 
-export const UpdateCustomerImgFormGroup = () =>
+export const CustomerImgUpdateFormGroup = () =>
+  new FormBuilder().group({
+    title: [null, [Validators.minLength(3), Validators.maxLength(100)]],
+  });
+
+export const CustomerImgRawFormGroup = () =>
   new FormBuilder().group({
     title: [null, [Validators.minLength(3), Validators.maxLength(100)]],
   });

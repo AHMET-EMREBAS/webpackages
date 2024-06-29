@@ -11,7 +11,16 @@ export const QuantityFormGroup = () =>
     store: [null, []],
   });
 
-export const UpdateQuantityFormGroup = () =>
+export const QuantityUpdateFormGroup = () =>
+  new FormBuilder().group({
+    quantity: [null, [Validators.required]],
+    alert: [null, []],
+    alertUnderQuantity: [null, []],
+    autoRepurchase: [null, []],
+    notSellLastOne: [null, []],
+  });
+
+export const QuantityRawFormGroup = () =>
   new FormBuilder().group({
     quantity: [null, [Validators.required]],
     alert: [null, []],

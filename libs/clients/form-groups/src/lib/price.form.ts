@@ -10,7 +10,15 @@ export const PriceFormGroup = () =>
     priceLevel: [null, []],
   });
 
-export const UpdatePriceFormGroup = () =>
+export const PriceUpdateFormGroup = () =>
+  new FormBuilder().group({
+    price: [null, [Validators.required]],
+    cost: [null, [Validators.required]],
+    startDate: [null, [Validators.required]],
+    endDate: [null, [Validators.required]],
+  });
+
+export const PriceRawFormGroup = () =>
   new FormBuilder().group({
     price: [null, [Validators.required]],
     cost: [null, [Validators.required]],

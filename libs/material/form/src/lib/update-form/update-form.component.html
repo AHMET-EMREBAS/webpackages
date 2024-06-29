@@ -79,6 +79,7 @@
       [inputName]="option.name"
       [inputControl]="control(option.name)"
       [inputLabel]="option.label"
+      [inputRequired]="option.required"
       [resourceName]="option.resourceName"
       [resourceLabelProperty]="option.resourceLabelProperty"
       [class]="option.class"
@@ -151,6 +152,7 @@
       [class]="option.class"
       [tabindex]="option.tabIndex"
     ></wp-input-text>
+    <small> Fallback field! Please provide a valid input type.</small>
     }
 
     <!-- End -->

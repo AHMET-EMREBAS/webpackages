@@ -8,7 +8,13 @@ export const MessageFormGroup = () =>
     toUser: [null, []],
   });
 
-export const UpdateMessageFormGroup = () =>
+export const MessageUpdateFormGroup = () =>
+  new FormBuilder().group({
+    message: [null, [Validators.maxLength(2000)]],
+    readDate: [null, []],
+  });
+
+export const MessageRawFormGroup = () =>
   new FormBuilder().group({
     message: [null, [Validators.maxLength(2000)]],
     readDate: [null, []],

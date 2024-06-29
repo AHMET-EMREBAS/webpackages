@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { MessageMetadata } from '@webpackages/metadata';
-import { UpdateMessageFormGroup } from '@webpackages/clients/form-groups';
+import { MessageUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-message-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     MessageService,
     provideEntityCollectionService(MessageService),
-    provideUpdateFormGroup(UpdateMessageFormGroup()),
+    provideUpdateFormGroup(MessageUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(MessageMetadata)),
   ],
 })

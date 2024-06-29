@@ -8,7 +8,15 @@ export const ProjectFormGroup = () =>
     ],
   });
 
-export const UpdateProjectFormGroup = () =>
+export const ProjectUpdateFormGroup = () =>
+  new FormBuilder().group({
+    name: [
+      null,
+      [Validators.minLength(3), Validators.maxLength(100), Validators.required],
+    ],
+  });
+
+export const ProjectRawFormGroup = () =>
   new FormBuilder().group({
     name: [
       null,

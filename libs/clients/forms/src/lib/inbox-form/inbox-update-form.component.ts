@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { InboxMetadata } from '@webpackages/metadata';
-import { UpdateInboxFormGroup } from '@webpackages/clients/form-groups';
+import { InboxUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-inbox-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     InboxService,
     provideEntityCollectionService(InboxService),
-    provideUpdateFormGroup(UpdateInboxFormGroup()),
+    provideUpdateFormGroup(InboxUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(InboxMetadata)),
   ],
 })

@@ -8,7 +8,15 @@ export const CategoryFormGroup = () =>
     ],
   });
 
-export const UpdateCategoryFormGroup = () =>
+export const CategoryUpdateFormGroup = () =>
+  new FormBuilder().group({
+    name: [
+      null,
+      [Validators.minLength(3), Validators.maxLength(100), Validators.required],
+    ],
+  });
+
+export const CategoryRawFormGroup = () =>
   new FormBuilder().group({
     name: [
       null,

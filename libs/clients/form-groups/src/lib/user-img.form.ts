@@ -6,7 +6,12 @@ export const UserImgFormGroup = () =>
     generatedName: [null, []],
   });
 
-export const UpdateUserImgFormGroup = () =>
+export const UserImgUpdateFormGroup = () =>
+  new FormBuilder().group({
+    title: [null, [Validators.minLength(3), Validators.maxLength(100)]],
+  });
+
+export const UserImgRawFormGroup = () =>
   new FormBuilder().group({
     title: [null, [Validators.minLength(3), Validators.maxLength(100)]],
   });

@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { OrganizationMetadata } from '@webpackages/metadata';
-import { UpdateOrganizationFormGroup } from '@webpackages/clients/form-groups';
+import { OrganizationUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-organization-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     OrganizationService,
     provideEntityCollectionService(OrganizationService),
-    provideUpdateFormGroup(UpdateOrganizationFormGroup()),
+    provideUpdateFormGroup(OrganizationUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(OrganizationMetadata)),
   ],
 })

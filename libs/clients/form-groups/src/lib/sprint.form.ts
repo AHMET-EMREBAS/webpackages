@@ -10,7 +10,16 @@ export const SprintFormGroup = () =>
     project: [null, []],
   });
 
-export const UpdateSprintFormGroup = () =>
+export const SprintUpdateFormGroup = () =>
+  new FormBuilder().group({
+    name: [
+      null,
+      [Validators.minLength(3), Validators.maxLength(100), Validators.required],
+    ],
+    description: [null, [Validators.maxLength(1000)]],
+  });
+
+export const SprintRawFormGroup = () =>
   new FormBuilder().group({
     name: [
       null,

@@ -9,13 +9,14 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { <%- className %>Metadata } from '@webpackages/metadata';
-import { Update<%- className %>FormGroup } from '@webpackages/clients/form-groups';
+import { <%- className %>UpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-<%- fileName %>-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
+  template: `
+  <wp-update-form
     (submittedEvent)="handleFormSubmit($event)"
     [entityId]="entityId"
     [onlyEmitEvent]="onlyEmitEvent"
@@ -23,11 +24,12 @@ import { Update<%- className %>FormGroup } from '@webpackages/clients/form-group
     (submittedEventSuccess)="handleFormSubmitSuccess($event)"
     (submittedEventError)="handleFormSubmitError($event)"
     [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  ></wp-update-form>
+  `,
   providers: [
     <%- className %>Service,
     provideEntityCollectionService(<%- className %>Service),
-    provideUpdateFormGroup(Update<%- className %>FormGroup()),
+    provideUpdateFormGroup(<%- className %>UpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(<%- className %>Metadata)),
   ],
 })

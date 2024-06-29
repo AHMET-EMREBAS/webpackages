@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { NotificationMetadata } from '@webpackages/metadata';
-import { UpdateNotificationFormGroup } from '@webpackages/clients/form-groups';
+import { NotificationUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-notification-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     NotificationService,
     provideEntityCollectionService(NotificationService),
-    provideUpdateFormGroup(UpdateNotificationFormGroup()),
+    provideUpdateFormGroup(NotificationUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(NotificationMetadata)),
   ],
 })

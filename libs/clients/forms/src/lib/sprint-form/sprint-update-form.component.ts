@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { SprintMetadata } from '@webpackages/metadata';
-import { UpdateSprintFormGroup } from '@webpackages/clients/form-groups';
+import { SprintUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-sprint-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     SprintService,
     provideEntityCollectionService(SprintService),
-    provideUpdateFormGroup(UpdateSprintFormGroup()),
+    provideUpdateFormGroup(SprintUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(SprintMetadata)),
   ],
 })

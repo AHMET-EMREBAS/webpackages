@@ -5,7 +5,12 @@ export const NotificationFormGroup = () =>
     message: [null, [Validators.maxLength(1000)]],
   });
 
-export const UpdateNotificationFormGroup = () =>
+export const NotificationUpdateFormGroup = () =>
+  new FormBuilder().group({
+    message: [null, [Validators.maxLength(1000)]],
+  });
+
+export const NotificationRawFormGroup = () =>
   new FormBuilder().group({
     message: [null, [Validators.maxLength(1000)]],
   });

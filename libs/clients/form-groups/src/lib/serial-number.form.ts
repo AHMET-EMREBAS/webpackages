@@ -13,4 +13,6 @@ export const SerialNumberFormGroup = () =>
     sku: [null, []],
   });
 
-export const UpdateSerialNumberFormGroup = () => new FormBuilder().group({});
+export const SerialNumberUpdateFormGroup = () => new FormBuilder().group({});
+
+export const SerialNumberRawFormGroup = () => new FormBuilder().group({});

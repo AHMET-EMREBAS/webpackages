@@ -5,7 +5,12 @@ export const EmailFormGroup = () =>
     email: [null, [Validators.email, Validators.required]],
   });
 
-export const UpdateEmailFormGroup = () =>
+export const EmailUpdateFormGroup = () =>
+  new FormBuilder().group({
+    email: [null, [Validators.email, Validators.required]],
+  });
+
+export const EmailRawFormGroup = () =>
   new FormBuilder().group({
     email: [null, [Validators.email, Validators.required]],
   });

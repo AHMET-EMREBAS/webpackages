@@ -8,7 +8,14 @@ export const SessionFormGroup = () =>
     user: [null, []],
   });
 
-export const UpdateSessionFormGroup = () =>
+export const SessionUpdateFormGroup = () =>
+  new FormBuilder().group({
+    scope: [null, []],
+    deviceId: [null, [Validators.required]],
+    token: [null, [Validators.required]],
+  });
+
+export const SessionRawFormGroup = () =>
   new FormBuilder().group({
     scope: [null, []],
     deviceId: [null, [Validators.required]],

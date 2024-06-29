@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { ImgMetadata } from '@webpackages/metadata';
-import { UpdateImgFormGroup } from '@webpackages/clients/form-groups';
+import { ImgUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-img-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     ImgService,
     provideEntityCollectionService(ImgService),
-    provideUpdateFormGroup(UpdateImgFormGroup()),
+    provideUpdateFormGroup(ImgUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(ImgMetadata)),
   ],
 })

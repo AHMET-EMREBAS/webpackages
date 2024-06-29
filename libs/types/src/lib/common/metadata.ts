@@ -7,6 +7,11 @@ export class Metadata {
   relations?: Record<string, Partial<PropertyOptions>>;
 }
 
+/**
+ * Provides all inputs
+ * @param metadata
+ * @returns
+ */
 export function toFormInputOptions(
   metadata: Metadata
 ): Partial<PropertyOptions>[] {
@@ -83,6 +88,11 @@ export function toFormInputOptions(
   return [...properties, ...relations];
 }
 
+/**
+ * Only provide editable inputs
+ * @param metadata
+ * @returns
+ */
 export function toTableColumnOptions(
   metadata: Metadata
 ): Partial<PropertyOptions>[] {
@@ -115,6 +125,20 @@ export function toTableColumnOptions(
   });
 }
 
+/**
+ * Only provide editable inputs
+ * @param metadata
+ * @returns
+ */
 export function toUpdateFormInputOptions(metadata: Metadata) {
+  return toFormInputOptions(metadata).filter((e) => e.update);
+}
+
+/**
+ * Only provide editable inputs
+ * @param metadata
+ * @returns
+ */
+export function toRawFormInputOptions(metadata: Metadata) {
   return toFormInputOptions(metadata).filter((e) => e.update);
 }

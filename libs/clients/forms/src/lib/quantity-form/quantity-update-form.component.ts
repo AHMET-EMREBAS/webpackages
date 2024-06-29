@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { QuantityMetadata } from '@webpackages/metadata';
-import { UpdateQuantityFormGroup } from '@webpackages/clients/form-groups';
+import { QuantityUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-quantity-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     QuantityService,
     provideEntityCollectionService(QuantityService),
-    provideUpdateFormGroup(UpdateQuantityFormGroup()),
+    provideUpdateFormGroup(QuantityUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(QuantityMetadata)),
   ],
 })

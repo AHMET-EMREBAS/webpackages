@@ -5,7 +5,12 @@ export const UserPhoneFormGroup = () =>
     phone: [null, [Validators.required]],
   });
 
-export const UpdateUserPhoneFormGroup = () =>
+export const UserPhoneUpdateFormGroup = () =>
+  new FormBuilder().group({
+    phone: [null, [Validators.required]],
+  });
+
+export const UserPhoneRawFormGroup = () =>
   new FormBuilder().group({
     phone: [null, [Validators.required]],
   });

@@ -7,7 +7,14 @@ export const CustomerAccountFormGroup = () =>
     priceLevel: [null, []],
   });
 
-export const UpdateCustomerAccountFormGroup = () =>
+export const CustomerAccountUpdateFormGroup = () =>
+  new FormBuilder().group({
+    blance: [null, [Validators.required]],
+    customer: [null, []],
+    priceLevel: [null, []],
+  });
+
+export const CustomerAccountRawFormGroup = () =>
   new FormBuilder().group({
     blance: [null, [Validators.required]],
     customer: [null, []],

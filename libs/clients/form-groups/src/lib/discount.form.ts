@@ -14,7 +14,19 @@ export const DiscountFormGroup = () =>
     priceLevel: [null, []],
   });
 
-export const UpdateDiscountFormGroup = () =>
+export const DiscountUpdateFormGroup = () =>
+  new FormBuilder().group({
+    name: [
+      null,
+      [Validators.minLength(3), Validators.maxLength(100), Validators.required],
+    ],
+    fixedDiscount: [null, []],
+    percentDiscount: [null, []],
+    startDate: [null, [Validators.required]],
+    endDate: [null, [Validators.required]],
+  });
+
+export const DiscountRawFormGroup = () =>
   new FormBuilder().group({
     name: [
       null,

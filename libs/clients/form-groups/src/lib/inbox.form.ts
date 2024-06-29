@@ -5,4 +5,6 @@ export const InboxFormGroup = () =>
     employee: [null, []],
   });
 
-export const UpdateInboxFormGroup = () => new FormBuilder().group({});
+export const InboxUpdateFormGroup = () => new FormBuilder().group({});
+
+export const InboxRawFormGroup = () => new FormBuilder().group({});

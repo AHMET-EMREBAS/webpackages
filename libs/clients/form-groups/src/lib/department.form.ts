@@ -8,7 +8,15 @@ export const DepartmentFormGroup = () =>
     ],
   });
 
-export const UpdateDepartmentFormGroup = () =>
+export const DepartmentUpdateFormGroup = () =>
+  new FormBuilder().group({
+    name: [
+      null,
+      [Validators.minLength(3), Validators.maxLength(100), Validators.required],
+    ],
+  });
+
+export const DepartmentRawFormGroup = () =>
   new FormBuilder().group({
     name: [
       null,

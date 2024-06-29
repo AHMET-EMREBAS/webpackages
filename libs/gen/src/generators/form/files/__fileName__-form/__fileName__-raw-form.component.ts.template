@@ -1,0 +1,35 @@
+import { Component, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { <% className %>Service } from '@webpackages/clients/ngrx';
+import { RawFormComponent } from '@webpackages/material/form';
+import {
+  provideEntityCollectionService,
+  provideUpdateFormGroup,
+  provideUpdateInputOptions,
+} from '@webpackages/material/core';
+import { toRawFormInputOptions } from '@webpackages/types';
+import { <% className %>Metadata } from '@webpackages/metadata';
+import { <% className %>RawFormGroup } from '@webpackages/clients/form-groups';
+
+@Component({
+  selector: 'wp-<% fileName %>-raw-form',
+  standalone: true,
+  imports: [CommonModule, RawFormComponent],
+  template: `
+    <wp-raw-form
+      #rawFormRef
+      (submittedEvent)="handleFormSubmit($event)"
+      [submitButtonLabel]="submitButtonLabel"
+      [formStoreName]="formStoreName"
+    ></wp-raw-form>
+  `,
+  providers: [
+    <% className %>Service,
+    provideEntityCollectionService(<% className %>Service),
+    provideUpdateFormGroup(<% className %>RawFormGroup()),
+    provideUpdateInputOptions(toRawFormInputOptions(<% className %>Metadata)),
+  ],
+})
+export class <% className %>RawFormComponent extends RawFormComponent {
+  @ViewChild('rawFormRef') rawFormRef: RawFormComponent;
+}

@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { PurchaseOrderMetadata } from '@webpackages/metadata';
-import { UpdatePurchaseOrderFormGroup } from '@webpackages/clients/form-groups';
+import { PurchaseOrderUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-purchase-order-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     PurchaseOrderService,
     provideEntityCollectionService(PurchaseOrderService),
-    provideUpdateFormGroup(UpdatePurchaseOrderFormGroup()),
+    provideUpdateFormGroup(PurchaseOrderUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(PurchaseOrderMetadata)),
   ],
 })

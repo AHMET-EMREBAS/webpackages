@@ -8,7 +8,15 @@ export const CustomerFormGroup = () =>
     priceLevel: [null, []],
   });
 
-export const UpdateCustomerFormGroup = () =>
+export const CustomerUpdateFormGroup = () =>
+  new FormBuilder().group({
+    username: [null, [Validators.email, Validators.required]],
+    password: [null, [Validators.required]],
+    permissions: [null, []],
+    priceLevel: [null, []],
+  });
+
+export const CustomerRawFormGroup = () =>
   new FormBuilder().group({
     username: [null, [Validators.email, Validators.required]],
     password: [null, [Validators.required]],

@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { SkuDetailMetadata } from '@webpackages/metadata';
-import { UpdateSkuDetailFormGroup } from '@webpackages/clients/form-groups';
+import { SkuDetailUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-sku-detail-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     SkuDetailService,
     provideEntityCollectionService(SkuDetailService),
-    provideUpdateFormGroup(UpdateSkuDetailFormGroup()),
+    provideUpdateFormGroup(SkuDetailUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(SkuDetailMetadata)),
   ],
 })

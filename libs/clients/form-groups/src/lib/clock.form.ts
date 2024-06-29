@@ -7,7 +7,12 @@ export const ClockFormGroup = () =>
     employee: [null, []],
   });
 
-export const UpdateClockFormGroup = () =>
+export const ClockUpdateFormGroup = () =>
+  new FormBuilder().group({
+    endDate: [null, []],
+  });
+
+export const ClockRawFormGroup = () =>
   new FormBuilder().group({
     endDate: [null, []],
   });

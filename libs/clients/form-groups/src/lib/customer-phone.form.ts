@@ -6,7 +6,12 @@ export const CustomerPhoneFormGroup = () =>
     customer: [null, []],
   });
 
-export const UpdateCustomerPhoneFormGroup = () =>
+export const CustomerPhoneUpdateFormGroup = () =>
+  new FormBuilder().group({
+    phone: [null, [Validators.required]],
+  });
+
+export const CustomerPhoneRawFormGroup = () =>
   new FormBuilder().group({
     phone: [null, [Validators.required]],
   });

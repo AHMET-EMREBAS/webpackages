@@ -11,7 +11,17 @@ export const PurchaseFormGroup = () =>
     employee: [null, []],
   });
 
-export const UpdatePurchaseFormGroup = () =>
+export const PurchaseUpdateFormGroup = () =>
+  new FormBuilder().group({
+    orderDate: [null, [Validators.required]],
+    expectedShippingDate: [null, [Validators.required]],
+    shippingDate: [null, []],
+    subTotal: [null, [Validators.required]],
+    total: [null, [Validators.required]],
+    notes: [null, []],
+  });
+
+export const PurchaseRawFormGroup = () =>
   new FormBuilder().group({
     orderDate: [null, [Validators.required]],
     expectedShippingDate: [null, [Validators.required]],

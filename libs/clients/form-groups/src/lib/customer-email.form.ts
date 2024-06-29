@@ -6,7 +6,12 @@ export const CustomerEmailFormGroup = () =>
     customer: [null, []],
   });
 
-export const UpdateCustomerEmailFormGroup = () =>
+export const CustomerEmailUpdateFormGroup = () =>
+  new FormBuilder().group({
+    email: [null, [Validators.email, Validators.required]],
+  });
+
+export const CustomerEmailRawFormGroup = () =>
   new FormBuilder().group({
     email: [null, [Validators.email, Validators.required]],
   });

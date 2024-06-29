@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { PhoneMetadata } from '@webpackages/metadata';
-import { UpdatePhoneFormGroup } from '@webpackages/clients/form-groups';
+import { PhoneUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-phone-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     PhoneService,
     provideEntityCollectionService(PhoneService),
-    provideUpdateFormGroup(UpdatePhoneFormGroup()),
+    provideUpdateFormGroup(PhoneUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(PhoneMetadata)),
   ],
 })

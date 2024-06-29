@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { DiscountMetadata } from '@webpackages/metadata';
-import { UpdateDiscountFormGroup } from '@webpackages/clients/form-groups';
+import { DiscountUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-discount-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     DiscountService,
     provideEntityCollectionService(DiscountService),
-    provideUpdateFormGroup(UpdateDiscountFormGroup()),
+    provideUpdateFormGroup(DiscountUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(DiscountMetadata)),
   ],
 })

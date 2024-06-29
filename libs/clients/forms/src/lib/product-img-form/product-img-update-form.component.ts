@@ -9,25 +9,27 @@ import {
 } from '@webpackages/material/core';
 import { toUpdateFormInputOptions } from '@webpackages/types';
 import { ProductImgMetadata } from '@webpackages/metadata';
-import { UpdateProductImgFormGroup } from '@webpackages/clients/form-groups';
+import { ProductImgUpdateFormGroup } from '@webpackages/clients/form-groups';
 
 @Component({
   selector: 'wp-product-img-update-form',
   standalone: true,
   imports: [CommonModule, UpdateFormComponent],
-  template: `<wp-update-form
-    (submittedEvent)="handleFormSubmit($event)"
-    [entityId]="entityId"
-    [onlyEmitEvent]="onlyEmitEvent"
-    [submitButtonLabel]="submitButtonLabel"
-    (submittedEventSuccess)="handleFormSubmitSuccess($event)"
-    (submittedEventError)="handleFormSubmitError($event)"
-    [formStoreName]="formStoreName"
-  ></wp-update-form>`,
+  template: `
+    <wp-update-form
+      (submittedEvent)="handleFormSubmit($event)"
+      [entityId]="entityId"
+      [onlyEmitEvent]="onlyEmitEvent"
+      [submitButtonLabel]="submitButtonLabel"
+      (submittedEventSuccess)="handleFormSubmitSuccess($event)"
+      (submittedEventError)="handleFormSubmitError($event)"
+      [formStoreName]="formStoreName"
+    ></wp-update-form>
+  `,
   providers: [
     ProductImgService,
     provideEntityCollectionService(ProductImgService),
-    provideUpdateFormGroup(UpdateProductImgFormGroup()),
+    provideUpdateFormGroup(ProductImgUpdateFormGroup()),
     provideUpdateInputOptions(toUpdateFormInputOptions(ProductImgMetadata)),
   ],
 })

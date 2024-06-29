@@ -5,7 +5,12 @@ export const <%- className %>FormGroup = () => new FormBuilder().group({
 });
 
 
-export const Update<%- className %>FormGroup = () => new FormBuilder().group({
+export const <%- className %>UpdateFormGroup = () => new FormBuilder().group({
+    <%- updateProperties %>
+});
+
+
+export const <%- className %>RawFormGroup = () => new FormBuilder().group({
     <%- updateProperties %>
 });
 
