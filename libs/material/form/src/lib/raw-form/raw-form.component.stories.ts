@@ -1,8 +1,4 @@
-import {
-  applicationConfig,
-  type Meta,
-  type StoryObj,
-} from '@storybook/angular';
+import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { RawFormComponent } from './raw-form.component';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
@@ -13,6 +9,12 @@ import {
 } from '@webpackages/material/core';
 import { toFormInputOptions } from '@webpackages/types';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  provideDefaultInputDebounceTime,
+  provideDefaultInputErrorMesssageHandler,
+  provideDefaultInputStatusIndicatorHandler,
+  provideInputErrorMessageHandler,
+} from '@webpackages/material/input';
 
 // import { fn } from '@storybook/test';
 
@@ -20,8 +22,11 @@ const meta: Meta<RawFormComponent> = {
   component: RawFormComponent,
   title: 'RawFormComponent',
   decorators: [
-    applicationConfig({
+    moduleMetadata({
       providers: [
+        provideDefaultInputErrorMesssageHandler(),
+        provideDefaultInputStatusIndicatorHandler(),
+        provideDefaultInputDebounceTime(),
         provideResouceName('Category'),
         provideFormGroup(
           new FormGroup({

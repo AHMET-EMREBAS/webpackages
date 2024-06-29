@@ -25,6 +25,23 @@ import { setCompodocJson } from '@storybook/addon-docs/angular';
 setCompodocJson(await import('./documentation.json'));
 
 const preview: Preview = {
+  globalTypes: {
+    locale: {
+      description: 'Internationalization locale',
+      defaultValue: 'en',
+      toolbar: {
+        icon: 'globe',
+        items: [
+          { value: 'en', right: '🇺🇸', title: 'English' },
+          { value: 'fr', right: '🇫🇷', title: 'Français' },
+          { value: 'es', right: '🇪🇸', title: 'Español' },
+          { value: 'zh', right: '🇨🇳', title: '中文' },
+          { value: 'kr', right: '🇰🇷', title: '한국어' },
+        ],
+      },
+    },
+  },
+
   decorators: [
     withActions,
     applicationConfig({

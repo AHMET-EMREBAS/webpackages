@@ -244,11 +244,31 @@ import { RouterModule } from '@angular/router';
 `,
 })
 export class RawFormComponent<T = any> implements OnInit, OnDestroy {
+  /**
+   *
+   */
   isFormSubmitted = false;
+
+  /**
+   *
+   */
   formGroup = inject(getFormGroupToken(), { optional: true });
+
+  /**
+   *
+   */
   formStore: LocalStoreController<any>;
+
+  /**
+   *
+   */
   valueChange: Observable<T>;
+
+  /**
+   *
+   */
   valueChangeSub: Subscription;
+
   /**
    * Localstore name to store the form data
    */
