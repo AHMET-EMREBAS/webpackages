@@ -14,7 +14,7 @@ import {
 } from '@webpackages/material/core';
 import { toFormInputOptions } from '@webpackages/types';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { fn } from '@storybook/test';
 const meta: Meta<RawFormComponent> = {
   component: RawFormComponent,
   title: 'RawFormComponent',
@@ -38,17 +38,13 @@ type Story = StoryObj<RawFormComponent>;
 export const Primary: Story = {
   args: {
     formStoreName: 'RawFormStory',
-    onlyEmitEvent: false,
     submitButtonLabel: 'Submit',
+    handleFormSubmit: fn(),
   },
 };
 
 export const Heading: Story = {
-  args: {
-    formStoreName: 'RawFormStory',
-    onlyEmitEvent: false,
-    submitButtonLabel: 'Submit',
-  },
+  ...Primary.args,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Category Name/gi)).toBeTruthy();
