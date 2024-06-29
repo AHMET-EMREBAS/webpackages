@@ -15,8 +15,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {
   PriceFormComponent,
+  PriceUpdateFormComponent,
   ProductFormComponent,
   QuantityFormComponent,
+  QuantityUpdateFormComponent,
+  SerialNumberFormComponent,
+  SerialNumberUpdateFormComponent,
 } from '@webpackages/clients/forms';
 import {
   IPrice,
@@ -28,7 +32,7 @@ import {
 import { firstValueFrom } from 'rxjs';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { LocalStoreController } from '@webpackages/material/core';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 export type ProductEditorStepType<T> = {
   complete: boolean;
   data: Partial<T>;
@@ -61,8 +65,10 @@ export type ProductEditorSteps = {
     MatButtonModule,
     MatIconModule,
     ProductFormComponent,
-    PriceFormComponent,
-    QuantityFormComponent,
+    PriceUpdateFormComponent,
+    QuantityUpdateFormComponent,
+    SerialNumberFormComponent,
+    MatCheckboxModule,
   ],
   templateUrl: `./product-editor.component.html`,
   providers: [ProductService, SkuService, PriceService, QuantityService],
@@ -77,6 +83,8 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   productEditorStore = new LocalStoreController<ProductEditorSteps>(
     'ProductEditorComponentStore'
   );
+
+  enforceSerialNumber = false;
 
   @ViewChild('productForm') productForm: ProductFormComponent;
   @ViewChild('productEditorStepper') productEditorStepper: MatStepper;
@@ -155,8 +163,8 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   _5_completed() {
     this.finalStep.completed = true;
     this.finalStep.editable = false;
-    this.productEditorStore.delete();
     this.productForm.reset();
+    this.productEditorStore.delete();
     this.productEditorStepper.reset();
   }
 

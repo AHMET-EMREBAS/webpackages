@@ -210,8 +210,15 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
   }
 
   reset() {
-    this.formGroup.reset({}, { emitEvent: false });
+    this.formGroup.reset();
     this.formGroup.markAsUntouched();
-    this.formGroup.setErrors(null);
+    const controls = this.formGroup.controls;
+
+    for (const [key, value] of Object.entries(controls)) {
+      value.markAsUntouched();
+      value.reset();
+      value.setValue(null);
+      value.setErrors(null);
+    }
   }
 }

@@ -1,5 +1,9 @@
+<!--  -->
+<div class="w-full flex flex-row justify-end p-4">
+  <button mat-raised-button color="warn" (click)="finishProcess()">New</button>
+</div>
 <mat-stepper #productEditorStepper [linear]="true">
-  <mat-step #productStep completedLabel="Done" label="Create Product">
+  <mat-step #productStep label="Create Product" [editable]="false">
     <wp-product-form
       #productForm
       submitButtonLabel="Next"
@@ -9,27 +13,28 @@
     ></wp-product-form>
   </mat-step>
 
-  <mat-step label="Pricing" completedLabel="Done">
-    Add pricing for each price level
-
-    <button next-button>Next</button>
+  <mat-step label="Serial Number" [editable]="false">
+    <div class="flex flex-col">
+      <mat-checkbox [(ngModel)]="enforceSerialNumber">
+        Enforce Serial Number
+      </mat-checkbox>
+    </div>
   </mat-step>
 
-  <mat-step label="Quantity" completedLabel="Done"> </mat-step>
-  <mat-step label="Serial Number" completedLabel="Done">
-    Add serial number if necessary
-    <ol>
-      <li>provide generator and manual creation</li>
-    </ol>
-
-    <button next-button>Next</button>
+  <mat-step label="Pricing" [editable]="false">
+    <wp-update-price-form></wp-update-price-form>
   </mat-step>
 
-  <mat-step #finalStep label="Complete" completedLabel="Done">
+  <mat-step label="Quantity" [editable]="false">
+    Adding quantity for each sku
+  </mat-step>
+
+  <mat-step #finalStep label="Complete" [editable]="false">
     <div
       class="flex flex-col w-full gap-4 p-4 justify-center items-center content-center"
     >
       <p>Product is successfully created.</p>
+
       <button
         class="max-w-32"
         mat-raised-button
@@ -41,9 +46,3 @@
     </div>
   </mat-step>
 </mat-stepper>
-<!--  -->
-<div class="w-full flex flex-row justify-end p-4">
-  <button mat-raised-button color="warn" (click)="finishProcess()">
-    Cancel
-  </button>
-</div>
