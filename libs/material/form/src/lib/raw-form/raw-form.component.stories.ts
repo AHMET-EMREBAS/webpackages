@@ -4,7 +4,6 @@ import {
   type StoryObj,
 } from '@storybook/angular';
 import { RawFormComponent } from './raw-form.component';
-import { CategoryMetadata } from '@webpackages/metadata';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 import {
@@ -29,7 +28,14 @@ const meta: Meta<RawFormComponent> = {
             name: new FormControl('', [Validators.required]),
           })
         ),
-        provideInputOptions(toFormInputOptions(CategoryMetadata)),
+        provideInputOptions(
+          toFormInputOptions({
+            properties: {
+              name: { type: 'string', label: 'Input Label' },
+            },
+            relations: {},
+          })
+        ),
       ],
     }),
   ],
@@ -55,6 +61,6 @@ export const Heading: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/Category Name/gi)).toBeTruthy();
+    expect(canvas.getByText(/Input Label/gi)).toBeTruthy();
   },
 };
