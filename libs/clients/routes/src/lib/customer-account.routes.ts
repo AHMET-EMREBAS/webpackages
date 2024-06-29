@@ -36,8 +36,8 @@ export const CustomerAccountRoutes: Routes = [
       provideUpdateInputOptions(
         toUpdateFormInputOptions(CustomerAccountMetadata)
       ),
-      provideFormGroup(CustomerAccountFormGroup),
-      provideUpdateFormGroup(UpdateCustomerAccountFormGroup),
+      provideFormGroup(CustomerAccountFormGroup()),
+      provideUpdateFormGroup(UpdateCustomerAccountFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('CustomerAccount');

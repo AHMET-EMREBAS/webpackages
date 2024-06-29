@@ -34,8 +34,8 @@ export const PriceLevelRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(PriceLevelMetadata)),
       provideInputOptions(toFormInputOptions(PriceLevelMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(PriceLevelMetadata)),
-      provideFormGroup(PriceLevelFormGroup),
-      provideUpdateFormGroup(UpdatePriceLevelFormGroup),
+      provideFormGroup(PriceLevelFormGroup()),
+      provideUpdateFormGroup(UpdatePriceLevelFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('PriceLevel');

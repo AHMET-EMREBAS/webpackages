@@ -34,8 +34,8 @@ export const ProductRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(ProductMetadata)),
       provideInputOptions(toFormInputOptions(ProductMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(ProductMetadata)),
-      provideFormGroup(ProductFormGroup),
-      provideUpdateFormGroup(UpdateProductFormGroup),
+      provideFormGroup(ProductFormGroup()),
+      provideUpdateFormGroup(UpdateProductFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Product');

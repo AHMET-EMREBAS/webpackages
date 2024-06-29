@@ -36,8 +36,8 @@ export const CustomerPhoneRoutes: Routes = [
       provideUpdateInputOptions(
         toUpdateFormInputOptions(CustomerPhoneMetadata)
       ),
-      provideFormGroup(CustomerPhoneFormGroup),
-      provideUpdateFormGroup(UpdateCustomerPhoneFormGroup),
+      provideFormGroup(CustomerPhoneFormGroup()),
+      provideUpdateFormGroup(UpdateCustomerPhoneFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('CustomerPhone');

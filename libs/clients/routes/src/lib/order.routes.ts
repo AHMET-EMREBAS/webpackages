@@ -34,8 +34,8 @@ export const OrderRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(OrderMetadata)),
       provideInputOptions(toFormInputOptions(OrderMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(OrderMetadata)),
-      provideFormGroup(OrderFormGroup),
-      provideUpdateFormGroup(UpdateOrderFormGroup),
+      provideFormGroup(OrderFormGroup()),
+      provideUpdateFormGroup(UpdateOrderFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Order');

@@ -34,8 +34,8 @@ export const QuantityRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(QuantityMetadata)),
       provideInputOptions(toFormInputOptions(QuantityMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(QuantityMetadata)),
-      provideFormGroup(QuantityFormGroup),
-      provideUpdateFormGroup(UpdateQuantityFormGroup),
+      provideFormGroup(QuantityFormGroup()),
+      provideUpdateFormGroup(UpdateQuantityFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Quantity');

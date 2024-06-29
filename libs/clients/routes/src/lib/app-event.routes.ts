@@ -34,8 +34,8 @@ export const AppEventRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(AppEventMetadata)),
       provideInputOptions(toFormInputOptions(AppEventMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(AppEventMetadata)),
-      provideFormGroup(AppEventFormGroup),
-      provideUpdateFormGroup(UpdateAppEventFormGroup),
+      provideFormGroup(AppEventFormGroup()),
+      provideUpdateFormGroup(UpdateAppEventFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('AppEvent');

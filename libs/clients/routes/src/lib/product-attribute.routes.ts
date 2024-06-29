@@ -36,8 +36,8 @@ export const ProductAttributeRoutes: Routes = [
       provideUpdateInputOptions(
         toUpdateFormInputOptions(ProductAttributeMetadata)
       ),
-      provideFormGroup(ProductAttributeFormGroup),
-      provideUpdateFormGroup(UpdateProductAttributeFormGroup),
+      provideFormGroup(ProductAttributeFormGroup()),
+      provideUpdateFormGroup(UpdateProductAttributeFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('ProductAttribute');

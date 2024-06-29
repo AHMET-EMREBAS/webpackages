@@ -36,8 +36,8 @@ export const PurchaseOrderRoutes: Routes = [
       provideUpdateInputOptions(
         toUpdateFormInputOptions(PurchaseOrderMetadata)
       ),
-      provideFormGroup(PurchaseOrderFormGroup),
-      provideUpdateFormGroup(UpdatePurchaseOrderFormGroup),
+      provideFormGroup(PurchaseOrderFormGroup()),
+      provideUpdateFormGroup(UpdatePurchaseOrderFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('PurchaseOrder');

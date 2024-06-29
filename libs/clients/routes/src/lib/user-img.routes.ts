@@ -34,8 +34,8 @@ export const UserImgRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(UserImgMetadata)),
       provideInputOptions(toFormInputOptions(UserImgMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(UserImgMetadata)),
-      provideFormGroup(UserImgFormGroup),
-      provideUpdateFormGroup(UpdateUserImgFormGroup),
+      provideFormGroup(UserImgFormGroup()),
+      provideUpdateFormGroup(UpdateUserImgFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('UserImg');

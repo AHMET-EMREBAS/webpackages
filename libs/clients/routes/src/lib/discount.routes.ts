@@ -34,8 +34,8 @@ export const DiscountRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(DiscountMetadata)),
       provideInputOptions(toFormInputOptions(DiscountMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(DiscountMetadata)),
-      provideFormGroup(DiscountFormGroup),
-      provideUpdateFormGroup(UpdateDiscountFormGroup),
+      provideFormGroup(DiscountFormGroup()),
+      provideUpdateFormGroup(UpdateDiscountFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Discount');

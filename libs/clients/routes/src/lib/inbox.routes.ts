@@ -34,8 +34,8 @@ export const InboxRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(InboxMetadata)),
       provideInputOptions(toFormInputOptions(InboxMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(InboxMetadata)),
-      provideFormGroup(InboxFormGroup),
-      provideUpdateFormGroup(UpdateInboxFormGroup),
+      provideFormGroup(InboxFormGroup()),
+      provideUpdateFormGroup(UpdateInboxFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Inbox');

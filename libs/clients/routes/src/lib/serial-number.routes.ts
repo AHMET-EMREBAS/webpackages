@@ -34,8 +34,8 @@ export const SerialNumberRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(SerialNumberMetadata)),
       provideInputOptions(toFormInputOptions(SerialNumberMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(SerialNumberMetadata)),
-      provideFormGroup(SerialNumberFormGroup),
-      provideUpdateFormGroup(UpdateSerialNumberFormGroup),
+      provideFormGroup(SerialNumberFormGroup()),
+      provideUpdateFormGroup(UpdateSerialNumberFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('SerialNumber');

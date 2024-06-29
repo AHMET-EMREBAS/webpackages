@@ -34,8 +34,8 @@ export const AccessTokenRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(AccessTokenMetadata)),
       provideInputOptions(toFormInputOptions(AccessTokenMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(AccessTokenMetadata)),
-      provideFormGroup(AccessTokenFormGroup),
-      provideUpdateFormGroup(UpdateAccessTokenFormGroup),
+      provideFormGroup(AccessTokenFormGroup()),
+      provideUpdateFormGroup(UpdateAccessTokenFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('AccessToken');

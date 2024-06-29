@@ -34,8 +34,8 @@ export const CustomerRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(CustomerMetadata)),
       provideInputOptions(toFormInputOptions(CustomerMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(CustomerMetadata)),
-      provideFormGroup(CustomerFormGroup),
-      provideUpdateFormGroup(UpdateCustomerFormGroup),
+      provideFormGroup(CustomerFormGroup()),
+      provideUpdateFormGroup(UpdateCustomerFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Customer');

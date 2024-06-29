@@ -34,8 +34,8 @@ export const CategoryRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(CategoryMetadata)),
       provideInputOptions(toFormInputOptions(CategoryMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(CategoryMetadata)),
-      provideFormGroup(CategoryFormGroup),
-      provideUpdateFormGroup(UpdateCategoryFormGroup),
+      provideFormGroup(CategoryFormGroup()),
+      provideUpdateFormGroup(UpdateCategoryFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Category');

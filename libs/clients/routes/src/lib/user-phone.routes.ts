@@ -34,8 +34,8 @@ export const UserPhoneRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(UserPhoneMetadata)),
       provideInputOptions(toFormInputOptions(UserPhoneMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(UserPhoneMetadata)),
-      provideFormGroup(UserPhoneFormGroup),
-      provideUpdateFormGroup(UpdateUserPhoneFormGroup),
+      provideFormGroup(UserPhoneFormGroup()),
+      provideUpdateFormGroup(UpdateUserPhoneFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('UserPhone');

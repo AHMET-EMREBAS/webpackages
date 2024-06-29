@@ -34,8 +34,8 @@ export const ClockRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(ClockMetadata)),
       provideInputOptions(toFormInputOptions(ClockMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(ClockMetadata)),
-      provideFormGroup(ClockFormGroup),
-      provideUpdateFormGroup(UpdateClockFormGroup),
+      provideFormGroup(ClockFormGroup()),
+      provideUpdateFormGroup(UpdateClockFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Clock');

@@ -34,8 +34,8 @@ export const UserRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(UserMetadata)),
       provideInputOptions(toFormInputOptions(UserMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(UserMetadata)),
-      provideFormGroup(UserFormGroup),
-      provideUpdateFormGroup(UpdateUserFormGroup),
+      provideFormGroup(UserFormGroup()),
+      provideUpdateFormGroup(UpdateUserFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('User');

@@ -34,8 +34,8 @@ export const ProjectRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(ProjectMetadata)),
       provideInputOptions(toFormInputOptions(ProjectMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(ProjectMetadata)),
-      provideFormGroup(ProjectFormGroup),
-      provideUpdateFormGroup(UpdateProjectFormGroup),
+      provideFormGroup(ProjectFormGroup()),
+      provideUpdateFormGroup(UpdateProjectFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Project');

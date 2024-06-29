@@ -34,8 +34,8 @@ export const StoreRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(StoreMetadata)),
       provideInputOptions(toFormInputOptions(StoreMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(StoreMetadata)),
-      provideFormGroup(StoreFormGroup),
-      provideUpdateFormGroup(UpdateStoreFormGroup),
+      provideFormGroup(StoreFormGroup()),
+      provideUpdateFormGroup(UpdateStoreFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Store');

@@ -34,8 +34,8 @@ export const OrganizationRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(OrganizationMetadata)),
       provideInputOptions(toFormInputOptions(OrganizationMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(OrganizationMetadata)),
-      provideFormGroup(OrganizationFormGroup),
-      provideUpdateFormGroup(UpdateOrganizationFormGroup),
+      provideFormGroup(OrganizationFormGroup()),
+      provideUpdateFormGroup(UpdateOrganizationFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Organization');

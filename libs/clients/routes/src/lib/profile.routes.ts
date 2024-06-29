@@ -34,8 +34,8 @@ export const ProfileRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(ProfileMetadata)),
       provideInputOptions(toFormInputOptions(ProfileMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(ProfileMetadata)),
-      provideFormGroup(ProfileFormGroup),
-      provideUpdateFormGroup(UpdateProfileFormGroup),
+      provideFormGroup(ProfileFormGroup()),
+      provideUpdateFormGroup(UpdateProfileFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Profile');

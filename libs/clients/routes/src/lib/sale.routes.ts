@@ -34,8 +34,8 @@ export const SaleRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(SaleMetadata)),
       provideInputOptions(toFormInputOptions(SaleMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(SaleMetadata)),
-      provideFormGroup(SaleFormGroup),
-      provideUpdateFormGroup(UpdateSaleFormGroup),
+      provideFormGroup(SaleFormGroup()),
+      provideUpdateFormGroup(UpdateSaleFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Sale');

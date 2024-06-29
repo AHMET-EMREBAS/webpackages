@@ -34,8 +34,8 @@ export const SupplierRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(SupplierMetadata)),
       provideInputOptions(toFormInputOptions(SupplierMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(SupplierMetadata)),
-      provideFormGroup(SupplierFormGroup),
-      provideUpdateFormGroup(UpdateSupplierFormGroup),
+      provideFormGroup(SupplierFormGroup()),
+      provideUpdateFormGroup(UpdateSupplierFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Supplier');

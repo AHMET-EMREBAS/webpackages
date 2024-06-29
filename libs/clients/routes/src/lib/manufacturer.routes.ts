@@ -34,8 +34,8 @@ export const ManufacturerRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(ManufacturerMetadata)),
       provideInputOptions(toFormInputOptions(ManufacturerMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(ManufacturerMetadata)),
-      provideFormGroup(ManufacturerFormGroup),
-      provideUpdateFormGroup(UpdateManufacturerFormGroup),
+      provideFormGroup(ManufacturerFormGroup()),
+      provideUpdateFormGroup(UpdateManufacturerFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Manufacturer');

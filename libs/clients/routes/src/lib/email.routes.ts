@@ -34,8 +34,8 @@ export const EmailRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(EmailMetadata)),
       provideInputOptions(toFormInputOptions(EmailMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(EmailMetadata)),
-      provideFormGroup(EmailFormGroup),
-      provideUpdateFormGroup(UpdateEmailFormGroup),
+      provideFormGroup(EmailFormGroup()),
+      provideUpdateFormGroup(UpdateEmailFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Email');

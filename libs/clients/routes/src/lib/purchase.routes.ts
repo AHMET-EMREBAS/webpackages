@@ -34,8 +34,8 @@ export const PurchaseRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(PurchaseMetadata)),
       provideInputOptions(toFormInputOptions(PurchaseMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(PurchaseMetadata)),
-      provideFormGroup(PurchaseFormGroup),
-      provideUpdateFormGroup(UpdatePurchaseFormGroup),
+      provideFormGroup(PurchaseFormGroup()),
+      provideUpdateFormGroup(UpdatePurchaseFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Purchase');

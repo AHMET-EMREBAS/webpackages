@@ -36,8 +36,8 @@ export const CustomerEmailRoutes: Routes = [
       provideUpdateInputOptions(
         toUpdateFormInputOptions(CustomerEmailMetadata)
       ),
-      provideFormGroup(CustomerEmailFormGroup),
-      provideUpdateFormGroup(UpdateCustomerEmailFormGroup),
+      provideFormGroup(CustomerEmailFormGroup()),
+      provideUpdateFormGroup(UpdateCustomerEmailFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('CustomerEmail');

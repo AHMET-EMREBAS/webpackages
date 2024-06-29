@@ -34,8 +34,8 @@ export const SkuDetailRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(SkuDetailMetadata)),
       provideInputOptions(toFormInputOptions(SkuDetailMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(SkuDetailMetadata)),
-      provideFormGroup(SkuDetailFormGroup),
-      provideUpdateFormGroup(UpdateSkuDetailFormGroup),
+      provideFormGroup(SkuDetailFormGroup()),
+      provideUpdateFormGroup(UpdateSkuDetailFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('SkuDetail');

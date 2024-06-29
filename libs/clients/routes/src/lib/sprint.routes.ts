@@ -34,8 +34,8 @@ export const SprintRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(SprintMetadata)),
       provideInputOptions(toFormInputOptions(SprintMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(SprintMetadata)),
-      provideFormGroup(SprintFormGroup),
-      provideUpdateFormGroup(UpdateSprintFormGroup),
+      provideFormGroup(SprintFormGroup()),
+      provideUpdateFormGroup(UpdateSprintFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Sprint');

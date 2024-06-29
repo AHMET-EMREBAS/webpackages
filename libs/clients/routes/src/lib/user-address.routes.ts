@@ -34,8 +34,8 @@ export const UserAddressRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(UserAddressMetadata)),
       provideInputOptions(toFormInputOptions(UserAddressMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(UserAddressMetadata)),
-      provideFormGroup(UserAddressFormGroup),
-      provideUpdateFormGroup(UpdateUserAddressFormGroup),
+      provideFormGroup(UserAddressFormGroup()),
+      provideUpdateFormGroup(UpdateUserAddressFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('UserAddress');

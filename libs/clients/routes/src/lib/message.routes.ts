@@ -34,8 +34,8 @@ export const MessageRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(MessageMetadata)),
       provideInputOptions(toFormInputOptions(MessageMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(MessageMetadata)),
-      provideFormGroup(MessageFormGroup),
-      provideUpdateFormGroup(UpdateMessageFormGroup),
+      provideFormGroup(MessageFormGroup()),
+      provideUpdateFormGroup(UpdateMessageFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Message');

@@ -34,8 +34,8 @@ export const <%- className %>Routes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(<%- className %>Metadata)),
       provideInputOptions(toFormInputOptions(<%- className %>Metadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(<%- className %>Metadata)),
-      provideFormGroup(<%- className %>FormGroup),
-      provideUpdateFormGroup(Update<%- className %>FormGroup),
+      provideFormGroup(<%- className %>FormGroup()),
+      provideUpdateFormGroup(Update<%- className %>FormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('<%- className %>');

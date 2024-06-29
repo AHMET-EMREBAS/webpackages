@@ -34,8 +34,8 @@ export const CartRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(CartMetadata)),
       provideInputOptions(toFormInputOptions(CartMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(CartMetadata)),
-      provideFormGroup(CartFormGroup),
-      provideUpdateFormGroup(UpdateCartFormGroup),
+      provideFormGroup(CartFormGroup()),
+      provideUpdateFormGroup(UpdateCartFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Cart');

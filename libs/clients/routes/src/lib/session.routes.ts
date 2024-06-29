@@ -34,8 +34,8 @@ export const SessionRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(SessionMetadata)),
       provideInputOptions(toFormInputOptions(SessionMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(SessionMetadata)),
-      provideFormGroup(SessionFormGroup),
-      provideUpdateFormGroup(UpdateSessionFormGroup),
+      provideFormGroup(SessionFormGroup()),
+      provideUpdateFormGroup(UpdateSessionFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Session');

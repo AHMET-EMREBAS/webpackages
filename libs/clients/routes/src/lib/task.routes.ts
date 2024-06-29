@@ -34,8 +34,8 @@ export const TaskRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(TaskMetadata)),
       provideInputOptions(toFormInputOptions(TaskMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(TaskMetadata)),
-      provideFormGroup(TaskFormGroup),
-      provideUpdateFormGroup(UpdateTaskFormGroup),
+      provideFormGroup(TaskFormGroup()),
+      provideUpdateFormGroup(UpdateTaskFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Task');

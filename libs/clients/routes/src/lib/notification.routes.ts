@@ -34,8 +34,8 @@ export const NotificationRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(NotificationMetadata)),
       provideInputOptions(toFormInputOptions(NotificationMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(NotificationMetadata)),
-      provideFormGroup(NotificationFormGroup),
-      provideUpdateFormGroup(UpdateNotificationFormGroup),
+      provideFormGroup(NotificationFormGroup()),
+      provideUpdateFormGroup(UpdateNotificationFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Notification');

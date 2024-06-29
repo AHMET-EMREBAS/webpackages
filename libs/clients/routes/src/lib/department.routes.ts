@@ -34,8 +34,8 @@ export const DepartmentRoutes: Routes = [
       provideTableColumnOptions(toTableColumnOptions(DepartmentMetadata)),
       provideInputOptions(toFormInputOptions(DepartmentMetadata)),
       provideUpdateInputOptions(toUpdateFormInputOptions(DepartmentMetadata)),
-      provideFormGroup(DepartmentFormGroup),
-      provideUpdateFormGroup(UpdateDepartmentFormGroup),
+      provideFormGroup(DepartmentFormGroup()),
+      provideUpdateFormGroup(UpdateDepartmentFormGroup()),
     ],
     loadChildren() {
       return buildCrudRoutes('Department');
