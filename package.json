@@ -6,7 +6,7 @@
     "stop": "pm2 stop api-production && pm2 stop api-development",
     "test:api": "npx nx run api-e2e:e2e",
     "test:client": "npx nx run client-e2e:e2e",
-    "build:prod": "npx nx build api && npx nx build client && sudo rm -rf /usr/share/nginx/html/* && sudo mv -rf /home/node/Projects/webpackages/dist/apps/client/* /usr/share/nginx/html",
+    "build:prod": "npx nx build api && npx nx build client && sudo rm -rf /usr/share/nginx/html/* && sudo mv -f /home/node/Projects/webpackages/dist/apps/client/* /usr/share/nginx/html",
     "prestart:prod": "pnpm build:prod",
     "start:prod": "pm2 start ./.config/pm2.config.js -f",
     "start": "pm2 start ./.config/pm2.config.js"
