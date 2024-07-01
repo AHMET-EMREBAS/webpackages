@@ -114,6 +114,7 @@ export function toTableColumnOptions(
             return {
               name: key + names(vc).className,
               label: prefix + ' ' + names(vc).titleName,
+              tabIndex: value.tabIndex,
             } as PropertyOptions;
           });
         }

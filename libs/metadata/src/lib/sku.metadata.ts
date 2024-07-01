@@ -12,8 +12,8 @@ export const SkuMetadata: Metadata = {
       inputType: 'text',
       description: 'Unique product sku name',
       example: 'Unique SKU Namem - SK-1 Product name',
-      class: 'order-2 w-4/12 grow',
-      tabIndex: 2,
+      class: 'order-1 w-4/12 grow',
+      tabIndex: 1,
     },
     sku: {
       type: 'string',
@@ -24,8 +24,8 @@ export const SkuMetadata: Metadata = {
       inputType: 'text',
       minLength: 6,
       maxLength: 13,
-      class: 'order-3 w-4/12 grow',
-      tabIndex: 3,
+      class: 'order-2 w-4/12 grow',
+      tabIndex: 2,
     },
     description: {
       type: 'string',
@@ -33,8 +33,8 @@ export const SkuMetadata: Metadata = {
       inputType: 'textarea',
       description: 'Sku description',
       example: 'Sku Description',
-      class: 'order-4 w-full',
-      tabIndex: 4,
+      class: 'order-3 w-full',
+      tabIndex: 3,
     },
   },
   relations: {
@@ -45,8 +45,8 @@ export const SkuMetadata: Metadata = {
       label: 'Product',
       resourceLabelProperty: 'name',
       update: false,
-      class: 'order-1 w-full',
-      tabIndex: 1,
+      class: 'order-4 w-full',
+      tabIndex: 4,
     },
   },
 };

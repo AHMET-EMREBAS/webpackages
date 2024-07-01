@@ -60,12 +60,11 @@ export function provideDefaultTableOptions() {
   return [
     provideDefaultHttpSearchQueryBuilder(),
     provideDefaultHttpCountQueryBuilder(),
-    
+
     provideDefaultTimestampColumnOptions(),
     provideDefaultIdColumnOptions(),
     provideDefaultTableRowRouteValueHandler(),
     provideDefaultContextEditRouteValue(),
     provideDefaultContextDeleteRouteValue(),
-    provideDefaultTableColumnOptions(),
   ];
 }
