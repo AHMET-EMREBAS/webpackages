@@ -36,11 +36,12 @@
         <mat-tab [label]="item['priceLevelName']">
           <div class="flex flex-col py-4">
             <wp-price-update-form
-              [entityId]="item['id']"
+              [entityId]="item['eid']"
               submitButtonLabel="Next"
               (submittedEventSuccess)="
                 nextPriceTab(priceTabGroup.selectedIndex + 1)
               "
+              [formStoreName]="'PriceForm ' + item.id"
             ></wp-price-update-form>
           </div>
         </mat-tab>

@@ -94,17 +94,17 @@ export class UpdateFormComponent<T = any>
   }
 
   override async ngOnInit() {
+    super.ngOnInit();
+
     if (!this.entityId) {
       this.entityId = parseInt(this.route.snapshot.paramMap.get('id')) || -1;
     }
-    
+
     const foundItem = await firstValueFrom(
       this.service.getByKey(this.entityId)
     );
-
     this.setFormValue(foundItem);
-
-    super.ngOnInit();
+    this.formStore.set(this.formGroup.value);
   }
 
   override async handleFormSubmit(event?: any) {

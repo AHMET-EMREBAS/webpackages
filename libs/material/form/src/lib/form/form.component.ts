@@ -143,30 +143,33 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const localStoreName = this.resourceName || this.formStoreName;
-    if (localStoreName) {
-      this.formStore = new LocalStoreController(localStoreName);
-      const defaultValue = this.formStore?.get();
-      if (defaultValue) {
-        for (const [key, value] of Object.entries(defaultValue)) {
-          this.formGroup.get(key).setValue(value);
+    if (this.formGroup) {
+      const localStoreName = this.formStoreName || this.resourceName;
+      if (localStoreName) {
+        this.formStore = new LocalStoreController(localStoreName);
+        const defaultValue = this.formStore?.get();
+        if (defaultValue) {
+          for (const [key, value] of Object.entries(defaultValue)) {
+            const control = this.formGroup.get(key);
+            control?.setValue(value);
+          }
         }
       }
+
+      this.valueChange = this.formGroup.valueChanges.pipe(
+        debounceTime(600),
+        map((data) => {
+          this.formStore?.set(data);
+          return data;
+        })
+      );
+
+      this.valueChangeSub = this.valueChange.subscribe();
     }
-
-    this.valueChange = this.formGroup.valueChanges.pipe(
-      debounceTime(600),
-      map((data) => {
-        this.formStore?.set(data);
-        return data;
-      })
-    );
-
-    this.valueChangeSub = this.valueChange.subscribe();
   }
 
   ngOnDestroy(): void {
-    this.valueChangeSub.unsubscribe();
+    this.valueChangeSub?.unsubscribe();
   }
 
   async handleFormSubmit(event?: any) {
@@ -216,15 +219,17 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
   }
 
   reset() {
-    this.formGroup.reset();
-    this.formGroup.markAsUntouched();
-    const controls = this.formGroup.controls;
+    if (this.formGroup) {
+      this.formGroup.reset();
+      this.formGroup.markAsUntouched();
+      const controls = this.formGroup.controls;
 
-    for (const [key, value] of Object.entries(controls)) {
-      value.markAsUntouched();
-      value.reset();
-      value.setValue(null);
-      value.setErrors(null);
+      for (const [, value] of Object.entries(controls)) {
+        value.markAsUntouched();
+        value.reset();
+        value.setValue(null);
+        value.setErrors(null);
+      }
     }
   }
 }

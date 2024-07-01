@@ -49,8 +49,10 @@ export const defaultInputStatusIndicatorHandler: InputStatusIndicatorHandler = (
   if (options.inputType === 'text' || options.inputType === 'textarea') {
     const value = control.value;
     if (options.inputMinLength) {
-      if (value.length < options.inputMinLength) {
-        return `( ⬆ / ${options.inputMinLength})`;
+      if (value && value.length && options?.inputMinLength) {
+        if (value.length < options.inputMinLength) {
+          return `( ⬆ / ${options.inputMinLength})`;
+        }
       }
     }
 

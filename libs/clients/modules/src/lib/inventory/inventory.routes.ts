@@ -17,6 +17,7 @@ import {
   provideNavListItems,
   provideResouceName,
 } from '@webpackages/material/core';
+import { CustomProductRoutes } from './custom-product.routes';
 
 function __route(resourceName: string, routes: Routes): Route {
   return {
@@ -56,7 +57,7 @@ export const InventoryRoutes: Route[] = [
     ],
 
     children: [
-      __route('Product', ProductRoutes),
+      __route('Product', CustomProductRoutes),
       __route('Sku', SkuRoutes),
       __route('SkuDetail', SkuDetailRoutes),
 
