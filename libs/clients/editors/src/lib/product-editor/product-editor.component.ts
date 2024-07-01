@@ -221,7 +221,7 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
       const prices = await this.getPrices();
       this.finishAndLock('price', prices);
     } else {
-      this.priceTabGroup.selectedIndex = selectedIndex + 1;
+      this.priceTabGroup.selectedIndex += 1;
     }
   }
 
@@ -230,7 +230,7 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
     if (selectedIndex == l) {
       this.nextStep();
     } else {
-      this.priceTabGroup.selectedIndex = selectedIndex - 1;
+      this.priceTabGroup.selectedIndex -= 1;
     }
   }
 

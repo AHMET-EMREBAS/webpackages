@@ -45,6 +45,11 @@ export const CustomProductRoutes: Routes = [
     ],
     children: [
       {
+        path: '',
+        redirectTo: 'table',
+        pathMatch: 'full',
+      },
+      {
         path: 'table',
         loadComponent() {
           return TableComponent;
