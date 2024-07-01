@@ -8,11 +8,16 @@ import { FormComponent } from './form.component';
 import { within } from '@storybook/testing-library';
 
 import {
+  MockCategoryCollectionService,
+  provideEntityCollectionService,
   provideFormGroup,
   provideInputOptions,
 } from '@webpackages/material/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PropertyOptions } from '@webpackages/types';
+import { importProvidersFrom } from '@angular/core';
+import { FormTestingModule } from '../testing';
+import { fn } from '@storybook/test';
 
 const formGroup = new FormGroup({
   name: new FormControl(null, [
@@ -31,6 +36,8 @@ const meta: Meta<FormComponent<any>> = {
   decorators: [
     applicationConfig({
       providers: [
+        importProvidersFrom(FormTestingModule),
+        provideEntityCollectionService(MockCategoryCollectionService),
         provideFormGroup(formGroup),
         provideInputOptions([
           {
@@ -55,7 +62,8 @@ const meta: Meta<FormComponent<any>> = {
             name: 'category',
             label: 'Select Category',
             inputType: 'search',
-            resourceName: 'categorys',
+            resourceName: 'category',
+            resourceLabelProperty: 'name',
             required: true,
             class: 'grow order-3',
             tabIndex: 3,
@@ -72,6 +80,11 @@ const meta: Meta<FormComponent<any>> = {
       ],
     }),
   ],
+  argTypes: {
+    submittedEvent: fn,
+    submittedEventSuccess: fn,
+    submittedEventError: fn,
+  },
 };
 export default meta;
 
@@ -82,7 +95,7 @@ export const Primary: Story = {
 };
 
 export const Heading: Story = {
-  args: {},
+  ...Primary.args,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     // expect(canvas.getByText(/create works!/gi)).toBeTruthy();

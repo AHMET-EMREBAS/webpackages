@@ -1,12 +1,21 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import {
+  applicationConfig,
+  type Meta,
+  type StoryObj,
+} from '@storybook/angular';
 import { UpdateFormComponent } from './update-form.component';
-
 import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { importProvidersFrom } from '@angular/core';
+import { FormTestingModule } from '../testing';
 
 const meta: Meta<UpdateFormComponent> = {
   component: UpdateFormComponent,
   title: 'UpdateFormComponent',
+  decorators: [
+    applicationConfig({
+      providers: [importProvidersFrom(FormTestingModule)],
+    }),
+  ],
 };
 export default meta;
 type Story = StoryObj<UpdateFormComponent>;
