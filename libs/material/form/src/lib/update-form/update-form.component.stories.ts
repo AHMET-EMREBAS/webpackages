@@ -21,7 +21,6 @@ const meta: Meta<UpdateFormComponent> = {
     applicationConfig({
       providers: [
         importProvidersFrom(FormTestingModule),
-
         provideUpdateInputOptions([
           {
             name: 'name',

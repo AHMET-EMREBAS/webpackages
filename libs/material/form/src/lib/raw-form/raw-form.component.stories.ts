@@ -7,7 +7,6 @@ import { RawFormComponent } from './raw-form.component';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 import {
-  provideInputOptions,
   provideRawFormGroup,
   provideRawInputOptions,
   provideResouceName,
