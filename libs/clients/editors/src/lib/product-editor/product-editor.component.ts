@@ -41,7 +41,7 @@ import { LocalStoreController } from '@webpackages/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { firstValueFrom } from 'rxjs';
-import { RawFormComponent } from '@webpackages/material/form';
+import { FormComponent, RawFormComponent } from '@webpackages/material/form';
 import { v4 } from 'uuid';
 
 export type ProductEditorStepState<T> = {
@@ -100,11 +100,11 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
     },
   });
 
-  store = new LocalStoreController<ProductEditorState>(
-    'ProductEditorStateStore'
-  );
+  store = new LocalStoreController<ProductEditorState>('product_editor');
 
   @ViewChild('defaultPriceForm') defaultPriceForm: RawFormComponent;
+
+  @ViewChild('productForm') productForm: FormComponent;
 
   @ViewChild('productEditorStepper') stepper: MatStepper;
 
@@ -134,12 +134,14 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   }
 
   async ngAfterViewInit3() {
+    await this.ngAfterViewInit1();
     for (const [key, value] of Object.entries(this.state())) {
       if (value.complete) {
         this.finishAndLock(key as any, value.data);
       }
     }
   }
+
   async ngAfterViewInit1() {
     const prices = await this.getPrices();
     this.state.update((value) => {
@@ -310,15 +312,16 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   }
 
   restartSteps() {
-    this.stepper.reset();
     this.cleanStore();
+    this.stepper.reset();
     this.priceTabGroup.selectedIndex = 0;
-    this.defaultPriceForm.formGroup.reset();
+    this.defaultPriceForm?.reset();
+    this.productForm?.reset();
   }
 
   createSubStore(name: string, variant = '') {
     const { product } = this.state();
-    const productId = product.data['id'];
+    const productId = product.data?.['id'] || '';
     return this.store.createSubStore(name, `${productId}${variant}`);
   }
 }

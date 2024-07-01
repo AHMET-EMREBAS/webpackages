@@ -41,5 +41,6 @@ export class LocalStoreController<T> {
 
   delete() {
     localStorage.removeItem(this.storeName);
+    this.stores.forEach((value, key) => value.delete());
   }
 }

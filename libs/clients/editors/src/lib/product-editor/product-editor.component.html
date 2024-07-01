@@ -1,11 +1,14 @@
 <mat-stepper #productEditorStepper [linear]="true">
-  <mat-step #productStep label="Create Product">
-    <!-- [stepControl]="productForm.formGroup" -->
+  <mat-step
+    #productStep
+    label="Create Product"
+    [stepControl]="productForm.formGroup"
+  >
     <wp-product-form
       #productForm
       submitButtonLabel="Next"
       (submittedEventSuccess)="handleProductSubmitSuccessEvent($event)"
-      formStoreName="ProductEditorProduct"
+      [formStoreName]="createSubStore('product')"
     ></wp-product-form>
   </mat-step>
 
