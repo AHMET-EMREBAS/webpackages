@@ -3,7 +3,10 @@
     #productStep
     label="Create Product"
     [stepControl]="productForm.formGroup"
+    [completed]="false"
+    [editable]="false"
   >
+    {{ productForm.formGroup.valid | json }}
     <wp-product-form
       #productForm
       submitButtonLabel="Next"
@@ -13,7 +16,7 @@
   </mat-step>
 
   <!--  Prices -->
-  <mat-step #priceStep label="Pricing">
+  <mat-step #priceStep label="Pricing" [completed]="false" [editable]="false">
     @defer(when state().product.complete){
 
     <mat-tab-group #priceTabGroup>
@@ -76,6 +79,8 @@
     #serialStep
     [stepControl]="serialNumberForm.formGroup"
     label="Serial Number"
+    [completed]="false"
+    [editable]="false"
   >
     <wp-serial-number-raw-form
       #serialNumberForm
@@ -86,7 +91,7 @@
   </mat-step>
   } @placeholder {
 
-  <mat-step label="Serial Number">
+  <mat-step label="Serial Number" [completed]="false" [editable]="false">
     <p>Product is not created yet!</p>
   </mat-step>
   }
@@ -111,8 +116,3 @@
     </div>
   </mat-step>
 </mat-stepper>
-<div class="flex flex-row-reverse gap-4 px-6">
-  <button mat-raised-button color="accent" (click)="restartSteps()">
-    Restart Stepper
-  </button>
-</div>

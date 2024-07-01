@@ -56,7 +56,7 @@ export const defaultInputStatusIndicatorHandler: InputStatusIndicatorHandler = (
       }
     }
 
-    return `( ${value?.length} / ${options.inputMaxLength || '*'} )`;
+    return `( ${value?.length || 0} / ${options.inputMaxLength || '*'} )`;
   } else if (options.inputType === 'number') {
     const value = parseFloat(control.value + '');
 

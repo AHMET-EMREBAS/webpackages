@@ -62,6 +62,16 @@ function debug(msg: string, data?: any) {
   data && console.table(data);
 }
 
+const defaultState: ProductEditorState = {
+  product: {},
+  price: {},
+  quantity: {},
+  serial: {},
+  sku: {
+    complete: true,
+  },
+};
+
 @Component({
   selector: 'wp-product-editor',
   standalone: true,
@@ -90,21 +100,15 @@ function debug(msg: string, data?: any) {
   ],
 })
 export class ProductEditorComponent implements OnInit, AfterViewInit {
-  state = signal<ProductEditorState>({
-    product: {},
-    price: {},
-    quantity: {},
-    serial: {},
-    sku: {
-      complete: true,
-    },
-  });
+  state = signal<ProductEditorState>({ ...defaultState });
 
   store = new LocalStoreController<ProductEditorState>('product_editor');
 
   @ViewChild('defaultPriceForm') defaultPriceForm: RawFormComponent;
 
   @ViewChild('productForm') productForm: FormComponent;
+
+  @ViewChild('serialNumberForm') serialNumberForm: FormComponent;
 
   @ViewChild('productEditorStepper') stepper: MatStepper;
 
@@ -129,12 +133,12 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
     this.updateState(this.store.get());
   }
 
-  ngAfterViewInit(): void {
-    this.ngAfterViewInit3();
+  async ngAfterViewInit() {
+    await this.ngAfterViewInit1();
+    await this.ngAfterViewInit3();
   }
 
   async ngAfterViewInit3() {
-    await this.ngAfterViewInit1();
     for (const [key, value] of Object.entries(this.state())) {
       if (value.complete) {
         this.finishAndLock(key as any, value.data);
@@ -309,14 +313,31 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
 
   cleanStore() {
     this.store.delete();
+    this.state.update(() => ({ ...defaultState }));
   }
 
-  restartSteps() {
+  async restartSteps() {
     this.cleanStore();
     this.stepper.reset();
-    this.priceTabGroup.selectedIndex = 0;
+
+    this.productStep.completed = false;
+    this.productStep.editable = true;
+
+    this.priceStep.completed = false;
+    this.priceStep.editable = true;
+
+    this.stepper.steps.forEach((e) => {
+      e.reset();
+      e.completed = false;
+      e.editable = true;
+    });
+
     this.defaultPriceForm?.reset();
     this.productForm?.reset();
+    this.serialNumberForm?.reset();
+    setTimeout(async () => {
+      await this.ngAfterViewInit();
+    }, 1000);
   }
 
   createSubStore(name: string, variant = '') {
