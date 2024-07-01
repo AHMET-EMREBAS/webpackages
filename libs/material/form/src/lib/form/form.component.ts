@@ -50,6 +50,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { RouterModule } from '@angular/router';
 import { PropertyOptions } from '@webpackages/types';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 export function setFormGroupErrors(
   formGruop: FormGroup,
   dataServiceError: DataServiceError
@@ -87,9 +89,10 @@ export function setFormGroupErrors(
     MatButtonModule,
     MatIconModule,
     MatCheckboxModule,
+
+    MatSnackBarModule,
   ],
   templateUrl: './form.component.html',
-
   styles: ` 
   @media screen and (max-width:600px){ 
 
@@ -101,6 +104,8 @@ export function setFormGroupErrors(
   `,
 })
 export class FormComponent<T = any> implements OnInit, OnDestroy {
+
+  
   isFormSubmitted = false;
   formGroup = inject(getFormGroupToken(), { optional: true });
   formStore: LocalStoreController<any>;
