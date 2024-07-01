@@ -1,19 +1,18 @@
 <mat-stepper #productEditorStepper [linear]="true">
-  <mat-step
-    #productStep
-    [stepControl]="productForm.formGroup"
-    label="Create Product"
-  >
+  <mat-step #productStep label="Create Product">
+    <!-- [stepControl]="productForm.formGroup" -->
     <wp-product-form
       #productForm
       submitButtonLabel="Next"
       (submittedEventSuccess)="handleProductSubmitSuccessEvent($event)"
-      formStoreName="ProductEditorProductForm"
+      formStoreName="ProductEditorProduct"
     ></wp-product-form>
   </mat-step>
 
   <!--  Prices -->
   <mat-step #priceStep label="Pricing">
+    @defer(when state().product.complete){
+
     <mat-tab-group #priceTabGroup>
       <mat-tab label="Default Price">
         <div class="flex flex-row items-center gap-4 py-4">
@@ -26,12 +25,15 @@
             #defaultPriceForm
             (submittedEvent)="handleDefaultPriceSubmitEvent($event)"
             submitButtonLabel="Next"
-            formStoreName="ProductEditorDefaultPriceForm"
+            [formStoreName]="createSubStore('default-price')"
           ></wp-price-raw-form>
         </div>
       </mat-tab>
 
       <ng-container>
+        @defer (when state().product.complete===true ) {
+
+        <!-- For Loop -->
         @for(item of state().price.data;track item;){
         <mat-tab [label]="item['priceLevelName']">
           <div class="flex flex-col py-4">
@@ -41,19 +43,32 @@
               (submittedEventSuccess)="
                 nextPriceTab(priceTabGroup.selectedIndex + 1)
               "
-              [formStoreName]="'PriceForm ' + item.id"
+              [formStoreName]="createSubStore('price', item['eid'])"
             ></wp-price-update-form>
           </div>
         </mat-tab>
+        }
+
+        <!-- For loop -->
+        } @placeholder (minimum 3000ms) {
+        <p>Product is not created yet!</p>
         }
       </ng-container>
       <!--  -->
     </mat-tab-group>
 
+    }
+
+    <!-- Prices placeholder  -->
+    @placeholder (minimum 3000ms) {
+    <p>Product is not created yet!</p>
+    }
+
     <!--  -->
   </mat-step>
 
   <!-- Serial Number Step -->
+  @defer (when state().product.complete ){
   <mat-step
     #serialStep
     [stepControl]="serialNumberForm.formGroup"
@@ -63,8 +78,15 @@
       #serialNumberForm
       submitButtonLabel="Next"
       (submittedEvent)="handleSerialNumberSubmitEvent($event)"
+      [formStoreName]="createSubStore('serial')"
     ></wp-serial-number-raw-form>
   </mat-step>
+  } @placeholder {
+
+  <mat-step label="Serial Number">
+    <p>Product is not created yet!</p>
+  </mat-step>
+  }
 
   <!-- Final Step -->
   <mat-step #finalStep label="Complete">

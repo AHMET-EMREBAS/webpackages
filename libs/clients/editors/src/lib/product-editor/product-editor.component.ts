@@ -91,8 +91,8 @@ function debug(msg: string, data?: any) {
 })
 export class ProductEditorComponent implements OnInit, AfterViewInit {
   state = signal<ProductEditorState>({
-    price: {},
     product: {},
+    price: {},
     quantity: {},
     serial: {},
     sku: {
@@ -130,15 +130,27 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.ngAfterViewInit0();
+    this.ngAfterViewInit3();
   }
 
-  async ngAfterViewInit0() {
+  async ngAfterViewInit3() {
     for (const [key, value] of Object.entries(this.state())) {
       if (value.complete) {
         this.finishAndLock(key as any, value.data);
       }
     }
+  }
+  async ngAfterViewInit1() {
+    const prices = await this.getPrices();
+    this.state.update((value) => {
+      return {
+        ...value,
+        price: {
+          ...value.price,
+          data: prices,
+        },
+      };
+    });
   }
 
   async getPrices() {
@@ -166,7 +178,11 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   }
 
   async handleProductSubmitSuccessEvent(event: IProduct) {
-    this.finishAndLock('product', event);
+    const productView = await firstValueFrom(
+      this.productService.getByKey(event.id)
+    );
+
+    this.finishAndLock('product', productView);
     this.anounce('Created Product');
     const prices = await this.getPrices();
     const skus = await this.getSkus();
@@ -195,7 +211,7 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
       for (const price of priceData) {
         try {
           await firstValueFrom(
-            this.priceService.update({ id: price.id, ...event } as any)
+            this.priceService.update({ id: price['eid'], ...event } as any)
           );
         } catch (err) {
           this.defaultPriceForm.setErrors(err);
@@ -284,7 +300,6 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
   updateState(newValue?: Partial<ProductEditorState>) {
     this.state.update((value) => {
       const updatedValue = { ...value, ...(newValue || {}) };
-
       this.store.set(updatedValue);
       return updatedValue;
     });
@@ -299,5 +314,11 @@ export class ProductEditorComponent implements OnInit, AfterViewInit {
     this.cleanStore();
     this.priceTabGroup.selectedIndex = 0;
     this.defaultPriceForm.formGroup.reset();
+  }
+
+  createSubStore(name: string, variant = '') {
+    const { product } = this.state();
+    const productId = product.data['id'];
+    return this.store.createSubStore(name, `${productId}${variant}`);
   }
 }

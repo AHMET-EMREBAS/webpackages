@@ -1,12 +1,25 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { isUndefined, isNotUndefined } from '@webpackages/utils';
 
 export class LocalStoreController<T> {
+  private readonly stores = new Map<string, LocalStoreController<any>>();
   constructor(protected readonly storeName: string) {}
+
+  createSubStore<T>(name: string, variant = ''): string {
+    const subStoreName = `${this.storeName}_${name}${variant}`;
+    const subStore = new LocalStoreController<T>(subStoreName);
+    this.stores.set(subStoreName, subStore);
+
+    return subStoreName;
+  }
+
+  getSubStore<T>(name: string): LocalStoreController<T> {
+    return this.stores.get(name);
+  }
 
   get(): T | undefined {
     const raw = localStorage.getItem(this.storeName);
     if (isNotUndefined(raw)) return JSON.parse(raw);
-
     return undefined;
   }
 
