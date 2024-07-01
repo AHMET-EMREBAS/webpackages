@@ -7,8 +7,9 @@ import { RawFormComponent } from './raw-form.component';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 import {
-  provideFormGroup,
   provideInputOptions,
+  provideRawFormGroup,
+  provideRawInputOptions,
   provideResouceName,
 } from '@webpackages/material/core';
 import { toFormInputOptions } from '@webpackages/types';
@@ -24,12 +25,12 @@ const meta: Meta<RawFormComponent> = {
       providers: [
         importProvidersFrom(FormTestingModule),
         provideResouceName('Category'),
-        provideFormGroup(
+        provideRawFormGroup(
           new FormGroup({
             name: new FormControl('', [Validators.required]),
           })
         ),
-        provideInputOptions(
+        provideRawInputOptions(
           toFormInputOptions({
             properties: {
               name: { type: 'string', label: 'Input Label' },
