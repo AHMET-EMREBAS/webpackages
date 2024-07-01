@@ -104,8 +104,6 @@ export function setFormGroupErrors(
   `,
 })
 export class FormComponent<T = any> implements OnInit, OnDestroy {
-
-  
   isFormSubmitted = false;
   formGroup = inject(getFormGroupToken(), { optional: true });
   formStore: LocalStoreController<any>;
@@ -226,15 +224,6 @@ export class FormComponent<T = any> implements OnInit, OnDestroy {
   reset() {
     if (this.formGroup) {
       this.formGroup.reset();
-      this.formGroup.markAsUntouched();
-      const controls = this.formGroup.controls;
-
-      for (const [, value] of Object.entries(controls)) {
-        value.markAsUntouched();
-        value.reset();
-        value.setValue(null);
-        value.setErrors(null);
-      }
     }
   }
 }

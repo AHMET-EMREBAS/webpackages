@@ -334,15 +334,8 @@ export class RawFormComponent<T = any> implements OnInit, OnDestroy {
   }
 
   reset() {
-    this.formGroup.reset();
-    this.formGroup.markAsUntouched();
-    const controls = this.formGroup.controls;
-
-    for (const [, value] of Object.entries(controls)) {
-      value.markAsUntouched();
-      value.reset();
-      value.setValue(null);
-      value.setErrors(null);
+    if (this.formGroup) {
+      this.formGroup.reset();
     }
   }
 }
